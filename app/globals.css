@@ -1,0 +1,35 @@
+/* Minimal global styles */
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+main { max-width: 1200px; margin: 0 auto; }
+
+@import 'leaflet/dist/leaflet.css';
+:root {
+  --bg: 248 36% 98%;
+  --card: 0 0% 100%;
+  --text: 215 19% 15%;
+  --muted: 215 16% 47%;
+  --brand: 22 68% 52%;
+  --brand-600: 22 72% 45%;
+  --brand-200: 22 72% 92%;
+  --leaf: 145 32% 36%;
+  --leaf-200: 145 32% 90%;
+  --ring: 22 68% 52%;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: 220 15% 10%;
+    --card: 220 13% 15%;
+    --text: 0 0% 96%;
+    --muted: 220 9% 65%;
+    --brand: 22 68% 60%;
+    --brand-600: 22 68% 70%;
+    --brand-200: 22 72% 20%;
+    --leaf: 145 28% 55%;
+    --leaf-200: 145 28% 18%;
+    --ring: 22 68% 60%;
+  }
+}
+.warm-gradient { background: linear-gradient(135deg, hsl(var(--brand-200)) 0%, hsl(var(--leaf-200)) 100%); }
+.focus-ring { box-shadow: 0 0 0 4px hsl(var(--ring) / 0.25); }
