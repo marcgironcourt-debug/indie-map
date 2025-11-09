@@ -13,7 +13,6 @@ export type Business = {
 };
 
 const DEMO: Business[] = [
-  { id: "1", name: "Fleura Cuir Végétal", type: "Atelier", address: "Montréal", website: "https://flauracuirvegetal.com/" },
   { id: "2", name: "Café Myriade", type: "Café", address: "1432 Rue Mackay, Montréal, QC H3G 2H7", website: "https://cafemyriade.com" },
   { id: "3", name: "La Bouquinerie Locale", type: "Librairie", address: "Plateau Mont-Royal", website: "https://exemple-librairie.local" }
 ];

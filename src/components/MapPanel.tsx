@@ -80,7 +80,7 @@ export default function MapPanel() {
 
   return (
     <section className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
-      <div className="h-[70vh] lg:h-[calc(100vh-6rem)]">
+      <div className="h-[calc(100vh-6rem)]">
         <ClientMap items={items} />
       </div>
     </section>
