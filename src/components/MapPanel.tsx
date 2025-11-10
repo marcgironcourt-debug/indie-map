@@ -8,31 +8,17 @@ const ClientMap = dynamic(() => import("./ClientMap"), { ssr: false });
 type Biz = {
   id: string;
   name: string;
-  address?: string | null;
-  website?: string | null;
-  category?: string | null;
   lat?: number | string | null;
   lng?: number | string | null;
 };
 
 function normalize(input: any): Biz[] {
   if (Array.isArray(input)) return input as Biz[];
-  if (Array.isArray(input?.businesses)) return input.businesses as Biz[];
-  if (Array.isArray(input?.data)) {
-    return input.data.map((b: any) => ({
-      id: b.id,
-      name: b.name,
-      address: b.city ?? null,
-      website: b.website ?? null,
-      category: b.category ?? null,
-      lat: b.lat ?? null,
-      lng: b.lng ?? null,
-    })) as Biz[];
-  }
+  if (Array.isArray(input?.data)) return input.data as Biz[];
   return [];
 }
 
-export default function MapPanel() {
+export default function MapPanel({ selectedId }: { selectedId?: string | null }) {
   const [items, setItems] = useState<Biz[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,29 +27,10 @@ export default function MapPanel() {
     let cancelled = false;
     (async () => {
       try {
-        setLoading(true);
-        setError(null);
         const r = await fetch("/api/businesses");
-        if (r.ok) {
-          const j = await r.json();
-          const list = normalize(j);
-          if (!cancelled) setItems(list);
-        } else {
-          const r2 = await fetch("/api/places");
-          if (r2.ok) {
-            const j2 = await r2.json();
-            const list2: Biz[] = (Array.isArray(j2) ? j2 : j2?.places || []).map((p: any) => ({
-              id: p.id,
-              name: p.name,
-              address: p.city ?? null,
-              lat: p.lat ?? null,
-              lng: p.lng ?? null,
-            }));
-            if (!cancelled) setItems(list2);
-          } else {
-            throw new Error("Aucune donnée");
-          }
-        }
+        const j = await r.json();
+        const list = normalize(j);
+        if (!cancelled) setItems(list);
       } catch (e: any) {
         if (!cancelled) setError(e?.message || "Erreur inconnue");
       } finally {
@@ -81,7 +48,7 @@ export default function MapPanel() {
   return (
     <section className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
       <div className="h-[calc(100vh-6rem)]">
-        <ClientMap items={items} />
+        <ClientMap items={items} selectedId={selectedId} />
       </div>
     </section>
   );
