@@ -174,7 +174,7 @@ export default function IndieMapSplitView() {
         const list: Business[] = arr.map((p: any) => ({
           id: p.id,
           name: p.name,
-          type: "Lieu local",
+          type: p.category ?? "Lieu local",
           address: p.address ?? p.city ?? "",
           website: p.website ?? undefined,
           lat: typeof p.lat === "number" ? p.lat : undefined,
