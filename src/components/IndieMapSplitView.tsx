@@ -20,7 +20,7 @@ const DEMO: Business[] = [
 const GlobeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
     <circle cx="12" cy="12" r="9" />
-    <path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18m0-18c-3.5 3.5-3.5 14.5 0 18" />
+    <path d="M3 12h18M12 3c3.5 3.5 14.5 0 18m0-18c-3.5 3.5-14.5 0 18" />
   </svg>
 );
 
@@ -99,12 +99,18 @@ function Sidebar({
   onSelect,
   search,
   onSearchChange,
+  categories,
+  activeCategory,
+  onCategoryChange,
 }: {
   businesses?: Business[];
   selectedId?: string | null;
   onSelect?: (id: string) => void;
   search: string;
   onSearchChange: (value: string) => void;
+  categories: string[];
+  activeCategory: string | "ALL";
+  onCategoryChange: (value: string | "ALL") => void;
 }) {
   const listRef = React.useRef<HTMLUListElement>(null);
 
@@ -138,6 +144,35 @@ function Sidebar({
             />
           </label>
         </div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => onCategoryChange("ALL")}
+            className={
+              "rounded-full border px-3 py-1 text-xs font-medium transition " +
+              (activeCategory === "ALL"
+                ? "border-[hsl(var(--brand))] bg-[hsl(var(--brand))]/10 text-[hsl(var(--brand))]"
+                : "border-neutral-300/70 bg-white/60 text-neutral-700 hover:border-[hsl(var(--brand))]/60 hover:text-[hsl(var(--brand))]")
+            }
+          >
+            Toutes
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => onCategoryChange(cat)}
+              className={
+                "rounded-full border px-3 py-1 text-xs font-medium transition " +
+                (activeCategory === cat
+                  ? "border-[hsl(var(--brand))] bg-[hsl(var(--brand))]/10 text-[hsl(var(--brand))]"
+                  : "border-neutral-300/70 bg-white/60 text-neutral-700 hover:border-[hsl(var(--brand))]/60 hover:text-[hsl(var(--brand))]")
+              }
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="overflow-y-auto rounded-2xl border border-neutral-200/60 bg-[hsl(var(--card))] p-2 shadow-sm dark:border-neutral-700/60 h-[calc(100vh-14rem)]">
@@ -160,6 +195,7 @@ export default function IndieMapSplitView() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [search, setSearch] = React.useState("");
+  const [category, setCategory] = React.useState<string | "ALL">("ALL");
 
   React.useEffect(() => {
     let cancelled = false;
@@ -202,13 +238,17 @@ export default function IndieMapSplitView() {
   };
 
   const source = businesses.length ? businesses : DEMO;
+  const categories = Array.from(
+    new Set(source.map((b) => b.type).filter((t) => t && t.trim().length > 0))
+  );
+
   const query = search.trim().toLowerCase();
-  const filtered = query
-    ? source.filter((b) => {
-        const text = [b.name, b.type, b.city, b.address].filter(Boolean).join(" ").toLowerCase();
-        return text.includes(query);
-      })
-    : source;
+  const filtered = source.filter((b) => {
+    if (category !== "ALL" && b.type !== category) return false;
+    if (!query) return true;
+    const text = [b.name, b.type, b.city, b.address].filter(Boolean).join(" ").toLowerCase();
+    return text.includes(query);
+  });
 
   return (
     <main className="h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased overflow-hidden">
@@ -219,6 +259,9 @@ export default function IndieMapSplitView() {
           onSelect={handleSelect}
           search={search}
           onSearchChange={setSearch}
+          categories={categories}
+          activeCategory={category}
+          onCategoryChange={setCategory}
         />
         <MapPanel items={filtered} selectedId={selectedId} selectionVersion={selectionVersion} onSelect={handleSelect} />
       </div>
