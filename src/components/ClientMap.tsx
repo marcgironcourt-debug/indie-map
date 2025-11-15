@@ -11,42 +11,76 @@ type Biz = {
   website?: string | null;
   lat?: number | string | null;
   lng?: number | string | null;
+  type?: string | null;
 };
 
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
-const defaultPin = L.divIcon({
-  className: "indie-pin",
-  html: `
-    <svg width="24" height="36" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg" style="display:block">
-      <path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="#e11d48" stroke="white" stroke-width="2"/>
-      <circle cx="12" cy="12" r="4" fill="white"/>
-    </svg>
-  `,
-  iconSize: [24, 36],
-  iconAnchor: [12, 36],
-  popupAnchor: [0, -30],
-});
+function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "other" {
+  const v = (t || "").toLowerCase();
+  if (v.includes("café") || v.includes("cafe") || v.includes("coffee")) return "cafe";
+  if (v.includes("épicerie") || v.includes("epicerie") || v.includes("grocery")) return "epicerie";
+  if (v.includes("friperie") || v.includes("frip") || v.includes("thrift")) return "friperie";
+  return "other";
+}
 
-const selectedPin = L.divIcon({
-  className: "indie-pin indie-pin-selected",
-  html: `
-    <svg width="26" height="38" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg" style="display:block">
-      <defs>
-        <filter id="shadow">
-          <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="rgba(0,0,0,0.4)" />
-        </filter>
-      </defs>
-      <g filter="url(#shadow)">
-        <path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="#b91c1c" stroke="white" stroke-width="2"/>
-        <circle cx="12" cy="12" r="4.5" fill="white"/>
-      </g>
-    </svg>
-  `,
-  iconSize: [26, 38],
-  iconAnchor: [13, 38],
-  popupAnchor: [0, -32],
-});
+function makePin(color: string, stroke: string, selected: boolean) {
+  const size = selected ? 26 : 24;
+  const height = selected ? 38 : 36;
+  const circleR = selected ? 4.5 : 4;
+  const shadow = selected
+    ? `<defs>
+         <filter id="shadow">
+           <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="rgba(0,0,0,0.4)" />
+         </filter>
+       </defs>`
+    : "";
+  const groupOpen = selected ? `<g filter="url(#shadow")>` : "";
+  const groupClose = selected ? `</g>` : "";
+  return L.divIcon({
+    className: "indie-pin",
+    html: `
+      <svg width="${size}" height="${height}" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        ${shadow}
+        ${groupOpen}
+        <path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="${color}" stroke="${stroke}" stroke-width="2"/>
+        <circle cx="12" cy="12" r="${circleR}" fill="white"/>
+        ${groupClose}
+      </svg>
+    `,
+    iconSize: [size, height],
+    iconAnchor: [size / 2, height],
+    popupAnchor: [0, -height + 4],
+  });
+}
+
+const ICONS: Record<
+  "cafe" | "epicerie" | "friperie" | "other",
+  { normal: L.DivIcon; selected: L.DivIcon }
+> = {
+  cafe: {
+    normal: makePin("#e11d48", "#ffffff", false),
+    selected: makePin("#b91c1c", "#ffffff", true),
+  },
+  epicerie: {
+    normal: makePin("#16a34a", "#ffffff", false),
+    selected: makePin("#15803d", "#ffffff", true),
+  },
+  friperie: {
+    normal: makePin("#2563eb", "#ffffff", false),
+    selected: makePin("#1d4ed8", "#ffffff", true),
+  },
+  other: {
+    normal: makePin("#b45309", "#ffffff", false),
+    selected: makePin("#92400e", "#ffffff", true),
+  },
+};
+
+function iconForType(t?: string | null, selected?: boolean) {
+  const key = normalizeType(t);
+  const set = ICONS[key];
+  return selected ? set.selected : set.normal;
+}
 
 function FitOnData({ points }: { points: [number, number][] }) {
   const map = useMap();
@@ -109,7 +143,15 @@ export default function ClientMap({
 }) {
   const byId = new Map<
     string,
-    { id: string; name: string; address?: string | null; website?: string | null; latN: number; lngN: number }
+    {
+      id: string;
+      name: string;
+      address?: string | null;
+      website?: string | null;
+      latN: number;
+      lngN: number;
+      type?: string | null;
+    }
   >();
 
   for (const b of items) {
@@ -124,6 +166,7 @@ export default function ClientMap({
         website: b.website ?? null,
         latN,
         lngN,
+        type: b.type ?? null,
       });
     }
   }
@@ -151,7 +194,7 @@ export default function ClientMap({
           <Marker
             key={b.id}
             position={[b.latN, b.lngN]}
-            icon={selectedId === b.id ? selectedPin : defaultPin}
+            icon={iconForType(b.type, selectedId === b.id)}
             eventHandlers={
               onSelect
                 ? {

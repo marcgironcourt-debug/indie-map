@@ -12,6 +12,7 @@ type Biz = {
   website?: string | null;
   lat?: number | null;
   lng?: number | null;
+  type?: string | null;
 };
 
 export default function MapPanel({
