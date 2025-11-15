@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import MapPanel from "@/components/MapPanel";
 
@@ -57,9 +58,7 @@ function BusinessCard({
   return (
     <article
       onClick={onClick}
-      className={`group relative isolate cursor-pointer ${
-        selected ? "ring-2 ring-[hsl(var(--brand))]" : ""
-      }`}
+      className={`group relative isolate cursor-pointer ${selected ? "ring-2 ring-[hsl(var(--brand))]" : ""}`}
     >
       <div className="rounded-2xl border border-neutral-200/60 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-neutral-700/60 dark:bg-neutral-900">
         <div className="flex items-start justify-between gap-3">
@@ -76,7 +75,12 @@ function BusinessCard({
           {b.website && (
             <div className="flex items-center gap-2">
               <GlobeIcon className="h-4 w-4 opacity-75" />
-              <a className="underline decoration-[hsl(var(--brand))]/40 underline-offset-4 hover:decoration-[hsl(var(--brand))]" href={b.website} target="_blank" rel="noreferrer">
+              <a
+                className="underline decoration-[hsl(var(--brand))]/40 underline-offset-4 hover:decoration-[hsl(var(--brand))]"
+                href={b.website}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {new URL(b.website).hostname.replace("www.", "")}
               </a>
             </div>
@@ -100,7 +104,7 @@ function Sidebar({
 
   React.useEffect(() => {
     if (!selectedId) return;
-    const el = listRef.current?.querySelector(`[data-biz="${selectedId}"]`);
+    const el = listRef.current?.querySelector(`[data-biz="\${selectedId}"]`);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [selectedId]);
 
@@ -131,16 +135,8 @@ function Sidebar({
       <div className="grow overflow-auto rounded-2xl border border-neutral-200/60 bg-[hsl(var(--card))] p-2 shadow-sm dark:border-neutral-700/60">
         <ul ref={listRef} className="divide-y divide-neutral-200/70 dark:divide-neutral-700/60">
           {businesses.map((b) => (
-            <li
-              key={b.id}
-              data-biz={b.id}
-              className="p-2"
-            >
-              <BusinessCard
-                b={b}
-                selected={selectedId === b.id}
-                onClick={() => onSelect?.(b.id)}
-              />
+            <li key={b.id} data-biz={b.id} className="p-2">
+              <BusinessCard b={b} selected={selectedId === b.id} onClick={() => onSelect?.(b.id)} />
             </li>
           ))}
         </ul>
@@ -149,17 +145,51 @@ function Sidebar({
   );
 }
 
-export default function IndieMapSplitView({ businesses = DEMO }: { businesses?: Business[] }) {
+export default function IndieMapSplitView() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [businesses, setBusinesses] = React.useState<Business[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const r = await fetch("/api/places");
+        if (!r.ok) throw new Error("Erreur de chargement");
+        const j = await r.json();
+        const arr = Array.isArray(j) ? j : j?.data || [];
+        const list: Business[] = arr.map((p: any) => ({
+          id: p.id,
+          name: p.name,
+          type: "Lieu local",
+          address: p.city ?? "",
+          website: undefined,
+          lat: typeof p.lat === "number" ? p.lat : undefined,
+          lng: typeof p.lng === "number" ? p.lng : undefined,
+          city: p.city ?? "",
+        }));
+        if (!cancelled) setBusinesses(list);
+      } catch (e: any) {
+        if (!cancelled) {
+          setError(e?.message || "Erreur de chargement");
+          setBusinesses(DEMO);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <main className="min-h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <Sidebar
-          businesses={businesses}
-          selectedId={selectedId}
-          onSelect={(id) => setSelectedId(id)}
-        />
+        <Sidebar businesses={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={(id) => setSelectedId(id)} />
         <MapPanel selectedId={selectedId} onSelect={(id: string) => setSelectedId(id)} />
       </div>
       <footer className="mx-auto mt-4 max-w-7xl text-center text-xs text-neutral-500 dark:text-neutral-400">

@@ -18,6 +18,12 @@ async function main() {
         descriptionFr: "Librairie de quartier, sélection engagée et événements auteurs.",
         descriptionEn: "Neighborhood bookstore with curated selection and author events.",
         aiGenerated: false
+      },
+      {
+        name: "Espace FLO",
+        descriptionFr: "Boutique locale proposant uniquement des produits fabriqués au Québec, éthique et écoresponsable.",
+        descriptionEn: "Local boutique offering goods exclusively made in Quebec, ethical and eco-responsible.",
+        aiGenerated: false
       }
     ]
   });

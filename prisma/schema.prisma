@@ -8,14 +8,16 @@ datasource db {
 }
 
 model Place {
-  id          String   @id
+  id          String   @id @default(cuid())
   name        String
   city        String
+  address     String?
+  website     String?
   lat         Float
   lng         Float
   description String?
   createdAt   DateTime @default(now())
-  updatedAt   DateTime
+  updatedAt   DateTime @updatedAt
 }
 
 model Business {
