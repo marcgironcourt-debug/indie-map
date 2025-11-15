@@ -40,7 +40,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
   return L.divIcon({
     className: "indie-pin",
     html: `
-      <svg width="${size}" height="${height}" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg" style="display:block">
+      <svg width="${size}" height="${height}" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
         ${shadow}
         ${groupOpen}
         <path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="${color}" stroke="${stroke}" stroke-width="2"/>
@@ -54,10 +54,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
   });
 }
 
-const ICONS: Record<
-  "cafe" | "epicerie" | "friperie" | "other",
-  { normal: L.DivIcon; selected: L.DivIcon }
-> = {
+const ICONS = {
   cafe: {
     normal: makePin("#D46A4A", "#FDF7F2", false),
     selected: makePin("#B54F34", "#FDF7F2", true),
@@ -78,19 +75,17 @@ const ICONS: Record<
 
 function iconForType(t?: string | null, selected?: boolean) {
   const key = normalizeType(t);
-  const set = ICONS[key];
+  const set = ICONS[key as keyof typeof ICONS];
   return selected ? set.selected : set.normal;
 }
 
 function FitOnData({ points }: { points: [number, number][] }) {
   const map = useMap();
-
   React.useEffect(() => {
     if (!points.length) return;
     const bounds = L.latLngBounds(points.map(([lat, lng]) => L.latLng(lat, lng)));
     map.fitBounds(bounds, { padding: [40, 40] });
   }, [points, map]);
-
   return null;
 }
 
@@ -102,36 +97,26 @@ function FocusOnSelected({
   selectedId?: string | null;
 }) {
   const map = useMap();
-
   React.useEffect(() => {
     if (!selectedId) return;
     const m = markers.find((mm) => mm.id === selectedId);
     if (!m) return;
-
     const target = L.latLng(m.latN, m.lngN);
     const currentZoom = map.getZoom();
     const targetZoom = Math.max(currentZoom || 2, 13);
-
-    map.flyTo(target, targetZoom, {
-      animate: true,
-      duration: 1.4,
-    });
-
+    map.flyTo(target, targetZoom, { animate: true, duration: 1.4 });
     map.eachLayer((layer: any) => {
       if (layer instanceof L.Marker) {
         const ll = layer.getLatLng();
-        if (ll.lat === m.latN && ll.lng === m.lngN) {
-          layer.openPopup();
-        }
+        if (ll.lat === m.latN && ll.lng === m.lngN) layer.openPopup();
       }
     });
   }, [selectedId, markers, map]);
-
   return null;
 }
 
 export default function ClientMap({
-  items = [] as Biz[],
+  items = [],
   selectedId,
   selectionVersion,
   onSelect,
@@ -143,15 +128,7 @@ export default function ClientMap({
 }) {
   const byId = new Map<
     string,
-    {
-      id: string;
-      name: string;
-      address?: string | null;
-      website?: string | null;
-      latN: number;
-      lngN: number;
-      type?: string | null;
-    }
+    { id: string; name: string; address?: string | null; website?: string | null; latN: number; lngN: number; type?: string | null }
   >();
 
   for (const b of items) {
@@ -195,25 +172,14 @@ export default function ClientMap({
             key={b.id}
             position={[b.latN, b.lngN]}
             icon={iconForType(b.type, selectedId === b.id)}
-            eventHandlers={
-              onSelect
-                ? {
-                    click: () => onSelect(b.id),
-                  }
-                : undefined
-            }
+            eventHandlers={onSelect ? { click: () => onSelect(b.id) } : undefined}
           >
             <Popup autoPan={true} autoPanPadding={[40, 40]}>
               <div className="space-y-1">
                 <div className="font-semibold">{b.name}</div>
                 {b.address ? <div className="text-sm opacity-80">{b.address}</div> : null}
                 {b.website ? (
-                  <a
-                    href={b.website}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-sm underline underline-offset-2"
-                  >
+                  <a href={b.website} target="_blank" rel="noreferrer noopener" className="text-sm underline underline-offset-2">
                     {new URL(b.website).host}
                   </a>
                 ) : null}
