@@ -20,7 +20,7 @@ const DEMO: Business[] = [
 const GlobeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
     <circle cx="12" cy="12" r="9" />
-    <path d="M3 12h18M12 3c3.5 3.5 14.5 0 18m0-18c-3.5 3.5-14.5 0 18" />
+    <path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18m0-18c-3.5 3.5-3.5 14.5 0 18" />
   </svg>
 );
 
@@ -35,6 +35,12 @@ const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
     <circle cx="11" cy="11" r="7" />
     <path d="m21 21-3.6-3.6" />
+  </svg>
+);
+
+const ChevronIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+    <path d="M9 6l6 6-6 6" />
   </svg>
 );
 
@@ -196,6 +202,7 @@ export default function IndieMapSplitView() {
   const [error, setError] = React.useState<string | null>(null);
   const [search, setSearch] = React.useState("");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -250,20 +257,41 @@ export default function IndieMapSplitView() {
     return text.includes(query);
   });
 
+  const layoutCols = sidebarOpen ? "lg:grid-cols-[420px_minmax(0,1fr)]" : "lg:grid-cols-[40px_minmax(0,1fr)]";
+
   return (
     <main className="h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased overflow-hidden">
-      <div className="mx-auto grid h-full max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <Sidebar
-          businesses={filtered}
+      <div className={"mx-auto grid h-full max-w-7xl grid-cols-1 gap-3 " + layoutCols}>
+        <div className="relative h-full">
+          {sidebarOpen && (
+            <Sidebar
+              businesses={filtered}
+              selectedId={selectedId}
+              onSelect={handleSelect}
+              search={search}
+              onSearchChange={setSearch}
+              categories={categories}
+              activeCategory={category}
+              onCategoryChange={setCategory}
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => setSidebarOpen((v) => !v)}
+            className="absolute right-[-0.6rem] top-1/2 z-20 flex h-10 w-6 -translate-y-1/2 items-center justify-center rounded-xl border border-neutral-300/70 bg-white shadow-md hover:scale-105 dark:border-neutral-700/60 dark:bg-neutral-900"
+          >
+            <div className={sidebarOpen ? "rotate-180 transition-transform" : "transition-transform"}>
+              <ChevronIcon className="h-4 w-4" />
+            </div>
+          </button>
+        </div>
+        <MapPanel
+          key={sidebarOpen ? "map-with-sidebar" : "map-no-sidebar"}
+          items={filtered}
           selectedId={selectedId}
+          selectionVersion={selectionVersion}
           onSelect={handleSelect}
-          search={search}
-          onSearchChange={setSearch}
-          categories={categories}
-          activeCategory={category}
-          onCategoryChange={setCategory}
         />
-        <MapPanel items={filtered} selectedId={selectedId} selectionVersion={selectionVersion} onSelect={handleSelect} />
       </div>
     </main>
   );
