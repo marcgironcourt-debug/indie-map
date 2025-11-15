@@ -50,12 +50,13 @@ const selectedPin = L.divIcon({
 
 function FitOnData({ points }: { points: [number, number][] }) {
   const map = useMap();
+
   React.useEffect(() => {
-    if (points.length) {
-      const b = L.latLngBounds(points.map(([a, b]) => L.latLng(a, b)));
-      map.fitBounds(b, { padding: [40, 40] });
-    }
+    if (!points.length) return;
+    const bounds = L.latLngBounds(points.map(([lat, lng]) => L.latLng(lat, lng)));
+    map.fitBounds(bounds, { padding: [40, 40] });
   }, [points, map]);
+
   return null;
 }
 
@@ -67,28 +68,33 @@ function FocusOnSelected({
   selectedId?: string | null;
 }) {
   const map = useMap();
+
   React.useEffect(() => {
     if (!selectedId) return;
     const m = markers.find((m) => m.id === selectedId);
     if (!m) return;
-    map.setView([m.latN, m.lngN], Math.max(map.getZoom(), 14), { animate: true });
+    map.setView([m.latN, m.lngN], 14, { animate: true });
   }, [selectedId, markers, map]);
+
   return null;
 }
 
 export default function ClientMap({
   items = [] as Biz[],
   selectedId,
+  selectionVersion,
   onSelect,
 }: {
   items?: Biz[];
   selectedId?: string | null;
+  selectionVersion?: number;
   onSelect?: (id: string) => void;
 }) {
   const byId = new Map<
     string,
     { id: string; name: string; address?: string | null; website?: string | null; latN: number; lngN: number }
   >();
+
   for (const b of items) {
     const latN = Number(b.lat);
     const lngN = Number(b.lng);
@@ -104,12 +110,15 @@ export default function ClientMap({
       });
     }
   }
+
   const markers = Array.from(byId.values());
   const points = markers.map((m) => [m.latN, m.lngN] as [number, number]);
+  const mapKey = selectionVersion ?? 0;
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <MapContainer
+        key={mapKey}
         center={[20, 0]}
         zoom={2}
         minZoom={2}

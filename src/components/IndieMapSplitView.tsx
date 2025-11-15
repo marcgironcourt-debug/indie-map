@@ -20,21 +20,21 @@ const DEMO: Business[] = [
 const GlobeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
     <circle cx="12" cy="12" r="9" />
-    <path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18m0-18c-3.5 3.5-3.5 14.5 0 18"/>
+    <path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18m0-18c-3.5 3.5-3.5 14.5 0 18" />
   </svg>
 );
 
 const PinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
-    <path d="M12 22s7-6.14 7-12a7 7 0 1 0-14 0c0 5.86 7 12 7 12Z"/>
-    <circle cx="12" cy="10" r="2.6"/>
+    <path d="M12 22s7-6.14 7-12a7 7 0 1 0-14 0c0 5.86 7 12 7 12Z" />
+    <circle cx="12" cy="10" r="2.6" />
   </svg>
 );
 
 const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
-    <circle cx="11" cy="11" r="7"/>
-    <path d="m21 21-3.6-3.6"/>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-3.6-3.6" />
   </svg>
 );
 
@@ -104,7 +104,7 @@ function Sidebar({
 
   React.useEffect(() => {
     if (!selectedId) return;
-    const el = listRef.current?.querySelector(`[data-biz="\${selectedId}"]`);
+    const el = listRef.current?.querySelector<HTMLElement>(`[data-biz="${selectedId}"]`);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [selectedId]);
 
@@ -132,7 +132,7 @@ function Sidebar({
         </div>
       </div>
 
-      <div className="grow overflow-auto rounded-2xl border border-neutral-200/60 bg-[hsl(var(--card))] p-2 shadow-sm dark:border-neutral-700/60">
+      <div className="overflow-y-auto rounded-2xl border border-neutral-200/60 bg-[hsl(var(--card))] p-2 shadow-sm dark:border-neutral-700/60 h-[calc(100vh-14rem)]">
         <ul ref={listRef} className="divide-y divide-neutral-200/70 dark:divide-neutral-700/60">
           {businesses.map((b) => (
             <li key={b.id} data-biz={b.id} className="p-2">
@@ -147,6 +147,7 @@ function Sidebar({
 
 export default function IndieMapSplitView() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -186,15 +187,22 @@ export default function IndieMapSplitView() {
     };
   }, []);
 
+  const handleSelect = (id: string) => {
+    setSelectedId(id);
+    setSelectionVersion((v) => v + 1);
+  };
+
   return (
-    <main className="min-h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <Sidebar businesses={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={(id) => setSelectedId(id)} />
-        <MapPanel items={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={(id: string) => setSelectedId(id)} />
+    <main className="h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased overflow-hidden">
+      <div className="mx-auto grid h-full max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
+        <Sidebar businesses={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={handleSelect} />
+        <MapPanel
+          items={businesses.length ? businesses : DEMO}
+          selectedId={selectedId}
+          selectionVersion={selectionVersion}
+          onSelect={handleSelect}
+        />
       </div>
-      <footer className="mx-auto mt-4 max-w-7xl text-center text-xs text-neutral-500 dark:text-neutral-400">
-        <p>Design tokens : terracotta & olive, cartes sobres, lisibilité d’abord.</p>
-      </footer>
     </main>
   );
 }
