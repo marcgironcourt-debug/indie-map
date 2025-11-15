@@ -32,7 +32,13 @@ function normalize(input: any): Biz[] {
   return [];
 }
 
-export default function MapPanel() {
+export default function MapPanel({
+  selectedId,
+  onSelect,
+}: {
+  selectedId?: string | null;
+  onSelect?: (id: string) => void;
+}) {
   const [items, setItems] = useState<Biz[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -81,7 +87,7 @@ export default function MapPanel() {
   return (
     <section className="relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
       <div className="h-[calc(100vh-6rem)]">
-        <ClientMap items={items} />
+        <ClientMap items={items} selectedId={selectedId} onSelect={onSelect} />
       </div>
     </section>
   );
