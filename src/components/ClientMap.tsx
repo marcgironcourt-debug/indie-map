@@ -35,7 +35,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
          </filter>
        </defs>`
     : "";
-  const groupOpen = selected ? `<g filter="url(#shadow")>` : "";
+  const groupOpen = selected ? `<g filter="url(#shadow)">` : "";
   const groupClose = selected ? `</g>` : "";
   return L.divIcon({
     className: "indie-pin",
@@ -59,20 +59,20 @@ const ICONS: Record<
   { normal: L.DivIcon; selected: L.DivIcon }
 > = {
   cafe: {
-    normal: makePin("#e11d48", "#ffffff", false),
-    selected: makePin("#b91c1c", "#ffffff", true),
+    normal: makePin("#D46A4A", "#FDF7F2", false),
+    selected: makePin("#B54F34", "#FDF7F2", true),
   },
   epicerie: {
-    normal: makePin("#16a34a", "#ffffff", false),
-    selected: makePin("#15803d", "#ffffff", true),
+    normal: makePin("#728A4A", "#FDF7F2", false),
+    selected: makePin("#5C6E3B", "#FDF7F2", true),
   },
   friperie: {
-    normal: makePin("#2563eb", "#ffffff", false),
-    selected: makePin("#1d4ed8", "#ffffff", true),
+    normal: makePin("#D89A3B", "#FDF7F2", false),
+    selected: makePin("#B77A26", "#FDF7F2", true),
   },
   other: {
-    normal: makePin("#b45309", "#ffffff", false),
-    selected: makePin("#92400e", "#ffffff", true),
+    normal: makePin("#8C5A3C", "#FDF7F2", false),
+    selected: makePin("#6D4330", "#FDF7F2", true),
   },
 };
 
