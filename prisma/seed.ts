@@ -107,6 +107,17 @@ async function main() {
         description: "Café indépendant avec torréfaction locale.",
         category: "Café",
       },
+      {
+        id: "boutique_boreale",
+        name: "Boutique Boréale",
+        city: "Montréal",
+        address: "4 Rue Saint-Paul E, Montréal, QC H2Y 1G1",
+        website: "https://www.boutiqueboreale.com",
+        lat: 45.505687,
+        lng: -73.553581,
+        description: "Boutique de cadeaux et d'artisanat local dans le Vieux-Montréal.",
+        category: "Boutique locale",
+      },
     ],
   });
 
