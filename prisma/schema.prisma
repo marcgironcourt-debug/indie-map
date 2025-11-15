@@ -13,8 +13,8 @@ model Place {
   city        String
   address     String?
   website     String?
-  lat         Float
-  lng         Float
+  lat         Float?
+  lng         Float?
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

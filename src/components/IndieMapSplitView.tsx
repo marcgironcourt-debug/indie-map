@@ -165,8 +165,8 @@ export default function IndieMapSplitView() {
           id: p.id,
           name: p.name,
           type: "Lieu local",
-          address: p.city ?? "",
-          website: undefined,
+          address: p.address ?? p.city ?? "",
+          website: p.website ?? undefined,
           lat: typeof p.lat === "number" ? p.lat : undefined,
           lng: typeof p.lng === "number" ? p.lng : undefined,
           city: p.city ?? "",
@@ -190,7 +190,7 @@ export default function IndieMapSplitView() {
     <main className="min-h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
         <Sidebar businesses={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={(id) => setSelectedId(id)} />
-        <MapPanel selectedId={selectedId} onSelect={(id: string) => setSelectedId(id)} />
+        <MapPanel items={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={(id: string) => setSelectedId(id)} />
       </div>
       <footer className="mx-auto mt-4 max-w-7xl text-center text-xs text-neutral-500 dark:text-neutral-400">
         <p>Design tokens : terracotta & olive, cartes sobres, lisibilité d’abord.</p>
