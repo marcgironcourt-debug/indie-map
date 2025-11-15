@@ -56,11 +56,13 @@ function BusinessCard({
   onClick?: () => void;
 }) {
   return (
-    <article
-      onClick={onClick}
-      className={`group relative isolate cursor-pointer ${selected ? "ring-2 ring-[hsl(var(--brand))]" : ""}`}
-    >
-      <div className="rounded-2xl border border-neutral-200/60 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-neutral-700/60 dark:bg-neutral-900">
+    <article onClick={onClick} className="group relative isolate cursor-pointer">
+      <div
+        className={
+          "rounded-2xl border border-neutral-200/60 bg-white p-4 shadow-sm transition hover:shadow-md dark:border-neutral-700/60 dark:bg-neutral-900 " +
+          (selected ? "ring-2 ring-[hsl(var(--brand))]" : "")
+        }
+      >
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-semibold tracking-tight text-[hsl(var(--text))]">{b.name}</h3>
           <Tag>{b.type}</Tag>
@@ -95,10 +97,14 @@ function Sidebar({
   businesses = DEMO,
   selectedId,
   onSelect,
+  search,
+  onSearchChange,
 }: {
   businesses?: Business[];
   selectedId?: string | null;
   onSelect?: (id: string) => void;
+  search: string;
+  onSearchChange: (value: string) => void;
 }) {
   const listRef = React.useRef<HTMLUListElement>(null);
 
@@ -125,6 +131,8 @@ function Sidebar({
             </span>
             <input
               type="search"
+              value={search}
+              onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Café, friperie, librairie…"
               className="w-full rounded-xl border border-neutral-300/60 bg-white px-10 py-2.5 text-sm text-neutral-800 shadow-sm placeholder:text-neutral-500 dark:border-neutral-700/60 dark:bg-neutral-900 dark:text-neutral-100"
             />
@@ -151,6 +159,7 @@ export default function IndieMapSplitView() {
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     let cancelled = false;
@@ -192,16 +201,26 @@ export default function IndieMapSplitView() {
     setSelectionVersion((v) => v + 1);
   };
 
+  const source = businesses.length ? businesses : DEMO;
+  const query = search.trim().toLowerCase();
+  const filtered = query
+    ? source.filter((b) => {
+        const text = [b.name, b.type, b.city, b.address].filter(Boolean).join(" ").toLowerCase();
+        return text.includes(query);
+      })
+    : source;
+
   return (
     <main className="h-screen bg-[hsl(var(--bg))] p-3 text-[hsl(var(--text))] antialiased overflow-hidden">
       <div className="mx-auto grid h-full max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <Sidebar businesses={businesses.length ? businesses : DEMO} selectedId={selectedId} onSelect={handleSelect} />
-        <MapPanel
-          items={businesses.length ? businesses : DEMO}
+        <Sidebar
+          businesses={filtered}
           selectedId={selectedId}
-          selectionVersion={selectionVersion}
           onSelect={handleSelect}
+          search={search}
+          onSearchChange={setSearch}
         />
+        <MapPanel items={filtered} selectedId={selectedId} selectionVersion={selectionVersion} onSelect={handleSelect} />
       </div>
     </main>
   );

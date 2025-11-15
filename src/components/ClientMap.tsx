@@ -71,9 +71,26 @@ function FocusOnSelected({
 
   React.useEffect(() => {
     if (!selectedId) return;
-    const m = markers.find((m) => m.id === selectedId);
+    const m = markers.find((mm) => mm.id === selectedId);
     if (!m) return;
-    map.setView([m.latN, m.lngN], 14, { animate: true });
+
+    const target = L.latLng(m.latN, m.lngN);
+    const currentZoom = map.getZoom();
+    const targetZoom = Math.max(currentZoom || 2, 13);
+
+    map.flyTo(target, targetZoom, {
+      animate: true,
+      duration: 1.4,
+    });
+
+    map.eachLayer((layer: any) => {
+      if (layer instanceof L.Marker) {
+        const ll = layer.getLatLng();
+        if (ll.lat === m.latN && ll.lng === m.lngN) {
+          layer.openPopup();
+        }
+      }
+    });
   }, [selectedId, markers, map]);
 
   return null;
@@ -113,12 +130,10 @@ export default function ClientMap({
 
   const markers = Array.from(byId.values());
   const points = markers.map((m) => [m.latN, m.lngN] as [number, number]);
-  const mapKey = selectionVersion ?? 0;
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <MapContainer
-        key={mapKey}
         center={[20, 0]}
         zoom={2}
         minZoom={2}
@@ -145,7 +160,7 @@ export default function ClientMap({
                 : undefined
             }
           >
-            <Popup>
+            <Popup autoPan={true} autoPanPadding={[40, 40]}>
               <div className="space-y-1">
                 <div className="font-semibold">{b.name}</div>
                 {b.address ? <div className="text-sm opacity-80">{b.address}</div> : null}
