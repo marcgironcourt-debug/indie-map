@@ -131,7 +131,7 @@ function FilterBar({
   return (
     <div className="flex flex-wrap gap-1.5 justify-end">
       <FilterPill
-        label="Toutes"
+        label="Tous"
         active={activeCategory === "ALL"}
         onClick={() => onCategoryChange("ALL")}
       />

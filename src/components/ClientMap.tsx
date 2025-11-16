@@ -133,27 +133,14 @@ function iconForType(t?: string | null, selected?: boolean) {
   return selected ? set.selected : set.normal;
 }
 
-function FitOnData({ points }: { points: [number, number][] }) {
-  const map = useMap();
-  const hasFitted = React.useRef(false);
-
-  React.useEffect(() => {
-    if (!points.length) return;
-    if (hasFitted.current) return;
-    hasFitted.current = true;
-    const bounds = L.latLngBounds(points.map(([lat, lng]) => L.latLng(lat, lng)));
-    map.fitBounds(bounds, { padding: [40, 40] });
-  }, [points, map]);
-
-  return null;
-}
-
 function FocusOnSelected({
   markers,
   selectedId,
+  selectionVersion,
 }: {
   markers: { id: string; latN: number; lngN: number }[];
   selectedId?: string | null;
+  selectionVersion?: number;
 }) {
   const map = useMap();
   React.useEffect(() => {
@@ -170,7 +157,16 @@ function FocusOnSelected({
         if (ll.lat === m.latN && ll.lng === m.lngN) layer.openPopup();
       }
     });
-  }, [selectedId, markers, map]);
+  }, [selectedId, selectionVersion, map]);
+  return null;
+}
+
+function ApplyCenter({ center, zoom }: { center?: [number, number] | null; zoom?: number }) {
+  const map = useMap();
+  React.useEffect(() => {
+    if (!center) return;
+    map.setView(L.latLng(center[0], center[1]), zoom ?? map.getZoom());
+  }, [center, zoom, map]);
   return null;
 }
 
@@ -208,13 +204,41 @@ export default function ClientMap({
   }
 
   const markers = Array.from(byId.values());
-  const points = markers.map((m) => [m.latN, m.lngN] as [number, number]);
+
+  const [mapCenter, setMapCenter] = React.useState<[number, number] | null>(null);
+  const [mapZoom, setMapZoom] = React.useState<number>(12);
+
+  React.useEffect(() => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setMapCenter([latitude, longitude]);
+        setMapZoom(14);
+      },
+      () => {},
+      { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
+    );
+  }, []);
+
+  const handleLocate = React.useCallback(() => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setMapCenter([latitude, longitude]);
+        setMapZoom(14);
+      },
+      () => {},
+      { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
+    );
+  }, []);
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }} className="relative">
       <MapContainer
-        center={[20, 0]}
-        zoom={2}
+        center={mapCenter ?? [45.5017, -73.5673]}
+        zoom={mapZoom}
         minZoom={2}
         maxBounds={MAX_BOUNDS}
         maxBoundsViscosity={1}
@@ -224,8 +248,8 @@ export default function ClientMap({
         className="h-full w-full"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true} />
-        <FitOnData points={points} />
-        <FocusOnSelected markers={markers} selectedId={selectedId} />
+        <ApplyCenter center={mapCenter} zoom={mapZoom} />
+        <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
         {markers.map((b) => (
           <Marker
             key={b.id}
@@ -247,6 +271,16 @@ export default function ClientMap({
           </Marker>
         ))}
       </MapContainer>
+      <button
+        type="button"
+        onClick={handleLocate}
+        className="absolute bottom-4 left-4 z-[1400] rounded-full bg-white/90 p-2 shadow-md border border-neutral-300 hover:bg-white"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+        </svg>
+      </button>
     </div>
   );
 }
