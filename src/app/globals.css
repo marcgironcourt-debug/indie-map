@@ -25,17 +25,28 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Leaflet CSS (garde cette ligne en bas) */
 @import url('leaflet/dist/leaflet.css');
 
-/* warm theme tokens (merged) */
-/* Minimal global styles */
-:root { color-scheme: light dark; }
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-main { max-width: 1200px; margin: 0 auto; }
+:root {
+  color-scheme: light dark;
+}
 
-@import 'leaflet/dist/leaflet.css';
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+main {
+  width: 100%;
+  margin: 0;
+}
+
 :root {
   --bg: 248 36% 98%;
   --card: 0 0% 100%;
@@ -47,7 +58,12 @@ main { max-width: 1200px; margin: 0 auto; }
   --leaf: 145 32% 36%;
   --leaf-200: 145 32% 90%;
   --ring: 22 68% 52%;
+  --violet: 265 45% 55%;
+  --amber: 40 70% 55%;
+  --blue: 210 45% 50%;
+  --poi: 215 15% 45%;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: 220 15% 10%;
@@ -60,7 +76,17 @@ main { max-width: 1200px; margin: 0 auto; }
     --leaf: 145 28% 55%;
     --leaf-200: 145 28% 18%;
     --ring: 22 68% 60%;
+    --violet: 265 45% 65%;
+    --amber: 40 70% 60%;
+    --blue: 210 45% 60%;
+    --poi: 215 15% 65%;
   }
 }
-.warm-gradient { background: linear-gradient(135deg, hsl(var(--brand-200)) 0%, hsl(var(--leaf-200)) 100%); }
-.focus-ring { box-shadow: 0 0 0 4px hsl(var(--ring) / 0.25); }
+
+.warm-gradient {
+  background: linear-gradient(135deg, hsl(var(--brand-200)) 0%, hsl(var(--leaf-200)) 100%);
+}
+
+.focus-ring {
+  box-shadow: 0 0 0 4px hsl(var(--ring) / 0.25);
+}
