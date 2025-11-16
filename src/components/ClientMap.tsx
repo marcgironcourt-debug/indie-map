@@ -81,11 +81,17 @@ function iconForType(t?: string | null, selected?: boolean) {
 
 function FitOnData({ points }: { points: [number, number][] }) {
   const map = useMap();
+  const prevSignature = React.useRef<string | null>(null);
+
   React.useEffect(() => {
     if (!points.length) return;
+    const signature = points.map(([lat, lng]) => `${lat},${lng}`).join("|");
+    if (signature === prevSignature.current) return;
+    prevSignature.current = signature;
     const bounds = L.latLngBounds(points.map(([lat, lng]) => L.latLng(lat, lng)));
     map.fitBounds(bounds, { padding: [40, 40] });
   }, [points, map]);
+
   return null;
 }
 
@@ -104,7 +110,7 @@ function FocusOnSelected({
     const target = L.latLng(m.latN, m.lngN);
     const currentZoom = map.getZoom();
     const targetZoom = Math.max(currentZoom || 2, 13);
-    map.flyTo(target, targetZoom, { animate: true, duration: 1.4 });
+    map.flyTo(target, targetZoom, { animate: true, duration: 0.8 });
     map.eachLayer((layer: any) => {
       if (layer instanceof L.Marker) {
         const ll = layer.getLatLng();
