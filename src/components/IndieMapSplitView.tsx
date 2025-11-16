@@ -28,8 +28,8 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
   if (key.includes("café") || key.includes("cafe")) {
     return active
-      ? "bg-[hsl(var(--brand))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm hover:bg-[hsl(var(--brand))]/10";
+      ? "bg-[hsl(var(--cafe))] text-white shadow-md"
+      : "bg-white/80 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm hover:bg-[hsl(var(--cafe))]/10";
   }
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
@@ -38,16 +38,40 @@ function getCategoryStyle(cat: string, active: boolean): string {
       : "bg-white/80 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm hover:bg-[hsl(var(--leaf))]/10";
   }
 
-  if (key.includes("friperie")) {
+  if (key.includes("boutique")) {
+    return active
+      ? "bg-black text-white shadow-md"
+      : "bg-white/80 text-black border border-black/60 shadow-sm hover:bg-black/5";
+  }
+
+  if (key.includes("boulangerie")) {
+    return active
+      ? "bg-[#8C5A3C] text-white shadow-md"
+      : "bg-white/80 text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm hover:bg-[#8C5A3C]/10";
+  }
+
+  if (
+    key.includes("friperie") ||
+    key.includes("mode éthique") ||
+    key.includes("mode ethique") ||
+    key.includes("vêtement") ||
+    key.includes("vetement")
+  ) {
     return active
       ? "bg-[hsl(var(--violet))] text-white shadow-md"
       : "bg-white/80 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm hover:bg-[hsl(var(--violet))]/10";
   }
 
+  if (key.includes("restaurant")) {
+    return active
+      ? "bg-[hsl(var(--restaurant))] text-white shadow-md"
+      : "bg-white/80 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm hover:bg-[hsl(var(--restaurant))]/10";
+  }
+
   if (key.includes("microbrasserie") || key.includes("brasserie")) {
     return active
-      ? "bg-[hsl(var(--amber))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--amber))] border border-[hsl(var(--amber))]/60 shadow-sm hover:bg-[hsl(var(--amber))]/10";
+      ? "bg-[hsl(var(--micro))] text-white shadow-md"
+      : "bg-white/80 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm hover:bg-[hsl(var(--micro))]/10";
   }
 
   if (key.includes("librairie") || key.includes("bouquinerie")) {
@@ -179,13 +203,142 @@ export default function IndieMapSplitView() {
   }, []);
 
   const source = businesses.length ? businesses : DEMO;
-  const categories = Array.from(
+
+  const rawCategories = Array.from(
     new Set(source.map((b) => b.type).filter((t) => !!t && t.trim().length > 0))
   );
 
+  const isClothing = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("friperie") ||
+      k.includes("mode éthique") ||
+      k.includes("mode ethique")
+    );
+  };
+
+  const isBook = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("librairie") ||
+      k.includes("bouquinerie") ||
+      k.includes("spécialisée") ||
+      k.includes("specialisee")
+    );
+  };
+
+  const isGrocery = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("épicerie locale") ||
+      k.includes("epicerie locale") ||
+      k.includes("épicerie zéro") ||
+      k.includes("epicerie zero") ||
+      k.includes("zero déchet") ||
+      k.includes("zerodechet") ||
+      k.includes("épicerie") ||
+      k.includes("epicerie")
+    );
+  };
+
+  const isRestaurant = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("restaurant locavore") ||
+      k.includes("restaurant lacovore") ||
+      k.includes("restaurant locavore abordable") ||
+      k.includes("bistrot terroir") ||
+      k.includes("bistro terroir") ||
+      k.includes("bistrot terroir et local") ||
+      k.includes("bistro terroir et local") ||
+      k.includes("cuisine du marché") ||
+      k.includes("cuisine du marche") ||
+      k.includes("restaurant")
+    );
+  };
+
+  const isBakery = (t: string) => {
+    const k = t.toLowerCase();
+    return k.includes("boulangerie");
+  };
+
+  const hasClothing = rawCategories.some(isClothing);
+  const hasBook = rawCategories.some(isBook);
+  const hasGrocery = rawCategories.some(isGrocery);
+  const hasRestaurant = rawCategories.some(isRestaurant);
+  const hasBakery = rawCategories.some(isBakery);
+
+  const categories = [
+    ...rawCategories.filter(
+      (t) =>
+        !isClothing(t) &&
+        !isBook(t) &&
+        !isGrocery(t) &&
+        !isRestaurant(t) &&
+        !isBakery(t)
+    ),
+    ...(hasClothing ? ["Vêtements"] : []),
+    ...(hasBook ? ["Librairie et bouquinerie"] : []),
+    ...(hasGrocery ? ["Épicerie"] : []),
+    ...(hasRestaurant ? ["Restaurant"] : []),
+    ...(hasBakery ? ["Boulangerie"] : []),
+  ];
+
   const filtered = source.filter((b) => {
-    if (category !== "ALL" && b.type !== category) return false;
-    return true;
+    const k = (b.type || "").toLowerCase();
+
+    if (category === "ALL") return true;
+
+    if (category === "Vêtements") {
+      return (
+        k.includes("friperie") ||
+        k.includes("mode éthique") ||
+        k.includes("mode ethique")
+      );
+    }
+
+    if (category === "Librairie et bouquinerie") {
+      return (
+        k.includes("librairie") ||
+        k.includes("bouquinerie") ||
+        k.includes("spécialisée") ||
+        k.includes("specialisee")
+      );
+    }
+
+    if (category === "Épicerie") {
+      return (
+        k.includes("épicerie locale") ||
+        k.includes("epicerie locale") ||
+        k.includes("épicerie zéro") ||
+        k.includes("epicerie zero") ||
+        k.includes("zero déchet") ||
+        k.includes("zerodechet") ||
+        k.includes("épicerie") ||
+        k.includes("epicerie")
+      );
+    }
+
+    if (category === "Restaurant") {
+      return (
+        k.includes("restaurant locavore") ||
+        k.includes("restaurant lacovore") ||
+        k.includes("restaurant locavore abordable") ||
+        k.includes("bistrot terroir") ||
+        k.includes("bistro terroir") ||
+        k.includes("bistrot terroir et local") ||
+        k.includes("bistro terroir et local") ||
+        k.includes("cuisine du marché") ||
+        k.includes("cuisine du marche") ||
+        k.includes("restaurant")
+      );
+    }
+
+    if (category === "Boulangerie") {
+      return k.includes("boulangerie");
+    }
+
+    return b.type === category;
   });
 
   return (
@@ -202,13 +355,7 @@ export default function IndieMapSplitView() {
         />
       </div>
 
-      
-
-      <div className="absolute top-3 inset-x-0 z-[1200] flex justify-center pointer-events-none">
-                                                
-      </div>
-
-            <div className="absolute top-3 right-4 z-[1300] pointer-events-none">
+      <div className="absolute top-3 right-4 z-[1300] pointer-events-none">
         <div className="text-[11px] font-medium px-3 py-[3px] bg-white border border-neutral-300 rounded-lg shadow-sm text-black">
           Indiemap
         </div>

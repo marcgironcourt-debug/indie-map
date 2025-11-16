@@ -16,11 +16,49 @@ type Biz = {
 
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
-function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "other" {
+function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
   const v = (t || "").toLowerCase();
   if (v.includes("café") || v.includes("cafe") || v.includes("coffee")) return "cafe";
-  if (v.includes("épicerie") || v.includes("epicerie") || v.includes("grocery")) return "epicerie";
-  if (v.includes("friperie") || v.includes("frip") || v.includes("thrift")) return "friperie";
+  if (
+    v.includes("épicerie") ||
+    v.includes("epicerie") ||
+    v.includes("grocery")
+  )
+    return "epicerie";
+  if (
+    v.includes("friperie") ||
+    v.includes("frip") ||
+    v.includes("thrift") ||
+    v.includes("mode éthique") ||
+    v.includes("mode ethique") ||
+    v.includes("vêtement") ||
+    v.includes("vetement") ||
+    v.includes("clothes") ||
+    v.includes("fashion")
+  )
+    return "friperie";
+  if (
+    v.includes("microbrasserie") ||
+    v.includes("brasserie artisanale")
+  )
+    return "microbrasserie";
+  if (
+    v.includes("restaurant locavore") ||
+    v.includes("restaurant lacovore") ||
+    v.includes("restaurant locavore abordable") ||
+    v.includes("bistrot terroir") ||
+    v.includes("bistro terroir") ||
+    v.includes("bistrot terroir et local") ||
+    v.includes("bistro terroir et local") ||
+    v.includes("cuisine du marché") ||
+    v.includes("cuisine du marche") ||
+    v.includes("restaurant")
+  )
+    return "restaurant";
+  if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book"))
+    return "librairie";
+  if (v.includes("boutique locale") || v.includes("boutique"))
+    return "boutique";
   return "other";
 }
 
@@ -56,16 +94,32 @@ function makePin(color: string, stroke: string, selected: boolean) {
 
 const ICONS = {
   cafe: {
-    normal: makePin("#D46A4A", "#FDF7F2", false),
-    selected: makePin("#B54F34", "#FDF7F2", true),
+    normal: makePin("hsl(var(--cafe))", "#FDF7F2", false),
+    selected: makePin("hsl(var(--cafe))", "#FDF7F2", true),
   },
   epicerie: {
     normal: makePin("#728A4A", "#FDF7F2", false),
     selected: makePin("#5C6E3B", "#FDF7F2", true),
   },
   friperie: {
-    normal: makePin("#D89A3B", "#FDF7F2", false),
-    selected: makePin("#B77A26", "#FDF7F2", true),
+    normal: makePin("hsl(var(--violet))", "#FDF7F2", false),
+    selected: makePin("hsl(var(--violet))", "#FDF7F2", true),
+  },
+  librairie: {
+    normal: makePin("#3B82F6", "#FDF7F2", false),
+    selected: makePin("#1D4ED8", "#FDF7F2", true),
+  },
+  restaurant: {
+    normal: makePin("hsl(var(--restaurant))", "#FDF7F2", false),
+    selected: makePin("hsl(var(--restaurant))", "#FDF7F2", true),
+  },
+  boutique: {
+    normal: makePin("#000000", "#FDF7F2", false),
+    selected: makePin("#000000", "#FDF7F2", true),
+  },
+  microbrasserie: {
+    normal: makePin("hsl(var(--micro))", "#FDF7F2", false),
+    selected: makePin("hsl(var(--micro))", "#FDF7F2", true),
   },
   other: {
     normal: makePin("#8C5A3C", "#FDF7F2", false),
@@ -81,13 +135,12 @@ function iconForType(t?: string | null, selected?: boolean) {
 
 function FitOnData({ points }: { points: [number, number][] }) {
   const map = useMap();
-  const prevSignature = React.useRef<string | null>(null);
+  const hasFitted = React.useRef(false);
 
   React.useEffect(() => {
     if (!points.length) return;
-    const signature = points.map(([lat, lng]) => `${lat},${lng}`).join("|");
-    if (signature === prevSignature.current) return;
-    prevSignature.current = signature;
+    if (hasFitted.current) return;
+    hasFitted.current = true;
     const bounds = L.latLngBounds(points.map(([lat, lng]) => L.latLng(lat, lng)));
     map.fitBounds(bounds, { padding: [40, 40] });
   }, [points, map]);

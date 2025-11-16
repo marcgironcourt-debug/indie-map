@@ -62,6 +62,9 @@ main {
   --amber: 40 70% 55%;
   --blue: 210 45% 50%;
   --poi: 215 15% 45%;
+  --cafe: 29 53% 36%;
+  --restaurant: 0 70% 38%;
+  --micro: 50 70% 72%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,6 +83,9 @@ main {
     --amber: 40 70% 60%;
     --blue: 210 45% 60%;
     --poi: 215 15% 65%;
+    --cafe: 29 55% 55%;
+    --restaurant: 0 70% 55%;
+    --micro: 50 70% 60%;
   }
 }
 
