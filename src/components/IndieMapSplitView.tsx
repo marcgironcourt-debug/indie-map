@@ -202,14 +202,15 @@ export default function IndieMapSplitView() {
         />
       </div>
 
-      <div className="absolute top-3 left-3 z-[1200] max-w-xs">
-        <div className="rounded-2xl bg-white/90 dark:bg-neutral-900/90 border border-neutral-200/70 dark:border-neutral-700/70 px-4 py-3 shadow-lg">
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
-            Indie Map
-          </h1>
-          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
-            Trouver local, vraiment.
-          </p>
+      
+
+      <div className="absolute top-3 inset-x-0 z-[1200] flex justify-center pointer-events-none">
+                                                
+      </div>
+
+            <div className="absolute top-3 right-4 z-[1300] pointer-events-none">
+        <div className="text-[11px] font-medium px-3 py-[3px] bg-white border border-neutral-300 rounded-lg shadow-sm text-black">
+          Indiemap
         </div>
       </div>
 
