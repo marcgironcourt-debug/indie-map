@@ -13,7 +13,7 @@ async function main() {
         name: "Épicerie LOCO Castelnau",
         city: "Montréal",
         address: "337 Rue Castelnau E, Montréal, QC H2R 1P8",
-        website: "https://www.epicerieloco.ca",
+        website: "https://www.epicerieloco.ca/loco-castelnau/",
         lat: 45.538302,
         lng: -73.617971,
         description: "Succursale LOCO près de Castelnau.",
@@ -74,6 +74,18 @@ async function main() {
         description: "Café local populaire avec ambiance chaleureuse.",
         category: "Café"
       },
+
+      {
+        id: "cafe_dei_campi",
+        name: "Café Dei Campi",
+        city: "Montréal",
+        address: "6201 Rue Chabot, Montréal, QC H2G 2T3",
+        website: "https://cafedeicampi.ca",
+        lat: 45.5429336,
+        lng: -73.5924071,
+        description: "Café italien végétalien, pâtisseries et pains faits maison dans Rosemont.",
+        category: "Café"
+      },
       {
         id: "espace_flo",
         name: "Espace FLO",
@@ -127,6 +139,18 @@ async function main() {
         lat: 45.5235374,
         lng: -73.5934975,
         description: "Mode locale et créateurs québécois.",
+        category: "Mode éthique"
+      },
+
+      {
+        id: "arloca_st_hubert",
+        name: "Arloca",
+        city: "Montréal",
+        address: "6572 rue St-Hubert, Montréal, QC H2S 2M3",
+        website: "https://arloca.com",
+        lat: 45.5366037,
+        lng: -73.6044411,
+        description: "Boutique de cadeaux et objets fabriqués localement au Canada.",
         category: "Boutique locale"
       },
       {
@@ -266,7 +290,7 @@ async function main() {
         name: "Hof Kelsten",
         city: "Montréal",
         address: "4524 Boulevard Saint-Laurent, Montréal, QC H2T 1R4",
-        website: null,
+        website: "https://hofkelsten.com",
         lat: 45.5202679,
         lng: -73.5870403,
         description: "Boulangerie artisanale réputée du Mile End.",
@@ -277,7 +301,7 @@ async function main() {
         name: "Le Pain dans les Voiles",
         city: "Montréal",
         address: "357 Rue de Castelnau E, Montréal, QC H2R 1R1",
-        website: null,
+        website: "https://lepaindanslesvoiles.com",
         lat: 45.538767,
         lng: -73.617753,
         description: "Boulangerie artisanale reconnue pour ses pains et viennoiseries.",
@@ -288,7 +312,7 @@ async function main() {
         name: "Automne Boulangerie",
         city: "Montréal",
         address: "6500 Avenue Christophe-Colomb, Montréal, QC",
-        website: null,
+        website: "https://www.automneboulangerie.com",
         lat: 45.5377139,
         lng: -73.6018052,
         description: "Boulangerie artisanale de quartier.",
@@ -299,7 +323,7 @@ async function main() {
         name: "Sarrasin Boulangerie",
         city: "Montréal",
         address: "Mile End, Montréal, QC",
-        website: null,
+        website: "https://sarrasinboulangerie.com",
         lat: 45.5201859,
         lng: -73.596701,
         description: "Micro-boulangerie bio et sans gluten.",
@@ -310,7 +334,7 @@ async function main() {
         name: "Dieu du Ciel!",
         city: "Montréal",
         address: "21 Avenue Laurier Ouest, Montréal, QC",
-        website: "https://dieuduciel.com",
+        website: "https://www.automneboulangerie.com",
         lat: 45.522839,
         lng: -73.593344,
         description: "Microbrasserie artisanale emblématique du Plateau.",
