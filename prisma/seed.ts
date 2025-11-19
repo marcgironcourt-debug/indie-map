@@ -228,7 +228,7 @@ async function main() {
         lat: 45.5235374,
         lng: -73.5934975,
         description: "Mode locale et créateurs québécois.",
-        category: "Mode éthique"
+        category: "Vêtements"
       },
 
       {
@@ -295,7 +295,7 @@ async function main() {
         lat: 45.5236062,
         lng: -73.5936195,
         description: "Mode éthique et locale.",
-        category: "Mode éthique"
+        category: "Vêtements"
       },
       {
 

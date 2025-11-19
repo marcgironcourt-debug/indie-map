@@ -288,13 +288,7 @@ export default function IndieMapSplitView() {
 
     if (category === "ALL") return true;
 
-    if (category === "Vêtements") {
-      return (
-        k.includes("friperie") ||
-        k.includes("mode éthique") ||
-        k.includes("mode ethique")
-      );
-    }
+    
 
     if (category === "Librairie et bouquinerie") {
       return (
