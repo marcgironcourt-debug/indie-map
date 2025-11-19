@@ -277,7 +277,6 @@ export default function IndieMapSplitView() {
         !isRestaurant(t) &&
         !isBakery(t)
     ),
-    ...(hasClothing ? ["Vêtements"] : []),
     ...(hasBook ? ["Librairie et bouquinerie"] : []),
     ...(hasGrocery ? ["Épicerie"] : []),
     ...(hasRestaurant ? ["Restaurant"] : []),

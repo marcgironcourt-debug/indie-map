@@ -9,7 +9,7 @@ async function main() {
   await prisma.place.createMany({
     data: [
       {
-        id: "loco_castelnau",
+
         name: "Épicerie LOCO Castelnau",
         city: "Montréal",
         address: "337 Rue Castelnau E, Montréal, QC H2R 1P8",
@@ -20,7 +20,7 @@ async function main() {
         category: "Épicerie zéro déchet"
       },
       {
-        id: "loco_verdun",
+
         name: "Épicerie LOCO Verdun",
         city: "Verdun",
         address: "4437 Rue Wellington, Verdun, QC H4G 1P6",
@@ -31,7 +31,7 @@ async function main() {
         category: "Épicerie zéro déchet"
       },
       {
-        id: "loco_plateau",
+
         name: "Épicerie LOCO Plateau",
         city: "Montréal",
         address: "368 Av du Mont-Royal E, Montréal, QC H2T 1P9",
@@ -42,7 +42,7 @@ async function main() {
         category: "Épicerie zéro déchet"
       },
       {
-        id: "loco_villeray",
+
         name: "Épicerie LOCO Villeray",
         city: "Montréal",
         address: "422 Rue Jarry E, Montréal, QC H2P 1V3",
@@ -52,8 +52,97 @@ async function main() {
         description: "Épicerie zéro déchet LOCO dans Villeray.",
         category: "Épicerie zéro déchet"
       },
+{
+
+        name: "Méga Vrac – Mont-Royal",
+        city: "Montréal",
+        address: "1951 Avenue du Mont-Royal Est, Montréal, QC H2H 1J5",
+        website: "https://megavrac.com",
+        lat: 45.534383,
+        lng: -73.573445,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Épicerie zéro déchet"
+      },
+{
+
+        name: "Méga Vrac – Masson",
+        city: "Montréal",
+        address: "3101 Rue Masson, Montréal, QC H1Y 1W1",
+        website: "https://megavrac.com",
+        lat: 45.5494083,
+        lng: -73.5743211,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Épicerie zéro déchet"
+      },
+{
+
+        name: "Méga Vrac – Beaubien",
+        city: "Montréal",
+        address: "2109 Rue Beaubien Est, Montréal, QC H2G 1M5",
+        website: "https://megavrac.com",
+        lat: 45.545819,
+        lng: -73.594547,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Épicerie zéro déchet"
+      },
+{
+
+        name: "Méga Vrac – Villeray",
+        city: "Montréal",
+        address: "421 Rue Villeray Est, Montréal, QC H2R 1H2",
+        website: "https://megavrac.com",
+        lat: 45.541171,
+        lng: -73.622908,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Épicerie zéro déchet"
+      },
+{
+
+        name: "Méga Vrac – Hochelaga",
+        city: "Montréal",
+        address: "3562 Rue Ontario Est, Montréal, QC H1W 1R5",
+        website: "https://megavrac.com",
+        lat: 45.544539,
+        lng: -73.544892,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Épicerie zéro déchet"
+      },
+{
+
+        name: "Belle et Rebelle",
+        city: "Montréal",
+        address: "6583A Rue St-Hubert, Montréal, QC H2S 2M5",
+        website: "https://belleetrebelle.ca",
+        lat: 45.537023,
+        lng: -73.604664,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Vêtements"
+      },
+{
+
+        name: "atelier b",
+        city: "Montréal",
+        address: "5758 Boulevard St-Laurent, Montréal, QC H2T 1S8",
+        website: "https://atelier-b.ca",
+        lat: 45.5268613,
+        lng: -73.6015982,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Vêtements"
+      },
+{
+
+        name: "Cokluch",
+        city: "Montréal",
+        address: "410 Rue Villeray, Montréal, QC H2R 1H3",
+        website: "https://cokluch.com",
+        lat: 45.5409595,
+        lng: -73.6226323,
+        description: "Épicerie zéro déchet LOCO dans Villeray.",
+        category: "Vêtements"
+      },
+
       {
-        id: "bouquinerie_plateau",
+
         name: "Bouquinerie du Plateau",
         city: "Montréal",
         address: "437 Av du Mont-Royal E, Montréal, QC",
@@ -64,7 +153,7 @@ async function main() {
         category: "Librairie & bouquinerie"
       },
       {
-        id: "cafe_neve",
+
         name: "Café Névé",
         city: "Montréal",
         address: "151 Rue Rachel E, Montréal, QC",
@@ -76,7 +165,7 @@ async function main() {
       },
 
       {
-        id: "cafe_dei_campi",
+
         name: "Café Dei Campi",
         city: "Montréal",
         address: "6201 Rue Chabot, Montréal, QC H2G 2T3",
@@ -87,7 +176,7 @@ async function main() {
         category: "Café"
       },
       {
-        id: "espace_flo",
+
         name: "Espace FLO",
         city: "Montréal",
         address: "4306 Rue Sainte-Catherine E, Montréal, QC",
@@ -98,7 +187,7 @@ async function main() {
         category: "Boutique locale"
       },
       {
-        id: "cafe_myriade",
+
         name: "Café Myriade",
         city: "Montréal",
         address: "1432 Rue Mackay, Montréal, QC H3G 2H7",
@@ -109,7 +198,7 @@ async function main() {
         category: "Café"
       },
       {
-        id: "boutique_boreale",
+
         name: "Boutique Boréale",
         city: "Montréal",
         address: "4 Rue Saint-Paul E, Montréal, QC H2Y 1G1",
@@ -120,7 +209,7 @@ async function main() {
         category: "Boutique locale"
       },
       {
-        id: "articho_villeray",
+
         name: "Articho",
         city: "Montréal",
         address: "300 Rue Villeray, Montréal, QC H2R 1G7",
@@ -131,7 +220,7 @@ async function main() {
         category: "Boutique locale"
       },
       {
-        id: "unicorn_mile_end",
+
         name: "Boutique Unicorn",
         city: "Montréal",
         address: "5135 Boulevard Saint-Laurent, Montréal, QC H2T 1R9",
@@ -143,7 +232,7 @@ async function main() {
       },
 
       {
-        id: "arloca_st_hubert",
+
         name: "Arloca",
         city: "Montréal",
         address: "6572 rue St-Hubert, Montréal, QC H2S 2M3",
@@ -154,7 +243,7 @@ async function main() {
         category: "Boutique locale"
       },
       {
-        id: "empire_mile_end",
+
         name: "L’Empire de l’échange – Mile End",
         city: "Montréal",
         address: "5225 Boulevard Saint-Laurent, Montréal, QC H2T 1S4",
@@ -165,7 +254,7 @@ async function main() {
         category: "Friperie"
       },
       {
-        id: "racines_boreales_hochelaga",
+
         name: "Racines boréales",
         city: "Montréal",
         address: "4317 Rue Ontario E, Montréal, QC H1V 1K5",
@@ -176,7 +265,7 @@ async function main() {
         category: "Épicerie locale"
       },
       {
-        id: "librairie_lechange",
+
         name: "Librairie L'Échange",
         city: "Montréal",
         address: "713 Avenue du Mont-Royal E, Montréal, QC H2J 1W7",
@@ -187,7 +276,7 @@ async function main() {
         category: "Librairie & bouquinerie"
       },
       {
-        id: "de_stiil_booksellers",
+
         name: "De Stiil Booksellers",
         city: "Montréal",
         address: "351 Avenue Duluth E, Montréal, QC H2W 1J3",
@@ -198,7 +287,7 @@ async function main() {
         category: "Librairie spécialisée"
       },
       {
-        id: "jennifer_glasgow_mile_end",
+
         name: "Jennifer Glasgow Design",
         city: "Montréal",
         address: "5145 Boulevard Saint-Laurent, Montréal, QC",
@@ -209,7 +298,7 @@ async function main() {
         category: "Mode éthique"
       },
       {
-        id: "toque_montreal",
+
         name: "Restaurant Toqué!",
         city: "Montréal",
         address: "900 Place Jean-Paul-Riopelle, Montréal, QC H2Z 2B2",
@@ -220,7 +309,7 @@ async function main() {
         category: "Restaurant locavore"
       },
       {
-        id: "helicoptere_hochelaga",
+
         name: "Hélicoptère",
         city: "Montréal",
         address: "4255 Rue Ontario E, Montréal, QC H1V 1K4",
@@ -231,7 +320,7 @@ async function main() {
         category: "Restaurant locavore"
       },
       {
-        id: "panacee_village",
+
         name: "Panacée",
         city: "Montréal",
         address: "1701 Rue Atateken, Montréal, QC H2L 3L4",
@@ -242,7 +331,7 @@ async function main() {
         category: "Restaurant locavore"
       },
       {
-        id: "les_momes_villeray",
+
         name: "Les Mômes",
         city: "Montréal",
         address: "586 Rue Villeray, Montréal, QC H2R 1H6",
@@ -253,7 +342,7 @@ async function main() {
         category: "Restaurant locavore"
       },
       {
-        id: "o_thym_village",
+
         name: "O’Thym",
         city: "Montréal",
         address: "1257 Rue Atateken, Montréal, QC H2L 3K9",
@@ -264,7 +353,7 @@ async function main() {
         category: "Restaurant locavore abordable"
       },
       {
-        id: "caribou_gourmand_mile_end",
+
         name: "Caribou Gourmand",
         city: "Montréal",
         address: "5308 Boulevard Saint-Laurent, Montréal, QC H2T 1S1",
@@ -275,7 +364,7 @@ async function main() {
         category: "Bistro terroir et local"
       },
       {
-        id: "rose_ross_masson",
+
         name: "Rose Ross",
         city: "Montréal",
         address: "3017 Rue Masson, Montréal, QC H1Y 1X7",
@@ -286,7 +375,7 @@ async function main() {
         category: "Cuisine du marché"
       },
       {
-        id: "hof_kelsten",
+
         name: "Hof Kelsten",
         city: "Montréal",
         address: "4524 Boulevard Saint-Laurent, Montréal, QC H2T 1R4",
@@ -297,7 +386,7 @@ async function main() {
         category: "Boulangerie artisanale"
       },
       {
-        id: "pain_dans_les_voiles",
+
         name: "Le Pain dans les Voiles",
         city: "Montréal",
         address: "357 Rue de Castelnau E, Montréal, QC H2R 1R1",
@@ -308,7 +397,7 @@ async function main() {
         category: "Boulangerie artisanale"
       },
       {
-        id: "automne_boulangerie",
+
         name: "Automne Boulangerie",
         city: "Montréal",
         address: "6500 Avenue Christophe-Colomb, Montréal, QC",
@@ -319,7 +408,7 @@ async function main() {
         category: "Boulangerie artisanale"
       },
       {
-        id: "sarrasin_boulangerie",
+
         name: "Sarrasin Boulangerie",
         city: "Montréal",
         address: "Mile End, Montréal, QC",
@@ -330,7 +419,7 @@ async function main() {
         category: "Boulangerie artisanale"
       },
       {
-        id: "dieu_du_ciel_laurier",
+
         name: "Dieu du Ciel!",
         city: "Montréal",
         address: "21 Avenue Laurier Ouest, Montréal, QC",
@@ -341,7 +430,7 @@ async function main() {
         category: "Microbrasserie"
       },
       {
-        id: "vices_versa_parc_ex",
+
         name: "Vices & Versa",
         city: "Montréal",
         address: "6631 Boulevard Saint-Laurent, Montréal, QC",
