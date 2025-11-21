@@ -9,6 +9,7 @@ type Biz = {
   name: string;
   address?: string | null;
   website?: string | null;
+  openingHours?: string | null;
   lat?: number | string | null;
   lng?: number | string | null;
   type?: string | null;
@@ -67,25 +68,21 @@ function makePin(color: string, stroke: string, selected: boolean) {
   const height = selected ? 38 : 36;
   const circleR = selected ? 4.5 : 4;
   const shadow = selected
-    ? `<defs>
-         <filter id="shadow">
-           <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="rgba(0,0,0,0.4)" />
-         </filter>
-       </defs>`
+    ? "<defs>\n         <filter id=\"shadow\">\n           <feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" />\n         </filter>\n       </defs>"
     : "";
-  const groupOpen = selected ? `<g filter="url(#shadow)">` : "";
-  const groupClose = selected ? `</g>` : "";
+  const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
+  const groupClose = selected ? "</g>" : "";
+  const html =
+    '<svg width="' + size + '" height="' + height + '" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
+    shadow +
+    groupOpen +
+    '<path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="' + color + '" stroke="' + stroke + '" stroke-width="2"/>' +
+    '<circle cx="12" cy="12" r="' + circleR + '" fill="white"/>' +
+    groupClose +
+    "</svg>";
   return L.divIcon({
     className: "indie-pin",
-    html: `
-      <svg width="${size}" height="${height}" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-        ${shadow}
-        ${groupOpen}
-        <path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="${color}" stroke="${stroke}" stroke-width="2"/>
-        <circle cx="12" cy="12" r="${circleR}" fill="white"/>
-        ${groupClose}
-      </svg>
-    `,
+    html,
     iconSize: [size, height],
     iconAnchor: [size / 2, height],
     popupAnchor: [0, -height + 4],
@@ -183,7 +180,16 @@ export default function ClientMap({
 }) {
   const byId = new Map<
     string,
-    { id: string; name: string; address?: string | null; website?: string | null; latN: number; lngN: number; type?: string | null }
+    {
+      id: string;
+      name: string;
+      address?: string | null;
+      website?: string | null;
+      openingHours?: string | null;
+      latN: number;
+      lngN: number;
+      type?: string | null;
+    }
   >();
 
   for (const b of items) {
@@ -196,6 +202,7 @@ export default function ClientMap({
         name: b.name,
         address: b.address ?? null,
         website: b.website ?? null,
+        openingHours: b.openingHours ?? null,
         latN,
         lngN,
         type: b.type ?? null,
@@ -248,10 +255,10 @@ export default function ClientMap({
         className="h-full w-full"
       >
         <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-        noWrap={true}
-      />
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+          noWrap={true}
+        />
         <ApplyCenter center={mapCenter} zoom={mapZoom} />
         <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
         {markers.map((b) => (
@@ -259,31 +266,48 @@ export default function ClientMap({
             key={b.id}
             position={[b.latN, b.lngN]}
             icon={iconForType(b.type, selectedId === b.id)}
-            eventHandlers={onSelect ? { click: () => onSelect(b.id) } : undefined}
+            eventHandlers={{
+              click: () => {
+                if (onSelect) onSelect(b.id);
+              },
+            }}
           >
-            <Popup autoPan={true} autoPanPadding={[40, 40]}>
-              <div className="space-y-1">
-                <div className="font-semibold">{b.name}</div>
-                {b.address ? <div className="text-sm opacity-80">{b.address}</div> : null}
-                {b.website ? (
-                  <a href={b.website} target="_blank" rel="noreferrer noopener" className="text-sm underline underline-offset-2">
-                    {new URL(b.website).host}
-                  </a>
-                ) : null}
-              </div>
-            </Popup>
+            <Popup>
+          <div className="space-y-1">
+            <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
+            {b.address && (
+              <p className="text-xs text-neutral-700">{b.address}</p>
+            )}
+            {b.openingHours ? (
+              <p className="text-xs text-emerald-700">
+                Horaires : {b.openingHours}
+              </p>
+            ) : (
+              <p className="text-xs text-neutral-600">
+                Horaires : voir le site
+              </p>
+            )}
+            {b.website && (
+              <a
+                href={b.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-xs underline text-amber-700"
+              >
+                Site web
+              </a>
+            )}
+          </div>
+        </Popup>
           </Marker>
         ))}
       </MapContainer>
       <button
         type="button"
         onClick={handleLocate}
-        className="absolute bottom-4 left-4 z-[1400] rounded-full bg-white/90 p-2 shadow-md border border-neutral-300 hover:bg-white"
+        className="absolute bottom-3 right-3 rounded-full bg-neutral-900/80 px-3 py-1.5 text-xs font-medium text-white shadow-md backdrop-blur hover:bg-neutral-800"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
-          <circle cx="12" cy="12" r="3" />
-          <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-        </svg>
+        Me localiser
       </button>
     </div>
   );

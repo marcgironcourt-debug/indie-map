@@ -10,6 +10,7 @@ type Biz = {
   name: string;
   address?: string | null;
   website?: string | null;
+  openingHours?: string | null;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
