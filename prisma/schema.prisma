@@ -13,6 +13,7 @@ model Place {
   city        String
   address     String?
   website     String?
+  openingHours String?
   lat         Float?
   lng         Float?
   description String?

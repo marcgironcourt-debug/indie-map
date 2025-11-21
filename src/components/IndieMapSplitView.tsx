@@ -8,6 +8,7 @@ export type Business = {
   type: string;
   address?: string;
   website?: string;
+  openingHours?: string;
   lat?: number;
   lng?: number;
   city?: string;
@@ -188,6 +189,7 @@ export default function IndieMapSplitView() {
           type: p.category ?? "Lieu local",
           address: p.address ?? p.city ?? "",
           website: p.website,
+          openingHours: p.openingHours ?? undefined,
           lat: typeof p.lat === "number" ? p.lat : undefined,
           lng: typeof p.lng === "number" ? p.lng : undefined,
           city: p.city ?? "",
