@@ -261,46 +261,108 @@ export default function ClientMap({
         />
         <ApplyCenter center={mapCenter} zoom={mapZoom} />
         <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
-        {markers.map((b) => (
-          <Marker
-            key={b.id}
-            position={[b.latN, b.lngN]}
-            icon={iconForType(b.type, selectedId === b.id)}
-            eventHandlers={{
-              click: () => {
-                if (onSelect) onSelect(b.id);
-              },
-            }}
-          >
-            <Popup>
-          <div className="space-y-1">
-            <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
-            {b.address && (
-              <p className="text-xs text-neutral-700">{b.address}</p>
-            )}
-            {b.openingHours ? (
-              <p className="text-xs text-emerald-700">
-                Horaires : {b.openingHours}
-              </p>
-            ) : (
-              <p className="text-xs text-neutral-600">
-                Horaires : voir le site
-              </p>
-            )}
-            {b.website && (
-              <a
-                href={b.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-xs underline text-amber-700"
-              >
-                Site web
-              </a>
-            )}
-          </div>
-        </Popup>
-          </Marker>
-        ))}
+        {markers.map((b) => {
+          const isFlo = b.name.trim().toLowerCase() === "espace flo";
+          return (
+            <Marker
+              key={b.id}
+              position={[b.latN, b.lngN]}
+              icon={iconForType(b.type, selectedId === b.id)}
+              eventHandlers={{
+                click: () => {
+                  if (onSelect) onSelect(b.id);
+                },
+              }}
+            >
+              <Popup>
+                {isFlo ? (
+                  <div className="space-y-2 max-w-xs border border-[#E4D4C2] rounded-[18px] px-3 pt-2 pb-4 bg-[#FDF7F2] shadow-md">
+                    <div className="flex flex-col gap-1.5">
+                      <h3 className="text-[15px] font-semibold text-neutral-900">
+                        {b.name}
+                      </h3>
+                      <div>
+                        <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
+                          mode, art, déco
+                        </span>
+                      </div>
+                      {b.address && (
+                        <p className="text-[11px] text-neutral-700">
+                          {b.address}
+                        </p>
+                      )}
+                    </div>
+
+                    <p className="mt-2 text-[11px] leading-snug text-neutral-800">
+                      La mission d’ESPACE FLO : faire rayonner le talent d'ici et valoriser l'achat local avec des produits éthiques & écoresponsables. « À l'opposé du "fast fashion" et de la production de masse, nous vous proposons une sélection de produits entièrement conçus & fabriqués au Québec par nos talentueux designers sélectionnés. ESPACE FLO vous offre une sélection de produits durables, indémodables & exclusifs fabriqués à la main avec passion par des créateurs d'ici.»
+                    </p>
+
+                    <div className="mt-2">
+                      <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                        <img
+                          src="/images/espace-flo-inside.jpg"
+                          alt="Intérieur Espace FLO"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-between">
+                      {b.openingHours ? (
+                        <p className="text-[10px] text-emerald-700">
+                          Horaires : {b.openingHours}
+                        </p>
+                      ) : (
+                        <p className="text-[10px] text-neutral-600">
+                          Horaires : voir le site
+                        </p>
+                      )}
+                    </div>
+
+                    {b.website && (
+                      <div className="mt-2">
+                        <a
+                          href={b.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full text-center rounded-md bg-[#728A4A] px-3 py-1.5 text-[11px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
+                        >
+                          Visiter le site web
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-1">
+                    <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
+                    {b.address && (
+                      <p className="text-xs text-neutral-700">{b.address}</p>
+                    )}
+                    {b.openingHours ? (
+                      <p className="text-xs text-emerald-700">
+                        Horaires : {b.openingHours}
+                      </p>
+                    ) : (
+                      <p className="text-xs text-neutral-600">
+                        Horaires : voir le site
+                      </p>
+                    )}
+                    {b.website && (
+                      <a
+                        href={b.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-xs underline text-amber-700"
+                      >
+                        Site web
+                      </a>
+                    )}
+                  </div>
+                )}
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
       <button
         type="button"
