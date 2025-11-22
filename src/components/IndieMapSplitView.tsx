@@ -18,11 +18,33 @@ const DEMO: Business[] = [
   {
     id: "2",
     name: "Café Myriade",
-    type: "Café",
+    type: "Café / brunch",
     address: "1432 Rue Mackay, Montréal, QC H3G 2H7",
     website: "https://cafemyriade.com",
   },
 ];
+
+function normalizeCategoryLabel(raw: string): string {
+  const key = raw.toLowerCase();
+  if (
+    key.includes("café") ||
+    key.includes("cafe") ||
+    key.includes("coffee") ||
+    key.includes("brunch")
+  ) {
+    return "Café / brunch";
+  }
+    if (
+    key.includes("microbrasserie") ||
+    key.includes("brasserie") ||
+    key.includes("pub") ||
+    key.includes("bar")
+  ) {
+    return "Brasserie / bar / pub";
+  }
+
+  return raw;
+}
 
 function getCategoryStyle(cat: string, active: boolean): string {
   const key = cat.toLowerCase();
@@ -69,7 +91,12 @@ function getCategoryStyle(cat: string, active: boolean): string {
       : "bg-white text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
   }
 
-  if (key.includes("microbrasserie") || key.includes("brasserie")) {
+  if (
+    key.includes("microbrasserie") ||
+    key.includes("brasserie") ||
+    key.includes("bar") ||
+    key.includes("pub")
+  ) {
     return active
       ? "bg-[hsl(var(--micro))] text-white shadow-md"
       : "bg-white text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
@@ -185,7 +212,7 @@ export default function IndieMapSplitView() {
         const list: Business[] = arr.map((p: any) => ({
           id: p.id,
           name: p.name,
-          type: p.category ?? "Lieu local",
+          type: normalizeCategoryLabel(p.category ?? "Lieu local"),
           address: p.address ?? p.city ?? "",
           website: p.website,
           openingHours: p.openingHours ?? undefined,

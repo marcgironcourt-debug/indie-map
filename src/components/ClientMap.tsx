@@ -19,7 +19,13 @@ const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
 function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
   const v = (t || "").toLowerCase();
-  if (v.includes("café") || v.includes("cafe") || v.includes("coffee")) return "cafe";
+  if (v.includes("café") || v.includes("cafe") || v.includes("coffee") || v.includes("brunch")) return "cafe";
+  if (
+    v.includes("microbrasserie") ||
+    v.includes("brasserie") ||
+    v.includes("bar") ||
+    v.includes("pub")
+  ) return "microbrasserie";
   if (
     v.includes("épicerie") ||
     v.includes("epicerie") ||

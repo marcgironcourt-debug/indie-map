@@ -440,6 +440,157 @@ async function main() {
         description: "Bistro et microbrasseries locales du terroir québécois.",
         category: "Microbrasserie"
       }
+    ,
+      {
+        name: "Romarin - épicerie zéro déchet",
+        city: "Montréal",
+        address: "5251 Boulevard Saint-Laurent, Montréal, QC H2T 1S4",
+        website: "https://www.romarin.ca",
+        lat: 45.5244029,
+        lng: -73.5953896,
+        description: "Épicerie vrac et zéro déchet sur le Plateau.",
+        category: "Épicerie zéro déchet"
+      },
+      {
+        name: "Tah-dah !",
+        city: "Montréal",
+        address: "156 Rue Jean-Talon Est, Montréal, QC H2R 1S7",
+        website: "https://www.tah-dah.ca",
+        lat: 45.536185,
+        lng: -73.61606,
+        description: "Boutique cadeaux et objets du quotidien à vocation écoresponsable.",
+        category: "Boutique locale"
+      },
+      {
+        name: "Maktaba Bookshop",
+        city: "Montréal",
+        address: "165 Rue Saint-Paul Ouest, Montréal, QC H2Y 1Z5",
+        website: "https://www.maktaba.online",
+        lat: 45.5033464,
+        lng: -73.5551619,
+        description: "Librairie-boutique au cœur du Vieux-Montréal.",
+        category: "Librairie"
+      },
+      {
+        name: "La Réserve Naturelle",
+        city: "Montréal",
+        address: "5854 Rue Saint-Hubert, Montréal, QC H2S 2L7",
+        website: "https://www.lareservenaturelle.com",
+        lat: 45.5333414,
+        lng: -73.5973982,
+        description: "Épicerie et boutique axée sur les produits naturels et durables.",
+        category: "Boutique locale"
+      },
+      {
+        name: "Slak Atelier-Boutique",
+        city: "Montréal",
+        address: "352 Rue Villeray Est, Montréal, QC H2R 1G9",
+        website: "https://www.slak.ca",
+        lat: 45.5402499,
+        lng: -73.6231767,
+        description: "Atelier-boutique de vêtements confortables et éthiques.",
+        category: "Vêtements"
+      },
+      {
+        name: "Café des Habitudes",
+        city: "Montréal",
+        address: "1104 Rue Saint-Zotique Est, Montréal, QC H2S 2H1",
+        website: "https://cafedeshabitudes.co",
+        lat: 45.538818,
+        lng: -73.603176,
+        description: "Café de quartier axé sur les habitudes plus durables.",
+        category: "Café"
+      },
+      {
+        name: "Café Rico",
+        city: "Montréal",
+        address: "1215 Avenue du Mont-Royal Est, Montréal, QC H2J 1X9",
+        website: "https://www.caferico.ca",
+        lat: 45.529068,
+        lng: -73.57841,
+        description: "Café-torréfacteur de longue date sur le Plateau.",
+        category: "Café"
+      },
+      {
+        name: "Super Condiments",
+        city: "Montréal",
+        address: "1311 Avenue Van Horne, Outremont, QC H2V 1K7",
+        website: "https://www.supercondiments.com",
+        lat: 45.5211285,
+        lng: -73.6145031,
+        description: "Café-épicerie mettant en avant des produits locaux.",
+        category: "Café"
+      },
+      {
+        name: "Fanfare Brunch Boulangerie",
+        city: "Montréal",
+        address: "751 Rue Jarry Est, Montréal, QC H2P 1W3",
+        website: "https://www.fanfare-brunch-boulangerie.com",
+        lat: 45.546216,
+        lng: -73.626834,
+        description: "Boulangerie artisanale et brunch de quartier.",
+        category: "Boulangerie"
+      },
+      {
+        name: "Café Bloom",
+        city: "Montréal",
+        address: "1940 Rue du Centre, Montréal, QC H3K 1J2",
+        website: "https://www.lecafebloom.com",
+        lat: 45.4821607,
+        lng: -73.5628779,
+        description: "Café-brunch convivial à Pointe-Saint-Charles.",
+        category: "Café"
+      },
+      {
+        name: "Candide",
+        city: "Montréal",
+        address: "551 Rue Saint-Martin, Montréal, QC H3J 2L6",
+        website: "https://www.restaurantcandide.com",
+        lat: 45.4890629,
+        lng: -73.5694589,
+        description: "Restaurant locavore axé sur les produits saisonniers.",
+        category: "Restaurant"
+      },
+      {
+        name: "BreWskey Taproom",
+        city: "Montréal",
+        address: "385 Rue de la Commune Est, Montréal, QC H2Y 1H2",
+        website: "https://www.brewskey.ca",
+        lat: 45.508846,
+        lng: -73.551684,
+        description: "Taproom de microbrasserie dans le Vieux-Montréal.",
+        category: "Microbrasserie"
+      },
+      {
+        name: "Projet Pilote",
+        city: "Montréal",
+        address: "980 Rue Rachel Est, Montréal, QC H2J 2J3",
+        website: "https://www.projetpilote.com",
+        lat: 45.525132,
+        lng: -73.574626,
+        description: "Bar de quartier, microbrasserie et distillerie artisanale.",
+        category: "Microbrasserie"
+      },
+      {
+        name: "Wolf & Workman",
+        city: "Montréal",
+        address: "139 Rue Saint-Paul Ouest, Montréal, QC H2Y 1Z3",
+        website: "https://www.wolfandworkman.com",
+        lat: 45.5037276,
+        lng: -73.5549067,
+        description: "Pub moderne mettant en avant les produits locaux.",
+        category: "Bar & restaurant"
+      },
+      {
+        name: "vinvinvin",
+        city: "Montréal",
+        address: "1290 Rue Beaubien Est, Montréal, QC H2S 1P9",
+        website: "https://vinvinvin.ca",
+        lat: 45.532831,
+        lng: -73.605889,
+        description: "Bar à vin nature avec une forte sélection locale.",
+        category: "Bar à vin"
+      }
     ]
   });
 
