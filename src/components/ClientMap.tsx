@@ -89,7 +89,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
   });
 }
 
-const ICONS = {
+const ICONS =  {
   cafe: {
     normal: makePin("hsl(var(--cafe))", "#FDF7F2", false),
     selected: makePin("hsl(var(--cafe))", "#FDF7F2", true),
@@ -255,8 +255,8 @@ export default function ClientMap({
         className="h-full w-full"
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap contributors"
           noWrap={true}
         />
         <ApplyCenter center={mapCenter} zoom={mapZoom} />
@@ -274,21 +274,52 @@ export default function ClientMap({
                 },
               }}
             >
-              <Popup>
+              <Popup autoPan autoPanPaddingTopLeft={[10, 200]} autoPanPaddingBottomRight={[10, 10]}>
                 {isFlo ? (
                   <div className="space-y-2 max-w-xs border border-[#E4D4C2] rounded-[18px] px-3 pt-2 pb-4 bg-[#FDF7F2] shadow-md">
                     <div className="flex flex-col gap-1.5">
-                      <h3 className="text-[15px] font-semibold text-neutral-900">
-                        {b.name}
-                      </h3>
-                      <div>
-                        <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                          mode, art, déco
-                        </span>
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex flex-col gap-1">
+                          <h3 className="text-[15px] font-semibold text-neutral-900">
+                            {b.name}
+                          </h3>
+                          <div>
+                            <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
+                              mode, art, déco
+                            </span>
+                          </div>
+                        </div>
+                        {b.website && (
+                          <a
+                            href={b.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
+                            style={{ color: "#000000" }}
+                          >
+                            Site web
+                          </a>
+                        )}
                       </div>
+
                       {b.address && (
-                        <p className="text-[11px] text-neutral-700">
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[11px] text-neutral-700 underline"
+                        >
                           {b.address}
+                        </a>
+                      )}
+
+                      {b.openingHours ? (
+                        <p className="text-[10px] text-emerald-700">
+                          Horaires : {b.openingHours}
+                        </p>
+                      ) : (
+                        <p className="text-[10px] text-neutral-600">
+                          Horaires : voir le site
                         </p>
                       )}
                     </div>
@@ -306,37 +337,19 @@ export default function ClientMap({
                         />
                       </div>
                     </div>
-
-                    <div className="mt-2 flex items-center justify-between">
-                      {b.openingHours ? (
-                        <p className="text-[10px] text-emerald-700">
-                          Horaires : {b.openingHours}
-                        </p>
-                      ) : (
-                        <p className="text-[10px] text-neutral-600">
-                          Horaires : voir le site
-                        </p>
-                      )}
-                    </div>
-
-                    {b.website && (
-                      <div className="mt-2">
-                        <a
-                          href={b.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full text-center rounded-md bg-[#728A4A] px-3 py-1.5 text-[11px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
-                        >
-                          Visiter le site web
-                        </a>
-                      </div>
-                    )}
                   </div>
                 ) : (
-                  <div className="space-y-1">
+                  <div className="space-y-1 max-w-xs border border-[#E4D4C2] rounded-[14px] px-3 py-2 bg-[#FDF7F2] shadow-sm">
                     <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
                     {b.address && (
-                      <p className="text-xs text-neutral-700">{b.address}</p>
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-neutral-700 underline"
+                      >
+                        {b.address}
+                      </a>
                     )}
                     {b.openingHours ? (
                       <p className="text-xs text-emerald-700">
@@ -367,9 +380,21 @@ export default function ClientMap({
       <button
         type="button"
         onClick={handleLocate}
-        className="absolute bottom-3 right-3 rounded-full bg-neutral-900/80 px-3 py-1.5 text-xs font-medium text-white shadow-md backdrop-blur hover:bg-neutral-800"
+        className="absolute top-3 left-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100"
       >
-        Me localiser
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-5 w-5"
+        >
+          <circle cx="12" cy="12" r="7.5" />
+          <path d="M12 4l1.6 4.4L18 10l-4.4 1.6L12 16l-1.6-4.4L6 10l4.4-1.6L12 4z" />
+        </svg>
       </button>
     </div>
   );

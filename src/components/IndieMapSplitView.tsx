@@ -30,25 +30,25 @@ function getCategoryStyle(cat: string, active: boolean): string {
   if (key.includes("café") || key.includes("cafe")) {
     return active
       ? "bg-[hsl(var(--cafe))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm hover:bg-[hsl(var(--cafe))]/10";
+      : "bg-white text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm";
   }
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
       ? "bg-[hsl(var(--leaf))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm hover:bg-[hsl(var(--leaf))]/10";
+      : "bg-white text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm";
   }
 
   if (key.includes("boutique")) {
     return active
       ? "bg-black text-white shadow-md"
-      : "bg-white/80 text-black border border-black/60 shadow-sm hover:bg-black/5";
+      : "bg-white text-black border border-black/60 shadow-sm";
   }
 
   if (key.includes("boulangerie")) {
     return active
       ? "bg-[#8C5A3C] text-white shadow-md"
-      : "bg-white/80 text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm hover:bg-[#8C5A3C]/10";
+      : "bg-white text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm";
   }
 
   if (
@@ -60,38 +60,37 @@ function getCategoryStyle(cat: string, active: boolean): string {
   ) {
     return active
       ? "bg-[hsl(var(--violet))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm hover:bg-[hsl(var(--violet))]/10";
+      : "bg-white text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm";
   }
 
   if (key.includes("restaurant")) {
     return active
       ? "bg-[hsl(var(--restaurant))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm hover:bg-[hsl(var(--restaurant))]/10";
+      : "bg-white text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
   }
 
   if (key.includes("microbrasserie") || key.includes("brasserie")) {
     return active
       ? "bg-[hsl(var(--micro))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm hover:bg-[hsl(var(--micro))]/10";
+      : "bg-white text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
   }
 
   if (key.includes("librairie") || key.includes("bouquinerie")) {
     return active
       ? "bg-[hsl(var(--blue))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm hover:bg-[hsl(var(--blue))]/10";
+      : "bg-white text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm";
   }
 
   if (key.includes("monument") || key.includes("poi")) {
     return active
       ? "bg-[hsl(var(--poi))] text-white shadow-md"
-      : "bg-white/80 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm hover:bg-[hsl(var(--poi))]/10";
+      : "bg-white text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm";
   }
 
   return active
     ? "bg-[hsl(var(--brand))] text-white shadow-md"
-    : "bg-white/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm hover:bg-[hsl(var(--brand))]/10";
+    : "bg-white text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
 }
-
 function FilterPill({
   label,
   active,
@@ -150,7 +149,7 @@ function FilterBar({
         <button
           type="button"
           onClick={() => setShowAll(true)}
-          className="rounded-full px-3 py-1 text-[11px] font-medium bg-white/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm hover:bg-[hsl(var(--brand))]/10"
+          className="rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]"
         >
           +{hidden}
         </button>
@@ -160,7 +159,7 @@ function FilterBar({
         <button
           type="button"
           onClick={() => setShowAll(false)}
-          className="rounded-full px-3 py-1 text-[11px] font-medium bg-white/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm hover:bg-[hsl(var(--brand))]/10"
+          className="rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]"
         >
           - masquer
         </button>
@@ -279,7 +278,7 @@ export default function IndieMapSplitView() {
         !isRestaurant(t) &&
         !isBakery(t)
     ),
-    ...(hasBook ? ["Librairie et bouquinerie"] : []),
+    ...(hasBook ? ["Librairie"] : []),
     ...(hasGrocery ? ["Épicerie"] : []),
     ...(hasRestaurant ? ["Restaurant"] : []),
     ...(hasBakery ? ["Boulangerie"] : []),
@@ -292,7 +291,7 @@ export default function IndieMapSplitView() {
 
     
 
-    if (category === "Librairie et bouquinerie") {
+    if (category === "Librairie") {
       return (
         k.includes("librairie") ||
         k.includes("bouquinerie") ||
@@ -351,8 +350,8 @@ export default function IndieMapSplitView() {
       </div>
 
       <div className="absolute top-3 right-4 z-[1300] pointer-events-none">
-        <div className="text-[11px] font-medium px-3 py-[3px] bg-white border border-neutral-300 rounded-lg shadow-sm text-black">
-          Indiemap
+        <div className="inline-flex items-center justify-center px-3.5 py-[4px] rounded-full shadow-sm bg-white text-black border border-neutral-300 text-[10px] font-semibold tracking-[0.18em] uppercase">
+          INDIEMAP
         </div>
       </div>
 
