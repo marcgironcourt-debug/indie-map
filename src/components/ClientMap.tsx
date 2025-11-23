@@ -310,7 +310,7 @@ export default function ClientMap({
 
                       {b.address && (
                         <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}`}
+                          href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-[11px] text-neutral-700 underline"
@@ -320,9 +320,17 @@ export default function ClientMap({
                       )}
 
                       {b.openingHours ? (
-                        <p className="text-[10px] text-emerald-700">
-                          Horaires : {b.openingHours}
-                        </p>
+                        <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+                          <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
+                            Horaires
+                            <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
+                              ➤
+                            </span>
+                          </summary>
+                          <pre className="mt-1 whitespace-pre-wrap font-sans">
+                            {b.openingHours}
+                          </pre>
+                        </details>
                       ) : (
                         <p className="text-[10px] text-neutral-600">
                           Horaires : voir le site
@@ -349,7 +357,7 @@ export default function ClientMap({
                     <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
                     {b.address && (
                       <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.address)}`}
+                        href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-neutral-700 underline"
@@ -358,9 +366,17 @@ export default function ClientMap({
                       </a>
                     )}
                     {b.openingHours ? (
-                      <p className="text-xs text-emerald-700">
-                        Horaires : {b.openingHours}
-                      </p>
+                      <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+                        <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
+                          Horaires
+                          <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
+                            ➤
+                          </span>
+                        </summary>
+                        <pre className="mt-1 whitespace-pre-wrap font-sans">
+                          {b.openingHours}
+                        </pre>
+                      </details>
                     ) : (
                       <p className="text-xs text-neutral-600">
                         Horaires : voir le site
