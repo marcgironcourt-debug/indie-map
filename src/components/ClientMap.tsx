@@ -261,10 +261,9 @@ export default function ClientMap({
         className="h-full w-full"
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; OpenStreetMap contributors"
-          noWrap={true}
-        />
+  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  attribution='© OpenStreetMap contributors'
+/>
         <ApplyCenter center={mapCenter} zoom={mapZoom} />
         <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
         {markers.map((b) => {
