@@ -42,7 +42,6 @@ function normalizeCategoryLabel(raw: string): string {
   ) {
     return "Brasserie / bar / pub";
   }
-
   return raw;
 }
 
@@ -197,10 +196,140 @@ function FilterBar({
   );
 }
 
+function MobileBottomSheet({
+  business,
+  mode,
+  onClose,
+  onExpand,
+  onPeek,
+}: {
+  business: Business | null;
+  mode: "closed" | "peek" | "full";
+  onClose: () => void;
+  onExpand: () => void;
+  onPeek: () => void;
+}) {
+  if (!business || mode === "closed") return null;
+
+  const heightClass =
+    mode === "full"
+      ? "h-[80vh] max-h-[85vh]"
+      : "h-[40vh] max-h-[45vh]";
+
+  const isFlo = business.name.trim().toLowerCase() === "espace flo";
+
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-[1400] md:hidden">
+      <div className="mx-3 mb-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden">
+        <div className={"flex flex-col " + heightClass}>
+          <button
+            type="button"
+            onClick={() => {
+              if (mode === "full") {
+                onPeek();
+              } else {
+                onExpand();
+              }
+            }}
+            className="flex flex-col items-center justify-center pt-2 pb-1 gap-1"
+          >
+            <div className="h-1 w-10 rounded-full bg-neutral-300" />
+          </button>
+
+          <div className="flex-1 overflow-y-auto px-4 pb-4">
+            <div className="flex items-center justify-between gap-3 mb-1.5">
+              <h3 className="text-[15px] font-semibold text-neutral-900 truncate">
+                {business.name}
+              </h3>
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded-full border border-neutral-300 px-2 py-1 text-[10px] text-neutral-600"
+              >
+                Fermer
+              </button>
+            </div>
+
+            {business.website && (
+              <div className="mb-2">
+                <a
+                  href={business.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white"
+                >
+                  Site web
+                </a>
+              </div>
+            )}
+
+            {business.type && (
+              <p className="text-[11px] text-neutral-700 mb-1">
+                {business.type}
+              </p>
+            )}
+
+            {business.openingHours && (
+              <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+                <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
+                  Horaires
+                  <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
+                    ➤
+                  </span>
+                </summary>
+                <pre className="mt-1 whitespace-pre-wrap font-sans">
+                  {business.openingHours}
+                </pre>
+              </details>
+            )}
+
+            {business.address && (
+              <a
+                href={
+                  "https://www.google.com/maps/search/?api=1&query=" +
+                  encodeURIComponent(business.address)
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-[11px] text-neutral-700 underline mt-2 mb-3"
+              >
+                {business.address}
+              </a>
+            )}
+
+            {isFlo && (
+              <div className="mb-3 space-y-2">
+                <p className="text-[11px] leading-snug text-neutral-800">
+                  La mission d’ESPACE FLO : faire rayonner le talent d’ici et
+                  valoriser l’achat local avec des produits éthiques et
+                  écoresponsables. À l’opposé du fast fashion et de la
+                  production de masse, ESPACE FLO propose une sélection de
+                  produits entièrement conçus et fabriqués au Québec par des
+                  designers sélectionnés, avec des pièces durables,
+                  indémodables et exclusives.
+                </p>
+                <div className="h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                  <img
+                    src="/images/espace-flo-inside.jpg"
+                    alt="Intérieur Espace FLO"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function IndieMapSplitView() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
+  const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
+  const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
 
   React.useEffect(() => {
@@ -217,7 +346,14 @@ export default function IndieMapSplitView() {
           type: normalizeCategoryLabel(p.category ?? "Lieu local"),
           address: p.address ?? p.city ?? "",
           website: p.website,
-          openingHours: p.openingHours ?? undefined,
+          openingHours:
+            typeof p.openingHours === "string"
+              ? p.openingHours
+              : typeof p.opening_hours === "string"
+              ? p.opening_hours
+              : typeof p.openinghours === "string"
+              ? p.openinghours
+              : undefined,
           lat: typeof p.lat === "number" ? p.lat : undefined,
           lng: typeof p.lng === "number" ? p.lng : undefined,
           city: p.city ?? "",
@@ -374,8 +510,22 @@ export default function IndieMapSplitView() {
           selectedId={selectedId}
           selectionVersion={selectionVersion}
           onSelect={(id) => {
+            if (!id) {
+              setSelectedId(null);
+              setSelectedBusiness(null);
+              setSheetMode("closed");
+              return;
+            }
             setSelectedId(id);
             setSelectionVersion((v) => v + 1);
+            const biz =
+              filtered.find((b) => b.id === id) ||
+              source.find((b) => b.id === id) ||
+              null;
+            setSelectedBusiness(biz);
+            if (typeof window !== "undefined" && window.innerWidth < 768) {
+              setSheetMode("peek");
+            }
           }}
         />
       </div>
@@ -393,6 +543,18 @@ export default function IndieMapSplitView() {
           onCategoryChange={setCategory}
         />
       </div>
+
+      <MobileBottomSheet
+        business={selectedBusiness}
+        mode={sheetMode}
+        onClose={() => {
+          setSheetMode("closed");
+          setSelectedBusiness(null);
+          setSelectedId(null);
+        }}
+        onExpand={() => setSheetMode("full")}
+        onPeek={() => setSheetMode("peek")}
+      />
     </div>
   );
 }

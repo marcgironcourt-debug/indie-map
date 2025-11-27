@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -173,6 +173,15 @@ function ApplyCenter({ center, zoom }: { center?: [number, number] | null; zoom?
   return null;
 }
 
+function MapClickClear({ onClear }: { onClear?: () => void }) {
+  useMapEvents({
+    click() {
+      if (onClear) onClear();
+    },
+  });
+  return null;
+}
+
 export default function ClientMap({
   items = [],
   selectedId,
@@ -220,6 +229,13 @@ export default function ClientMap({
 
   const [mapCenter, setMapCenter] = React.useState<[number, number] | null>(null);
   const [mapZoom, setMapZoom] = React.useState<number>(12);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 768);
+    }
+  }, []);
 
   React.useEffect(() => {
     if (typeof navigator === "undefined" || !navigator.geolocation) return;
@@ -260,14 +276,35 @@ export default function ClientMap({
         attributionControl={false}
         className="h-full w-full"
       >
+        <MapClickClear
+          onClear={() => {
+            if (onSelect) onSelect("");
+          }}
+        />
         <TileLayer
-  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  attribution='© OpenStreetMap contributors'
-/>
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="© OpenStreetMap contributors"
+        />
         <ApplyCenter center={mapCenter} zoom={mapZoom} />
         <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
+
+          if (isMobile) {
+            return (
+              <Marker
+                key={b.id}
+                position={[b.latN, b.lngN]}
+                icon={iconForType(b.type, selectedId === b.id)}
+                eventHandlers={{
+                  click: () => {
+                    if (onSelect) onSelect(b.id);
+                  },
+                }}
+              />
+            );
+          }
+
           return (
             <Marker
               key={b.id}
@@ -338,7 +375,7 @@ export default function ClientMap({
                     </div>
 
                     <p className="mt-2 text-[11px] leading-snug text-neutral-800">
-                      La mission d’ESPACE FLO : faire rayonner le talent d'ici et valoriser l'achat local avec des produits éthiques & écoresponsables. « À l'opposé du "fast fashion" et de la production de masse, nous vous proposons une sélection de produits entièrement conçus & fabriqués au Québec par nos talentueux designers sélectionnés. ESPACE FLO vous offre une sélection de produits durables, indémodables & exclusifs fabriqués à la main avec passion par des créateurs d'ici.»
+                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
                     </p>
 
                     <div className="mt-2">
