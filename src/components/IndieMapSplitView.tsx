@@ -34,7 +34,7 @@ function normalizeCategoryLabel(raw: string): string {
   ) {
     return "Café / brunch";
   }
-    if (
+  if (
     key.includes("microbrasserie") ||
     key.includes("brasserie") ||
     key.includes("pub") ||
@@ -118,6 +118,7 @@ function getCategoryStyle(cat: string, active: boolean): string {
     ? "bg-[hsl(var(--brand))] text-white shadow-md"
     : "bg-white text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
 }
+
 function FilterPill({
   label,
   active,
@@ -133,7 +134,8 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={
-        "rounded-full px-3 py-1 text-[11px] font-medium transition " + styleClasses
+        "rounded-full px-3 py-1 text-[11px] font-medium transition " +
+        styleClasses
       }
     >
       {label}
@@ -233,7 +235,11 @@ export default function IndieMapSplitView() {
   const source = businesses.length ? businesses : DEMO;
 
   const rawCategories = Array.from(
-    new Set(source.map((b) => b.type).filter((t) => !!t && t.trim().length > 0))
+    new Set(
+      source
+        .map((b) => b.type)
+        .filter((t) => !!t && t.trim().length > 0)
+    )
   );
 
   const isClothing = (t: string) => {
@@ -316,8 +322,6 @@ export default function IndieMapSplitView() {
 
     if (category === "ALL") return true;
 
-    
-
     if (category === "Librairie") {
       return (
         k.includes("librairie") ||
@@ -382,7 +386,7 @@ export default function IndieMapSplitView() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-4 z-[1300] w-[min(380px,60vw)]">
+      <div className="absolute bottom-4 right-4 z-[1300] w-[min(380px,60vw)] indie-filter-bar">
         <FilterBar
           categories={categories}
           activeCategory={category}
