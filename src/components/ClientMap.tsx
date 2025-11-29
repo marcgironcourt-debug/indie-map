@@ -220,6 +220,14 @@ export default function ClientMap({
   }, [searchCity]);
 
   React.useEffect(() => {
+    if (!searchCity || !mapRef.current) return;
+    const preset = resolveCityCenter(searchCity);
+    if (!preset) return;
+    const map = mapRef.current;
+    map.flyTo(preset.center as any, preset.zoom ?? 12, { animate: true, duration: 0.8 });
+  }, [searchCity]);
+
+  React.useEffect(() => {
     if (!selectedId || !mapRef.current) return;
     const map = mapRef.current;
     const m = markers.find((mm) => mm.id === selectedId);
@@ -231,19 +239,31 @@ export default function ClientMap({
   }, [selectedId, selectionVersion, markers]);
 
   const handleLocate = React.useCallback(() => {
-    if (typeof navigator === "undefined" || !navigator.geolocation || !mapRef.current) return;
+    alert("locate clicked");
+    if (typeof window === "undefined") return;
+    if (!("geolocation" in navigator)) {
+      alert("La géolocalisation n'est pas disponible sur ce navigateur.");
+      return;
+    }
+    if (!mapRef.current) {
+      console.warn("Map non initialisée pour la géolocalisation.");
+      return;
+    }
     const map = mapRef.current;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
         map.flyTo(L.latLng(latitude, longitude), 14, { animate: true, duration: 0.8 });
       },
-      () => {},
+      (err) => {
+        console.error("Erreur de géolocalisation", err);
+        alert("Impossible d'accéder à votre position. Vérifiez les permissions de géolocalisation pour votre navigateur.");
+      },
       { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
     );
   }, []);
 
-  const mapKey = `${center[0]}-${center[1]}-${zoom}-${isMobile ? "m" : "d"}-${darkMap ? "dark" : "light"}`;
+  const mapKey = `${center[0]}-${center[1]}-${zoom}-${isMobile ? "m" : "d"}`;
 
   const tileUrl = darkMap
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
