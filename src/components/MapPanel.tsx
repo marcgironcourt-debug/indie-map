@@ -22,12 +22,16 @@ export default function MapPanel({
   selectionVersion,
   onSelect,
   searchCity,
+  darkMap,
+  onToggleDarkMap,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
   searchCity?: string;
+  darkMap?: boolean;
+  onToggleDarkMap?: () => void;
 }) {
   return (
     <section className="relative h-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
@@ -38,6 +42,8 @@ export default function MapPanel({
           selectionVersion={selectionVersion}
           onSelect={onSelect}
           searchCity={searchCity}
+          darkMap={darkMap}
+          onToggleDarkMap={onToggleDarkMap}
         />
       </div>
     </section>

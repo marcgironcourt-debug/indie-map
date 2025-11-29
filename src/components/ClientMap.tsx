@@ -74,7 +74,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
   const height = selected ? 38 : 36;
   const circleR = selected ? 4.5 : 4;
   const shadow = selected
-    ? "<defs>\n         <filter id=\"shadow\">\n           <feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" />\n         </filter>\n       </defs>"
+    ? "<defs><filter id=\"shadow\"><feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" /></filter></defs>"
     : "";
   const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
   const groupClose = selected ? "</g>" : "";
@@ -95,7 +95,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
   });
 }
 
-const ICONS =  {
+const ICONS = {
   cafe: {
     normal: makePin("hsl(var(--cafe))", "#FDF7F2", false),
     selected: makePin("hsl(var(--cafe))", "#FDF7F2", true),
@@ -192,12 +192,16 @@ export default function ClientMap({
   selectionVersion,
   onSelect,
   searchCity,
+  darkMap,
+  onToggleDarkMap,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
   searchCity?: string;
+  darkMap?: boolean;
+  onToggleDarkMap?: () => void;
 }) {
   const byId = new Map<
     string,
@@ -276,7 +280,20 @@ export default function ClientMap({
     );
   }, []);
 
-  const mapKey = `${center[0]}-${center[1]}-${zoom}`;
+  const mapKey = `${center[0]}-${center[1]}-${zoom}-${darkMap ? "dark" : "light"}`;
+
+  const tileUrl = darkMap
+    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+  const locateClassName = isMobile
+    ? "absolute top-[68px] right-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100"
+    : "absolute top-3 left-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100";
+
+  const themeToggleClassName = "absolute top-3 right-3 z-[1300] rounded-full bg-white/95 p-2 shadow-md border border-neutral-300 hover:bg-neutral-100";
+
+  const circleOuterFill = darkMap ? "#020617" : "#F9FAFB";
+  const circleInnerFill = darkMap ? "#F9FAFB" : "#020617";
 
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
@@ -288,7 +305,7 @@ export default function ClientMap({
         maxBounds={MAX_BOUNDS}
         maxBoundsViscosity={1}
         worldCopyJump={false}
-        zoomControl={true}
+        zoomControl={!isMobile}
         attributionControl={false}
         className="h-full w-full"
         whenCreated={(mapInstance) => {
@@ -301,8 +318,8 @@ export default function ClientMap({
           }}
         />
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="© OpenStreetMap contributors"
+          url={tileUrl}
+          attribution=""
         />
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
@@ -452,10 +469,11 @@ export default function ClientMap({
           );
         })}
       </MapContainer>
+
       <button
         type="button"
         onClick={handleLocate}
-        className="absolute top-3 left-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100"
+        className={locateClassName}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -469,6 +487,29 @@ export default function ClientMap({
         >
           <circle cx="12" cy="12" r="7.5" />
           <path d="M12 4l1.6 4.4L18 10l-4.4 1.6L12 16l-1.6-4.4L6 10l4.4-1.6L12 4z" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => {
+          if (onToggleDarkMap) onToggleDarkMap();
+        }}
+        className={themeToggleClassName}
+        aria-label="Basculer mode clair/sombre"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+        >
+          <defs>
+            <clipPath id="halfCircle">
+              <rect x="0" y="0" width="12" height="24" />
+            </clipPath>
+          </defs>
+          <circle cx="12" cy="12" r="10" fill={circleOuterFill} stroke="#0F172A" strokeWidth="1.2" />
+          <circle cx="12" cy="12" r="10" fill={circleInnerFill} clipPath="url(#halfCircle)" />
         </svg>
       </button>
     </div>

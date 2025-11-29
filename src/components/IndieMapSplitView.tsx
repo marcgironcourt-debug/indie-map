@@ -45,30 +45,38 @@ function normalizeCategoryLabel(raw: string): string {
   return raw;
 }
 
-function getCategoryStyle(cat: string, active: boolean): string {
+function getCategoryStyle(cat: string, active: boolean, dark: boolean): string {
   const key = cat.toLowerCase();
 
   if (key.includes("café") || key.includes("cafe")) {
     return active
       ? "bg-[hsl(var(--cafe))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm";
   }
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
       ? "bg-[hsl(var(--leaf))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm";
   }
 
   if (key.includes("boutique")) {
     return active
       ? "bg-black text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-white border border-white/60 shadow-sm"
       : "bg-white text-black border border-black/60 shadow-sm";
   }
 
   if (key.includes("boulangerie")) {
     return active
       ? "bg-[#8C5A3C] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[#E3B08A] border border-[#E3B08A]/70 shadow-sm"
       : "bg-white text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm";
   }
 
@@ -81,12 +89,16 @@ function getCategoryStyle(cat: string, active: boolean): string {
   ) {
     return active
       ? "bg-[hsl(var(--violet))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm";
   }
 
   if (key.includes("restaurant")) {
     return active
       ? "bg-[hsl(var(--restaurant))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
   }
 
@@ -98,23 +110,31 @@ function getCategoryStyle(cat: string, active: boolean): string {
   ) {
     return active
       ? "bg-[hsl(var(--micro))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
   }
 
   if (key.includes("librairie") || key.includes("bouquinerie")) {
     return active
       ? "bg-[hsl(var(--blue))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm";
   }
 
   if (key.includes("monument") || key.includes("poi")) {
     return active
       ? "bg-[hsl(var(--poi))] text-white shadow-md"
+      : dark
+      ? "bg-neutral-900/80 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/70 shadow-sm"
       : "bg-white text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm";
   }
 
   return active
     ? "bg-[hsl(var(--brand))] text-white shadow-md"
+    : dark
+    ? "bg-neutral-900/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/70 shadow-sm"
     : "bg-white text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
 }
 
@@ -122,12 +142,14 @@ function FilterPill({
   label,
   active,
   onClick,
+  dark,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
+  dark: boolean;
 }) {
-  const styleClasses = getCategoryStyle(label, active);
+  const styleClasses = getCategoryStyle(label, active, dark);
   return (
     <button
       type="button"
@@ -146,15 +168,21 @@ function FilterBar({
   categories,
   activeCategory,
   onCategoryChange,
+  dark,
 }: {
   categories: string[];
   activeCategory: string | "ALL";
   onCategoryChange: (value: string | "ALL") => void;
+  dark: boolean;
 }) {
   const [showAll, setShowAll] = React.useState(false);
   const MAX = 3;
   const visible = showAll ? categories : categories.slice(0, MAX);
   const hidden = showAll ? 0 : Math.max(0, categories.length - MAX);
+
+  const moreButtonClass = dark
+    ? "rounded-full px-3 py-1 text-[11px] font-medium bg-neutral-900/80 text-neutral-100 border border-neutral-600 shadow-sm hover:bg-neutral-800"
+    : "rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]";
 
   return (
     <div className="flex flex-wrap gap-1.5 justify-end">
@@ -162,6 +190,7 @@ function FilterBar({
         label="Tous"
         active={activeCategory === "ALL"}
         onClick={() => onCategoryChange("ALL")}
+        dark={dark}
       />
 
       {visible.map((cat) => (
@@ -170,6 +199,7 @@ function FilterBar({
           label={cat}
           active={activeCategory === cat}
           onClick={() => onCategoryChange(cat)}
+          dark={dark}
         />
       ))}
 
@@ -177,7 +207,7 @@ function FilterBar({
         <button
           type="button"
           onClick={() => setShowAll(true)}
-          className="rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]"
+          className={moreButtonClass}
         >
           +{hidden}
         </button>
@@ -187,7 +217,7 @@ function FilterBar({
         <button
           type="button"
           onClick={() => setShowAll(false)}
-          className="rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]"
+          className={moreButtonClass}
         >
           - masquer
         </button>
@@ -333,6 +363,7 @@ export default function IndieMapSplitView() {
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
   const [cityInput, setCityInput] = React.useState("");
   const [searchCity, setSearchCity] = React.useState("");
+  const [darkMap, setDarkMap] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -504,6 +535,27 @@ export default function IndieMapSplitView() {
     return b.type === category;
   });
 
+  const handleCitySearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setSearchCity(cityInput);
+  };
+
+  const searchFormClass = darkMap
+    ? "flex items-center gap-2 rounded-full bg-neutral-900/95 border border-neutral-700 px-3 py-1.5 shadow-sm"
+    : "flex items-center gap-2 rounded-full bg-white/95 border border-neutral-300 px-3 py-1.5 shadow-sm";
+
+  const searchLabelClass = darkMap
+    ? "text-[11px] text-neutral-300"
+    : "text-[11px] text-neutral-500";
+
+  const searchInputClass = darkMap
+    ? "flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
+    : "flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none";
+
+  const clearButtonClass = darkMap
+    ? "text-[11px] text-neutral-300"
+    : "text-[11px] text-neutral-500";
+
   return (
     <div className="h-full w-full relative">
       <div className="absolute inset-0">
@@ -530,19 +582,24 @@ export default function IndieMapSplitView() {
             }
           }}
           searchCity={searchCity}
+          darkMap={darkMap}
+          onToggleDarkMap={() => setDarkMap((prev) => !prev)}
         />
       </div>
 
-      <div className="absolute top-3 left-4 right-4 z-[1300] pointer-events-none">
-        <div className="pointer-events-auto">
-          <div className="flex items-center gap-2 rounded-full bg-white/95 border border-neutral-300 px-3 py-1.5 shadow-sm">
-            <span className="text-[11px] text-neutral-500">Ville</span>
+      <div className="absolute top-3 left-0 right-0 z-[1300] pointer-events-none flex justify-center">
+        <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[420px]">
+          <form
+            onSubmit={handleCitySearchSubmit}
+            className={searchFormClass}
+          >
+            <span className={searchLabelClass}>Ville</span>
             <input
               type="text"
               value={cityInput}
               onChange={(e) => setCityInput(e.target.value)}
               placeholder="Montréal, Paris..."
-              className="flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
+              className={searchInputClass}
             />
             {cityInput && (
               <button
@@ -551,19 +608,12 @@ export default function IndieMapSplitView() {
                   setCityInput("");
                   setSearchCity("");
                 }}
-                className="text-[11px] text-neutral-500"
+                className={clearButtonClass}
               >
                 ✕
               </button>
             )}
-            <button
-              type="button"
-              onClick={() => setSearchCity(cityInput)}
-              className="ml-1 rounded-full bg-black text-white text-[10px] px-2 py-1 font-semibold"
-            >
-              Valider
-            </button>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -572,6 +622,7 @@ export default function IndieMapSplitView() {
           categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory}
+          dark={darkMap}
         />
       </div>
 
