@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -136,43 +136,6 @@ function iconForType(t?: string | null, selected?: boolean) {
   return selected ? set.selected : set.normal;
 }
 
-function FocusOnSelected({
-  markers,
-  selectedId,
-  selectionVersion,
-}: {
-  markers: { id: string; latN: number; lngN: number }[];
-  selectedId?: string | null;
-  selectionVersion?: number;
-}) {
-  const map = useMap();
-  React.useEffect(() => {
-    if (!selectedId) return;
-    const m = markers.find((mm) => mm.id === selectedId);
-    if (!m) return;
-    const target = L.latLng(m.latN, m.lngN);
-    const currentZoom = map.getZoom();
-    const targetZoom = Math.max(currentZoom || 2, 13);
-    map.flyTo(target, targetZoom, { animate: true, duration: 0.8 });
-    map.eachLayer((layer: any) => {
-      if (layer instanceof L.Marker) {
-        const ll = layer.getLatLng();
-        if (ll.lat === m.latN && ll.lng === m.lngN) layer.openPopup();
-      }
-    });
-  }, [selectedId, selectionVersion, map]);
-  return null;
-}
-
-function ApplyCenter({ center, zoom }: { center?: [number, number] | null; zoom?: number }) {
-  const map = useMap();
-  React.useEffect(() => {
-    if (!center) return;
-    map.setView(L.latLng(center[0], center[1]), zoom ?? map.getZoom());
-  }, [center, zoom, map]);
-  return null;
-}
-
 function MapClickClear({ onClear }: { onClear?: () => void }) {
   useMapEvents({
     click() {
@@ -182,16 +145,59 @@ function MapClickClear({ onClear }: { onClear?: () => void }) {
   return null;
 }
 
+function resolveCityCenter(query: string): { center: [number, number]; zoom: number } | null {
+  const q = query.trim().toLowerCase();
+  if (!q) return null;
+
+  if (q.includes("montréal") || q.includes("montreal")) {
+    return { center: [45.5017, -73.5673], zoom: 13 };
+  }
+  if (q.includes("paris")) {
+    return { center: [48.8566, 2.3522], zoom: 13 };
+  }
+  if (q.includes("new york") || q.includes("nyc")) {
+    return { center: [40.7128, -74.006], zoom: 12 };
+  }
+  if (q.includes("bordeaux")) {
+    return { center: [44.8378, -0.5792], zoom: 13 };
+  }
+  if (q.includes("toronto")) {
+    return { center: [43.6532, -79.3832], zoom: 12 };
+  }
+  if (q.includes("los angeles") || q.includes("la ")) {
+    return { center: [34.0522, -118.2437], zoom: 11 };
+  }
+  if (q.includes("tokyo")) {
+    return { center: [35.6762, 139.6503], zoom: 12 };
+  }
+  if (q.includes("lausanne")) {
+    return { center: [46.5197, 6.6323], zoom: 13 };
+  }
+  if (q.includes("marseille")) {
+    return { center: [43.2965, 5.3698], zoom: 12 };
+  }
+  if (q.includes("vancouver")) {
+    return { center: [49.2827, -123.1207], zoom: 12 };
+  }
+  if (q.includes("chicago")) {
+    return { center: [41.8781, -87.6298], zoom: 12 };
+  }
+
+  return null;
+}
+
 export default function ClientMap({
   items = [],
   selectedId,
   selectionVersion,
   onSelect,
+  searchCity,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
+  searchCity?: string;
 }) {
   const byId = new Map<
     string,
@@ -226,10 +232,11 @@ export default function ClientMap({
   }
 
   const markers = Array.from(byId.values());
-
-  const [mapCenter, setMapCenter] = React.useState<[number, number] | null>(null);
-  const [mapZoom, setMapZoom] = React.useState<number>(12);
   const [isMobile, setIsMobile] = React.useState(false);
+  const mapRef = React.useRef<L.Map | null>(null);
+
+  const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
+  const [zoom, setZoom] = React.useState<number>(12);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -238,36 +245,45 @@ export default function ClientMap({
   }, []);
 
   React.useEffect(() => {
-    if (typeof navigator === "undefined" || !navigator.geolocation) return;
+    if (!searchCity) return;
+    const preset = resolveCityCenter(searchCity);
+    if (!preset) return;
+    setCenter(preset.center);
+    setZoom(preset.zoom);
+  }, [searchCity]);
+
+  React.useEffect(() => {
+    if (!selectedId || !mapRef.current) return;
+    const map = mapRef.current;
+    const m = markers.find((mm) => mm.id === selectedId);
+    if (!m) return;
+    const target = L.latLng(m.latN, m.lngN);
+    const currentZoom = map.getZoom();
+    const targetZoom = Math.max(currentZoom || 2, 13);
+    map.flyTo(target, targetZoom, { animate: true, duration: 0.8 });
+  }, [selectedId, selectionVersion, markers]);
+
+  const handleLocate = React.useCallback(() => {
+    if (typeof navigator === "undefined" || !navigator.geolocation || !mapRef.current) return;
+    const map = mapRef.current;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
-        setMapCenter([latitude, longitude]);
-        setMapZoom(14);
+        map.flyTo(L.latLng(latitude, longitude), 14, { animate: true, duration: 0.8 });
       },
       () => {},
       { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
     );
   }, []);
 
-  const handleLocate = React.useCallback(() => {
-    if (typeof navigator === "undefined" || !navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const { latitude, longitude } = pos.coords;
-        setMapCenter([latitude, longitude]);
-        setMapZoom(14);
-      },
-      () => {},
-      { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
-    );
-  }, []);
+  const mapKey = `${center[0]}-${center[1]}-${zoom}`;
 
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
       <MapContainer
-        center={mapCenter ?? [45.5017, -73.5673]}
-        zoom={mapZoom}
+        key={mapKey}
+        center={center}
+        zoom={zoom}
         minZoom={2}
         maxBounds={MAX_BOUNDS}
         maxBoundsViscosity={1}
@@ -275,6 +291,9 @@ export default function ClientMap({
         zoomControl={true}
         attributionControl={false}
         className="h-full w-full"
+        whenCreated={(mapInstance) => {
+          mapRef.current = mapInstance;
+        }}
       >
         <MapClickClear
           onClear={() => {
@@ -285,8 +304,6 @@ export default function ClientMap({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
         />
-        <ApplyCenter center={mapCenter} zoom={mapZoom} />
-        <FocusOnSelected markers={markers} selectedId={selectedId} selectionVersion={selectionVersion} />
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
 
@@ -336,7 +353,7 @@ export default function ClientMap({
                             href={b.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
+                            className="inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold textblack shadow-sm hover:bg-[#5C6E3B] transition"
                             style={{ color: "#000000" }}
                           >
                             Site web

@@ -331,6 +331,8 @@ export default function IndieMapSplitView() {
   const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
   const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
+  const [cityInput, setCityInput] = React.useState("");
+  const [searchCity, setSearchCity] = React.useState("");
 
   React.useEffect(() => {
     let cancelled = false;
@@ -527,12 +529,41 @@ export default function IndieMapSplitView() {
               setSheetMode("peek");
             }
           }}
+          searchCity={searchCity}
         />
       </div>
 
-      <div className="absolute top-3 right-4 z-[1300] pointer-events-none">
-        <div className="inline-flex items-center justify-center px-3.5 py-[4px] rounded-full shadow-sm bg-white text-black border border-neutral-300 text-[10px] font-semibold tracking-[0.18em] uppercase">
-          INDIEMAP
+      <div className="absolute top-3 left-4 right-4 z-[1300] pointer-events-none">
+        <div className="pointer-events-auto">
+          <div className="flex items-center gap-2 rounded-full bg-white/95 border border-neutral-300 px-3 py-1.5 shadow-sm">
+            <span className="text-[11px] text-neutral-500">Ville</span>
+            <input
+              type="text"
+              value={cityInput}
+              onChange={(e) => setCityInput(e.target.value)}
+              placeholder="Montréal, Paris..."
+              className="flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
+            />
+            {cityInput && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCityInput("");
+                  setSearchCity("");
+                }}
+                className="text-[11px] text-neutral-500"
+              >
+                ✕
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => setSearchCity(cityInput)}
+              className="ml-1 rounded-full bg-black text-white text-[10px] px-2 py-1 font-semibold"
+            >
+              Valider
+            </button>
+          </div>
         </div>
       </div>
 
