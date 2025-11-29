@@ -20,18 +20,8 @@ const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
   const v = (t || "").toLowerCase();
   if (v.includes("café") || v.includes("cafe") || v.includes("coffee") || v.includes("brunch")) return "cafe";
-  if (
-    v.includes("microbrasserie") ||
-    v.includes("brasserie") ||
-    v.includes("bar") ||
-    v.includes("pub")
-  ) return "microbrasserie";
-  if (
-    v.includes("épicerie") ||
-    v.includes("epicerie") ||
-    v.includes("grocery")
-  )
-    return "epicerie";
+  if (v.includes("microbrasserie") || v.includes("brasserie") || v.includes("bar") || v.includes("pub")) return "microbrasserie";
+  if (v.includes("épicerie") || v.includes("epicerie") || v.includes("grocery")) return "epicerie";
   if (
     v.includes("friperie") ||
     v.includes("frip") ||
@@ -45,11 +35,6 @@ function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "l
   )
     return "friperie";
   if (
-    v.includes("microbrasserie") ||
-    v.includes("brasserie artisanale")
-  )
-    return "microbrasserie";
-  if (
     v.includes("restaurant locavore") ||
     v.includes("restaurant lacovore") ||
     v.includes("restaurant locavore abordable") ||
@@ -62,10 +47,8 @@ function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "l
     v.includes("restaurant")
   )
     return "restaurant";
-  if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book"))
-    return "librairie";
-  if (v.includes("boutique locale") || v.includes("boutique"))
-    return "boutique";
+  if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book")) return "librairie";
+  if (v.includes("boutique locale") || v.includes("boutique")) return "boutique";
   return "other";
 }
 
@@ -79,11 +62,21 @@ function makePin(color: string, stroke: string, selected: boolean) {
   const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
   const groupClose = selected ? "</g>" : "";
   const html =
-    '<svg width="' + size + '" height="' + height + '" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
+    '<svg width="' +
+    size +
+    '" height="' +
+    height +
+    '" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
     shadow +
     groupOpen +
-    '<path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="' + color + '" stroke="' + stroke + '" stroke-width="2"/>' +
-    '<circle cx="12" cy="12" r="' + circleR + '" fill="white"/>' +
+    '<path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="' +
+    color +
+    '" stroke="' +
+    stroke +
+    '" stroke-width="2"/>' +
+    '<circle cx="12" cy="12" r="' +
+    circleR +
+    '" fill="white"/>' +
     groupClose +
     "</svg>";
   return L.divIcon({
@@ -148,41 +141,17 @@ function MapClickClear({ onClear }: { onClear?: () => void }) {
 function resolveCityCenter(query: string): { center: [number, number]; zoom: number } | null {
   const q = query.trim().toLowerCase();
   if (!q) return null;
-
-  if (q.includes("montréal") || q.includes("montreal")) {
-    return { center: [45.5017, -73.5673], zoom: 13 };
-  }
-  if (q.includes("paris")) {
-    return { center: [48.8566, 2.3522], zoom: 13 };
-  }
-  if (q.includes("new york") || q.includes("nyc")) {
-    return { center: [40.7128, -74.006], zoom: 12 };
-  }
-  if (q.includes("bordeaux")) {
-    return { center: [44.8378, -0.5792], zoom: 13 };
-  }
-  if (q.includes("toronto")) {
-    return { center: [43.6532, -79.3832], zoom: 12 };
-  }
-  if (q.includes("los angeles") || q.includes("la ")) {
-    return { center: [34.0522, -118.2437], zoom: 11 };
-  }
-  if (q.includes("tokyo")) {
-    return { center: [35.6762, 139.6503], zoom: 12 };
-  }
-  if (q.includes("lausanne")) {
-    return { center: [46.5197, 6.6323], zoom: 13 };
-  }
-  if (q.includes("marseille")) {
-    return { center: [43.2965, 5.3698], zoom: 12 };
-  }
-  if (q.includes("vancouver")) {
-    return { center: [49.2827, -123.1207], zoom: 12 };
-  }
-  if (q.includes("chicago")) {
-    return { center: [41.8781, -87.6298], zoom: 12 };
-  }
-
+  if (q.includes("montréal") || q.includes("montreal")) return { center: [45.5017, -73.5673], zoom: 13 };
+  if (q.includes("paris")) return { center: [48.8566, 2.3522], zoom: 13 };
+  if (q.includes("new york") || q.includes("nyc")) return { center: [40.7128, -74.006], zoom: 12 };
+  if (q.includes("bordeaux")) return { center: [44.8378, -0.5792], zoom: 13 };
+  if (q.includes("toronto")) return { center: [43.6532, -79.3832], zoom: 12 };
+  if (q.includes("los angeles") || q.includes("la ")) return { center: [34.0522, -118.2437], zoom: 11 };
+  if (q.includes("tokyo")) return { center: [35.6762, 139.6503], zoom: 12 };
+  if (q.includes("lausanne")) return { center: [46.5197, 6.6323], zoom: 13 };
+  if (q.includes("marseille")) return { center: [43.2965, 5.3698], zoom: 12 };
+  if (q.includes("vancouver")) return { center: [49.2827, -123.1207], zoom: 12 };
+  if (q.includes("chicago")) return { center: [41.8781, -87.6298], zoom: 12 };
   return null;
 }
 
@@ -192,7 +161,7 @@ export default function ClientMap({
   selectionVersion,
   onSelect,
   searchCity,
-  darkMap,
+  darkMap = false,
   onToggleDarkMap,
 }: {
   items?: Biz[];
@@ -236,17 +205,11 @@ export default function ClientMap({
   }
 
   const markers = Array.from(byId.values());
-  const [isMobile, setIsMobile] = React.useState(false);
   const mapRef = React.useRef<L.Map | null>(null);
-
   const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
   const [zoom, setZoom] = React.useState<number>(12);
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth < 768);
-    }
-  }, []);
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
   React.useEffect(() => {
     if (!searchCity) return;
@@ -280,20 +243,38 @@ export default function ClientMap({
     );
   }, []);
 
-  const mapKey = `${center[0]}-${center[1]}-${zoom}-${darkMap ? "dark" : "light"}`;
+  const mapKey = `${center[0]}-${center[1]}-${zoom}-${isMobile ? "m" : "d"}-${darkMap ? "dark" : "light"}`;
 
   const tileUrl = darkMap
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-  const locateClassName = isMobile
-    ? "absolute top-[68px] right-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100"
-    : "absolute top-3 left-3 z-[1300] rounded-full bg-white p-2 text-black shadow-md border border-neutral-300 hover:bg-neutral-100";
+  const locateBase = isMobile
+    ? "absolute top-16 right-4 z-[1300]"
+    : "absolute top-3 left-3 z-[1300]";
 
-  const themeToggleClassName = "absolute top-3 right-3 z-[1300] rounded-full bg-white/95 p-2 shadow-md border border-neutral-300 hover:bg-neutral-100";
+  const locateTheme = darkMap
+    ? "rounded-full bg-black p-2 text-white shadow-md border border-neutral-700"
+    : "rounded-full bg-white p-2 text-black shadow-md border border-neutral-300";
 
-  const circleOuterFill = darkMap ? "#020617" : "#F9FAFB";
-  const circleInnerFill = darkMap ? "#F9FAFB" : "#020617";
+  const locateButtonClass = locateBase + " " + locateTheme;
+
+  const toggleBase = isMobile
+    ? "absolute top-16 left-4 z-[1300]"
+    : "absolute top-3 right-3 z-[1300]";
+
+  const toggleButtonClass =
+    toggleBase +
+    " rounded-full p-[2px] shadow-md border " +
+    (darkMap ? "border-neutral-700 bg-black/80" : "border-neutral-300 bg-white/90");
+
+  const trackClass =
+    "relative flex items-center w-[40px] h-[22px] rounded-full overflow-hidden transition-colors duration-200 " +
+    (darkMap ? "bg-black" : "bg-neutral-200");
+
+  const thumbClass =
+    "absolute w-[18px] h-[18px] rounded-full bg-white shadow-sm border border-neutral-300 transform transition-transform duration-200 " +
+    (darkMap ? "translate-x-[18px]" : "translate-x-[2px]");
 
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
@@ -317,10 +298,7 @@ export default function ClientMap({
             if (onSelect) onSelect("");
           }}
         />
-        <TileLayer
-          url={tileUrl}
-          attribution=""
-        />
+        <TileLayer url={tileUrl} />
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
 
@@ -380,7 +358,10 @@ export default function ClientMap({
 
                       {b.address && (
                         <a
-                          href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
+                          href={
+                            "https://www.google.com/maps/search/?api=1&query=" +
+                            encodeURIComponent(b.address)
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-[11px] text-neutral-700 underline"
@@ -424,10 +405,15 @@ export default function ClientMap({
                   </div>
                 ) : (
                   <div className="space-y-1 max-w-xs border border-[#E4D4C2] rounded-[14px] px-3 py-2 bg-[#FDF7F2] shadow-sm">
-                    <h3 className="font-semibold text-sm text-neutral-900">{b.name}</h3>
+                    <h3 className="font-semibold text-sm text-neutral-900">
+                      {b.name}
+                    </h3>
                     {b.address && (
                       <a
-                        href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
+                        href={
+                          "https://www.google.com/maps/search/?api=1&query=" +
+                          encodeURIComponent(b.address)
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-neutral-700 underline"
@@ -473,13 +459,13 @@ export default function ClientMap({
       <button
         type="button"
         onClick={handleLocate}
-        className={locateClassName}
+        className={locateButtonClass}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="black"
+          stroke={darkMap ? "white" : "black"}
           strokeWidth="1.7"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -495,22 +481,11 @@ export default function ClientMap({
         onClick={() => {
           if (onToggleDarkMap) onToggleDarkMap();
         }}
-        className={themeToggleClassName}
-        aria-label="Basculer mode clair/sombre"
+        className={toggleButtonClass}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="h-5 w-5"
-        >
-          <defs>
-            <clipPath id="halfCircle">
-              <rect x="0" y="0" width="12" height="24" />
-            </clipPath>
-          </defs>
-          <circle cx="12" cy="12" r="10" fill={circleOuterFill} stroke="#0F172A" strokeWidth="1.2" />
-          <circle cx="12" cy="12" r="10" fill={circleInnerFill} clipPath="url(#halfCircle)" />
-        </svg>
+        <div className={trackClass}>
+          <div className={thumbClass} />
+        </div>
       </button>
     </div>
   );
