@@ -211,8 +211,8 @@ export default function ClientMap({
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   const mapKey = React.useMemo(
-    () => `${searchCity ?? 'default'}-${darkMap ? 'dark' : 'light'}` ,
-    [searchCity, darkMap]
+    () => `${searchCity ?? "default"}`,
+    [searchCity]
   );
 
   const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
@@ -249,8 +249,8 @@ export default function ClientMap({
 
   const handleLocate = React.useCallback(() => {
     if (!navigator.geolocation) {
-      console.warn('Geolocation non supportée par ce navigateur');
-      alert('La géolocalisation n\'est pas supportée par ce navigateur.');
+      console.warn("Geolocation non supportée par ce navigateur");
+      alert("La géolocalisation n'est pas supportée par ce navigateur.");
       return;
     }
 
@@ -260,33 +260,33 @@ export default function ClientMap({
         const target: [number, number] = [latitude, longitude];
 
         if (!mapRef.current) {
-          console.warn('mapRef.current est null dans handleLocate');
-          alert('La carte n\'est pas encore prête. Réessaie dans une seconde.');
+          console.warn("mapRef.current est null dans handleLocate");
+          alert("La carte n'est pas encore prête. Réessaie dans une seconde.");
           return;
         }
 
-        console.log('GEO OK', latitude, longitude);
+        console.log("GEO OK", latitude, longitude);
         mapRef.current.setView(target, 15, { animate: true });
       },
       (error) => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            console.warn('Permission de géolocalisation refusée');
+            console.warn("Permission de géolocalisation refusée");
             alert(
-              'Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation.'
+              "Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation."
             );
             break;
           case error.POSITION_UNAVAILABLE:
-            console.warn('Position indisponible');
-            alert('La position est actuellement indisponible.');
+            console.warn("Position indisponible");
+            alert("La position est actuellement indisponible.");
             break;
           case error.TIMEOUT:
-            console.warn('Timeout de géolocalisation');
-            alert('La demande de géolocalisation a expiré. Réessaie.');
+            console.warn("Timeout de géolocalisation");
+            alert("La demande de géolocalisation a expiré. Réessaie.");
             break;
           default:
-            console.warn('Erreur de géolocalisation inconnue', error);
-            alert('Une erreur est survenue lors de la géolocalisation.');
+            console.warn("Erreur de géolocalisation inconnue", error);
+            alert("Une erreur est survenue lors de la géolocalisation.");
         }
       },
       {
@@ -300,7 +300,6 @@ export default function ClientMap({
   const locateBase = isMobile
     ? "absolute z-[1300] top-16 right-4 flex items-center justify-center cursor-pointer"
     : "absolute z-[1300] top-4 left-4 flex items-center justify-center cursor-pointer";
-
 
   const locateTheme = "hover:opacity-90 transition";
 
@@ -437,7 +436,7 @@ export default function ClientMap({
                     </div>
 
                     <p className="mt-2 text-[11px] leading-snug text-neutral-800">
-                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
+                      La mission d’ESPACE FLO : faire rayonner le talent d'ici et valoriser l'achat local avec des produits éthiques et écoresponsables. À l'opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
                     </p>
 
                     <div className="mt-2">
@@ -519,11 +518,6 @@ export default function ClientMap({
           </svg>
         </span>
       </button>
-
-
-
-
-
       <button
         type="button"
         onClick={() => {
