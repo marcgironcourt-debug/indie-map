@@ -232,12 +232,14 @@ function MobileBottomSheet({
   onClose,
   onExpand,
   onPeek,
+  dark,
 }: {
   business: Business | null;
   mode: "closed" | "peek" | "full";
   onClose: () => void;
   onExpand: () => void;
   onPeek: () => void;
+  dark: boolean;
 }) {
   if (!business || mode === "closed") return null;
 
@@ -248,9 +250,41 @@ function MobileBottomSheet({
 
   const isFlo = business.name.trim().toLowerCase() === "espace flo";
 
+  const sheetOuterClass = dark
+    ? "mx-3 mb-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
+    : "mx-3 mb-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden";
+
+  const titleClass = dark
+    ? "text-[15px] font-semibold text-neutral-50 truncate"
+    : "text-[15px] font-semibold text-neutral-900 truncate";
+
+  const closeButtonClass = dark
+    ? "rounded-full border border-neutral-600 px-2 py-1 text-[10px] text-neutral-300"
+    : "rounded-full border border-neutral-300 px-2 py-1 text-[10px] text-neutral-600";
+
+  const typeTextClass = dark
+    ? "text-[11px] text-neutral-300 mb-1"
+    : "text-[11px] text-neutral-700 mb-1";
+
+  const hoursTextClass = dark
+    ? "mt-1 text-[11px] leading-snug text-neutral-100 group"
+    : "mt-1 text-[11px] leading-snug text-neutral-800 group";
+
+  const addressLinkClass = dark
+    ? "block text-[11px] text-neutral-300 underline mt-2 mb-3"
+    : "block text-[11px] text-neutral-700 underline mt-2 mb-3";
+
+  const floParagraphClass = dark
+    ? "text-[11px] leading-snug text-neutral-100"
+    : "text-[11px] leading-snug text-neutral-800";
+
+  const floImageWrapperClass = dark
+    ? "h-[140px] w-full rounded-md overflow-hidden border border-neutral-700 bg-neutral-800"
+    : "h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200";
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-[1400] md:hidden">
-      <div className="mx-3 mb-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden">
+      <div className={sheetOuterClass}>
         <div className={"flex flex-col " + heightClass}>
           <button
             type="button"
@@ -263,18 +297,18 @@ function MobileBottomSheet({
             }}
             className="flex flex-col items-center justify-center pt-2 pb-1 gap-1"
           >
-            <div className="h-1 w-10 rounded-full bg-neutral-300" />
+            <div className="h-1 w-10 rounded-full bg-neutral-500" />
           </button>
 
           <div className="flex-1 overflow-y-auto px-4 pb-4">
             <div className="flex items-center justify-between gap-3 mb-1.5">
-              <h3 className="text-[15px] font-semibold text-neutral-900 truncate">
+              <h3 className={titleClass}>
                 {business.name}
               </h3>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-full border border-neutral-300 px-2 py-1 text-[10px] text-neutral-600"
+                className={closeButtonClass}
               >
                 Fermer
               </button>
@@ -294,13 +328,13 @@ function MobileBottomSheet({
             )}
 
             {business.type && (
-              <p className="text-[11px] text-neutral-700 mb-1">
+              <p className={typeTextClass}>
                 {business.type}
               </p>
             )}
 
             {business.openingHours && (
-              <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+              <details className={hoursTextClass}>
                 <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                   Horaires
                   <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
@@ -321,7 +355,7 @@ function MobileBottomSheet({
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-[11px] text-neutral-700 underline mt-2 mb-3"
+                className={addressLinkClass}
               >
                 {business.address}
               </a>
@@ -329,7 +363,7 @@ function MobileBottomSheet({
 
             {isFlo && (
               <div className="mb-3 space-y-2">
-                <p className="text-[11px] leading-snug text-neutral-800">
+                <p className={floParagraphClass}>
                   La mission d’ESPACE FLO : faire rayonner le talent d’ici et
                   valoriser l’achat local avec des produits éthiques et
                   écoresponsables. À l’opposé du fast fashion et de la
@@ -338,7 +372,7 @@ function MobileBottomSheet({
                   designers sélectionnés, avec des pièces durables,
                   indémodables et exclusives.
                 </p>
-                <div className="h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                <div className={floImageWrapperClass}>
                   <img
                     src="/images/espace-flo-inside.jpg"
                     alt="Intérieur Espace FLO"
@@ -636,6 +670,7 @@ export default function IndieMapSplitView() {
         }}
         onExpand={() => setSheetMode("full")}
         onPeek={() => setSheetMode("peek")}
+        dark={darkMap}
       />
     </div>
   );
