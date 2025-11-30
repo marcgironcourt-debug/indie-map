@@ -515,14 +515,29 @@ export default function ClientMap({
         onClick={handleLocate}
         aria-label="Me localiser"
       >
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-neutral-300 shadow-sm">
+        <span
+        className={
+          "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
+          (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
+        }
+      >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             className="h-4 w-4"
           >
-            <circle cx="12" cy="12" r="9" fill="none" stroke="black" strokeWidth="1.5" />
-            <polygon points="12,5 9,15 12,13 15,15" fill="black" />
+                        <circle
+              cx="12"
+              cy="12"
+              r="9"
+              fill="none"
+              stroke={darkMap ? "white" : "black"}
+              strokeWidth="1.5"
+            />
+                        <polygon
+              points="12,5 9,15 12,13 15,15"
+              fill={darkMap ? "white" : "black"}
+            />
           </svg>
         </span>
       </button>
