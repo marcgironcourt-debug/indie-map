@@ -239,29 +239,25 @@ export default function ClientMap({
   }, [selectedId, selectionVersion, markers]);
 
   const handleLocate = React.useCallback(() => {
-    alert("locate clicked");
-    if (typeof window === "undefined") return;
-    if (!("geolocation" in navigator)) {
-      alert("La géolocalisation n'est pas disponible sur ce navigateur.");
-      return;
+  console.log("handleLocate: clicked");
+  if (!navigator.geolocation) {
+    console.log("handleLocate: geolocation not available");
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      console.log("handleLocate success", position.coords);
+    },
+    (error) => {
+      console.log("handleLocate error", error.code, error.message);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
     }
-    if (!mapRef.current) {
-      console.warn("Map non initialisée pour la géolocalisation.");
-      return;
-    }
-    const map = mapRef.current;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const { latitude, longitude } = pos.coords;
-        map.flyTo(L.latLng(latitude, longitude), 14, { animate: true, duration: 0.8 });
-      },
-      (err) => {
-        console.error("Erreur de géolocalisation", err);
-        alert("Impossible d'accéder à votre position. Vérifiez les permissions de géolocalisation pour votre navigateur.");
-      },
-      { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
-    );
-  }, []);
+  );
+}, []);
 
   const mapKey = `${center[0]}-${center[1]}-${zoom}-${isMobile ? "m" : "d"}`;
 
