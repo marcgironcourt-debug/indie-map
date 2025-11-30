@@ -69,22 +69,20 @@ function makePin(color: string, stroke: string, selected: boolean) {
     '" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
     shadow +
     groupOpen +
-    '<path d="M12 36s-10-9-10-20A10 10 0 1 1 22 16c0 11-10 20-10 20Z" fill="' +
+    '<path d="M12 2C7 2 3 6.2 3 11.5C3 18.5 8 24 12 29C16 24 21 18.5 21 11.5C21 6.2 17 2 12 2Z" fill="' +
     color +
     '" stroke="' +
     stroke +
     '" stroke-width="2"/>' +
-    '<circle cx="12" cy="12" r="' +
-    circleR +
-    '" fill="white"/>' +
+    '' +
     groupClose +
     "</svg>";
   return L.divIcon({
     className: "indie-pin",
     html,
-    iconSize: [size, height],
-    iconAnchor: [size / 2, height],
-    popupAnchor: [0, -height + 4],
+    iconSize: [size * 0.45, height * 0.45],
+    iconAnchor: [size * 0.3, height * 0.6],
+    popupAnchor: [0, -height * 0.6 + 4],
   });
 }
 
@@ -526,14 +524,7 @@ export default function ClientMap({
             viewBox="0 0 24 24"
             className="h-4 w-4"
           >
-                        <circle
-              cx="12"
-              cy="12"
-              r="9"
-              fill="none"
-              stroke={darkMap ? "white" : "black"}
-              strokeWidth="1.5"
-            />
+                        
                         <polygon
               points="12,5 9,15 12,13 15,15"
               fill={darkMap ? "white" : "black"}
