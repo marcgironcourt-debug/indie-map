@@ -206,6 +206,15 @@ export default function ClientMap({
 
   const markers = Array.from(byId.values());
   const mapRef = React.useRef<L.Map | null>(null);
+  const tileUrl = darkMap
+    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+  const mapKey = React.useMemo(
+    () => `${searchCity ?? 'default'}-${darkMap ? 'dark' : 'light'}` ,
+    [searchCity, darkMap]
+  );
+
   const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
   const [zoom, setZoom] = React.useState<number>(12);
 
@@ -239,39 +248,61 @@ export default function ClientMap({
   }, [selectedId, selectionVersion, markers]);
 
   const handleLocate = React.useCallback(() => {
-  console.log("handleLocate: clicked");
-  if (!navigator.geolocation) {
-    console.log("handleLocate: geolocation not available");
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      console.log("handleLocate success", position.coords);
-    },
-    (error) => {
-      console.log("handleLocate error", error.code, error.message);
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
+    if (!navigator.geolocation) {
+      console.warn('Geolocation non supportée par ce navigateur');
+      alert('La géolocalisation n\'est pas supportée par ce navigateur.');
+      return;
     }
-  );
-}, []);
 
-  const mapKey = `${center[0]}-${center[1]}-${zoom}-${isMobile ? "m" : "d"}`;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const target: [number, number] = [latitude, longitude];
 
-  const tileUrl = darkMap
-    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+        if (!mapRef.current) {
+          console.warn('mapRef.current est null dans handleLocate');
+          alert('La carte n\'est pas encore prête. Réessaie dans une seconde.');
+          return;
+        }
+
+        console.log('GEO OK', latitude, longitude);
+        mapRef.current.setView(target, 15, { animate: true });
+      },
+      (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            console.warn('Permission de géolocalisation refusée');
+            alert(
+              'Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation.'
+            );
+            break;
+          case error.POSITION_UNAVAILABLE:
+            console.warn('Position indisponible');
+            alert('La position est actuellement indisponible.');
+            break;
+          case error.TIMEOUT:
+            console.warn('Timeout de géolocalisation');
+            alert('La demande de géolocalisation a expiré. Réessaie.');
+            break;
+          default:
+            console.warn('Erreur de géolocalisation inconnue', error);
+            alert('Une erreur est survenue lors de la géolocalisation.');
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
+  }, []);
 
   const locateBase = isMobile
-    ? "absolute top-16 right-4 z-[1300]"
-    : "absolute top-3 left-3 z-[1300]";
+    ? "absolute z-[1300] top-16 right-4 flex items-center justify-center cursor-pointer"
+    : "absolute z-[1300] top-4 left-4 flex items-center justify-center cursor-pointer";
 
-  const locateTheme = darkMap
-    ? "rounded-full bg-black p-2 text-white shadow-md border border-neutral-700"
-    : "rounded-full bg-white p-2 text-black shadow-md border border-neutral-300";
+
+  const locateTheme = "hover:opacity-90 transition";
 
   const locateButtonClass = locateBase + " " + locateTheme;
 
@@ -471,26 +502,27 @@ export default function ClientMap({
           );
         })}
       </MapContainer>
-
       <button
         type="button"
-        onClick={handleLocate}
         className={locateButtonClass}
+        onClick={handleLocate}
+        aria-label="Me localiser"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke={darkMap ? "white" : "black"}
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5 w-5"
-        >
-          <circle cx="12" cy="12" r="7.5" />
-          <path d="M12 4l1.6 4.4L18 10l-4.4 1.6L12 16l-1.6-4.4L6 10l4.4-1.6L12 4z" />
-        </svg>
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white border border-neutral-300 shadow-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+          >
+            <circle cx="12" cy="12" r="9" fill="none" stroke="black" strokeWidth="1.5" />
+            <polygon points="12,5 9,15 12,13 15,15" fill="black" />
+          </svg>
+        </span>
       </button>
+
+
+
+
 
       <button
         type="button"
