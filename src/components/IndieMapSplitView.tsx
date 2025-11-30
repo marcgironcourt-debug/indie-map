@@ -245,31 +245,17 @@ function MobileBottomSheet({
   const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
 
   React.useEffect(() => {
-    let timeoutId: number | undefined;
+  if (mode === "closed") {
+    setAnimationState("closed");
+    setRenderedBusiness(null);
+    return;
+  }
 
-    if (mode === "closed") {
-      if (renderedBusiness) {
-        setAnimationState("closing");
-        timeoutId = window.setTimeout(() => {
-          setAnimationState("closed");
-          setRenderedBusiness(null);
-        }, 280);
-      } else {
-        setAnimationState("closed");
-      }
-    } else {
-      if (business) {
-        setRenderedBusiness(business);
-      }
-      setAnimationState(mode);
-    }
-
-    return () => {
-      if (timeoutId !== undefined) {
-        window.clearTimeout(timeoutId);
-      }
-    };
-  }, [business, mode, renderedBusiness]);
+  if (business) {
+    setRenderedBusiness(business);
+  }
+  setAnimationState(mode);
+}, [business, mode]);
 
   if (!renderedBusiness && animationState === "closed") return null;
 
