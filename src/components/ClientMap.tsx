@@ -210,10 +210,7 @@ export default function ClientMap({
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-  const mapKey = React.useMemo(
-    () => `${searchCity ?? "default"}`,
-    [searchCity]
-  );
+  const mapKey = React.useMemo(() => `${searchCity ?? "default"}`, [searchCity]);
 
   const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
   const [zoom, setZoom] = React.useState<number>(12);
@@ -272,9 +269,7 @@ export default function ClientMap({
         switch (error.code) {
           case error.PERMISSION_DENIED:
             console.warn("Permission de géolocalisation refusée");
-            alert(
-              "Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation."
-            );
+            alert("Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation.");
             break;
           case error.POSITION_UNAVAILABLE:
             console.warn("Position indisponible");
@@ -305,9 +300,7 @@ export default function ClientMap({
 
   const locateButtonClass = locateBase + " " + locateTheme;
 
-  const toggleBase = isMobile
-    ? "absolute top-16 left-4 z-[1300]"
-    : "absolute top-3 right-3 z-[1300]";
+  const toggleBase = isMobile ? "absolute top-16 left-4 z-[1300]" : "absolute top-3 right-3 z-[1300]";
 
   const toggleButtonClass =
     toggleBase +
@@ -376,13 +369,18 @@ export default function ClientMap({
             >
               <Popup autoPan autoPanPaddingTopLeft={[10, 200]} autoPanPaddingBottomRight={[10, 10]}>
                 {isFlo ? (
-                  <div className="space-y-2 max-w-xs border border-[#E4D4C2] rounded-[18px] px-3 pt-2 pb-4 bg-[#FDF7F2] shadow-md">
+                  <div
+                    className={
+                      "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border " +
+                      (darkMap
+                        ? "bg-neutral-900 border-neutral-700 text-white"
+                        : "bg-white border-[#E4D4C2] text-neutral-900")
+                    }
+                  >
                     <div className="flex flex-col gap-1.5">
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex flex-col gap-1">
-                          <h3 className="text-[15px] font-semibold text-neutral-900">
-                            {b.name}
-                          </h3>
+                          <h3 className="text-[15px] font-semibold">{b.name}</h3>
                           <div>
                             <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
                               mode, art, déco
@@ -394,7 +392,7 @@ export default function ClientMap({
                             href={b.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold textblack shadow-sm hover:bg-[#5C6E3B] transition"
+                            className="inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold shadow-sm hover:bg-[#5C6E3B] transition"
                             style={{ color: "#000000" }}
                           >
                             Site web
@@ -410,14 +408,14 @@ export default function ClientMap({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[11px] text-neutral-700 underline"
+                          className="text-[11px] underline"
                         >
                           {b.address}
                         </a>
                       )}
 
                       {b.openingHours ? (
-                        <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+                        <details className="mt-1 text-[11px] leading-snug group">
                           <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                             Horaires
                             <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
@@ -429,14 +427,14 @@ export default function ClientMap({
                           </pre>
                         </details>
                       ) : (
-                        <p className="text-[10px] text-neutral-600">
+                        <p className="text-[10px]">
                           Horaires : voir le site
                         </p>
                       )}
                     </div>
 
-                    <p className="mt-2 text-[11px] leading-snug text-neutral-800">
-                      La mission d’ESPACE FLO : faire rayonner le talent d'ici et valoriser l'achat local avec des produits éthiques et écoresponsables. À l'opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
+                    <p className="mt-2 text-[11px] leading-snug">
+                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
                     </p>
 
                     <div className="mt-2">
@@ -450,8 +448,15 @@ export default function ClientMap({
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-1 max-w-xs border border-[#E4D4C2] rounded-[14px] px-3 py-2 bg-[#FDF7F2] shadow-sm">
-                    <h3 className="font-semibold text-sm text-neutral-900">
+                  <div
+                    className={
+                      "space-y-1 max-w-xs rounded-[14px] px-3 py-2 shadow-sm border " +
+                      (darkMap
+                        ? "bg-neutral-900 border-neutral-700 text-white"
+                        : "bg-white border-[#E4D4C2] text-neutral-900")
+                    }
+                  >
+                    <h3 className="font-semibold text-sm">
                       {b.name}
                     </h3>
                     {b.address && (
@@ -462,13 +467,13 @@ export default function ClientMap({
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-neutral-700 underline"
+                        className="text-xs underline"
                       >
                         {b.address}
                       </a>
                     )}
                     {b.openingHours ? (
-                      <details className="mt-1 text-[11px] leading-snug text-neutral-800 group">
+                      <details className="mt-1 text-[11px] leading-snug group">
                         <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                           Horaires
                           <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
@@ -480,7 +485,7 @@ export default function ClientMap({
                         </pre>
                       </details>
                     ) : (
-                      <p className="text-xs text-neutral-600">
+                      <p className="text-xs">
                         Horaires : voir le site
                       </p>
                     )}
@@ -489,7 +494,10 @@ export default function ClientMap({
                         href={b.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block text-xs underline text-amber-700"
+                        className={
+                          "inline-block text-xs underline " +
+                          (darkMap ? "text-amber-300" : "text-amber-700")
+                        }
                       >
                         Site web
                       </a>
