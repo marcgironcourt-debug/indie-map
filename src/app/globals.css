@@ -234,3 +234,20 @@ main {
 .leaflet-popup-content-wrapper {
   border-radius: 0 !important;
 }
+
+@keyframes bottom-sheet-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.bottom-sheet-animate {
+  animation: bottom-sheet-slide-up 0.28s ease-out;
+}
+
+.bottom-sheet-transition {
+  transition: transform 0.28s ease-out;
+}

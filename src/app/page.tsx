@@ -5,7 +5,7 @@ const IndieMapSplitView = dynamic(() => import("../components/IndieMapSplitView"
 
 export default function Page() {
   return (
-    <main className="h-screen w-full overflow-hidden">
+    <main className="h-[100dvh] w-full overflow-hidden">
       <IndieMapSplitView />
     </main>
   );

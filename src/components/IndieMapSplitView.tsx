@@ -241,18 +241,48 @@ function MobileBottomSheet({
   onPeek: () => void;
   dark: boolean;
 }) {
-  if (!business || mode === "closed") return null;
+  const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
+  const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
+
+  React.useEffect(() => {
+    let timeoutId: number | undefined;
+
+    if (mode === "closed") {
+      if (renderedBusiness) {
+        setAnimationState("closing");
+        timeoutId = window.setTimeout(() => {
+          setAnimationState("closed");
+          setRenderedBusiness(null);
+        }, 280);
+      } else {
+        setAnimationState("closed");
+      }
+    } else {
+      if (business) {
+        setRenderedBusiness(business);
+      }
+      setAnimationState(mode);
+    }
+
+    return () => {
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, [business, mode, renderedBusiness]);
+
+  if (!renderedBusiness && animationState === "closed") return null;
 
   const heightClass =
-    mode === "full"
+    animationState === "full"
       ? "h-[80vh] max-h-[85vh]"
-      : "h-[40vh] max-h-[45vh]";
+      : "h-[32vh] max-h-[36vh]";
 
-  const isFlo = business.name.trim().toLowerCase() === "espace flo";
+  const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
 
   const sheetOuterClass = dark
-    ? "mx-3 mb-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
-    : "mx-3 mb-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden";
+    ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
+    : "mx-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden";
 
   const titleClass = dark
     ? "text-[15px] font-semibold text-neutral-50 truncate"
@@ -282,14 +312,21 @@ function MobileBottomSheet({
     ? "h-[140px] w-full rounded-md overflow-hidden border border-neutral-700 bg-neutral-800"
     : "h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200";
 
+  const translateClass =
+    animationState === "closed"
+      ? "translate-y-full"
+      : animationState === "closing"
+      ? "translate-y-full"
+      : "translate-y-0";
+
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[1400] md:hidden">
-      <div className={sheetOuterClass}>
+    <div className="fixed inset-x-0 bottom-0 z-[1400] md:hidden pointer-events-none pb-3">
+      <div className={sheetOuterClass + " bottom-sheet-transition " + translateClass + " pointer-events-auto"}>
         <div className={"flex flex-col " + heightClass}>
           <button
             type="button"
             onClick={() => {
-              if (mode === "full") {
+              if (animationState === "full") {
                 onPeek();
               } else {
                 onExpand();
@@ -303,7 +340,7 @@ function MobileBottomSheet({
           <div className="flex-1 overflow-y-auto px-4 pb-4">
             <div className="flex items-center justify-between gap-3 mb-1.5">
               <h3 className={titleClass}>
-                {business.name}
+                {renderedBusiness.name}
               </h3>
               <button
                 type="button"
@@ -314,10 +351,10 @@ function MobileBottomSheet({
               </button>
             </div>
 
-            {business.website && (
+            {renderedBusiness.website && (
               <div className="mb-2">
                 <a
-                  href={business.website}
+                  href={renderedBusiness.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white"
@@ -327,13 +364,13 @@ function MobileBottomSheet({
               </div>
             )}
 
-            {business.type && (
+            {renderedBusiness.type && (
               <p className={typeTextClass}>
-                {business.type}
+                {renderedBusiness.type}
               </p>
             )}
 
-            {business.openingHours && (
+            {renderedBusiness.openingHours && (
               <details className={hoursTextClass}>
                 <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                   Horaires
@@ -342,22 +379,22 @@ function MobileBottomSheet({
                   </span>
                 </summary>
                 <pre className="mt-1 whitespace-pre-wrap font-sans">
-                  {business.openingHours}
+                  {renderedBusiness.openingHours}
                 </pre>
               </details>
             )}
 
-            {business.address && (
+            {renderedBusiness.address && (
               <a
                 href={
                   "https://www.google.com/maps/search/?api=1&query=" +
-                  encodeURIComponent(business.address)
+                  encodeURIComponent(renderedBusiness.address)
                 }
                 target="_blank"
                 rel="noopener noreferrer"
                 className={addressLinkClass}
               >
-                {business.address}
+                {renderedBusiness.address}
               </a>
             )}
 
@@ -387,7 +424,6 @@ function MobileBottomSheet({
     </div>
   );
 }
-
 export default function IndieMapSplitView() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
