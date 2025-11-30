@@ -673,7 +673,7 @@ export default function IndieMapSplitView() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 right-4 z-[1300] w-[min(380px,60vw)] indie-filter-bar">
+      <div className="absolute bottom-0 right-4 z-[1300] w-[min(380px,60vw)] indie-filter-bar">
         <FilterBar
           categories={categories}
           activeCategory={category}
