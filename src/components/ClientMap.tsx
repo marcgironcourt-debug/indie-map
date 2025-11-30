@@ -73,7 +73,7 @@ function makePin(color: string, stroke: string, selected: boolean) {
     color +
     '" stroke="' +
     stroke +
-    '" stroke-width="2"/>' +
+    '" stroke-width="1.2"/>' +
     '<circle cx="12" cy="12" r="4.5" fill="rgba(0,0,0,0.18)"/>' +
     '<path d="M8.8 7.2C9.6 6.1 10.7 5.4 12 5.2C13.4 5 14.9 5.4 16.1 6.2" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>' +
     groupClose +
@@ -523,7 +523,7 @@ export default function ClientMap({
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            className="h-4 w-4"
+            className="h-8 w-8"
           >
                         
                         <polygon
