@@ -327,9 +327,7 @@ export default function ClientMap({
         zoomControl={!isMobile}
         attributionControl={false}
         className="h-full w-full"
-        whenCreated={(mapInstance) => {
-          mapRef.current = mapInstance;
-        }}
+        ref={mapRef}
       >
         <MapClickClear
           onClear={() => {

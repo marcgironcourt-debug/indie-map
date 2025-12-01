@@ -257,7 +257,7 @@ function MobileBottomSheet({
   setAnimationState(mode);
 }, [business, mode]);
 
-  if (!renderedBusiness && animationState === "closed") return null;
+  if (!renderedBusiness) return null;
 
   const heightClass =
     animationState === "full"

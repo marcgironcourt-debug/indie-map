@@ -250,6 +250,6 @@ main {
   animation: bottom-sheet-slide-up 0.28s ease-out;
 }
 
-.....bottom-sheet-transition {
+.bottom-sheet-transition {
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
