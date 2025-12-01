@@ -17,10 +17,13 @@ type Biz = {
 
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
-function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
+function normalizeType(
+  t?: string | null
+): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
   const v = (t || "").toLowerCase();
   if (v.includes("café") || v.includes("cafe") || v.includes("coffee") || v.includes("brunch")) return "cafe";
-  if (v.includes("microbrasserie") || v.includes("brasserie") || v.includes("bar") || v.includes("pub")) return "microbrasserie";
+  if (v.includes("microbrasserie") || v.includes("brasserie") || v.includes("bar") || v.includes("pub"))
+    return "microbrasserie";
   if (v.includes("épicerie") || v.includes("epicerie") || v.includes("grocery")) return "epicerie";
   if (
     v.includes("friperie") ||
@@ -47,7 +50,8 @@ function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "l
     v.includes("restaurant")
   )
     return "restaurant";
-  if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book")) return "librairie";
+  if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book"))
+    return "librairie";
   if (v.includes("boutique locale") || v.includes("boutique")) return "boutique";
   return "other";
 }
@@ -153,6 +157,16 @@ function resolveCityCenter(query: string): { center: [number, number]; zoom: num
   return null;
 }
 
+const FILTERS = [
+  { id: "friperie", label: "Vêtements", color: "hsl(var(--violet))" },
+  { id: "cafe", label: "Café brunch", color: "hsl(var(--cafe))" },
+  { id: "epicerie", label: "Épicerie", color: "#728A4A" },
+  { id: "boutique", label: "Boutique locale", color: "#000000" },
+  { id: "librairie", label: "Librairie", color: "#3B82F6" },
+  { id: "restaurant", label: "Restaurant locavore", color: "hsl(var(--restaurant))" },
+  { id: "microbrasserie", label: "Micro-brasserie", color: "hsl(var(--micro))" },
+];
+
 export default function ClientMap({
   items = [],
   selectedId,
@@ -203,6 +217,13 @@ export default function ClientMap({
   }
 
   const markers = Array.from(byId.values());
+  const [activeTypes, setActiveTypes] = React.useState<string[]>([]);
+
+  const visibleMarkers =
+    activeTypes.length > 0
+      ? markers.filter((m) => activeTypes.includes(normalizeType(m.type)))
+      : markers;
+
   const mapRef = React.useRef<L.Map | null>(null);
 
   const tileUrl = darkMap
@@ -298,8 +319,14 @@ export default function ClientMap({
     (darkMap ? "bg-black" : "bg-neutral-200");
 
   const thumbClass =
-    "absolute w-[18px] h-[18px] rounded-full bg-white shadow-sm border border-neutral-300 transform transition-transform duration-200 " +
+    "absolute w-[18px] h-[18px] rounded-full bg-white shadow-sm border border-neutral-300 transform transition-transform durée-200 " +
     (darkMap ? "translate-x-[18px]" : "translate-x-[2px]");
+
+  const toggleType = (id: string) => {
+    setActiveTypes((current) =>
+      current.includes(id) ? current.filter((t) => t !== id) : [...current, id]
+    );
+  };
 
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
@@ -321,7 +348,7 @@ export default function ClientMap({
           }}
         />
         <TileLayer url={tileUrl} />
-        {markers.map((b) => {
+        {visibleMarkers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
 
           if (isMobile) {
@@ -405,14 +432,10 @@ export default function ClientMap({
                               ➤
                             </span>
                           </summary>
-                          <pre className="mt-1 whitespace-pre-wrap font-sans">
-                            {b.openingHours}
-                          </pre>
+                          <pre className="mt-1 whitespace-pre-wrap font-sans">{b.openingHours}</pre>
                         </details>
                       ) : (
-                        <p className="text-[10px]">
-                          Horaires : voir le site
-                        </p>
+                        <p className="text-[10px]">Horaires : voir le site</p>
                       )}
                     </div>
 
@@ -443,9 +466,7 @@ export default function ClientMap({
                         : "bg-white border-[#E4D4C2] text-neutral-900")
                     }
                   >
-                    <h3 className="font-semibold text-sm">
-                      {b.name}
-                    </h3>
+                    <h3 className="font-semibold text-sm">{b.name}</h3>
                     {b.address && (
                       <a
                         href={
@@ -467,14 +488,10 @@ export default function ClientMap({
                             ➤
                           </span>
                         </summary>
-                        <pre className="mt-1 whitespace-pre-wrap font-sans">
-                          {b.openingHours}
-                        </pre>
+                        <pre className="mt-1 whitespace-pre-wrap font-sans">{b.openingHours}</pre>
                       </details>
                     ) : (
-                      <p className="text-xs">
-                        Horaires : voir le site
-                      </p>
+                      <p className="text-xs">Horaires : voir le site</p>
                     )}
                     {b.website && (
                       <a
@@ -525,6 +542,41 @@ export default function ClientMap({
           </div>
         </button>
       )}
+
+      <div className="pointer-events-none absolute bottom-16 right-3 z-[1350] flex flex-col items-end gap-2">
+        <div className="flex max-w-[260px] flex-wrap justify-end gap-2 pointer-events-auto">
+          {FILTERS.map((f) => {
+            const active = activeTypes.includes(f.id);
+            return (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => toggleType(f.id)}
+                className="rounded-full px-3 py-1 text-[11px] font-medium shadow-sm border transition flex items-center gap-1.5"
+                style={
+                  active
+                    ? {
+                        backgroundColor: "rgba(255,255,255,0.97)",
+                        color: f.color,
+                        borderColor: f.color,
+                      }
+                    : {
+                        backgroundColor: "rgba(255,255,255,0.9)",
+                        color: "#0f172a",
+                        borderColor: "rgba(148,163,184,0.7)",
+                      }
+                }
+              >
+                <span
+                  className="inline-block h-2 w-2 rounded-full"
+                  style={{ backgroundColor: f.color }}
+                />
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

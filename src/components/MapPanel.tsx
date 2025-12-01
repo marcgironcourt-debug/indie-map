@@ -34,18 +34,16 @@ export default function MapPanel({
   onToggleDarkMap?: () => void;
 }) {
   return (
-    <section className="relative h-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
-      <div className="h-full">
-        <ClientMap
-          items={items}
-          selectedId={selectedId}
-          selectionVersion={selectionVersion}
-          onSelect={onSelect}
-          searchCity={searchCity}
-          darkMap={darkMap}
-          onToggleDarkMap={onToggleDarkMap}
-        />
-      </div>
-    </section>
+    <div className="absolute inset-0">
+      <ClientMap
+        items={items}
+        selectedId={selectedId}
+        selectionVersion={selectionVersion}
+        onSelect={onSelect}
+        searchCity={searchCity}
+        darkMap={darkMap}
+        onToggleDarkMap={onToggleDarkMap}
+      />
+    </div>
   );
 }
