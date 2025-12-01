@@ -55,7 +55,6 @@ function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "l
 function makePin(color: string, stroke: string, selected: boolean) {
   const size = selected ? 26 : 24;
   const height = selected ? 38 : 36;
-  const circleR = selected ? 4.5 : 4;
   const shadow = selected
     ? "<defs><filter id=\"shadow\"><feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" /></filter></defs>"
     : "";
@@ -205,31 +204,28 @@ export default function ClientMap({
 
   const markers = Array.from(byId.values());
   const mapRef = React.useRef<L.Map | null>(null);
+
   const tileUrl = darkMap
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-  const mapKey = React.useMemo(() => `${searchCity ?? "default"}`, [searchCity]);
-
-  const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
-  const [zoom, setZoom] = React.useState<number>(12);
-
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
-  React.useEffect(() => {
-    if (!searchCity) return;
-    const preset = resolveCityCenter(searchCity);
-    if (!preset) return;
-    setCenter(preset.center);
-    setZoom(preset.zoom);
+  const initialView = React.useMemo(() => {
+    if (searchCity) {
+      const preset = resolveCityCenter(searchCity);
+      if (preset) {
+        return { center: preset.center, zoom: preset.zoom };
+      }
+    }
+    return { center: [20, 0] as [number, number], zoom: 2 };
   }, [searchCity]);
 
   React.useEffect(() => {
     if (!searchCity || !mapRef.current) return;
     const preset = resolveCityCenter(searchCity);
     if (!preset) return;
-    const map = mapRef.current;
-    map.flyTo(preset.center as any, preset.zoom ?? 12, { animate: true, duration: 0.8 });
+    mapRef.current.flyTo(preset.center as any, preset.zoom ?? 12, { animate: true, duration: 0.8 });
   }, [searchCity]);
 
   React.useEffect(() => {
@@ -245,7 +241,6 @@ export default function ClientMap({
 
   const handleLocate = React.useCallback(() => {
     if (!navigator.geolocation) {
-      console.warn("Geolocation non supportée par ce navigateur");
       alert("La géolocalisation n'est pas supportée par ce navigateur.");
       return;
     }
@@ -256,30 +251,24 @@ export default function ClientMap({
         const target: [number, number] = [latitude, longitude];
 
         if (!mapRef.current) {
-          console.warn("mapRef.current est null dans handleLocate");
           alert("La carte n'est pas encore prête. Réessaie dans une seconde.");
           return;
         }
 
-        console.log("GEO OK", latitude, longitude);
         mapRef.current.setView(target, 15, { animate: true });
       },
       (error) => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            console.warn("Permission de géolocalisation refusée");
             alert("Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation.");
             break;
           case error.POSITION_UNAVAILABLE:
-            console.warn("Position indisponible");
             alert("La position est actuellement indisponible.");
             break;
           case error.TIMEOUT:
-            console.warn("Timeout de géolocalisation");
             alert("La demande de géolocalisation a expiré. Réessaie.");
             break;
           default:
-            console.warn("Erreur de géolocalisation inconnue", error);
             alert("Une erreur est survenue lors de la géolocalisation.");
         }
       },
@@ -296,11 +285,9 @@ export default function ClientMap({
     : "absolute z-[1300] top-4 left-4 flex items-center justify-center cursor-pointer";
 
   const locateTheme = "hover:opacity-90 transition";
-
   const locateButtonClass = locateBase + " " + locateTheme;
 
   const toggleBase = isMobile ? "absolute top-16 left-4 z-[1300]" : "absolute top-3 right-3 z-[1300]";
-
   const toggleButtonClass =
     toggleBase +
     " rounded-full p-[2px] shadow-md border " +
@@ -317,9 +304,8 @@ export default function ClientMap({
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
       <MapContainer
-        key={mapKey}
-        center={center}
-        zoom={zoom}
+        center={initialView.center}
+        zoom={initialView.zoom}
         minZoom={2}
         maxBounds={MAX_BOUNDS}
         maxBoundsViscosity={1}
@@ -431,7 +417,11 @@ export default function ClientMap({
                     </div>
 
                     <p className="mt-2 text-[11px] leading-snug">
-                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
+                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat
+                      local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de
+                      la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et
+                      fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et
+                      exclusives.
                     </p>
 
                     <div className="mt-2">
@@ -506,6 +496,7 @@ export default function ClientMap({
           );
         })}
       </MapContainer>
+
       <button
         type="button"
         className={locateButtonClass}
@@ -513,35 +504,27 @@ export default function ClientMap({
         aria-label="Me localiser"
       >
         <span
-        className={
-          "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
-          (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
-        }
-      >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="h-8 w-8"
-          >
-                        
-                        <polygon
-              points="12,5 9,15 12,13 15,15"
-              fill={darkMap ? "white" : "black"}
-            />
-          </svg>
+          className={
+            "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
+            (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
+          }
+        >
+          <span className="h-2.5 w-2.5 rounded-full border border-neutral-500" />
         </span>
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          if (onToggleDarkMap) onToggleDarkMap();
-        }}
-        className={toggleButtonClass}
-      >
-        <div className={trackClass}>
-          <div className={thumbClass} />
-        </div>
-      </button>
+
+      {onToggleDarkMap && (
+        <button
+          type="button"
+          className={toggleButtonClass}
+          onClick={onToggleDarkMap}
+          aria-label="Basculer le fond de carte"
+        >
+          <div className={trackClass}>
+            <div className={thumbClass} />
+          </div>
+        </button>
+      )}
     </div>
   );
 }
