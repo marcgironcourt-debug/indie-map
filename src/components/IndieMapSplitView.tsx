@@ -673,13 +673,38 @@ export default function IndieMapSplitView() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 right-4 z-[1300] w-[min(380px,60vw)] indie-filter-bar">
+      <div className="absolute bottom-40 md:bottom-6 right-4 z-[1400] w-[min(380px,60vw)] indie-filter-bar">
         <FilterBar
           categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory}
           dark={darkMap}
         />
+      </div>
+
+
+      <div className="absolute bottom-3 left-0 right-0 z-[1350] flex justify-center">
+        <nav
+          className={
+            (darkMap
+              ? "bg-neutral-900/95 text-neutral-100 border border-neutral-700"
+              : "bg-white/95 text-neutral-900 border border-neutral-200") +
+            " rounded-full px-4 py-2 shadow-md flex items-center gap-6 text-xs font-medium"
+          }
+        >
+          <a href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
+            <span>À propos</span>
+          </a>
+          <a href="/contribution" className="flex items-center gap-1 hover:opacity-80">
+            <span>Contribution</span>
+          </a>
+          <a
+            href="/pour-les-commercants"
+            className="flex items-center gap-1 hover:opacity-80"
+          >
+            <span>Pour les commerçants</span>
+          </a>
+        </nav>
       </div>
 
       <MobileBottomSheet
