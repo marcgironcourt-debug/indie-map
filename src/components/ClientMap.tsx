@@ -137,6 +137,28 @@ function MapClickClear({ onClear }: { onClear?: () => void }) {
   return null;
 }
 
+function MapViewPersistence({
+  onUpdate,
+}: {
+  onUpdate: (center: [number, number], zoom: number) => void;
+}) {
+  const map = useMapEvents({
+    moveend() {
+      const c = map.getCenter();
+      const z = map.getZoom();
+      const payload = {
+        center: [c.lat, c.lng],
+        zoom: z,
+      };
+      try {
+        window.localStorage.setItem("indieMapView", JSON.stringify(payload));
+      } catch {}
+      onUpdate([c.lat, c.lng], z);
+    },
+  });
+  return null;
+}
+
 function resolveCityCenter(query: string): { center: [number, number]; zoom: number } | null {
   const q = query.trim().toLowerCase();
   if (!q) return null;
@@ -211,8 +233,39 @@ export default function ClientMap({
 
   const mapKey = React.useMemo(() => `${searchCity ?? "default"}`, [searchCity]);
 
-  const [center, setCenter] = React.useState<[number, number]>([45.5017, -73.5673]);
-  const [zoom, setZoom] = React.useState<number>(12);
+  const [center, setCenter] = React.useState<[number, number]>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const raw = window.localStorage.getItem("indieMapView");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (
+            Array.isArray(parsed.center) &&
+            typeof parsed.center[0] === "number" &&
+            typeof parsed.center[1] === "number"
+          ) {
+            return [parsed.center[0], parsed.center[1]];
+          }
+        }
+      } catch {}
+    }
+    return [45.5017, -73.5673];
+  });
+
+  const [zoom, setZoom] = React.useState<number>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const raw = window.localStorage.getItem("indieMapView");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (typeof parsed.zoom === "number") {
+            return parsed.zoom;
+          }
+        }
+      } catch {}
+    }
+    return 12;
+  });
 
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
@@ -329,6 +382,12 @@ export default function ClientMap({
         className="h-full w-full"
         ref={mapRef}
       >
+        <MapViewPersistence
+          onUpdate={(c, z) => {
+            setCenter(c);
+            setZoom(z);
+          }}
+        />
         <MapClickClear
           onClear={() => {
             if (onSelect) onSelect("");
