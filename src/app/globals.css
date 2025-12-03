@@ -193,7 +193,7 @@ main {
   .indie-filter-bar {
     right: 16px;
     width: min(380px, 80vw);
-    bottom: 10vh;
+    bottom: 8vh;
   }
 }
 

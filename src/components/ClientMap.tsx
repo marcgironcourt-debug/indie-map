@@ -525,7 +525,7 @@ export default function ClientMap({
           >
                         
                         <polygon
-              points="12,5 9,15 12,13 15,15"
+              points="12,6 9,16 12,14 15,16"
               fill={darkMap ? "white" : "black"}
             />
           </svg>

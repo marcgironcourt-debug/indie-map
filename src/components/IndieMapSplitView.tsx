@@ -689,7 +689,7 @@ export default function IndieMapSplitView() {
             (darkMap
               ? "bg-neutral-900/95 text-neutral-100 border border-neutral-700"
               : "bg-white/95 text-neutral-900 border border-neutral-200") +
-            " rounded-full px-4 py-2 shadow-md flex items-center gap-6 text-xs font-medium"
+            " rounded-full px-4 py-1 shadow-md flex items-center gap-6 text-xs font-medium"
           }
         >
           <a href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
