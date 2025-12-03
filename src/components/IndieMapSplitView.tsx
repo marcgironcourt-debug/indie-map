@@ -693,7 +693,7 @@ export default function IndieMapSplitView() {
           }
         >
           <a href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
-            <span>À propos</span>
+            <span>Pourquoi Indie Map ?</span>
           </a>
           <a href="/contribution" className="flex items-center gap-1 hover:opacity-80">
             <span>Contribution</span>
@@ -702,7 +702,7 @@ export default function IndieMapSplitView() {
             href="/pour-les-commercants"
             className="flex items-center gap-1 hover:opacity-80"
           >
-            <span>Pour les commerçants</span>
+            <span>Espace commerçant</span>
           </a>
         </nav>
       </div>

@@ -6,34 +6,50 @@ export default function AboutPage() {
   return (
     <main className="min-h-[100dvh] bg-neutral-950 text-neutral-50 flex flex-col">
       <header className="border-b border-neutral-800 px-5 py-4">
-        <h1 className="text-xl font-semibold">À propos d’Indie Map</h1>
+        <h1 className="text-xl font-semibold">Pourquoi Indie Map ?</h1>
         <p className="text-xs text-neutral-400 mt-1">
-          Une carte pour mettre en avant les lieux locaux, éthiques et indépendants.
+          Parce qu’à chaque café, chaque pain, chaque livre acheté, on choisit à qui on donne de la force.
         </p>
       </header>
 
       <section className="flex-1 px-5 py-5 max-w-3xl w-full mx-auto text-sm leading-relaxed space-y-4">
         <p>
-          Indie Map est une carte sélective qui met en avant des cafés, épiceries,
-          friperies, librairies, restaurants, boulangeries et lieux d’intérêt
-          qui ont un vrai engagement local et écoresponsable.
+          On a tous déjà eu cette sensation de marcher en ville sans vraiment la voir. Enchaîner les mêmes
+          enseignes, les mêmes rues, les mêmes réflexes. On consomme, on passe, on oublie. Mais derrière
+          chaque rue, il y a d’autres histoires&nbsp;: celles de personnes qui essaient de faire mieux,
+          à leur échelle.
         </p>
+
         <p>
-          L’idée est simple&nbsp;: aider les gens à soutenir concrètement les
-          commerces et lieux qui font attention à leurs employés, à leurs
-          matières premières et à leur impact, plutôt que d’alimenter encore
-          plus les grandes chaînes et la consommation jetable.
+          Indie Map est né de cette envie&nbsp;: rendre visible les lieux qui prennent soin des gens et du monde
+          qu&apos;on partage. Des cafés qui paient correctement leurs équipes, des épiceries qui limitent le
+          gaspillage, des friperies qui prolongent la vie des vêtements, des librairies qui tiennent encore
+          debout au milieu des algorithmes.
         </p>
+
         <p>
-          La sélection est volontairement limitée. Chaque lieu est choisi à la
-          main, en fonction de critères de cohérence avec ces valeurs
-          (qualité, transparence, démarche locale ou circulaire, respect des
-          personnes, etc.).
+          Ici, chaque lieu est choisi à la main. Pas parce qu&apos;il est &quot;cool&quot; ou à la mode, mais
+          parce qu&apos;il incarne une manière plus juste de faire les choses&nbsp;: respect des personnes,
+          attention aux matières, ancrage local, démarche écoresponsable. La sélection est volontairement
+          limitée, pour garder du sens plutôt que faire du volume.
         </p>
+
         <p>
-          Le but final est double&nbsp;: rendre la vie quotidienne plus simple
-          pour celles et ceux qui veulent consommer autrement, et apporter plus
-          de clients réguliers aux entreprises qui vont dans ce sens.
+          Indie Map n&apos;est pas une carte parfaite. C&apos;est un outil simple pour celles et ceux qui
+          veulent aligner un peu plus leur quotidien avec leurs valeurs, sans tout changer d&apos;un coup.
+          Un café indépendant plutôt qu&apos;une grande chaîne. Une boulangerie de quartier plutôt qu&apos;un
+          rayon industriel. Une librairie vivante plutôt qu&apos;un panier oublié en ligne.
+        </p>
+
+        <p>
+          À terme, l&apos;idée est double&nbsp;: rendre la vie plus facile à celles et ceux qui veulent
+          consommer autrement, et donner un vrai coup de pouce aux commerces qui essaient de tenir ce cap
+          dans un système qui ne les aide pas toujours.
+        </p>
+
+        <p className="text-neutral-300">
+          Si tu utilises Indie Map, même ponctuellement, tu fais déjà partie de ces petits déplacements
+          qui, mis bout à bout, peuvent changer la manière dont une ville respire.
         </p>
       </section>
 

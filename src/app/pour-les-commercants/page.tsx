@@ -2,41 +2,59 @@
 
 import Link from "next/link";
 
-export default function MerchantsPage() {
+export default function MerchantPage() {
   return (
     <main className="min-h-[100dvh] bg-neutral-950 text-neutral-50 flex flex-col">
       <header className="border-b border-neutral-800 px-5 py-4">
-        <h1 className="text-xl font-semibold">Pour les commerçants</h1>
+        <h1 className="text-xl font-semibold">Espace commerçant</h1>
         <p className="text-xs text-neutral-400 mt-1">
-          Une vitrine pensée pour les lieux locaux, éthiques et indépendants.
+          Indie Map est là pour mettre en lumière les lieux qui choisissent la qualité, l&apos;humain et le local.
         </p>
       </header>
 
       <section className="flex-1 px-5 py-5 max-w-3xl w-full mx-auto text-sm leading-relaxed space-y-4">
         <p>
-          Indie Map n’est pas un annuaire massif mais une sélection de lieux
-          cohérents avec certaines valeurs&nbsp;: ancrage local, attention aux
-          conditions de travail, transparence, qualité des produits, démarche
-          durable ou circulaire.
+          Si tu es ici, c&apos;est probablement que ton commerce ne ressemble pas à une chaîne anonyme. Tu fais des
+          choix chaque jour sur tes produits, tes fournisseurs, tes prix, ton équipe. Et souvent, tout ça reste
+          invisible pour la plupart des gens qui passent devant ta vitrine.
         </p>
+
         <p>
-          Être présent sur la carte, c’est apparaître dans un contexte où chaque
-          lieu est choisi à la main et mis en avant de façon claire&nbsp;: type
-          de lieu, adresse, horaires, site web, et plus tard des parcours à
-          thème et des indicateurs d’impact.
+          Indie Map a été pensé comme un espace pour des lieux comme le tien&nbsp;: cafés, épiceries, friperies,
+          boulangeries, librairies, ateliers, lieux d&apos;intérêt locaux. Des endroits qui essaient de faire mieux
+          que le minimum, même quand ce n&apos;est pas le chemin le plus simple.
         </p>
+
         <p>
-          Les formules d’abonnement et les options payantes (photos,
-          mise en avant, itinéraires «&nbsp;Indie Walk&nbsp;», etc.) seront
-          précisées plus tard. Pour l’instant, l’inscription se fait au cas par
-          cas, en échangeant directement avec les commerces intéressés.
+          Être présent sur Indie Map, ce n&apos;est pas juste apparaître sur une carte. C&apos;est rejoindre une
+          sélection volontairement limitée de lieux qui partagent une manière de travailler&nbsp;: attention aux
+          personnes, transparence, cohérence entre le discours et la réalité, ancrage local et démarche
+          écoresponsable.
         </p>
+
         <p>
-          Si tu gères un lieu qui correspond à cet état d’esprit et que tu
-          souhaites apparaître sur Indie Map, tu peux entrer en contact pour
-          discuter de ton projet, de ta démarche et de ce que la carte peut
-          t’apporter en visibilité réelle.
+          L&apos;objectif est double&nbsp;: t&apos;apporter des clients qui te ressemblent davantage, et rendre
+          plus facile pour eux le fait de te trouver, te comprendre et te choisir. Pas en criant plus fort que les
+          autres, mais en racontant clairement qui tu es et ce que tu proposes.
         </p>
+
+        <p>
+          Si tu as l&apos;impression que ton commerce a sa place sur Indie Map, ou si tu veux simplement en savoir
+          plus sur la manière dont on sélectionne les lieux, parlons-en.
+        </p>
+
+        <div className="pt-2">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-full bg-neutral-50 px-4 py-1.5 text-sm font-medium text-neutral-900 hover:bg-neutral-200 transition"
+          >
+            Contacte-nous
+          </button>
+          <p className="mt-2 text-xs text-neutral-400">
+            Ce bouton est pour l&apos;instant symbolique. Un espace dédié aux commerçants sera mis en place dans une
+            prochaine version d&apos;Indie Map.
+          </p>
+        </div>
       </section>
 
       <footer className="border-t border-neutral-800 px-5 py-3">
