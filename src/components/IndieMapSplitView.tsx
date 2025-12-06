@@ -274,9 +274,9 @@ function MobileBottomSheet({
     ? "text-[15px] font-semibold text-neutral-50 truncate"
     : "text-[15px] font-semibold text-neutral-900 truncate";
 
-  const closeButtonClass = dark
-    ? "rounded-full border border-neutral-600 px-2 py-1 text-[10px] text-neutral-300"
-    : "rounded-full border border-neutral-300 px-2 py-1 text-[10px] text-neutral-600";
+    const closeButtonClass = dark
+    ? "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-600 text-[14px] text-neutral-300"
+    : "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-[14px] text-neutral-600";
 
   const typeTextClass = dark
     ? "text-[11px] text-neutral-300 mb-1"
@@ -333,7 +333,7 @@ function MobileBottomSheet({
                 onClick={onClose}
                 className={closeButtonClass}
               >
-                Fermer
+                ✕
               </button>
             </div>
 
