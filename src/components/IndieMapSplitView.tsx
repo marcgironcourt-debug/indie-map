@@ -261,7 +261,7 @@ function MobileBottomSheet({
 
   const heightClass =
     animationState === "full"
-      ? "h-[80vh] max-h-[85vh]"
+      ? "h-[70vh] max-h-[72vh]"
       : "h-[32vh] max-h-[36vh]";
 
   const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
@@ -320,7 +320,9 @@ function MobileBottomSheet({
             }}
             className="flex flex-col items-center justify-center pt-2 pb-1 gap-1"
           >
-            <div className="h-1 w-10 rounded-full bg-neutral-500" />
+            <span className="text-neutral-500 text-lg">
+              {animationState === "full" ? "▼" : "▲"}
+            </span>
           </button>
 
           <div className="flex-1 overflow-y-auto px-4 pb-4">
