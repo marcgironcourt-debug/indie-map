@@ -404,6 +404,8 @@ export default function ClientMap({
         <TileLayer url={tileUrl} />
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
+          const isSuper = b.name.trim().toLowerCase() === "super condiments";
+          const isPremium = isFlo || isSuper;
 
           if (isMobile) {
             return (
@@ -432,7 +434,7 @@ export default function ClientMap({
               }}
             >
               <Popup autoPan autoPanPaddingTopLeft={[10, 200]} autoPanPaddingBottomRight={[10, 10]}>
-                {isFlo ? (
+                {isPremium ? (
                   <div
                     className={
                       "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border " +
@@ -447,7 +449,7 @@ export default function ClientMap({
                           <h3 className="text-[15px] font-semibold">{b.name}</h3>
                           <div>
                             <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                              mode, art, déco
+                              {isFlo ? "mode, art, déco" : "épicerie, café et brunch"}
                             </span>
                           </div>
                         </div>
@@ -504,18 +506,22 @@ export default function ClientMap({
                     </div>
 
                     <p className="mt-2 text-[11px] leading-snug">
-                      La mission d’ESPACE FLO : faire rayonner le talent d&apos;ici et valoriser l&apos;achat local avec des produits éthiques et écoresponsables. À l&apos;opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de produits entièrement conçus et fabriqués au Québec par des designers sélectionnés, avec des pièces durables, indémodables et exclusives.
+                      {isFlo
+                        ? "La mission d’ESPACE FLO : faire rayonner le talent d’ici et valoriser l’achat local avec des produits éthiques et écoresponsables. À l’opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de pièces durables, indémodables et fabriquées au Québec."
+                        : "Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici."}
                     </p>
 
-                    <div className="mt-2">
-                      <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-                        <img
-                          src="/images/espace-flo-inside.jpg"
-                          alt="Intérieur Espace FLO"
-                          className="h-full w-full object-cover"
-                        />
+                    {isFlo && (
+                      <div className="mt-2">
+                        <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                          <img
+                            src="/images/espace-flo-inside.jpg"
+                            alt="Intérieur Espace FLO"
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 ) : (
                   <div

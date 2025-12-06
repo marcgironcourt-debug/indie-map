@@ -265,6 +265,7 @@ function MobileBottomSheet({
       : "h-[32vh] max-h-[36vh]";
 
   const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
+  const isSuper = renderedBusiness.name.trim().toLowerCase() === "super condiments";
 
   const sheetOuterClass = dark
     ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
@@ -410,6 +411,14 @@ function MobileBottomSheet({
                     className="h-full w-full object-cover"
                   />
                 </div>
+              </div>
+            )}
+
+            {isSuper && (
+              <div className="mb-3 space-y-2">
+                <p className={floParagraphClass}>
+                  Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici.
+                </p>
               </div>
             )}
           </div>
