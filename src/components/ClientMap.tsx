@@ -450,7 +450,7 @@ export default function ClientMap({
                           <h3 className="text-[15px] font-semibold">{b.name}</h3>
                           <div>
                             <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                              {isFlo ? "mode, art, déco" : "épicerie nordique"}
+                              {isFlo ? "mode, art, déco" : isSuper ? "épicerie, café, brunch et buvette" : "épicerie nordique"}
                             </span>
                           </div>
                         </div>

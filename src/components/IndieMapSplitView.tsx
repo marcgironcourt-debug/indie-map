@@ -361,13 +361,15 @@ function MobileBottomSheet({
 
             {renderedBusiness.type && (
               <div className="mb-1">
-                <p className={typeTextClass}>
-                  {renderedBusiness.type}
-                </p>
+                {!isPremium && (
+                  <p className={typeTextClass}>
+                    {renderedBusiness.type}
+                  </p>
+                )}
                 {isPremium && (
                   <div className="mt-1">
                     <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                      {isFlo ? "mode, art, déco" : "épicerie nordique"}
+                      {isFlo ? "mode, art, déco" : isSuper ? "épicerie, café, brunch et buvette" : "épicerie nordique"}
                     </span>
                   </div>
                 )}
