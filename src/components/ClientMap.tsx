@@ -15,6 +15,14 @@ type Biz = {
   type?: string | null;
 };
 
+const BUSINESS_DESCRIPTIONS: Record<string, string> = {
+  "Espace FLO": "Boutique-galerie qui réunit des créateurs locaux, loin du fast fashion, avec des pièces durables et fabriquées au Québec.",
+  "Café Myriade": "Café de spécialité et lieu de rendez-vous chaleureux pour boire un bon café, bruncher et faire une pause en plein centre-ville.",
+  "Automne Boulangerie": "Boulangerie de quartier qui travaille des farines de qualité pour des pains et viennoiseries faits avec soin.",
+  "Sarrasin Boulangerie": "Boulangerie axée sur le sarrasin et les céréales anciennes, avec une approche artisanale et locale.",
+  "Hof Kelsten": "Boulangerie emblématique de Montréal, connue pour ses pains généreux et sa cuisine d’inspiration européenne.",
+};
+
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
 function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
@@ -153,7 +161,6 @@ function MapViewPersistence({
       try {
         window.localStorage.setItem("indieMapView", JSON.stringify(payload));
       } catch {}
-      onUpdate([c.lat, c.lng], z);
     },
   });
   return null;
@@ -193,39 +200,41 @@ export default function ClientMap({
   darkMap?: boolean;
   onToggleDarkMap?: () => void;
 }) {
-  const byId = new Map<
-    string,
-    {
-      id: string;
-      name: string;
-      address?: string | null;
-      website?: string | null;
-      openingHours?: string | null;
-      latN: number;
-      lngN: number;
-      type?: string | null;
-    }
-  >();
+  const markers = React.useMemo(() => {
+    const byId = new Map<
+      string,
+      {
+        id: string;
+        name: string;
+        address?: string | null;
+        website?: string | null;
+        openingHours?: string | null;
+        latN: number;
+        lngN: number;
+        type?: string | null;
+      }
+    >();
 
-  for (const b of items) {
-    const latN = Number(b.lat);
-    const lngN = Number(b.lng);
-    if (!Number.isFinite(latN) || !Number.isFinite(lngN)) continue;
-    if (!byId.has(b.id)) {
-      byId.set(b.id, {
-        id: b.id,
-        name: b.name,
-        address: b.address ?? null,
-        website: b.website ?? null,
-        openingHours: b.openingHours ?? null,
-        latN,
-        lngN,
-        type: b.type ?? null,
-      });
+    for (const b of items) {
+      const latN = Number(b.lat);
+      const lngN = Number(b.lng);
+      if (!Number.isFinite(latN) || !Number.isFinite(lngN)) continue;
+      if (!byId.has(b.id)) {
+        byId.set(b.id, {
+          id: b.id,
+          name: b.name,
+          address: b.address ?? null,
+          website: b.website ?? null,
+          openingHours: b.openingHours ?? null,
+          latN,
+          lngN,
+          type: b.type ?? null,
+        });
+      }
     }
-  }
 
-  const markers = Array.from(byId.values());
+    return Array.from(byId.values());
+  }, [items]);
   const mapRef = React.useRef<L.Map | null>(null);
   const tileUrl = darkMap
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -443,7 +452,13 @@ export default function ClientMap({
                             </span>
                           </div>
                         </div>
-                        {b.website && (
+                        {BUSINESS_DESCRIPTIONS[b.name] && (
+                      <p className="mt-1 text-[11px] leading-snug">
+                        {BUSINESS_DESCRIPTIONS[b.name]}
+                      </p>
+                    )}
+
+                    {b.website && (
                           <a
                             href={b.website}
                             target="_blank"
@@ -545,6 +560,9 @@ export default function ClientMap({
                         Horaires : voir le site
                       </p>
                     )}
+                    <p className="mt-1 text-[11px] leading-snug">
+                      Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
+                    </p>
                     {b.website && (
                       <a
                         href={b.website}
