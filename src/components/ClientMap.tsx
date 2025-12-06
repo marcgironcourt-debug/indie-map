@@ -453,7 +453,7 @@ export default function ClientMap({
                           </div>
                         </div>
                         {BUSINESS_DESCRIPTIONS[b.name] && (
-                      <p className="mt-1 text-[11px] leading-snug">
+                      <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
                         {BUSINESS_DESCRIPTIONS[b.name]}
                       </p>
                     )}
@@ -560,7 +560,7 @@ export default function ClientMap({
                         Horaires : voir le site
                       </p>
                     )}
-                    <p className="mt-1 text-[11px] leading-snug">
+                    <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
                       Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
                     </p>
                     {b.website && (

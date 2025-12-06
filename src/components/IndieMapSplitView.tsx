@@ -384,6 +384,12 @@ function MobileBottomSheet({
               </a>
             )}
 
+            {!isFlo && (
+              <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
+                Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
+              </p>
+            )}
+
             {isFlo && (
               <div className="mb-3 space-y-2">
                 <p className={floParagraphClass}>
