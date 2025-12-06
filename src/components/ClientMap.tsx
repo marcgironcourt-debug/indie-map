@@ -511,16 +511,38 @@ export default function ClientMap({
                     </p>
 
                     {isFlo && (
+  <div className="mt-2">
+    <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+      <img
+        src="/images/espace-flo-inside.jpg"
+        alt="Intérieur Espace FLO"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  </div>
+)}
+                    {isRacines && (
                       <div className="mt-2">
                         <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
                           <img
-                            src="/images/espace-flo-inside.jpg"
-                            alt="Intérieur Espace FLO"
+                            src="/images/racines-boreales.jpg"
+                            alt="Façade de Racines Boréales à Montréal"
                             className="h-full w-full object-cover"
                           />
                         </div>
                       </div>
                     )}
+{isSuper && (
+  <div className="mt-2">
+    <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+      <img
+        src="/images/super-condiments.jpg"
+        alt="Super Condiments à Montréal"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  </div>
+)}
                   </div>
                 ) : (
                   <div
