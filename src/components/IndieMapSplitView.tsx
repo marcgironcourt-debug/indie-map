@@ -436,6 +436,13 @@ function MobileBottomSheet({
                 <p className={floParagraphClass}>
                   Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici.
                 </p>
+                <div className={floImageWrapperClass}>
+                  <img
+                    src="/images/super-condiments.jpg"
+                    alt="Super Condiments à Montréal"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             )}
 
@@ -444,6 +451,13 @@ function MobileBottomSheet({
                 <p className={floParagraphClass}>
                   Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée.
                 </p>
+                <div className={floImageWrapperClass}>
+                  <img
+                    src="/images/racines-boreales.jpg"
+                    alt="Racines Boréales à Montréal"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             )}
           </div>
