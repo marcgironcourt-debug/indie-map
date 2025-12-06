@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export default function ContributionPage() {
   return (
-    <main className="min-h-[100dvh] bg-neutral-950 text-neutral-50 flex flex-col">
-      <header className="border-b border-neutral-800 px-5 py-4">
+    <main className="min-h-[100dvh] bg-[#FDF7F2] text-neutral-900 flex flex-col">
+      <header className="border-b border-[#E4D4C2] px-5 py-4 bg-[#4C5F34] text-white">
         <h1 className="text-xl font-semibold">Contribution</h1>
-        <p className="text-xs text-neutral-400 mt-1">
+        <p className="text-xs text-white/80 mt-1">
           Indie Map avance grâce aux personnes qui partagent leurs lieux, leurs idées et leurs retours.
         </p>
       </header>
@@ -38,18 +38,18 @@ export default function ContributionPage() {
         <div className="pt-2">
           <button
             type="button"
-            className="inline-flex items-center rounded-full bg-neutral-50 px-4 py-1.5 text-sm font-medium text-neutral-900 hover:bg-neutral-200 transition"
+            className="inline-flex items-center rounded-full bg-[#4C5F34] px-4 py-1.5 text-sm font-medium text-white hover:bg-[#3A4727] transition"
           >
             Contribuer
           </button>
-          <p className="mt-2 text-xs text-neutral-400">
+          <p className="mt-2 text-xs text-neutral-600">
             Ce bouton sera bientôt actif. L&apos;espace contribution arrive dans une prochaine version d&apos;Indie Map.
           </p>
         </div>
       </section>
 
-      <footer className="border-t border-neutral-800 px-5 py-3">
-        <Link href="/" className="text-sm text-neutral-200 underline">
+      <footer className="border-t border-[#E4D4C2] px-5 py-3 bg-[#FDF7F2]">
+        <Link href="/" className="text-sm text-neutral-700 underline">
           ← Retour à la carte
         </Link>
       </footer>

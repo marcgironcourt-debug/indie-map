@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-[100dvh] bg-neutral-950 text-neutral-50 flex flex-col">
-      <header className="border-b border-neutral-800 px-5 py-4">
+    <main className="min-h-[100dvh] bg-[#FDF7F2] text-neutral-900 flex flex-col">
+      <header className="border-b border-[#E4D4C2] px-5 py-4 bg-[#4C5F34] text-white">
         <h1 className="text-xl font-semibold">Pourquoi Indie Map ?</h1>
-        <p className="text-xs text-neutral-400 mt-1">
+        <p className="text-xs text-white/80 mt-1">
           Parce qu’à chaque café, chaque pain, chaque livre acheté, on choisit à qui on donne de la force.
         </p>
       </header>
@@ -47,14 +47,14 @@ export default function AboutPage() {
           dans un système qui ne les aide pas toujours.
         </p>
 
-        <p className="text-neutral-300">
+        <p className="text-neutral-700">
           Si tu utilises Indie Map, même ponctuellement, tu fais déjà partie de ces petits déplacements
           qui, mis bout à bout, peuvent changer la manière dont une ville respire.
         </p>
       </section>
 
-      <footer className="border-t border-neutral-800 px-5 py-3">
-        <Link href="/" className="text-sm text-neutral-200 underline">
+      <footer className="border-t border-[#E4D4C2] px-5 py-3 bg-[#FDF7F2]">
+        <Link href="/" className="text-sm text-neutral-700 underline">
           ← Retour à la carte
         </Link>
       </footer>
