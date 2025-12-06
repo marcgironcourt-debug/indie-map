@@ -267,6 +267,7 @@ function MobileBottomSheet({
   const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
   const isSuper = renderedBusiness.name.trim().toLowerCase() === "super condiments";
   const isRacines = renderedBusiness.name.trim().toLowerCase() === "racines boréales";
+  const isPremium = isFlo || isSuper || isRacines;
 
   const sheetOuterClass = dark
     ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
@@ -347,7 +348,11 @@ function MobileBottomSheet({
                   href={renderedBusiness.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white"
+                  className={
+                    isPremium
+                      ? "inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1 text-[11px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
+                      : "inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800 transition"
+                  }
                 >
                   Site web
                 </a>
@@ -355,9 +360,18 @@ function MobileBottomSheet({
             )}
 
             {renderedBusiness.type && (
-              <p className={typeTextClass}>
-                {renderedBusiness.type}
-              </p>
+              <div className="mb-1">
+                <p className={typeTextClass}>
+                  {renderedBusiness.type}
+                </p>
+                {isPremium && (
+                  <div className="mt-1">
+                    <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
+                      {isFlo ? "mode, art, déco" : "épicerie nordique"}
+                    </span>
+                  </div>
+                )}
+              </div>
             )}
 
             {renderedBusiness.openingHours && (
@@ -388,7 +402,7 @@ function MobileBottomSheet({
               </a>
             )}
 
-            {!isFlo && (
+            {!isPremium && (
               <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
                 Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
               </p>

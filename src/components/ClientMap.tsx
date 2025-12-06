@@ -454,11 +454,7 @@ export default function ClientMap({
                             </span>
                           </div>
                         </div>
-                        {BUSINESS_DESCRIPTIONS[b.name] && (
-                      <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-                        {BUSINESS_DESCRIPTIONS[b.name]}
-                      </p>
-                    )}
+
 
                     {b.website && (
                           <a
@@ -538,6 +534,11 @@ export default function ClientMap({
                     <h3 className="font-semibold text-sm">
                       {b.name}
                     </h3>
+                    {BUSINESS_DESCRIPTIONS[b.name] && (
+                      <p className="mt-0.5 text-[11px] leading-snug text-[hsl(var(--leaf))]">
+                        {BUSINESS_DESCRIPTIONS[b.name]}
+                      </p>
+                    )}
                     {b.address && (
                       <a
                         href={
