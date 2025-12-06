@@ -266,6 +266,7 @@ function MobileBottomSheet({
 
   const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
   const isSuper = renderedBusiness.name.trim().toLowerCase() === "super condiments";
+  const isRacines = renderedBusiness.name.trim().toLowerCase() === "racines boréales";
 
   const sheetOuterClass = dark
     ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
@@ -418,6 +419,14 @@ function MobileBottomSheet({
               <div className="mb-3 space-y-2">
                 <p className={floParagraphClass}>
                   Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici.
+                </p>
+              </div>
+            )}
+
+            {isRacines && (
+              <div className="mb-3 space-y-2">
+                <p className={floParagraphClass}>
+                  Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée.
                 </p>
               </div>
             )}

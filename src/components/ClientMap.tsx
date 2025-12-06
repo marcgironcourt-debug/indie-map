@@ -405,7 +405,8 @@ export default function ClientMap({
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
           const isSuper = b.name.trim().toLowerCase() === "super condiments";
-          const isPremium = isFlo || isSuper;
+          const isRacines = b.name.trim().toLowerCase() === "racines boréales";
+          const isPremium = isFlo || isSuper || isRacines;
 
           if (isMobile) {
             return (
@@ -449,7 +450,7 @@ export default function ClientMap({
                           <h3 className="text-[15px] font-semibold">{b.name}</h3>
                           <div>
                             <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                              {isFlo ? "mode, art, déco" : "épicerie, café et brunch"}
+                              {isFlo ? "mode, art, déco" : "épicerie nordique"}
                             </span>
                           </div>
                         </div>
@@ -508,7 +509,9 @@ export default function ClientMap({
                     <p className="mt-2 text-[11px] leading-snug">
                       {isFlo
                         ? "La mission d’ESPACE FLO : faire rayonner le talent d’ici et valoriser l’achat local avec des produits éthiques et écoresponsables. À l’opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de pièces durables, indémodables et fabriquées au Québec."
-                        : "Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici."}
+                        : isSuper
+                        ? "Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici."
+                        : "Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée."}
                     </p>
 
                     {isFlo && (
