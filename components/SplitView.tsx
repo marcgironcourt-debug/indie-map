@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import BusinessPane from "./BusinessPane";
 import ClientMap from "./ClientMap";
 import { useBusinesses } from "../hooks/useBusinesses";
@@ -10,12 +10,7 @@ export default function SplitView() {
   const { data, loading, error } = useBusinesses();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // données brutes
   const items = useMemo(() => (data ?? []) as Business[], [data]);
-
-  useEffect(() => {
-    if (!selectedId && items.length) setSelectedId(items[0].id);
-  }, [items, selectedId]);
 
   if (loading) return <div style={{ padding: 16, fontSize: 14 }}>Chargement…</div>;
   if (error) return <div style={{ padding: 16, fontSize: 14, color: "red" }}>Erreur: {error}</div>;
@@ -45,7 +40,7 @@ export default function SplitView() {
           border: "1px solid #e5e7eb",
           borderRadius: 12,
           position: "relative",
-          zIndex: 10
+          zIndex: 10,
         }}
       >
         <BusinessPane items={items} selectedId={selectedId} onSelect={setSelectedId} />
@@ -61,7 +56,7 @@ export default function SplitView() {
           borderRadius: 12,
           overflow: "hidden",
           position: "relative",
-          zIndex: 0
+          zIndex: 0,
         }}
       >
         <ClientMap items={items} selectedId={selectedId ?? undefined} onSelect={setSelectedId} />

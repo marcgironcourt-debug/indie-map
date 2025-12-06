@@ -290,7 +290,7 @@ export default function ClientMap({
     const preset = resolveCityCenter(searchCity);
     if (!preset) return;
     const map = mapRef.current;
-    map.flyTo(preset.center as any, preset.zoom ?? 12, { animate: true, duration: 0.8 });
+    map.flyTo(preset.center, preset.zoom ?? 12, { animate: true, duration: 0.8 });
   }, [searchCity]);
 
   React.useEffect(() => {

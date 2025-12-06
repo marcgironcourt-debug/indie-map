@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import MapPanel from "@/components/MapPanel";
 
 export type Business = {
@@ -244,6 +245,20 @@ function MobileBottomSheet({
   const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
   const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
 
+  type PlaceApi = {
+    id: string;
+    name: string;
+    category?: string;
+    address?: string;
+    website?: string;
+    openingHours?: string;
+    opening_hours?: string;
+    openinghours?: string;
+    lat?: number;
+    lng?: number;
+    city?: string;
+  };
+
   React.useEffect(() => {
   if (mode === "closed") {
     setAnimationState("closed");
@@ -485,7 +500,7 @@ export default function IndieMapSplitView() {
         if (!r.ok) throw new Error("Erreur de chargement");
         const j = await r.json();
         const arr = Array.isArray(j) ? j : j?.data || [];
-        const list: Business[] = arr.map((p: any) => ({
+        const list: Business[] = arr.map((p: PlaceApi) => ({
           id: p.id,
           name: p.name,
           type: normalizeCategoryLabel(p.category ?? "Lieu local"),
@@ -748,18 +763,18 @@ export default function IndieMapSplitView() {
             " rounded-full px-4 py-1 shadow-md flex items-center gap-6 text-xs font-medium"
           }
         >
-          <a href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
+          <Link href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
             <span>Pourquoi Indie Map ?</span>
-          </a>
-          <a href="/contribution" className="flex items-center gap-1 hover:opacity-80">
+          </Link>
+          <Link href="/contribution" className="flex items-center gap-1 hover:opacity-80">
             <span>Contribution</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/pour-les-commercants"
             className="flex items-center gap-1 hover:opacity-80"
           >
             <span>Espace commerçant</span>
-          </a>
+          </Link>
         </nav>
       </div>
 

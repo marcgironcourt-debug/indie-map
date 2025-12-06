@@ -18,8 +18,14 @@ export function useBusinesses() {
         if (!res.ok) throw new Error("HTTP " + res.status);
         const json = (await res.json()) as Business[];
         if (alive) setData(json);
-      } catch (e: any) {
-        if (alive) setError(e?.message ?? "Erreur inconnue");
+      } catch (e: unknown) {
+        if (alive) {
+          const message =
+            e instanceof Error
+              ? e.message
+              : "Erreur inconnue";
+          setError(message);
+        }
       } finally {
         if (alive) setLoading(false);
       }
