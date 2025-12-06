@@ -1,7 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-const IndieMapSplitView = dynamic(() => import("../components/IndieMapSplitView"), { ssr: false });
+import IndieMapSplitView from "@/components/IndieMapSplitView";
 
 export default function Page() {
   return (

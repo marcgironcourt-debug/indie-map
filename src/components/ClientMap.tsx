@@ -144,26 +144,18 @@ function MapClickClear({ onClear }: { onClear?: () => void }) {
   return null;
 }
 
-function MapViewPersistence({
-  onUpdate,
-}: {
-  onUpdate?: (center: [number, number], zoom: number) => void;
-}) {
+function MapViewPersistence() {
   const map = useMapEvents({
     moveend() {
       const c = map.getCenter();
       const z = map.getZoom();
-      const center: [number, number] = [c.lat, c.lng];
       const payload = {
-        center,
+        center: [c.lat, c.lng] as [number, number],
         zoom: z,
       };
       try {
         window.localStorage.setItem("indieMapView", JSON.stringify(payload));
       } catch {}
-      if (onUpdate) {
-        onUpdate(center, z);
-      }
     },
   });
   return null;
@@ -394,12 +386,7 @@ export default function ClientMap({
         className="h-full w-full"
         ref={mapRef}
       >
-        <MapViewPersistence
-          onUpdate={(c, z) => {
-            setCenter(c);
-            setZoom(z);
-          }}
-        />
+                <MapViewPersistence />
         <MapClickClear
           onClear={() => {
             if (onSelect) onSelect("");
