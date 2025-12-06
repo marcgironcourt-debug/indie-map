@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -63,7 +64,6 @@ function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "l
 function makePin(color: string, stroke: string, selected: boolean) {
   const size = selected ? 26 : 24;
   const height = selected ? 38 : 36;
-  const circleR = selected ? 4.5 : 4;
   const shadow = selected
     ? "<defs><filter id=\"shadow\"><feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" /></filter></defs>"
     : "";
@@ -147,19 +147,23 @@ function MapClickClear({ onClear }: { onClear?: () => void }) {
 function MapViewPersistence({
   onUpdate,
 }: {
-  onUpdate: (center: [number, number], zoom: number) => void;
+  onUpdate?: (center: [number, number], zoom: number) => void;
 }) {
   const map = useMapEvents({
     moveend() {
       const c = map.getCenter();
       const z = map.getZoom();
+      const center: [number, number] = [c.lat, c.lng];
       const payload = {
-        center: [c.lat, c.lng],
+        center,
         zoom: z,
       };
       try {
         window.localStorage.setItem("indieMapView", JSON.stringify(payload));
       } catch {}
+      if (onUpdate) {
+        onUpdate(center, z);
+      }
     },
   });
   return null;
@@ -513,9 +517,11 @@ export default function ClientMap({
                     {isFlo && (
   <div className="mt-2">
     <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-      <img
+      <Image
         src="/images/espace-flo-inside.jpg"
         alt="Intérieur Espace FLO"
+        width={800}
+        height={400}
         className="h-full w-full object-cover"
       />
     </div>
@@ -524,9 +530,11 @@ export default function ClientMap({
                     {isRacines && (
                       <div className="mt-2">
                         <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-                          <img
+                          <Image
                             src="/images/racines-boreales.jpg"
                             alt="Façade de Racines Boréales à Montréal"
+                            width={800}
+                            height={400}
                             className="h-full w-full object-cover"
                           />
                         </div>
@@ -535,9 +543,11 @@ export default function ClientMap({
 {isSuper && (
   <div className="mt-2">
     <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-      <img
+      <Image
         src="/images/super-condiments.jpg"
         alt="Super Condiments à Montréal"
+        width={800}
+        height={400}
         className="h-full w-full object-cover"
       />
     </div>

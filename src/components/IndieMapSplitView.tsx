@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import MapPanel from "@/components/MapPanel";
 
@@ -245,20 +246,6 @@ function MobileBottomSheet({
   const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
   const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
 
-  type PlaceApi = {
-    id: string;
-    name: string;
-    category?: string;
-    address?: string;
-    website?: string;
-    openingHours?: string;
-    opening_hours?: string;
-    openinghours?: string;
-    lat?: number;
-    lng?: number;
-    city?: string;
-  };
-
   React.useEffect(() => {
   if (mode === "closed") {
     setAnimationState("closed");
@@ -437,9 +424,11 @@ function MobileBottomSheet({
                   indémodables et exclusives.
                 </p>
                 <div className={floImageWrapperClass}>
-                  <img
+                  <Image
                     src="/images/espace-flo-inside.jpg"
                     alt="Intérieur Espace FLO"
+                    width={800}
+                    height={400}
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -452,9 +441,11 @@ function MobileBottomSheet({
                   Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici.
                 </p>
                 <div className={floImageWrapperClass}>
-                  <img
+                  <Image
                     src="/images/super-condiments.jpg"
                     alt="Super Condiments à Montréal"
+                    width={800}
+                    height={400}
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -467,9 +458,11 @@ function MobileBottomSheet({
                   Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée.
                 </p>
                 <div className={floImageWrapperClass}>
-                  <img
+                  <Image
                     src="/images/racines-boreales.jpg"
                     alt="Racines Boréales à Montréal"
+                    width={800}
+                    height={400}
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -500,7 +493,19 @@ export default function IndieMapSplitView() {
         if (!r.ok) throw new Error("Erreur de chargement");
         const j = await r.json();
         const arr = Array.isArray(j) ? j : j?.data || [];
-        const list: Business[] = arr.map((p: PlaceApi) => ({
+        const list: Business[] = arr.map((p: {
+          id: string;
+          name: string;
+          category?: string;
+          address?: string;
+          website?: string;
+          openingHours?: string;
+          opening_hours?: string;
+          openinghours?: string;
+          lat?: number;
+          lng?: number;
+          city?: string;
+        }) => ({
           id: p.id,
           name: p.name,
           type: normalizeCategoryLabel(p.category ?? "Lieu local"),
@@ -592,7 +597,6 @@ export default function IndieMapSplitView() {
     return k.includes("boulangerie");
   };
 
-  const hasClothing = rawCategories.some(isClothing);
   const hasBook = rawCategories.some(isBook);
   const hasGrocery = rawCategories.some(isGrocery);
   const hasRestaurant = rawCategories.some(isRestaurant);
