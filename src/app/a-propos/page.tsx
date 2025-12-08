@@ -2,54 +2,43 @@
 
 import Link from "next/link";
 
-export default function AboutPage() {
+export default function AProposPage() {
   return (
     <main className="min-h-[100dvh] bg-[#FDF7F2] text-neutral-900 flex flex-col">
       <header className="border-b border-[#E4D4C2] px-5 py-4 bg-[#4C5F34] text-white">
         <h1 className="text-xl font-semibold">Pourquoi Indie Map ?</h1>
         <p className="text-xs text-white/80 mt-1">
-          Parce qu’à chaque café, chaque pain, chaque livre acheté, on choisit à qui on donne de la force.
+          Une carte pour remettre le local au centre de nos quotidiens.
         </p>
       </header>
 
       <section className="flex-1 px-5 py-5 max-w-3xl w-full mx-auto text-sm leading-relaxed space-y-4">
         <p>
-          On a tous déjà eu cette sensation de marcher en ville sans vraiment la voir. Enchaîner les mêmes
-          enseignes, les mêmes rues, les mêmes réflexes. On consomme, on passe, on oublie. Mais derrière
-          chaque rue, il y a d’autres histoires&nbsp;: celles de personnes qui essaient de faire mieux,
-          à leur échelle.
+          Parce que consommer local, ce n&apos;est pas seulement soutenir un commerce. C&apos;est prendre soin de soi, des autres, et de la planète qui nous porte.
         </p>
 
         <p>
-          Indie Map est né de cette envie&nbsp;: rendre visible les lieux qui prennent soin des gens et du monde
-          qu&apos;on partage. Des cafés qui paient correctement leurs équipes, des épiceries qui limitent le
-          gaspillage, des friperies qui prolongent la vie des vêtements, des librairies qui tiennent encore
-          debout au milieu des algorithmes.
+          Chaque fois qu&apos;on choisit un lieu proche de nous, on renforce un écosystème vivant : des personnes qui cuisinent, qui cultivent, qui fabriquent avec respect. On réduit les distances parcourues, on limite le gaspillage, on reconnecte nos villes à leur propre vitalité.
         </p>
 
         <p>
-          Ici, chaque lieu est choisi à la main. Pas parce qu&apos;il est &quot;cool&quot; ou à la mode, mais
-          parce qu&apos;il incarne une manière plus juste de faire les choses&nbsp;: respect des personnes,
-          attention aux matières, ancrage local, démarche écoresponsable. La sélection est volontairement
-          limitée, pour garder du sens plutôt que faire du volume.
+          Indie Map est né de cette conviction simple : le local répare. Il répare la qualité de ce qu&apos;on met dans notre corps, la santé des sols, et la dignité des métiers qui disparaissent trop vite. Il redonne du poids à ce qui est proche, concret, humain.
         </p>
 
         <p>
-          Indie Map n&apos;est pas une carte parfaite. C&apos;est un outil simple pour celles et ceux qui
-          veulent aligner un peu plus leur quotidien avec leurs valeurs, sans tout changer d&apos;un coup.
-          Un café indépendant plutôt qu&apos;une grande chaîne. Une boulangerie de quartier plutôt qu&apos;un
-          rayon industriel. Une librairie vivante plutôt qu&apos;un panier oublié en ligne.
+          Ici, chaque lieu est choisi à la main, parce qu&apos;il incarne une manière plus juste de vivre et de consommer : ancrée, responsable, authentique.
         </p>
 
         <p>
-          À terme, l&apos;idée est double&nbsp;: rendre la vie plus facile à celles et ceux qui veulent
-          consommer autrement, et donner un vrai coup de pouce aux commerces qui essaient de tenir ce cap
-          dans un système qui ne les aide pas toujours.
+          Choisir un café indépendant, une épicerie locale, une boulangerie de quartier, ce n&apos;est pas un petit geste. C&apos;est une manière douce de dire :
         </p>
 
-        <p className="text-neutral-700">
-          Si tu utilises Indie Map, même ponctuellement, tu fais déjà partie de ces petits déplacements
-          qui, mis bout à bout, peuvent changer la manière dont une ville respire.
+        <p className="font-medium italic text-[16px]">
+          &quot;Je sais ce que je consomme, d&apos;où ça vient, et qui je soutiens en le faisant.&quot;
+        </p>
+
+        <p>
+          Si tu utilises Indie Map, même ponctuellement, tu participes déjà à ce mouvement qui reconnecte les villes à leurs racines.
         </p>
       </section>
 

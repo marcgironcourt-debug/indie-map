@@ -666,9 +666,14 @@ export default function IndieMapSplitView() {
     return b.type === category;
   });
 
-  const handleCitySearchSubmit = (event: React.FormEvent) => {
+  const handleCitySearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSearchCity(cityInput);
+    const value = cityInput.trim();
+    if (!value) {
+      setSearchCity("");
+      return;
+    }
+    setSearchCity(value);
   };
 
   const searchFormClass = darkMap
@@ -729,6 +734,17 @@ export default function IndieMapSplitView() {
               type="text"
               value={cityInput}
               onChange={(e) => setCityInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  const value = e.currentTarget.value.trim();
+                  if (!value) {
+                    setSearchCity("");
+                    return;
+                  }
+                  setSearchCity(value);
+                }
+              }}
               placeholder="Montréal, Paris..."
               className={searchInputClass}
             />

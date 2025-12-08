@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, CircleMarker, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -235,7 +235,7 @@ export default function ClientMap({
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-  const mapKey = React.useMemo(() => `${searchCity ?? "default"}`, [searchCity]);
+  const mapKey = React.useMemo(() => "main", []);
 
   const [center, setCenter] = React.useState<[number, number]>(() => {
     if (typeof window !== "undefined") {
@@ -271,15 +271,10 @@ export default function ClientMap({
     return 12;
   });
 
-  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+  const [userLocation, setUserLocation] = React.useState<[number, number] | null>(null);
 
-  React.useEffect(() => {
-    if (!searchCity) return;
-    const preset = resolveCityCenter(searchCity);
-    if (!preset) return;
-    setCenter(preset.center);
-    setZoom(preset.zoom);
-  }, [searchCity]);
+
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
   React.useEffect(() => {
     if (!searchCity || !mapRef.current) return;
@@ -319,6 +314,7 @@ export default function ClientMap({
         }
 
         console.log("GEO OK", latitude, longitude);
+        setUserLocation(target);
         mapRef.current.setView(target, 15, { animate: true });
       },
       (error) => {
@@ -610,6 +606,13 @@ export default function ClientMap({
             </Marker>
           );
         })}
+      {userLocation && (
+        <CircleMarker
+          center={userLocation}
+          radius={10}
+          pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }}
+        />
+      )}
       </MapContainer>
       <button
         type="button"
