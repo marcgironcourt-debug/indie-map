@@ -251,3 +251,25 @@ main {
 .bottom-sheet-transition {
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+
+/* Indie Map MapLibre popups – aligné sur Leaflet (fond transparent, pas de tip) */
+.maplibregl-popup,
+.maplibregl-popup-content,
+.maplibregl-popup-tip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.maplibregl-popup-content {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.maplibregl-popup-tip {
+  display: none !important;
+}
+
