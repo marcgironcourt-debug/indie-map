@@ -3,7 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const ClientMap = dynamic(() => import("./ClientMap"), { ssr: false });
+const ClientMap = dynamic(() => import("./GlobeMap"), { ssr: false });
 
 type Biz = {
   id: string;
