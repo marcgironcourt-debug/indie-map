@@ -8,6 +8,7 @@ import "leaflet/dist/leaflet.css";
 type Biz = {
   id: string;
   name: string;
+  city?: string | null;
   address?: string | null;
   website?: string | null;
   openingHours?: string | null;
@@ -64,7 +65,9 @@ function getCategoryEmotion(type: string): string {
 
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
-function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
+function normalizeType(
+  t?: string | null
+): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
   const v = (t || "").toLowerCase();
   if (v.includes("café") || v.includes("cafe") || v.includes("coffee") || v.includes("brunch")) return "cafe";
   if (v.includes("microbrasserie") || v.includes("brasserie") || v.includes("bar") || v.includes("pub")) return "microbrasserie";
@@ -103,9 +106,9 @@ function makePin(color: string, stroke: string, selected: boolean) {
   const size = selected ? 26 : 24;
   const height = selected ? 38 : 36;
   const shadow = selected
-    ? "<defs><filter id=\"shadow\"><feDropShadow dx=\"0\" dy=\"1\" stdDeviation=\"1.2\" flood-color=\"rgba(0,0,0,0.4)\" /></filter></defs>"
+    ? '<defs><filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="rgba(0,0,0,0.4)" /></filter></defs>'
     : "";
-  const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
+  const groupOpen = selected ? '<g filter="url(#shadow)">' : "";
   const groupClose = selected ? "</g>" : "";
   const html =
     '<svg width="' +
@@ -239,6 +242,7 @@ export default function ClientMap({
       {
         id: string;
         name: string;
+        city?: string | null;
         address?: string | null;
         website?: string | null;
         openingHours?: string | null;
@@ -256,6 +260,7 @@ export default function ClientMap({
         byId.set(b.id, {
           id: b.id,
           name: b.name,
+          city: b.city ?? null,
           address: b.address ?? null,
           website: b.website ?? null,
           openingHours: b.openingHours ?? null,
@@ -268,24 +273,22 @@ export default function ClientMap({
 
     return Array.from(byId.values());
   }, [items]);
+
   const mapRef = React.useRef<L.Map | null>(null);
+
   const tileUrl = darkMap
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   const mapKey = React.useMemo(() => "main", []);
 
-  const [center, setCenter] = React.useState<[number, number]>(() => {
+  const [center] = React.useState<[number, number]>(() => {
     if (typeof window !== "undefined") {
       try {
         const raw = window.localStorage.getItem("indieMapView");
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (
-            Array.isArray(parsed.center) &&
-            typeof parsed.center[0] === "number" &&
-            typeof parsed.center[1] === "number"
-          ) {
+          if (Array.isArray(parsed.center) && typeof parsed.center[0] === "number" && typeof parsed.center[1] === "number") {
             return [parsed.center[0], parsed.center[1]];
           }
         }
@@ -294,15 +297,13 @@ export default function ClientMap({
     return [45.5017, -73.5673];
   });
 
-  const [zoom, setZoom] = React.useState<number>(() => {
+  const [zoom] = React.useState<number>(() => {
     if (typeof window !== "undefined") {
       try {
         const raw = window.localStorage.getItem("indieMapView");
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (typeof parsed.zoom === "number") {
-            return parsed.zoom;
-          }
+          if (typeof parsed.zoom === "number") return parsed.zoom;
         }
       } catch {}
     }
@@ -310,7 +311,6 @@ export default function ClientMap({
   });
 
   const [userLocation, setUserLocation] = React.useState<[number, number] | null>(null);
-
 
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
@@ -335,7 +335,6 @@ export default function ClientMap({
 
   const handleLocate = React.useCallback(() => {
     if (!navigator.geolocation) {
-      console.warn("Geolocation non supportée par ce navigateur");
       alert("La géolocalisation n'est pas supportée par ce navigateur.");
       return;
     }
@@ -346,31 +345,25 @@ export default function ClientMap({
         const target: [number, number] = [latitude, longitude];
 
         if (!mapRef.current) {
-          console.warn("mapRef.current est null dans handleLocate");
           alert("La carte n'est pas encore prête. Réessaie dans une seconde.");
           return;
         }
 
-        console.log("GEO OK", latitude, longitude);
         setUserLocation(target);
         mapRef.current.setView(target, 15, { animate: true });
       },
       (error) => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            console.warn("Permission de géolocalisation refusée");
             alert("Tu as refusé la géolocalisation pour ce site. Vérifie les réglages de localisation.");
             break;
           case error.POSITION_UNAVAILABLE:
-            console.warn("Position indisponible");
             alert("La position est actuellement indisponible.");
             break;
           case error.TIMEOUT:
-            console.warn("Timeout de géolocalisation");
             alert("La demande de géolocalisation a expiré. Réessaie.");
             break;
           default:
-            console.warn("Erreur de géolocalisation inconnue", error);
             alert("Une erreur est survenue lors de la géolocalisation.");
         }
       },
@@ -387,11 +380,9 @@ export default function ClientMap({
     : "absolute z-[1300] top-4 left-4 flex items-center justify-center cursor-pointer";
 
   const locateTheme = "hover:opacity-90 transition";
-
   const locateButtonClass = locateBase + " " + locateTheme;
 
   const toggleBase = isMobile ? "absolute top-16 left-4 z-[1300]" : "absolute top-3 right-3 z-[1300]";
-
   const toggleButtonClass =
     toggleBase +
     " rounded-full p-[2px] shadow-md border " +
@@ -404,6 +395,9 @@ export default function ClientMap({
   const thumbClass =
     "absolute w-[18px] h-[18px] rounded-full bg-white shadow-sm border border-neutral-300 transform transition-transform duration-200 " +
     (darkMap ? "translate-x-[18px]" : "translate-x-[2px]");
+
+  const textileriePhoneDisplay = "+33 1 40 35 77 14";
+  const textileriePhoneTel = "+33140357714";
 
   return (
     <div style={{ height: "100%", width: "100%" }} className="relative">
@@ -420,18 +414,21 @@ export default function ClientMap({
         className="h-full w-full"
         ref={mapRef}
       >
-                <MapViewPersistence />
+        <MapViewPersistence />
         <MapClickClear
           onClear={() => {
             if (onSelect) onSelect("");
           }}
         />
         <TileLayer url={tileUrl} />
+
         {markers.map((b) => {
           const isFlo = b.name.trim().toLowerCase() === "espace flo";
           const isSuper = b.name.trim().toLowerCase() === "super condiments";
           const isRacines = b.name.trim().toLowerCase() === "racines boréales";
           const isPremium = isFlo || isSuper || isRacines;
+
+          const isTextilerieParis = b.id === "98ce3443-2512-4285-9b47-535d2a369cb4" || (b.name.trim().toLowerCase() === "la textilerie" && (b.city || "").trim().toLowerCase() === "paris");
 
           if (isMobile) {
             return (
@@ -460,13 +457,104 @@ export default function ClientMap({
               }}
             >
               <Popup autoPan autoPanPaddingTopLeft={[10, 200]} autoPanPaddingBottomRight={[10, 10]}>
-                {isPremium ? (
+                {isTextilerieParis ? (
+                  <div
+                    className={
+                      "max-w-xs rounded-[18px] overflow-hidden shadow-md border " +
+                      (darkMap ? "bg-neutral-900 border-neutral-700 text-white" : "bg-white border-[#E4D4C2] text-neutral-900")
+                    }
+                  >
+                    <div className="h-[150px] w-full bg-neutral-200">
+                      <Image
+                        src="/images/la-textilerie-paris.jpg"
+                        alt="La Textilerie"
+                        width={900}
+                        height={600}
+                        className="h-full w-full object-cover"
+                        priority={false}
+                      />
+                    </div>
+
+                    <div className="px-3 pt-2 pb-3 space-y-1.5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <h3 className="text-[15px] font-semibold leading-tight">{b.name}</h3>
+                          <div className="mt-0.5 text-[11px] opacity-80">Atelier textile · couture · réparation</div>
+                        </div>
+
+                        <div className="flex gap-2 shrink-0">
+                          <a
+                            href={
+                              "https://www.google.com/maps/dir/?api=1&destination=" +
+                              encodeURIComponent(b.address || `${b.latN},${b.lngN}`)
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={
+                              "inline-flex items-center justify-center rounded-full px-3 py-1 text-[11px] font-semibold border " +
+                              (darkMap ? "border-neutral-700 bg-black/40" : "border-neutral-300 bg-white")
+                            }
+                          >
+                            Itinéraire
+                          </a>
+
+                          <a
+                            href="https://www.latextilerie.fr"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={
+                              "inline-flex items-center justify-center rounded-full px-3 py-1 text-[11px] font-semibold border " +
+                              (darkMap ? "border-neutral-700 bg-black/40" : "border-neutral-300 bg-white")
+                            }
+                          >
+                            Site
+                          </a>
+                        </div>
+                      </div>
+
+                      <div className="pt-1 space-y-1 text-[11px]">
+                        <div className="opacity-90">📍 Paris</div>
+
+                        {b.address ? (
+                          <a
+                            href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block underline"
+                          >
+                            {b.address}
+                          </a>
+                        ) : null}
+
+                        <a href={"tel:" + textileriePhoneTel} className="block underline">
+                          📞 {textileriePhoneDisplay}
+                        </a>
+
+                        <a href="https://www.latextilerie.fr" target="_blank" rel="noopener noreferrer" className="block underline">
+                          🌐 latextilerie.fr
+                        </a>
+                      </div>
+
+                      {b.openingHours ? (
+                        <details className="mt-1 text-[11px] leading-snug group">
+                          <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
+                            Horaires
+                            <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">➤</span>
+                          </summary>
+                          <pre className="mt-1 whitespace-pre-wrap font-sans">{b.openingHours}</pre>
+                        </details>
+                      ) : null}
+
+                      <div className="pt-1 text-[11px] leading-snug opacity-85">
+                        À propos : atelier de couture, cours et réparation textile.
+                      </div>
+                    </div>
+                  </div>
+                ) : isPremium ? (
                   <div
                     className={
                       "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border " +
-                      (darkMap
-                        ? "bg-neutral-900 border-neutral-700 text-white"
-                        : "bg-white border-[#E4D4C2] text-neutral-900")
+                      (darkMap ? "bg-neutral-900 border-neutral-700 text-white" : "bg-white border-[#E4D4C2] text-neutral-900")
                     }
                   >
                     <div className="flex flex-col gap-1.5">
@@ -480,8 +568,7 @@ export default function ClientMap({
                           </div>
                         </div>
 
-
-                    {b.website && (
+                        {b.website && (
                           <a
                             href={b.website}
                             target="_blank"
@@ -496,10 +583,7 @@ export default function ClientMap({
 
                       {b.address && (
                         <a
-                          href={
-                            "https://www.google.com/maps/search/?api=1&query=" +
-                            encodeURIComponent(b.address)
-                          }
+                          href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-[11px] underline"
@@ -512,38 +596,30 @@ export default function ClientMap({
                         <details className="mt-1 text-[11px] leading-snug group">
                           <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                             Horaires
-                            <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
-                              ➤
-                            </span>
+                            <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">➤</span>
                           </summary>
-                          <pre className="mt-1 whitespace-pre-wrap font-sans">
-                            {b.openingHours}
-                          </pre>
+                          <pre className="mt-1 whitespace-pre-wrap font-sans">{b.openingHours}</pre>
                         </details>
                       ) : (
-                        <p className="text-[10px]">
-                          Horaires : voir le site
-                        </p>
+                        <p className="text-[10px]">Horaires : voir le site</p>
                       )}
                     </div>
 
-                    <p className="mt-2 text-[11px] leading-snug">
-      {getCategorySentence(b.type)}
-    </p>
+                    <p className="mt-2 text-[11px] leading-snug">{getCategoryEmotion(b.type || "")}</p>
 
                     {isFlo && (
-  <div className="mt-2">
-    <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-      <Image
-        src="/images/espace-flo-inside.jpg"
-        alt="Intérieur Espace FLO"
-        width={800}
-        height={400}
-        className="h-full w-full object-cover"
-      />
-    </div>
-  </div>
-)}
+                      <div className="mt-2">
+                        <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                          <Image
+                            src="/images/espace-flo-inside.jpg"
+                            alt="Intérieur Espace FLO"
+                            width={800}
+                            height={400}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
                     {isRacines && (
                       <div className="mt-2">
                         <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
@@ -557,43 +633,36 @@ export default function ClientMap({
                         </div>
                       </div>
                     )}
-{isSuper && (
-  <div className="mt-2">
-    <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
-      <Image
-        src="/images/super-condiments.jpg"
-        alt="Super Condiments à Montréal"
-        width={800}
-        height={400}
-        className="h-full w-full object-cover"
-      />
-    </div>
-  </div>
-)}
+                    {isSuper && (
+                      <div className="mt-2">
+                        <div className="h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200">
+                          <Image
+                            src="/images/super-condiments.jpg"
+                            alt="Super Condiments à Montréal"
+                            width={800}
+                            height={400}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div
                     className={
                       "space-y-1 max-w-xs rounded-[14px] px-3 py-2 shadow-sm border " +
-                      (darkMap
-                        ? "bg-neutral-900 border-neutral-700 text-white"
-                        : "bg-white border-[#E4D4C2] text-neutral-900")
+                      (darkMap ? "bg-neutral-900 border-neutral-700 text-white" : "bg-white border-[#E4D4C2] text-neutral-900")
                     }
                   >
-                    <h3 className="font-semibold text-sm">
-                      {b.name}
-                    </h3>
+                    <h3 className="font-semibold text-sm">{b.name}</h3>
+
                     {BUSINESS_DESCRIPTIONS[b.name] && (
-                      <p className="mt-0.5 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-                        {BUSINESS_DESCRIPTIONS[b.name]}
-                      </p>
+                      <p className="mt-0.5 text-[11px] leading-snug text-[hsl(var(--leaf))]">{BUSINESS_DESCRIPTIONS[b.name]}</p>
                     )}
+
                     {b.address && (
                       <a
-                        href={
-                          "https://www.google.com/maps/search/?api=1&query=" +
-                          encodeURIComponent(b.address)
-                        }
+                        href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(b.address)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs underline"
@@ -601,35 +670,27 @@ export default function ClientMap({
                         {b.address}
                       </a>
                     )}
+
                     {b.openingHours ? (
                       <details className="mt-1 text-[11px] leading-snug group">
                         <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
                           Horaires
-                          <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
-                            ➤
-                          </span>
+                          <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">➤</span>
                         </summary>
-                        <pre className="mt-1 whitespace-pre-wrap font-sans">
-                          {b.openingHours}
-                        </pre>
+                        <pre className="mt-1 whitespace-pre-wrap font-sans">{b.openingHours}</pre>
                       </details>
                     ) : (
-                      <p className="text-xs">
-                        Horaires : voir le site
-                      </p>
+                      <p className="text-xs">Horaires : voir le site</p>
                     )}
-                    <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-      {getCategorySentence(renderedBusiness.type)}
-    </p>
+
+                    <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">{getCategoryEmotion(b.type || "")}</p>
+
                     {b.website && (
                       <a
                         href={b.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={
-                          "inline-block text-xs underline " +
-                          (darkMap ? "text-amber-300" : "text-amber-700")
-                        }
+                        className={"inline-block text-xs underline " + (darkMap ? "text-amber-300" : "text-amber-700")}
                       >
                         Site web
                       </a>
@@ -640,39 +701,25 @@ export default function ClientMap({
             </Marker>
           );
         })}
-      {userLocation && (
-        <CircleMarker
-          center={userLocation}
-          radius={10}
-          pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }}
-        />
-      )}
+
+        {userLocation && (
+          <CircleMarker center={userLocation} radius={10} pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }} />
+        )}
       </MapContainer>
-      <button
-        type="button"
-        className={locateButtonClass}
-        onClick={handleLocate}
-        aria-label="Me localiser"
-      >
+
+      <button type="button" className={locateButtonClass} onClick={handleLocate} aria-label="Me localiser">
         <span
-        className={
-          "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
-          (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
-        }
-      >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="h-8 w-8"
-          >
-                        
-                        <polygon
-              points="12,6 9,16 12,14 15,16"
-              fill={darkMap ? "white" : "black"}
-            />
+          className={
+            "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
+            (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
+          }
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8">
+            <polygon points="12,6 9,16 12,14 15,16" fill={darkMap ? "white" : "black"} />
           </svg>
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => {

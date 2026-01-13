@@ -158,6 +158,8 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const addressRaw = String(p?.address ?? "");
   const websiteRaw = String(p?.website ?? "");
   const openingHoursRaw = String(p?.openingHours ?? "");
+  const latRaw = Number(p?.lat);
+  const lngRaw = Number(p?.lng);
 
   const isFlo = nameRaw.trim().toLowerCase() === "espace flo";
   const isSuper = nameRaw.trim().toLowerCase() === "super condiments";
@@ -196,14 +198,18 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold shadow-sm hover:bg-[#5C6E3B] transition\" style=\"color:#000000\">Site web</a>"
     : "";
 
-  const addressLink = addressRaw
-    ? "<a href=\"https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent(addressRaw) +
-      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"" +
-      (isPremium ? "text-[11px] underline" : "text-xs underline") +
+  const addressBlock = addressRaw
+    ? "<div class=\"mt-1\">" +
+      "<a href=\"https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(addressRaw) +
+      "\" data-addr=\"" +
+        escapeHtml(addressRaw) +
+      "\" onclick=\"(function(el){try{var raw=el.getAttribute('data-addr')||'';var q=encodeURIComponent(raw);var ua=navigator.userAgent||'';if(/iPhone|iPad|iPod/i.test(ua)){window.location.href='maps://?q='+q;}else{window.location.href='geo:0,0?q='+q;}}catch(e){} })(this);\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"" +
+        (isPremium ? "text-[11px] underline font-medium" : "text-xs underline font-medium") +
       "\">" +
-      escapeHtml(addressRaw) +
-      "</a>"
+        escapeHtml(addressRaw) +
+      "</a>" +
+    "</div>"
     : "";
 
   const hoursBlock = openingHoursRaw
@@ -237,6 +243,14 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       "\">Site web</a>"
     : "";
 
+  const routeBlock = Number.isFinite(latRaw) && Number.isFinite(lngRaw)
+    ? "<div class=\"mt-1\">" +
+        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
+      "</div>"
+    : "";
+
+
+
   const normalDesc =
     desc
       ? "<p class=\"mt-0.5 text-[11px] leading-snug text-[hsl(var(--leaf))]\">" + escapeHtml(desc) + "</p>"
@@ -260,7 +274,8 @@ function buildPopupHtml(p: any, darkMap: boolean) {
             "</div>" +
             websitePremium +
           "</div>" +
-          (addressLink ? addressLink : "") +
+          (addressBlock ? addressBlock : "") +
+          (routeBlock ? routeBlock : "") +
           hoursBlock +
         "</div>" +
         "<p class=\"mt-2 text-[11px] leading-snug\">" + escapeHtml(premiumText) + "</p>" +
@@ -273,8 +288,9 @@ function buildPopupHtml(p: any, darkMap: boolean) {
     "<div class=\"" + wrapNormal + "\">" +
       "<h3 class=\"font-semibold text-sm\">" + name + "</h3>" + _textilerieImg +
       normalDesc +
-      (addressLink ? addressLink : "") +
-      hoursBlock +
+      (addressBlock ? addressBlock : "") +
+      (routeBlock ? routeBlock : "") +
+          hoursBlock +
       normalFooter +
       websiteNormal +
     "</div>"
@@ -299,6 +315,8 @@ export default function GlobeMap({
 
   const SOURCE_ID = "indie-places";
   const LAYER_ID = "indie-places-pin";
+  const ROUTE_SOURCE_ID = "indie-route";
+  const ROUTE_LAYER_ID = "indie-route-line";
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
@@ -369,6 +387,102 @@ export default function GlobeMap({
     } catch {
       return null;
     }
+
+  function ensureRouteLayer(map: maplibregl.Map) {
+    try {
+      if (!map.getSource(ROUTE_SOURCE_ID)) {
+        map.addSource(ROUTE_SOURCE_ID, {
+          type: "geojson",
+          data: { type: "FeatureCollection", features: [] },
+        } as any);
+      }
+      if (!map.getLayer(ROUTE_LAYER_ID)) {
+        map.addLayer({
+          id: ROUTE_LAYER_ID,
+          type: "line",
+          source: ROUTE_SOURCE_ID,
+          layout: { "line-join": "round", "line-cap": "round" },
+          paint: { "line-width": 3, "line-opacity": 0.9, "line-color": "#F59E0B", "line-dasharray": [1.5, 1.5] },
+        } as any);
+      }
+    } catch {}
+  }
+
+  function setRouteGeojson(map: maplibregl.Map, geojson: any) {
+    try {
+      const src = map.getSource(ROUTE_SOURCE_ID) as any;
+      if (src && src.setData) src.setData(geojson);
+    } catch {}
+  }
+
+  async function routeTo(destLng: number, destLat: number) {
+    const m = mapRef.current;
+    if (!m) return;
+
+    try { ensureRouteLayer(m); } catch {}
+
+    const getPos = () =>
+      new Promise<GeolocationPosition>((resolve, reject) => {
+        if (!navigator.geolocation) return reject(new Error("no geolocation"));
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve(pos),
+          (err) => reject(err),
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      });
+
+    let pos: GeolocationPosition;
+    try {
+      pos = await getPos();
+    } catch {
+      return;
+    }
+
+    const fromLng = Number(pos.coords.longitude);
+    const fromLat = Number(pos.coords.latitude);
+
+    const url =
+      "https://router.project-osrm.org/route/v1/driving/" +
+      fromLng + "," + fromLat + ";" + destLng + "," + destLat +
+      "?overview=full&geometries=geojson&steps=false";
+
+    let data: any;
+    try {
+      const r = await fetch(url);
+      if (!r.ok) return;
+      data = await r.json();
+    } catch {
+      return;
+    }
+
+    const coords = data?.routes?.[0]?.geometry?.coordinates;
+    if (!Array.isArray(coords) || coords.length < 2) return;
+
+    const fc = {
+      type: "FeatureCollection",
+      features: [
+        { type: "Feature", geometry: { type: "LineString", coordinates: coords }, properties: {} },
+      ],
+    };
+
+    try { ensureRouteLayer(m); } catch {}
+    setRouteGeojson(m, fc);
+
+    try {
+      let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+      for (const c of coords) {
+        const x = Number(c?.[0]), y = Number(c?.[1]);
+        if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+        if (x < minLng) minLng = x;
+        if (y < minLat) minLat = y;
+        if (x > maxLng) maxLng = x;
+        if (y > maxLat) maxLat = y;
+      }
+      if (Number.isFinite(minLng)) {
+        m.fitBounds([[minLng, minLat], [maxLng, maxLat]] as any, { padding: 60, duration: 800 });
+      }
+    } catch {}
+  }
   }
 
   function ensureLayer(map: maplibregl.Map) {
@@ -452,6 +566,24 @@ export default function GlobeMap({
             .setLngLat([lng, lat])
             .setHTML(buildPopupHtml(props, Boolean(darkMap)))
             .addTo(map);
+
+          try {
+            const el = popupRef.current?.getElement();
+            const btn = el?.querySelector('[data-route="1"]');
+            if (btn) {
+              const run = (ev: any) => {
+                try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                try {
+                  const fn = (window as any).__indieRouteTo;
+                  if (fn) fn(lng, lat);
+                } catch {}
+              };
+              btn.addEventListener("click", run);
+              btn.addEventListener("pointerup", run);
+              btn.addEventListener("touchstart", run, { passive: false });
+              btn.addEventListener("touchend", run, { passive: false });
+            }
+          } catch {}
         };
 
         const z = map.getZoom();
@@ -501,6 +633,8 @@ export default function GlobeMap({
           address: b.address ?? "",
           website: b.website ?? "",
           openingHours: b.openingHours ?? "",
+          lat: Number(b.lat),
+          lng: Number(b.lng),
           kind,
           isPremium,
           selected: activeId != null && id === activeId,
@@ -529,6 +663,128 @@ export default function GlobeMap({
     });
 
     mapRef.current = map;
+
+    (window as any).__indieRouteTo = async (destLng: number, destLat: number) => {
+      const m = mapRef.current;
+      if (!m) return;
+
+      const ROUTE_SOURCE_ID = "indie-route";
+      const ROUTE_LAYER_ID = "indie-route-line";
+
+      try {
+        if (!m.getSource(ROUTE_SOURCE_ID)) {
+          m.addSource(ROUTE_SOURCE_ID, {
+            type: "geojson",
+            data: { type: "FeatureCollection", features: [] },
+          } as any);
+        }
+
+        if (!m.getLayer(ROUTE_LAYER_ID + "-halo")) {
+          m.addLayer({
+            id: ROUTE_LAYER_ID + "-halo",
+            type: "line",
+            source: ROUTE_SOURCE_ID,
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: {
+              "line-width": 7,
+              "line-opacity": 0.35,
+              "line-color": "#FDE68A",
+            },
+          } as any);
+        } else {
+          m.setPaintProperty(ROUTE_LAYER_ID + "-halo", "line-width", 7);
+          m.setPaintProperty(ROUTE_LAYER_ID + "-halo", "line-opacity", 0.35);
+          m.setPaintProperty(ROUTE_LAYER_ID + "-halo", "line-color", "#F3EBDD");
+        }
+
+        if (!m.getLayer(ROUTE_LAYER_ID)) {
+          m.addLayer({
+            id: ROUTE_LAYER_ID,
+            type: "line",
+            source: ROUTE_SOURCE_ID,
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: {
+              "line-width": 3.5,
+              "line-opacity": 1,
+              "line-color": "#F59E0B",
+              "line-dasharray": [1.5, 1.5],
+            },
+          } as any);
+        } else {
+          m.setPaintProperty(ROUTE_LAYER_ID, "line-width", 3.5);
+          m.setPaintProperty(ROUTE_LAYER_ID, "line-opacity", 1);
+          m.setPaintProperty(ROUTE_LAYER_ID, "line-color", "#728A4A");
+          m.setPaintProperty(ROUTE_LAYER_ID, "line-dasharray", [1.5, 1.5]);
+          m.setPaintProperty(ROUTE_LAYER_ID, "line-color", "#F59E0B");
+          m.setPaintProperty(ROUTE_LAYER_ID + "-halo", "line-color", "#FDE68A");
+
+        }
+      } catch {}
+      const getPos = () =>
+        new Promise((resolve, reject) => {
+          if (!navigator.geolocation) return reject(new Error("no geolocation"));
+          navigator.geolocation.getCurrentPosition(
+            (pos) => resolve(pos),
+            (err) => reject(err),
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+          );
+        });
+
+      let pos;
+      try {
+        pos = await getPos();
+      } catch {
+        try { alert("Localisation bloquée. Sur iPhone, ouvre Indie Map en HTTPS (pas http://192.168...). Autorise aussi la localisation dans Safari."); } catch {}
+        return;
+      }
+
+      const fromLng = Number(pos.coords.longitude);
+      const fromLat = Number(pos.coords.latitude);
+
+      const url =
+        "https://router.project-osrm.org/route/v1/driving/" +
+        fromLng + "," + fromLat + ";" + destLng + "," + destLat +
+        "?overview=full&geometries=geojson&steps=false";
+
+      let data;
+      try {
+        const r = await fetch(url);
+        if (!r.ok) return;
+        data = await r.json();
+      } catch {
+        return;
+      }
+
+      const coords = data?.routes?.[0]?.geometry?.coordinates;
+      if (!Array.isArray(coords) || coords.length < 2) return;
+
+      const fc = {
+        type: "FeatureCollection",
+        features: [
+          { type: "Feature", geometry: { type: "LineString", coordinates: coords }, properties: {} },
+        ],
+      };
+
+      try {
+        const src = m.getSource(ROUTE_SOURCE_ID) as any;
+        if (src && src.setData) src.setData(fc);
+      } catch {}
+
+      try {
+        let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
+        for (const c of coords) {
+          const x = Number(c?.[0]), y = Number(c?.[1]);
+          if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+          if (x < minLng) minLng = x;
+          if (y < minLat) minLat = y;
+          if (x > maxLng) maxLng = x;
+          if (y > maxLat) maxLat = y;
+        }
+        if (Number.isFinite(minLng)) {
+          m.fitBounds([[minLng, minLat], [maxLng, maxLat]] as any, { padding: 60, duration: 800 });
+        }
+      } catch {}
+    };
 
     map.addControl(
       new maplibregl.NavigationControl({ visualizePitch: true }),
