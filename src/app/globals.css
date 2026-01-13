@@ -190,12 +190,7 @@ main {
 }
 
 @media (max-width: 767px) {
-  .indie-filter-bar {
-    right: 16px;
-    width: min(380px, 80vw);
-    bottom: 8vh;
   }
-}
 
 /* --- FIX POPUP MODE CLAIR / SOMBRE --- */
 

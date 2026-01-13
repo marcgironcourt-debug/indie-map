@@ -223,17 +223,14 @@ export default function ClientMap({
   items = [],
   selectedId,
   selectionVersion,
-  onSelect,
-  searchCity,
-  darkMap = false,
+  onSelect,  darkMap = false,
   onToggleDarkMap,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
-  searchCity?: string;
-  darkMap?: boolean;
+    darkMap?: boolean;
   onToggleDarkMap?: () => void;
 }) {
   const markers = React.useMemo(() => {
@@ -315,30 +312,7 @@ export default function ClientMap({
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
   React.useEffect(() => {
-    if (!searchCity || !mapRef.current) return;
-    const preset = resolveCityCenter(searchCity);
-    if (!preset) return;
-    const map = mapRef.current;
-    map.flyTo(preset.center, preset.zoom ?? 12, { animate: true, duration: 0.8 });
-  }, [searchCity]);
-
-  React.useEffect(() => {
-    if (!selectedId || !mapRef.current) return;
-    const map = mapRef.current;
-    const m = markers.find((mm) => mm.id === selectedId);
-    if (!m) return;
-    const target = L.latLng(m.latN, m.lngN);
-    const currentZoom = map.getZoom();
-    const targetZoom = Math.max(currentZoom || 2, 13);
-    map.flyTo(target, targetZoom, { animate: true, duration: 0.8 });
-  }, [selectedId, selectionVersion, markers]);
-
-  const handleLocate = React.useCallback(() => {
-    if (!navigator.geolocation) {
-      alert("La géolocalisation n'est pas supportée par ce navigateur.");
-      return;
-    }
-
+    
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;

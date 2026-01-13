@@ -21,7 +21,6 @@ export default function MapPanel({
   selectedId,
   selectionVersion,
   onSelect,
-  searchCity,
   darkMap,
   onToggleDarkMap,
 }: {
@@ -29,8 +28,7 @@ export default function MapPanel({
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
-  searchCity?: string;
-  darkMap?: boolean;
+    darkMap?: boolean;
   onToggleDarkMap?: () => void;
 }) {
   return (
@@ -40,9 +38,7 @@ export default function MapPanel({
           items={items}
           selectedId={selectedId}
           selectionVersion={selectionVersion}
-          onSelect={onSelect}
-          searchCity={searchCity}
-          darkMap={darkMap}
+          onSelect={onSelect}          darkMap={darkMap}
           onToggleDarkMap={onToggleDarkMap}
         />
       </div>

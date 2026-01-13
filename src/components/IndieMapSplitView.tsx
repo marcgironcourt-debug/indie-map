@@ -268,60 +268,58 @@ function FilterBar({
   dark,
 }: {
   categories: string[];
-  activeCategory: string | "ALL";
-  onCategoryChange: (value: string | "ALL") => void;
+  activeCategory: string | null;
+  onCategoryChange: (c: string | null) => void;
   dark: boolean;
 }) {
-  const [showAll, setShowAll] = React.useState(false);
-  const MAX = 3;
-  const visible = showAll ? categories : categories.slice(0, MAX);
-  const hidden = showAll ? 0 : Math.max(0, categories.length - MAX);
+  const rowClass =
+    "flex items-center gap-2 px-6 py-2 overflow-x-auto whitespace-nowrap";
 
-  const moreButtonClass = dark
-    ? "rounded-full px-3 py-1 text-[11px] font-medium bg-neutral-900/80 text-neutral-100 border border-neutral-600 shadow-sm hover:bg-neutral-800"
-    : "rounded-full px-3 py-1 text-[11px] font-medium bg-[#A7A7A7] text-black border border-[#7A7A7A] shadow-sm hover:bg-[#8F8F8F]";
+  const btnBase =
+    "inline-flex shrink-0 items-center rounded-full px-3 py-1 text-xs font-semibold transition border";
+
+  const btnOff = dark
+    ? "bg-neutral-900/60 text-neutral-100 border-neutral-700 hover:bg-neutral-800/60"
+    : "bg-white/80 text-neutral-900 border-neutral-200 hover:bg-neutral-50";
+
+  const btnOn = "bg-[#E4D4C2] text-neutral-900 border-transparent";
 
   return (
-    <div className="flex flex-wrap gap-1.5 justify-end">
-      <FilterPill
-        label="Tous"
-        active={activeCategory === "ALL"}
-        onClick={() => onCategoryChange("ALL")}
-        dark={dark}
-      />
+    <div
+      className={rowClass}
+      style={{
+        WebkitOverflowScrolling: "touch",
+        scrollbarWidth: "none" as any,
+        msOverflowStyle: "none" as any,
+        scrollPaddingLeft: 24 as any,
+        scrollPaddingRight: 24 as any,
+      }}
+    >
+      <button
+        type="button"
+        className={btnBase + " " + (activeCategory == null ? btnOn : btnOff)}
+        onClick={() => onCategoryChange(null)}
+      >
+        Tous
+      </button>
 
-      {visible.map((cat) => (
-        <FilterPill
-          key={cat}
-          label={cat}
-          active={activeCategory === cat}
-          onClick={() => onCategoryChange(cat)}
-          dark={dark}
-        />
-      ))}
-
-      {hidden > 0 && !showAll && (
-        <button
-          type="button"
-          onClick={() => setShowAll(true)}
-          className={moreButtonClass}
-        >
-          +{hidden}
-        </button>
-      )}
-
-      {showAll && (
-        <button
-          type="button"
-          onClick={() => setShowAll(false)}
-          className={moreButtonClass}
-        >
-          - masquer
-        </button>
-      )}
+      {categories.map((c) => {
+        const active = activeCategory === c;
+        return (
+          <button
+            key={c}
+            type="button"
+            className={btnBase + " " + (active ? btnOn : btnOff)}
+            onClick={() => onCategoryChange(c)}
+          >
+            {c}
+          </button>
+        );
+      })}
     </div>
   );
 }
+
 
 function MobileBottomSheet({
   business,
@@ -367,8 +365,8 @@ function MobileBottomSheet({
   const isPremium = isFlo || isSuper || isRacines;
 
   const sheetOuterClass = dark
-    ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-hidden"
-    : "mx-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-hidden";
+    ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-visible"
+    : "mx-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-visible";
 
   const titleClass = dark
     ? "text-[15px] font-semibold text-neutral-50 truncate"
@@ -576,9 +574,7 @@ export default function IndieMapSplitView() {
   const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
   const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
-  const [cityInput, setCityInput] = React.useState("");
-  const [searchCity, setSearchCity] = React.useState("");
-  const [darkMap, setDarkMap] = React.useState(false);
+      const [darkMap, setDarkMap] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -761,33 +757,7 @@ export default function IndieMapSplitView() {
     return b.type === category;
   });
 
-  const handleCitySearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const value = cityInput.trim();
-    if (!value) {
-      setSearchCity("");
-      return;
-    }
-    setSearchCity(value);
-  };
-
-  const searchFormClass = darkMap
-    ? "flex items-center gap-2 rounded-full bg-neutral-900/95 border border-neutral-700 px-3 py-1.5 shadow-sm"
-    : "flex items-center gap-2 rounded-full bg-white/95 border border-neutral-300 px-3 py-1.5 shadow-sm";
-
-  const searchLabelClass = darkMap
-    ? "text-[11px] text-neutral-300"
-    : "text-[11px] text-neutral-500";
-
-  const searchInputClass = darkMap
-    ? "flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-50 placeholder:text-neutral-500 focus:outline-none"
-    : "flex-1 bg-transparent text-[16px] md:text-[11px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none";
-
-  const clearButtonClass = darkMap
-    ? "text-[11px] text-neutral-300"
-    : "text-[11px] text-neutral-500";
-
-  return (
+            return (
     <div className="h-full w-full relative">
       <div className="absolute inset-0">
         <MapPanel
@@ -811,61 +781,20 @@ export default function IndieMapSplitView() {
             if (typeof window !== "undefined" && window.innerWidth < 768) {
               setSheetMode("peek");
             }
-          }}
-          searchCity={searchCity}
-          darkMap={darkMap}
+          }}          darkMap={darkMap}
           onToggleDarkMap={() => setDarkMap((prev) => !prev)}
         />
       </div>
 
-      <div className="absolute top-3 left-0 right-0 z-[1300] pointer-events-none flex justify-center">
-        <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[420px]">
-          <form
-            onSubmit={handleCitySearchSubmit}
-            className={searchFormClass}
-          >
-            <span className={searchLabelClass}>Ville</span>
-            <input
-              type="text"
-              value={cityInput}
-              onChange={(e) => setCityInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  const value = e.currentTarget.value.trim();
-                  if (!value) {
-                    setSearchCity("");
-                    return;
-                  }
-                  setSearchCity(value);
-                }
-              }}
-              placeholder="Montréal, Paris..."
-              className={searchInputClass}
-            />
-            {cityInput && (
-              <button
-                type="button"
-                onClick={() => {
-                  setCityInput("");
-                  setSearchCity("");
-                }}
-                className={clearButtonClass}
-              >
-                ✕
-              </button>
-            )}
-          </form>
-        </div>
-      </div>
-
-      <div className="absolute bottom-[10vh] md:bottom-6 right-4 z-[1400] w-[min(380px,60vw)] indie-filter-bar">
-        <FilterBar
+            <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none flex justify-center">
+        <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[520px] overflow-visible">
+          <FilterBar
           categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory}
           dark={darkMap}
         />
+        </div>
       </div>
 
 

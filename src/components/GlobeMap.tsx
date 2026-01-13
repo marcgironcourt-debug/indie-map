@@ -151,7 +151,8 @@ function svgToDataUri(svg: string) {
 function buildPopupHtml(p: any, darkMap: boolean) {
   const _popupProps = p;
   const _lowerName = String((_popupProps as any)?.name ?? (_popupProps as any)?.title ?? "").trim().toLowerCase();
-  const _textilerieImg = _lowerName.includes("textilerie") ? "<img src=\"/images/textilerie.webp\" alt=\"Textilerie\" class=\"mt-2 w-full rounded-xl object-cover\" />" : "";
+  const _textilerieImg = _lowerName.includes("textilerie") ? "<img src=\"/images/textilerie.webp\" alt=\"Textilerie\" class=\"mt-2 w-full rounded-2xl object-cover\" />" : "";
+
   const nameRaw = String(p?.name ?? "");
   const name = escapeHtml(nameRaw || "Lieu");
   const typeRaw = String(p?.type ?? "");
@@ -180,16 +181,10 @@ function buildPopupHtml(p: any, darkMap: boolean) {
 
   const desc = BUSINESS_DESCRIPTIONS[nameRaw] ? String(BUSINESS_DESCRIPTIONS[nameRaw]) : "";
 
-  const wrapPremium =
-    "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border bg-[#2f2f23] border-[#3a3a2a] text-[#f5f5e8]";
-
-  const wrapNormal =
-    "space-y-1 max-w-xs rounded-[14px] px-3 py-2 shadow-sm border bg-[#2f2f23] border-[#3a3a2a] text-[#f5f5e8]";
-
-  const websitePremium = websiteRaw
+  const websiteBtn = websiteRaw
     ? "<a href=\"" +
       escapeHtml(websiteRaw) +
-      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center rounded-full bg-[#728A4A] px-2 py-1 text-[10px] font-semibold shadow-sm hover:bg-[#5C6E3B] transition\" style=\"color:#000000\">Site web</a>"
+      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1.5 text-[11px] font-semibold shadow-sm hover:opacity-95 transition\" style=\"color:#000000\">Site web</a>"
     : "";
 
   const addressBlock = addressRaw
@@ -198,98 +193,93 @@ function buildPopupHtml(p: any, darkMap: boolean) {
         encodeURIComponent(addressRaw) +
       "\" data-addr=\"" +
         escapeHtml(addressRaw) +
-      "\" onclick=\"(function(el){try{var raw=el.getAttribute('data-addr')||'';var q=encodeURIComponent(raw);var ua=navigator.userAgent||'';if(/iPhone|iPad|iPod/i.test(ua)){window.location.href='maps://?q='+q;}else{window.location.href='geo:0,0?q='+q;}}catch(e){} })(this);\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"" +
-        (isPremium ? "text-[11px] underline font-medium" : "text-xs underline font-medium") +
-      "\">" +
+      "\" onclick=\"(function(el){try{var raw=el.getAttribute('data-addr')||'';var q=encodeURIComponent(raw);var ua=navigator.userAgent||'';if(/iPhone|iPad|iPod/i.test(ua)){window.location.href='maps://?q='+q;}else{window.location.href='geo:0,0?q='+q;}}catch(e){} })(this);\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] underline font-medium\">" +
         escapeHtml(addressRaw) +
       "</a>" +
-    "</div>"
-    : "";
-
-  const hoursBlock = openingHoursRaw
-    ? "<details class=\"mt-1 text-[11px] leading-snug group\">" +
-      "<summary class=\"cursor-pointer select-none font-medium flex items-center gap-1\">" +
-      "Horaires" +
-      "<span class=\"text-red-600 inline-block transition-transform duration-200 group-open:rotate-90\">➤</span>" +
-      "</summary>" +
-      "<pre class=\"mt-1 whitespace-pre-wrap font-sans\">" +
-      escapeHtml(openingHoursRaw) +
-      "</pre>" +
-      "</details>"
-    : "<p class=\"" + (isPremium ? "text-[10px]" : "text-xs") + "\">Horaires : voir le site</p>";
-
-  const premiumImages =
-    (isFlo
-      ? "<div class=\"mt-2\"><div class=\"h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200\"><img src=\"/images/espace-flo-inside.jpg\" alt=\"Intérieur Espace FLO\" class=\"h-full w-full object-cover\" /></div></div>"
-      : "") +
-    (isRacines
-      ? "<div class=\"mt-2\"><div class=\"h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200\"><img src=\"/images/racines-boreales.jpg\" alt=\"Façade de Racines Boréales à Montréal\" class=\"h-full w-full object-cover\" /></div></div>"
-      : "") +
-    (isSuper
-      ? "<div class=\"mt-2\"><div class=\"h-[120px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200\"><img src=\"/images/super-condiments.jpg\" alt=\"Super Condiments à Montréal\" class=\"h-full w-full object-cover\" /></div></div>"
-      : "");
-
-  const websiteNormal = websiteRaw
-    ? "<a href=\"" +
-      escapeHtml(websiteRaw) +
-      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"" +
-      ("inline-block text-xs underline " + (darkMap ? "text-amber-300" : "text-amber-700")) +
-      "\">Site web</a>"
-    : "";
-
-  const routeBlock = Number.isFinite(latRaw) && Number.isFinite(lngRaw)
-    ? "<div class=\"mt-1\">" +
-        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
       "</div>"
     : "";
 
+  const hoursBlock = openingHoursRaw
+    ? "<details class=\"mt-2 text-[12px] leading-snug group\">" +
+      "<summary class=\"cursor-pointer select-none font-semibold flex items-center gap-2\">" +
+      "Horaires" +
+      "<span class=\"text-red-600 inline-block transition-transform duration-200 group-open:rotate-90\">➤</span>" +
+      "</summary>" +
+      "<pre class=\"mt-1 whitespace-pre-wrap font-sans text-[12px]\">" +
+      escapeHtml(openingHoursRaw) +
+      "</pre>" +
+      "</details>"
+    : "<p class=\"mt-2 text-[12px]\">Horaires : voir le site</p>";
 
+  const routeBlock = Number.isFinite(latRaw) && Number.isFinite(lngRaw)
+    ? "<div class=\"mt-2\">" +
+        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-1 text-[11px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
+      "</div>"
+    : "";
 
-  const normalDesc =
-    desc
-      ? "<p class=\"mt-0.5 text-[11px] leading-snug text-[hsl(var(--leaf))]\">" + escapeHtml(desc) + "</p>"
-      : "";
+  const normalDesc = desc
+    ? "<p class=\"mt-2 text-[12px] leading-snug\" style=\"color:hsl(var(--leaf))\">" + escapeHtml(desc) + "</p>"
+    : "";
 
   const normalFooter =
-    "<p class=\"mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]\">" +
+    "<p class=\"mt-2 text-[12px] leading-snug\" style=\"color:hsl(var(--leaf))\">" +
     escapeHtml(getCategorySentence(typeRaw)) +
     "</p>";
 
+  const websiteLink = websiteRaw
+    ? "<div class=\"mt-2\"><a href=\"" +
+      escapeHtml(websiteRaw) +
+      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] underline font-semibold\" style=\"" +
+      (darkMap ? "color:#ffd27a" : "color:#ffd27a") +
+      "\">Site web</a></div>"
+    : "";
+
+  const premiumImages =
+    (isFlo
+      ? "<div class=\"mt-3\"><img src=\"/images/espace-flo-inside.jpg\" alt=\"Intérieur Espace FLO\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
+      : "") +
+    (isRacines
+      ? "<div class=\"mt-3\"><img src=\"/images/racines-boreales.jpg\" alt=\"Façade de Racines Boréales à Montréal\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
+      : "") +
+    (isSuper
+      ? "<div class=\"mt-3\"><img src=\"/images/super-condiments.jpg\" alt=\"Super Condiments à Montréal\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
+      : "");
+
   if (isPremium) {
     return (
-      "<div class=\"" + wrapPremium + "\">" +
-        "<div class=\"flex flex-col gap-1.5\">" +
-          "<div class=\"flex items-start justify-between gap-2\">" +
-            "<div class=\"flex flex-col gap-1\">" +
-              "<h3 class=\"text-[15px] font-semibold\">" + name + "</h3>" +
-              "<div><span class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800\">" +
-                escapeHtml(premiumType) +
-              "</span></div>" +
-            "</div>" +
-            websitePremium +
+      "<div class=\"space-y-2\">" +
+        "<div class=\"flex items-start justify-between gap-3\">" +
+          "<div class=\"min-w-0\">" +
+            "<h3 class=\"text-[18px] font-semibold\">" + name + "</h3>" +
+            "<div class=\"mt-1\"><span class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-800\">" +
+              escapeHtml(premiumType) +
+            "</span></div>" +
           "</div>" +
-          (addressBlock ? addressBlock : "") +
-          (routeBlock ? routeBlock : "") +
-          hoursBlock +
+          (websiteBtn ? "<div class=\"shrink-0\">" + websiteBtn + "</div>" : "") +
         "</div>" +
-        "<p class=\"mt-2 text-[11px] leading-snug\">" + escapeHtml(premiumText) + "</p>" +
+        (addressBlock ? addressBlock : "") +
+        (routeBlock ? routeBlock : "") +
+        hoursBlock +
+        "<p class=\"mt-3 text-[13px] leading-snug\">" + escapeHtml(premiumText) + "</p>" +
         premiumImages +
       "</div>"
     );
   }
 
   return (
-    "<div class=\"" + wrapNormal + "\">" +
-      "<h3 class=\"font-semibold text-sm\">" + name + "</h3>" + _textilerieImg +
+    "<div class=\"space-y-2\">" +
+      "<h3 class=\"text-[18px] font-semibold\">" + name + "</h3>" +
+      _textilerieImg +
       normalDesc +
       (addressBlock ? addressBlock : "") +
       (routeBlock ? routeBlock : "") +
-          hoursBlock +
+      hoursBlock +
       normalFooter +
-      websiteNormal +
+      websiteLink +
     "</div>"
   );
 }
+
 
 
 export default function GlobeMap({
