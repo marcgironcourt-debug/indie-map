@@ -318,7 +318,7 @@ export default function GlobeMap({
   const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
-  const [sheetHeightVh, setSheetHeightVh] = React.useState(25);
+  const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
   const sheetHeightRef = React.useRef(25);
   const dragStartYRef = React.useRef<number | null>(null);
@@ -329,8 +329,19 @@ export default function GlobeMap({
   const dragActiveRef = React.useRef(false);
   const lastTouchTsRef = React.useRef(0);
   const endLockRef = React.useRef(0);
+  const viewportHRef = React.useRef<number>(0);
+  const dragPointerIdRef = React.useRef<number | null>(null);
+  const dragCleanupRef = React.useRef<(() => void) | null>(null);
 
   const clampVh = (v: number) => Math.max(25, Math.min(80, v));
+
+  const setSheetHeightNow = (v: number) => {
+    try {
+      const cv = clampVh(v);
+      sheetHeightRef.current = cv;
+      _setSheetHeightVh(cv);
+    } catch {}
+  };
 
   const setHeightVhRaf = (v: number) => {
     try {
@@ -340,7 +351,7 @@ export default function GlobeMap({
         dragRafRef.current = null;
         const pv = dragPendingVhRef.current;
         if (pv == null) return;
-        setSheetHeightVh(pv);
+        setSheetHeightNow(pv);
       });
     } catch {}
   };
@@ -352,6 +363,9 @@ export default function GlobeMap({
       dragHadMoveRef.current = false;
       dragStartYRef.current = y;
       dragStartHeightRef.current = sheetHeightRef.current;
+      try {
+        viewportHRef.current = typeof window !== "undefined" && window.visualViewport?.height ? window.visualViewport.height : (typeof window !== "undefined" && window.innerHeight ? window.innerHeight : 1);
+      } catch {}
     } catch {}
   };
 
@@ -362,9 +376,6 @@ export default function GlobeMap({
       if (y0 == null) return;
       const dy = y - y0;
       if (Math.abs(dy) > 2) dragHadMoveRef.current = true;
-      const ih = typeof window !== "undefined" && window.innerHeight ? window.innerHeight : 1;
-      const next = dragStartHeightRef.current - (dy / ih) * 100;
-      setHeightVhRaf(next);
     } catch {}
   };
 
@@ -382,28 +393,28 @@ export default function GlobeMap({
       dragActiveRef.current = false;
       try { setSheetDragging(false); } catch {}
 
-      if (snapTap) {
-        setSheetHeightVh(sheetHeightRef.current >= 60 ? 25 : 80);
-        return;
-      }
-
       if (!hadMove) {
-        setSheetHeightVh(sheetHeightRef.current >= 60 ? 25 : 80);
+        if (snapTap) {
+          setSheetHeightNow(sheetHeightRef.current >= 60 ? 25 : 80);
+        } else {
+          setSheetHeightNow(sheetHeightRef.current);
+        }
         return;
       }
 
       const dy = y0 == null || y == null ? 0 : (y - y0);
 
-      if (dy < -24) {
-        setSheetHeightVh(80);
-        return;
-      }
-      if (dy > 24) {
-        setSheetHeightVh(25);
+      if (dy < 0) {
+        setSheetHeightNow(80);
         return;
       }
 
-      setSheetHeightVh(sheetHeightRef.current >= 52.5 ? 80 : 25);
+      if (dy > 0) {
+        setSheetHeightNow(25);
+        return;
+      }
+
+      setSheetHeightNow(sheetHeightRef.current);
     } catch {}
   };
 
@@ -652,8 +663,9 @@ export default function GlobeMap({
         const openPopup = () => {
           const props = f?.properties || {};
           try { setSheetHtml(buildPopupHtml(props, Boolean(darkMapRef.current))); } catch { try { setSheetHtml(""); } catch {} }
-          try { setSheetOpen(true); } catch {}
-          try { setSheetHeightVh(25); } catch {}
+          try { setSheetHeightNow(25);
+      setSheetOpen(true); } catch {}
+          try { setSheetHeightNow(10); } catch {}
         };
 
         const z = map.getZoom();
@@ -892,6 +904,7 @@ export default function GlobeMap({
     map.on("style.load", attach);
 
     return () => {
+      try { dragCleanupRef.current?.(); } catch {}
       try { map.remove(); } catch {}
       mapRef.current = null;
       readyRef.current = false;
@@ -933,43 +946,58 @@ export default function GlobeMap({
               borderTopLeftRadius: "18px",
               borderTopRightRadius: "18px",
               borderTop: "1px solid #3a3a2a",
-              transition: sheetDragging ? "none" : "height 180ms ease",
+              transition: "height 180ms ease",
             }}
           >
             <div
               className="h-10 flex items-center justify-between px-3"
               style={{ touchAction: "none", WebkitUserSelect: "none", userSelect: "none" }}
               onPointerDown={(e) => {
-                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
+                try { e.preventDefault(); } catch {}
+                try { dragCleanupRef.current?.(); } catch {}
+                try { dragPointerIdRef.current = e.pointerId; } catch {}
                 try { (e.currentTarget as any).setPointerCapture?.(e.pointerId); } catch {}
                 try { startDrag(e.clientY); } catch {}
-              }}
-              onPointerMove={(e) => {
-                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
-                try { moveDrag(e.clientY); } catch {}
-              }}
-              onPointerUp={(e) => {
-                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
-                try { const hadMove = Boolean(dragHadMoveRef.current); endDrag(e.clientY, !hadMove); } catch {}
-              }}
-              onPointerCancel={() => {
-                try { endDrag(null, false); } catch {}
-              }}
-              onTouchStartCapture={(e) => {
-                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
-                try { const t = e.touches && e.touches[0]; if (!t) return; startDrag(t.clientY); } catch {}
-              }}
-              onTouchMoveCapture={(e) => {
-                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
-                try { const t = e.touches && e.touches[0]; if (!t) return; moveDrag(t.clientY); } catch {}
-              }}
-              onTouchEndCapture={(e) => {
-                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
-                try { const hadMove = Boolean(dragHadMoveRef.current); const t = e.changedTouches && e.changedTouches[0]; endDrag(t ? t.clientY : null, !hadMove); } catch {}
-              }}
-              onTouchCancelCapture={(e) => {
-                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
-                try { endDrag(null, false); } catch {}
+                try {
+                  const onMove = (ev) => {
+                    try {
+                      if (!dragActiveRef.current) return;
+                      const pid = dragPointerIdRef.current;
+                      if (pid != null && ev.pointerId !== pid) return;
+                      ev.preventDefault();
+                      moveDrag(ev.clientY);
+                    } catch {}
+                  };
+                  const cleanup = () => {
+                    try { window.removeEventListener("pointermove", onMove); } catch {}
+                    try { window.removeEventListener("pointerup", onUp); } catch {}
+                    try { window.removeEventListener("pointercancel", onCancel); } catch {}
+                    try { dragCleanupRef.current = null; } catch {}
+                    try { dragPointerIdRef.current = null; } catch {}
+                  };
+                  const onUp = (ev) => {
+                    try {
+                      const pid = dragPointerIdRef.current;
+                      if (pid != null && ev.pointerId !== pid) return;
+                      ev.preventDefault();
+                      const hadMove = Boolean(dragHadMoveRef.current);
+                      endDrag(ev.clientY, !hadMove);
+                    } catch {}
+                    try { cleanup(); } catch {}
+                  };
+                  const onCancel = (ev) => {
+                    try {
+                      const pid = dragPointerIdRef.current;
+                      if (pid != null && ev.pointerId !== pid) return;
+                      endDrag(null, false);
+                    } catch {}
+                    try { cleanup(); } catch {}
+                  };
+                  dragCleanupRef.current = cleanup;
+                  window.addEventListener("pointermove", onMove, { passive: false });
+                  window.addEventListener("pointerup", onUp, { passive: false });
+                  window.addEventListener("pointercancel", onCancel, { passive: false });
+                } catch {}
               }}
             >
               <div className="flex-1 flex justify-center">
