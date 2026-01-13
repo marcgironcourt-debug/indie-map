@@ -27,24 +27,119 @@ const DEMO: Business[] = [
 ];
 
 function normalizeCategoryLabel(raw: string): string {
-  const key = raw.toLowerCase();
-  if (
-    key.includes("café") ||
-    key.includes("cafe") ||
-    key.includes("coffee") ||
-    key.includes("brunch")
-  ) {
+  const key = (raw || "").toLowerCase();
+
+  if (key.includes("café") || key.includes("cafe") || key.includes("coffee") || key.includes("brunch")) {
     return "Café / brunch";
   }
-  if (
-    key.includes("microbrasserie") ||
-    key.includes("brasserie") ||
-    key.includes("pub") ||
-    key.includes("bar")
-  ) {
+
+
+function getCategorySentence(type: string): string {
+  const key = (type || "").toLowerCase();
+
+  if (key.includes("café") || key.includes("cafe") || key.includes("brunch")) {
+    return "Un endroit agréable pour s’arrêter, même quand on n’avait rien prévu.";
+  }
+
+  if (key.includes("épicerie") || key.includes("epicerie")) {
+    return "Un commerce fiable, où l’on sait ce que l’on achète.";
+  }
+
+  if (key.includes("boulangerie")) {
+    return "Une adresse de quartier où l’on revient sans y penser.";
+  }
+
+  if (key.includes("librairie") || key.includes("bouquinerie")) {
+    return "Un lieu calme, propice à la découverte et à la curiosité.";
+  }
+
+  if (key.includes("restaurant")) {
+    return "Une adresse simple, choisie pour manger tranquillement.";
+  }
+
+  if (key.includes("brasserie") || key.includes("bar") || key.includes("pub")) {
+    return "Un lieu convivial, facile, où l’on peut rester plus longtemps que prévu.";
+  }
+
+  if (key.includes("vêtement") || key.includes("vetement") || key.includes("friperie")) {
+    return "Un endroit pour trouver des vêtements sans se sentir pressé d’acheter.";
+  }
+
+  if (key.includes("boutique")) {
+    return "Un commerce indépendant, avec une sélection qui change des grandes enseignes.";
+  }
+
+  return "Un lieu sélectionné pour sa pertinence dans le tissu local.";
+}
+
+
+  if (key.includes("épicerie") || key.includes("epicerie") || key.includes("zéro déchet") || key.includes("zero dechet")) {
+    return "Épicerie";
+  }
+
+  if (key.includes("boulangerie")) {
+    return "Boulangerie";
+  }
+
+  if (key.includes("librairie") || key.includes("bouquinerie")) {
+    return "Librairie";
+  }
+
+  if (key.includes("restaurant") || key.includes("bistro") || key.includes("cuisine")) {
+    return "Restaurant";
+  }
+
+  if (key.includes("microbrasserie") || key.includes("brasserie") || key.includes("pub") || key.includes("bar") || key.includes("bar à vin") || key.includes("bar a vin")) {
     return "Brasserie / bar / pub";
   }
-  return raw;
+
+  if (key.includes("friperie") || key.includes("mode éthique") || key.includes("mode ethique") || key.includes("vêtement") || key.includes("vetement") || key.includes("textile")) {
+    return "Vêtements";
+  }
+
+  if (key.includes("boutique")) {
+    return "Boutique";
+  }
+
+  return "Boutique locale";
+}
+
+function getCategoryEmotion(type: string): string {
+  const key = (type || "").toLowerCase();
+
+  if (key.includes("café") || key.includes("cafe") || key.includes("brunch")) {
+    return "Un endroit où l’on vient pour le café, et où l’on reste pour l’atmosphère.";
+  }
+
+  if (key.includes("épicerie") || key.includes("epicerie")) {
+    return "Une façon plus humaine de remplir son panier — plus proche des gens et du territoire.";
+  }
+
+  if (key.includes("boulangerie")) {
+    return "Le genre d’adresse qu’on garde pour soi… puis qu’on finit par partager.";
+  }
+
+  if (key.includes("librairie") || key.includes("bouquinerie")) {
+    return "Un espace pour ralentir, feuilleter, et laisser une idée nous attraper.";
+  }
+
+  if (key.includes("restaurant") || key.includes("bistro") || key.includes("cuisine")) {
+    return "Une table sincère, où l’on sent qu’ici, on fait les choses avec attention.";
+  }
+
+  if (key.includes("brasserie") || key.includes("bar") || key.includes("pub")) {
+    return "Une adresse vivante, parfaite pour s’arrêter… et prolonger la soirée.";
+  }
+
+  if (key.includes("vêtement") || key.includes("vetement") || key.includes("friperie") || key.includes("mode")) {
+    return "Un lieu qui prouve qu’on peut s’habiller avec du sens, sans renoncer au style.";
+  }
+
+  if (key.includes("boutique")) {
+    return "Des trouvailles choisies avec goût — on ressort rarement les mains vides.";
+  }
+
+  return "Un lieu indépendant sélectionné pour ce qu’il apporte au tissu local.";
 }
 
 function getCategoryStyle(cat: string, active: boolean, dark: boolean): string {
@@ -408,8 +503,8 @@ function MobileBottomSheet({
 
             {!isPremium && (
               <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-                Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
-              </p>
+      {getCategorySentence(renderedBusiness.type)}
+    </p>
             )}
 
             {isFlo && (

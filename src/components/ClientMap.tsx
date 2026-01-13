@@ -24,6 +24,44 @@ const BUSINESS_DESCRIPTIONS: Record<string, string> = {
   "Hof Kelsten": "Boulangerie emblématique de Montréal, connue pour ses pains généreux et sa cuisine d’inspiration européenne.",
 };
 
+function getCategoryEmotion(type: string): string {
+  const key = (type || "").toLowerCase();
+
+  if (key.includes("café") || key.includes("cafe") || key.includes("brunch")) {
+    return "Un endroit où l’on vient pour le café, et où l’on reste pour l’atmosphère.";
+  }
+
+  if (key.includes("épicerie") || key.includes("epicerie")) {
+    return "Une façon plus humaine de remplir son panier — plus proche des gens et du territoire.";
+  }
+
+  if (key.includes("boulangerie")) {
+    return "Le genre d’adresse qu’on garde pour soi… puis qu’on finit par partager.";
+  }
+
+  if (key.includes("librairie") || key.includes("bouquinerie")) {
+    return "Un espace pour ralentir, feuilleter, et laisser une idée nous attraper.";
+  }
+
+  if (key.includes("restaurant") || key.includes("bistro") || key.includes("cuisine")) {
+    return "Une table sincère, où l’on sent qu’ici, on fait les choses avec attention.";
+  }
+
+  if (key.includes("brasserie") || key.includes("bar") || key.includes("pub")) {
+    return "Une adresse vivante, parfaite pour s’arrêter… et prolonger la soirée.";
+  }
+
+  if (key.includes("vêtement") || key.includes("vetement") || key.includes("friperie") || key.includes("mode")) {
+    return "Un lieu qui prouve qu’on peut s’habiller avec du sens, sans renoncer au style.";
+  }
+
+  if (key.includes("boutique")) {
+    return "Des trouvailles choisies avec goût — on ressort rarement les mains vides.";
+  }
+
+  return "Un lieu indépendant sélectionné pour ce qu’il apporte au tissu local.";
+}
+
 const MAX_BOUNDS = L.latLngBounds(L.latLng(-85, -180), L.latLng(85, 180));
 
 function normalizeType(t?: string | null): "cafe" | "epicerie" | "friperie" | "librairie" | "restaurant" | "boutique" | "microbrasserie" | "other" {
@@ -490,12 +528,8 @@ export default function ClientMap({
                     </div>
 
                     <p className="mt-2 text-[11px] leading-snug">
-                      {isFlo
-                        ? "La mission d’ESPACE FLO : faire rayonner le talent d’ici et valoriser l’achat local avec des produits éthiques et écoresponsables. À l’opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de pièces durables, indémodables et fabriquées au Québec."
-                        : isSuper
-                        ? "Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici."
-                        : "Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée."}
-                    </p>
+      {getCategorySentence(b.type)}
+    </p>
 
                     {isFlo && (
   <div className="mt-2">
@@ -585,8 +619,8 @@ export default function ClientMap({
                       </p>
                     )}
                     <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-                      Lieu indépendant sélectionné pour sa démarche locale, éthique ou artisanale.
-                    </p>
+      {getCategorySentence(renderedBusiness.type)}
+    </p>
                     {b.website && (
                       <a
                         href={b.website}

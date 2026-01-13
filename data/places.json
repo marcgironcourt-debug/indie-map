@@ -726,5 +726,19 @@
     "category": "Bar à vin",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:53:09.446Z"
+  },
+  {
+    "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+    "name": "La Textilerie",
+    "city": "Paris",
+    "address": null,
+    "website": "https://www.latextilerie.fr",
+    "openingHours": "Mardi 12h00-19h30\nMercredi 12h00-19h30\nJeudi 12h00-19h30\nVendredi 12h00-19h30\nSamedi 12h00-19h30\nDimanche Fermé\nLundi Fermé",
+    "lat": 48.8814181,
+    "lng": 2.3629126,
+    "description": null,
+    "category": "Vêtements",
+    "createdAt": "2026-01-13T14:02:32.269Z",
+    "updatedAt": "2026-01-13T14:26:24.943Z"
   }
 ]
