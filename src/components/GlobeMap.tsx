@@ -181,16 +181,10 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const desc = BUSINESS_DESCRIPTIONS[nameRaw] ? String(BUSINESS_DESCRIPTIONS[nameRaw]) : "";
 
   const wrapPremium =
-    "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border " +
-    (darkMap
-      ? "bg-neutral-900 border-neutral-700 text-white"
-      : "bg-white border-[#E4D4C2] text-neutral-900");
+    "space-y-2 max-w-xs rounded-[18px] px-3 pt-2 pb-4 shadow-md border bg-[#2f2f23] border-[#3a3a2a] text-[#f5f5e8]";
 
   const wrapNormal =
-    "space-y-1 max-w-xs rounded-[14px] px-3 py-2 shadow-sm border " +
-    (darkMap
-      ? "bg-neutral-900 border-neutral-700 text-white"
-      : "bg-white border-[#E4D4C2] text-neutral-900");
+    "space-y-1 max-w-xs rounded-[14px] px-3 py-2 shadow-sm border bg-[#2f2f23] border-[#3a3a2a] text-[#f5f5e8]";
 
   const websitePremium = websiteRaw
     ? "<a href=\"" +
@@ -320,6 +314,107 @@ export default function GlobeMap({
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
+
+  const [sheetOpen, setSheetOpen] = React.useState(false);
+  const [sheetExpanded, setSheetExpanded] = React.useState(false);
+  const [sheetHtml, setSheetHtml] = React.useState<string>("");
+  const [sheetHeightVh, setSheetHeightVh] = React.useState(25);
+  const [sheetDragging, setSheetDragging] = React.useState(false);
+  const sheetHeightRef = React.useRef(25);
+  const dragStartYRef = React.useRef<number | null>(null);
+  const dragStartHeightRef = React.useRef<number>(25);
+  const dragRafRef = React.useRef<number | null>(null);
+  const dragPendingVhRef = React.useRef<number | null>(null);
+  const dragHadMoveRef = React.useRef(false);
+  const dragActiveRef = React.useRef(false);
+  const lastTouchTsRef = React.useRef(0);
+  const endLockRef = React.useRef(0);
+
+  const clampVh = (v: number) => Math.max(25, Math.min(80, v));
+
+  const setHeightVhRaf = (v: number) => {
+    try {
+      dragPendingVhRef.current = clampVh(v);
+      if (dragRafRef.current != null) return;
+      dragRafRef.current = requestAnimationFrame(() => {
+        dragRafRef.current = null;
+        const pv = dragPendingVhRef.current;
+        if (pv == null) return;
+        setSheetHeightVh(pv);
+      });
+    } catch {}
+  };
+
+  const startDrag = (y: number) => {
+    try {
+      dragActiveRef.current = true;
+      try { setSheetDragging(true); } catch {}
+      dragHadMoveRef.current = false;
+      dragStartYRef.current = y;
+      dragStartHeightRef.current = sheetHeightRef.current;
+    } catch {}
+  };
+
+  const moveDrag = (y: number) => {
+    try {
+      if (!dragActiveRef.current) return;
+      const y0 = dragStartYRef.current;
+      if (y0 == null) return;
+      const dy = y - y0;
+      if (Math.abs(dy) > 2) dragHadMoveRef.current = true;
+      const ih = typeof window !== "undefined" && window.innerHeight ? window.innerHeight : 1;
+      const next = dragStartHeightRef.current - (dy / ih) * 100;
+      setHeightVhRaf(next);
+    } catch {}
+  };
+
+  const endDrag = (y: number | null, snapTap: boolean) => {
+    try {
+      const now = Date.now();
+      if (now - endLockRef.current < 220) return;
+      endLockRef.current = now;
+
+      const y0 = dragStartYRef.current;
+      dragStartYRef.current = null;
+
+      const hadMove = Boolean(dragHadMoveRef.current);
+      dragHadMoveRef.current = false;
+      dragActiveRef.current = false;
+      try { setSheetDragging(false); } catch {}
+
+      if (snapTap) {
+        setSheetHeightVh(sheetHeightRef.current >= 60 ? 25 : 80);
+        return;
+      }
+
+      if (!hadMove) {
+        setSheetHeightVh(sheetHeightRef.current >= 60 ? 25 : 80);
+        return;
+      }
+
+      const dy = y0 == null || y == null ? 0 : (y - y0);
+
+      if (dy < -24) {
+        setSheetHeightVh(80);
+        return;
+      }
+      if (dy > 24) {
+        setSheetHeightVh(25);
+        return;
+      }
+
+      setSheetHeightVh(sheetHeightRef.current >= 52.5 ? 80 : 25);
+    } catch {}
+  };
+
+  React.useEffect(() => {
+    sheetHeightRef.current = sheetHeightVh;
+    try { setSheetExpanded(sheetHeightVh >= 60); } catch {}
+  }, [sheetHeightVh]);
+  const darkMapRef = React.useRef<boolean>(Boolean(darkMap));
+  React.useEffect(() => {
+    darkMapRef.current = Boolean(darkMap);
+  }, [darkMap]);
 
   const onSelectRef = React.useRef<typeof onSelect | undefined>(onSelect);
   React.useEffect(() => {
@@ -556,34 +651,9 @@ export default function GlobeMap({
         
         const openPopup = () => {
           const props = f?.properties || {};
-
-          if (popupRef.current) {
-            try { popupRef.current.remove(); } catch {}
-            popupRef.current = null;
-          }
-
-          popupRef.current = new maplibregl.Popup({ closeButton: true, closeOnClick: true, maxWidth: "320px" })
-            .setLngLat([lng, lat])
-            .setHTML(buildPopupHtml(props, Boolean(darkMap)))
-            .addTo(map);
-
-          try {
-            const el = popupRef.current?.getElement();
-            const btn = el?.querySelector('[data-route="1"]');
-            if (btn) {
-              const run = (ev: any) => {
-                try { ev.preventDefault(); ev.stopPropagation(); } catch {}
-                try {
-                  const fn = (window as any).__indieRouteTo;
-                  if (fn) fn(lng, lat);
-                } catch {}
-              };
-              btn.addEventListener("click", run);
-              btn.addEventListener("pointerup", run);
-              btn.addEventListener("touchstart", run, { passive: false });
-              btn.addEventListener("touchend", run, { passive: false });
-            }
-          } catch {}
+          try { setSheetHtml(buildPopupHtml(props, Boolean(darkMapRef.current))); } catch { try { setSheetHtml(""); } catch {} }
+          try { setSheetOpen(true); } catch {}
+          try { setSheetHeightVh(25); } catch {}
         };
 
         const z = map.getZoom();
@@ -845,5 +915,82 @@ export default function GlobeMap({
     } catch {}
   }, [items, selectedId, darkMap]);
 
-  return <div ref={ref} className="h-full w-full" />;
+  return (
+    <div className="relative h-full w-full">
+      <div ref={ref} className="h-full w-full" />
+      {sheetOpen ? (
+        <div className="absolute inset-0 pointer-events-auto">
+          <div
+            className="absolute inset-0"
+            style={{ background: sheetHeightVh >= 45 ? "rgba(0,0,0,0.35)" : "transparent" }}
+            onClick={() => { try { setSheetOpen(false); } catch {} }}
+          />
+          <div
+            className="absolute left-0 right-0 bottom-0 pointer-events-auto shadow-2xl"
+            style={{
+              height: sheetHeightVh + "vh",
+              background: "#1f1f18",
+              borderTopLeftRadius: "18px",
+              borderTopRightRadius: "18px",
+              borderTop: "1px solid #3a3a2a",
+              transition: sheetDragging ? "none" : "height 180ms ease",
+            }}
+          >
+            <div
+              className="h-10 flex items-center justify-between px-3"
+              style={{ touchAction: "none", WebkitUserSelect: "none", userSelect: "none" }}
+              onPointerDown={(e) => {
+                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
+                try { (e.currentTarget as any).setPointerCapture?.(e.pointerId); } catch {}
+                try { startDrag(e.clientY); } catch {}
+              }}
+              onPointerMove={(e) => {
+                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
+                try { moveDrag(e.clientY); } catch {}
+              }}
+              onPointerUp={(e) => {
+                try { if (Date.now() - lastTouchTsRef.current < 800) return; } catch {}
+                try { const hadMove = Boolean(dragHadMoveRef.current); endDrag(e.clientY, !hadMove); } catch {}
+              }}
+              onPointerCancel={() => {
+                try { endDrag(null, false); } catch {}
+              }}
+              onTouchStartCapture={(e) => {
+                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
+                try { const t = e.touches && e.touches[0]; if (!t) return; startDrag(t.clientY); } catch {}
+              }}
+              onTouchMoveCapture={(e) => {
+                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
+                try { const t = e.touches && e.touches[0]; if (!t) return; moveDrag(t.clientY); } catch {}
+              }}
+              onTouchEndCapture={(e) => {
+                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
+                try { const hadMove = Boolean(dragHadMoveRef.current); const t = e.changedTouches && e.changedTouches[0]; endDrag(t ? t.clientY : null, !hadMove); } catch {}
+              }}
+              onTouchCancelCapture={(e) => {
+                try { lastTouchTsRef.current = Date.now(); e.preventDefault(); } catch {}
+                try { endDrag(null, false); } catch {}
+              }}
+            >
+              <div className="flex-1 flex justify-center">
+                <div style={{ width: 56, height: 6, borderRadius: 999, background: "#6b6b55" }} />
+              </div>
+              <button
+                type="button"
+                className="ml-2 px-2 py-1 rounded-full"
+                style={{ color: "#f5f5e8", border: "1px solid #3a3a2a", background: "rgba(0,0,0,0.15)", position: "relative", zIndex: 5 }}
+                onClick={() => { try { setSheetOpen(false); } catch {} }}
+              >
+                ✕
+              </button>
+            </div>
+            <div className="h-[calc(100%-40px)] overflow-y-auto px-3 pb-6">
+              <div className="mx-auto" style={{ maxWidth: 420 }} dangerouslySetInnerHTML={{ __html: sheetHtml }} />
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+
 }
