@@ -149,6 +149,9 @@ function svgToDataUri(svg: string) {
 
 
 function buildPopupHtml(p: any, darkMap: boolean) {
+  const _popupProps = p;
+  const _lowerName = String((_popupProps as any)?.name ?? (_popupProps as any)?.title ?? "").trim().toLowerCase();
+  const _textilerieImg = _lowerName.includes("textilerie") ? "<img src=\"/images/textilerie.webp\" alt=\"Textilerie\" class=\"mt-2 w-full rounded-xl object-cover\" />" : "";
   const nameRaw = String(p?.name ?? "");
   const name = escapeHtml(nameRaw || "Lieu");
   const typeRaw = String(p?.type ?? "");
@@ -268,7 +271,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
 
   return (
     "<div class=\"" + wrapNormal + "\">" +
-      "<h3 class=\"font-semibold text-sm\">" + name + "</h3>" +
+      "<h3 class=\"font-semibold text-sm\">" + name + "</h3>" + _textilerieImg +
       normalDesc +
       (addressLink ? addressLink : "") +
       hoursBlock +
