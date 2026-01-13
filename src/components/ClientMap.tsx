@@ -224,15 +224,93 @@ export default function ClientMap({
   selectedId,
   selectionVersion,
   onSelect,  darkMap = false,
-  onToggleDarkMap,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
     darkMap?: boolean;
-  onToggleDarkMap?: () => void;
-}) {
+  }) {
+
+function GeolocateControl() {
+  const map = useMap();
+
+  React.useEffect(() => {
+    const control = L.control({ position: "bottomright" });
+
+    control.onAdd = () => {
+      const wrap = L.DomUtil.create("div");
+      wrap.style.marginRight = "12px";
+      wrap.style.marginBottom = "92px";
+      wrap.style.pointerEvents = "auto";
+
+      wrap.innerHTML = `
+        <button type="button" aria-label="Me localiser"
+          style="
+            height:44px;width:44px;border-radius:9999px;
+            background:#5C6E3B;border:0;
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 8px 20px rgba(0,0,0,.25);
+            cursor:pointer;
+          ">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13" />
+            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+        </button>
+      `;
+
+      const btn = wrap.querySelector("button");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          map.locate({ enableHighAccuracy: true });
+          map.once("locationfound", (e) => {
+            const z = Math.max(map.getZoom(), 15);
+            map.flyTo(e.latlng, z, { animate: true });
+          });
+        });
+      }
+
+      L.DomEvent.disableClickPropagation(wrap);
+      L.DomEvent.disableScrollPropagation(wrap);
+
+      return wrap;
+    };
+
+    control.addTo(map);
+    return () => {
+      try { control.remove(); } catch {}
+    };
+  }, [map]);
+
+  return null;
+}
+
+
+      className="absolute bottom-24 right-4 z-[1200] h-11 w-11 rounded-full bg-[#5C6E3B] flex items-center justify-center shadow-lg active:scale-95 transition"
+      aria-label="Me localiser"
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 2v3" />
+        <path d="M12 19v3" />
+        <path d="M2 12h3" />
+        <path d="M19 12h3" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    </button>
+  );
+}
+
   const markers = React.useMemo(() => {
     const byId = new Map<
       string,
@@ -356,12 +434,7 @@ export default function ClientMap({
   const locateTheme = "hover:opacity-90 transition";
   const locateButtonClass = locateBase + " " + locateTheme;
 
-  const toggleBase = isMobile ? "absolute top-16 left-4 z-[1300]" : "absolute top-3 right-3 z-[1300]";
-  const toggleButtonClass =
-    toggleBase +
-    " rounded-full p-[2px] shadow-md border " +
-    (darkMap ? "border-neutral-700 bg-black/80" : "border-neutral-300 bg-white/90");
-
+  
   const trackClass =
     "relative flex items-center w-[40px] h-[22px] rounded-full overflow-hidden transition-colors duration-200 " +
     (darkMap ? "bg-black" : "bg-neutral-200");
@@ -387,8 +460,9 @@ export default function ClientMap({
         attributionControl={false}
         className="h-full w-full"
         ref={mapRef}
-      >
-        <MapViewPersistence />
+       zoomControl={false}>
+      <GeolocateControl />
+<MapViewPersistence />
         <MapClickClear
           onClear={() => {
             if (onSelect) onSelect("");
@@ -680,31 +754,6 @@ export default function ClientMap({
           <CircleMarker center={userLocation} radius={10} pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }} />
         )}
       </MapContainer>
-
-      <button type="button" className={locateButtonClass} onClick={handleLocate} aria-label="Me localiser">
-        <span
-          className={
-            "flex h-9 w-9 items-center justify-center rounded-full border shadow-sm " +
-            (darkMap ? "bg-black/80 border-neutral-700" : "bg-white border-neutral-300")
-          }
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-8 w-8">
-            <polygon points="12,6 9,16 12,14 15,16" fill={darkMap ? "white" : "black"} />
-          </svg>
-        </span>
-      </button>
-
-      <button
-        type="button"
-        onClick={() => {
-          if (onToggleDarkMap) onToggleDarkMap();
-        }}
-        className={toggleButtonClass}
-      >
-        <div className={trackClass}>
-          <div className={thumbClass} />
-        </div>
-      </button>
-    </div>
+</div>
   );
 }

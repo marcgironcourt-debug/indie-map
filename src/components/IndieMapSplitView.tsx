@@ -142,39 +142,31 @@ function getCategoryEmotion(type: string): string {
   return "Un lieu indépendant sélectionné pour ce qu’il apporte au tissu local.";
 }
 
-function getCategoryStyle(cat: string, active: boolean, dark: boolean): string {
+function getCategoryStyle(cat: string, active: boolean): string {
   const key = cat.toLowerCase();
 
   if (key.includes("café") || key.includes("cafe")) {
     return active
       ? "bg-[hsl(var(--cafe))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm";
   }
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
       ? "bg-[hsl(var(--leaf))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm";
   }
 
   if (key.includes("boutique")) {
     return active
       ? "bg-black text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-white border border-white/60 shadow-sm"
-      : "bg-white text-black border border-black/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-black border border-black/60 shadow-sm";
   }
 
   if (key.includes("boulangerie")) {
     return active
       ? "bg-[#8C5A3C] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[#E3B08A] border border-[#E3B08A]/70 shadow-sm"
-      : "bg-white text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm";
   }
 
   if (
@@ -186,17 +178,13 @@ function getCategoryStyle(cat: string, active: boolean, dark: boolean): string {
   ) {
     return active
       ? "bg-[hsl(var(--violet))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm";
   }
 
   if (key.includes("restaurant")) {
     return active
       ? "bg-[hsl(var(--restaurant))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
   }
 
   if (
@@ -207,52 +195,42 @@ function getCategoryStyle(cat: string, active: boolean, dark: boolean): string {
   ) {
     return active
       ? "bg-[hsl(var(--micro))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
   }
 
   if (key.includes("librairie") || key.includes("bouquinerie")) {
     return active
       ? "bg-[hsl(var(--blue))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm";
   }
 
   if (key.includes("monument") || key.includes("poi")) {
     return active
       ? "bg-[hsl(var(--poi))] text-white shadow-md"
-      : dark
-      ? "bg-neutral-900/80 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/70 shadow-sm"
-      : "bg-white text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm";
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm";
   }
 
   return active
     ? "bg-[hsl(var(--brand))] text-white shadow-md"
-    : dark
-    ? "bg-neutral-900/80 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/70 shadow-sm"
-    : "bg-white text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
+    : "bg-[#5C6E3B]/70 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
 }
 
 function FilterPill({
   label,
   active,
   onClick,
-  dark,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
-  dark: boolean;
 }) {
-  const styleClasses = getCategoryStyle(label, active, dark);
+  const styleClasses = getCategoryStyle(label, active);
   return (
     <button
       type="button"
       onClick={onClick}
       className={
-        "rounded-full px-3 py-1 text-[11px] font-medium transition " +
+        "rounded-full px-3 py-1 text-[11px] font-medium transition indie-halo " +
         styleClasses
       }
     >
@@ -261,28 +239,18 @@ function FilterPill({
   );
 }
 
+
 function FilterBar({
   categories,
   activeCategory,
   onCategoryChange,
-  dark,
 }: {
   categories: string[];
   activeCategory: string | null;
   onCategoryChange: (c: string | null) => void;
-  dark: boolean;
 }) {
   const rowClass =
     "flex items-center gap-2 px-6 py-2 overflow-x-auto whitespace-nowrap";
-
-  const btnBase =
-    "inline-flex shrink-0 items-center rounded-full px-3 py-1 text-xs font-semibold transition border";
-
-  const btnOff = dark
-    ? "bg-neutral-900/60 text-neutral-100 border-neutral-700 hover:bg-neutral-800/60"
-    : "bg-white/80 text-neutral-900 border-neutral-200 hover:bg-neutral-50";
-
-  const btnOn = "bg-[#E4D4C2] text-neutral-900 border-transparent";
 
   return (
     <div
@@ -295,30 +263,29 @@ function FilterBar({
         scrollPaddingRight: 24 as any,
       }}
     >
-      <button
-        type="button"
-        className={btnBase + " " + (activeCategory == null ? btnOn : btnOff)}
+      <FilterPill
+        label="Tous"
+        active={activeCategory == null}
         onClick={() => onCategoryChange(null)}
-      >
-        Tous
-      </button>
+        
+      />
 
       {categories.map((c) => {
         const active = activeCategory === c;
         return (
-          <button
+          <FilterPill
             key={c}
-            type="button"
-            className={btnBase + " " + (active ? btnOn : btnOff)}
+            label={c}
+            active={active}
             onClick={() => onCategoryChange(c)}
-          >
-            {c}
-          </button>
+            
+          />
         );
       })}
     </div>
   );
 }
+
 
 
 function MobileBottomSheet({
@@ -327,14 +294,12 @@ function MobileBottomSheet({
   onClose,
   onExpand,
   onPeek,
-  dark,
 }: {
   business: Business | null;
   mode: "closed" | "peek" | "full";
   onClose: () => void;
   onExpand: () => void;
   onPeek: () => void;
-  dark: boolean;
 }) {
   const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
   const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
@@ -366,35 +331,21 @@ function MobileBottomSheet({
 
   const sheetOuterClass = dark
     ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-visible"
-    : "mx-3 rounded-2xl bg-white border border-neutral-200 shadow-lg overflow-visible";
+    : "mx-3 rounded-2xl bg-[#5C6E3B]/70 border border-neutral-200 shadow-lg overflow-visible";
 
-  const titleClass = dark
-    ? "text-[15px] font-semibold text-neutral-50 truncate"
-    : "text-[15px] font-semibold text-neutral-900 truncate";
+  const titleClass = "text-[15px] font-semibold text-neutral-900 truncate";
 
-    const closeButtonClass = dark
-    ? "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-600 text-[14px] text-neutral-300"
-    : "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-[14px] text-neutral-600";
+    const closeButtonClass = "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-[14px] text-neutral-600";
 
-  const typeTextClass = dark
-    ? "text-[11px] text-neutral-300 mb-1"
-    : "text-[11px] text-neutral-700 mb-1";
+  const typeTextClass = "text-[11px] text-neutral-700 mb-1";
 
-  const hoursTextClass = dark
-    ? "mt-1 text-[11px] leading-snug text-neutral-100 group"
-    : "mt-1 text-[11px] leading-snug text-neutral-800 group";
+  const hoursTextClass = "mt-1 text-[11px] leading-snug text-neutral-800 group";
 
-  const addressLinkClass = dark
-    ? "block text-[11px] text-neutral-300 underline mt-2 mb-3"
-    : "block text-[11px] text-neutral-700 underline mt-2 mb-3";
+  const addressLinkClass = "block text-[11px] text-neutral-700 underline mt-2 mb-3";
 
-  const floParagraphClass = dark
-    ? "text-[11px] leading-snug text-neutral-100"
-    : "text-[11px] leading-snug text-neutral-800";
+  const floParagraphClass = "text-[11px] leading-snug text-neutral-800";
 
-  const floImageWrapperClass = dark
-    ? "h-[140px] w-full rounded-md overflow-hidden border border-neutral-700 bg-neutral-800"
-    : "h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200";
+  const floImageWrapperClass = "h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200";
 
   const translateClass =
     animationState === "closed"
@@ -574,9 +525,8 @@ export default function IndieMapSplitView() {
   const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
   const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
-      const [darkMap, setDarkMap] = React.useState(false);
-
-  React.useEffect(() => {
+      const darkMap = false;
+React.useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
@@ -782,18 +732,14 @@ export default function IndieMapSplitView() {
               setSheetMode("peek");
             }
           }}          darkMap={darkMap}
-          onToggleDarkMap={() => setDarkMap((prev) => !prev)}
-        />
+          />
       </div>
 
             <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none flex justify-center">
         <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[520px] overflow-visible">
-          <FilterBar
-          categories={categories}
+          <FilterBar categories={categories}
           activeCategory={category}
-          onCategoryChange={setCategory}
-          dark={darkMap}
-        />
+          onCategoryChange={setCategory} />
         </div>
       </div>
 
@@ -802,8 +748,8 @@ export default function IndieMapSplitView() {
         <nav
           className={
             (darkMap
-              ? "bg-neutral-900/95 text-neutral-100 border border-neutral-700"
-              : "bg-white/95 text-neutral-900 border border-neutral-200") +
+              ? "bg-[#5C6E3B] text-white border border-white/20"
+              : "bg-[#5C6E3B]/70/95 text-white border border-white/20") +
             " rounded-full px-4 py-1 shadow-md flex items-center gap-6 text-xs font-medium"
           }
         >
@@ -822,8 +768,7 @@ export default function IndieMapSplitView() {
         </nav>
       </div>
 
-      <MobileBottomSheet
-        business={selectedBusiness}
+      <MobileBottomSheet business={selectedBusiness}
         mode={sheetMode}
         onClose={() => {
           setSheetMode("closed");
@@ -831,9 +776,7 @@ export default function IndieMapSplitView() {
           setSelectedId(null);
         }}
         onExpand={() => setSheetMode("full")}
-        onPeek={() => setSheetMode("peek")}
-        dark={darkMap}
-      />
+        onPeek={() => setSheetMode("peek")} />
     </div>
   );
 }

@@ -734,7 +734,65 @@ export default function GlobeMap({
       attributionControl: false,
     });
 
-    mapRef.current = map;
+    
+
+
+class GeolocateControl_ML {
+  _map: any;
+  _container: any;
+  onAdd(map: any) {
+    this._map = map;
+    const c = document.createElement("div");
+    c.style.marginRight = "12px";
+    c.style.marginBottom = "92px";
+    c.style.pointerEvents = "auto";
+    c.innerHTML = `
+      <button type="button" aria-label="Me localiser"
+        style="
+          height:33px;width:33px;border-radius:9999px;
+          background:#5C6E3B;border:0;
+          display:flex;align-items:center;justify-content:center;
+          box-shadow:0 8px 20px rgba(0,0,0,.25);
+            filter: drop-shadow(0 0 10px rgba(114,138,74,.55)) drop-shadow(0 0 2px rgba(114,138,74,.65));
+            cursor:pointer;
+        ">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="transform: translate(-1px, -0.5px);"
+          stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 2L11 13" />
+          <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+        </svg>
+      </button>
+    `;
+    const btn = c.querySelector("button");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        try {
+          if (!navigator.geolocation) return;
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const lng = pos.coords.longitude;
+              const lat = pos.coords.latitude;
+              try { this._map.flyTo({ center: [lng, lat], zoom: Math.max(this._map.getZoom(), 14), essential: true }); } catch {}
+            },
+            () => {},
+            { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+          );
+        } catch {}
+      });
+    }
+    this._container = c;
+    return c;
+  }
+  onRemove() {
+    try { this._container?.remove(); } catch {}
+    this._map = null;
+  }
+}
+
+try { map.addControl(new GeolocateControl_ML(), "bottom-right"); } catch {}
+
+
+mapRef.current = map;
 
     (window as any).__indieRouteTo = async (destLng: number, destLat: number) => {
       const m = mapRef.current;
@@ -857,11 +915,6 @@ export default function GlobeMap({
         }
       } catch {}
     };
-
-    map.addControl(
-      new maplibregl.NavigationControl({ visualizePitch: true }),
-      "bottom-right"
-    );
 
     const attach = () => {
       ensureImages(map)

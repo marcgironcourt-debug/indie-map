@@ -268,3 +268,27 @@ main {
   display: none !important;
 }
 
+
+/* indie-map-controls-visibility */
+.leaflet-control-container{
+  display:block !important;
+}
+.leaflet-bottom.leaflet-right{
+  z-index:9999 !important;
+}
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-top-left{
+  z-index:9999 !important;
+}
+.maplibregl-ctrl{
+  pointer-events:auto !important;
+}
+
+
+/* indie-halo */
+.indie-halo{
+  filter: drop-shadow(0 0 4px rgba(114,138,74,0.6)) drop-shadow(0 0 1px rgba(114,138,74,0.8));
+}
+
