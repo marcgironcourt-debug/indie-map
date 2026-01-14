@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --im-story-font: inherit;
+
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -292,3 +294,16 @@ main {
   filter: drop-shadow(0 0 4px rgba(114,138,74,0.6)) drop-shadow(0 0 1px rgba(114,138,74,0.8));
 }
 
+
+
+@keyframes im-thread-move {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(220px); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes im-needle-tilt {
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(-10deg); }
+}

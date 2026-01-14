@@ -306,32 +306,12 @@ export default function GlobeMap({
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
   const TEXTILERIE_STORY = React.useMemo(() => {
-    const h = new Date().getHours();
-    const isMorning = h >= 5 && h < 12;
-    const isEvening = h >= 18 || h < 5;
-
-    if (isMorning) {
-      return [
-        "Le matin, l’atelier est calme.",
-        "On répare plutôt que jeter.",
-        "Et parfois, on recoud des histoires."
-      ];
-    }
-
-    if (isEvening) {
-      return [
-        "Le soir, on ralentit.",
-        "On répare plutôt que jeter.",
-        "Et parfois, on recoud des histoires."
-      ];
-    }
-
-    return [
-      "Ici, on préfère réparer plutôt que jeter.",
-      "On apprend à ralentir.",
-      "Et parfois, à recoudre des histoires."
-    ];
-  }, []);
+  return [
+    "Ici, les textiles usagés trouvent une seconde vie, entre les mains de celles et ceux qui réparent plutôt que jeter.",
+    "On y découvre des vêtements choisis avec soin, des créations engagées, des tissus à transformer, à imaginer, à transmettre.",
+    "Autour d’un café, on apprend, on coud, on partage : un lieu vivant où le textile devient lien."
+  ];
+}, []);
 
   const storyTimersRef = React.useRef<any[]>([]);
   const [storyVisible, setStoryVisible] = React.useState(false);
@@ -347,38 +327,64 @@ export default function GlobeMap({
     };
   }, []);
 
-  const playTextilerieStory = (after: () => void) => {
-    storyTimersRef.current.forEach((t) => {
-      try { clearTimeout(t); } catch {}
-      try { clearInterval(t); } catch {}
-    });
-    storyTimersRef.current = [];
+  
+const playTextilerieStory = (after: () => void) => {
+  storyTimersRef.current.forEach((t) => {
+    try { clearTimeout(t); } catch {}
+    try { clearInterval(t); } catch {}
+  });
+  storyTimersRef.current = [];
 
-    try { setSheetOpen(false); } catch {}
-    try { setSheetHtml(""); } catch {}
-    setStoryText("");
-    setStoryVisible(true);
+  try { setSheetOpen(false); } catch {}
+  try { setSheetHtml(""); } catch {}
 
-    const full = TEXTILERIE_STORY.join("\n\n");
-    let i = 0;
-    const stepMs = 28;
+  setStoryText("");
+  setStoryVisible(true);
 
-    const it = setInterval(() => {
-      i += 1;
-      setStoryText(full.slice(0, i));
-      if (i >= full.length) {
-        try { clearInterval(it); } catch {}
-        const t = setTimeout(() => {
-          try { sessionStorage.setItem("im_story_textilerie_globe_seen_v1","1"); } catch {}
-          setStoryVisible(false);
-          after();
-        }, 650);
-        storyTimersRef.current.push(t);
-      }
-    }, stepMs);
+  const lines = TEXTILERIE_STORY;
+  let lineIndex = 0;
+  let charIndex = 0;
+  let current = "";
 
-    storyTimersRef.current.push(it);
+  const baseStep = 78;
+  const breatheLineMs = 720;
+  const endHoldMs = 2650;
+
+  const tick = () => {
+    const line = lines[lineIndex];
+    if (!line) return;
+
+    if (charIndex < line.length) {
+      charIndex++;
+      current = lines.slice(0, lineIndex).join("\n\n")
+        + (lineIndex > 0 ? "\n\n" : "")
+        + line.slice(0, charIndex);
+      setStoryText(current);
+
+      const jitter = Math.floor(Math.random() * 10);
+      const t = setTimeout(tick, baseStep + jitter);
+      storyTimersRef.current.push(t);
+    } else {
+      const t = setTimeout(() => {
+        lineIndex++;
+        charIndex = 0;
+        if (lineIndex < lines.length) {
+          tick();
+        } else {
+          const end = setTimeout(() => {
+            setStoryVisible(false);
+            after();
+          }, endHoldMs);
+          storyTimersRef.current.push(end);
+        }
+      }, breatheLineMs);
+      storyTimersRef.current.push(t);
+    }
   };
+
+  tick();
+};
+
 
   const StoryOverlayTextilerie = () => {
     if (!storyVisible) return null;
@@ -386,7 +392,8 @@ export default function GlobeMap({
       <div
         className="absolute inset-0 z-[99999] flex items-center justify-center px-6"
         style={{
-          background: "rgba(0,0,0,0.62)",
+          fontFamily: "var(--im-story-font)",
+background: "rgba(0,0,0,0.62)",
           WebkitBackdropFilter: "blur(3px)",
           backdropFilter: "blur(3px)",
         }}
