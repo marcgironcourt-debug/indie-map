@@ -660,14 +660,15 @@ export default function GlobeMap({
 
         const z = map.getZoom();
         if (z <= 3.2) {
-          map.flyTo({ center: [lng, lat], zoom: 11, speed: 0.9, curve: 1.2, essential: true });
-          map.once("moveend", () => {
-            openPopup();
-          });
+          try { setSheetOpen(false); } catch {}
+          try { setSheetHtml(""); } catch {}
+          try { setSheetHeightNow(25); } catch {}
+          try { onSelectRef.current?.(String(props.id)); } catch {}
+          map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
+          return;
         } else {
           openPopup();
         }
-
       });
     }
   }
