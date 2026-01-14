@@ -307,3 +307,15 @@ main {
   50% { transform: rotate(10deg); }
   100% { transform: rotate(-10deg); }
 }
+
+
+/* iPhone only — couleur story Indie Map */
+@media (max-width: 768px) {
+  .im-story-text,
+  [data-im-story-span],
+  [class*="z-[99999]"] span {
+    color: #EFE6D8 !important;
+    -webkit-text-fill-color: #EFE6D8 !important;
+    opacity: 1 !important;
+  }
+}

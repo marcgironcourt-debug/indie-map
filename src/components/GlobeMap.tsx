@@ -346,9 +346,9 @@ const playTextilerieStory = (after: () => void) => {
   let charIndex = 0;
   let current = "";
 
-  const baseStep = 78;
-  const breatheLineMs = 720;
-  const endHoldMs = 2650;
+  const baseStep = 38;
+  const breatheLineMs = 480;
+  const endHoldMs = 1400;
 
   const tick = () => {
     const line = lines[lineIndex];
@@ -361,7 +361,7 @@ const playTextilerieStory = (after: () => void) => {
         + line.slice(0, charIndex);
       setStoryText(current);
 
-      const jitter = Math.floor(Math.random() * 10);
+      const jitter = Math.floor(Math.random() * 8);
       const t = setTimeout(tick, baseStep + jitter);
       storyTimersRef.current.push(t);
     } else {
