@@ -295,6 +295,7 @@ export default function GlobeMap({
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const mapRef = React.useRef<maplibregl.Map | null>(null);
+  const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
 
   const SOURCE_ID = "indie-places";
@@ -407,6 +408,14 @@ export default function GlobeMap({
       setSheetHeightNow(sheetHeightRef.current);
     } catch {}
   };
+
+  React.useEffect(() => {
+    try {
+      if (geolocateElRef.current) {
+        geolocateElRef.current.style.display = sheetOpen ? "none" : "block";
+      }
+    } catch {}
+  }, [sheetOpen]);
 
   React.useEffect(() => {
     sheetHeightRef.current = sheetHeightVh;
@@ -782,6 +791,7 @@ class GeolocateControl_ML {
       });
     }
     this._container = c;
+    try { geolocateElRef.current = c; } catch {}
     return c;
   }
   onRemove() {
