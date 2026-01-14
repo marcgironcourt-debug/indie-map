@@ -763,7 +763,7 @@ class GeolocateControl_ML {
           background:#5C6E3B;border:0;
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 8px 20px rgba(0,0,0,.25);
-            filter: drop-shadow(0 0 10px rgba(114,138,74,.55)) drop-shadow(0 0 2px rgba(114,138,74,.65));
+            filter: drop-shadow(0 0 4px rgba(114,138,74,.45)) drop-shadow(0 0 1px rgba(114,138,74,.55));
             cursor:pointer;
         ">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="transform: translate(-1px, -0.5px);"

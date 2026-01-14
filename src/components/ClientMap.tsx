@@ -751,7 +751,7 @@ function GeolocateControl() {
         })}
 
         {userLocation && (
-          <CircleMarker center={userLocation} radius={10} pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }} />
+          <CircleMarker center={userLocation} radius={7} pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#f97316", fillOpacity: 1 }} />
         )}
       </MapContainer>
 </div>
