@@ -305,6 +305,119 @@ export default function GlobeMap({
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
+  const TEXTILERIE_STORY = React.useMemo(() => {
+    const h = new Date().getHours();
+    const isMorning = h >= 5 && h < 12;
+    const isEvening = h >= 18 || h < 5;
+
+    if (isMorning) {
+      return [
+        "Le matin, l’atelier est calme.",
+        "On répare plutôt que jeter.",
+        "Et parfois, on recoud des histoires."
+      ];
+    }
+
+    if (isEvening) {
+      return [
+        "Le soir, on ralentit.",
+        "On répare plutôt que jeter.",
+        "Et parfois, on recoud des histoires."
+      ];
+    }
+
+    return [
+      "Ici, on préfère réparer plutôt que jeter.",
+      "On apprend à ralentir.",
+      "Et parfois, à recoudre des histoires."
+    ];
+  }, []);
+
+  const storyTimersRef = React.useRef<any[]>([]);
+  const [storyVisible, setStoryVisible] = React.useState(false);
+  const [storyText, setStoryText] = React.useState("");
+
+  React.useEffect(() => {
+    return () => {
+      storyTimersRef.current.forEach((t) => {
+        try { clearTimeout(t); } catch {}
+        try { clearInterval(t); } catch {}
+      });
+      storyTimersRef.current = [];
+    };
+  }, []);
+
+  const playTextilerieStory = (after: () => void) => {
+    storyTimersRef.current.forEach((t) => {
+      try { clearTimeout(t); } catch {}
+      try { clearInterval(t); } catch {}
+    });
+    storyTimersRef.current = [];
+
+    try { setSheetOpen(false); } catch {}
+    try { setSheetHtml(""); } catch {}
+    setStoryText("");
+    setStoryVisible(true);
+
+    const full = TEXTILERIE_STORY.join("\n\n");
+    let i = 0;
+    const stepMs = 28;
+
+    const it = setInterval(() => {
+      i += 1;
+      setStoryText(full.slice(0, i));
+      if (i >= full.length) {
+        try { clearInterval(it); } catch {}
+        const t = setTimeout(() => {
+          try { sessionStorage.setItem("im_story_textilerie_globe_seen_v1","1"); } catch {}
+          setStoryVisible(false);
+          after();
+        }, 650);
+        storyTimersRef.current.push(t);
+      }
+    }, stepMs);
+
+    storyTimersRef.current.push(it);
+  };
+
+  const StoryOverlayTextilerie = () => {
+    if (!storyVisible) return null;
+    return (
+      <div
+        className="absolute inset-0 z-[99999] flex items-center justify-center px-6"
+        style={{
+          background: "rgba(0,0,0,0.62)",
+          WebkitBackdropFilter: "blur(3px)",
+          backdropFilter: "blur(3px)",
+        }}
+      >
+        <div
+          className="max-w-[560px] w-full text-center"
+          style={{
+            color: "#E4D4C2",
+            fontSize: 18,
+            lineHeight: 1.5,
+            letterSpacing: "0.01em",
+            textShadow: "0 1px 14px rgba(0,0,0,0.45)",
+            whiteSpace: "pre-line",
+          }}
+        >
+          <span>{storyText}</span>
+          <span
+            className="inline-block align-baseline ml-1"
+            style={{
+              width: 10,
+              height: 18,
+              background: "#728A4A",
+              opacity: 0.85,
+              transform: "translateY(2px)",
+            }}
+          />
+        </div>
+      </div>
+    );
+  };
+
 
   const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
@@ -659,20 +772,30 @@ export default function GlobeMap({
         } catch {}
 
         
+        
+        const props = f?.properties || {};
+
         const openPopup = () => {
-          const props = f?.properties || {};
           try { setSheetHtml(buildPopupHtml(props, Boolean(darkMapRef.current))); } catch { try { setSheetHtml(""); } catch {} }
-          try { setSheetHeightNow(25);
-      setSheetOpen(true); } catch {}
+          try { setSheetHeightNow(25); setSheetOpen(true); } catch {}
           try { setSheetHeightNow(10); } catch {}
         };
+
+        const isTextilerie =
+          String(props?.id ?? fid) === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
+          String(props?.name ?? props?.title ?? "").trim().toLowerCase().includes("textilerie");
+
+        if (isTextilerie) {
+          playTextilerieStory(openPopup);
+          return;
+        }
 
         const z = map.getZoom();
         if (z <= 3.2) {
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
-          try { onSelectRef.current?.(String(props.id)); } catch {}
+          try { onSelectRef.current?.(String((props as any).id)); } catch {}
           map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
           return;
         } else {
@@ -985,6 +1108,7 @@ mapRef.current = map;
   return (
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
+      <StoryOverlayTextilerie />
       {sheetOpen ? (
         <div className="absolute inset-0 pointer-events-none">
           <div
