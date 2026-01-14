@@ -1050,7 +1050,7 @@ mapRef.current = map;
               }}
             >
               <div className="flex-1 flex justify-center">
-                <div style={{ width: 56, height: 6, borderRadius: 999, background: "#6b6b55" }} />
+                <div style={{ width: 56, height: 6, borderRadius: 999, background: "#6b6b55", transform: "translateX(10px)" }} />
               </div>
               <button
                 type="button"
