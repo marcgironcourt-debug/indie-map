@@ -1050,7 +1050,8 @@ mapRef.current = map;
                 type="button"
                 className="ml-2 px-2 py-1 rounded-full"
                 style={{ color: "#f5f5e8", border: "1px solid #3a3a2a", background: "rgba(0,0,0,0.15)", position: "relative", zIndex: 5 }}
-                onClick={() => { try { setSheetOpen(false); } catch {} }}
+                onPointerDown={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} }}
+                onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setSheetOpen(false); } catch {} }}
               >
                 ✕
               </button>

@@ -246,8 +246,8 @@ function FilterBar({
   onCategoryChange,
 }: {
   categories: string[];
-  activeCategory: string | null;
-  onCategoryChange: (c: string | null) => void;
+  activeCategory: string | "ALL";
+  onCategoryChange: (c: string | "ALL") => void;
 }) {
   const rowClass =
     "flex items-center gap-2 px-6 py-2 overflow-x-auto whitespace-nowrap";
@@ -265,8 +265,8 @@ function FilterBar({
     >
       <FilterPill
         label="Tous"
-        active={activeCategory == null}
-        onClick={() => onCategoryChange(null)}
+        active={activeCategory === "ALL"}
+        onClick={() => onCategoryChange("ALL")}
         
       />
 
@@ -661,7 +661,7 @@ React.useEffect(() => {
   const filtered = source.filter((b) => {
     const k = (b.type || "").toLowerCase();
 
-    if (category === "ALL") return true;
+    if (category == null || category === "ALL") return true;
 
     if (category === "Librairie") {
       return (
