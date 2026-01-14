@@ -976,12 +976,7 @@ mapRef.current = map;
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
       {sheetOpen ? (
-        <div className="absolute inset-0 pointer-events-auto">
-          <div
-            className="absolute inset-0"
-            style={{ background: sheetHeightVh >= 45 ? "rgba(0,0,0,0.35)" : "transparent" }}
-            onClick={() => { try { setSheetOpen(false); } catch {} }}
-          />
+        <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute left-0 right-0 bottom-0 pointer-events-auto shadow-2xl"
             style={{
@@ -1050,11 +1045,23 @@ mapRef.current = map;
               <button
                 type="button"
                 className="ml-2 px-2 py-1 rounded-full"
-                style={{ color: "#f5f5e8", border: "1px solid #3a3a2a", background: "rgba(0,0,0,0.15)", position: "relative", zIndex: 5 }}
+                style={{ 
+    color: "#f5f5e8",
+    border: "1px solid #3a3a2a",
+    background: "rgba(0,0,0,0.15)",
+    position: "relative",
+    zIndex: 5,
+    width: "28px",
+    height: "28px",
+    borderRadius: "9999px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  }}
                 onPointerDown={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} }}
                 onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setSheetOpen(false); } catch {} }}
               >
-                ✕
+                <span style={{ display: "inline-block", transform: "translateY(-1px)" }}>✕</span>
               </button>
             </div>
             <div className="h-[calc(100%-40px)] overflow-y-auto px-3 pb-6">
