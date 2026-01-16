@@ -11,8 +11,7 @@
     "description": "Succursale LOCO près de Castelnau.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:22:04.885Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:22:04.885Z"
   },
   {
     "id": "cmiae0q6p00019krf7u62iayb",
@@ -26,8 +25,7 @@
     "description": "Succursale LOCO Verdun, épicerie zéro déchet.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:26:22.017Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:26:22.017Z"
   },
   {
     "id": "cmiae0q6p00029krffz2oa9rb",
@@ -41,8 +39,7 @@
     "description": "Succursale LOCO sur le Plateau Mont-Royal.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:24:21.971Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:24:21.971Z"
   },
   {
     "id": "cmiae0q6p00039krfhpa5gugd",
@@ -56,8 +53,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:27:20.599Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:27:20.599Z"
   },
   {
     "id": "cmiae0q6p00049krfr7fkeo9q",
@@ -71,8 +67,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:31:16.815Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:31:16.815Z"
   },
   {
     "id": "cmiae0q6p00059krfrt785krc",
@@ -86,8 +81,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:30:00.551Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:30:00.551Z"
   },
   {
     "id": "cmiae0q6p00069krfchmxy0kl",
@@ -101,8 +95,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:28:30.252Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:28:30.252Z"
   },
   {
     "id": "cmiae0q6p00079krfbmfilyzg",
@@ -116,8 +109,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:31:49.718Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:31:49.718Z"
   },
   {
     "id": "cmiae0q6p00089krfpw5fwgqr",
@@ -131,8 +123,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:29:29.368Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:29:29.368Z"
   },
   {
     "id": "cmiae0q6p00099krfky88gv7n",
@@ -146,8 +137,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.719Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.719Z"
   },
   {
     "id": "cmiae0q6p000a9krf03yej077",
@@ -161,8 +151,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.719Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.719Z"
   },
   {
     "id": "cmiae0q6p000b9krfcp854yrv",
@@ -176,8 +165,7 @@
     "description": "Épicerie zéro déchet LOCO dans Villeray.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.715Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.715Z"
   },
   {
     "id": "cmiae0q6p000c9krf009kx4qk",
@@ -191,8 +179,7 @@
     "description": "Librairie indépendante et bouquinerie emblématique.",
     "category": "Librairie & bouquinerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:58:03.421Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:58:03.421Z"
   },
   {
     "id": "cmiae0q6p000d9krfjtto6bdn",
@@ -206,8 +193,7 @@
     "description": "Café local populaire avec ambiance chaleureuse.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:43:16.455Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:43:16.455Z"
   },
   {
     "id": "cmiae0q6q000e9krfypgs7l2p",
@@ -221,8 +207,7 @@
     "description": "Café italien végétalien, pâtisseries et pains faits maison dans Rosemont.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:39:17.879Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:39:17.879Z"
   },
   {
     "id": "cmiae0q6q000f9krfk8iso7te",
@@ -236,8 +221,7 @@
     "description": "Boutique locale avec produits fabriqués au Québec.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:11:57.201Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:11:57.201Z"
   },
   {
     "id": "cmiae0q6q000h9krfv501b91o",
@@ -251,8 +235,7 @@
     "description": "Boutique de cadeaux et d'artisanat local.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:50:24.766Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:50:24.766Z"
   },
   {
     "id": "cmiae0q6q000i9krf565vd7zb",
@@ -266,8 +249,7 @@
     "description": "Boutique artisanale indépendante.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:47:10.621Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:47:10.621Z"
   },
   {
     "id": "cmiae0q6q000j9krfw3t67wnq",
@@ -281,8 +263,7 @@
     "description": "Mode locale et créateurs québécois.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.720Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.720Z"
   },
   {
     "id": "cmiae0q6q000k9krfiengxigy",
@@ -296,8 +277,7 @@
     "description": "Boutique de cadeaux et objets fabriqués localement au Canada.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:49:11.569Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:49:11.569Z"
   },
   {
     "id": "cmiae0q6q000l9krfs1d5021v",
@@ -311,8 +291,7 @@
     "description": "Friperie indépendante du Mile End.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:19:11.901Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:19:11.901Z"
   },
   {
     "id": "cmiae0q6q000m9krfzplt8e84",
@@ -326,8 +305,7 @@
     "description": "Épicerie fine locale.",
     "category": "Épicerie locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:33:59.665Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:33:59.665Z"
   },
   {
     "id": "cmiae0q6q000n9krfhk6pasri",
@@ -341,8 +319,7 @@
     "description": "Librairie de livres d'occasion.",
     "category": "Librairie & bouquinerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.851Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:06:28.851Z"
   },
   {
     "id": "cmiae0q6q000p9krf9p9vq1mm",
@@ -356,8 +333,7 @@
     "description": "Mode éthique et locale.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.720Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.720Z"
   },
   {
     "id": "cmiae0q6q000q9krfj5s4bxpt",
@@ -371,8 +347,7 @@
     "description": "Restaurant gastronomique terroir.",
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:04:22.479Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:04:22.479Z"
   },
   {
     "id": "cmiae0q6q000r9krffi0dbbag",
@@ -386,8 +361,7 @@
     "description": "Restaurant farm-to-table local.",
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:01:05.709Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:01:05.709Z"
   },
   {
     "id": "cmiae0q6q000s9krfrx86qhm9",
@@ -401,8 +375,7 @@
     "description": "Cuisine du marché locale.",
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:02:44.396Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:02:44.396Z"
   },
   {
     "id": "cmiae0q6q000t9krfei1reig1",
@@ -416,8 +389,7 @@
     "description": "Bistro terroir.",
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:59:30.308Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:59:30.308Z"
   },
   {
     "id": "cmiae0q6q000u9krfk5qkyp82",
@@ -431,8 +403,7 @@
     "description": "Restaurant AVV local.",
     "category": "Restaurant locavore abordable",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:03:06.326Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:03:06.326Z"
   },
   {
     "id": "cmiae0q6q000v9krfsr2obp3i",
@@ -446,8 +417,7 @@
     "description": "Bistro terroir du Mile End.",
     "category": "Bistro terroir et local",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:06:28.850Z"
   },
   {
     "id": "cmiae0q6q000w9krfw3ot5wb6",
@@ -461,8 +431,7 @@
     "description": "Restaurant de quartier cuisine du marché.",
     "category": "Cuisine du marché",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:00:19.538Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:00:19.538Z"
   },
   {
     "id": "cmiae0q6q000x9krf685qpmfx",
@@ -476,8 +445,7 @@
     "description": "Boulangerie artisanale réputée du Mile End.",
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:10:48.871Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:10:48.871Z"
   },
   {
     "id": "cmiae0q6q000y9krfwxzap6xl",
@@ -491,8 +459,7 @@
     "description": "Boulangerie artisanale reconnue pour ses pains et viennoiseries.",
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:06:37.512Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:06:37.512Z"
   },
   {
     "id": "cmiae0q6q000z9krfmbp2lmig",
@@ -506,8 +473,7 @@
     "description": "Boulangerie artisanale de quartier.",
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:07:51.361Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:07:51.361Z"
   },
   {
     "id": "cmiae0q6q00109krfq6608lhn",
@@ -521,8 +487,7 @@
     "description": "Micro-boulangerie bio et sans gluten.",
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:09:38.755Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:09:38.755Z"
   },
   {
     "id": "cmiae0q6q00119krfl0snjiah",
@@ -536,8 +501,7 @@
     "description": "Microbrasserie artisanale emblématique du Plateau.",
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:06:28.850Z"
   },
   {
     "id": "cmiae0q6q00129krfhghyvr7x",
@@ -551,8 +515,7 @@
     "description": "Bistro et microbrasseries locales du terroir québécois.",
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:52:06.630Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:52:06.630Z"
   },
   {
     "id": "cmiae0q6q00139krfnjy9vqko",
@@ -566,8 +529,7 @@
     "description": "Épicerie vrac et zéro déchet sur le Plateau.",
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:17:06.417Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:17:06.417Z"
   },
   {
     "id": "cmiae0q6q00149krf9r6z279s",
@@ -581,8 +543,7 @@
     "description": "Boutique cadeaux et objets du quotidien à vocation écoresponsable.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:48:06.400Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:48:06.400Z"
   },
   {
     "id": "cmiae0q6q00159krfkxfpzlt1",
@@ -596,8 +557,7 @@
     "description": "Librairie-boutique au cœur du Vieux-Montréal.",
     "category": "Librairie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:58:30.003Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:58:30.003Z"
   },
   {
     "id": "cmiae0q6q00169krfgsew8ceg",
@@ -611,8 +571,7 @@
     "description": "Épicerie et boutique axée sur les produits naturels et durables.",
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:49:46.781Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:49:46.781Z"
   },
   {
     "id": "cmiae0q6q00179krf0tfowbt1",
@@ -626,8 +585,7 @@
     "description": "Atelier-boutique de vêtements confortables et éthiques.",
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.718Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T13:32:37.718Z"
   },
   {
     "id": "cmiae0q6q00189krfwwiht39i",
@@ -641,8 +599,7 @@
     "description": "Café de quartier axé sur les habitudes plus durables.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:44:22.544Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:44:22.544Z"
   },
   {
     "id": "cmiae0q6q00199krfn37bwtd1",
@@ -656,8 +613,7 @@
     "description": "Café-torréfacteur de longue date sur le Plateau.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:44:11.955Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:44:11.955Z"
   },
   {
     "id": "cmiae0q6q001a9krf1ef176j0",
@@ -671,8 +627,7 @@
     "description": "Café-épicerie mettant en avant des produits locaux.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T14:11:31.330Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-23T14:11:31.330Z"
   },
   {
     "id": "cmiae0q6q001b9krfi1qnlrmr",
@@ -686,8 +641,7 @@
     "description": "Boulangerie artisanale et brunch de quartier.",
     "category": "Boulangerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:06:02.247Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:06:02.247Z"
   },
   {
     "id": "cmiae0q6q001c9krfssksv65b",
@@ -701,8 +655,7 @@
     "description": "Café-brunch convivial à Pointe-Saint-Charles.",
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:38:20.183Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:38:20.183Z"
   },
   {
     "id": "cmiae0q6q001d9krf7sb1exyi",
@@ -716,8 +669,7 @@
     "description": "Restaurant locavore axé sur les produits saisonniers.",
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:04:45.263Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T23:04:45.263Z"
   },
   {
     "id": "cmiae0q6q001e9krfxnxxeb3h",
@@ -731,8 +683,7 @@
     "description": "Taproom de microbrasserie dans le Vieux-Montréal.",
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:06:28.850Z"
   },
   {
     "id": "cmiae0q6q001f9krf7mw3alzt",
@@ -746,8 +697,7 @@
     "description": "Bar de quartier, microbrasserie et distillerie artisanale.",
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.851Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-30T13:06:28.851Z"
   },
   {
     "id": "cmiae0q6q001g9krfglq8ad3s",
@@ -761,8 +711,7 @@
     "description": "Pub moderne mettant en avant les produits locaux.",
     "category": "Bar & restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:55:51.126Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:55:51.126Z"
   },
   {
     "id": "cmiae0q6q001h9krfh0cie7fr",
@@ -776,8 +725,7 @@
     "description": "Bar à vin nature avec une forte sélection locale.",
     "category": "Bar à vin",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:53:09.446Z",
-    "timeZone": "America/Toronto"
+    "updatedAt": "2025-11-26T22:53:09.446Z"
   },
   {
     "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
@@ -791,7 +739,6 @@
     "description": null,
     "category": "Vêtements",
     "createdAt": "2026-01-13T14:02:32.269Z",
-    "updatedAt": "2026-01-13T14:26:24.943Z",
-    "timeZone": "Europe/Paris"
+    "updatedAt": "2026-01-13T14:26:24.943Z"
   }
 ]

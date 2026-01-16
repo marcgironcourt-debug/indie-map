@@ -372,17 +372,21 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
     let hh = "";
     let mm = "";
     try {
-      const parts = new Intl.DateTimeFormat("fr-FR", {
-        timeZone: "Europe/Paris",
-        weekday: "long",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      }).formatToParts(new Date());
-      for (const p of parts) {
-        if (p.type === "weekday") wd = String(p.value || "").toLowerCase();
-        if (p.type === "hour") hh = String(p.value || "");
-        if (p.type === "minute") mm = String(p.value || "");
+      const tzRaw = String((props as any)?.timeZone ?? "").trim();
+      const cityRaw = String((props as any)?.city ?? "");
+      const tz =
+        tzRaw ||
+        (/\bmontr(e|é)al\b/i.test(cityRaw) ? "America/Toronto" : /\bparis\b/i.test(cityRaw) ? "Europe/Paris" : "");
+
+      const fmt = tz
+        ? new Intl.DateTimeFormat("fr-FR", { timeZone: tz, weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false })
+        : new Intl.DateTimeFormat("fr-FR", { weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false });
+
+      const parts = fmt.formatToParts(new Date());
+      for (const pt of parts) {
+        if (pt.type === "weekday") wd = String(pt.value || "").toLowerCase();
+        if (pt.type === "hour") hh = String(pt.value || "");
+        if (pt.type === "minute") mm = String(pt.value || "");
       }
     } catch {
       return null;
@@ -413,11 +417,14 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
     for (const p of parts) {
       const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
       if (!m) continue;
-      const sh = Number(m[1]), sm = Number(m[2]), eh = Number(m[3]), em = Number(m[4]);
+      const sh = Number(m[1]);
+      const sm = Number(m[2] ?? "0");
+      const eh = Number(m[3]);
+      const em = Number(m[4] ?? "0");
       if (![sh,sm,eh,em].every(Number.isFinite)) continue;
       const a = sh * 60 + sm;
       const b = eh * 60 + em;
-      if (nowMin >= a && nowMin <= b) { open = true; break; }
+      if (b >= a) { if (nowMin >= a && nowMin < b) { open = true; break; } } else { if (nowMin >= a || nowMin < b) { open = true; break; } }
     }
 
     return open ? { label: "Ouvert", color: OPEN_COLOR } : { label: "Fermé", color: CLOSED_COLOR };
