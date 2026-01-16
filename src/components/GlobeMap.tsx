@@ -120,6 +120,51 @@ function escapeHtml(s: string) {
     .replace(/>/g, "&gt;");
 }
 
+
+
+
+
+
+
+function buildMiniPinPopupHtml(props: any, dark: boolean) {
+  const name = String(props?.name ?? props?.title ?? "").trim();
+  const type = String(props?.type ?? "").trim();
+  const id = String(props?.id ?? "").trim();
+
+  const lower = name.toLowerCase();
+  const isTextilerie = id === "98ce3443-2512-4285-9b47-535d2a369cb4" || lower.includes("textilerie");
+
+  const sentence = isTextilerie
+    ? "Atelier textile collaboratif dédié à la réparation, la transmission et au faire ensemble."
+    : getCategorySentence(type);
+
+  const openStatus = "Je ne sais pas.";
+  const walkTime = "Je ne sais pas.";
+
+  const bg = "rgba(31,31,24,.68)";
+  const border = "rgba(228,212,194,.18)";
+  const titleColor = "rgba(245,245,232,.92)";
+  const textColor = "rgba(245,245,232,.78)";
+  const metaColor = "rgba(245,245,232,.62)";
+  const shadow = "0 8px 18px rgba(0,0,0,.18)";
+
+  return (
+    "<div style=\"position:relative; max-width:240px; padding:8px 10px; background:" + bg + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);\" >" +
+      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:14px; font-weight:600; line-height:1.2; color:" + titleColor + ";\" >" +
+        escapeHtml(name || "Lieu") +
+      "</div>" +
+      "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:12px; line-height:1.38; color:" + textColor + ";\" >" +
+        escapeHtml(sentence) +
+      "</div>" +
+      "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
+        "<span style=\"font-weight:700;\" >Ouvert :</span> " + escapeHtml(openStatus) + " &nbsp; · &nbsp; " +
+        "<span style=\"font-weight:700;\" >À pied :</span> " + escapeHtml(walkTime) +
+      "</div>" +
+      "<div style=\"position:absolute; left:50%; bottom:-10px; transform:translateX(-50%);\" >" +"<div style=\"width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:10px solid " + border + ";\" ></div>" +"<div style=\"position:absolute; left:50%; top:-1px; transform:translateX(-50%); width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent; border-top:9px solid " + bg + ";\" ></div>" +"</div>" +
+    "</div>"
+  );
+}
+
 function svgPin(color: string, stroke: string, selected: boolean) {
   const size = selected ? 26 : 24;
   const height = selected ? 38 : 36;
@@ -645,7 +690,19 @@ export default function GlobeMap({
         },
       });
 
-      map.on("mouseenter", LAYER_ID, () => {
+      
+      // __INDIEMAP_CLOSE_POPUP_ON_BG_CLICK__
+      map.on("click", (ev: any) => {
+        try {
+          const feats = map.queryRenderedFeatures(ev.point, { layers: [LAYER_ID] } as any);
+          if (!feats || feats.length === 0) {
+            try { popupRef.current?.remove(); } catch {}
+            popupRef.current = null;
+          }
+        } catch {}
+      });
+
+map.on("mouseenter", LAYER_ID, () => {
         try { map.getCanvas().style.cursor = "pointer"; } catch {}
       });
 
@@ -692,9 +749,17 @@ export default function GlobeMap({
         const props = f?.properties || {};
 
         const openPopup = () => {
-          try { setSheetHtml(buildPopupHtml(props, Boolean(darkMapRef.current))); } catch { try { setSheetHtml(""); } catch {} }
-          try { setSheetHeightNow(25); setSheetOpen(true); } catch {}
-          };
+          try { setSheetOpen(false); } catch {}
+          try { setSheetHtml(""); } catch {}
+          try { if (popupRef.current) popupRef.current.remove(); } catch {}
+          try {
+            const html = buildMiniPinPopupHtml(props, Boolean(darkMapRef.current));
+            popupRef.current = new maplibregl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "280px", offset: [0, -32] })
+              .setLngLat([lng, lat])
+              .setHTML(html)
+              .addTo(map);
+          } catch {}
+        };
 
         const isTextilerie =
           String(props?.id ?? fid) === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
