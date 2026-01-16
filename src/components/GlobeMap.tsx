@@ -122,14 +122,230 @@ function escapeHtml(s: string) {
 
 
 
+/* __INDIEMAP_OPENING_HOURS_FR__ */
+function normalizeDayFR(x: string) {
+  const v = String(x || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "");
+  if (v.startsWith("lundi")) return "lundi";
+  if (v.startsWith("mardi")) return "mardi";
+  if (v.startsWith("mercredi")) return "mercredi";
+  if (v.startsWith("jeudi")) return "jeudi";
+  if (v.startsWith("vendredi")) return "vendredi";
+  if (v.startsWith("samedi")) return "samedi";
+  if (v.startsWith("dimanche")) return "dimanche";
+  return "";
+}
+
+function parseTimeToMinFR(t: string) {
+  const m = String(t || "").trim().match(/^(\d{1,2})\s*(?:h|:)\s*(\d{2})$/i);
+  if (!m) return null;
+  const hh = Number(m[1]);
+  const mm = Number(m[2]);
+  if (!Number.isFinite(hh) || !Number.isFinite(mm)) return null;
+  if (hh < 0 || hh > 23 || mm < 0 || mm > 59) return null;
+  return hh * 60 + mm;
+}
+
+function parseOpeningHoursFR(opening: string) {
+  const byDay = new Map<string, Array<[number, number]>>();
+  const lines = String(opening || "").split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+
+  for (const line of lines) {
+    const parts = line.split(/\s+/);
+    if (parts.length === 0) continue;
+    const day = normalizeDayFR(parts[0]);
+    if (!day) continue;
+
+    const rest = line.slice(parts[0].length).trim();
+    if (!rest) continue;
+
+    const restNorm = rest.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    if (restNorm.includes("ferme")) {
+      byDay.set(day, []);
+      continue;
+    }
+
+    const chunks = rest.split(/\s*(?:,|\/|\||;|et)\s*/i).map(x => x.trim()).filter(Boolean);
+    const ranges = [];
+
+    for (const c of chunks) {
+      const mm = c.match(/(\d{1,2}\s*(?:h|:)\s*\d{2})\s*[-–—]\s*(\d{1,2}\s*(?:h|:)\s*\d{2})/i);
+      if (!mm) continue;
+      const a = parseTimeToMinFR(mm[1].replace(/\s+/g,""));
+      const b = parseTimeToMinFR(mm[2].replace(/\s+/g,""));
+      if (a == null || b == null) continue;
+      ranges.push([a, b]);
+    }
+
+    if (!byDay.has(day)) byDay.set(day, []);
+    const cur = byDay.get(day);
+    for (const r of ranges) cur.push(r);
+  }
+
+  return byDay;
+}
+
+function nowPartsInTZ(timeZone: string) {
+  const fmt = new Intl.DateTimeFormat("fr-FR", {
+    timeZone,
+    weekday: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  const parts = fmt.formatToParts(new Date());
+  const wd = parts.find(p => p.type === "weekday")?.value ?? "";
+  const hh = parts.find(p => p.type === "hour")?.value ?? "";
+  const mm = parts.find(p => p.type === "minute")?.value ?? "";
+  const day = normalizeDayFR(wd);
+  const h = Number(hh);
+  const m = Number(mm);
+  if (!day || !Number.isFinite(h) || !Number.isFinite(m)) return null;
+  return { day, minutes: h * 60 + m };
+}
+
+function isOpenNowFR(opening: string, timeZone: string) {
+  const map = parseOpeningHoursFR(opening);
+  const now = nowPartsInTZ(timeZone);
+  if (!now) return null;
+  const ranges = map.get(now.day);
+  if (!ranges) return null;
+
+  const t = now.minutes;
+  for (const [a, b] of ranges) {
+    if (a === b) continue;
+    if (b > a) {
+      if (t >= a && t < b) return true;
+    } else {
+      if (t >= a || t < b) return true;
+    }
+  }
+  return false;
+}
+/* __INDIEMAP_OPENING_HOURS_FR__ */
 
 
+
+
+
+
+
+
+function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
+  const norm = (x: string) =>
+    String(x || "")
+      .toLowerCase()
+      .trim()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "");
+
+  const tzForCity = (city: string) => {
+    const c = norm(city);
+    if (c === "paris") return "Europe/Paris";
+    if (c === "montreal" || c === "montreal qc" || c.includes("montreal")) return "America/Montreal";
+    return "";
+  };
+
+  const nowParts = (tz: string) => {
+    try {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz || undefined,
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).formatToParts(new Date());
+      const get = (t: string) => (parts.find((p: any) => p.type === t)?.value || "");
+      const wd = get("weekday");
+      const hh = Number(get("hour"));
+      const mm = Number(get("minute"));
+      const widx =
+        wd === "Mon" ? 1 :
+        wd === "Tue" ? 2 :
+        wd === "Wed" ? 3 :
+        wd === "Thu" ? 4 :
+        wd === "Fri" ? 5 :
+        wd === "Sat" ? 6 : 0;
+      const mins = (Number.isFinite(hh) ? hh : 0) * 60 + (Number.isFinite(mm) ? mm : 0);
+      return { widx, mins };
+    } catch {
+      const d = new Date();
+      const widx = d.getDay();
+      const mins = d.getHours() * 60 + d.getMinutes();
+      return { widx, mins };
+    }
+  };
+
+  const dayIndexFromLine = (line: string) => {
+    const x = norm(line);
+    const first = x.split(/s+/)[0] || "";
+    return (
+      first === "lundi" ? 1 :
+      first === "mardi" ? 2 :
+      first === "mercredi" ? 3 :
+      first === "jeudi" ? 4 :
+      first === "vendredi" ? 5 :
+      first === "samedi" ? 6 :
+      first === "dimanche" ? 0 : -1
+    );
+  };
+
+  const isOpenNow = () => {
+    const tz = tzForCity(cityRaw);
+    const now = nowParts(tz);
+    const raw = String(openingHoursRaw || "").trim();
+    if (!raw) return null;
+
+    const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
+    const todays = lines.find((l) => dayIndexFromLine(l) === now.widx);
+    if (!todays) return null;
+
+    const t = norm(todays);
+    if (t.includes("ferme")) return false;
+
+    const re = /(d{1,2})h(d{2})s*-s*(d{1,2})h(d{2})/g;
+    let m;
+    const ranges = [];
+    while ((m = re.exec(todays)) !== null) {
+      const h1 = Number(m[1]), m1 = Number(m[2]), h2 = Number(m[3]), m2 = Number(m[4]);
+      if (![h1,m1,h2,m2].every(Number.isFinite)) continue;
+      const a = h1 * 60 + m1;
+      const b = h2 * 60 + m2;
+      ranges.push([a,b]);
+    }
+    if (!ranges.length) return null;
+
+    for (const [a,b] of ranges) {
+      if (now.mins >= a && now.mins < b) return true;
+    }
+    return false;
+  };
+
+  const r = isOpenNow();
+  const open = r === true;
+  const known = r !== null;
+
+  const kaki = "#728A4A";
+  const orange = "#F59E0B";
+
+  if (!known) {
+    return { known: false, open: false, text: "Horaires inconnus", color: "rgba(245,245,232,.55)", dot: "rgba(245,245,232,.35)" };
+  }
+
+  return open
+    ? { known: true, open: true, text: "Ouvert", color: kaki, dot: kaki }
+    : { known: true, open: false, text: "Fermé", color: orange, dot: orange };
+}
 
 
 function buildMiniPinPopupHtml(props: any, dark: boolean) {
   const name = String(props?.name ?? props?.title ?? "").trim();
   const type = String(props?.type ?? "").trim();
   const id = String(props?.id ?? "").trim();
+  const openingHoursRaw = String(props?.openingHours ?? "").trim();
 
   const lower = name.toLowerCase();
   const isTextilerie = id === "98ce3443-2512-4285-9b47-535d2a369cb4" || lower.includes("textilerie");
@@ -138,29 +354,91 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
     ? "Atelier textile collaboratif dédié à la réparation, la transmission et au faire ensemble."
     : getCategorySentence(type);
 
-  const openStatus = "Je ne sais pas.";
-  const walkTime = "Je ne sais pas.";
-
   const bg = "rgba(31,31,24,.68)";
   const border = "rgba(228,212,194,.18)";
   const titleColor = "rgba(245,245,232,.92)";
   const textColor = "rgba(245,245,232,.78)";
   const metaColor = "rgba(245,245,232,.62)";
-  const shadow = "0 8px 18px rgba(0,0,0,.18)";
+  const shadow = "0 10px 22px rgba(0,0,0,.20)";
+
+  const OPEN_COLOR = "#728A4A";
+  const CLOSED_COLOR = "#F59E0B";
+
+  const status = (() => {
+    const raw = String(openingHoursRaw || "").trim();
+    if (!raw) return null;
+
+    let wd = "";
+    let hh = "";
+    let mm = "";
+    try {
+      const parts = new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).formatToParts(new Date());
+      for (const p of parts) {
+        if (p.type === "weekday") wd = String(p.value || "").toLowerCase();
+        if (p.type === "hour") hh = String(p.value || "");
+        if (p.type === "minute") mm = String(p.value || "");
+      }
+    } catch {
+      return null;
+    }
+
+    const nowMin = Number(hh) * 60 + Number(mm);
+    if (!Number.isFinite(nowMin)) return null;
+
+    const dayNames = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+    const widx = dayNames.indexOf((wd || "").trim());
+    if (widx === -1) return null;
+
+    const lines = raw.split(/\r?\n/).map((l) => String(l || "").trim()).filter(Boolean);
+    const day = dayNames[widx];
+
+    const todaysLine = lines.find((l) => String(l).toLowerCase().startsWith(day));
+    if (!todaysLine) return null;
+
+    const rest = String(todaysLine).slice(day.length).trim();
+    if (!rest) return null;
+    if (rest.toLowerCase().includes("fermé") || rest.toLowerCase().includes("ferme")) {
+      return { label: "Fermé", color: CLOSED_COLOR };
+    }
+
+    const parts = rest.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
+    let open = false;
+
+    for (const p of parts) {
+      const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
+      if (!m) continue;
+      const sh = Number(m[1]), sm = Number(m[2]), eh = Number(m[3]), em = Number(m[4]);
+      if (![sh,sm,eh,em].every(Number.isFinite)) continue;
+      const a = sh * 60 + sm;
+      const b = eh * 60 + em;
+      if (nowMin >= a && nowMin <= b) { open = true; break; }
+    }
+
+    return open ? { label: "Ouvert", color: OPEN_COLOR } : { label: "Fermé", color: CLOSED_COLOR };
+  })();
+
+  const statusHtml = status
+    ? "<span style=\"font-weight:800; color:" + status.color + ";\">" + status.label + "</span>"
+    : "<span style=\"font-weight:700; color:" + metaColor + ";\">Horaires inconnus</span>";
 
   return (
-    "<div style=\"position:relative; max-width:240px; padding:8px 10px; background:" + bg + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);\" >" +
-      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:14px; font-weight:600; line-height:1.2; color:" + titleColor + ";\" >" +
+    "<div style=\"position:relative; max-width:220px; padding:8px 10px; background:" + bg + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" +
+      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:650; line-height:1.2; color:" + titleColor + "; letter-spacing:.01em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
-      "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:12px; line-height:1.38; color:" + textColor + ";\" >" +
+      "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
         escapeHtml(sentence) +
       "</div>" +
       "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
-        "<span style=\"font-weight:700;\" >Ouvert :</span> " + escapeHtml(openStatus) + " &nbsp; · &nbsp; " +
-        "<span style=\"font-weight:700;\" >À pied :</span> " + escapeHtml(walkTime) +
+        statusHtml +
       "</div>" +
-      "<div style=\"position:absolute; left:50%; bottom:-10px; transform:translateX(-50%);\" >" +"<div style=\"width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:10px solid " + border + ";\" ></div>" +"<div style=\"position:absolute; left:50%; top:-1px; transform:translateX(-50%); width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent; border-top:9px solid " + bg + ";\" ></div>" +"</div>" +
+      "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
