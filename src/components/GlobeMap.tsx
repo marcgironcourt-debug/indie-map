@@ -109,6 +109,10 @@ function getCategorySentence(type: string): string {
   return "Un lieu sélectionné pour sa pertinence dans le tissu local.";
 }
 
+if (typeof window !== "undefined") {
+  try { (window as any).getCategorySentence = getCategorySentence; } catch {}
+}
+
 function escapeHtml(s: string) {
   return String(s ?? "")
     .replace(/&/g, "&amp;")
@@ -305,157 +309,7 @@ export default function GlobeMap({
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
-  const TEXTILERIE_STORY = React.useMemo(() => {
-  return [
-    "Ici, les textiles usagés trouvent une seconde vie, entre les mains de celles et ceux qui réparent plutôt que jeter.",
-    "On y découvre des vêtements choisis avec soin, des créations engagées, des tissus à transformer, à imaginer, à transmettre.",
-    "Autour d’un café, on apprend, on coud, on partage : un lieu vivant où le textile devient lien."
-  ];
-}, []);
-
-  const storyTimersRef = React.useRef<any[]>([]);
-  const storyAfterRef = React.useRef<null | (() => void)>(null);
-  const storyRunningRef = React.useRef(false);
-  const [storyVisible, setStoryVisible] = React.useState(false);
-  const [storyText, setStoryText] = React.useState("");
-
-  React.useEffect(() => {
-    return () => {
-      storyTimersRef.current.forEach((t) => {
-        try { clearTimeout(t); } catch {}
-        try { clearInterval(t); } catch {}
-      });
-      storyTimersRef.current = [];
-    };
-  }, []);
-
-  
-const playTextilerieStory = (after: () => void) => {
-  storyTimersRef.current.forEach((t) => {
-    try { clearTimeout(t); } catch {}
-    try { clearInterval(t); } catch {}
-  });
-  storyTimersRef.current = [];
-
-  storyRunningRef.current = true;
-  storyAfterRef.current = after;
-
-  try { setSheetOpen(false); } catch {}
-  try { setSheetHtml(""); } catch {}
-
-  setStoryText("");
-  setStoryVisible(true);
-
-  const lines = TEXTILERIE_STORY;
-  let lineIndex = 0;
-  let charIndex = 0;
-  let current = "";
-
-  const baseStep = 38;
-  const breatheLineMs = 480;
-  const endHoldMs = 1400;
-
-  const tick = () => {
-    const line = lines[lineIndex];
-    if (!line) return;
-
-    if (charIndex < line.length) {
-      charIndex++;
-      current = lines.slice(0, lineIndex).join("\n\n")
-        + (lineIndex > 0 ? "\n\n" : "")
-        + line.slice(0, charIndex);
-      setStoryText(current);
-
-      const jitter = Math.floor(Math.random() * 8);
-      const t = setTimeout(tick, baseStep + jitter);
-      storyTimersRef.current.push(t);
-    } else {
-      const t = setTimeout(() => {
-        lineIndex++;
-        charIndex = 0;
-        if (lineIndex < lines.length) {
-          tick();
-        } else {
-          const end = setTimeout(() => {
-            setStoryVisible(false);
-            after();
-          }, endHoldMs);
-          storyTimersRef.current.push(end);
-        }
-      }, breatheLineMs);
-      storyTimersRef.current.push(t);
-    }
-  };
-
-  tick();
-};
-
-
-const closeTextilerieStory = () => {
-  storyRunningRef.current = false;
-  storyTimersRef.current.forEach((t) => {
-    try { clearTimeout(t); } catch {}
-    try { clearInterval(t); } catch {}
-  });
-  storyTimersRef.current = [];
-  try { setStoryVisible(false); } catch {}
-  try { setStoryText(""); } catch {}
-  const fn = storyAfterRef.current;
-  storyAfterRef.current = null;
-  try { fn && fn(); } catch {}
-};
-
-  const StoryOverlayTextilerie = () => {
-    if (!storyVisible) return null;
-    return (
-      <div
-        className="absolute inset-0 z-[99999] flex items-center justify-center px-6"
-        style={{
-          fontFamily: "var(--im-story-font)",
-background: "rgba(0,0,0,0.62)",
-          WebkitBackdropFilter: "blur(3px)",
-          backdropFilter: "blur(3px)",
-        }}
-      >
-        <button
-          type="button"
-          aria-label="Fermer"
-          onPointerDown={(e) => { try { e.preventDefault(); } catch {} try { e.stopPropagation(); } catch {} closeTextilerieStory(); }}
-          onClick={(e) => { try { e.preventDefault(); } catch {} try { e.stopPropagation(); } catch {} closeTextilerieStory(); }}
-          className="absolute right-4 top-4 z-[100000] flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/30 text-[#E4D4C2] backdrop-blur hover:bg-black/45 active:scale-[0.98]"
-          style={{ WebkitTapHighlightColor: "transparent", pointerEvents: "auto" }}
-        >
-          ×
-        </button>
-        <div
-          className="max-w-[560px] w-full text-center"
-          style={{
-            color: "#E4D4C2",
-            fontSize: 18,
-            lineHeight: 1.5,
-            letterSpacing: "0.01em",
-            textShadow: "0 1px 14px rgba(0,0,0,0.45)",
-            whiteSpace: "pre-line",
-          }}
-        >
-          <span>{storyText}</span>
-          <span
-            className="inline-block align-baseline ml-1"
-            style={{
-              width: 10,
-              height: 18,
-              background: "#728A4A",
-              opacity: 0.85,
-              transform: "translateY(2px)",
-            }}
-          />
-        </div>
-      </div>
-    );
-  };
-
-
-  const [sheetOpen, setSheetOpen] = React.useState(false);
+    const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
@@ -793,51 +647,61 @@ background: "rgba(0,0,0,0.62)",
         if (!Array.isArray(coords) || coords.length < 2) return;
 
         const fid = String(f.id ?? f?.properties?.id ?? "");
-        if (fid && onSelectRef.current) onSelectRef.current(fid);
 
         const lng = coords[0];
         const lat = coords[1];
+
+        let isGlobe = false;
+        try {
+          const p = (map as any).getProjection?.();
+          const name = typeof p === "string" ? p : String(p?.name ?? "");
+          isGlobe = name.toLowerCase().includes("globe");
+        } catch {}
+
+        const z = map.getZoom();
+
+        if (isGlobe || z < 7.2) {
+          map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
+          return;
+        }
+
+        if (fid && onSelectRef.current) onSelectRef.current(fid);
 
         try {
           for (const feat of fcRef.current.features) {
             const id = String(feat.id ?? feat?.properties?.id ?? "");
             feat.properties.selected = fid && id === fid;
           }
-          const s = getSource(map);
-          if (s) s.setData(fcRef.current);
+          const src = getSource(map);
+          if (src) src.setData(fcRef.current);
         } catch {}
-
-        
-        
         const props = f?.properties || {};
 
         const openPopup = () => {
           try { setSheetHtml(buildPopupHtml(props, Boolean(darkMapRef.current))); } catch { try { setSheetHtml(""); } catch {} }
           try { setSheetHeightNow(25); setSheetOpen(true); } catch {}
-          try { setSheetHeightNow(10); } catch {}
-        };
+          };
 
         const isTextilerie =
           String(props?.id ?? fid) === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
           String(props?.name ?? props?.title ?? "").trim().toLowerCase().includes("textilerie");
 
         if (isTextilerie) {
-          playTextilerieStory(openPopup);
-          return;
+          openPopup();
+return;
         }
 
-        const z = map.getZoom();
-        if (z <= 3.2) {
+
+        if (z < 7.2) {
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
           try { onSelectRef.current?.(String((props as any).id)); } catch {}
           map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
           return;
-        } else {
-          openPopup();
         }
-      });
+        openPopup();
+});
     }
   }
 
@@ -1144,7 +1008,7 @@ mapRef.current = map;
   return (
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
-      <StoryOverlayTextilerie />
+      
       {sheetOpen ? (
         <div className="absolute inset-0 pointer-events-none">
           <div

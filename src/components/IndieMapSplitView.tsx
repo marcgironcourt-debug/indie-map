@@ -291,12 +291,14 @@ function FilterBar({
 function MobileBottomSheet({
   business,
   mode,
+  dark,
   onClose,
   onExpand,
   onPeek,
 }: {
   business: Business | null;
   mode: "closed" | "peek" | "full";
+  dark: boolean;
   onClose: () => void;
   onExpand: () => void;
   onPeek: () => void;
@@ -776,7 +778,7 @@ React.useEffect(() => {
           setSelectedId(null);
         }}
         onExpand={() => setSheetMode("full")}
-        onPeek={() => setSheetMode("peek")} />
+        dark={darkMap} />
     </div>
   );
 }
