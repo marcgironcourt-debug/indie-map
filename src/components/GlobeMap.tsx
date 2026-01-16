@@ -314,6 +314,8 @@ export default function GlobeMap({
 }, []);
 
   const storyTimersRef = React.useRef<any[]>([]);
+  const storyAfterRef = React.useRef<null | (() => void)>(null);
+  const storyRunningRef = React.useRef(false);
   const [storyVisible, setStoryVisible] = React.useState(false);
   const [storyText, setStoryText] = React.useState("");
 
@@ -334,6 +336,9 @@ const playTextilerieStory = (after: () => void) => {
     try { clearInterval(t); } catch {}
   });
   storyTimersRef.current = [];
+
+  storyRunningRef.current = true;
+  storyAfterRef.current = after;
 
   try { setSheetOpen(false); } catch {}
   try { setSheetHtml(""); } catch {}
@@ -386,6 +391,20 @@ const playTextilerieStory = (after: () => void) => {
 };
 
 
+const closeTextilerieStory = () => {
+  storyRunningRef.current = false;
+  storyTimersRef.current.forEach((t) => {
+    try { clearTimeout(t); } catch {}
+    try { clearInterval(t); } catch {}
+  });
+  storyTimersRef.current = [];
+  try { setStoryVisible(false); } catch {}
+  try { setStoryText(""); } catch {}
+  const fn = storyAfterRef.current;
+  storyAfterRef.current = null;
+  try { fn && fn(); } catch {}
+};
+
   const StoryOverlayTextilerie = () => {
     if (!storyVisible) return null;
     return (
@@ -398,6 +417,16 @@ background: "rgba(0,0,0,0.62)",
           backdropFilter: "blur(3px)",
         }}
       >
+        <button
+          type="button"
+          aria-label="Fermer"
+          onPointerDown={(e) => { try { e.preventDefault(); } catch {} try { e.stopPropagation(); } catch {} closeTextilerieStory(); }}
+          onClick={(e) => { try { e.preventDefault(); } catch {} try { e.stopPropagation(); } catch {} closeTextilerieStory(); }}
+          className="absolute right-4 top-4 z-[100000] flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/30 text-[#E4D4C2] backdrop-blur hover:bg-black/45 active:scale-[0.98]"
+          style={{ WebkitTapHighlightColor: "transparent", pointerEvents: "auto" }}
+        >
+          ×
+        </button>
         <div
           className="max-w-[560px] w-full text-center"
           style={{
