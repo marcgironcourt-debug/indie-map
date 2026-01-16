@@ -155,8 +155,7 @@ function svgToDataUri(svg: string) {
 function buildPopupHtml(p: any, darkMap: boolean) {
   const _popupProps = p;
   const _lowerName = String((_popupProps as any)?.name ?? (_popupProps as any)?.title ?? "").trim().toLowerCase();
-  const _textilerieImg = _lowerName.includes("textilerie") ? "<img src=\"/images/textilerie.webp\" alt=\"Textilerie\" class=\"mt-2 w-full rounded-2xl object-cover\" />" : "";
-
+  const isTextilerie = _lowerName.includes("textilerie");
   const nameRaw = String(p?.name ?? "");
   const name = escapeHtml(nameRaw || "Lieu");
   const typeRaw = String(p?.type ?? "");
@@ -249,6 +248,21 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       ? "<div class=\"mt-3\"><img src=\"/images/super-condiments.jpg\" alt=\"Super Condiments à Montréal\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
       : "");
 
+  if (isTextilerie) {
+    const sentence = escapeHtml(getCategorySentence(typeRaw));
+    const addr = escapeHtml(addressRaw);
+    return (
+      "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background-image:url('/places/la-textilerie.webp');background-size:cover;background-position:center;height:100%;min-height:100%\">" +
+        "<div class=\"absolute inset-0\" style=\"background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.85) 100%)\"></div>" +
+        "<div class=\"relative p-4 flex flex-col justify-end gap-2\" style=\"height:100%;min-height:100%;color:#fff\">" +
+          "<p class=\"text-[14px] leading-snug font-semibold\" style=\"max-width:30rem\">" + sentence + "</p>" +
+          "<h3 class=\"text-[20px] font-semibold leading-tight\">" + name + "</h3>" +
+          (addressRaw ? "<div class=\"text-[12px] opacity-90\">" + addr + "</div>" : "") +
+        "</div>" +
+      "</div>"
+    );
+  }
+
   if (isPremium) {
     return (
       "<div class=\"space-y-2\">" +
@@ -273,7 +287,6 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   return (
     "<div class=\"space-y-2\">" +
       "<h3 class=\"text-[18px] font-semibold\">" + name + "</h3>" +
-      _textilerieImg +
       normalDesc +
       (addressBlock ? addressBlock : "") +
       (routeBlock ? routeBlock : "") +
@@ -312,6 +325,7 @@ export default function GlobeMap({
     const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
+  const isImmersiveSheet = React.useMemo(() => sheetHtml.includes("/places/la-textilerie.webp"), [sheetHtml]);
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
   const sheetHeightRef = React.useRef(25);
@@ -1098,8 +1112,8 @@ mapRef.current = map;
                 <span style={{ display: "inline-block", transform: "translateY(-1px)" }}>✕</span>
               </button>
             </div>
-            <div className="h-[calc(100%-40px)] overflow-y-auto px-3 pb-6">
-              <div className="mx-auto" style={{ maxWidth: 420 }} dangerouslySetInnerHTML={{ __html: sheetHtml }} />
+            <div className={isImmersiveSheet ? "h-[calc(100%-40px)] overflow-hidden" : "h-[calc(100%-40px)] overflow-y-auto px-3 pb-6"}>
+              <div className={isImmersiveSheet ? "w-full h-full" : "mx-auto"} style={isImmersiveSheet ? { maxWidth: "none", height: "100%" } : { maxWidth: 420 }} dangerouslySetInnerHTML={{ __html: sheetHtml }} />
             </div>
           </div>
         </div>
