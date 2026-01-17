@@ -475,41 +475,101 @@ const heroOverlay = heroUrl
     }
 
     const parts = rest.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
-    let open = false;
-let closesAt = "";
-let opensAt = "";
+    const parsed = parts
+      .map((p) => {
+        const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
+        if (!m) return null;
+        const sh = Number(m[1]);
+        const sm = Number(m[2] ?? "00");
+        const eh = Number(m[3]);
+        const em = Number(m[4] ?? "00");
+        if (![sh,sm,eh,em].every(Number.isFinite)) return null;
+        const a = sh * 60 + sm;
+        const b = eh * 60 + em;
+        return { a, b, sh, sm, eh, em };
+      })
+      .filter(Boolean) as Array<{ a:number; b:number; sh:number; sm:number; eh:number; em:number }>;
 
-for (const p of parts) {
-      const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
-      if (!m) continue;
-      const sh = Number(m[1]);
-      const sm = Number(m[2] ?? "0");
-      const eh = Number(m[3]);
-      const em = Number(m[4] ?? "0");
-      if (![sh,sm,eh,em].every(Number.isFinite)) continue;
-      const a = sh * 60 + sm;
-      const b = eh * 60 + em;
-      if (b >= a) {
-        if (nowMin >= a && nowMin < b) {
+    const fmt = (h:number, m:number) => String(h).padStart(2,"0") + "h" + String(m).padStart(2,"0");
+    const cap = (x:string) => x ? (x.charAt(0).toUpperCase() + x.slice(1)) : x;
+
+    let open = false;
+    let closesAt = "";
+    let nextOpenAt = "";
+    let nextOpenDay = "";
+    let nextOpenOffset = -1;
+
+    for (const r of parsed) {
+      if (r.b >= r.a) {
+        if (nowMin >= r.a && nowMin < r.b) {
           open = true;
-          closesAt = String(m[3]).padStart(2,"0") + "h" + String(m[4]).padStart(2,"0");
+          closesAt = fmt(r.eh, r.em);
           break;
         }
-        if (nowMin < a && !opensAt) {
-          opensAt = String(m[1]).padStart(2,"0") + "h" + String(m[2]).padStart(2,"0");
-        }
       } else {
-        if (nowMin >= a || nowMin < b) {
+        if (nowMin >= r.a || nowMin < r.b) {
           open = true;
-          closesAt = String(m[3]).padStart(2,"0") + "h" + String(m[4]).padStart(2,"0");
+          closesAt = fmt(r.eh, r.em);
           break;
         }
       }
     }
 
-    return open
-  ? { label: closesAt ? "Ouvert · ferme à " + closesAt : "Ouvert", color: OPEN_COLOR }
-  : { label: opensAt ? "Fermé · ouvre à " + opensAt : "Fermé", color: CLOSED_COLOR };
+    if (!open) {
+      let bestStart = Infinity;
+      for (const r of parsed) {
+        if (r.b >= r.a) {
+          if (nowMin < r.a && r.a < bestStart) {
+            bestStart = r.a;
+            nextOpenAt = fmt(r.sh, r.sm);
+            nextOpenOffset = 0;
+          }
+        }
+      }
+
+      if (!nextOpenAt) {
+        for (let off = 1; off <= 7; off++) {
+          const di = (widx + off) % 7;
+          const dn = dayNames[di];
+          const line = lines.find((l) => String(l).toLowerCase().startsWith(dn));
+          if (!line) continue;
+
+          const r2 = String(line).slice(dn.length).trim();
+          if (!r2) continue;
+
+          const low2 = r2.toLowerCase();
+          if (low2.includes("fermé") || low2.includes("ferme")) continue;
+
+          const parts2 = r2.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
+          let found = null as null | { sh:number; sm:number; a:number };
+          for (const p of parts2) {
+            const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
+            if (!m) continue;
+            const sh = Number(m[1]);
+            const sm = Number(m[2] ?? "00");
+            if (![sh,sm].every(Number.isFinite)) continue;
+            const a = sh * 60 + sm;
+            if (!found || a < found.a) found = { sh, sm, a };
+          }
+          if (found) {
+            nextOpenAt = fmt(found.sh, found.sm);
+            nextOpenDay = cap(dn);
+            nextOpenOffset = off;
+            break;
+          }
+        }
+      }
+    }
+
+    if (open) {
+      return { label: closesAt ? "Ouvert · ferme à " + closesAt : "Ouvert", color: OPEN_COLOR };
+    }
+    if (nextOpenAt) {
+      return nextOpenOffset > 0
+        ? { label: "Fermé · ouvre " + nextOpenDay + " à " + nextOpenAt, color: CLOSED_COLOR }
+        : { label: "Fermé · ouvre à " + nextOpenAt, color: CLOSED_COLOR };
+    }
+    return { label: "Fermé", color: CLOSED_COLOR };
   })();
 
   const statusHtml = status
