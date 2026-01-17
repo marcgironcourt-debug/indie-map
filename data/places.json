@@ -510,21 +510,6 @@
     "timeZone": "America/Toronto"
   },
   {
-    "id": "cmiae0q6q00109krfq6608lhn",
-    "name": "Sarrasin Boulangerie",
-    "city": "Montréal",
-    "address": "Mile End, Montréal, QC",
-    "website": "https://sarrasinboulangerie.com",
-    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 13h00-18h00, 14h00-18h00\nSamedi Fermé\nDimanche Fermé",
-    "lat": 45.5201859,
-    "lng": -73.596701,
-    "description": "Micro-boulangerie bio et sans gluten.",
-    "category": "Boulangerie artisanale",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:09:38.755Z",
-    "timeZone": "America/Toronto"
-  },
-  {
     "id": "cmiae0q6q00119krfl0snjiah",
     "name": "Dieu du Ciel!",
     "city": "Montréal",
