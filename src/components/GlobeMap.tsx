@@ -1070,9 +1070,11 @@ map.on("mouseenter", LAYER_ID, () => {
           try { if (popupRef.current) popupRef.current.remove(); } catch {}
           try {
             const html = buildMiniPinPopupHtml(props, Boolean(darkMapRef.current));
-            popupRef.current = new maplibregl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "280px", offset: [0, -32] })
+            const el = document.createElement("div");
+            el.style.pointerEvents = "auto";
+            el.innerHTML = html;
+            popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -32] } as any)
               .setLngLat([lng, lat])
-              .setHTML(html)
               .addTo(map);
           } catch {}
         };
@@ -1096,6 +1098,7 @@ return;
           return;
         }
         openPopup();
+        try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
 });
     }
   }
