@@ -342,7 +342,7 @@ function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
 }
 
 
-function buildMiniPinPopupHtml(props: any, dark: boolean) {
+function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | null) {
   const name = String(props?.name ?? props?.title ?? "").trim();
   const type = String(props?.type ?? "").trim();
   const id = String(props?.id ?? "").trim();
@@ -511,6 +511,10 @@ for (const p of parts) {
     ? "<span style=\"font-weight:800; color:" + status.color + ";\">" + status.label + "</span>"
     : "<span style=\"font-weight:700; color:" + metaColor + ";\">Horaires inconnus</span>";
 
+  const wm = Number(walkMins);
+  const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
+  const walkHtml = "<div style=\"margin-top:3px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + "; opacity:.95;\" >" + walkTxt + "</div>";
+
   return (
     "<div style=\"position:relative; max-width:220px; min-height:170px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
@@ -520,9 +524,8 @@ for (const p of parts) {
         escapeHtml(sentence) +
       "</div>" +
       "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
-        statusHtml +
-      "</div>" +
-      contentWrapEnd + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+        statusHtml + walkHtml +
+      "</div>" + contentWrapEnd + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -556,6 +559,18 @@ function svgPin(color: string, stroke: string, selected: boolean) {
 
 function svgToDataUri(svg: string) {
   return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+function haversineMeters(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371000;
+  const toRad = (x: number) => (x * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
 }
 
 
@@ -729,6 +744,7 @@ export default function GlobeMap({
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
+  const lastUserPosRef = React.useRef<{ lng: number; lat: number; ts: number } | null>(null);
     const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
@@ -970,6 +986,8 @@ export default function GlobeMap({
     const fromLng = Number(pos.coords.longitude);
     const fromLat = Number(pos.coords.latitude);
 
+    try { lastUserPosRef.current = { lng: fromLng, lat: fromLat, ts: Date.now() }; } catch {}
+
     const url =
       "https://router.project-osrm.org/route/v1/driving/" +
       fromLng + "," + fromLat + ";" + destLng + "," + destLat +
@@ -1115,7 +1133,15 @@ map.on("mouseenter", LAYER_ID, () => {
           try { setSheetHtml(""); } catch {}
           try { if (popupRef.current) popupRef.current.remove(); } catch {}
           try {
-            const html = buildMiniPinPopupHtml(props, Boolean(darkMapRef.current));
+            let walkMins = null;
+            try {
+              const up = lastUserPosRef.current;
+              if (up && Number.isFinite(up.lng) && Number.isFinite(up.lat)) {
+                const meters = haversineMeters(Number(up.lat), Number(up.lng), Number(lat), Number(lng));
+                if (Number.isFinite(meters)) walkMins = meters / 83.3333333333;
+              }
+            } catch {}
+            const html = buildMiniPinPopupHtml(props, Boolean(darkMapRef.current), walkMins);
             const el = document.createElement("div");
             el.style.pointerEvents = "auto";
             el.innerHTML = html;
@@ -1249,6 +1275,7 @@ class GeolocateControl_ML {
             (pos) => {
               const lng = pos.coords.longitude;
               const lat = pos.coords.latitude;
+              try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
               try { this._map.flyTo({ center: [lng, lat], zoom: Math.max(this._map.getZoom(), 14), essential: true }); } catch {}
             },
             () => {},
