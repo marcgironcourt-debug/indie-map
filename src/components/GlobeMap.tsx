@@ -4,6 +4,7 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
+const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie.webp";
 const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
 
 type Biz = {
@@ -361,6 +362,18 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
   const metaColor = "rgba(245,245,232,.62)";
   const shadow = "0 10px 22px rgba(0,0,0,.20)";
 
+  const heroUrl = isTextilerie ? TEXTILERIE_HERO_IMAGE : "";
+  const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
+
+  const heroOverlay = heroUrl
+    ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(1.6) contrast(1.1);\" ></div>" +
+      "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.10);\" ></div>"
+    : "";
+
+  const contentWrapStart = heroUrl ? "<div style=\"position:relative;\" >" : "";
+  const contentWrapEnd = heroUrl ? "</div>" : "";
+
+
   const OPEN_COLOR = "#728A4A";
   const CLOSED_COLOR = "#F59E0B";
 
@@ -466,7 +479,7 @@ for (const p of parts) {
     : "<span style=\"font-weight:700; color:" + metaColor + ";\">Horaires inconnus</span>";
 
   return (
-    "<div style=\"position:relative; max-width:220px; padding:8px 10px; background:" + bg + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" +
+    "<div style=\"position:relative; max-width:220px; min-height:170px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:650; line-height:1.2; color:" + titleColor + "; letter-spacing:.01em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -476,7 +489,7 @@ for (const p of parts) {
       "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml +
       "</div>" +
-      "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      contentWrapEnd + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -613,7 +626,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
     const sentence = escapeHtml(getCategorySentence(typeRaw));
     const addr = escapeHtml(addressRaw);
     return (
-      "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background-image:url('/places/la-textilerie.webp');background-size:cover;background-position:center;height:100%;min-height:100%\">" +
+      "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background-image:url('"+TEXTILERIE_HERO_IMAGE+"');background-size:cover;background-position:center;height:100%;min-height:100%\">" +
         "<div class=\"absolute inset-0\" style=\"background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.85) 100%)\"></div>" +
         "<div class=\"relative p-4 flex flex-col justify-end gap-2\" style=\"height:100%;min-height:100%;color:#fff\">" +
           "<p class=\"text-[14px] leading-snug font-semibold\" style=\"max-width:30rem\">" + sentence + "</p>" +
@@ -686,7 +699,7 @@ export default function GlobeMap({
     const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
-  const isImmersiveSheet = React.useMemo(() => sheetHtml.includes("/places/la-textilerie.webp"), [sheetHtml]);
+  const isImmersiveSheet = React.useMemo(() => sheetHtml.includes(TEXTILERIE_HERO_IMAGE), [sheetHtml]);
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
   const sheetHeightRef = React.useRef(25);
