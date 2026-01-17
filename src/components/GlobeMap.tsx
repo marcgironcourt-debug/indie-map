@@ -356,7 +356,38 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
     : getCategorySentence(type);
 
   const bg = "rgba(31,31,24,.68)";
-  const border = "rgba(228,212,194,.18)";
+  const kindRaw = String(
+    (props as any)?.kind ??
+      (props as any)?.properties?.kind ??
+      (props as any)?.feature?.properties?.kind ??
+      ""
+  ).trim();
+
+  const kind = (kindRaw || normalizeType(type || null)) as any;
+
+  const cssVar = (name: string, fallback: string) => {
+    try {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      if (!v) return fallback;
+      return "hsl(" + v + ")";
+    } catch {
+      return fallback;
+    }
+  };
+
+  const pal: any = {
+    cafe: cssVar("--cafe", "#c26b3a"),
+    epicerie: "#728A4A",
+    friperie: cssVar("--violet", "#7c3aed"),
+    librairie: "#3B82F6",
+    restaurant: cssVar("--restaurant", "#ef4444"),
+    boutique: "#000000",
+    microbrasserie: cssVar("--micro", "#f59e0b"),
+    other: "#8C5A3C",
+  };
+
+  const baseBorder = String(pal[kind] || "rgba(228,212,194,.18)").trim();
+  const border = "color-mix(in srgb, " + baseBorder + " 22%, transparent)";
   const titleColor = "rgba(245,245,232,.92)";
   const textColor = "rgba(245,245,232,.78)";
   const metaColor = "rgba(245,245,232,.62)";
