@@ -372,11 +372,23 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
     let hh = "";
     let mm = "";
     try {
-      const tzRaw = String((props as any)?.timeZone ?? "").trim();
-      const cityRaw = String((props as any)?.city ?? "");
+      const tzRaw = String(
+        (props as any)?.timeZone ??
+          (props as any)?.properties?.timeZone ??
+          (props as any)?.feature?.properties?.timeZone ??
+          ""
+      ).trim();
+
+      const cityRaw = String(
+        (props as any)?.city ??
+          (props as any)?.properties?.city ??
+          (props as any)?.feature?.properties?.city ??
+          ""
+      );
+
       const tz =
         tzRaw ||
-        (/\bmontr(e|é)al\b/i.test(cityRaw) ? "America/Toronto" : /\bparis\b/i.test(cityRaw) ? "Europe/Paris" : "");
+        (isTextilerie ? "Europe/Paris" : (/\bmontr(e|é)al\b/i.test(cityRaw) ? "America/Toronto" : /\bparis\b/i.test(cityRaw) ? "Europe/Paris" : ""));
 
       const fmt = tz
         ? new Intl.DateTimeFormat("fr-FR", { timeZone: tz, weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false })
