@@ -352,7 +352,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const isTextilerie = id === "98ce3443-2512-4285-9b47-535d2a369cb4" || lower.includes("textilerie");
 
   const sentence = isTextilerie
-    ? "Atelier textile collaboratif dédié à la réparation, la transmission et au faire ensemble."
+    ? ""
     : getCategorySentence(type);
 
   const bg = "rgba(31,31,24,.68)";
