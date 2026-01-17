@@ -1309,8 +1309,113 @@ return;
 class GeolocateControl_ML {
   _map: any;
   _container: any;
+  _deviceHeading: number | null = null;
+  _onDeviceOrientation: any = null;
+  _lastLng: number | null = null;
+  _lastLat: number | null = null;
   onAdd(map: any) {
     this._map = map;
+
+    try {
+      const updateCone = (lng: number, lat: number, bearing: number) => {
+        const m = this._map;
+        if (!m) return;
+
+        const SRC = "indie-user-cone";
+        const LYR = "indie-user-cone-fill";
+
+        const dist = 0.00055;
+        const spread = 30 * Math.PI / 180;
+        const a = bearing * Math.PI / 180;
+
+        const p0 = [Number(lng), Number(lat)];
+        const p1 = [
+          Number(lng) + Math.cos(a - spread) * dist,
+          Number(lat) + Math.sin(a - spread) * dist
+        ];
+        const p2 = [
+          Number(lng) + Math.cos(a + spread) * dist,
+          Number(lat) + Math.sin(a + spread) * dist
+        ];
+
+        const geojson = {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            properties: {},
+            geometry: { type: "Polygon", coordinates: [[p0, p1, p2, p0]] }
+          }]
+        };
+
+        try {
+          if (!m.getSource(SRC)) {
+            m.addSource(SRC, { type: "geojson", data: geojson } as any);
+          } else {
+            const src = m.getSource(SRC) as any;
+            if (src && src.setData) src.setData(geojson);
+          }
+        } catch {}
+
+        try {
+          if (!m.getLayer(LYR)) {
+            m.addLayer({
+              id: LYR,
+              type: "fill",
+              source: SRC,
+              paint: {
+                "fill-color": "#F97316",
+                "fill-opacity": 0.22
+              }
+            } as any);
+          }
+        } catch {}
+      };
+
+      (this as any)._updateConeFn = updateCone;
+
+      if (!this._onDeviceOrientation) {
+        this._onDeviceOrientation = (e: any) => {
+          try {
+            const ev: any = e || {};
+            let heading: number | null = null;
+
+            const wh = typeof ev.webkitCompassHeading === "number" ? ev.webkitCompassHeading : null;
+            if (wh != null && Number.isFinite(wh)) {
+              heading = wh;
+            } else {
+              const a0 = typeof ev.alpha === "number" ? ev.alpha : null;
+              if (a0 != null && Number.isFinite(a0)) heading = (360 - a0) % 360;
+            }
+
+            if (heading == null) return;
+            this._deviceHeading = heading;
+
+            if (this._lastLng != null && this._lastLat != null) {
+              try {
+                const fn = (this as any)._updateConeFn;
+                if (fn) fn(this._lastLng, this._lastLat, heading);
+              } catch {}
+            }
+          } catch {}
+        };
+
+        try {
+          if (typeof (DeviceOrientationEvent as any)?.requestPermission === "function") {
+            (DeviceOrientationEvent as any).requestPermission()
+              .then((p: any) => {
+                if (p === "granted") {
+                  window.addEventListener("deviceorientationabsolute", this._onDeviceOrientation, true);
+                  window.addEventListener("deviceorientation", this._onDeviceOrientation, true);
+                }
+              })
+              .catch(() => {});
+          } else {
+            window.addEventListener("deviceorientationabsolute", this._onDeviceOrientation, true);
+            window.addEventListener("deviceorientation", this._onDeviceOrientation, true);
+          }
+        } catch {}
+      }
+    } catch {}
     const c = document.createElement("div");
     c.style.marginRight = "12px";
     c.style.marginBottom = "92px";
@@ -1337,10 +1442,108 @@ class GeolocateControl_ML {
       btn.addEventListener("click", () => {
         try {
           if (!navigator.geolocation) return;
+
+          try { (this as any).__indieConePermissionInClick = true; } catch {}
+
+          try {
+            if (!this._onDeviceOrientation) {
+              this._onDeviceOrientation = (e: any) => {
+                try {
+                  const m = this._map;
+                  if (!m) return;
+
+                  const ev: any = e || {};
+                  let heading: number | null = null;
+
+                  const wh = typeof ev.webkitCompassHeading === "number" ? ev.webkitCompassHeading : null;
+                  if (wh != null && Number.isFinite(wh)) heading = wh;
+                  if (heading == null) {
+                    const a0 = typeof ev.alpha === "number" ? ev.alpha : null;
+                    if (a0 != null && Number.isFinite(a0)) heading = (360 - a0) % 360;
+                  }
+                  if (heading == null) return;
+
+                  this._deviceHeading = heading;
+
+                  const lng = this._lastLng;
+                  const lat = this._lastLat;
+                  if (lng == null || lat == null) return;
+
+                  const SRC = "indie-user-cone";
+                  const LYR = "indie-user-cone-fill";
+
+                  const dist = 0.00055;
+                  const spread = 30 * Math.PI / 180;
+                  const a = heading * Math.PI / 180;
+
+                  const p0 = [Number(lng), Number(lat)];
+                  const p1 = [Number(lng) + Math.cos(a - spread) * dist, Number(lat) + Math.sin(a - spread) * dist];
+                  const p2 = [Number(lng) + Math.cos(a + spread) * dist, Number(lat) + Math.sin(a + spread) * dist];
+
+                  const geojson = {
+                    type: "FeatureCollection",
+                    features: [{
+                      type: "Feature",
+                      properties: {},
+                      geometry: { type: "Polygon", coordinates: [[p0, p1, p2, p0]] }
+                    }]
+                  };
+
+                  try {
+                    if (!m.getSource(SRC)) {
+                      m.addSource(SRC, { type: "geojson", data: geojson } as any);
+                    } else {
+                      const src = m.getSource(SRC) as any;
+                      if (src && src.setData) src.setData(geojson);
+                    }
+                  } catch {}
+
+                  try {
+                    if (!m.getLayer(LYR)) {
+                      m.addLayer({
+                        id: LYR,
+                        type: "fill",
+                        source: SRC,
+                        paint: { "fill-color": "#F97316", "fill-opacity": 0.22 }
+                      } as any);
+                    }
+                  } catch {}
+                } catch {}
+              };
+
+              const addListeners = () => {
+                try { window.addEventListener("deviceorientationabsolute", this._onDeviceOrientation, true); } catch {}
+                try { window.addEventListener("deviceorientation", this._onDeviceOrientation, true); } catch {}
+              };
+
+              try {
+                if (typeof (DeviceOrientationEvent as any)?.requestPermission === "function") {
+                  (DeviceOrientationEvent as any).requestPermission()
+                    .then((p: any) => { if (p === "granted") addListeners(); })
+                    .catch(() => {});
+                } else {
+                  addListeners();
+                }
+              } catch {}
+            }
+          } catch {}
+
           navigator.geolocation.getCurrentPosition(
             (pos) => {
               const lng = pos.coords.longitude;
               const lat = pos.coords.latitude;
+              try { this._lastLng = Number(lng); this._lastLat = Number(lat); } catch {}
+              let bearing: number | null = null;
+              try {
+                const h = (pos.coords as any).heading;
+                if (typeof h === "number" && Number.isFinite(h)) bearing = h;
+              } catch {}
+              if (bearing == null) {
+                try {
+                  const dh = this._deviceHeading;
+                  if (typeof dh === "number" && Number.isFinite(dh)) bearing = dh;
+                } catch {}
+              }
               try {
                 const m = this._map;
                 if (m) {
@@ -1423,6 +1626,10 @@ class GeolocateControl_ML {
               } catch {}
               try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
               try { this._map.flyTo({ center: [lng, lat], zoom: Math.max(this._map.getZoom(), 14), essential: true }); } catch {}
+              try {
+                const fn = (this as any)._updateConeFn;
+                if (fn && bearing != null) fn(Number(lng), Number(lat), Number(bearing));
+              } catch {}
             },
             () => {},
             { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
@@ -1435,6 +1642,12 @@ class GeolocateControl_ML {
     return c;
   }
   onRemove() {
+    try {
+      if (this._onDeviceOrientation) {
+        try { window.removeEventListener("deviceorientationabsolute", this._onDeviceOrientation, true); } catch {}
+        try { window.removeEventListener("deviceorientation", this._onDeviceOrientation, true); } catch {}
+      }
+    } catch {}
     try { this._container?.remove(); } catch {}
     this._map = null;
   }
