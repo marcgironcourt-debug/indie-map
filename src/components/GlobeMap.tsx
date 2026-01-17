@@ -397,11 +397,13 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
   const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
 
   const heroOverlay = heroUrl
-    ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(1.6) contrast(1.1);\" ></div>" +
-      "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.10);\" ></div>"
+    ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(2.0) contrast(1.05) brightness(1.18);\" ></div>" +
+      "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.04);\" ></div>"
     : "";
 
-  const contentWrapStart = heroUrl ? "<div style=\"position:relative;\" >" : "";
+  const contentWrapStart = heroUrl
+    ? "<div style=\"position:relative; padding:6px 8px; border-radius:10px; background:rgba(0,0,0,0.22); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);\" >"
+    : "";
   const contentWrapEnd = heroUrl ? "</div>" : "";
 
 
@@ -511,7 +513,7 @@ for (const p of parts) {
 
   return (
     "<div style=\"position:relative; max-width:220px; min-height:170px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + heroOverlay + contentWrapStart +
-      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:650; line-height:1.2; color:" + titleColor + "; letter-spacing:.01em;\" >" +
+      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
       "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
