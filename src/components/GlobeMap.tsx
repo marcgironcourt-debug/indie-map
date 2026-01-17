@@ -425,8 +425,10 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
 
     const parts = rest.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
     let open = false;
+let closesAt = "";
+let opensAt = "";
 
-    for (const p of parts) {
+for (const p of parts) {
       const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
       if (!m) continue;
       const sh = Number(m[1]);
@@ -436,10 +438,27 @@ function buildMiniPinPopupHtml(props: any, dark: boolean) {
       if (![sh,sm,eh,em].every(Number.isFinite)) continue;
       const a = sh * 60 + sm;
       const b = eh * 60 + em;
-      if (b >= a) { if (nowMin >= a && nowMin < b) { open = true; break; } } else { if (nowMin >= a || nowMin < b) { open = true; break; } }
+      if (b >= a) {
+        if (nowMin >= a && nowMin < b) {
+          open = true;
+          closesAt = String(m[3]).padStart(2,"0") + "h" + String(m[4]).padStart(2,"0");
+          break;
+        }
+        if (nowMin < a && !opensAt) {
+          opensAt = String(m[1]).padStart(2,"0") + "h" + String(m[2]).padStart(2,"0");
+        }
+      } else {
+        if (nowMin >= a || nowMin < b) {
+          open = true;
+          closesAt = String(m[3]).padStart(2,"0") + "h" + String(m[4]).padStart(2,"0");
+          break;
+        }
+      }
     }
 
-    return open ? { label: "Ouvert", color: OPEN_COLOR } : { label: "Fermé", color: CLOSED_COLOR };
+    return open
+  ? { label: closesAt ? "Ouvert · ferme à " + closesAt : "Ouvert", color: OPEN_COLOR }
+  : { label: opensAt ? "Fermé · ouvre à " + opensAt : "Fermé", color: CLOSED_COLOR };
   })();
 
   const statusHtml = status
