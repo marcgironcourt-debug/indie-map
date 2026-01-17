@@ -1341,6 +1341,86 @@ class GeolocateControl_ML {
             (pos) => {
               const lng = pos.coords.longitude;
               const lat = pos.coords.latitude;
+              try {
+                const m = this._map;
+                if (m) {
+                  const SRC = "indie-user-location";
+                  const HALO = "indie-user-location-halo";
+                  const DOT = "indie-user-location-dot";
+
+                  const apply = () => {
+                    try {
+                      if (!m.getSource(SRC)) {
+                        m.addSource(SRC, {
+                          type: "geojson",
+                          data: {
+                            type: "FeatureCollection",
+                            features: [{
+                              type: "Feature",
+                              properties: {},
+                              geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
+                            }]
+                          }
+                        } as any);
+                      }
+                    } catch {}
+
+                    try {
+                      if (!m.getLayer(HALO)) {
+                        m.addLayer({
+                          id: HALO,
+                          type: "circle",
+                          source: SRC,
+                          paint: {
+                            "circle-radius": 12,
+                            "circle-color": "#F97316",
+                            "circle-opacity": 0.25
+                          }
+                        } as any);
+                      }
+                    } catch {}
+
+                    try {
+                      if (!m.getLayer(DOT)) {
+                        m.addLayer({
+                          id: DOT,
+                          type: "circle",
+                          source: SRC,
+                          paint: {
+                            "circle-radius": 6,
+                            "circle-color": "#F97316",
+                            "circle-stroke-width": 2,
+                            "circle-stroke-color": "#FFFFFF",
+                            "circle-opacity": 1
+                          }
+                        } as any);
+                      }
+                    } catch {}
+
+                    try {
+                      const src = m.getSource(SRC);
+                      if (src && src.setData) {
+                        src.setData({
+                          type: "FeatureCollection",
+                          features: [{
+                            type: "Feature",
+                            properties: {},
+                            geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
+                          }]
+                        });
+                      }
+                    } catch {}
+                  };
+
+                  try {
+                    if (typeof m.isStyleLoaded === "function" && !m.isStyleLoaded()) {
+                      m.once("load", apply);
+                    } else {
+                      apply();
+                    }
+                  } catch { try { apply(); } catch {} }
+                }
+              } catch {}
               try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
               try { this._map.flyTo({ center: [lng, lat], zoom: Math.max(this._map.getZoom(), 14), essential: true }); } catch {}
             },
