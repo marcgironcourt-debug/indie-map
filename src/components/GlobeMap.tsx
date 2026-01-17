@@ -396,7 +396,12 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const heroUrl = isTextilerie ? TEXTILERIE_HERO_IMAGE : "";
   const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
 
-  const heroOverlay = heroUrl
+  const badgesHtml = isTextilerie
+    ? "<div data-badges-textilerie=\"1\" style=\"margin-top:6px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; line-height:1.25; color:" + metaColor + ";\" >" +
+        "Friperie · Cours de couture · Café · Recyclerie textile · Réemploi solidaire" +
+      "</div>"
+    : "";
+const heroOverlay = heroUrl
     ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(2.0) contrast(1.05) brightness(1.18);\" ></div>" +
       "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.04);\" ></div>"
     : "";
@@ -520,8 +525,9 @@ for (const p of parts) {
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
-      "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
-        escapeHtml(sentence) +
+       badgesHtml +
+       "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
+         escapeHtml(sentence) +
       "</div>" +
       "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
