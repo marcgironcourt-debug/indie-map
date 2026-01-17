@@ -516,7 +516,7 @@ for (const p of parts) {
   const walkHtml = "<div style=\"margin-top:3px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + "; opacity:.95;\" >" + walkTxt + "</div>";
 
   return (
-    "<div style=\"position:relative; max-width:220px; min-height:170px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + heroOverlay + contentWrapStart +
+    "<div style=\"position:relative; max-width:220px; min-height:170px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + "" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -525,7 +525,7 @@ for (const p of parts) {
       "</div>" +
       "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
-      "</div>" + contentWrapEnd + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px;\" >" + "<button data-discover=\"1\" style=\"display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;align-items:center;justify-content:center;padding:4px 12px;border-radius:12px;background:rgba(114,138,74,0.65);border:1px solid rgba(255,255,255,0.22);color:#000000;font-size:12px;letter-spacing:.02em;backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.25);text-align:center;color:#ffffff;font-weight:500;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir</button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
