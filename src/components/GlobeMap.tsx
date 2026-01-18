@@ -816,6 +816,9 @@ export default function GlobeMap({
     const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
+  const [discoverOpen, setDiscoverOpen] = React.useState(false);
+  const [discoverPanel, setDiscoverPanel] = React.useState<null | "place" | "approach" | "know">(null);
+  const [discoverMeta, setDiscoverMeta] = React.useState<{ id: string; name: string } | null>(null);
   const isImmersiveSheet = React.useMemo(() => sheetHtml.includes(TEXTILERIE_HERO_IMAGE), [sheetHtml]);
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
@@ -1218,6 +1221,21 @@ map.on("mouseenter", LAYER_ID, () => {
               if (btn) {
                 btn.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                  try { popupRef.current?.remove(); } catch (e) {}
+                  popupRef.current = null;
+                });
+              }
+            } catch {}
+            try {
+              const db = el.querySelector("[data-discover=\"1\"]");
+              if (db) {
+                db.addEventListener("click", (ev) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                  try { setSheetOpen(false); } catch (e) {}
+                  try { setSheetHtml(""); } catch (e) {}
+                  try { setDiscoverMeta({ id: String(props?.id ?? fid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch (e) {}
+                  try { setDiscoverPanel(null); } catch (e) {}
+                  try { setDiscoverOpen(true); } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
                   popupRef.current = null;
                 });
@@ -1852,6 +1870,163 @@ mapRef.current = map;
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
       
+            {discoverOpen ? (
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute inset-0 pointer-events-auto"
+            style={{ background: "rgba(0,0,0,0.45)" }}
+            onClick={() => { try { setDiscoverOpen(false); } catch {} try { setDiscoverPanel(null); } catch {} }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: 18 }}>
+            <div
+              className="pointer-events-auto shadow-2xl"
+              style={{
+                width: "min(520px, calc(100vw - 36px))",
+                maxHeight: "min(78vh, 760px)",
+                overflow: "hidden",
+                borderRadius: 18,
+                background: "rgba(31,31,24,0.92)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              }}
+              onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} }}
+            >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 12px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <div style={{ color: "#f5f5e8", fontSize: 13, letterSpacing: ".02em", fontWeight: 600 }}>
+                    {String(discoverMeta?.name || "Découvrir")}
+                  </div>
+                  <div style={{ color: "rgba(245,245,232,0.65)", fontSize: 12 }}>
+                    {discoverPanel ? (discoverPanel === "place" ? "Le lieu" : discoverPanel === "approach" ? "La démarche" : "À savoir") : "Choisis une rubrique"}
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  {discoverPanel ? (
+                    <button
+                      type="button"
+                      style={{
+                        height: 28,
+                        padding: "0 10px",
+                        borderRadius: 9999,
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        background: "rgba(0,0,0,0.12)",
+                        color: "#f5f5e8",
+                        fontSize: 12,
+                      }}
+                      onClick={() => { try { setDiscoverPanel(null); } catch {} }}
+                    >
+                      Retour
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: 9999,
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      background: "rgba(0,0,0,0.12)",
+                      color: "#f5f5e8",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 14,
+                    }}
+                    onClick={() => { try { setDiscoverOpen(false); } catch {} try { setDiscoverPanel(null); } catch {} }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+
+              {!discoverPanel ? (
+                <div style={{ padding: 14 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 }}>
+                    <button
+                      type="button"
+                      style={{
+                        padding: "12px 10px",
+                        borderRadius: 16,
+                        border: "1px solid rgba(255,255,255,0.10)",
+                        background: "rgba(114,138,74,0.22)",
+                        color: "#f5f5e8",
+                        textAlign: "left",
+                      }}
+                      onClick={() => { try { setDiscoverPanel("place"); } catch {} }}
+                    >
+                      <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".01em" }}>Le lieu</div>
+                      <div style={{ marginTop: 6, fontSize: 12, color: "rgba(245,245,232,0.70)" }}>Ce que c’est</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      style={{
+                        padding: "12px 10px",
+                        borderRadius: 16,
+                        border: "1px solid rgba(255,255,255,0.10)",
+                        background: "rgba(114,138,74,0.22)",
+                        color: "#f5f5e8",
+                        textAlign: "left",
+                      }}
+                      onClick={() => { try { setDiscoverPanel("approach"); } catch {} }}
+                    >
+                      <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".01em" }}>La démarche</div>
+                      <div style={{ marginTop: 6, fontSize: 12, color: "rgba(245,245,232,0.70)" }}>Pourquoi Indie Map</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      style={{
+                        padding: "12px 10px",
+                        borderRadius: 16,
+                        border: "1px solid rgba(255,255,255,0.10)",
+                        background: "rgba(114,138,74,0.22)",
+                        color: "#f5f5e8",
+                        textAlign: "left",
+                      }}
+                      onClick={() => { try { setDiscoverPanel("know"); } catch {} }}
+                    >
+                      <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".01em" }}>À savoir</div>
+                      <div style={{ marginTop: 6, fontSize: 12, color: "rgba(245,245,232,0.70)" }}>Infos utiles</div>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ padding: 14, overflowY: "auto", maxHeight: "calc(78vh - 58px)" }}>
+                  {String(discoverMeta?.id || "").includes("98ce3443-2512-4285-9b47-535d2a369cb4") ||
+                  String(discoverMeta?.name || "").toLowerCase().includes("textilerie") ? (
+                    <div style={{ color: "#f5f5e8", fontSize: 13, lineHeight: 1.55 }}>
+                      {discoverPanel === "place" ? (
+                        <div>
+                          <div style={{ fontWeight: 700, marginBottom: 8 }}>Un atelier textile collaboratif</div>
+                          <div>La Textilerie est un lieu dédié à la réparation, la transmission et au faire ensemble.</div>
+                        </div>
+                      ) : discoverPanel === "approach" ? (
+                        <div>
+                          <div style={{ fontWeight: 700, marginBottom: 8 }}>Réparer plutôt que racheter</div>
+                          <div>Ici, l’impact vient du geste : prolonger la vie des objets, apprendre, partager.</div>
+                        </div>
+                      ) : (
+                        <div>
+                          <div style={{ fontWeight: 700, marginBottom: 8 }}>Avant de venir</div>
+                          <div>Vérifie les horaires et les ateliers proposés sur leur site.</div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div style={{ color: "rgba(245,245,232,0.75)", fontSize: 13, lineHeight: 1.55 }}>
+                      Bientôt.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {sheetOpen ? (
         <div className="absolute inset-0 pointer-events-none">
           <div
