@@ -1235,6 +1235,7 @@ map.on("mouseenter", LAYER_ID, () => {
 
         if (isTextilerie) {
           openPopup();
+          try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
 return;
         }
 
