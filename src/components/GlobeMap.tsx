@@ -1872,6 +1872,13 @@ mapRef.current = map;
       
             {discoverOpen ? (
         <div className="absolute inset-0 pointer-events-none">
+          <style jsx global>{`
+            @keyframes discoverFloat {
+              0%   { transform: translateY(0px); }
+              50%  { transform: translateY(-6px); }
+              100% { transform: translateY(0px); }
+            }
+          `}</style>
           <div
             className="absolute inset-0 pointer-events-auto"
             style={{ background: "rgba(0,0,0,0.65)" }}
@@ -1885,6 +1892,8 @@ mapRef.current = map;
                   width: 148,
                   height: 148,
                   position: "absolute",
+                  animation: "discoverFloat 6.6s ease-in-out infinite",
+                  animationDelay: "0s",
                   left: 24,
                   top: 18,
                   transform: "translateY(-14px)",
@@ -1913,6 +1922,8 @@ mapRef.current = map;
                   width: 132,
                   height: 132,
                   position: "absolute",
+                  animation: "discoverFloat 7.4s ease-in-out infinite",
+                  animationDelay: "1.1s",
                   left: 170,
                   top: 112,
                   borderRadius: 9999,
@@ -1940,6 +1951,8 @@ mapRef.current = map;
                   width: 118,
                   height: 118,
                   position: "absolute",
+                  animation: "discoverFloat 6.9s ease-in-out infinite",
+                  animationDelay: "2s",
                   left: 276,
                   top: 44,
                   transform: "translateY(14px)",
