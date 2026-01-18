@@ -1882,9 +1882,9 @@ mapRef.current = map;
               <button
                 type="button"
                 style={{
-                  width: 132,
-                  height: 132,
-                  borderRadius: 18,
+                  width: 148,
+                  height: 148,
+                  borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
                   boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
@@ -1908,7 +1908,7 @@ mapRef.current = map;
                 style={{
                   width: 132,
                   height: 132,
-                  borderRadius: 18,
+                  borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
                   boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
@@ -1930,9 +1930,9 @@ mapRef.current = map;
               <button
                 type="button"
                 style={{
-                  width: 132,
-                  height: 132,
-                  borderRadius: 18,
+                  width: 118,
+                  height: 118,
+                  borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
                   boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
