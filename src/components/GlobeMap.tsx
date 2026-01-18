@@ -1878,12 +1878,16 @@ mapRef.current = map;
             onClick={() => { try { setDiscoverOpen(false); } catch {} try { setDiscoverPanel(null); } catch {} }}
           />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: 18 }}>
-            <div className="pointer-events-auto" style={{ display: "flex", gap: 12, alignItems: "center", justifyContent: "center" }}>
+            <div className="pointer-events-auto" style={{ position: "relative", width: 380, height: 260, left: -24 }}>
               <button
                 type="button"
                 style={{
                   width: 148,
                   height: 148,
+                  position: "absolute",
+                  left: 24,
+                  top: 18,
+                  transform: "translateY(-14px)",
                   borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
@@ -1908,6 +1912,9 @@ mapRef.current = map;
                 style={{
                   width: 132,
                   height: 132,
+                  position: "absolute",
+                  left: 170,
+                  top: 112,
                   borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
@@ -1932,6 +1939,10 @@ mapRef.current = map;
                 style={{
                   width: 118,
                   height: 118,
+                  position: "absolute",
+                  left: 276,
+                  top: 44,
+                  transform: "translateY(14px)",
                   borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
