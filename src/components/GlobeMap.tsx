@@ -580,8 +580,10 @@ const heroOverlay = heroUrl
   const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
   const walkHtml = "<div style=\"margin-top:3px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + "; opacity:.95;\" >" + walkTxt + "</div>";
 
+  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
+
   return (
-    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + "" + heroOverlay + contentWrapStart +
+    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -1211,6 +1213,16 @@ map.on("mouseenter", LAYER_ID, () => {
             const el = document.createElement("div");
             el.style.pointerEvents = "auto";
             el.innerHTML = html;
+            try {
+              const btn = el.querySelector("[data-mini-close=\"1\"]");
+              if (btn) {
+                btn.addEventListener("click", (ev) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                  try { popupRef.current?.remove(); } catch (e) {}
+                  popupRef.current = null;
+                });
+              }
+            } catch {}
             popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -32] } as any)
               .setLngLat([lng, lat])
               .addTo(map);
