@@ -1885,7 +1885,7 @@ mapRef.current = map;
                 maxHeight: "min(78vh, 760px)",
                 overflow: "hidden",
                 borderRadius: 18,
-                background: "rgba(31,31,24,0.92)",
+                background: "rgba(31,31,24,0.58)",
                 border: "1px solid rgba(255,255,255,0.10)",
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
