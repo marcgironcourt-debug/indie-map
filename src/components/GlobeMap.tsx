@@ -5,6 +5,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie-hero.jpg";
+const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
 const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
 
 type Biz = {
@@ -1324,7 +1325,7 @@ map.on("mouseenter", LAYER_ID, () => {
                         if (
                           pid === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
                           String(pname).trim().toLowerCase().includes("textilerie")
-                        ) hero = String(TEXTILERIE_HERO_IMAGE || "");
+                        ) hero = String(TEXTILERIE_PANORAMA_IMAGE || "");
                       } catch {}
                       try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
                       try { setDiscoverHeroOpen(false); } catch {}
