@@ -1913,7 +1913,7 @@ mapRef.current = map;
                 onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("place"); } catch {} }}
               >
                 <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>Le lieu</div>
-                <div style={{ fontSize: 12, color: "rgba(245,245,232,0.70)", lineHeight: 1.25 }}>Ce que c’est</div>
+                
               </button>
 
               <button
@@ -1942,7 +1942,7 @@ mapRef.current = map;
                 onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("approach"); } catch {} }}
               >
                 <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>La démarche</div>
-                <div style={{ fontSize: 12, color: "rgba(245,245,232,0.70)", lineHeight: 1.25 }}>Pourquoi Indie Map</div>
+                
               </button>
 
               <button
@@ -1971,8 +1971,8 @@ mapRef.current = map;
                 }}
                 onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("know"); } catch {} }}
               >
-                <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>À savoir</div>
-                <div style={{ fontSize: 12, color: "rgba(245,245,232,0.70)", lineHeight: 1.25 }}>Infos utiles</div>
+                <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>À propos</div>
+                
               </button>
             </div>
           </div>
