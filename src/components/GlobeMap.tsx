@@ -2083,14 +2083,37 @@ mapRef.current = map;
                 (e as any).currentTarget?.dispatchEvent?.(new Event("pointerdown"));
               } catch {}
             }}
+
+          />
+          <button
+            type="button"
+            aria-label="Fermer"
+            className="absolute top-4 right-4 z-[80] pointer-events-auto"
             onClick={(e) => {
-              try { if (heroHadMoveRef.current) { e.preventDefault(); e.stopPropagation(); return; } } catch {}
+              try { e.preventDefault(); e.stopPropagation(); } catch {}
               try { setDiscoverHeroOpen(false); } catch {}
               try { setDiscoverHeroZoom(false); } catch {}
               try { setDiscoverDoorOpen(false); } catch {}
               try { setDiscoverHeroUrl(null); } catch {}
             }}
-          />
+            style={{
+              width: 34,
+              height: 34,
+              borderRadius: 999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "rgba(0,0,0,0.30)",
+              border: "1px solid rgba(255,255,255,0.26)",
+              color: "rgba(245,245,232,0.92)",
+              boxShadow: "0 10px 22px rgba(0,0,0,0.28)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              cursor: "pointer"
+            }}
+          >
+            <span style={{ display: "inline-block", transform: "translateY(-1px)", fontSize: 18, lineHeight: "18px" }}>×</span>
+          </button>
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -2111,43 +2134,30 @@ mapRef.current = map;
           />
           <div className="absolute inset-0 pointer-events-none">
             <div
-              className="absolute top-0 bottom-0 left-0 pointer-events-none"
+              className="absolute inset-0 pointer-events-none im-atmo"
               style={{
-                width: "50%",
-                background: "rgba(0,0,0,0.82)",
-                transform: discoverDoorOpen ? "translateX(-104%)" : "translateX(0%)",
-                transition: "transform 860ms cubic-bezier(0.16, 1, 0.3, 1)",
-                willChange: "transform"
-              }}
-            />
-            <div
-              className="absolute top-0 bottom-0 right-0 pointer-events-none"
-              style={{
-                width: "50%",
-                background: "rgba(0,0,0,0.82)",
-                transform: discoverDoorOpen ? "translateX(104%)" : "translateX(0%)",
-                transition: "transform 860ms cubic-bezier(0.16, 1, 0.3, 1)",
-                willChange: "transform"
-              }}
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                left: "50%",
-                width: 2,
-                transform: "translateX(-1px)",
-                background: "rgba(255,255,255,0.14)",
-                opacity: discoverDoorOpen ? 0 : 0.65,
-                transition: "opacity 520ms ease",
+                opacity: discoverHeroZoom ? 0 : 1,
+                transition: "opacity 900ms ease",
                 willChange: "opacity"
               }}
             />
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 120px rgba(0,0,0,0.55)",
-                opacity: discoverDoorOpen ? 0 : 1,
-                transition: "opacity 520ms ease",
+                background:
+                  "radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 35%, rgba(0,0,0,0.00) 60%)," +
+                  "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.70) 100%)",
+                opacity: discoverHeroZoom ? 0.55 : 0.85,
+                transition: "opacity 900ms ease",
+                willChange: "opacity"
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 140px rgba(0,0,0,0.52)",
+                opacity: discoverHeroZoom ? 0.55 : 1,
+                transition: "opacity 900ms ease",
                 willChange: "opacity"
               }}
             />
@@ -2167,6 +2177,22 @@ mapRef.current = map;
   30%  { transform: translate(-50%,-50%) translateY(-5.4px) rotate(-0.85deg); }
   60%  { transform: translate(-50%,-50%) translateY(2.6px) rotate(0.85deg); }
   100% { transform: translate(-50%,-50%) translateY(0px) rotate(0deg); }
+}
+@keyframes imAtmoDrift {
+  0% { transform: translate3d(0px,0px,0) scale(1.08); filter: blur(18px); opacity: 0.95; }
+  40% { transform: translate3d(-10px,6px,0) scale(1.10); filter: blur(20px); opacity: 0.88; }
+  75% { transform: translate3d(8px,-5px,0) scale(1.09); filter: blur(19px); opacity: 0.92; }
+  100% { transform: translate3d(0px,0px,0) scale(1.08); filter: blur(18px); opacity: 0.95; }
+}
+.im-atmo{
+  background-image:
+    radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 32%, rgba(0,0,0,0.00) 62%),
+    radial-gradient(70% 60% at 30% 30%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 60%),
+    radial-gradient(70% 60% at 70% 40%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.00) 62%),
+    linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.18) 100%);
+  mix-blend-mode: screen;
+  animation: imAtmoDrift 2.6s ease-in-out infinite;
+  will-change: transform, filter, opacity;
 }
 .im-hero-bubble{
   position:absolute;
