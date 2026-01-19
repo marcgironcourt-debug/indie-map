@@ -4,7 +4,7 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie.webp";
+const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie-hero.jpg";
 const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
 
 type Biz = {
@@ -817,6 +817,19 @@ export default function GlobeMap({
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
   const [discoverOpen, setDiscoverOpen] = React.useState(false);
+  const [discoverHeroOpen, setDiscoverHeroOpen] = React.useState(false);
+  const [discoverHeroUrl, setDiscoverHeroUrl] = React.useState<string | null>(null);
+  const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
+  const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
+  const heroPanRef = React.useRef(0.5);
+  const heroDragRef = React.useRef<{ active: boolean; startX: number; startPan: number } | null>(null);
+  const heroHadMoveRef = React.useRef(false);
+  const heroPanRafRef = React.useRef<number | null>(null);
+  const heroPendingPanRef = React.useRef<number | null>(null);
+  const heroWinMoveRef = React.useRef<any>(null);
+  const heroWinUpRef = React.useRef<any>(null);
+  React.useEffect(() => { try { heroPanRef.current = discoverHeroPan; } catch {} }, [discoverHeroPan]);
+  const [discoverDoorOpen, setDiscoverDoorOpen] = React.useState(false);
   const [discoverPanel, setDiscoverPanel] = React.useState<null | "place" | "approach" | "know">(null);
   const [discoverMeta, setDiscoverMeta] = React.useState<{ id: string; name: string } | null>(null);
   const isImmersiveSheet = React.useMemo(() => sheetHtml.includes(TEXTILERIE_HERO_IMAGE), [sheetHtml]);
@@ -1235,7 +1248,38 @@ map.on("mouseenter", LAYER_ID, () => {
                   try { setSheetHtml(""); } catch (e) {}
                   try { setDiscoverMeta({ id: String(props?.id ?? fid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch (e) {}
                   try { setDiscoverPanel(null); } catch (e) {}
-                  try { setDiscoverOpen(true); } catch (e) {}
+                  try {
+                    const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
+                    map.flyTo({
+                      center: [lng, lat],
+                      zoom: maxZ,
+                      speed: 0.62,
+                      curve: 2.35,
+                      easing: (t) => t * t * (3 - 2 * t),
+                      essential: true
+                    });
+                    try {
+                      const pid = String(props?.id ?? fid ?? "");
+                      const pname = String(props?.name ?? props?.title ?? "");
+                      let hero = null as null | string;
+                      try {
+                        if (
+                          pid === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
+                          String(pname).trim().toLowerCase().includes("textilerie")
+                        ) hero = String(TEXTILERIE_HERO_IMAGE || "");
+                      } catch {}
+                      try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
+                      try { setDiscoverHeroOpen(false); } catch {}
+                      const onEnd = () => {
+                         try { setDiscoverHeroZoom(false); } catch {}
+                         try { setDiscoverDoorOpen(false); } catch {}
+                         try { setDiscoverHeroOpen(true); } catch {}
+                         try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
+                         try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 520); } catch {}
+                       };
+                       try { map.once("moveend", onEnd); } catch {}
+                    } catch {}
+                  } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
                   popupRef.current = null;
                 });
@@ -1870,7 +1914,173 @@ mapRef.current = map;
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
       
-            {discoverOpen ? (
+            {discoverHeroOpen ? (
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute inset-0 pointer-events-auto"
+            style={{ background: "rgba(0,0,0,0.72)", touchAction: "none" }}
+            onPointerDown={(e) => {
+              try { (e as any).preventDefault?.(); } catch {}
+              try { heroHadMoveRef.current = false; } catch {}
+              try {
+                const getX = (ev: any) => {
+                  try {
+                    if (ev && ev.touches && ev.touches[0]) return Number(ev.touches[0].clientX || 0);
+                    if (ev && ev.changedTouches && ev.changedTouches[0]) return Number(ev.changedTouches[0].clientX || 0);
+                    return Number(ev?.clientX || 0);
+                  } catch { return 0; }
+                };
+                const x0 = getX(e);
+                const p0 = Number(heroPanRef.current ?? 0.5);
+                heroDragRef.current = { active: true, lastX: x0, pan: p0 } as any;
+                (heroDragRef.current as any).pointerId = (e as any).pointerId ?? null;
+
+                const moveFn = (ev: any) => {
+                  try {
+                    const st: any = heroDragRef.current as any;
+                    if (!st || !st.active) return;
+                    try { if (ev && ev.cancelable) ev.preventDefault?.(); } catch {}
+                    const x = getX(ev);
+                    const lastX = Number(st.lastX ?? x);
+                    const dx = x - lastX;
+                    st.lastX = x;
+                    if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
+
+                    const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
+                    const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
+                    const next = Math.max(0, Math.min(1, curPan - (dx / w)));
+                    st.pan = next;
+
+                    heroPendingPanRef.current = next;
+                    if (heroPanRafRef.current != null) return;
+                    heroPanRafRef.current = requestAnimationFrame(() => {
+                      heroPanRafRef.current = null;
+                      const p = heroPendingPanRef.current;
+                      if (p == null) return;
+                      try { heroPanRef.current = p; } catch {}
+                      try { setDiscoverHeroPan(p); } catch {}
+                    });
+                  } catch {}
+                };
+
+                const upFn = (ev: any) => {
+                  try { if (ev && ev.cancelable) ev.preventDefault?.(); } catch {}
+                  try { heroDragRef.current = null; } catch {}
+                  try {
+                    const mf = heroWinMoveRef.current;
+                    const uf = heroWinUpRef.current;
+                    heroWinMoveRef.current = null;
+                    heroWinUpRef.current = null;
+                    if (mf) {
+                      window.removeEventListener("pointermove", mf, true);
+                      window.removeEventListener("touchmove", mf, { capture: true } as any);
+                    }
+                    if (uf) {
+                      window.removeEventListener("pointerup", uf, true);
+                      window.removeEventListener("pointercancel", uf, true);
+                      window.removeEventListener("touchend", uf, { capture: true } as any);
+                      window.removeEventListener("touchcancel", uf, { capture: true } as any);
+                    }
+                  } catch {}
+                };
+
+                heroWinMoveRef.current = moveFn;
+                heroWinUpRef.current = upFn;
+
+                try {
+                  window.addEventListener("pointermove", moveFn, true);
+                  window.addEventListener("pointerup", upFn, true);
+                  window.addEventListener("pointercancel", upFn, true);
+                } catch {}
+
+                try {
+                  window.addEventListener("touchmove", moveFn, { passive: false, capture: true } as any);
+                  window.addEventListener("touchend", upFn, { passive: false, capture: true } as any);
+                  window.addEventListener("touchcancel", upFn, { passive: false, capture: true } as any);
+                } catch {}
+              } catch {}
+            }}
+            onTouchStart={(e) => {
+              try { (e as any).preventDefault?.(); } catch {}
+              try { (e as any).stopPropagation?.(); } catch {}
+              try {
+                const pe: any = { clientX: (e as any)?.touches?.[0]?.clientX ?? 0, pointerId: null, preventDefault: () => {}, cancelable: true };
+                (e as any).currentTarget?.dispatchEvent?.(new Event("pointerdown"));
+              } catch {}
+            }}
+            onClick={(e) => {
+              try { if (heroHadMoveRef.current) { e.preventDefault(); e.stopPropagation(); return; } } catch {}
+              try { setDiscoverHeroOpen(false); } catch {}
+              try { setDiscoverHeroZoom(false); } catch {}
+              try { setDiscoverDoorOpen(false); } catch {}
+              try { setDiscoverHeroUrl(null); } catch {}
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: discoverHeroUrl ? ("url('" + discoverHeroUrl + "')") : "none",
+              backgroundSize: "auto 100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: (discoverHeroPan * 100).toFixed(1) + "% 50%",
+              filter: discoverHeroZoom ? "saturate(1.05) contrast(1.05)" : "saturate(1.05) contrast(1.05) blur(10px)",
+              transform: discoverHeroZoom ? "scale(1) translateY(0px)" : "scale(1.05) translateY(10px)",
+              opacity: discoverHeroUrl ? (discoverHeroZoom ? 1 : 0) : 0,
+              transition: "opacity 900ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms ease",
+              willChange: "transform, opacity"
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.78) 100%)" }}
+          />
+          <div className="absolute inset-0 pointer-events-none">
+            <div
+              className="absolute top-0 bottom-0 left-0 pointer-events-none"
+              style={{
+                width: "50%",
+                background: "rgba(0,0,0,0.82)",
+                transform: discoverDoorOpen ? "translateX(-104%)" : "translateX(0%)",
+                transition: "transform 860ms cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "transform"
+              }}
+            />
+            <div
+              className="absolute top-0 bottom-0 right-0 pointer-events-none"
+              style={{
+                width: "50%",
+                background: "rgba(0,0,0,0.82)",
+                transform: discoverDoorOpen ? "translateX(104%)" : "translateX(0%)",
+                transition: "transform 860ms cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "transform"
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                left: "50%",
+                width: 2,
+                transform: "translateX(-1px)",
+                background: "rgba(255,255,255,0.14)",
+                opacity: discoverDoorOpen ? 0 : 0.65,
+                transition: "opacity 520ms ease",
+                willChange: "opacity"
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 120px rgba(0,0,0,0.55)",
+                opacity: discoverDoorOpen ? 0 : 1,
+                transition: "opacity 520ms ease",
+                willChange: "opacity"
+              }}
+            />
+          </div>
+        </div>
+      ) : null}
+
+      {discoverOpen ? (
         <div className="absolute inset-0 pointer-events-none">
           <style jsx global>{`
             @keyframes discoverFloat {
@@ -1954,8 +2164,7 @@ mapRef.current = map;
                   animation: "discoverFloat 6.9s ease-in-out infinite",
                   animationDelay: "2s",
                   left: 276,
-                  top: 44,
-                  transform: "translateY(14px)",
+                  top: 58,
                   borderRadius: 9999,
                   background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
                   border: "1px solid rgba(255,255,255,0.16)",
