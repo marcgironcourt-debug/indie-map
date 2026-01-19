@@ -819,6 +819,22 @@ export default function GlobeMap({
   const [discoverOpen, setDiscoverOpen] = React.useState(false);
   const [discoverHeroOpen, setDiscoverHeroOpen] = React.useState(false);
   const [discoverHeroUrl, setDiscoverHeroUrl] = React.useState<string | null>(null);
+  const heroImgSizeRef = React.useRef<{ w: number; h: number } | null>(null);
+  React.useEffect(() => {
+    try {
+      const url = String(discoverHeroUrl || "");
+      if (!url) return;
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const w = Number((img as any).naturalWidth || (img as any).width || 0);
+          const h = Number((img as any).naturalHeight || (img as any).height || 0);
+          if (w > 0 && h > 0) heroImgSizeRef.current = { w, h };
+        } catch {}
+      };
+      img.src = url;
+    } catch {}
+  }, [discoverHeroUrl]);
   const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
   const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
   const heroPanRef = React.useRef(0.5);
@@ -829,6 +845,48 @@ export default function GlobeMap({
   const heroWinMoveRef = React.useRef<any>(null);
   const heroWinUpRef = React.useRef<any>(null);
   React.useEffect(() => { try { heroPanRef.current = discoverHeroPan; } catch {} }, [discoverHeroPan]);
+  const heroBubbleLeft = (anchor: number) => {
+    try {
+      const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
+      if (typeof window === "undefined") return (Number(anchor) * 100).toFixed(1) + "%";
+      const vw = Number(window.innerWidth || 1);
+      const vh = Number(window.innerHeight || 1);
+      const sz = heroImgSizeRef.current;
+      if (!sz || !Number.isFinite(sz.w) || !Number.isFinite(sz.h) || sz.w <= 0 || sz.h <= 0) return (Number(anchor) * 100).toFixed(1) + "%";
+      const dispW = vh * (Number(sz.w) / Number(sz.h));
+      const free = vw - dispW;
+      const left = free * cur;
+      const x = left + (Number(anchor) * dispW);
+      const pct = (x / vw) * 100;
+      return pct.toFixed(1) + "%";
+    } catch {
+      return (Number(anchor) * 100).toFixed(1) + "%";
+    }
+  };
+
+  const heroBubbleVis = (anchor: number) => {
+    try {
+      const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
+      if (typeof window === "undefined") return 1;
+      const vw = Number(window.innerWidth || 1);
+      const vh = Number(window.innerHeight || 1);
+      const sz = heroImgSizeRef.current;
+      if (!sz || !Number.isFinite(sz.w) || !Number.isFinite(sz.h) || sz.w <= 0 || sz.h <= 0) return 1;
+      const dispW = vh * (Number(sz.w) / Number(sz.h));
+      const free = vw - dispW;
+      const left = free * cur;
+      const x = left + (Number(anchor) * dispW);
+      const fade = 64;
+      if (x >= fade && x <= (vw - fade)) return 1;
+      if (x <= -fade || x >= (vw + fade)) return 0;
+      if (x < fade) return Math.max(0, Math.min(1, (x + fade) / (fade + fade)));
+      if (x > (vw - fade)) return Math.max(0, Math.min(1, ((vw + fade) - x) / (fade + fade)));
+      return 1;
+    } catch {
+      return 1;
+    }
+  };
+
   const [discoverDoorOpen, setDiscoverDoorOpen] = React.useState(false);
   const [discoverPanel, setDiscoverPanel] = React.useState<null | "place" | "approach" | "know">(null);
   const [discoverMeta, setDiscoverMeta] = React.useState<{ id: string; name: string } | null>(null);
@@ -2077,6 +2135,118 @@ mapRef.current = map;
               }}
             />
           </div>
+        </div>
+      ) : null}
+
+            {discoverHeroOpen && discoverDoorOpen ? (
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 60 }}>
+          <style jsx global>{`
+@keyframes imHeroBubbleIn {
+  0% { opacity: 0; transform: translate(-50%,-50%) translateY(10px) scale(.985); }
+  100% { opacity: 1; transform: translate(-50%,-50%) translateY(0px) scale(1); }
+}
+@keyframes imHeroWobble {
+  0%   { transform: translate(-50%,-50%) translateY(0px) rotate(0deg); }
+  30%  { transform: translate(-50%,-50%) translateY(-5.4px) rotate(-0.85deg); }
+  60%  { transform: translate(-50%,-50%) translateY(2.6px) rotate(0.85deg); }
+  100% { transform: translate(-50%,-50%) translateY(0px) rotate(0deg); }
+}
+.im-hero-bubble{
+  position:absolute;
+  pointer-events:auto;
+  appearance:none;
+  padding:0;
+  width:78px;
+  height:78px;
+  border-radius:9999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.05;
+  border:1px solid rgba(255,255,255,.22);
+  background:
+    radial-gradient(120% 120% at 22% 18%, rgba(255,255,255,.22) 0%, rgba(255,255,255,.06) 28%, rgba(255,255,255,0) 52%),
+    radial-gradient(120% 120% at 78% 82%, rgba(114,138,74,.18) 0%, rgba(124,58,237,.10) 26%, rgba(255,210,122,.10) 42%, rgba(0,0,0,0) 68%),
+    rgba(0,0,0,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(245,245,232,.95);
+  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  font-size: 12px;
+  font-weight: 720;
+  letter-spacing: .02em;
+  cursor: pointer;
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.28),
+    0 0 0 1px rgba(255,255,255,.08),
+    0 0 18px rgba(255,255,255,.10);
+  transform: translate(-50%,-50%);
+  transition: transform 220ms cubic-bezier(0.16,1,0.3,1), background 160ms ease, box-shadow 160ms ease;
+  will-change: transform, opacity;
+  animation: imHeroBubbleIn 650ms ease both, imHeroWobble var(--im-wobble-dur, 10s) ease-in-out infinite;
+  animation-delay: 0ms, var(--im-wobble-delay, 0ms);
+}
+.im-hero-bubble::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:9999px;
+  background:
+    radial-gradient(90% 90% at 26% 22%, rgba(255,255,255,.30) 0%, rgba(255,255,255,.12) 22%, rgba(255,255,255,0) 55%),
+    radial-gradient(70% 70% at 68% 72%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 58%);
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity:.85;
+}
+.im-hero-bubble:hover{
+  background:
+    radial-gradient(120% 120% at 22% 18%, rgba(255,255,255,.26) 0%, rgba(255,255,255,.07) 30%, rgba(255,255,255,0) 52%),
+    radial-gradient(120% 120% at 78% 82%, rgba(114,138,74,.22) 0%, rgba(124,58,237,.12) 26%, rgba(255,210,122,.12) 42%, rgba(0,0,0,0) 68%),
+    rgba(0,0,0,.12);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,.30),
+    0 0 0 1px rgba(255,255,255,.10),
+    0 0 22px rgba(255,255,255,.12);
+}
+.im-hero-bubble:active{
+  animation-play-state: paused;
+  transform: translate(-50%,-50%) scale(.985);
+}
+.im-hero-a{ --im-wobble-dur: 9.6s; --im-wobble-delay: 0.15s; }
+.im-hero-b{ --im-wobble-dur: 10.4s; --im-wobble-delay: 0.55s; }
+.im-hero-c{ --im-wobble-dur: 9.9s; --im-wobble-delay: 0.95s; }
+`}</style>
+
+          <button
+            type="button"
+            className="im-hero-bubble im-hero-a"
+            data-im-hero-bubble="place"
+            style={{ left: heroBubbleLeft(0.42), top: "30%", opacity: heroBubbleVis(0.42) }}
+            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("place"); } catch {} }}
+          >
+            Le lieu
+          </button>
+
+          <button
+            type="button"
+            className="im-hero-bubble im-hero-b"
+            data-im-hero-bubble="approach"
+            style={{ left: heroBubbleLeft(0.22), top: "70%", opacity: heroBubbleVis(0.22) }}
+            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("approach"); } catch {} }}
+          >
+            La démarche
+          </button>
+
+          <button
+            type="button"
+            className="im-hero-bubble im-hero-c"
+            data-im-hero-bubble="know"
+            style={{ left: heroBubbleLeft(0.78), top: "38%", opacity: heroBubbleVis(0.78) }}
+            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("know"); } catch {} }}
+          >
+            À savoir
+          </button>
         </div>
       ) : null}
 
