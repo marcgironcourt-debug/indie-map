@@ -527,6 +527,13 @@ export default function IndieMapSplitView() {
   const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
   const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
+  const [heroOpen, setHeroOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const fn = (e) => { try { setHeroOpen(Boolean(e?.detail?.open)); } catch {} };
+    try { window.addEventListener("im:hero", fn); } catch {}
+    return () => { try { window.removeEventListener("im:hero", fn); } catch {} };
+  }, []);
       const darkMap = false;
 React.useEffect(() => {
     let cancelled = false;
@@ -736,6 +743,7 @@ React.useEffect(() => {
           }}          darkMap={darkMap}
           />
       </div>
+      {!heroOpen && (
 
             <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none flex justify-center">
         <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[520px] overflow-visible">
@@ -744,6 +752,8 @@ React.useEffect(() => {
           onCategoryChange={setCategory} />
         </div>
       </div>
+      )}
+
 
 
       <div className="absolute bottom-3 left-0 right-0 z-[1350] flex justify-center">

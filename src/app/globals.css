@@ -316,3 +316,5 @@ main {
     opacity: 1 !important;
   }
 }
+
+body.im-hero-open [data-im-filterbar="1"]{ display:none !important; }

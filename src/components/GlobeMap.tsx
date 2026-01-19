@@ -835,7 +835,23 @@ export default function GlobeMap({
       };
       img.src = url;
     } catch {}
+    }, [discoverHeroUrl]);
+
+  React.useEffect(() => {
+    try { document.body.classList.toggle("im-hero-open", !!discoverHeroUrl); } catch {}
+    try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: !!discoverHeroUrl } })); } catch {}
+    return () => {
+      try { document.body.classList.remove("im-hero-open"); } catch {}
+      try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
+    };
   }, [discoverHeroUrl]);
+
+
+  React.useEffect(() => {
+    try { document.body.classList.toggle("im-hero-open", !!discoverHeroUrl); } catch {}
+    return () => { try { document.body.classList.remove("im-hero-open"); } catch {} };
+  }, [discoverHeroUrl]);
+
   const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
   const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
   const heroPanRef = React.useRef(0.5);
@@ -995,10 +1011,10 @@ export default function GlobeMap({
   React.useEffect(() => {
     try {
       if (geolocateElRef.current) {
-        geolocateElRef.current.style.display = sheetOpen ? "none" : "block";
+        geolocateElRef.current.style.display = (sheetOpen || !!discoverHeroUrl) ? "none" : "block";
       }
     } catch {}
-  }, [sheetOpen]);
+  }, [sheetOpen, discoverHeroUrl]);
 
   React.useEffect(() => {
     sheetHeightRef.current = sheetHeightVh;
