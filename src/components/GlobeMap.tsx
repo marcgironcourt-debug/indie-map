@@ -394,7 +394,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const metaColor = "rgba(245,245,232,.62)";
   const shadow = "0 10px 22px rgba(0,0,0,.20)";
 
-  const heroUrl = isTextilerie ? TEXTILERIE_HERO_IMAGE : "";
+  const heroUrl = "";
   const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
 
   const badgesHtml = isTextilerie
@@ -742,9 +742,8 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   if (isTextilerie) {
     const sentence = escapeHtml(getCategorySentence(typeRaw));
     const addr = escapeHtml(addressRaw);
-    return (
-      "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background-image:url('"+TEXTILERIE_HERO_IMAGE+"');background-size:cover;background-position:center;height:100%;min-height:100%\">" +
-        "<div class=\"absolute inset-0\" style=\"background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.85) 100%)\"></div>" +
+        return (
+      "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background:rgba(31,31,24,0.72);height:100%;min-height:100%\">" +
         "<div class=\"relative p-4 flex flex-col justify-end gap-2\" style=\"height:100%;min-height:100%;color:#fff\">" +
           "<p class=\"text-[14px] leading-snug font-semibold\" style=\"max-width:30rem\">" + sentence + "</p>" +
           "<h3 class=\"text-[20px] font-semibold leading-tight\">" + name + "</h3>" +
