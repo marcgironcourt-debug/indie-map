@@ -1271,7 +1271,7 @@ map.on("mouseenter", LAYER_ID, () => {
         const z = map.getZoom();
 
         if (isGlobe || z < 7.2) {
-          map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
+          map.flyTo({ center: [lng, lat], zoom: 9.9, speed: 1.45, curve: 1.05, easing: (t) => t, essential: true });
           return;
         }
 
