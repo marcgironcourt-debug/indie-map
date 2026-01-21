@@ -1989,7 +1989,7 @@ mapRef.current = map;
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute inset-0 pointer-events-auto"
-            style={{ background: "rgba(0,0,0,0.72)", touchAction: "none" }}
+            style={{ background: "rgba(0,0,0,0.18)", touchAction: "none" }}
             onPointerDown={(e) => {
               try { (e as any).preventDefault?.(); } catch {}
               try { heroHadMoveRef.current = false; } catch {}
@@ -2126,7 +2126,7 @@ mapRef.current = map;
           />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.78) 100%)" }}
+            style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.10) 55%, rgba(0,0,0,0.62) 100%)" }}
           />
           <div className="absolute inset-0 pointer-events-none">
             <div
@@ -2141,9 +2141,9 @@ mapRef.current = map;
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 35%, rgba(0,0,0,0.00) 60%)," +
-                  "linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.70) 100%)",
-                opacity: discoverHeroZoom ? 0.55 : 0.85,
+                  "radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 34%, rgba(0,0,0,0.00) 62%)," +
+                  "linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.16) 58%, rgba(0,0,0,0.60) 100%)",
+                opacity: discoverHeroZoom ? 0.34 : 0.85,
                 transition: "opacity 900ms ease",
                 willChange: "opacity"
               }}
@@ -2151,8 +2151,8 @@ mapRef.current = map;
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 140px rgba(0,0,0,0.52)",
-                opacity: discoverHeroZoom ? 0.55 : 1,
+                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 180px rgba(0,0,0,0.46)",
+                opacity: discoverHeroZoom ? 0.40 : 1,
                 transition: "opacity 900ms ease",
                 willChange: "opacity"
               }}
