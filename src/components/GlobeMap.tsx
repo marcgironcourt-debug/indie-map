@@ -903,6 +903,8 @@ export default function GlobeMap({
   const [discoverDoorOpen, setDiscoverDoorOpen] = React.useState(false);
   const [discoverPanel, setDiscoverPanel] = React.useState<null | "place" | "approach" | "know">(null);
   const [discoverMeta, setDiscoverMeta] = React.useState<{ id: string; name: string } | null>(null);
+  const heroReturnPopupRef = React.useRef<{ lng: number; lat: number; props: any; fid: string | null } | null>(null);
+  const heroReturnCamRef = React.useRef<{ center: [number, number]; zoom: number; bearing: number; pitch: number } | null>(null);
   const isImmersiveSheet = React.useMemo(() => sheetHtml.includes(TEXTILERIE_HERO_IMAGE), [sheetHtml]);
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
@@ -1267,6 +1269,7 @@ map.on("mouseenter", LAYER_ID, () => {
         const z = map.getZoom();
 
         if (isGlobe || z < 7.2) {
+          try { heroReturnCamRef.current = { center: [lng, lat], zoom: 9.9, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
           map.flyTo({ center: [lng, lat], zoom: 9.9, speed: 1.45, curve: 1.05, easing: (t) => t, essential: true });
           return;
         }
@@ -1318,6 +1321,7 @@ map.on("mouseenter", LAYER_ID, () => {
                   try { setSheetOpen(false); } catch (e) {}
                   try { setSheetHtml(""); } catch (e) {}
                   try { setDiscoverMeta({ id: String(props?.id ?? fid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch (e) {}
+                  try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: fid ? String(fid) : null }; } catch (e) {}
                   try { setDiscoverPanel(null); } catch (e) {}
                   try {
                     const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
@@ -1378,6 +1382,7 @@ return;
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
           try { onSelectRef.current?.(String((props as any).id)); } catch {}
+          try { heroReturnCamRef.current = { center: [lng, lat], zoom: 8.8, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
           map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
           return;
         }
@@ -1989,7 +1994,7 @@ mapRef.current = map;
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute inset-0 pointer-events-auto"
-            style={{ background: "rgba(0,0,0,0.18)", touchAction: "none" }}
+            style={{ background: "rgba(0,0,0,0.00)", touchAction: "none" }}
             onPointerDown={(e) => {
               try { (e as any).preventDefault?.(); } catch {}
               try { heroHadMoveRef.current = false; } catch {}
@@ -2087,10 +2092,67 @@ mapRef.current = map;
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
-              try { setDiscoverHeroOpen(false); } catch {}
-              try { setDiscoverHeroZoom(false); } catch {}
+              try { setDiscoverOpen(false); } catch {}
+              try { setDiscoverPanel(null); } catch {}
               try { setDiscoverDoorOpen(false); } catch {}
-              try { setDiscoverHeroUrl(null); } catch {}
+              try { setDiscoverHeroZoom(false); } catch {}
+              try {
+                const map = mapRef.current;
+                const cam = heroReturnCamRef.current;
+                if (map && cam) {
+                  map.easeTo({ center: cam.center as any, zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1250, essential: true } as any);
+                }
+              } catch {}
+              try {
+                setTimeout(() => {
+                  try {
+                    const map = mapRef.current;
+                    const st = heroReturnPopupRef.current;
+                    if (!map || !st) return;
+                    try { if (popupRef.current) popupRef.current.remove(); } catch {}
+                    popupRef.current = null;
+                    let walkMins = null;
+                    try {
+                      const up = lastUserPosRef.current;
+                      if (up && Number.isFinite(up.lng) && Number.isFinite(up.lat)) {
+                        const meters = haversineMeters(Number(up.lat), Number(up.lng), Number(st.lat), Number(st.lng));
+                        if (Number.isFinite(meters)) walkMins = meters / 83.3333333333;
+                      }
+                    } catch {}
+                    const html = buildMiniPinPopupHtml(st.props, Boolean(darkMapRef.current), walkMins);
+                    const el = document.createElement("div");
+                    el.style.pointerEvents = "auto";
+                    el.innerHTML = html;
+                    try {
+                      const btn = el.querySelector("[data-mini-close=\"1\"]");
+                      if (btn) {
+                        btn.addEventListener("click", (ev) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                          try { popupRef.current?.remove(); } catch (e) {}
+                          popupRef.current = null;
+                        });
+                      }
+                    } catch {}
+                    try {
+                      const db = el.querySelector("[data-discover=\"1\"]");
+                      if (db) {
+                        db.addEventListener("click", (ev) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                        });
+                      }
+                    } catch {}
+                    popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -32] } as any)
+                      .setLngLat([Number(st.lng), Number(st.lat)])
+                      .addTo(map);
+                  } catch {}
+                }, 260);
+              } catch {}
+              try {
+                setTimeout(() => {
+                  try { setDiscoverHeroOpen(false); } catch {}
+                  try { setDiscoverHeroUrl(null); } catch {}
+                }, 920);
+              } catch {}
             }}
             style={{
               width: 34,
