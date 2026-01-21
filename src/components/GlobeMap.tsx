@@ -397,11 +397,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const heroUrl = "";
   const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
 
-  const badgesHtml = isTextilerie
-    ? "<div data-badges-textilerie=\"1\" style=\"margin-top:6px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; line-height:1.25; color:" + metaColor + ";\" >" +
-        "Friperie · Cours de couture · Café · Recyclerie textile · Réemploi solidaire" +
-      "</div>"
-    : "";
+  const badgesHtml = "";
 const heroOverlay = heroUrl
     ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(2.0) contrast(1.05) brightness(1.18);\" ></div>" +
       "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.04);\" ></div>"
@@ -579,22 +575,23 @@ const heroOverlay = heroUrl
 
   const wm = Number(walkMins);
   const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
-  const walkHtml = "<div style=\"margin-top:3px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + "; opacity:.95;\" >" + walkTxt + "</div>";
+  const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
 
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
 
   return (
-    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid " + border + "; border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
-      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em;\" >" +
+    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(0,0,0,0); border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
+      "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
+      (isTextilerie ? "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:11.5px;line-height:1.4;color:" + textColor + ";opacity:.92;\" >Lieu hybride où déposer ses textiles, chiner des vêtements, acheter tissus et mercerie de réemploi, boire un café, consulter une bibliothèque textile et apprendre la couture.</div>" : "") +
        badgesHtml +
-       "<div style=\"margin-top:5px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
+       "<div style=\"margin-top:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
          escapeHtml(sentence) +
       "</div>" +
-      "<div style=\"margin-top:7px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
+      "<div style=\"margin-top:10px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
-      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px;\" >" + "<button data-discover=\"1\" style=\"display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;align-items:center;justify-content:center;padding:4px 12px;border-radius:12px;background:rgba(114,138,74,0.65);border:1px solid rgba(255,255,255,0.22);color:#000000;font-size:12px;letter-spacing:.02em;backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.25);text-align:center;color:#ffffff;font-weight:500;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir</button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:2px 10px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:600;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir →</button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -707,7 +704,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
 
   const routeBlock = Number.isFinite(latRaw) && Number.isFinite(lngRaw)
     ? "<div class=\"mt-2\">" +
-        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-1 text-[11px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
+        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-[2px] text-[11px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
       "</div>"
     : "";
 
@@ -746,7 +743,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       "<div class=\"relative overflow-hidden rounded-2xl\" style=\"background:rgba(31,31,24,0.72);height:100%;min-height:100%\">" +
         "<div class=\"relative p-4 flex flex-col justify-end gap-2\" style=\"height:100%;min-height:100%;color:#fff\">" +
           "<p class=\"text-[14px] leading-snug font-semibold\" style=\"max-width:30rem\">" + sentence + "</p>" +
-          "<h3 class=\"text-[20px] font-semibold leading-tight\">" + name + "</h3>" +
+          "<h3 class=\"font-semibold leading-tight\" style=\"font-size:30px !important;line-height:1.08\">" + name + "</h3>" +
           (addressRaw ? "<div class=\"text-[12px] opacity-90\">" + addr + "</div>" : "") +
         "</div>" +
       "</div>"
@@ -758,8 +755,8 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       "<div class=\"space-y-2\">" +
         "<div class=\"flex items-start justify-between gap-3\">" +
           "<div class=\"min-w-0\">" +
-            "<h3 class=\"text-[18px] font-semibold\">" + name + "</h3>" +
-            "<div class=\"mt-1\"><span class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-800\">" +
+            "<h3 class=\"font-semibold\" style=\"font-size:26px !important;line-height:1.08\">" + name + "</h3>" +
+            "<div class=\"mt-1\"><span class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-[2px] text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-800\">" +
               escapeHtml(premiumType) +
             "</span></div>" +
           "</div>" +
@@ -776,7 +773,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
 
   return (
     "<div class=\"space-y-2\">" +
-      "<h3 class=\"text-[18px] font-semibold\">" + name + "</h3>" +
+      "<h3 class=\"font-semibold\" style=\"font-size:26px !important;line-height:1.08\">" + name + "</h3>" +
       normalDesc +
       (addressBlock ? addressBlock : "") +
       (routeBlock ? routeBlock : "") +
