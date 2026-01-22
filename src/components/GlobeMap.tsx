@@ -815,111 +815,18 @@ export default function GlobeMap({
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
   const [discoverOpen, setDiscoverOpen] = React.useState(false);
   const [discoverHeroOpen, setDiscoverHeroOpen] = React.useState(false);
+  const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
+  const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
   const [discoverHeroUrl, setDiscoverHeroUrl] = React.useState<string | null>(null);
+  const heroPanRef = React.useRef<number>(0.5);
+  const heroDragRef = React.useRef<any>(null);
+  const heroHadMoveRef = React.useRef(false);
+
   const heroImgSizeRef = React.useRef<{ w: number; h: number } | null>(null);
   React.useEffect(() => {
-    try {
-      const url = String(discoverHeroUrl || "");
-      if (!url) return;
-      const img = new Image();
-      img.onload = () => {
-        try {
-          const w = Number((img as any).naturalWidth || (img as any).width || 0);
-          const h = Number((img as any).naturalHeight || (img as any).height || 0);
-          if (w > 0 && h > 0) heroImgSizeRef.current = { w, h };
-        } catch {}
-      };
-      img.src = url;
-    } catch {}
-    }, [discoverHeroUrl]);
-
-  React.useEffect(() => {
-    try { document.body.classList.toggle("im-hero-open", !!discoverHeroUrl); } catch {}
-    try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: !!discoverHeroUrl } })); } catch {}
-    return () => {
-      try { document.body.classList.remove("im-hero-open"); } catch {}
-      try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
-    };
-  }, [discoverHeroUrl]);
-
-
-  React.useEffect(() => {
-    try { document.body.classList.toggle("im-hero-open", !!discoverHeroUrl); } catch {}
-    return () => { try { document.body.classList.remove("im-hero-open"); } catch {} };
-  }, [discoverHeroUrl]);
-
-  const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
-  const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
-  const heroPanRef = React.useRef(0.5);
-  const heroDragRef = React.useRef<{ active: boolean; startX: number; startPan: number } | null>(null);
-  const heroHadMoveRef = React.useRef(false);
-  const heroPanRafRef = React.useRef<number | null>(null);
-  const heroMicroPanDoneRef = React.useRef(false);
-  const heroMicroPanTimersRef = React.useRef<number[]>([]);
-  const heroPendingPanRef = React.useRef<number | null>(null);
-  const heroWinMoveRef = React.useRef<any>(null);
-  const heroWinUpRef = React.useRef<any>(null);
-  React.useEffect(() => { try { heroPanRef.current = discoverHeroPan; } catch {} }, [discoverHeroPan]);
-  React.useEffect(() => {
-    try {
-      const clearTimers = () => {
-        try {
-          const arr = heroMicroPanTimersRef.current || [];
-          for (const id of arr) {
-            try {
-              if (Number(id) < 0) { try { cancelAnimationFrame(-Number(id)); } catch {} }
-              else { try { clearTimeout(Number(id)); } catch {} }
-            } catch {}
-          }
-          heroMicroPanTimersRef.current = [];
-        } catch {}
-      };
-
-      if (!discoverHeroOpen) {
-        clearTimers();
-        try { heroMicroPanDoneRef.current = false; } catch {}
-        return;
-      }
-
-      if (heroMicroPanDoneRef.current) return;
-      heroMicroPanDoneRef.current = true;
-
-      clearTimers();
-      const t1 = window.setTimeout(() => {
-        try {
-          if (heroHadMoveRef.current) return;
-          const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
-          const clamp = (x) => Math.max(0, Math.min(1, x));
-          const setP = (p) => { try { heroPanRef.current = p; } catch {} try { setDiscoverHeroPan(p); } catch {} };
-          const amp = 0.016;
-          const dur = 1350;
-          const cycles = 1.15;
-
-          let rid = 0;
-          const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-          const tick = () => {
-            try {
-              if (heroHadMoveRef.current) return;
-              const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-              const u = Math.max(0, Math.min(1, (now - t0) / dur));
-              const ease = 0.5 - 0.5 * Math.cos(Math.PI * u);
-              const decay = (1 - ease);
-              const w = 2 * Math.PI * cycles;
-              const offset = Math.sin(w * ease) * amp * (0.18 + 0.82 * decay);
-              setP(clamp(cur + offset));
-              if (u >= 1) { setP(cur); return; }
-              rid = requestAnimationFrame(tick);
-              heroMicroPanTimersRef.current.push(-rid);
-            } catch {}
-          };
-          rid = requestAnimationFrame(tick);
-          heroMicroPanTimersRef.current.push(-rid);
-        } catch {}
-      }, 320);
-      heroMicroPanTimersRef.current.push(t1);
-
-      return () => { try { clearTimers(); } catch {} };
-    } catch {}
+    let rid: number | null = null;
+    if (!discoverHeroOpen) return;
+    return () => { try { if (rid != null) cancelAnimationFrame(rid); } catch {} };
   }, [discoverHeroOpen]);
   const heroBubbleLeft = (anchor: number) => {
     try {
@@ -2057,99 +1964,81 @@ mapRef.current = map;
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute inset-0 pointer-events-auto"
-            style={{ background: "rgba(0,0,0,0.00)", touchAction: "none" }}
-            onPointerDown={(e) => {
-              try { (e as any).preventDefault?.(); } catch {}
-              try { heroHadMoveRef.current = false; } catch {}
+            style={{ background: "rgba(0,0,0,0.00)", touchAction: "none", cursor: "grab" }}
+            onMouseDown={(e) => {
+              try { e.preventDefault(); e.stopPropagation(); } catch {}
               try {
-                const getX = (ev: any) => {
-                  try {
-                    if (ev && ev.touches && ev.touches[0]) return Number(ev.touches[0].clientX || 0);
-                    if (ev && ev.changedTouches && ev.changedTouches[0]) return Number(ev.changedTouches[0].clientX || 0);
-                    return Number(ev?.clientX || 0);
-                  } catch { return 0; }
-                };
-                const x0 = getX(e);
+                const x0 = Number((e as any)?.clientX || 0);
                 const p0 = Number(heroPanRef.current ?? 0.5);
                 heroDragRef.current = { active: true, lastX: x0, pan: p0 } as any;
-                (heroDragRef.current as any).pointerId = (e as any).pointerId ?? null;
-
-                const moveFn = (ev: any) => {
-                  try {
-                    const st: any = heroDragRef.current as any;
-                    if (!st || !st.active) return;
-                    try { if (ev && ev.cancelable) ev.preventDefault?.(); } catch {}
-                    const x = getX(ev);
-                    const lastX = Number(st.lastX ?? x);
-                    const dx = x - lastX;
-                    st.lastX = x;
-                    if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
-
-                    const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
-                    const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
-                    const next = Math.max(0, Math.min(1, curPan - (dx / w)));
-                    st.pan = next;
-
-                    heroPendingPanRef.current = next;
-                    if (heroPanRafRef.current != null) return;
-                    heroPanRafRef.current = requestAnimationFrame(() => {
-                      heroPanRafRef.current = null;
-                      const p = heroPendingPanRef.current;
-                      if (p == null) return;
-                      try { heroPanRef.current = p; } catch {}
-                      try { setDiscoverHeroPan(p); } catch {}
-                    });
-                  } catch {}
-                };
-
-                const upFn = (ev: any) => {
-                  try { if (ev && ev.cancelable) ev.preventDefault?.(); } catch {}
-                  try { heroDragRef.current = null; } catch {}
-                  try {
-                    const mf = heroWinMoveRef.current;
-                    const uf = heroWinUpRef.current;
-                    heroWinMoveRef.current = null;
-                    heroWinUpRef.current = null;
-                    if (mf) {
-                      window.removeEventListener("pointermove", mf, true);
-                      window.removeEventListener("touchmove", mf, { capture: true } as any);
-                    }
-                    if (uf) {
-                      window.removeEventListener("pointerup", uf, true);
-                      window.removeEventListener("pointercancel", uf, true);
-                      window.removeEventListener("touchend", uf, { capture: true } as any);
-                      window.removeEventListener("touchcancel", uf, { capture: true } as any);
-                    }
-                  } catch {}
-                };
-
-                heroWinMoveRef.current = moveFn;
-                heroWinUpRef.current = upFn;
-
-                try {
-                  window.addEventListener("pointermove", moveFn, true);
-                  window.addEventListener("pointerup", upFn, true);
-                  window.addEventListener("pointercancel", upFn, true);
-                } catch {}
-
-                try {
-                  window.addEventListener("touchmove", moveFn, { passive: false, capture: true } as any);
-                  window.addEventListener("touchend", upFn, { passive: false, capture: true } as any);
-                  window.addEventListener("touchcancel", upFn, { passive: false, capture: true } as any);
-                } catch {}
               } catch {}
+            }}
+            onMouseMove={(e) => {
+              try {
+                const st: any = heroDragRef.current as any;
+                if (!st || !st.active) return;
+                try { e.preventDefault(); e.stopPropagation(); } catch {}
+                const x = Number((e as any)?.clientX || 0);
+                const lastX = Number(st.lastX ?? x);
+                const dx = x - lastX;
+                st.lastX = x;
+                if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
+
+                const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
+                const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
+                const next = Math.max(0, Math.min(1, curPan - (dx / w)));
+                st.pan = next;
+
+                try { heroPanRef.current = next; } catch {}
+                try { setDiscoverHeroPan(next); } catch {}
+              } catch {}
+            }}
+            onMouseUp={(e) => {
+              try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { heroDragRef.current = null; } catch {}
+            }}
+            onMouseLeave={(e) => {
+              try { heroDragRef.current = null; } catch {}
             }}
             onTouchStart={(e) => {
-              try { (e as any).preventDefault?.(); } catch {}
-              try { (e as any).stopPropagation?.(); } catch {}
+              try { e.preventDefault(); e.stopPropagation(); } catch {}
               try {
-                const pe: any = { clientX: (e as any)?.touches?.[0]?.clientX ?? 0, pointerId: null, preventDefault: () => {}, cancelable: true };
-                (e as any).currentTarget?.dispatchEvent?.(new Event("pointerdown"));
+                const t = (e as any)?.touches?.[0];
+                const x0 = Number(t?.clientX || 0);
+                const p0 = Number(heroPanRef.current ?? 0.5);
+                heroDragRef.current = { active: true, lastX: x0, pan: p0 } as any;
               } catch {}
             }}
+            onTouchMove={(e) => {
+              try {
+                const st: any = heroDragRef.current as any;
+                if (!st || !st.active) return;
+                try { e.preventDefault(); e.stopPropagation(); } catch {}
+                const t = (e as any)?.touches?.[0];
+                const x = Number(t?.clientX || 0);
+                const lastX = Number(st.lastX ?? x);
+                const dx = x - lastX;
+                st.lastX = x;
+                if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
 
+                const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
+                const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
+                const next = Math.max(0, Math.min(1, curPan - (dx / w)));
+                st.pan = next;
+
+                try { heroPanRef.current = next; } catch {}
+                try { setDiscoverHeroPan(next); } catch {}
+              } catch {}
+            }}
+            onTouchEnd={(e) => {
+              try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { heroDragRef.current = null; } catch {}
+            }}
+            onTouchCancel={(e) => {
+              try { heroDragRef.current = null; } catch {}
+            }}
           />
-          <button
+<button
             type="button"
             aria-label="Fermer"
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
@@ -2235,6 +2124,9 @@ mapRef.current = map;
           >
             <span style={{ display: "inline-block", transform: "translateY(-1px)", fontSize: 18, lineHeight: "18px" }}>×</span>
           </button>
+          <div className="absolute top-3 left-3 z-[90] pointer-events-none" style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".08em", color: "rgba(255,255,255,0.75)", textShadow: "0 2px 10px rgba(0,0,0,0.55)" }}>
+            PAN {Math.round((discoverHeroPan ?? 0.5) * 100)}%
+          </div>
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
