@@ -854,10 +854,73 @@ export default function GlobeMap({
   const heroDragRef = React.useRef<{ active: boolean; startX: number; startPan: number } | null>(null);
   const heroHadMoveRef = React.useRef(false);
   const heroPanRafRef = React.useRef<number | null>(null);
+  const heroMicroPanDoneRef = React.useRef(false);
+  const heroMicroPanTimersRef = React.useRef<number[]>([]);
   const heroPendingPanRef = React.useRef<number | null>(null);
   const heroWinMoveRef = React.useRef<any>(null);
   const heroWinUpRef = React.useRef<any>(null);
   React.useEffect(() => { try { heroPanRef.current = discoverHeroPan; } catch {} }, [discoverHeroPan]);
+  React.useEffect(() => {
+    try {
+      const clearTimers = () => {
+        try {
+          const arr = heroMicroPanTimersRef.current || [];
+          for (const id of arr) {
+            try {
+              if (Number(id) < 0) { try { cancelAnimationFrame(-Number(id)); } catch {} }
+              else { try { clearTimeout(Number(id)); } catch {} }
+            } catch {}
+          }
+          heroMicroPanTimersRef.current = [];
+        } catch {}
+      };
+
+      if (!discoverHeroOpen) {
+        clearTimers();
+        try { heroMicroPanDoneRef.current = false; } catch {}
+        return;
+      }
+
+      if (heroMicroPanDoneRef.current) return;
+      heroMicroPanDoneRef.current = true;
+
+      clearTimers();
+      const t1 = window.setTimeout(() => {
+        try {
+          if (heroHadMoveRef.current) return;
+          const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
+          const clamp = (x) => Math.max(0, Math.min(1, x));
+          const setP = (p) => { try { heroPanRef.current = p; } catch {} try { setDiscoverHeroPan(p); } catch {} };
+          const amp = 0.016;
+          const dur = 1350;
+          const cycles = 1.15;
+
+          let rid = 0;
+          const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+          const tick = () => {
+            try {
+              if (heroHadMoveRef.current) return;
+              const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+              const u = Math.max(0, Math.min(1, (now - t0) / dur));
+              const ease = 0.5 - 0.5 * Math.cos(Math.PI * u);
+              const decay = (1 - ease);
+              const w = 2 * Math.PI * cycles;
+              const offset = Math.sin(w * ease) * amp * (0.18 + 0.82 * decay);
+              setP(clamp(cur + offset));
+              if (u >= 1) { setP(cur); return; }
+              rid = requestAnimationFrame(tick);
+              heroMicroPanTimersRef.current.push(-rid);
+            } catch {}
+          };
+          rid = requestAnimationFrame(tick);
+          heroMicroPanTimersRef.current.push(-rid);
+        } catch {}
+      }, 320);
+      heroMicroPanTimersRef.current.push(t1);
+
+      return () => { try { clearTimers(); } catch {} };
+    } catch {}
+  }, [discoverHeroOpen]);
   const heroBubbleLeft = (anchor: number) => {
     try {
       const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
@@ -2223,338 +2286,9 @@ mapRef.current = map;
         </div>
       ) : null}
 
-            {discoverHeroOpen && discoverDoorOpen ? (
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 60 }}>
-          <style jsx global>{`
-@keyframes imHeroBubbleIn {
-  0% { opacity: 0; transform: translate(-50%,-50%) translateY(10px) scale(.985); }
-  100% { opacity: 1; transform: translate(-50%,-50%) translateY(0px) scale(1); }
-}
-@keyframes imHeroWobble {
-  0%   { transform: translate(-50%,-50%) translateY(0px) rotate(0deg); }
-  30%  { transform: translate(-50%,-50%) translateY(-5.4px) rotate(-0.85deg); }
-  60%  { transform: translate(-50%,-50%) translateY(2.6px) rotate(0.85deg); }
-  100% { transform: translate(-50%,-50%) translateY(0px) rotate(0deg); }
-}
-@keyframes imAtmoDrift {
-  0% { transform: translate3d(0px,0px,0) scale(1.08); filter: blur(18px); opacity: 0.95; }
-  40% { transform: translate3d(-10px,6px,0) scale(1.10); filter: blur(20px); opacity: 0.88; }
-  75% { transform: translate3d(8px,-5px,0) scale(1.09); filter: blur(19px); opacity: 0.92; }
-  100% { transform: translate3d(0px,0px,0) scale(1.08); filter: blur(18px); opacity: 0.95; }
-}
-.im-atmo{
-  background-image:
-    radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 32%, rgba(0,0,0,0.00) 62%),
-    radial-gradient(70% 60% at 30% 30%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 60%),
-    radial-gradient(70% 60% at 70% 40%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.00) 62%),
-    linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.18) 100%);
-  mix-blend-mode: screen;
-  animation: imAtmoDrift 2.6s ease-in-out infinite;
-  will-change: transform, filter, opacity;
-}
-.im-hero-bubble{
-  position:absolute;
-  pointer-events:auto;
-  appearance:none;
-  padding:0;
-  width:78px;
-  height:78px;
-  border-radius:9999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  line-height:1.05;
-  border:1px solid rgba(255,255,255,.22);
-  background:
-    radial-gradient(120% 120% at 22% 18%, rgba(255,255,255,.22) 0%, rgba(255,255,255,.06) 28%, rgba(255,255,255,0) 52%),
-    radial-gradient(120% 120% at 78% 82%, rgba(114,138,74,.18) 0%, rgba(124,58,237,.10) 26%, rgba(255,210,122,.10) 42%, rgba(0,0,0,0) 68%),
-    rgba(0,0,0,.10);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: rgba(245,245,232,.95);
-  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  font-size: 12px;
-  font-weight: 720;
-  letter-spacing: .02em;
-  cursor: pointer;
-  box-shadow:
-    0 18px 42px rgba(0,0,0,.28),
-    0 0 0 1px rgba(255,255,255,.08),
-    0 0 18px rgba(255,255,255,.10);
-  transform: translate(-50%,-50%);
-  transition: transform 220ms cubic-bezier(0.16,1,0.3,1), background 160ms ease, box-shadow 160ms ease;
-  will-change: transform, opacity;
-  animation: imHeroBubbleIn 650ms ease both, imHeroWobble var(--im-wobble-dur, 10s) ease-in-out infinite;
-  animation-delay: 0ms, var(--im-wobble-delay, 0ms);
-}
-.im-hero-bubble::before{
-  content:"";
-  position:absolute;
-  inset:3px;
-  border-radius:9999px;
-  background:
-    radial-gradient(90% 90% at 26% 22%, rgba(255,255,255,.30) 0%, rgba(255,255,255,.12) 22%, rgba(255,255,255,0) 55%),
-    radial-gradient(70% 70% at 68% 72%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 58%);
-  pointer-events:none;
-  mix-blend-mode: screen;
-  opacity:.85;
-}
-.im-hero-bubble:hover{
-  background:
-    radial-gradient(120% 120% at 22% 18%, rgba(255,255,255,.26) 0%, rgba(255,255,255,.07) 30%, rgba(255,255,255,0) 52%),
-    radial-gradient(120% 120% at 78% 82%, rgba(114,138,74,.22) 0%, rgba(124,58,237,.12) 26%, rgba(255,210,122,.12) 42%, rgba(0,0,0,0) 68%),
-    rgba(0,0,0,.12);
-  box-shadow:
-    0 22px 54px rgba(0,0,0,.30),
-    0 0 0 1px rgba(255,255,255,.10),
-    0 0 22px rgba(255,255,255,.12);
-}
-.im-hero-bubble:active{
-  animation-play-state: paused;
-  transform: translate(-50%,-50%) scale(.985);
-}
-.im-hero-a{ --im-wobble-dur: 9.6s; --im-wobble-delay: 0.15s; }
-.im-hero-b{ --im-wobble-dur: 10.4s; --im-wobble-delay: 0.55s; }
-.im-hero-c{ --im-wobble-dur: 9.9s; --im-wobble-delay: 0.95s; }
-`}</style>
+            {null}
 
-          <button
-            type="button"
-            className="im-hero-bubble im-hero-a"
-            data-im-hero-bubble="place"
-            style={{ left: heroBubbleLeft(0.42), top: "30%", opacity: heroBubbleVis(0.42) }}
-            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("place"); } catch {} }}
-          >
-            Le lieu
-          </button>
-
-          <button
-            type="button"
-            className="im-hero-bubble im-hero-b"
-            data-im-hero-bubble="approach"
-            style={{ left: heroBubbleLeft(0.22), top: "70%", opacity: heroBubbleVis(0.22) }}
-            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("approach"); } catch {} }}
-          >
-            La démarche
-          </button>
-
-          <button
-            type="button"
-            className="im-hero-bubble im-hero-c"
-            data-im-hero-bubble="know"
-            style={{ left: heroBubbleLeft(0.78), top: "38%", opacity: heroBubbleVis(0.78) }}
-            onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverOpen(true); } catch {} try { setDiscoverPanel("know"); } catch {} }}
-          >
-            À savoir
-          </button>
-        </div>
-      ) : null}
-
-      {discoverOpen ? (
-        <div className="absolute inset-0 pointer-events-none">
-          <style jsx global>{`
-            @keyframes discoverFloat {
-              0%   { transform: translateY(0px); }
-              50%  { transform: translateY(-6px); }
-              100% { transform: translateY(0px); }
-            }
-          `}</style>
-          <div
-            className="absolute inset-0 pointer-events-auto"
-            style={{ background: "rgba(0,0,0,0.65)" }}
-            onClick={() => { try { setDiscoverOpen(false); } catch {} try { setDiscoverPanel(null); } catch {} }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: 18 }}>
-            <div className="pointer-events-auto" style={{ position: "relative", width: 380, height: 260, left: -24 }}>
-              <button
-                type="button"
-                style={{
-                  width: 148,
-                  height: 148,
-                  position: "absolute",
-                  animation: "discoverFloat 6.6s ease-in-out infinite",
-                  animationDelay: "0s",
-                  left: 24,
-                  top: 18,
-                  transform: "translateY(-14px)",
-                  borderRadius: 9999,
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  color: "#f5f5e8",
-                  textAlign: "left",
-                  padding: "12px 12px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-                onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("place"); } catch {} }}
-              >
-                <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>Le lieu</div>
-                
-              </button>
-
-              <button
-                type="button"
-                style={{
-                  width: 132,
-                  height: 132,
-                  position: "absolute",
-                  animation: "discoverFloat 7.4s ease-in-out infinite",
-                  animationDelay: "1.1s",
-                  left: 170,
-                  top: 112,
-                  borderRadius: 9999,
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  color: "#f5f5e8",
-                  textAlign: "left",
-                  padding: "12px 12px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-                onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("approach"); } catch {} }}
-              >
-                <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>La démarche</div>
-                
-              </button>
-
-              <button
-                type="button"
-                style={{
-                  width: 118,
-                  height: 118,
-                  position: "absolute",
-                  animation: "discoverFloat 6.9s ease-in-out infinite",
-                  animationDelay: "2s",
-                  left: 276,
-                  top: 58,
-                  borderRadius: 9999,
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))",
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  color: "#f5f5e8",
-                  textAlign: "left",
-                  padding: "12px 12px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-                onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setDiscoverPanel("know"); } catch {} }}
-              >
-                <div style={{ fontSize: 13, fontWeight: 750, letterSpacing: ".02em" }}>À propos</div>
-                
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
-      {sheetOpen ? (
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute left-0 right-0 bottom-0 pointer-events-auto shadow-2xl"
-            style={{
-              height: sheetHeightVh + "vh",
-              background: "#1f1f18",
-              borderTopLeftRadius: "18px",
-              borderTopRightRadius: "18px",
-              borderTop: "1px solid #3a3a2a",
-              transition: "height 180ms ease",
-            }}
-          >
-            <div
-              className="h-10 flex items-center justify-between px-3"
-              style={{ touchAction: "none", WebkitUserSelect: "none", userSelect: "none" }}
-              onPointerDown={(e) => {
-                try { e.preventDefault(); } catch {}
-                try { dragCleanupRef.current?.(); } catch {}
-                try { dragPointerIdRef.current = e.pointerId; } catch {}
-                try { (e.currentTarget as any).setPointerCapture?.(e.pointerId); } catch {}
-                try { startDrag(e.clientY); } catch {}
-                try {
-                  const onMove = (ev) => {
-                    try {
-                      if (!dragActiveRef.current) return;
-                      const pid = dragPointerIdRef.current;
-                      if (pid != null && ev.pointerId !== pid) return;
-                      ev.preventDefault();
-                      moveDrag(ev.clientY);
-                    } catch {}
-                  };
-                  const cleanup = () => {
-                    try { window.removeEventListener("pointermove", onMove); } catch {}
-                    try { window.removeEventListener("pointerup", onUp); } catch {}
-                    try { window.removeEventListener("pointercancel", onCancel); } catch {}
-                    try { dragCleanupRef.current = null; } catch {}
-                    try { dragPointerIdRef.current = null; } catch {}
-                  };
-                  const onUp = (ev) => {
-                    try {
-                      const pid = dragPointerIdRef.current;
-                      if (pid != null && ev.pointerId !== pid) return;
-                      ev.preventDefault();
-                      const hadMove = Boolean(dragHadMoveRef.current);
-                      endDrag(ev.clientY, !hadMove);
-                    } catch {}
-                    try { cleanup(); } catch {}
-                  };
-                  const onCancel = (ev) => {
-                    try {
-                      const pid = dragPointerIdRef.current;
-                      if (pid != null && ev.pointerId !== pid) return;
-                      endDrag(null, false);
-                    } catch {}
-                    try { cleanup(); } catch {}
-                  };
-                  dragCleanupRef.current = cleanup;
-                  window.addEventListener("pointermove", onMove, { passive: false });
-                  window.addEventListener("pointerup", onUp, { passive: false });
-                  window.addEventListener("pointercancel", onCancel, { passive: false });
-                } catch {}
-              }}
-            >
-              <div className="flex-1 flex justify-center">
-                <div style={{ width: 56, height: 6, borderRadius: 999, background: "#6b6b55", transform: "translateX(10px)" }} />
-              </div>
-              <button
-                type="button"
-                className="ml-2 px-2 py-1 rounded-full"
-                style={{ 
-    color: "#f5f5e8",
-    border: "1px solid #3a3a2a",
-    background: "rgba(0,0,0,0.15)",
-    position: "relative",
-    zIndex: 5,
-    width: "28px",
-    height: "28px",
-    borderRadius: "9999px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  }}
-                onPointerDown={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} }}
-                onClick={(e) => { try { e.preventDefault(); e.stopPropagation(); } catch {} try { setSheetOpen(false); } catch {} }}
-              >
-                <span style={{ display: "inline-block", transform: "translateY(-1px)" }}>✕</span>
-              </button>
-            </div>
-            <div className={isImmersiveSheet ? "h-[calc(100%-40px)] overflow-hidden" : "h-[calc(100%-40px)] overflow-y-auto px-3 pb-6"}>
-              <div className={isImmersiveSheet ? "w-full h-full" : "mx-auto"} style={isImmersiveSheet ? { maxWidth: "none", height: "100%" } : { maxWidth: 420 }} dangerouslySetInnerHTML={{ __html: sheetHtml }} />
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </div>
+</div>
   );
 
 }
