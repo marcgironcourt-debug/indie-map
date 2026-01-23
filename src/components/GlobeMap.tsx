@@ -1595,6 +1595,11 @@ popupRef.current = null;
                   try { setDiscoverMeta({ id: String(props?.id ?? fid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch (e) {}
                   try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: fid ? String(fid) : null }; } catch (e) {}
                   try { setDiscoverPanel(null); } catch (e) {}
+                  try { heroPanRef.current = 0.5; } catch (e) {}
+                  try { setDiscoverHeroPan(0.5); } catch (e) {}
+                  try { tableauPrevPRef.current = 0.5; } catch (e) {}
+                  try { heroHadMoveRef.current = false; } catch (e) {}
+                  try { setHeroHintOff(false); } catch (e) {}
                   try {
                     const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
                     map.flyTo({
@@ -1623,6 +1628,11 @@ popupRef.current = null;
                          try { setDiscoverHeroZoom(false); } catch {}
                          try { setDiscoverDoorOpen(false); } catch {}
                          try { setHeroUiHide(false); } catch {}
+                         try { heroPanRef.current = 0.5; } catch {}
+                         try { setDiscoverHeroPan(0.5); } catch {}
+                         try { tableauPrevPRef.current = 0.5; } catch {}
+                         try { heroHadMoveRef.current = false; } catch {}
+                         try { setHeroHintOff(false); } catch {}
                          try { setDiscoverHeroOpen(true); } catch {}
                       try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
 
@@ -2469,6 +2479,11 @@ popupRef.current = null;
                                   try { setDiscoverHeroZoom(false); } catch {}
                                   try { setDiscoverDoorOpen(false); } catch {}
                                   try { setHeroUiHide(false); } catch {}
+                                  try { heroPanRef.current = 0.5; } catch {}
+                                  try { setDiscoverHeroPan(0.5); } catch {}
+                                  try { tableauPrevPRef.current = 0.5; } catch {}
+                                  try { heroHadMoveRef.current = false; } catch {}
+                                  try { setHeroHintOff(false); } catch {}
                                   try { setDiscoverHeroOpen(true); } catch {}
                                   try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
                                   try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
