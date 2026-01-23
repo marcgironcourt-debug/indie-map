@@ -6,6 +6,15 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
 const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie-hero.jpg";
 const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
+const TEXTILERIE_TABLEAU_1_LINES = [
+  "Ici, on ne consomme pas des vêtements.",
+  "On apprend à les comprendre, les réparer, les transformer.",
+  "La Textilerie est un atelier ouvert.",
+  "On y vient pour faire soi-même, accompagné.",
+  "On prend le temps.",
+  "On partage des savoir-faire.",
+] as const;
+
 const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
 
 type Biz = {
@@ -827,17 +836,50 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
   const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
   const [discoverHeroUrl, setDiscoverHeroUrl] = React.useState<string | null>(null);
+  const [tableauFade, setTableauFade] = React.useState(0);
   React.useEffect(() => {
     try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: Boolean(discoverHeroOpen) } })); } catch {}
   }, [discoverHeroOpen]);
+
+  React.useEffect(() => {
+    try { if (tableauFadeRafRef.current != null) cancelAnimationFrame(tableauFadeRafRef.current); } catch {}
+    tableauFadeRafRef.current = null;
+
+    if (!discoverHeroOpen) {
+      try { setTableauFade(0); } catch {}
+      return;
+    }
+
+    const tick = () => {
+      try {
+        const p0 = Number((discoverHeroPan as any) ?? 0.5);
+        const target = Math.max(0, Math.min(1, (p0 - 0.78) / 0.18));
+        setTableauFade((prev) => {
+          const cur = Number(prev ?? 0);
+          const next = cur + (target - cur) * 0.12;
+          return Math.abs(next - target) < 0.002 ? target : next;
+        });
+      } catch {}
+      tableauFadeRafRef.current = requestAnimationFrame(tick);
+    };
+
+    tableauFadeRafRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      try { if (tableauFadeRafRef.current != null) cancelAnimationFrame(tableauFadeRafRef.current); } catch {}
+      tableauFadeRafRef.current = null;
+    };
+  }, [discoverHeroOpen, discoverHeroPan]);
   const heroPanRef = React.useRef<number>(0.5);
   const heroDragRef = React.useRef<any>(null);
   const heroHadMoveRef = React.useRef(false);
   const heroHintRafRef = React.useRef<number | null>(null);
   const heroHintTimerRef = React.useRef<any>(null);
+  const tableauFadeRafRef = React.useRef<number | null>(null);
   const [heroHintOff, setHeroHintOff] = React.useState(false);
 
   const heroImgSizeRef = React.useRef<{ w: number; h: number } | null>(null);
+  const tableauPrevPRef = React.useRef<number>(0.5);
   React.useEffect(() => {
     try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
     heroHintTimerRef.current = null;
@@ -2349,7 +2391,64 @@ popupRef.current = null;
           >
             <span style={{ display: "inline-block", transform: "translateY(-1px)", fontSize: 18, lineHeight: "18px" }}>×</span>
           </button>
-          <div
+                        {(() => {
+              const p0 = Number(discoverHeroPan ?? 0.5);
+              const prev = Number(tableauPrevPRef.current ?? p0);
+              const leaving = p0 < prev - 0.0001;
+              tableauPrevPRef.current = p0;
+
+              const pIn = Math.max(0, Math.min(1, (p0 - 0.56) / 0.34));
+              const pOut = Math.max(0, Math.min(1, (p0 - 0.52) / 0.42));
+              const p = leaving ? pOut : pIn;
+
+              const f = Math.max(0, Math.min(1, Number(tableauFade ?? p)));
+              const v0 = f;
+              const v = v0 * v0 * (3 - 2 * v0);
+              const oIn = Math.pow(v, 1.65);
+              const oOut = Math.pow(v, 0.45);
+              const oo = leaving ? oOut : oIn;
+              const tt = leaving ? 1 : oIn;
+              return (
+                <div
+                  className="absolute z-[70] pointer-events-none"
+                  aria-hidden={v < 0.02}
+                  style={{
+                    right: 10,
+                    top: 120,
+                    width: 320,
+                    padding: "10px 6px",
+                    borderRadius: 18,
+                    background: "rgba(31,31,24,0.52)",
+                    border: "1px solid rgba(245,245,232,0.14)",
+                    boxShadow: "0 0 0 1px rgba(245,245,232,0.10), 0 14px 32px rgba(0,0,0,0.30)",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                    opacity: (0.10 + (oo * 0.82)),
+                    transform: "translateX(" + ((1 - tt) * 12).toFixed(1) + "px) translateY(" + ((1 - tt) * 2.0).toFixed(1) + "px)",
+                    filter: "blur(" + ((1 - oo) * 0.55).toFixed(2) + "px)",
+                    transition: "opacity 980ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease",
+                    willChange: "opacity, transform, filter",
+                    visibility: v < 0.01 ? "hidden" : "visible"
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: '"IMHand", ui-sans-serif, system-ui',
+                      fontSize: 14.5,
+                      lineHeight: "22px",
+                      fontWeight: 420,
+                      letterSpacing: ".02em",
+                      color: "rgba(245,245,232,0.92)",
+                      textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+                    }}
+                  >
+                    {TEXTILERIE_TABLEAU_1_LINES.join(" ")}
+                  </div>
+                </div>
+              );
+            })()}
+
+<div
             className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage: discoverHeroUrl ? ("url('" + discoverHeroUrl + "')") : "none",
