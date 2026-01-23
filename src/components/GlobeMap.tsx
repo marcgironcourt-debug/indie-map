@@ -392,7 +392,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const titleColor = "rgba(245,245,232,.92)";
   const textColor = "rgba(245,245,232,.78)";
   const metaColor = "rgba(245,245,232,.62)";
-  const shadow = "0 10px 22px rgba(0,0,0,.20)";
+  const shadow = "0 0 0 1px rgba(245,245,232,.14), 0 12px 26px rgba(0,0,0,.26), 0 0 28px rgba(245,245,232,.16)";
 
   const heroUrl = "";
   const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
@@ -580,7 +580,7 @@ const heroOverlay = heroUrl
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
 
   return (
-    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(0,0,0,0); border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
+    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -804,11 +804,14 @@ export default function GlobeMap({
 
   const SOURCE_ID = "indie-places";
   const LAYER_ID = "indie-places-pin";
+const GLOW_LAYER_ID = "indie-places-pin-glow";
+  const SELECT_LAYER_ID = "indie-places-pin-selected";
   const ROUTE_SOURCE_ID = "indie-route";
   const ROUTE_LAYER_ID = "indie-route-line";
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
   const popupRef = React.useRef<maplibregl.Popup | null>(null);
+  const selectedPinMarkerRef = React.useRef<maplibregl.Marker | null>(null);
   const lastUserPosRef = React.useRef<{ lng: number; lat: number; ts: number } | null>(null);
     const [sheetOpen, setSheetOpen] = React.useState(false);
   const [sheetExpanded, setSheetExpanded] = React.useState(false);
@@ -1258,6 +1261,41 @@ export default function GlobeMap({
       });
     }
 
+
+    if (!map.getLayer(GLOW_LAYER_ID)) {
+      const glowLayer = {
+        id: GLOW_LAYER_ID,
+        type: "circle",
+        source: SOURCE_ID,
+        filter: ["==", ["get", "selected"], true] as any,
+        paint: {
+          "circle-color": "rgba(245,245,232,0.98)",
+          "circle-opacity": [
+            "interpolate", ["linear"], ["zoom"],
+            3, 0.40,
+            6, 0.55,
+            10, 0.70,
+            14, 0.78
+          ] as any,
+          "circle-radius": [
+            "interpolate", ["linear"], ["zoom"],
+            3, 22,
+            6, 34,
+            10, 52,
+            14, 72
+          ] as any,
+          "circle-blur": 1.85,
+          "circle-stroke-color": "rgba(114,138,74,0.65)",
+          "circle-stroke-width": 2.6
+        }
+      } as any;
+      try {
+        if (map.getLayer(LAYER_ID)) map.addLayer(glowLayer, LAYER_ID);
+        else map.addLayer(glowLayer);
+      } catch {
+        try { map.addLayer(glowLayer); } catch {}
+      }
+    }
     if (!map.getLayer(LAYER_ID)) {
       map.addLayer({
         id: LAYER_ID,
@@ -1288,15 +1326,53 @@ export default function GlobeMap({
       });
 
       
-      // __INDIEMAP_CLOSE_POPUP_ON_BG_CLICK__
+              if (!map.getLayer(SELECT_LAYER_ID)) {
+          try {
+            map.addLayer({
+              id: SELECT_LAYER_ID,
+              type: "symbol",
+              source: SOURCE_ID,
+              filter: ["==", ["get", "selected"], true] as any,
+              layout: {
+                "icon-image": ["concat", "pin-", ["get", "kind"], "-sel"] as any,
+                "icon-size": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  1, 0.72,
+                  3, 0.90,
+                  5, 1.05,
+                  8, 1.22,
+                  11, 1.42,
+                  14, 1.62
+                ] as any,
+                "icon-anchor": "bottom",
+                "icon-allow-overlap": true,
+                "icon-ignore-placement": true
+              }
+            } as any);
+          } catch {}
+        }
+
+       // __INDIEMAP_CLOSE_POPUP_ON_BG_CLICK__
       map.on("click", (ev: any) => {
         try {
           const feats = map.queryRenderedFeatures(ev.point, { layers: [LAYER_ID] } as any);
           if (!feats || feats.length === 0) {
             try { popupRef.current?.remove(); } catch {}
             try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch {}
-            try { document.querySelectorAll(".im-globe-dim").forEach((n)=>{ try{ (n as any)?.classList?.remove("im-globe-dim"); }catch{} }); } catch {}
-            try { document.querySelectorAll(".maplibregl-canvas").forEach((c)=>{ try{ (c as any).style.filter=""; }catch{} }); } catch {}
+            try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+            selectedPinMarkerRef.current = null;
+            try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                   try { document.querySelectorAll(".maplibregl-canvas").forEach((c)=>{ try{ (c as any).style.filter=""; }catch{} }); } catch {}
+            try {
+              for (const feat of fcRef.current.features) {
+                try { feat.properties.selected = false; } catch {}
+              }
+              const src = getSource(map);
+              if (src) src.setData(fcRef.current);
+            } catch {}
+
             popupRef.current = null;
           }
         } catch {}
@@ -1330,6 +1406,15 @@ map.on("mouseenter", LAYER_ID, () => {
         } catch {}
 
         const z = map.getZoom();
+
+        try {
+          for (const feat of fcRef.current.features) {
+            const id = String(feat.id ?? feat?.properties?.id ?? "");
+            feat.properties.selected = Boolean(fid) && id === fid;
+          }
+          const src = getSource(map);
+          if (src) src.setData(fcRef.current);
+        } catch {}
 
         if (isGlobe || z < 7.2) {
           try { heroReturnCamRef.current = { center: [lng, lat], zoom: 9.9, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
@@ -1373,7 +1458,17 @@ map.on("mouseenter", LAYER_ID, () => {
                 btn.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
-                  try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                                    try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
+                  selectedPinMarkerRef.current = null;
+try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                   try {
+              for (const feat of fcRef.current.features) {
+                try { feat.properties.selected = false; } catch {}
+              }
+              const src = getSource(map);
+              if (src) src.setData(fcRef.current);
+            } catch {}
+
 popupRef.current = null;
                 });
               }
@@ -1424,8 +1519,18 @@ popupRef.current = null;
                        try { map.once("moveend", onEnd); } catch {}
                     } catch {}
                   } catch (e) {}
-                  try { popupRef.current?.remove(); } catch (e) {}
+                                    try { popupRef.current?.remove(); } catch (e) {}
+                  try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
+                  selectedPinMarkerRef.current = null;
                   try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                   try {
+              for (const feat of fcRef.current.features) {
+                try { feat.properties.selected = false; } catch {}
+              }
+              const src = getSource(map);
+              if (src) src.setData(fcRef.current);
+            } catch {}
+
 popupRef.current = null;
                 });
               }
@@ -1523,6 +1628,9 @@ return;
       bearing: 0,
       attributionControl: false,
     });
+
+    try { (window as any).__IM_MAP__ = map; } catch {}
+
 
     
 
@@ -2167,6 +2275,15 @@ mapRef.current = map;
                     const st = heroReturnPopupRef.current;
                     if (!map || !st) return;
                     try { if (popupRef.current) popupRef.current.remove(); } catch {}
+           try {
+             const selEl = document.createElement("div");
+             selEl.style.pointerEvents = "none";
+             selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
+             selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
+             selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
+               .setLngLat([Number(lng), Number(lat)])
+               .addTo(map);
+           } catch {}
                     popupRef.current = null;
                     let walkMins = null;
                     try {
@@ -2186,7 +2303,9 @@ mapRef.current = map;
                         btn.addEventListener("click", (ev) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                           try { popupRef.current?.remove(); } catch (e) {}
-                  try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                                    try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
+                  selectedPinMarkerRef.current = null;
+try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
 popupRef.current = null;
                         });
                       }
