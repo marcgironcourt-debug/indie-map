@@ -1347,6 +1347,7 @@ map.on("mouseenter", LAYER_ID, () => {
         const props = f?.properties || {};
 
         const openPopup = () => {
+           try { (ref.current as any)?.classList?.add("im-globe-dim"); } catch {}
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { if (popupRef.current) popupRef.current.remove(); } catch {}
@@ -1369,6 +1370,7 @@ map.on("mouseenter", LAYER_ID, () => {
                 btn.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
+                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
                   popupRef.current = null;
                 });
               }
@@ -1420,6 +1422,7 @@ map.on("mouseenter", LAYER_ID, () => {
                     } catch {}
                   } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
+                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
                   popupRef.current = null;
                 });
               }
@@ -2053,6 +2056,10 @@ mapRef.current = map;
   return (
     <div className="relative h-full w-full">
       <div ref={ref} className="h-full w-full" />
+      <style>{`\
+        .maplibregl-canvas{transition:filter 220ms ease;}\
+        .im-globe-dim .maplibregl-canvas{filter: brightness(.48) saturate(.92) contrast(.98);}\
+      `}</style>\
       
             {discoverHeroOpen ? (
         <div className="absolute inset-0 pointer-events-none">
@@ -2176,6 +2183,7 @@ mapRef.current = map;
                         btn.addEventListener("click", (ev) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                           try { popupRef.current?.remove(); } catch (e) {}
+                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
                           popupRef.current = null;
                         });
                       }
