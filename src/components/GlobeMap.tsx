@@ -2398,6 +2398,16 @@ mapRef.current = map;
                     const map = mapRef.current;
                     const st = heroReturnPopupRef.current;
                     if (!map || !st) return;
+                    try { (ref.current as any)?.classList?.add("im-globe-dim"); } catch {}
+                    try {
+                      const sid = String((st as any)?.props?.id ?? (st as any)?.fid ?? "");
+                      for (const feat of fcRef.current.features) {
+                        const id = String(feat.id ?? feat?.properties?.id ?? "");
+                        try { feat.properties.selected = Boolean(sid) && id === sid; } catch {}
+                      }
+                      const src = getSource(map);
+                      if (src) src.setData(fcRef.current);
+                    } catch {}
                     try { if (popupRef.current) popupRef.current.remove(); } catch {}
            try {
              const selEl = document.createElement("div");
