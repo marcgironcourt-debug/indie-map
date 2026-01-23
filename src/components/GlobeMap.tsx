@@ -2397,15 +2397,15 @@ popupRef.current = null;
               const leaving = p0 < prev - 0.0001;
               tableauPrevPRef.current = p0;
 
-              const pIn = Math.max(0, Math.min(1, (p0 - 0.56) / 0.34));
-              const pOut = Math.max(0, Math.min(1, (p0 - 0.52) / 0.42));
+              const pIn = Math.max(0, Math.min(1, (p0 - 0.50) / 0.44));
+              const pOut = Math.max(0, Math.min(1, (p0 - 0.46) / 0.52));
               const p = leaving ? pOut : pIn;
 
-              const f = Math.max(0, Math.min(1, Number(tableauFade ?? p)));
+              const f = Math.max(0, Math.min(1, p));
               const v0 = f;
               const v = v0 * v0 * (3 - 2 * v0);
-              const oIn = Math.pow(v, 1.65);
-              const oOut = Math.pow(v, 0.45);
+              const oIn = Math.pow(v, 0.95);
+              const oOut = Math.pow(v, 0.55);
               const oo = leaving ? oOut : oIn;
               const tt = leaving ? 1 : oIn;
               return (
@@ -2418,12 +2418,12 @@ popupRef.current = null;
                     width: 320,
                     padding: "10px 6px",
                     borderRadius: 18,
-                    background: "rgba(31,31,24,0.52)",
+                    background: ("rgba(31,31,24," + (0.28 + (oo * 0.58)).toFixed(3) + ")"),
                     border: "1px solid rgba(245,245,232,0.14)",
                     boxShadow: "0 0 0 1px rgba(245,245,232,0.10), 0 14px 32px rgba(0,0,0,0.30)",
                     backdropFilter: "blur(10px)",
                     WebkitBackdropFilter: "blur(10px)",
-                    opacity: (0.10 + (oo * 0.82)),
+                    opacity: (0.22 + (oo * 0.78)),
                     transform: "translateX(" + ((1 - tt) * 12).toFixed(1) + "px) translateY(" + ((1 - tt) * 2.0).toFixed(1) + "px)",
                     filter: "blur(" + ((1 - oo) * 0.55).toFixed(2) + "px)",
                     transition: "opacity 980ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease",
