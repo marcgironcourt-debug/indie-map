@@ -306,6 +306,30 @@ main {
 }
 
 
+@keyframes im-turnhint-pulse {
+  0% { opacity: 0; transform: translateX(10px); }
+  22% { opacity: .92; transform: translateX(0px); }
+  58% { opacity: .92; transform: translateX(0px); }
+  100% { opacity: 0; transform: translateX(10px); }
+}
+
+.im-turnhint{
+  position:absolute;
+  top:-8%;
+  bottom:-8%;
+  right:-36px;
+  width:180px;
+  background:
+    radial-gradient(90% 70% at 92% 50%, rgba(245,245,232,0.44) 0%, rgba(245,245,232,0.22) 30%, rgba(245,245,232,0.10) 52%, rgba(0,0,0,0.00) 76%),
+    radial-gradient(120% 90% at 110% 50%, rgba(245,245,232,0.30) 0%, rgba(0,0,0,0.00) 74%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  opacity:0;
+  animation: im-turnhint-pulse 2.8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+
 /* iPhone only — couleur story Indie Map */
 @media (max-width: 768px) {
   .im-story-text,

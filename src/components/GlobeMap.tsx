@@ -821,13 +821,94 @@ export default function GlobeMap({
   const heroPanRef = React.useRef<number>(0.5);
   const heroDragRef = React.useRef<any>(null);
   const heroHadMoveRef = React.useRef(false);
+  const heroHintRafRef = React.useRef<number | null>(null);
+  const heroHintTimerRef = React.useRef<any>(null);
+  const [heroHintOff, setHeroHintOff] = React.useState(false);
 
   const heroImgSizeRef = React.useRef<{ w: number; h: number } | null>(null);
   React.useEffect(() => {
-    let rid: number | null = null;
+    try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
+    heroHintTimerRef.current = null;
+    try { if (heroHintRafRef.current != null) cancelAnimationFrame(heroHintRafRef.current); } catch {}
+    heroHintRafRef.current = null;
+
     if (!discoverHeroOpen) return;
-    return () => { try { if (rid != null) cancelAnimationFrame(rid); } catch {} };
-  }, [discoverHeroOpen]);
+    if (heroHintOff) return;
+
+    const start0 = Number(heroPanRef.current ?? 0.5);
+    const turnedRight = () => {
+      const cur = Number(heroPanRef.current ?? 0.5);
+      return cur > (start0 + 0.02);
+    };
+
+    const runBump = (start:number) => {
+      const bump = 0.014;
+      const dur = 260;
+      const pause = 8;
+      const ease = (t:number) => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2);
+
+      const kick = (from:number, to:number, cb?:()=>void) => {
+        const t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+        const tick = () => {
+          try {
+            if (!discoverHeroOpen || heroHintOff || heroHadMoveRef.current) { heroHintRafRef.current = null; return; }
+            const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+            const p = Math.max(0, Math.min(1, (now - t0) / dur));
+            const e = ease(p);
+            const next = from + (to - from) * e;
+            heroPanRef.current = next;
+            setDiscoverHeroPan(next);
+            if (p >= 1) {
+              heroHintRafRef.current = null;
+              if (cb) setTimeout(cb, pause);
+              return;
+            }
+            heroHintRafRef.current = requestAnimationFrame(tick);
+          } catch {
+            heroHintRafRef.current = null;
+          }
+        };
+        heroHintRafRef.current = requestAnimationFrame(tick);
+      };
+
+      const p1 = Math.min(1, start + bump);
+      kick(start, p1, () => {
+        kick(p1, start, () => {
+          const p2 = Math.min(1, start + bump * 0.9);
+          kick(start, p2, () => {
+            kick(p2, start);
+          });
+        });
+      });
+    };
+
+    heroHintTimerRef.current = setTimeout(() => {
+      try {
+        if (!discoverHeroOpen) return;
+        if (heroHintOff) return;
+        if (heroHadMoveRef.current) return;
+
+        runBump(Number(heroPanRef.current ?? 0.5));
+
+        setTimeout(() => {
+          try {
+            if (!discoverHeroOpen) return;
+            if (heroHintOff) return;
+            if (heroHadMoveRef.current) return;
+            if (turnedRight()) return;
+            runBump(Number(heroPanRef.current ?? 0.5));
+          } catch {}
+        }, 3200);
+      } catch {}
+    }, 900);
+
+    return () => {
+      try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
+      heroHintTimerRef.current = null;
+      try { if (heroHintRafRef.current != null) cancelAnimationFrame(heroHintRafRef.current); } catch {}
+      heroHintRafRef.current = null;
+    };
+  }, [discoverHeroOpen, heroHintOff]);
   const heroBubbleLeft = (anchor: number) => {
     try {
       const cur = Number(heroPanRef.current ?? discoverHeroPan ?? 0.5);
@@ -1982,7 +2063,7 @@ mapRef.current = map;
                 const lastX = Number(st.lastX ?? x);
                 const dx = x - lastX;
                 st.lastX = x;
-                if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
+                if (Math.abs(dx) > 1.5) { heroHadMoveRef.current = true; try { setHeroHintOff(true); } catch {} }
 
                 const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
                 const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
@@ -2019,7 +2100,7 @@ mapRef.current = map;
                 const lastX = Number(st.lastX ?? x);
                 const dx = x - lastX;
                 st.lastX = x;
-                if (Math.abs(dx) > 1.5) heroHadMoveRef.current = true;
+                if (Math.abs(dx) > 1.5) { heroHadMoveRef.current = true; try { setHeroHintOff(true); } catch {} }
 
                 const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
                 const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
@@ -2038,7 +2119,7 @@ mapRef.current = map;
               try { heroDragRef.current = null; } catch {}
             }}
           />
-<button
+                        <button
             type="button"
             aria-label="Fermer"
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
