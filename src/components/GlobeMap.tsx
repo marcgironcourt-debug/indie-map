@@ -2606,14 +2606,44 @@ popupRef.current = null;
                   {addressRaw ? (
                     <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(310, t2, true), transform: baseWrap(270, t2, true).transform + " translateX(60px)"}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
                       <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Viens nous rendre visite :</div>
-                      <div style={sub}>{addressRaw}</div>
+                      
+<div style={{display:"flex",alignItems:"center",gap:8}}>
+  <div style={sub}>{addressRaw}</div>
+  
+  <div style={{
+    padding:"2px 8px",
+    borderRadius:999,
+    border:"1px solid rgba(245,245,232,0.45)",
+    fontSize:12,
+    lineHeight:"16px",
+    color:"rgba(245,245,232,0.92)",
+    boxShadow:"0 1px 6px rgba(0,0,0,0.25)",
+    opacity:0.9
+  }}>→</div>
+
+</div>
                     </div>
                   ) : null}
 
                   {websiteRaw ? (
                     <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(470, t3, true), transform: baseWrap(470, t3, true).transform + " translateX(36px)"}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
                       <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Rentrer dans notre univers :</div>
-                      <div style={sub}>{websiteRaw.replace(/^https?:\/\//i,"")}</div>
+                      
+<div style={{display:"flex",alignItems:"center",gap:8}}>
+  <div style={sub}>{websiteRaw.replace(/^https?:\/\//i,"")}</div>
+  
+  <div style={{
+    padding:"2px 8px",
+    borderRadius:999,
+    border:"1px solid rgba(245,245,232,0.45)",
+    fontSize:12,
+    lineHeight:"16px",
+    color:"rgba(245,245,232,0.92)",
+    boxShadow:"0 1px 6px rgba(0,0,0,0.25)",
+    opacity:0.9
+  }}>→</div>
+
+</div>
                     </div>
                   ) : null}
                 </>
