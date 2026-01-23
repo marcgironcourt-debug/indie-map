@@ -2576,23 +2576,23 @@ popupRef.current = null;
 
               const title = (c: any) => ({
                 fontFamily: '"IMHand", ui-sans-serif, system-ui',
-                fontSize: 13.5,
-                lineHeight: "20px",
-                fontWeight: 700,
+                fontSize: 14.5,
+                lineHeight: "22px",
+                fontWeight: 420,
                 letterSpacing: ".02em",
-                color: c || "rgba(245,245,232,0.92)",
-                textShadow: "0 1px 0 rgba(0,0,0,0.55), 0 10px 22px rgba(0,0,0,0.35)"
+                color: "rgba(245,245,232,0.92)",
+                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
               });
 
               const sub = {
-                marginTop: 2,
-                fontFamily: 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial',
-                fontSize: 11.5,
-                lineHeight: "16px",
+                fontFamily: '"IMHand", ui-sans-serif, system-ui',
+                fontSize: 14.5,
+                lineHeight: "22px",
+                fontWeight: 420,
+                letterSpacing: ".02em",
                 color: "rgba(245,245,232,0.92)",
-                 opacity: 1,
-                 fontWeight: 650,
-                 textShadow: "0 1px 0 rgba(0,0,0,0.42), 0 6px 16px rgba(0,0,0,0.28)"};
+                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+              };
 
               return (
                 <>
