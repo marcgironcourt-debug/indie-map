@@ -2598,21 +2598,21 @@ popupRef.current = null;
                 <>
                   {openInfo ? (
                     <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(78, t1, false)}>
-                      <div style={{...title(openInfo.color), textDecoration: "underline"}}>Tu peux venir nous voir à ces moments-là :</div>
+                      <div style={{...title(openInfo.color), textDecoration: "underline"}}>Tu peux venir ces jours là :</div>
    <div style={sub}>{openingHoursRaw.split("\n").filter(Boolean).map((l,i)=>(<div key={i}>{l}</div>))}</div>
                     </div>
                   ) : null}
 
                   {addressRaw ? (
                     <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(236, t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
-                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Le repère exact →</div>
+                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Viens nous rendre visite :</div>
                       <div style={sub}>{addressRaw}</div>
                     </div>
                   ) : null}
 
                   {websiteRaw ? (
                     <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(408, t3, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
-                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Voir leur univers →</div>
+                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Rentrer dans notre univers :</div>
                       <div style={sub}>{websiteRaw.replace(/^https?:\/\//i,"")}</div>
                     </div>
                   ) : null}
