@@ -37,10 +37,9 @@ export default function MapPanel({
         <ClientMap
           items={items}
           selectedId={selectedId}
-          selectionVersion={selectionVersion}
-          onSelect={onSelect}          darkMap={darkMap}
-          onToggleDarkMap={onToggleDarkMap}
-        />
+onSelect={onSelect}
+          darkMap={darkMap}
+/>
       </div>
     </section>
   );

@@ -454,7 +454,7 @@ function MobileBottomSheet({
 
             {!isPremium && (
               <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-      {getCategorySentence(renderedBusiness.type)}
+      {getCategoryEmotion(renderedBusiness.type)}
     </p>
             )}
 
@@ -530,7 +530,7 @@ export default function IndieMapSplitView() {
   const [heroOpen, setHeroOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const fn = (e) => { try { setHeroOpen(Boolean(e?.detail?.open)); } catch {} };
+    const fn = (e: Event) => { try { const ce = e as any; setHeroOpen(Boolean(ce?.detail?.open)); } catch {} };
     try { window.addEventListener("im:hero", fn); } catch {}
     return () => { try { window.removeEventListener("im:hero", fn); } catch {} };
   }, []);
@@ -788,6 +788,7 @@ React.useEffect(() => {
           setSelectedId(null);
         }}
         onExpand={() => setSheetMode("full")}
+        onPeek={() => setSheetMode("peek")}
         dark={darkMap} />
     </div>
   );
