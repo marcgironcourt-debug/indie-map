@@ -896,6 +896,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
   const [discoverOpen, setDiscoverOpen] = React.useState(false);
   const [discoverHeroOpen, setDiscoverHeroOpen] = React.useState(false);
+  const [heroUiHide, setHeroUiHide] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -1621,6 +1622,7 @@ popupRef.current = null;
                       const onEnd = () => {
                          try { setDiscoverHeroZoom(false); } catch {}
                          try { setDiscoverDoorOpen(false); } catch {}
+                         try { setHeroUiHide(false); } catch {}
                          try { setDiscoverHeroOpen(true); } catch {}
                       try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
 
@@ -2368,6 +2370,7 @@ mapRef.current = map;
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
               try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
+              try { setHeroUiHide(true); } catch {}
               try { setDiscoverOpen(false); } catch {}
               try { setDiscoverPanel(null); } catch {}
               try { setDiscoverDoorOpen(false); } catch {}
@@ -2426,6 +2429,70 @@ popupRef.current = null;
                       if (db) {
                         db.addEventListener("click", (ev) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                          try { setSheetOpen(false); } catch (e) {}
+                          try { setSheetHtml(""); } catch (e) {}
+                          try {
+                            const map = mapRef.current;
+                            const st2 = heroReturnPopupRef.current;
+                            if (!map || !st2) return;
+                            const lng2 = Number(st2.lng);
+                            const lat2 = Number(st2.lat);
+                            const props2 = (st2 as any).props || {};
+                            const fid2 = (st2 as any).fid ? String((st2 as any).fid) : null;
+                            try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch (e) {}
+                            try { heroReturnPopupRef.current = { lng: Number(lng2), lat: Number(lat2), props: props2, fid: fid2 }; } catch (e) {}
+                            try { setDiscoverPanel(null); } catch (e) {}
+                            try {
+                              const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
+                              map.flyTo({
+                                center: [lng2, lat2],
+                                zoom: maxZ,
+                                speed: 0.62,
+                                curve: 2.35,
+                                easing: (t) => t * t * (3 - 2 * t),
+                                essential: true
+                              });
+                              try {
+                                const pid = String(props2?.id ?? fid2 ?? "");
+                                const pname = String(props2?.name ?? props2?.title ?? "");
+                                let hero = null;
+                                try {
+                                  if (
+                                    pid === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
+                                    String(pname).trim().toLowerCase().includes("textilerie")
+                                  ) hero = String(TEXTILERIE_PANORAMA_IMAGE || "");
+                                } catch {}
+                                try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
+                                try { setDiscoverHeroOpen(false); } catch {}
+                                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                                const onEnd = () => {
+                                  try { setDiscoverHeroZoom(false); } catch {}
+                                  try { setDiscoverDoorOpen(false); } catch {}
+                                  try { setHeroUiHide(false); } catch {}
+                                  try { setDiscoverHeroOpen(true); } catch {}
+                                  try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                                  try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
+                                  try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 520); } catch {}
+                                };
+                                try { map.once("moveend", onEnd); } catch {}
+                              } catch {}
+                            } catch {}
+                          } catch (e) {}
+                          try { popupRef.current?.remove(); } catch (e) {}
+                          try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
+                          selectedPinMarkerRef.current = null;
+                          try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                          try {
+                            const map = mapRef.current;
+                            if (map) {
+                              for (const feat of fcRef.current.features) {
+                                try { feat.properties.selected = false; } catch {}
+                              }
+                              const src = getSource(map);
+                              if (src) src.setData(fcRef.current);
+                            }
+                          } catch {}
+                          popupRef.current = null;
                         });
                       }
                     } catch {}
@@ -2492,12 +2559,12 @@ popupRef.current = null;
                     boxShadow: "0 0 0 1px rgba(245,245,232,0.10), 0 14px 32px rgba(0,0,0,0.30)",
                     backdropFilter: "blur(10px)",
                     WebkitBackdropFilter: "blur(10px)",
-                    opacity: (0.14 + (oo * 0.62)),
+                    opacity: (heroUiHide ? 0 : (0.14 + (oo * 0.62))),
                     transform: "translateX(" + ((1 - tt) * 12).toFixed(1) + "px) translateY(" + ((1 - tt) * 2.0).toFixed(1) + "px)",
                     filter: "blur(" + ((1 - oo) * 0.55).toFixed(2) + "px)",
-                    transition: "opacity 980ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease",
+                    transition: (heroUiHide ? "opacity 1ms linear" : "opacity 980ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease"),
                     willChange: "opacity, transform, filter",
-                    visibility: v < 0.01 ? "hidden" : "visible"
+                    visibility: (heroUiHide || v < 0.01) ? "hidden" : "visible"
                   }}
                 >
                   <div
@@ -2565,10 +2632,10 @@ popupRef.current = null;
                 boxShadow: "0 0 0 1px rgba(245,245,232,0.08), 0 14px 30px rgba(0,0,0,0.26)",
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
-                opacity: (small(extra) * (0.14 + (oo * 0.62))),
+                opacity: (heroUiHide ? 0 : (small(extra) * (0.14 + (oo * 0.62)))),
                 transform: "translateX(" + ((1 - extra) * -12).toFixed(1) + "px) translateY(" + ((1 - extra) * 1.6).toFixed(1) + "px)",
                 filter: "blur(" + ((1 - extra) * 0.55).toFixed(2) + "px)",
-                transition: "opacity 720ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease",
+                transition: (heroUiHide ? "opacity 1ms linear" : "opacity 720ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease"),
                 willChange: "opacity, transform, filter",
                 pointerEvents: clickable ? "auto" : "none",
                 cursor: clickable ? "pointer" : "default"
