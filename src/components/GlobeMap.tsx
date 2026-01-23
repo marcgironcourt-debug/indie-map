@@ -2061,7 +2061,7 @@ mapRef.current = map;
       <div ref={ref} className="h-full w-full" />
       <style>{`\
         .maplibregl-canvas{transition:filter 220ms ease;}\
-        .im-globe-dim .maplibregl-canvas{filter: brightness(.48) saturate(.92) contrast(.98);}\
+        .im-globe-dim .maplibregl-canvas{filter:brightness(.40) saturate(.90) contrast(.98);}\
       `}</style>\
       
             {discoverHeroOpen ? (
