@@ -342,13 +342,82 @@ function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
   const kaki = "#728A4A";
   const orange = "#F59E0B";
 
+  const fmt = (minsTotal: any) => {
+    const h = Math.floor(Math.max(0, Number(minsTotal) || 0) / 60);
+    const m = Math.floor(Math.max(0, Number(minsTotal) || 0) % 60);
+    const hh = String(h).padStart(2, "0");
+    const mm = String(m).padStart(2, "0");
+    return hh + "h" + mm;
+  };
+
+  const parseRangesForLine = (line: any) => {
+    try {
+      const t = String(line || "");
+      const re = /(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/g;
+      let m: any;
+      const ranges: any[] = [];
+      while ((m = re.exec(t)) !== null) {
+        const h1 = Number(m[1]), m1 = Number(m[2]), h2 = Number(m[3]), m2 = Number(m[4]);
+        if (![h1,m1,h2,m2].every(Number.isFinite)) continue;
+        ranges.push([h1 * 60 + m1, h2 * 60 + m2]);
+      }
+      ranges.sort((a,b)=>a[0]-b[0]);
+      return ranges;
+    } catch {
+      return [];
+    }
+  };
+
+  const nextInfoText = () => {
+    try {
+      const tz = tzForCity(cityRaw);
+      const now = nowParts(tz);
+      const raw = String(openingHoursRaw || "").trim();
+      if (!raw) return null;
+
+      const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
+      const lineForDay = (widx: number) => lines.find((l) => dayIndexFromLine(l) === widx) || null;
+
+      const todayLine = lineForDay(now.widx);
+      const todayRanges = todayLine && !norm(todayLine).includes("ferme") ? parseRangesForLine(todayLine) : [];
+
+      if (open) {
+        for (const [a,b] of todayRanges) {
+          if (now.mins >= a && now.mins < b) return "Ouvert — jusqu’à " + fmt(b);
+        }
+        return "Ouvert";
+      }
+
+      for (const [a,b] of todayRanges) {
+        if (now.mins < a) return "Fermé — ouvre à " + fmt(a);
+      }
+
+      for (let d=1; d<=7; d++) {
+        const w = (now.widx + d) % 7;
+        const ln = lineForDay(w);
+        if (!ln) continue;
+        const nn = norm(ln);
+        if (nn.includes("ferme")) continue;
+        const rr = parseRangesForLine(ln);
+        if (!rr.length) continue;
+        return "Fermé — ouvre " + (d === 1 ? "demain" : "bientôt") + " à " + fmt(rr[0][0]);
+      }
+
+      return "Fermé";
+    } catch {
+      return open ? "Ouvert" : "Fermé";
+    }
+  };
+
   if (!known) {
     return { known: false, open: false, text: "Horaires inconnus", color: "rgba(245,245,232,.55)", dot: "rgba(245,245,232,.35)" };
   }
 
+  const text = nextInfoText() || (open ? "Ouvert" : "Fermé");
+
   return open
-    ? { known: true, open: true, text: "Ouvert", color: kaki, dot: kaki }
-    : { known: true, open: false, text: "Fermé", color: orange, dot: orange };
+    ? { known: true, open: true, text, color: kaki, dot: kaki }
+    : { known: true, open: false, text, color: orange, dot: orange };
 }
 
 
@@ -2448,8 +2517,109 @@ popupRef.current = null;
               );
             })()}
 
-<div
-            className="absolute inset-0 pointer-events-none"
+            {(() => {
+              const p0 = Number(discoverHeroPan ?? 0.5);
+              const pL = Math.max(0, Math.min(1, (0.50 - p0) / 0.44));
+              const v0 = pL;
+              const v = v0 * v0 * (3 - 2 * v0);
+
+              const curProps = (heroReturnPopupRef.current as any)?.props || {};
+              const addressRaw = String(curProps?.address ?? "").trim();
+              const websiteRaw = String(curProps?.website ?? "").trim();
+              const openingHoursRaw = String(curProps?.openingHours ?? "").trim();
+              const cityRaw = String(curProps?.city ?? "").trim();
+
+              const openInfo = openingHoursRaw ? computeOpenInfo(openingHoursRaw, cityRaw) : null;
+
+              const oo = Math.pow(v, 1.0);
+              const t1 = Math.pow(v, 0.85);
+              const t2 = Math.pow(Math.max(0, v - 0.06) / 0.94, 0.95);
+              const t3 = Math.pow(Math.max(0, v - 0.12) / 0.88, 1.05);
+
+              const small = (x: any) => Math.max(0, Math.min(1, x));
+
+              const openMaps = () => {
+                try {
+                  if (!addressRaw) return;
+                  const q = encodeURIComponent(addressRaw);
+                  window.open("https://www.google.com/maps/search/?api=1&query=" + q, "_blank", "noopener,noreferrer");
+                } catch {}
+              };
+
+              const openSite = () => {
+                try {
+                  if (!websiteRaw) return;
+                  window.open(websiteRaw, "_blank", "noopener,noreferrer");
+                } catch {}
+              };
+
+              const baseWrap = (top: any, extra: any, clickable: any) => ({
+                position: "absolute" as any,
+                left: 12,
+                top,
+                maxWidth: 260,
+                padding: "10px 10px",
+                borderRadius: 18,
+                background: "rgba(31,31,24," + (0.12 + (oo * 0.32)).toFixed(3) + ")",
+                border: "1px solid rgba(245,245,232,0.12)",
+                boxShadow: "0 0 0 1px rgba(245,245,232,0.08), 0 14px 30px rgba(0,0,0,0.26)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                opacity: small(0.02 + (extra * 0.98)),
+                transform: "translateX(" + ((1 - extra) * -12).toFixed(1) + "px) translateY(" + ((1 - extra) * 1.6).toFixed(1) + "px)",
+                filter: "blur(" + ((1 - extra) * 0.55).toFixed(2) + "px)",
+                transition: "opacity 720ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease",
+                willChange: "opacity, transform, filter",
+                pointerEvents: clickable ? "auto" : "none",
+                cursor: clickable ? "pointer" : "default"
+              });
+
+              const title = (c: any) => ({
+                fontFamily: '"IMHand", ui-sans-serif, system-ui',
+                fontSize: 13.5,
+                lineHeight: "20px",
+                fontWeight: 420,
+                letterSpacing: ".02em",
+                color: c || "rgba(245,245,232,0.92)",
+                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+              });
+
+              const sub = {
+                marginTop: 2,
+                fontFamily: 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial',
+                fontSize: 11.5,
+                lineHeight: "16px",
+                color: "rgba(245,245,232,0.78)",
+                opacity: 0.95
+              };
+
+              return (
+                <>
+                  {openInfo ? (
+                    <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(78, t1, false)}>
+                      <div style={title(openInfo.color)}>{openInfo.text}</div>
+                    </div>
+                  ) : null}
+
+                  {addressRaw ? (
+                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(236, t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
+                      <div style={title("rgba(245,245,232,0.92)")}>Le repère exact →</div>
+                      <div style={sub}>{addressRaw}</div>
+                    </div>
+                  ) : null}
+
+                  {websiteRaw ? (
+                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(408, t3, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
+                      <div style={title("rgba(245,245,232,0.92)")}>Voir leur univers →</div>
+                      <div style={sub}>{websiteRaw.replace(/^https?:\/\//i,"")}</div>
+                    </div>
+                  ) : null}
+                </>
+              );
+            })()}
+
+            <div
+              className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage: discoverHeroUrl ? ("url('" + discoverHeroUrl + "')") : "none",
               backgroundSize: "auto 100%",
