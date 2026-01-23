@@ -1294,6 +1294,9 @@ export default function GlobeMap({
           const feats = map.queryRenderedFeatures(ev.point, { layers: [LAYER_ID] } as any);
           if (!feats || feats.length === 0) {
             try { popupRef.current?.remove(); } catch {}
+            try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch {}
+            try { document.querySelectorAll(".im-globe-dim").forEach((n)=>{ try{ (n as any)?.classList?.remove("im-globe-dim"); }catch{} }); } catch {}
+            try { document.querySelectorAll(".maplibregl-canvas").forEach((c)=>{ try{ (c as any).style.filter=""; }catch{} }); } catch {}
             popupRef.current = null;
           }
         } catch {}
@@ -1370,8 +1373,8 @@ map.on("mouseenter", LAYER_ID, () => {
                 btn.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
-                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
-                  popupRef.current = null;
+                  try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+popupRef.current = null;
                 });
               }
             } catch {}
@@ -1422,8 +1425,8 @@ map.on("mouseenter", LAYER_ID, () => {
                     } catch {}
                   } catch (e) {}
                   try { popupRef.current?.remove(); } catch (e) {}
-                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
-                  popupRef.current = null;
+                  try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+popupRef.current = null;
                 });
               }
             } catch {}
@@ -2183,8 +2186,8 @@ mapRef.current = map;
                         btn.addEventListener("click", (ev) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                           try { popupRef.current?.remove(); } catch (e) {}
-                  try { (ref.current as any)?.classList?.remove("im-globe-dim"); } catch (e) {}
-                          popupRef.current = null;
+                  try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+popupRef.current = null;
                         });
                       }
                     } catch {}
