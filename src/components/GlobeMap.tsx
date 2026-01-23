@@ -2597,7 +2597,8 @@ popupRef.current = null;
                 <>
                   {openInfo ? (
                     <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(78, t1, false)}>
-                      <div style={title(openInfo.color)}>{openInfo.text}</div>
+                      <div style={title(openInfo.color)}>Tu peux venir nous voir à ces moments-là :</div>
+   <div style={sub}>{openingHoursRaw.replace(/\n/g, "<br/>")}</div>
                     </div>
                   ) : null}
 
