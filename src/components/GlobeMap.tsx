@@ -2578,10 +2578,10 @@ popupRef.current = null;
                 fontFamily: '"IMHand", ui-sans-serif, system-ui',
                 fontSize: 13.5,
                 lineHeight: "20px",
-                fontWeight: 420,
+                fontWeight: 700,
                 letterSpacing: ".02em",
                 color: c || "rgba(245,245,232,0.92)",
-                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+                textShadow: "0 1px 0 rgba(0,0,0,0.55), 0 10px 22px rgba(0,0,0,0.35)"
               });
 
               const sub = {
@@ -2589,16 +2589,17 @@ popupRef.current = null;
                 fontFamily: 'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial',
                 fontSize: 11.5,
                 lineHeight: "16px",
-                color: "rgba(245,245,232,0.78)",
-                opacity: 0.95
-              };
+                color: "rgba(245,245,232,0.92)",
+                 opacity: 1,
+                 fontWeight: 650,
+                 textShadow: "0 1px 0 rgba(0,0,0,0.42), 0 6px 16px rgba(0,0,0,0.28)"};
 
               return (
                 <>
                   {openInfo ? (
                     <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(78, t1, false)}>
                       <div style={title(openInfo.color)}>Tu peux venir nous voir à ces moments-là :</div>
-   <div style={sub}>{openingHoursRaw.replace(/\n/g, "<br/>")}</div>
+   <div style={sub}>{openingHoursRaw.split("\n").filter(Boolean).map((l,i)=>(<div key={i}>{l}</div>))}</div>
                     </div>
                   ) : null}
 
