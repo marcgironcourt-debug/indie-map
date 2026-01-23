@@ -180,7 +180,7 @@ function parseOpeningHoursFR(opening: string) {
     }
 
     const chunks = rest.split(/\s*(?:,|\/|\||;|et)\s*/i).map(x => x.trim()).filter(Boolean);
-    const ranges = [];
+    const ranges: [number, number][] = [];
 
     for (const c of chunks) {
       const mm = c.match(/(\d{1,2}\s*(?:h|:)\s*\d{2})\s*[-–—]\s*(\d{1,2}\s*(?:h|:)\s*\d{2})/i);
@@ -192,7 +192,7 @@ function parseOpeningHoursFR(opening: string) {
     }
 
     if (!byDay.has(day)) byDay.set(day, []);
-    const cur = byDay.get(day);
+    const cur = byDay.get(day)!;
     for (const r of ranges) cur.push(r);
   }
 
@@ -888,7 +888,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   const ROUTE_LAYER_ID = "indie-route-line";
 
   const fcRef = React.useRef<any>({ type: "FeatureCollection", features: [] });
-  const popupRef = React.useRef<maplibregl.Popup | null>(null);
+  const popupRef = React.useRef<maplibregl.Marker | null>(null);
   const selectedPinMarkerRef = React.useRef<maplibregl.Marker | null>(null);
   const lastUserPosRef = React.useRef<{ lng: number; lat: number; ts: number } | null>(null);
     const [sheetOpen, setSheetOpen] = React.useState(false);
@@ -1551,6 +1551,17 @@ map.on("mouseenter", LAYER_ID, () => {
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { if (popupRef.current) popupRef.current.remove(); } catch {}
+          try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+          selectedPinMarkerRef.current = null;
+          try {
+            const selEl = document.createElement("div");
+            selEl.style.pointerEvents = "none";
+            selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
+            selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
+            selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
+              .setLngLat([lng, lat])
+              .addTo(map);
+          } catch {}
           try {
             let walkMins = null;
             try {
@@ -1658,7 +1669,7 @@ popupRef.current = null;
                 });
               }
             } catch {}
-            popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -32] } as any)
+            popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
               .setLngLat([lng, lat])
               .addTo(map);
           } catch {}
@@ -2167,7 +2178,7 @@ mapRef.current = map;
         }
       } catch {}
       const getPos = () =>
-        new Promise((resolve, reject) => {
+        new Promise<GeolocationPosition>((resolve, reject) => {
           if (!navigator.geolocation) return reject(new Error("no geolocation"));
           navigator.geolocation.getCurrentPosition(
             (pos) => resolve(pos),
@@ -2176,7 +2187,7 @@ mapRef.current = map;
           );
         });
 
-      let pos;
+      let pos: GeolocationPosition;
       try {
         pos = await getPos();
       } catch {
@@ -2415,7 +2426,7 @@ mapRef.current = map;
              selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
              selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
              selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
-               .setLngLat([Number(lng), Number(lat)])
+               .setLngLat([Number(st.lng), Number(st.lat)])
                .addTo(map);
            } catch {}
                     popupRef.current = null;
@@ -2521,7 +2532,7 @@ popupRef.current = null;
                         });
                       }
                     } catch {}
-                    popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -32] } as any)
+                    popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
                       .setLngLat([Number(st.lng), Number(st.lat)])
                       .addTo(map);
                   } catch {}
@@ -2662,7 +2673,7 @@ popupRef.current = null;
                 filter: "blur(" + ((1 - extra) * 0.55).toFixed(2) + "px)",
                 transition: (heroUiHide ? "opacity 1ms linear" : "opacity 720ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease"),
                 willChange: "opacity, transform, filter",
-                pointerEvents: clickable ? "auto" : "none",
+                pointerEvents: (clickable ? "auto" : "none") as any,
                 cursor: clickable ? "pointer" : "default"
               });
 
