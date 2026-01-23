@@ -341,4 +341,5 @@ main {
   }
 }
 
-body.im-hero-open [data-im-filterbar="1"]{ display:none !important; }
+
+/* Hide category filters during panorama */

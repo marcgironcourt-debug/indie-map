@@ -815,9 +815,18 @@ export default function GlobeMap({
   const [sheetHtml, setSheetHtml] = React.useState<string>("");
   const [discoverOpen, setDiscoverOpen] = React.useState(false);
   const [discoverHeroOpen, setDiscoverHeroOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    try {
+    } catch {}
+  }, [discoverHeroOpen]);
+
   const [discoverHeroPan, setDiscoverHeroPan] = React.useState(0.5);
   const [discoverHeroZoom, setDiscoverHeroZoom] = React.useState(false);
   const [discoverHeroUrl, setDiscoverHeroUrl] = React.useState<string | null>(null);
+  React.useEffect(() => {
+    try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: Boolean(discoverHeroOpen) } })); } catch {}
+  }, [discoverHeroOpen]);
   const heroPanRef = React.useRef<number>(0.5);
   const heroDragRef = React.useRef<any>(null);
   const heroHadMoveRef = React.useRef(false);
@@ -1396,10 +1405,14 @@ map.on("mouseenter", LAYER_ID, () => {
                       } catch {}
                       try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
                       try { setDiscoverHeroOpen(false); } catch {}
+                   try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+
                       const onEnd = () => {
                          try { setDiscoverHeroZoom(false); } catch {}
                          try { setDiscoverDoorOpen(false); } catch {}
                          try { setDiscoverHeroOpen(true); } catch {}
+                      try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+
                          try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
                          try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 520); } catch {}
                        };
@@ -2125,6 +2138,7 @@ mapRef.current = map;
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
               try { setDiscoverOpen(false); } catch {}
               try { setDiscoverPanel(null); } catch {}
               try { setDiscoverDoorOpen(false); } catch {}
@@ -2205,9 +2219,6 @@ mapRef.current = map;
           >
             <span style={{ display: "inline-block", transform: "translateY(-1px)", fontSize: 18, lineHeight: "18px" }}>×</span>
           </button>
-          <div className="absolute top-3 left-3 z-[90] pointer-events-none" style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".08em", color: "rgba(255,255,255,0.75)", textShadow: "0 2px 10px rgba(0,0,0,0.55)" }}>
-            PAN {Math.round((discoverHeroPan ?? 0.5) * 100)}%
-          </div>
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
