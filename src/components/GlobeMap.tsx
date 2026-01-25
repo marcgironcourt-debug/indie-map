@@ -2659,11 +2659,20 @@ popupRef.current = null;
                 } catch {}
               };
 
-              const baseWrap = (top: any, extra: any, clickable: any) => ({
+                                          const stackWrap = {
                 position: "absolute" as any,
                 left: 12,
-                top,
-                maxWidth: 260,
+                top: 52,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                width: "fit-content" as any,
+                maxWidth: 340,
+                gap: 8
+              };
+
+                            const baseWrap = (extra: any, clickable: any) => ({
+
                 padding: "10px 10px",
                 borderRadius: 18,
                 background: "rgba(31,31,24," + (0.12 + (oo * 0.32)).toFixed(3) + ")",
@@ -2677,7 +2686,12 @@ popupRef.current = null;
                 transition: (heroUiHide ? "opacity 1ms linear" : "opacity 720ms ease, transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms ease"),
                 willChange: "opacity, transform, filter",
                 pointerEvents: (clickable ? "auto" : "none") as any,
-                cursor: clickable ? "pointer" : "default"
+                cursor: clickable ? "pointer" : "default",
+                display: "inline-block",
+                width: "fit-content" as any,
+                maxWidth: 320,
+                boxSizing: "border-box",
+                alignSelf: "flex-start" as any
               });
 
               const title = (c: any) => ({
@@ -2701,16 +2715,16 @@ popupRef.current = null;
               };
 
               return (
-                <>
+                <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={stackWrap}>
                   {openInfo ? (
-                    <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(52, t1, false)}>
+                    <div className="relative pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(t1, false)}>
                       <div style={{...title(openInfo.color)}}></div>
    <div style={sub}>{openingHoursRaw.split("\n").filter(Boolean).map((l,i)=>(<div key={i}>{l}</div>))}</div>
                     </div>
                   ) : null}
 
                   {phoneRaw ? (
-                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(260, t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} try{ window.location.href = "tel:" + String(phoneRaw).replace(/[^0-9+]/g,""); }catch{} }}>
+                    <div className="relative" aria-hidden={oo < 0.02} style={baseWrap(t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} try{ window.location.href = "tel:" + String(phoneRaw).replace(/[^0-9+]/g,""); }catch{} }}>
                       <div style={{display:"flex",alignItems:"center",gap:8}}>
                         <div style={{...sub}}>{phoneRaw}</div>
                         <div style={{padding:"2px 8px",borderRadius:999,border:"1px solid rgba(245,245,232,0.45)",fontSize:12,lineHeight:"16px",color:"rgba(245,245,232,0.92)",boxShadow:"0 1px 6px rgba(0,0,0,0.25)",opacity:0.9}}>→</div>
@@ -2719,11 +2733,24 @@ popupRef.current = null;
                   ) : null}
 
                   {addressRaw ? (
-                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(360, t2, true)}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
+                    <div className="relative" aria-hidden={oo < 0.02} style={baseWrap(t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
                       <div style={{...title("rgba(245,245,232,0.92)"), }}></div>
                       
 <div style={{display:"flex",alignItems:"center",gap:8}}>
-  <div style={sub}>{addressRaw}</div>
+  <div style={sub}>{(() => {
+  const a = String(addressRaw || "").trim();
+  const parts = a.split(",").map(p=>p.trim()).filter(Boolean);
+  const line1 = (parts[0] || a).trim();
+  const line2 = (parts.length >= 3)
+    ? ((parts[1] || "").trim() + " " + parts.slice(2).join(" ").trim()).trim()
+    : ((parts[1] || "").trim());
+  return (
+    <>
+      <div>{line1}</div>
+      {line2 ? <div>{line2}</div> : null}
+    </>
+  );
+})()}</div>
   
   <div style={{
     padding:"2px 8px",
@@ -2741,7 +2768,7 @@ popupRef.current = null;
                   ) : null}
 
                   {websiteRaw ? (
-                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(470, t3, true)}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
+                    <div className="relative" aria-hidden={oo < 0.02} style={baseWrap(t3, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
                       <div style={{...title("rgba(245,245,232,0.92)"), }}></div>
                       
 <div style={{display:"flex",alignItems:"center",gap:8}}>
@@ -2761,7 +2788,7 @@ popupRef.current = null;
 </div>
                     </div>
                   ) : null}
-                </>
+                </div>
               );
             })()}
 
