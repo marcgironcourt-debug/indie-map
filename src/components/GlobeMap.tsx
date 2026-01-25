@@ -2449,8 +2449,10 @@ mapRef.current = map;
             type="button"
             aria-label="Fermer"
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
+            style={{ opacity: heroUiHide ? 0 : 1, pointerEvents: (heroUiHide ? "none" : "auto") as any, transition: "opacity 220ms ease" }}
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { const t = (e as any)?.currentTarget as any; if (t && t.style) { t.style.opacity = "0"; t.style.pointerEvents = "none"; } } catch {}
               try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
               try { setHeroUiHide(true); } catch {}
               try { setDiscoverOpen(false); } catch {}
