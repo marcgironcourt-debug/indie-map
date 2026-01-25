@@ -762,7 +762,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
         encodeURIComponent(addressRaw) +
       "\" data-addr=\"" +
         escapeHtml(addressRaw) +
-      "\" onclick=\"(function(el){try{var raw=el.getAttribute('data-addr')||'';var q=encodeURIComponent(raw);var ua=navigator.userAgent||'';if(/iPhone|iPad|iPod/i.test(ua)){window.location.href='maps://?q='+q;}else{window.location.href='geo:0,0?q='+q;}}catch(e){} })(this);\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] underline font-medium\">" +
+      "\" onclick=\"(function(el){try{var raw=el.getAttribute('data-addr')||'';var q=encodeURIComponent(raw);var ua=navigator.userAgent||'';if(/iPhone|iPad|iPod/i.test(ua)){window.location.href='maps://?q='+q;}else{window.location.href='geo:0,0?q='+q;}}catch(e){} })(this);\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] font-medium\">" +
         escapeHtml(addressRaw) +
       "</a>" +
       "</div>"
@@ -798,7 +798,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const websiteLink = websiteRaw
     ? "<div class=\"mt-2\"><a href=\"" +
       escapeHtml(websiteRaw) +
-      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] underline font-semibold\" style=\"" +
+      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] font-semibold\" style=\"" +
       (darkMap ? "color:#ffd27a" : "color:#ffd27a") +
       "\">Site web</a></div>"
     : "";
@@ -2629,6 +2629,9 @@ popupRef.current = null;
               const curProps = (heroReturnPopupRef.current as any)?.props || {};
               const addressRaw = String(curProps?.address ?? "").trim();
               const websiteRaw = String(curProps?.website ?? "").trim();
+              const isTextilerieContact = /textilerie/i.test(websiteRaw) || /textilerie/i.test(addressRaw);
+              const phoneRaw0 = String((curProps?.phone ?? curProps?.tel ?? curProps?.telephone ?? "")).trim();
+              const phoneRaw = phoneRaw0 || (isTextilerieContact ? "+33 1 40 35 77 14" : "");
               const openingHoursRaw = String(curProps?.openingHours ?? "").trim();
               const cityRaw = String(curProps?.city ?? "").trim();
 
@@ -2701,14 +2704,23 @@ popupRef.current = null;
                 <>
                   {openInfo ? (
                     <div className="absolute z-[70] pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(52, t1, false)}>
-                      <div style={{...title(openInfo.color), textDecoration: "underline"}}>Tu peux venir ces jours là :</div>
+                      <div style={{...title(openInfo.color)}}></div>
    <div style={sub}>{openingHoursRaw.split("\n").filter(Boolean).map((l,i)=>(<div key={i}>{l}</div>))}</div>
                     </div>
                   ) : null}
 
+                  {phoneRaw ? (
+                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={baseWrap(260, t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} try{ window.location.href = "tel:" + String(phoneRaw).replace(/[^0-9+]/g,""); }catch{} }}>
+                      <div style={{display:"flex",alignItems:"center",gap:8}}>
+                        <div style={{...sub}}>{phoneRaw}</div>
+                        <div style={{padding:"2px 8px",borderRadius:999,border:"1px solid rgba(245,245,232,0.45)",fontSize:12,lineHeight:"16px",color:"rgba(245,245,232,0.92)",boxShadow:"0 1px 6px rgba(0,0,0,0.25)",opacity:0.9}}>→</div>
+                      </div>
+                    </div>
+                  ) : null}
+
                   {addressRaw ? (
-                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(310, t2, true), transform: baseWrap(270, t2, true).transform + " translateX(60px)"}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
-                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Viens nous rendre visite :</div>
+                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(360, t2, true)}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openMaps(); }}>
+                      <div style={{...title("rgba(245,245,232,0.92)"), }}></div>
                       
 <div style={{display:"flex",alignItems:"center",gap:8}}>
   <div style={sub}>{addressRaw}</div>
@@ -2729,8 +2741,8 @@ popupRef.current = null;
                   ) : null}
 
                   {websiteRaw ? (
-                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(470, t3, true), transform: baseWrap(470, t3, true).transform + " translateX(36px)"}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
-                      <div style={{...title("rgba(245,245,232,0.92)"), textDecoration: "underline"}}>Rentrer dans notre univers :</div>
+                    <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={{...baseWrap(470, t3, true)}} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} openSite(); }}>
+                      <div style={{...title("rgba(245,245,232,0.92)"), }}></div>
                       
 <div style={{display:"flex",alignItems:"center",gap:8}}>
   <div style={sub}>{websiteRaw.replace(/^https?:\/\//i,"")}</div>
