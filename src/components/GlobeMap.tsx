@@ -2553,7 +2553,7 @@ popupRef.current = null;
               justifyContent: "center",
               background: "rgba(0,0,0,0.30)",
               border: "1px solid rgba(255,255,255,0.26)",
-              color: "rgba(245,245,232,0.92)",
+              color: "rgba(31,31,24,0.92)",
               boxShadow: "0 10px 22px rgba(0,0,0,0.28)",
               backdropFilter: "blur(10px)",
               WebkitBackdropFilter: "blur(10px)",
@@ -2590,9 +2590,9 @@ popupRef.current = null;
                     padding: "12px 10px",
                     borderRadius: 0,
                     clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
-                    background: ("rgba(31,31,24," + (0.34 + (oo * 0.56)).toFixed(3) + ")"),
-                    border: "1px solid rgba(245,245,232,0.14)",
-                    boxShadow: "0 0 0 1px rgba(245,245,232,0.10), 0 14px 32px rgba(0,0,0,0.30)",
+                    background: ("rgba(245,245,232," + (0.72 + (oo * 0.22)).toFixed(3) + ")"),
+                    border: "1px solid rgba(31,31,24,0.16)",
+                    boxShadow: "0 0 0 1px rgba(31,31,24,0.08), 0 14px 32px rgba(0,0,0,0.18)",
                     backdropFilter: "blur(10px)",
                     WebkitBackdropFilter: "blur(10px)",
                     opacity: (heroUiHide ? 0 : (0.14 + (oo * 0.62))),
@@ -2610,8 +2610,8 @@ popupRef.current = null;
                       lineHeight: "22px",
                       fontWeight: 420,
                       letterSpacing: ".02em",
-                      color: "rgba(245,245,232,0.92)",
-                      textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+                      color: "rgba(31,31,24,0.92)",
+                      textShadow: "0 1px 0 rgba(255,255,255,0.35)"
                     }}
                   >
                     {TEXTILERIE_TABLEAU_1_LINES.join(" ")}
@@ -2676,9 +2676,9 @@ popupRef.current = null;
                 padding: "10px 12px",
                 borderRadius: 0,
                 clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
-                background: "rgba(31,31,24," + (0.18 + (oo * 0.42)).toFixed(3) + ")",
-                border: "1px solid rgba(245,245,232,0.12)",
-                boxShadow: "0 0 0 1px rgba(245,245,232,0.08), 0 14px 30px rgba(0,0,0,0.26)",
+                background: "rgba(245,245,232," + (0.62 + (oo * 0.22)).toFixed(3) + ")",
+                border: "1px solid rgba(31,31,24,0.14)",
+                boxShadow: "0 0 0 1px rgba(31,31,24,0.07), 0 14px 30px rgba(0,0,0,0.16)",
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
                 opacity: (heroUiHide ? 0 : (small(extra) * (0.14 + (oo * 0.62)))),
@@ -2701,8 +2701,8 @@ popupRef.current = null;
                 lineHeight: "22px",
                 fontWeight: 420,
                 letterSpacing: ".02em",
-                color: "rgba(245,245,232,0.92)",
-                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+                color: "rgba(31,31,24,0.92)",
+                textShadow: "0 1px 0 rgba(255,255,255,0.35)"
               });
 
               const sub = {
@@ -2711,8 +2711,8 @@ popupRef.current = null;
                 lineHeight: "22px",
                 fontWeight: 420,
                 letterSpacing: ".02em",
-                color: "rgba(245,245,232,0.92)",
-                textShadow: "0 1px 0 rgba(0,0,0,0.22)"
+                color: "rgba(31,31,24,0.92)",
+                textShadow: "0 1px 0 rgba(255,255,255,0.35)"
               };
 
               return (
@@ -2728,7 +2728,7 @@ popupRef.current = null;
                     <div className="relative" aria-hidden={oo < 0.02} style={baseWrap(t2, true)} onClick={(e)=>{ try{ e.preventDefault(); e.stopPropagation(); }catch{} try{ window.location.href = "tel:" + String(phoneRaw).replace(/[^0-9+]/g,""); }catch{} }}>
                       <div style={{display:"flex",alignItems:"center",gap:8}}>
                         <div style={{...sub}}>{phoneRaw}</div>
-                        <div style={{padding:"2px 8px",borderRadius:999,border:"1px solid rgba(245,245,232,0.45)",fontSize:12,lineHeight:"16px",color:"rgba(245,245,232,0.92)",boxShadow:"0 1px 6px rgba(0,0,0,0.25)",opacity:0.9}}>→</div>
+                        <div style={{padding:"2px 8px",borderRadius:999,border:"1px solid rgba(31,31,24,0.26)",fontSize:12,lineHeight:"16px",color:"rgba(31,31,24,0.92)",boxShadow:"0 1px 6px rgba(0,0,0,0.25)",opacity:0.9}}>→</div>
                       </div>
                     </div>
                   ) : null}
@@ -2756,10 +2756,10 @@ popupRef.current = null;
   <div style={{
     padding:"2px 8px",
     borderRadius:999,
-    border:"1px solid rgba(245,245,232,0.45)",
+    border:"1px solid rgba(31,31,24,0.26)",
     fontSize:12,
     lineHeight:"16px",
-    color:"rgba(245,245,232,0.92)",
+    color:"rgba(31,31,24,0.92)",
     boxShadow:"0 1px 6px rgba(0,0,0,0.25)",
     opacity:0.9
   }}>→</div>
@@ -2778,10 +2778,10 @@ popupRef.current = null;
   <div style={{
     padding:"2px 8px",
     borderRadius:999,
-    border:"1px solid rgba(245,245,232,0.45)",
+    border:"1px solid rgba(31,31,24,0.26)",
     fontSize:12,
     lineHeight:"16px",
-    color:"rgba(245,245,232,0.92)",
+    color:"rgba(31,31,24,0.92)",
     boxShadow:"0 1px 6px rgba(0,0,0,0.25)",
     opacity:0.9
   }}>→</div>
