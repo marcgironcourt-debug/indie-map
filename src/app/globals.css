@@ -354,5 +354,8 @@ main {
 .im-chip:active{transform:translateY(1px);}
 .im-chip-idle{box-shadow:none;}
 .im-chip-active{box-shadow:0 1px 0 rgba(0,0,0,.22),0 0 0 1px rgba(245,245,232,.10) inset;}
-.im-chip:hover{filter:saturate(1.05);}
+.im-chip:hover{filter:saturate(1.05) drop-shadow(0 0 6px rgba(114,138,74,.35)) drop-shadow(0 0 1px rgba(245,245,232,.18));}
+.im-chip-idle:hover{filter:saturate(1.05) drop-shadow(0 0 7px rgba(114,138,74,.28)) drop-shadow(0 0 1px rgba(245,245,232,.14));}
+.im-chip-active{filter:drop-shadow(0 0 9px rgba(114,138,74,.45)) drop-shadow(0 0 2px rgba(245,245,232,.18));}
+
 /* Hide category filters during panorama */
