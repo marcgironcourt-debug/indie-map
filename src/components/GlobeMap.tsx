@@ -2587,9 +2587,10 @@ popupRef.current = null;
                     right: 10,
                     top: 120,
                     width: 320,
-                    padding: "10px 6px",
-                    borderRadius: 18,
-                    background: ("rgba(31,31,24," + (0.28 + (oo * 0.58)).toFixed(3) + ")"),
+                    padding: "12px 10px",
+                    borderRadius: 0,
+                    clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
+                    background: ("rgba(31,31,24," + (0.34 + (oo * 0.56)).toFixed(3) + ")"),
                     border: "1px solid rgba(245,245,232,0.14)",
                     boxShadow: "0 0 0 1px rgba(245,245,232,0.10), 0 14px 32px rgba(0,0,0,0.30)",
                     backdropFilter: "blur(10px)",
@@ -2672,9 +2673,10 @@ popupRef.current = null;
 
                             const baseWrap = (extra: any, clickable: any) => ({
 
-                padding: "10px 10px",
-                borderRadius: 18,
-                background: "rgba(31,31,24," + (0.12 + (oo * 0.32)).toFixed(3) + ")",
+                padding: "10px 12px",
+                borderRadius: 0,
+                clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
+                background: "rgba(31,31,24," + (0.18 + (oo * 0.42)).toFixed(3) + ")",
                 border: "1px solid rgba(245,245,232,0.12)",
                 boxShadow: "0 0 0 1px rgba(245,245,232,0.08), 0 14px 30px rgba(0,0,0,0.26)",
                 backdropFilter: "blur(10px)",
