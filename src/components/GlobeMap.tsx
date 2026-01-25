@@ -655,10 +655,10 @@ const heroOverlay = heroUrl
   const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
   const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
 
-  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
+  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:10px 4px 10px 4px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
 
   return (
-    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:14px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
+    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -669,7 +669,7 @@ const heroOverlay = heroUrl
       "</div>" +
       "<div style=\"margin-top:10px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
-      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:2px 10px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:600;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir →</button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:3px 10px;border-radius:10px 4px 10px 4px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:600;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir →</button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -1886,12 +1886,11 @@ class GeolocateControl_ML {
     c.innerHTML = `
       <button type="button" aria-label="Me localiser"
         style="
-          height:33px;width:33px;border-radius:9999px;
-          background:#5C6E3B;border:0;
+          height:33px;width:33px;border-radius:10px 4px 10px 4px;
+          background:#5C6E3B;border:1px solid rgba(245,245,232,.18);
           display:flex;align-items:center;justify-content:center;
-          box-shadow:0 8px 20px rgba(0,0,0,.25);
-            filter: drop-shadow(0 0 4px rgba(114,138,74,.45)) drop-shadow(0 0 1px rgba(114,138,74,.55));
-            cursor:pointer;
+          box-shadow:0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12);
+          cursor:pointer;
         ">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="transform: translate(-1px, -0.5px);"
           stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">

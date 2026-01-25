@@ -147,26 +147,26 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
   if (key.includes("café") || key.includes("cafe")) {
     return active
-      ? "bg-[hsl(var(--cafe))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60 shadow-sm";
+      ? "bg-[hsl(var(--cafe))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60";
   }
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
-      ? "bg-[hsl(var(--leaf))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60 shadow-sm";
+      ? "bg-[hsl(var(--leaf))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60";
   }
 
   if (key.includes("boutique")) {
     return active
-      ? "bg-black text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-black border border-black/60 shadow-sm";
+      ? "bg-black text-white"
+      : "bg-[#5C6E3B]/70 text-black border border-black/60";
   }
 
   if (key.includes("boulangerie")) {
     return active
-      ? "bg-[#8C5A3C] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[#8C5A3C] border border-[#8C5A3C]/60 shadow-sm";
+      ? "bg-[#8C5A3C] text-white"
+      : "bg-[#5C6E3B]/70 text-[#8C5A3C] border border-[#8C5A3C]/60";
   }
 
   if (
@@ -177,14 +177,14 @@ function getCategoryStyle(cat: string, active: boolean): string {
     key.includes("vetement")
   ) {
     return active
-      ? "bg-[hsl(var(--violet))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60 shadow-sm";
+      ? "bg-[hsl(var(--violet))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--violet))] border border-[hsl(var(--violet))]/60";
   }
 
   if (key.includes("restaurant")) {
     return active
-      ? "bg-[hsl(var(--restaurant))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60 shadow-sm";
+      ? "bg-[hsl(var(--restaurant))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--restaurant))] border border-[hsl(var(--restaurant))]/60";
   }
 
   if (
@@ -194,25 +194,25 @@ function getCategoryStyle(cat: string, active: boolean): string {
     key.includes("pub")
   ) {
     return active
-      ? "bg-[hsl(var(--micro))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60 shadow-sm";
+      ? "bg-[hsl(var(--micro))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--micro))] border border-[hsl(var(--micro))]/60";
   }
 
   if (key.includes("librairie") || key.includes("bouquinerie")) {
     return active
-      ? "bg-[hsl(var(--blue))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60 shadow-sm";
+      ? "bg-[hsl(var(--blue))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--blue))] border border-[hsl(var(--blue))]/60";
   }
 
   if (key.includes("monument") || key.includes("poi")) {
     return active
-      ? "bg-[hsl(var(--poi))] text-white shadow-md"
-      : "bg-[#5C6E3B]/70 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60 shadow-sm";
+      ? "bg-[hsl(var(--poi))] text-white"
+      : "bg-[#5C6E3B]/70 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60";
   }
 
   return active
-    ? "bg-[hsl(var(--brand))] text-white shadow-md"
-    : "bg-[#5C6E3B]/70 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60 shadow-sm";
+    ? "bg-[hsl(var(--brand))] text-white"
+    : "bg-[#5C6E3B]/70 text-[hsl(var(--brand))] border border-[hsl(var(--brand))]/60";
 }
 
 function FilterPill({
@@ -230,8 +230,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={
-        "rounded-full px-3 py-1 text-[11px] font-medium transition indie-halo " +
-        styleClasses
+        "im-chip px-3 py-1 text-[11px] font-medium transition " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
       }
     >
       {label}
@@ -398,7 +397,7 @@ function MobileBottomSheet({
                   rel="noopener noreferrer"
                   className={
                     isPremium
-                      ? "inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1 text-[11px] font-semibold text-black shadow-sm hover:bg-[#5C6E3B] transition"
+                      ? "inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1 text-[11px] font-semibold text-black hover:bg-[#5C6E3B] transition"
                       : "inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800 transition"
                   }
                 >
@@ -762,7 +761,7 @@ React.useEffect(() => {
             (darkMap
               ? "bg-[#5C6E3B] text-white border border-white/20"
               : "bg-[#5C6E3B]/70/95 text-white border border-white/20") +
-            " rounded-full px-4 py-1 shadow-md flex items-center gap-6 text-xs font-medium"
+            " rounded-full px-4 py-1 flex items-center gap-6 text-xs font-medium"
           }
         >
           <Link href="/a-propos" className="flex items-center gap-1 hover:opacity-80">

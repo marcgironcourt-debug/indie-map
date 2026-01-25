@@ -349,4 +349,10 @@ main {
 }
 
 
+
+.im-chip{appearance:none;-webkit-appearance:none;border-radius:10px 4px 10px 4px;line-height:1;position:relative;transform:translateZ(0);}
+.im-chip:active{transform:translateY(1px);}
+.im-chip-idle{box-shadow:none;}
+.im-chip-active{box-shadow:0 1px 0 rgba(0,0,0,.22),0 0 0 1px rgba(245,245,232,.10) inset;}
+.im-chip:hover{filter:saturate(1.05);}
 /* Hide category filters during panorama */
