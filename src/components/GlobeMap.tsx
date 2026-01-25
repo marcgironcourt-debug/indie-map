@@ -942,6 +942,52 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   }, [discoverHeroOpen, discoverHeroPan]);
   const heroPanRef = React.useRef<number>(0.5);
   const heroDragRef = React.useRef<any>(null);
+  const heroPointerDown = (e: any) => {
+    try {
+      const x0 = Number(e?.clientX || 0);
+      const p0 = Number(heroPanRef.current ?? 0.5);
+      heroDragRef.current = { active: true, lastX: x0, pan: p0, pid: Number(e?.pointerId ?? -1), moved: false } as any;
+      try { if (e?.currentTarget?.setPointerCapture) e.currentTarget.setPointerCapture(Number(e?.pointerId ?? -1)); } catch {}
+    } catch {}
+  };
+  const heroPointerMove = (e: any) => {
+    try {
+      const st: any = heroDragRef.current as any;
+      if (!st || !st.active) return;
+      const pid = Number(e?.pointerId ?? -1);
+      if (Number.isFinite(st.pid) && st.pid !== -1 && pid !== -1 && pid !== st.pid) return;
+      const x = Number(e?.clientX || 0);
+      const lastX = Number(st.lastX ?? x);
+      const dx = x - lastX;
+      st.lastX = x;
+      if (!st.moved && Math.abs(dx) > 1.5) {
+        st.moved = true;
+        try { heroHadMoveRef.current = true; } catch {}
+        try { setHeroHintOff(true); } catch {}
+        try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
+        heroHintTimerRef.current = null;
+        try { if (heroHintRafRef.current != null) cancelAnimationFrame(heroHintRafRef.current); } catch {}
+        heroHintRafRef.current = null;
+      }
+      if (!st.moved) return;
+      try { e.preventDefault(); e.stopPropagation(); } catch {}
+      const w = Number((typeof window !== "undefined" ? window.innerWidth : 1) || 1);
+      const curPan = Number(st.pan ?? heroPanRef.current ?? 0.5);
+      const next = Math.max(0, Math.min(1, curPan - (dx / w)));
+      st.pan = next;
+      try { heroPanRef.current = next; } catch {}
+      try { setDiscoverHeroPan(next); } catch {}
+    } catch {}
+  };
+  const heroPointerUp = (e: any) => {
+    try {
+      const st: any = heroDragRef.current as any;
+      const pid = Number(e?.pointerId ?? -1);
+      if (st && st.pid != null && st.pid !== -1 && pid !== -1 && pid !== st.pid) return;
+      try { if (e?.currentTarget?.releasePointerCapture) e.currentTarget.releasePointerCapture(Number(e?.pointerId ?? -1)); } catch {}
+    } catch {}
+    try { heroDragRef.current = null; } catch {}
+  };
   const heroHadMoveRef = React.useRef(false);
   const heroHintRafRef = React.useRef<number | null>(null);
   const heroHintTimerRef = React.useRef<any>(null);
@@ -2310,8 +2356,18 @@ mapRef.current = map;
           <div
             className="absolute inset-0 pointer-events-auto"
             style={{ background: "rgba(0,0,0,0.00)", touchAction: "none", cursor: "grab" }}
+            onPointerDown={heroPointerDown}
+            onPointerMove={heroPointerMove}
+            onPointerUp={heroPointerUp}
+            onPointerCancel={heroPointerUp}
             onMouseDown={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
+              heroHintTimerRef.current = null;
+              try { if (heroHintRafRef.current != null) cancelAnimationFrame(heroHintRafRef.current); } catch {}
+              heroHintRafRef.current = null;
+              try { heroHadMoveRef.current = true; } catch {}
+              try { setHeroHintOff(true); } catch {}
               try {
                 const x0 = Number((e as any)?.clientX || 0);
                 const p0 = Number(heroPanRef.current ?? 0.5);
@@ -2347,6 +2403,12 @@ mapRef.current = map;
             }}
             onTouchStart={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
+              try { if (heroHintTimerRef.current) clearTimeout(heroHintTimerRef.current); } catch {}
+              heroHintTimerRef.current = null;
+              try { if (heroHintRafRef.current != null) cancelAnimationFrame(heroHintRafRef.current); } catch {}
+              heroHintRafRef.current = null;
+              try { heroHadMoveRef.current = true; } catch {}
+              try { setHeroHintOff(true); } catch {}
               try {
                 const t = (e as any)?.touches?.[0];
                 const x0 = Number(t?.clientX || 0);
@@ -2547,16 +2609,15 @@ popupRef.current = null;
             style={{
               width: 34,
               height: 34,
-              borderRadius: 999,
+              borderRadius: 0,
+              clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgba(0,0,0,0.30)",
-              border: "1px solid rgba(255,255,255,0.26)",
+              background: "rgba(245,245,232,0.90)",
+              border: "1px solid rgba(31,31,24,0.22)",
               color: "rgba(31,31,24,0.92)",
-              boxShadow: "0 10px 22px rgba(0,0,0,0.28)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
+              boxShadow: "0 0 0 1px rgba(31,31,24,0.07), 0 12px 22px rgba(0,0,0,0.14)",
               cursor: "pointer"
             }}
           >
@@ -2716,7 +2777,7 @@ popupRef.current = null;
               };
 
               return (
-                <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={stackWrap}>
+                <div className="absolute z-[70]" aria-hidden={oo < 0.02} style={stackWrap} onPointerDown={heroPointerDown} onPointerMove={heroPointerMove} onPointerUp={heroPointerUp} onPointerCancel={heroPointerUp}>
                   {openInfo ? (
                     <div className="relative pointer-events-none" aria-hidden={oo < 0.02} style={baseWrap(t1, false)}>
                       <div style={{...title(openInfo.color)}}></div>
