@@ -1717,22 +1717,39 @@ popupRef.current = null;
             } catch {}
             
             try {
-              const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+                            const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
               const opening = String(((props as any)?.openingHours ?? "")).trim();
+                      const setHoursActive = (on: boolean) => {
+                        try {
+                          if (on) {
+                            (hb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                            (hb as any).style.background = "rgba(114,138,74,.20)";
+                            (hb as any).style.borderColor = "rgba(114,138,74,.70)";
+                          } else {
+                            (hb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                            (hb as any).style.background = "rgba(0,0,0,0.14)";
+                            (hb as any).style.borderColor = "rgba(255,255,255,0.30)";
+                          }
+                        } catch {}
+                      };
+
               if (hb) {
                 hb.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                   try {
                     let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                     if (!opening) {
-                      if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
-                      return;
-                    }
+                              if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                              try { setHoursActive(false); } catch {}
+                              return;
+                            }
                     if (panel) {
-                      const cur = String((panel as HTMLElement).style.display || "");
-                      (panel as HTMLElement).style.display = (cur === "none") ? "block" : "none";
-                      return;
-                    }
+                              const cur = String((panel as HTMLElement).style.display || "");
+                              const showing = (cur === "none");
+                              (panel as HTMLElement).style.display = showing ? "block" : "none";
+                              try { setHoursActive(showing); } catch {}
+                              return;
+                            }
                     panel = document.createElement("div");
                     panel.setAttribute("data-hours-panel","1");
                     panel.style.marginTop = "8px";
@@ -1756,7 +1773,8 @@ popupRef.current = null;
                       panel.appendChild(d);
                     }
                     el.appendChild(panel);
-                  } catch {}
+                            try { setHoursActive(true); } catch {}
+                            } catch {}
                 });
               }
             } catch {}
@@ -2599,8 +2617,22 @@ mapRef.current = map;
                     } catch {}
 
                     try {
-                      const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+                                            const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
                       const opening = String(((st as any)?.props?.openingHours ?? "")).trim();
+                      const setHoursActive = (on: boolean) => {
+                        try {
+                          if (on) {
+                            (hb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                            (hb as any).style.background = "rgba(114,138,74,.20)";
+                            (hb as any).style.borderColor = "rgba(114,138,74,.70)";
+                          } else {
+                            (hb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                            (hb as any).style.background = "rgba(0,0,0,0.14)";
+                            (hb as any).style.borderColor = "rgba(255,255,255,0.30)";
+                          }
+                        } catch {}
+                      };
+
                       if (hb) {
                         hb.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
@@ -2608,11 +2640,14 @@ mapRef.current = map;
                             let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                             if (!opening) {
                               if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                              try { setHoursActive(false); } catch {}
                               return;
                             }
                             if (panel) {
                               const cur = String((panel as HTMLElement).style.display || "");
-                              (panel as HTMLElement).style.display = (cur === "none") ? "block" : "none";
+                              const showing = (cur === "none");
+                              (panel as HTMLElement).style.display = showing ? "block" : "none";
+                              try { setHoursActive(showing); } catch {}
                               return;
                             }
                             panel = document.createElement("div");
@@ -2638,7 +2673,8 @@ mapRef.current = map;
                               panel.appendChild(d);
                             }
                             el.appendChild(panel);
-                          } catch {}
+                            try { setHoursActive(true); } catch {}
+                            } catch {}
                         });
                       }
                     } catch {}
