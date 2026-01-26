@@ -2519,6 +2519,51 @@ popupRef.current = null;
                       }
                     } catch {}
                     try {
+                      const hb = el.querySelector("[data-hours=\"1\"]");
+                      const opening = String((st as any)?.props?.openingHours ?? "").trim();
+                      if (hb) {
+                        hb.addEventListener("click", (ev) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                          try {
+                            let panel = el.querySelector("[data-hours-panel=\"1\"]");
+                            if (!opening) {
+                              if (panel && (panel as any).parentNode) (panel as any).parentNode.removeChild(panel as any);
+                              return;
+                            }
+                            if (panel) {
+                              const cur = String((panel as any).style.display || "");
+                              (panel as any).style.display = (cur === "none") ? "block" : "none";
+                              return;
+                            }
+                            panel = document.createElement("div");
+                            panel.setAttribute("data-hours-panel","1");
+                            panel.style.marginTop = "8px";
+                            panel.style.maxWidth = "260px";
+                            panel.style.padding = "10px 10px";
+                            panel.style.background = "rgba(31,31,24,0.78)";
+                            panel.style.border = "1px solid rgba(245,245,232,.14)";
+                            panel.style.borderRadius = "16px 6px 16px 6px";
+                            panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                            panel.style.backdropFilter = "blur(10px)";
+                            panel.style.webkitBackdropFilter = "blur(10px)";
+                            panel.style.color = "rgba(245,245,232,.92)";
+                            panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                            panel.style.fontSize = "12px";
+                            panel.style.lineHeight = "18px";
+                            panel.style.letterSpacing = ".02em";
+                            const parts = opening.split("\n").map(x => String(x||"").trim()).filter(Boolean);
+                            for (const l of parts) {
+                              const d = document.createElement("div");
+                              d.textContent = l;
+                              panel.appendChild(d);
+                            }
+                            el.appendChild(panel);
+                          } catch (e) {}
+                        });
+                      }
+                    } catch {}
+                    } catch {}
+                    try {
                       const db = el.querySelector("[data-discover=\"1\"]");
                       if (db) {
                         db.addEventListener("click", (ev) => {
@@ -2595,10 +2640,11 @@ popupRef.current = null;
                         });
                       }
                     } catch {}
-                    popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
-                      .setLngLat([Number(st.lng), Number(st.lat)])
-                      .addTo(map);
-                  } catch {}
+                    try {
+                      popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
+                        .setLngLat([Number(st.lng), Number(st.lat)])
+                        .addTo(map);
+                    } catch {}
                 }, 260);
               } catch {}
               try {
