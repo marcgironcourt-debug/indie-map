@@ -2449,9 +2449,27 @@ mapRef.current = map;
             type="button"
             aria-label="Fermer"
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
-            style={{ opacity: heroUiHide ? 0 : 1, pointerEvents: (heroUiHide ? "none" : "auto") as any, transition: "opacity 220ms ease" }}
+            style={{
+              width: 34,
+              height: 34,
+              borderRadius: 0,
+              clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "rgba(245,245,232,0.90)",
+              border: "1px solid rgba(31,31,24,0.22)",
+              color: "rgba(31,31,24,0.92)",
+              boxShadow: "0 0 0 1px rgba(31,31,24,0.07), 0 12px 22px rgba(0,0,0,0.14)",
+              cursor: "pointer",
+              opacity: heroUiHide ? 0 : 1,
+              pointerEvents: (heroUiHide ? "none" : "auto") as any,
+              transition: "opacity 220ms ease"
+            }}
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
+              let stClose = null;
+              try { stClose = heroReturnPopupRef.current; } catch {}
               try { const t = (e as any)?.currentTarget as any; if (t && t.style) { t.style.opacity = "0"; t.style.pointerEvents = "none"; } } catch {}
               try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: false } })); } catch {}
               try { setHeroUiHide(true); } catch {}
@@ -2466,13 +2484,16 @@ mapRef.current = map;
                   map.easeTo({ center: cam.center as any, zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1250, essential: true } as any);
                 }
               } catch {}
+
               try {
                 setTimeout(() => {
                   try {
                     const map = mapRef.current;
-                    const st = heroReturnPopupRef.current;
+                    const st = (stClose as any) || heroReturnPopupRef.current;
                     if (!map || !st) return;
+
                     try { (ref.current as any)?.classList?.add("im-globe-dim"); } catch {}
+
                     try {
                       const sid = String((st as any)?.props?.id ?? (st as any)?.fid ?? "");
                       for (const feat of fcRef.current.features) {
@@ -2482,57 +2503,70 @@ mapRef.current = map;
                       const src = getSource(map);
                       if (src) src.setData(fcRef.current);
                     } catch {}
+
                     try { if (popupRef.current) popupRef.current.remove(); } catch {}
-           try {
-             const selEl = document.createElement("div");
-             selEl.style.pointerEvents = "none";
-             selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
-             selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
-             selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
-               .setLngLat([Number(st.lng), Number(st.lat)])
-               .addTo(map);
-           } catch {}
+                    try {
+                      const selEl = document.createElement("div");
+                      selEl.style.pointerEvents = "none";
+                      selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
+                      selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
+                      try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+                      selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
+                        .setLngLat([Number((st as any).lng), Number((st as any).lat)])
+                        .addTo(map);
+                    } catch {}
                     popupRef.current = null;
+
                     let walkMins = null;
                     try {
                       const up = lastUserPosRef.current;
                       if (up && Number.isFinite(up.lng) && Number.isFinite(up.lat)) {
-                        const meters = haversineMeters(Number(up.lat), Number(up.lng), Number(st.lat), Number(st.lng));
+                        const meters = haversineMeters(Number(up.lat), Number(up.lng), Number((st as any).lat), Number((st as any).lng));
                         if (Number.isFinite(meters)) walkMins = meters / 83.3333333333;
                       }
                     } catch {}
-                    const html = buildMiniPinPopupHtml(st.props, Boolean(darkMapRef.current), walkMins);
+
+                    const html = buildMiniPinPopupHtml((st as any).props, Boolean(darkMapRef.current), walkMins);
                     const el = document.createElement("div");
                     el.style.pointerEvents = "auto";
                     el.innerHTML = html;
+
                     try {
-                      const btn = el.querySelector("[data-mini-close=\"1\"]");
+                      const btn = el.querySelector("[data-mini-close=\"1\"]") as HTMLElement | null;
                       if (btn) {
-                        btn.addEventListener("click", (ev) => {
-                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
-                          try { popupRef.current?.remove(); } catch (e) {}
-                                    try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
-                  selectedPinMarkerRef.current = null;
-try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
-popupRef.current = null;
+                        btn.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try { popupRef.current?.remove(); } catch {}
+                          try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+                          selectedPinMarkerRef.current = null;
+                          try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+                          try {
+                            for (const feat of fcRef.current.features) {
+                              try { feat.properties.selected = false; } catch {}
+                            }
+                            const src = getSource(map);
+                            if (src) src.setData(fcRef.current);
+                          } catch {}
+                          popupRef.current = null;
                         });
                       }
                     } catch {}
+
                     try {
-                      const hb = el.querySelector("[data-hours=\"1\"]");
-                      const opening = String((st as any)?.props?.openingHours ?? "").trim();
+                      const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+                      const opening = String(((st as any)?.props?.openingHours ?? "")).trim();
                       if (hb) {
-                        hb.addEventListener("click", (ev) => {
-                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                        hb.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                           try {
-                            let panel = el.querySelector("[data-hours-panel=\"1\"]");
+                            let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                             if (!opening) {
-                              if (panel && (panel as any).parentNode) (panel as any).parentNode.removeChild(panel as any);
+                              if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
                               return;
                             }
                             if (panel) {
-                              const cur = String((panel as any).style.display || "");
-                              (panel as any).style.display = (cur === "none") ? "block" : "none";
+                              const cur = String((panel as HTMLElement).style.display || "");
+                              (panel as HTMLElement).style.display = (cur === "none") ? "block" : "none";
                               return;
                             }
                             panel = document.createElement("div");
@@ -2545,7 +2579,7 @@ popupRef.current = null;
                             panel.style.borderRadius = "16px 6px 16px 6px";
                             panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
                             panel.style.backdropFilter = "blur(10px)";
-                            panel.style.webkitBackdropFilter = "blur(10px)";
+                            (panel.style as any).webkitBackdropFilter = "blur(10px)";
                             panel.style.color = "rgba(245,245,232,.92)";
                             panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
                             panel.style.fontSize = "12px";
@@ -2558,118 +2592,62 @@ popupRef.current = null;
                               panel.appendChild(d);
                             }
                             el.appendChild(panel);
-                          } catch (e) {}
+                          } catch {}
                         });
                       }
                     } catch {}
-                    } catch {}
+
                     try {
-                      const db = el.querySelector("[data-discover=\"1\"]");
+                      const db = el.querySelector("[data-discover=\"1\"]") as HTMLElement | null;
                       if (db) {
-                        db.addEventListener("click", (ev) => {
-                          try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
-                          try { setSheetOpen(false); } catch (e) {}
-                          try { setSheetHtml(""); } catch (e) {}
-                          try {
-                            const map = mapRef.current;
-                            const st2 = heroReturnPopupRef.current;
-                            if (!map || !st2) return;
-                            const lng2 = Number(st2.lng);
-                            const lat2 = Number(st2.lat);
-                            const props2 = (st2 as any).props || {};
-                            const fid2 = (st2 as any).fid ? String((st2 as any).fid) : null;
-                            try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch (e) {}
-                            try { heroReturnPopupRef.current = { lng: Number(lng2), lat: Number(lat2), props: props2, fid: fid2 }; } catch (e) {}
-                            try { setDiscoverPanel(null); } catch (e) {}
-                            try {
-                              const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
-                              map.flyTo({
-                                center: [lng2, lat2],
-                                zoom: maxZ,
-                                speed: 0.62,
-                                curve: 2.35,
-                                easing: (t) => t * t * (3 - 2 * t),
-                                essential: true
-                              });
-                              try {
-                                const pid = String(props2?.id ?? fid2 ?? "");
-                                const pname = String(props2?.name ?? props2?.title ?? "");
-                                let hero = null;
-                                try {
-                                  if (
-                                    pid === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
-                                    String(pname).trim().toLowerCase().includes("textilerie")
-                                  ) hero = String(TEXTILERIE_PANORAMA_IMAGE || "");
-                                } catch {}
-                                try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
-                                try { setDiscoverHeroOpen(false); } catch {}
-                                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
-                                const onEnd = () => {
-                                  try { setDiscoverHeroZoom(false); } catch {}
-                                  try { setDiscoverDoorOpen(false); } catch {}
-                                  try { setHeroUiHide(false); } catch {}
-                                  try { heroPanRef.current = 0.5; } catch {}
-                                  try { setDiscoverHeroPan(0.5); } catch {}
-                                  try { tableauPrevPRef.current = 0.5; } catch {}
-                                  try { heroHadMoveRef.current = false; } catch {}
-                                  try { setHeroHintOff(false); } catch {}
-                                  try { setDiscoverHeroOpen(true); } catch {}
-                                  try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
-                                  try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
-                                  try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 520); } catch {}
-                                };
-                                try { map.once("moveend", onEnd); } catch {}
-                              } catch {}
-                            } catch {}
-                          } catch (e) {}
-                          try { popupRef.current?.remove(); } catch (e) {}
-                          try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch (e) {}
+                        db.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try { setSheetOpen(false); } catch {}
+                          try { setSheetHtml(""); } catch {}
+                          try { popupRef.current?.remove(); } catch {}
+                          try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
                           selectedPinMarkerRef.current = null;
                           try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
                           try {
-                            const map = mapRef.current;
-                            if (map) {
-                              for (const feat of fcRef.current.features) {
-                                try { feat.properties.selected = false; } catch {}
-                              }
-                              const src = getSource(map);
-                              if (src) src.setData(fcRef.current);
-                            }
+                            const map2 = mapRef.current;
+                            const st2 = heroReturnPopupRef.current;
+                            if (!map2 || !st2) return;
+                            const lng2 = Number((st2 as any).lng);
+                            const lat2 = Number((st2 as any).lat);
+                            const props2 = (st2 as any).props || {};
+                            const fid2 = (st2 as any).fid ? String((st2 as any).fid) : null;
+                            try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch {}
+                            try { heroReturnPopupRef.current = { lng: Number(lng2), lat: Number(lat2), props: props2, fid: fid2 }; } catch {}
+                            try { setDiscoverPanel(null); } catch {}
+                            try {
+                              const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
+                              map2.flyTo({ center: [lng2, lat2], zoom: maxZ, speed: 0.62, curve: 2.35, easing: (t) => t * t * (3 - 2 * t), essential: true });
+                            } catch {}
                           } catch {}
                           popupRef.current = null;
                         });
                       }
                     } catch {}
+
                     try {
                       popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
-                        .setLngLat([Number(st.lng), Number(st.lat)])
+                        .setLngLat([Number((st as any).lng), Number((st as any).lat)])
                         .addTo(map);
                     } catch {}
+                  } catch {}
                 }, 260);
               } catch {}
+
               try {
                 setTimeout(() => {
                   try { setDiscoverHeroOpen(false); } catch {}
                   try { setDiscoverHeroUrl(null); } catch {}
+                  try { setHeroUiHide(false); } catch {}
                 }, 920);
               } catch {}
             }}
-            style={{
-              width: 34,
-              height: 34,
-              borderRadius: 0,
-              clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "rgba(245,245,232,0.90)",
-              border: "1px solid rgba(31,31,24,0.22)",
-              color: "rgba(31,31,24,0.92)",
-              boxShadow: "0 0 0 1px rgba(31,31,24,0.07), 0 12px 22px rgba(0,0,0,0.14)",
-              cursor: "pointer"
-            }}
           >
-            <span style={{ display: "inline-block", transform: "translateY(-1px)", fontSize: 18, lineHeight: "18px" }}>×</span>
+            <span style={{ display: "inline-block", transform: "translateY(-1px)" }}>×</span>
           </button>
           <div
             className="absolute inset-0 pointer-events-none"
