@@ -1715,7 +1715,53 @@ popupRef.current = null;
                 });
               }
             } catch {}
-            popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
+            
+            try {
+              const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+              const opening = String(((props as any)?.openingHours ?? "")).trim();
+              if (hb) {
+                hb.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try {
+                    let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
+                    if (!opening) {
+                      if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                      return;
+                    }
+                    if (panel) {
+                      const cur = String((panel as HTMLElement).style.display || "");
+                      (panel as HTMLElement).style.display = (cur === "none") ? "block" : "none";
+                      return;
+                    }
+                    panel = document.createElement("div");
+                    panel.setAttribute("data-hours-panel","1");
+                    panel.style.marginTop = "8px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.padding = "10px 10px";
+                    panel.style.background = "rgba(31,31,24,0.78)";
+                    panel.style.border = "1px solid rgba(245,245,232,.14)";
+                    panel.style.borderRadius = "16px 6px 16px 6px";
+                    panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                    panel.style.backdropFilter = "blur(10px)";
+                    (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                    panel.style.color = "rgba(245,245,232,.92)";
+                    panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                    panel.style.fontSize = "12px";
+                    panel.style.lineHeight = "18px";
+                    panel.style.letterSpacing = ".02em";
+                    const parts = opening.split("\n").map(x => String(x||"").trim()).filter(Boolean);
+                    for (const l of parts) {
+                      const d = document.createElement("div");
+                      d.textContent = l;
+                      panel.appendChild(d);
+                    }
+                    el.appendChild(panel);
+                  } catch {}
+                });
+              }
+            } catch {}
+
+popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
               .setLngLat([lng, lat])
               .addTo(map);
           } catch {}
