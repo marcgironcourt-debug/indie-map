@@ -2609,9 +2609,34 @@ mapRef.current = map;
                     el.innerHTML = html;
 
                     try {
+                      const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+                      if (pb) {
+                        pb.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try {
+                            const dial = String((pb as any).getAttribute("data-tel") || "").trim();
+                            if (!dial) return;
+                            window.location.href = "tel:" + dial;
+                          } catch {}
+                        });
+                      }
+                    } catch {}
+
+                    try {
                       const btn = el.querySelector("[data-mini-close=\"1\"]") as HTMLElement | null;
                       if (btn) {
                         btn.addEventListener("click", (ev: any) => {
+                      const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+                      if (pb) {
+                        pb.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try {
+                            const dial = String((pb as any).getAttribute("data-tel") || "").trim();
+                            if (!dial) return;
+                            window.location.href = "tel:" + dial;
+                          } catch {}
+                        });
+                      }
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                           try { popupRef.current?.remove(); } catch {}
                           try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
