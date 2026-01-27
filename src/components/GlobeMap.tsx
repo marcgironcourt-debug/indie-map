@@ -4,17 +4,7 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-const TEXTILERIE_HERO_IMAGE = "/places/la-textilerie-hero.jpg";
 const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
-const TEXTILERIE_TABLEAU_1_LINES = [
-  "Ici, on ne consomme pas des vêtements.",
-  "On apprend à les comprendre, les réparer, les transformer.",
-  "La Textilerie est un atelier ouvert.",
-  "On y vient pour faire soi-même, accompagné.",
-  "On prend le temps.",
-  "On partage des savoir-faire.",
-] as const;
-
 const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
 
 type Biz = {
@@ -476,19 +466,12 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const metaColor = "rgba(245,245,232,.62)";
   const shadow = "0 0 0 1px rgba(245,245,232,.14), 0 12px 26px rgba(0,0,0,.26), 0 0 28px rgba(245,245,232,.16)";
 
-  const heroUrl = "";
-  const bgCss = heroUrl ? "rgba(31,31,24,0.10)" : bg;
+
+  const bgCss = bg;
+
+
 
   const badgesHtml = "";
-const heroOverlay = heroUrl
-    ? "<div style=\"position:absolute; inset:0; border-radius:14px; background-image:url('" + heroUrl + "'); background-size:cover; background-position:center; opacity:0.18; filter:saturate(2.0) contrast(1.05) brightness(1.18);\" ></div>" +
-      "<div style=\"position:absolute; inset:0; border-radius:14px; background:rgba(0,0,0,0.04);\" ></div>"
-    : "";
-
-  const contentWrapStart = heroUrl
-    ? "<div style=\"position:relative; padding:6px 8px; border-radius:10px; background:rgba(0,0,0,0.22); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);\" >"
-    : "";
-  const contentWrapEnd = heroUrl ? "</div>" : "";
 
 
   const OPEN_COLOR = "#728A4A";
@@ -662,7 +645,7 @@ const heroOverlay = heroUrl
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:24px; height:24px; border-radius:10px 4px 10px 4px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:16px; line-height:24px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
 
   return (
-    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml + "" + heroOverlay + contentWrapStart +
+    "<div style=\"position:relative; max-width:260px; min-height:190px; padding:10px 10px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
@@ -673,7 +656,7 @@ const heroOverlay = heroUrl
       "</div>" +
       "<div style=\"margin-top:10px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
-      "</div>" + contentWrapEnd + "<div style=\"margin-top:10px; display:flex; align-items:center; gap:8px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:3px 10px;border-radius:10px 4px 10px 4px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:600;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir →</button>" + "<button data-hours=\"1\" aria-label=\"Horaires\" title=\"Horaires\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\"\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.4a7.6 7.6 0 1 1 0 15.2a7.6 7.6 0 1 1 0-15.2'/><path d='M12.2 6.8v5.1'/><path d='M12.2 11.9l3.3 1.6'/></svg></button><button data-phone=\"1\" data-tel=\"" + (phoneDial || "") + "\" aria-label=\"Téléphone\" title=\"Téléphone\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M8.2 4.8c.9-.7 2.1-.4 2.9.6l.6.8c.7.9.7 2-.1 2.8l-1 1c-.4.4-.5 1-.2 1.5l2.7 4.1c.3.5.9.7 1.4.4l1.2-.7c1-.6 2.2-.3 2.9.6l.6.8c.7.9.5 2.2-.4 2.9l-.8.6c-1.2.9-2.8 1-4.1.2c-2.1-1.2-4.1-3.3-5.8-5.8c-1.7-2.6-2.6-5-2.7-7.4c0-1.5.7-2.9 1.9-3.8z'/><path d='M8.7 5.2c.7-.5 1.6-.2 2.2.6l.5.7c.5.7.5 1.6-.1 2.2l-1 1c-.6.6-.7 1.5-.2 2.2l2.7 4.1c.5.7 1.4 1 2.2.5l1.2-.7c.8-.5 1.7-.3 2.2.5l.5.7c.5.7.4 1.7-.3 2.2'/></svg></button><button data-addr=\"1\" aria-label=\"Adresse\" title=\"Adresse\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.5v15'/><path d='M12 6.5h6l-2.4-2.2'/><path d='M18 6.5l-2.4 2.2'/><path d='M12 10.5h-6l2.4-2.2'/><path d='M6 10.5l2.4 2.2'/></svg></button><button data-site=\"1\" aria-label=\"Site web\" title=\"Site web\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M3.2 12l8.8-8.8l8.8 8.8'/><path d='M6 11v8h12v-8'/><path d='M10 19v-4h4v4'/></svg></button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      "</div>" + "<div style=\"margin-top:10px; display:flex; align-items:center; gap:8px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:3px 10px;border-radius:10px 4px 10px 4px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:600;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Découvrir →</button>" + "<button data-hours=\"1\" aria-label=\"Horaires\" title=\"Horaires\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\"\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.4a7.6 7.6 0 1 1 0 15.2a7.6 7.6 0 1 1 0-15.2'/><path d='M12.2 6.8v5.1'/><path d='M12.2 11.9l3.3 1.6'/></svg></button><button data-phone=\"1\" data-tel=\"" + (phoneDial || "") + "\" aria-label=\"Téléphone\" title=\"Téléphone\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M8.2 4.8c.9-.7 2.1-.4 2.9.6l.6.8c.7.9.7 2-.1 2.8l-1 1c-.4.4-.5 1-.2 1.5l2.7 4.1c.3.5.9.7 1.4.4l1.2-.7c1-.6 2.2-.3 2.9.6l.6.8c.7.9.5 2.2-.4 2.9l-.8.6c-1.2.9-2.8 1-4.1.2c-2.1-1.2-4.1-3.3-5.8-5.8c-1.7-2.6-2.6-5-2.7-7.4c0-1.5.7-2.9 1.9-3.8z'/><path d='M8.7 5.2c.7-.5 1.6-.2 2.2.6l.5.7c.5.7.5 1.6-.1 2.2l-1 1c-.6.6-.7 1.5-.2 2.2l2.7 4.1c.5.7 1.4 1 2.2.5l1.2-.7c.8-.5 1.7-.3 2.2.5l.5.7c.5.7.4 1.7-.3 2.2'/></svg></button><button data-addr=\"1\" aria-label=\"Adresse\" title=\"Adresse\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.5v15'/><path d='M12 6.5h6l-2.4-2.2'/><path d='M18 6.5l-2.4 2.2'/><path d='M12 10.5h-6l2.4-2.2'/><path d='M6 10.5l2.4 2.2'/></svg></button><button data-site=\"1\" aria-label=\"Site web\" title=\"Site web\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:26px;height:26px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" ><svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M3.2 12l8.8-8.8l8.8 8.8'/><path d='M6 11v8h12v-8'/><path d='M10 19v-4h4v4'/></svg></button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -1130,7 +1113,6 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   const [discoverMeta, setDiscoverMeta] = React.useState<{ id: string; name: string } | null>(null);
   const heroReturnPopupRef = React.useRef<{ lng: number; lat: number; props: any; fid: string | null } | null>(null);
   const heroReturnCamRef = React.useRef<{ center: [number, number]; zoom: number; bearing: number; pitch: number } | null>(null);
-  const isImmersiveSheet = React.useMemo(() => sheetHtml.includes(TEXTILERIE_HERO_IMAGE), [sheetHtml]);
   const [sheetHeightVh, _setSheetHeightVh] = React.useState(25);
   const [sheetDragging, setSheetDragging] = React.useState(false);
   const sheetHeightRef = React.useRef(25);
