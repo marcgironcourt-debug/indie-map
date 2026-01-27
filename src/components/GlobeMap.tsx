@@ -69,41 +69,7 @@ function normalizeType(t?: string | null): Kind {
 
 
 function getCategorySentence(type: string): string {
-  const key = (type || "").toLowerCase();
-
-  if (key.includes("café") || key.includes("cafe") || key.includes("brunch")) {
-    return "Un endroit agréable pour s’arrêter, même quand on n’avait rien prévu.";
-  }
-
-  if (key.includes("épicerie") || key.includes("epicerie")) {
-    return "Un commerce fiable, où l’on sait ce que l’on achète.";
-  }
-
-  if (key.includes("boulangerie")) {
-    return "Une adresse de quartier où l’on revient sans y penser.";
-  }
-
-  if (key.includes("librairie") || key.includes("bouquinerie")) {
-    return "Un lieu calme, propice à la découverte et à la curiosité.";
-  }
-
-  if (key.includes("restaurant")) {
-    return "Une adresse simple, choisie pour manger tranquillement.";
-  }
-
-  if (key.includes("brasserie") || key.includes("bar") || key.includes("pub")) {
-    return "Un lieu convivial, facile, où l’on peut rester plus longtemps que prévu.";
-  }
-
-  if (key.includes("vêtement") || key.includes("vetement") || key.includes("friperie")) {
-    return "Un endroit pour trouver des vêtements sans se sentir pressé d’acheter.";
-  }
-
-  if (key.includes("boutique")) {
-    return "Un commerce indépendant, avec une sélection qui change des grandes enseignes.";
-  }
-
-  return "Un lieu sélectionné pour sa pertinence dans le tissu local.";
+  return "";
 }
 
 if (typeof window !== "undefined") {
