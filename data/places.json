@@ -252,8 +252,9 @@
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:11:57.201Z",
     "timeZone": "America/Toronto",
-    "phone": "",
-    "panoramaImage": "/places/espace-flo-panorama.jpg"
+    "phone": "(514) 379-6160",
+    "panoramaImage": "/places/espace-flo-panorama.jpg",
+    "miniText": "Boutique locale à Montréal qui met en lumière plus de 100 créateurs québécois. On y trouve une sélection de vêtements, bijoux, accessoires, déco et produits faits ici, conçus et fabriqués au Québec. C’est l’endroit idéal pour découvrir et acheter des créations durables, originales et éthiques."
   },
   {
     "id": "cmiae0q6q000h9krfv501b91o",
