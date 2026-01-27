@@ -12,7 +12,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:22:04.885Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00019krf7u62iayb",
@@ -27,7 +28,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:26:22.017Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00029krffz2oa9rb",
@@ -42,7 +44,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:24:21.971Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00039krfhpa5gugd",
@@ -57,7 +60,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:27:20.599Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00049krfr7fkeo9q",
@@ -72,7 +76,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:31:16.815Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00059krfrt785krc",
@@ -87,7 +92,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:30:00.551Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00069krfchmxy0kl",
@@ -102,7 +108,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:28:30.252Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00079krfbmfilyzg",
@@ -117,7 +124,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:31:49.718Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00089krfpw5fwgqr",
@@ -132,7 +140,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:29:29.368Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p00099krfky88gv7n",
@@ -147,7 +156,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.719Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p000a9krf03yej077",
@@ -162,7 +172,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.719Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p000b9krfcp854yrv",
@@ -177,7 +188,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.715Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p000c9krf009kx4qk",
@@ -192,7 +204,8 @@
     "category": "Librairie & bouquinerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:58:03.421Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6p000d9krfjtto6bdn",
@@ -207,7 +220,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:43:16.455Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000e9krfypgs7l2p",
@@ -222,7 +236,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:39:17.879Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000f9krfk8iso7te",
@@ -237,7 +252,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:11:57.201Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000h9krfv501b91o",
@@ -252,7 +268,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:50:24.766Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000i9krf565vd7zb",
@@ -267,7 +284,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:47:10.621Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000j9krfw3t67wnq",
@@ -282,7 +300,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.720Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000k9krfiengxigy",
@@ -297,7 +316,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:49:11.569Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000l9krfs1d5021v",
@@ -312,7 +332,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:19:11.901Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000m9krfzplt8e84",
@@ -327,7 +348,8 @@
     "category": "Épicerie locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:33:59.665Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000n9krfhk6pasri",
@@ -342,7 +364,8 @@
     "category": "Librairie & bouquinerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:06:28.851Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000p9krf9p9vq1mm",
@@ -357,7 +380,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.720Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000q9krfj5s4bxpt",
@@ -372,7 +396,8 @@
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:04:22.479Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000r9krffi0dbbag",
@@ -387,7 +412,8 @@
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:01:05.709Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000s9krfrx86qhm9",
@@ -402,7 +428,8 @@
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:02:44.396Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000t9krfei1reig1",
@@ -417,7 +444,8 @@
     "category": "Restaurant locavore",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:59:30.308Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000u9krfk5qkyp82",
@@ -432,7 +460,8 @@
     "category": "Restaurant locavore abordable",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:03:06.326Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000v9krfsr2obp3i",
@@ -447,7 +476,8 @@
     "category": "Bistro terroir et local",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000w9krfw3ot5wb6",
@@ -462,7 +492,8 @@
     "category": "Cuisine du marché",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:00:19.538Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000x9krf685qpmfx",
@@ -477,7 +508,8 @@
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:10:48.871Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000y9krfwxzap6xl",
@@ -492,7 +524,8 @@
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:06:37.512Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q000z9krfmbp2lmig",
@@ -507,7 +540,8 @@
     "category": "Boulangerie artisanale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:07:51.361Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00119krfl0snjiah",
@@ -522,7 +556,8 @@
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00129krfhghyvr7x",
@@ -537,7 +572,8 @@
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:52:06.630Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00139krfnjy9vqko",
@@ -552,7 +588,8 @@
     "category": "Épicerie zéro déchet",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:17:06.417Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00149krf9r6z279s",
@@ -567,7 +604,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:48:06.400Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00159krfkxfpzlt1",
@@ -582,7 +620,8 @@
     "category": "Librairie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:58:30.003Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00169krfgsew8ceg",
@@ -597,7 +636,8 @@
     "category": "Boutique locale",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:49:46.781Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00179krf0tfowbt1",
@@ -612,7 +652,8 @@
     "category": "Vêtements",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T13:32:37.718Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00189krfwwiht39i",
@@ -627,7 +668,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:44:22.544Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q00199krfn37bwtd1",
@@ -642,7 +684,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:44:11.955Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001a9krf1ef176j0",
@@ -657,7 +700,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-23T14:11:31.330Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001b9krfi1qnlrmr",
@@ -672,7 +716,8 @@
     "category": "Boulangerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:06:02.247Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001c9krfssksv65b",
@@ -687,7 +732,8 @@
     "category": "Café",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:38:20.183Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001d9krf7sb1exyi",
@@ -702,7 +748,8 @@
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T23:04:45.263Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": "+15144472717"
   },
   {
     "id": "cmiae0q6q001e9krfxnxxeb3h",
@@ -717,7 +764,8 @@
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001f9krf7mw3alzt",
@@ -732,7 +780,8 @@
     "category": "Microbrasserie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-30T13:06:28.851Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001g9krfglq8ad3s",
@@ -747,7 +796,8 @@
     "category": "Bar & restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:55:51.126Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "cmiae0q6q001h9krfh0cie7fr",
@@ -762,7 +812,8 @@
     "category": "Bar à vin",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:53:09.446Z",
-    "timeZone": "America/Toronto"
+    "timeZone": "America/Toronto",
+    "phone": ""
   },
   {
     "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
@@ -777,6 +828,7 @@
     "category": "Vêtements",
     "createdAt": "2026-01-13T14:02:32.269Z",
     "updatedAt": "2026-01-13T14:26:24.943Z",
-    "timeZone": "Europe/Paris"
+    "timeZone": "Europe/Paris",
+    "phone": "+33140357714"
   }
 ]

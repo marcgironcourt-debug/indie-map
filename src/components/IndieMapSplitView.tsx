@@ -11,6 +11,7 @@ export type Business = {
   address?: string;
   website?: string;
   openingHours?: string;
+  phone?: string;
   lat?: number;
   lng?: number;
   city?: string;
@@ -560,6 +561,7 @@ React.useEffect(() => {
           type: normalizeCategoryLabel(p.category ?? "Lieu local"),
           address: p.address ?? p.city ?? "",
           website: p.website,
+          phone: p.phone ?? "",
           openingHours:
             typeof p.openingHours === "string"
               ? p.openingHours

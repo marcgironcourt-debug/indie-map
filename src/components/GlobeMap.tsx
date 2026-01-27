@@ -23,6 +23,7 @@ type Biz = {
   address?: string | null;
   website?: string | null;
   openingHours?: string | null;
+  phone?: string | null;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
@@ -430,7 +431,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const lower = name.toLowerCase();
   const isTextilerie = id === "98ce3443-2512-4285-9b47-535d2a369cb4" || lower.includes("textilerie");
 
-  const phoneDial = isTextilerie ? "+33140357714" : "";
+  const phoneDial = String((props as any)?.phone ?? (props as any)?.properties?.phone ?? "").trim();
 
   const sentence = isTextilerie
     ? ""
@@ -1881,6 +1882,7 @@ return;
           address: b.address ?? "",
           website: b.website ?? "",
           openingHours: b.openingHours ?? "",
+          phone: (b as any).phone ?? "",
           lat: Number(b.lat),
           lng: Number(b.lng),
           kind,
