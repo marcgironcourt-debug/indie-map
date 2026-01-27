@@ -1657,6 +1657,19 @@ popupRef.current = null;
                   } catch {}
                 });
               }
+              const sb = el.querySelector("[data-site=\"1\"]") as HTMLElement | null;
+              if (sb) {
+                sb.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try {
+                    let url = String((props as any)?.website ?? "").trim();
+                    if (!url) return;
+                    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+                    try { window.open(url, "_blank", "noopener,noreferrer"); }
+                    catch { window.location.href = url; }
+                  } catch {}
+                });
+              }
               const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
               if (ab) {
                 ab.addEventListener("click", (ev: any) => {
@@ -2628,6 +2641,19 @@ mapRef.current = map;
                             const dial = String((pb as any).getAttribute("data-tel") || "").trim();
                             if (!dial) return;
                             window.location.href = "tel:" + dial;
+                          } catch {}
+                        });
+                      }
+                      const sb = el.querySelector("[data-site=\"1\"]") as HTMLElement | null;
+                      if (sb) {
+                        sb.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try {
+                            let url = String(((st as any)?.props?.website ?? "")).trim();
+                            if (!url) return;
+                            if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+                            try { window.open(url, "_blank", "noopener,noreferrer"); }
+                            catch { window.location.href = url; }
                           } catch {}
                         });
                       }
