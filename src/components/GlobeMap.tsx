@@ -1657,6 +1657,17 @@ popupRef.current = null;
                   } catch {}
                 });
               }
+              const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
+              if (ab) {
+                ab.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try {
+                    const dest = encodeURIComponent(String(lat) + "," + String(lng));
+                    const url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
+                    window.location.href = url;
+                  } catch {}
+                });
+              }
               if (db) {
                 db.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
@@ -2617,6 +2628,17 @@ mapRef.current = map;
                             const dial = String((pb as any).getAttribute("data-tel") || "").trim();
                             if (!dial) return;
                             window.location.href = "tel:" + dial;
+                          } catch {}
+                        });
+                      }
+                      const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
+                      if (ab) {
+                        ab.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try {
+                            const dest = encodeURIComponent(String(Number((st as any).lat)) + "," + String(Number((st as any).lng)));
+                            const url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
+                            window.location.href = url;
                           } catch {}
                         });
                       }
