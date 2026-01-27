@@ -1644,6 +1644,17 @@ popupRef.current = null;
             } catch {}
             try {
               const db = el.querySelector("[data-discover=\"1\"]");
+              const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+              if (pb) {
+                pb.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try {
+                    const dial = String((pb as any).getAttribute("data-tel") || "").trim();
+                    if (!dial) return;
+                    window.location.href = "tel:" + dial;
+                  } catch {}
+                });
+              }
               if (db) {
                 db.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
