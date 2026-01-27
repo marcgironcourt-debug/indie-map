@@ -15,6 +15,7 @@ type Biz = {
   openingHours?: string | null;
   phone?: string | null;
   panoramaImage?: string | null;
+  miniText?: string | null;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
@@ -29,14 +30,6 @@ type Kind =
   | "boutique"
   | "microbrasserie"
   | "other";
-
-const BUSINESS_DESCRIPTIONS: Record<string, string> = {
-  "Espace FLO": "Boutique-galerie qui réunit des créateurs locaux, loin du fast fashion, avec des pièces durables et fabriquées au Québec.",
-  "Café Myriade": "Café de spécialité et lieu de rendez-vous chaleureux pour boire un bon café, bruncher et faire une pause en plein centre-ville.",
-  "Automne Boulangerie": "Boulangerie de quartier qui travaille des farines de qualité pour des pains et viennoiseries faits avec soin.",
-  "Sarrasin Boulangerie": "Boulangerie axée sur le sarrasin et les céréales anciennes, avec une approche artisanale et locale.",
-  "Hof Kelsten": "Boulangerie emblématique de Montréal, connue pour ses pains généreux et sa cuisine d’inspiration européenne.",
-};
 
 function normalizeType(t?: string | null): Kind {
   const v = (t || "").toLowerCase();
@@ -424,6 +417,17 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
 
   const phoneDial = String((props as any)?.phone ?? (props as any)?.properties?.phone ?? "").trim();
 
+  const miniTextRaw =
+    (props as any)?.miniText ??
+    (props as any)?.properties?.miniText ??
+    (props as any)?.blurb ??
+    (props as any)?.properties?.blurb ??
+    (props as any)?.description ??
+    (props as any)?.properties?.description ??
+    "";
+  const miniText = String(miniTextRaw || "").trim();
+  const miniTextFinal = miniText || (isTextilerie ? "Lieu hybride où déposer ses textiles, chiner des vêtements, acheter tissus et mercerie de réemploi, boire un café, consulter une bibliothèque textile et apprendre la couture." : "");
+
   const sentence = isTextilerie
     ? ""
     : getCategorySentence(type);
@@ -649,7 +653,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
-      (isTextilerie ? "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:11.5px;line-height:1.4;color:" + textColor + ";opacity:.92;\" >Lieu hybride où déposer ses textiles, chiner des vêtements, acheter tissus et mercerie de réemploi, boire un café, consulter une bibliothèque textile et apprendre la couture.</div>" : "") +
+      (miniTextFinal ? "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:11.5px;line-height:1.4;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" : "") +
        badgesHtml +
        "<div style=\"margin-top:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
          escapeHtml(sentence) +
@@ -718,31 +722,6 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const latRaw = Number(p?.lat);
   const lngRaw = Number(p?.lng);
 
-  const isFlo = nameRaw.trim().toLowerCase() === "espace flo";
-  const isSuper = nameRaw.trim().toLowerCase() === "super condiments";
-  const isRacines = nameRaw.trim().toLowerCase() === "racines boréales";
-  const isPremium = isFlo || isSuper || isRacines;
-
-  const premiumType = isFlo
-    ? "mode, art, déco"
-    : isSuper
-    ? "épicerie, café, brunch et buvette"
-    : "épicerie nordique";
-
-  const premiumText = isFlo
-    ? "La mission d’ESPACE FLO : faire rayonner le talent d’ici et valoriser l’achat local avec des produits éthiques et écoresponsables. À l’opposé du fast fashion et de la production de masse, ESPACE FLO propose une sélection de pièces durables, indémodables et fabriquées au Québec."
-    : isSuper
-    ? "Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici."
-    : "Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée.";
-
-  const desc = BUSINESS_DESCRIPTIONS[nameRaw] ? String(BUSINESS_DESCRIPTIONS[nameRaw]) : "";
-
-  const websiteBtn = websiteRaw
-    ? "<a href=\"" +
-      escapeHtml(websiteRaw) +
-      "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1.5 text-[11px] font-semibold shadow-sm hover:opacity-95 transition\" style=\"color:#000000\">Site web</a>"
-    : "";
-
   const addressBlock = addressRaw
     ? "<div class=\"mt-1\">" +
       "<a href=\"https://www.google.com/maps/search/?api=1&query=" +
@@ -773,10 +752,6 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       "</div>"
     : "";
 
-  const normalDesc = desc
-    ? "<p class=\"mt-2 text-[12px] leading-snug\" style=\"color:hsl(var(--leaf))\">" + escapeHtml(desc) + "</p>"
-    : "";
-
   const normalFooter =
     "<p class=\"mt-2 text-[12px] leading-snug\" style=\"color:hsl(var(--leaf))\">" +
     escapeHtml(getCategorySentence(typeRaw)) +
@@ -789,17 +764,6 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       (darkMap ? "color:#ffd27a" : "color:#ffd27a") +
       "\">Site web</a></div>"
     : "";
-
-  const premiumImages =
-    (isFlo
-      ? "<div class=\"mt-3\"><img src=\"/images/espace-flo-inside.jpg\" alt=\"Intérieur Espace FLO\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
-      : "") +
-    (isRacines
-      ? "<div class=\"mt-3\"><img src=\"/images/racines-boreales.jpg\" alt=\"Façade de Racines Boréales à Montréal\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
-      : "") +
-    (isSuper
-      ? "<div class=\"mt-3\"><img src=\"/images/super-condiments.jpg\" alt=\"Super Condiments à Montréal\" class=\"h-[140px] w-full rounded-2xl object-cover\" /></div>"
-      : "");
 
   if (isTextilerie) {
     const sentence = escapeHtml(getCategorySentence(typeRaw));
@@ -815,32 +779,10 @@ function buildPopupHtml(p: any, darkMap: boolean) {
     );
   }
 
-  if (isPremium) {
-    return (
-      "<div class=\"space-y-2\">" +
-        "<div class=\"flex items-start justify-between gap-3\">" +
-          "<div class=\"min-w-0\">" +
-            "<h3 class=\"font-semibold\" style=\"font-size:26px !important;line-height:1.08\">" + name + "</h3>" +
-            "<div class=\"mt-1\"><span class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-[2px] text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-800\">" +
-              escapeHtml(premiumType) +
-            "</span></div>" +
-          "</div>" +
-          (websiteBtn ? "<div class=\"shrink-0\">" + websiteBtn + "</div>" : "") +
-        "</div>" +
-        (addressBlock ? addressBlock : "") +
-        (routeBlock ? routeBlock : "") +
-        hoursBlock +
-        "<p class=\"mt-3 text-[13px] leading-snug\">" + escapeHtml(premiumText) + "</p>" +
-        premiumImages +
-      "</div>"
-    );
-  }
-
   return (
     "<div class=\"space-y-2\">" +
       "<h3 class=\"font-semibold\" style=\"font-size:26px !important;line-height:1.08\">" + name + "</h3>" +
-      normalDesc +
-      (addressBlock ? addressBlock : "") +
+            (addressBlock ? addressBlock : "") +
       (routeBlock ? routeBlock : "") +
       hoursBlock +
       normalFooter +
@@ -1842,13 +1784,7 @@ return;
     const features: any[] = [];
     for (const [id, b] of byId.entries()) {
       const kind = normalizeType(b.type ?? null);
-
       const nameRaw = String(b.name ?? "");
-      const lower = nameRaw.trim().toLowerCase();
-      const isFlo = lower === "espace flo";
-      const isSuper = lower === "super condiments";
-      const isRacines = lower === "racines boréales";
-      const isPremium = isFlo || isSuper || isRacines;
 
       features.push({
         type: "Feature",
@@ -1867,7 +1803,7 @@ return;
           lat: Number(b.lat),
           lng: Number(b.lng),
           kind,
-          isPremium,
+          miniText: (b as any).miniText ?? (b as any).blurb ?? (b as any).description ?? "",
           selected: activeId != null && id === activeId,
         },
       });
