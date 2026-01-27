@@ -15,7 +15,8 @@ type Biz = {
   openingHours?: string | null;
   phone?: string | null;
   panoramaImage?: string | null;
-  miniText?: string | null;
+  timeZone: string;
+  miniText: string;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
@@ -426,7 +427,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     (props as any)?.properties?.description ??
     "";
   const miniText = String(miniTextRaw || "").trim();
-  const miniTextFinal = miniText || (isTextilerie ? "Lieu hybride où déposer ses textiles, chiner des vêtements, acheter tissus et mercerie de réemploi, boire un café, consulter une bibliothèque textile et apprendre la couture." : "");
+  const miniTextFinal = miniText;
 
   const sentence = isTextilerie
     ? ""
@@ -503,9 +504,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
           ""
       );
 
-      const tz =
-        tzRaw ||
-        (isTextilerie ? "Europe/Paris" : (/\bmontr(e|é)al\b/i.test(cityRaw) ? "America/Toronto" : /\bparis\b/i.test(cityRaw) ? "Europe/Paris" : ""));
+      const tz = tzRaw;
 
       const fmt = tz
         ? new Intl.DateTimeFormat("fr-FR", { timeZone: tz, weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false })
@@ -653,7 +652,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:13.5px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
-      (miniTextFinal ? "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:11.5px;line-height:1.4;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" : "") +
+      "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:11.5px;line-height:1.4;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" +
        badgesHtml +
        "<div style=\"margin-top:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; line-height:1.35; color:" + textColor + ";\" >" +
          escapeHtml(sentence) +
@@ -1804,6 +1803,7 @@ return;
           lng: Number(b.lng),
           kind,
           miniText: (b as any).miniText ?? (b as any).blurb ?? (b as any).description ?? "",
+          timeZone: (b as any).timeZone ?? "",
           selected: activeId != null && id === activeId,
         },
       });

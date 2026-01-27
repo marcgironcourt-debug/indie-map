@@ -564,6 +564,8 @@ React.useEffect(() => {
           website: p.website,
           phone: p.phone ?? "",
           panoramaImage: p.panoramaImage ?? "",
+          miniText: p.miniText ?? p.blurb ?? p.description ?? "",
+          timeZone: p.timeZone ?? "",
           openingHours:
             typeof p.openingHours === "string"
               ? p.openingHours
