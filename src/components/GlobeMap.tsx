@@ -24,6 +24,7 @@ type Biz = {
   website?: string | null;
   openingHours?: string | null;
   phone?: string | null;
+  panoramaImage?: string | null;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
@@ -1710,10 +1711,7 @@ popupRef.current = null;
                       const pname = String(props?.name ?? props?.title ?? "");
                       let hero = null as null | string;
                       try {
-                        if (
-                          pid === "98ce3443-2512-4285-9b47-535d2a369cb4" ||
-                          String(pname).trim().toLowerCase().includes("textilerie")
-                        ) hero = String(TEXTILERIE_PANORAMA_IMAGE || "");
+                        hero = String(((props as any)?.panoramaImage ?? (props as any)?.properties?.panoramaImage ?? "") || "");
                       } catch {}
                       try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
                       try { setDiscoverHeroOpen(false); } catch {}
@@ -1883,6 +1881,7 @@ return;
           website: b.website ?? "",
           openingHours: b.openingHours ?? "",
           phone: (b as any).phone ?? "",
+          panoramaImage: (b as any).panoramaImage ?? "",
           lat: Number(b.lat),
           lng: Number(b.lng),
           kind,

@@ -12,6 +12,7 @@ export type Business = {
   website?: string;
   openingHours?: string;
   phone?: string;
+  panoramaImage?: string;
   lat?: number;
   lng?: number;
   city?: string;
@@ -562,6 +563,7 @@ React.useEffect(() => {
           address: p.address ?? p.city ?? "",
           website: p.website,
           phone: p.phone ?? "",
+          panoramaImage: p.panoramaImage ?? "",
           openingHours:
             typeof p.openingHours === "string"
               ? p.openingHours
