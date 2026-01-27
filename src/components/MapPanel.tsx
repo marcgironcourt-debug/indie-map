@@ -16,6 +16,8 @@ type Biz = {
   lat?: number | null;
   lng?: number | null;
   type?: string | null;
+  timeZone?: string | null;
+  miniText?: string | null;
 };
 
 export default function MapPanel({

@@ -15,8 +15,8 @@ type Biz = {
   openingHours?: string | null;
   phone?: string | null;
   panoramaImage?: string | null;
-  timeZone: string;
-  miniText: string;
+  timeZone?: string | null;
+  miniText?: string | null;
   lat?: number | null;
   lng?: number | null;
   type?: string | null;

@@ -522,6 +522,12 @@ React.useEffect(() => {
           lat?: number;
           lng?: number;
           city?: string;
+          phone?: string;
+          panoramaImage?: string;
+          miniText?: string;
+          blurb?: string;
+          description?: string;
+          timeZone?: string;
         }) => ({
           id: p.id,
           name: p.name,
