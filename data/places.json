@@ -301,7 +301,8 @@
     "updatedAt": "2025-11-26T22:49:11.569Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 379 6527",
-    "panoramaImage": "/panorama/arloca.png"
+    "panoramaImage": "/panorama/arloca.png",
+    "miniText": "Boutique engagée à soutenir les artisan·es et producteurs locaux. Arloca privilégie l’écoresponsabilité, avec des objets durables et des pratiques éthiques. Favorisant une économie de proximité et une sélection de créateurs·rices authentiques, en vendant exclusivement des produits conçus au Québec et au Canada."
   },
   {
     "id": "cmiae0q6q000l9krfs1d5021v",
@@ -608,7 +609,7 @@
     "openingHours": "Lundi 10h00-18h00\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-17h30\nDimanche 10h00-17h00",
     "lat": 45.5333414,
     "lng": -73.5973982,
-    "category": "Boutique locale",
+    "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
     "updatedAt": "2025-11-26T22:49:46.781Z",
     "timeZone": "America/Toronto",
