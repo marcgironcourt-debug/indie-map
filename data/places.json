@@ -646,22 +646,6 @@
     "panoramaImage": ""
   },
   {
-    "id": "cmiae0q6q00199krfn37bwtd1",
-    "name": "Café Rico",
-    "city": "Montréal",
-    "address": "1215 Avenue du Mont-Royal Est, Montréal, QC H2J 1X9",
-    "website": "https://www.caferico.ca",
-    "openingHours": "Lundi Fermé\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h30\nVendredi 10h00-18h00\nSamedi 10h00-17h00\nDimanche Fermé",
-    "lat": 45.529068,
-    "lng": -73.57841,
-    "category": "Café",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:44:11.955Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 529 1321",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q001a9krf1ef176j0",
     "name": "Super Condiments",
     "city": "Montréal",
@@ -675,7 +659,7 @@
     "updatedAt": "2025-11-23T14:11:31.330Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 495 4454",
-    "panoramaImage": ""
+    "panoramaImage": "/panorama/super.png"
   },
   {
     "id": "cmiae0q6q001b9krfi1qnlrmr",
