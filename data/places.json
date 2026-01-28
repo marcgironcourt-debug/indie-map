@@ -645,22 +645,6 @@
     "panoramaImage": ""
   },
   {
-    "id": "cmiae0q6q00179krf0tfowbt1",
-    "name": "Slak Atelier-Boutique",
-    "city": "Montréal",
-    "address": "352 Rue Villeray Est, Montréal, QC H2R 1G9",
-    "website": "https://www.slak.ca",
-    "openingHours": "Lundi 12h00-18h00\nMardi 12h00-18h00\nMercredi 12h00-18h00\nJeudi 12h00-18h00\nVendredi 12h00-18h00\nSamedi 11h00-17h00\nDimanche Fermé",
-    "lat": 45.5402499,
-    "lng": -73.6231767,
-    "category": "Vêtements",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.718Z",
-    "timeZone": "America/Toronto",
-    "phone": "",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q00189krfwwiht39i",
     "name": "Café des Habitudes",
     "city": "Montréal",
