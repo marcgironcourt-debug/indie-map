@@ -299,22 +299,6 @@
     "panoramaImage": ""
   },
   {
-    "id": "cmiae0q6q000j9krfw3t67wnq",
-    "name": "Boutique Unicorn",
-    "city": "Montréal",
-    "address": "5135 Boulevard Saint-Laurent, Montréal, QC H2T 1R9",
-    "website": "https://www.boutiqueunicorn.com",
-    "openingHours": "Lundi 10h00-18h00\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-17h00\nDimanche 11h00-17h00",
-    "lat": 45.5235374,
-    "lng": -73.5934975,
-    "category": "Vêtements",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-23T13:32:37.720Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 544 2828",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q000k9krfiengxigy",
     "name": "Arloca",
     "city": "Montréal",
