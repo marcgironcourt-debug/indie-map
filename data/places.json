@@ -220,22 +220,6 @@
     "panoramaImage": ""
   },
   {
-    "id": "cmiae0q6p000d9krfjtto6bdn",
-    "name": "Café Névé",
-    "city": "Montréal",
-    "address": "151 Rue Rachel E, Montréal, QC",
-    "website": "https://cafeneve.com",
-    "openingHours": "Lundi 08h00-17h00\nMardi 08h00-17h00\nMercredi 08h00-17h00\nJeudi 08h00-17h00\nVendredi 08h00-17h00\nSamedi 09h00-17h00\nDimanche 09h00-17h00",
-    "lat": 45.52379,
-    "lng": -73.57253,
-    "category": "Café",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:43:16.455Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 282 9919",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q000e9krfypgs7l2p",
     "name": "Café Dei Campi",
     "city": "Montréal",
