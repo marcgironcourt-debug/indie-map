@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Café Bloom",
+    "panoramaImage": "/images/CafeBloom.png",
+    "phone": "+1 514 508 2313",
+    "miniText": "Café-brunch convivial de Pointe-Saint-Charles, proposant cafés et plats dans une ambiance lumineuse et détendue. Les ingrédients sont saisonniers, locaux, biologiques ou issus de fermes et élevages attentionnés. Tout ce qui est servi est fait maison."
+  },
+  {
+    "name": "Restaurant Toqué!",
+    "panoramaImage": "/images/Toque.webp",
+    "phone": "+1 514 499 2084",
+    "miniText": "Table gastronomique montréalaise de référence, fondée en 1993 par le chef Normand Laprise et Christine Lamarche. Il met en valeur des produits locaux et saisonniers du terroir québécois dans une cuisine inventive et raffinée. Situé au cœur du Quartier international de Montréal, il offre une expérience culinaire de haute qualité."
+  },
+  {
+    "name": "Maktaba Bookshop",
+    "panoramaImage": "/images/maktaba.png",
+    "phone": "+1 438 773 3033",
+    "miniText": "Librairie-concept indépendante nichée dans un bâtiment patrimonial du Vieux-Port de Montréal. Elle propose une sélection soignée de livres, vinyles et objets culturels, ainsi qu’un espace convivial pour lire et créer du lien. Maktaba valorise la représentation culturelle, la diversité des voix et accueille des événements littéraires et communautaires."
+  }
+]
