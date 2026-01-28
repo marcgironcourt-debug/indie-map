@@ -301,7 +301,7 @@
     "updatedAt": "2025-11-26T22:49:11.569Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 379 6527",
-    "panoramaImage": ""
+    "panoramaImage": "/panorama/arloca.png"
   },
   {
     "id": "cmiae0q6q000l9krfs1d5021v",
@@ -581,22 +581,6 @@
     "phone": "+1 514 495 8204",
     "panoramaImage": "/places/romarin-panorama.png",
     "miniText": "Épicerie zéro déchet de quartier proposant des produits alimentaires et ménagers en vrac, avec une attention particulière portée à la réduction des emballages et au choix de produits responsables. Romarin met de l’avant une sélection de produits locaux et biologiques."
-  },
-  {
-    "id": "cmiae0q6q00149krf9r6z279s",
-    "name": "Tah-dah !",
-    "city": "Montréal",
-    "address": "156 Rue Jean-Talon Est, Montréal, QC H2R 1S7",
-    "website": "https://www.tah-dah.ca",
-    "openingHours": "Lundi 11h00-18h00\nMardi 11h00-18h00\nMercredi 11h00-18h00\nJeudi 11h00-18h00\nVendredi 11h00-18h00\nSamedi 10h00-17h00\nDimanche 11h00-17h00",
-    "lat": 45.536185,
-    "lng": -73.61606,
-    "category": "Boutique locale",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:48:06.400Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514-271-1313",
-    "panoramaImage": ""
   },
   {
     "id": "cmiae0q6q00159krfkxfpzlt1",
