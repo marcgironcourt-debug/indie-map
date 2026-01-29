@@ -854,11 +854,11 @@
     "lng": -73.563617902605,
     "category": "Restaurant",
     "createdAt": "2026-01-29T20:17:53.748Z",
-    "updatedAt": "2026-01-29T20:17:53.748Z",
+    "updatedAt": "2026-01-29T20:24:10.505Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 903-1233",
-    "panoramaImage": "",
-    "miniText": "",
+    "panoramaImage": "/places/hoogan-panorama.png",
+    "miniText": "Cuisine de marché cuite au feu de bois, portée par une approche moderne, précise et tout en finesse. Hoogan et Beaufort propose une cuisine exigeante, sans produits transformés, où la qualité des ingrédients, l’équilibre des saveurs et des textures guident une démarche créative en constante évolution.",
     "tags": []
   }
 ]
