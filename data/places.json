@@ -695,5 +695,25 @@
     "phone": "+33140357714",
     "panoramaImage": "/places/la-textilerie-panorama.png",
     "miniText": "La Textilerie est un lieu dédié au réemploi textile : friperie solidaire, recyclerie et ateliers de couture. On y dépose ses vêtements, on chine des pièces uniques, on apprend à réparer et transformer, et on peut aussi s’y poser autour d’un café. Un espace créatif pour consommer autrement."
+  },
+  {
+    "id": "cm9vzwwqwhznztzgjp",
+    "name": "Le Mousso",
+    "city": "Montréal",
+    "region": "QC",
+    "country": "Canada",
+    "address": "1025 Rue Ontario Est, Montréal, QC H2L 1P9",
+    "website": "https://lemousso.com",
+    "phone": "+1 438-384-7410",
+    "category": "Restaurant",
+    "type": "business",
+    "lat": 45.5200521,
+    "lng": -73.5632148,
+    "miniText": "Restaurant intime et décontracté offrant une expérience de menu dégustation qui met en valeur viandes, poissons, fruits de mer et légumes d’ici. Adaptations possibles selon allergies ou intolérances; option végétarienne possible, mais pas de menu végétalien. Réservation en ligne; certificats cadeaux disponibles sur place ou par courriel.",
+    "panoramaImage": null,
+    "openingHours": null,
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-01-29T19:12:16.260Z",
+    "updatedAt": "2026-01-29T19:12:16.260Z"
   }
 ]
