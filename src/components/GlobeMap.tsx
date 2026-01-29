@@ -2467,7 +2467,7 @@ mapRef.current = map;
                 const map = mapRef.current;
                 const cam = heroReturnCamRef.current;
                 if (map && cam) {
-                  map.easeTo({ center: cam.center as any, zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1250, essential: true } as any);
+                  map.easeTo({ center: cam.center as any, zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1900, essential: true } as any);
                 }
               } catch {}
 
@@ -2686,6 +2686,7 @@ mapRef.current = map;
                       popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
                         .setLngLat([Number((st as any).lng), Number((st as any).lat)])
                         .addTo(map);
+                      try { map.easeTo({ center: [Number((st as any).lng), Number((st as any).lat)], zoom: map.getZoom(), duration: 750, offset: [0, 160], essential: true } as any); } catch {}
                     } catch {}
                   } catch {}
                 }, 260);
