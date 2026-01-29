@@ -489,7 +489,8 @@
     "updatedAt": "2025-11-26T23:10:48.871Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 649 7991",
-    "panoramaImage": "/panoramas/hof.png"
+    "panoramaImage": "/panoramas/hof.png",
+    "miniText": "Fondée en 2013 , Hof Kelsten est une boulangerie artisanale née d’un parcours en cuisine entre l’Europe et les États-Unis. Le lieu met l’accent sur des ingrédients simples, frais et de qualité, en privilégiant autant que possible des produits locaux du Québec et du Canada. Tout est fait maison, du pain aux préparations, avec une attention particulière portée à la fraîcheur, à la réduction du gaspillage et à l’engagement communautaire."
   },
   {
     "id": "cmiae0q6q000y9krfwxzap6xl",
@@ -505,22 +506,6 @@
     "updatedAt": "2025-11-26T23:06:37.512Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 270 8388",
-    "panoramaImage": ""
-  },
-  {
-    "id": "cmiae0q6q000z9krfmbp2lmig",
-    "name": "Automne Boulangerie",
-    "city": "Montréal",
-    "address": "6500 Avenue Christophe-Colomb, Montréal, QC",
-    "website": "https://www.automneboulangerie.com",
-    "openingHours": "Lundi 07h30-18h30\nMardi 07h30-18h30\nMercredi 07h30-18h30\nJeudi 07h30-18h30\nVendredi 07h30-18h30\nSamedi 08h00-16h00\nDimanche 08h00-16h00",
-    "lat": 45.5377139,
-    "lng": -73.6018052,
-    "category": "Boulangerie artisanale",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:07:51.361Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 274 8111",
     "panoramaImage": ""
   },
   {
