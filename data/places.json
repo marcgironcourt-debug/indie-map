@@ -535,22 +535,6 @@
     "panoramaImage": ""
   },
   {
-    "id": "cmiae0q6q00119krfl0snjiah",
-    "name": "Dieu du Ciel!",
-    "city": "Montréal",
-    "address": "21 Avenue Laurier Ouest, Montréal, QC",
-    "website": "https://dieuduciel.com",
-    "openingHours": "Lundi 11h30-01h00\nMardi 11h30-01h00\nMercredi 11h30-01h00\nJeudi 11h30-03h00\nVendredi 11h30-03h00\nSamedi 11h00-03h00\nDimanche 11h00-01h00",
-    "lat": 45.522839,
-    "lng": -73.593344,
-    "category": "Microbrasserie",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.850Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 490 9555",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q00129krfhghyvr7x",
     "name": "Vices & Versa",
     "city": "Montréal",
