@@ -69,7 +69,7 @@ function getCategorySentence(type: string): string {
     return "Boutique";
   }
 
-  return "Boutique locale";
+  return "Boutique";
 }
 
 function getCategoryEmotion(type: string): string {
