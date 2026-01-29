@@ -985,5 +985,20 @@
     "city": "Paris",
     "country": "FR",
     "panoramaImage": "/panoramas/recyclerie.jpg"
+  },
+  {
+    "id": "le-moulin-a-cafe-paris",
+    "name": "Le Moulin à Café",
+    "website": "https://www.moulin-cafe.org/",
+    "lat": 48.833473999441,
+    "lng": 2.319822964407,
+    "address": "8 rue Sainte-Léonie, 75014 Paris, France",
+    "phone": "+33140448755",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi Fermé\nMardi 10h00-22h00\nMercredi 10h00-22h00\nJeudi 10h00-22h00\nVendredi 10h00-22h00\nSamedi 10h00-22h00\nDimanche Fermé",
+    "miniText": "Café associatif, solidaire et participatif du 14e arrondissement de Paris, Le Moulin à Café est un lieu de vie favorisant le lien social, les rencontres et une restauration conviviale à prix accessibles, avec une démarche locale et engagée.",
+    "city": "Paris",
+    "country": "FR",
+    "panoramaImage": "/panoramas/moulin.jpg"
   }
 ]
