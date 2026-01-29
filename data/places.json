@@ -904,7 +904,10 @@
     "category": "Restaurant",
     "openingHours": "Jeudi 6h00-0h00\nVendredi 6h00-0h00\nSamedi 6h00-0h00\nDimanche 6h00-0h00\nLundi 6h00-0h00\nMardi 6h00-0h00\nMercredi 6h00-0h00",
     "miniText": "Brasserie moderne située au pied de la Tour Eiffel. Le restaurant propose une cuisine française contemporaine à partir de produits frais, avec des options végétariennes et sans gluten. La cuisine est principalement axée sur les produits de la mer et les végétaux, tout en travaillant certaines viandes dans le respect de l’animal. L’approche met à l’honneur des produits locaux et de saison, dans une recherche d’équilibre et de subtilité.",
-    "panoramaImage": "/panoramas/frame-restaurant-bar.jpg"
+    "panoramaImage": "/panoramas/frame-restaurant-bar.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "place-la-recolte-batignolles-paris",
@@ -917,7 +920,10 @@
     "category": "Épicerie",
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
-    "panoramaImage": "/panoramas/la-recolte.jpg"
+    "panoramaImage": "/panoramas/la-recolte.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "place-la-recolte-beaubourg-paris",
@@ -930,7 +936,10 @@
     "category": "Épicerie",
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
-    "panoramaImage": "/panoramas/la-recolte.jpg"
+    "panoramaImage": "/panoramas/la-recolte.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "place-la-recolte-chemin-vert-paris",
@@ -943,7 +952,10 @@
     "category": "Épicerie",
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
-    "panoramaImage": "/panoramas/la-recolte.jpg"
+    "panoramaImage": "/panoramas/la-recolte.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "place-la-recolte-faidherbe-paris",
@@ -956,7 +968,10 @@
     "category": "Épicerie",
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
-    "panoramaImage": "/panoramas/la-recolte.jpg"
+    "panoramaImage": "/panoramas/la-recolte.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "place-la-recolte-chardon-lagache-paris",
@@ -969,7 +984,10 @@
     "category": "Épicerie",
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
-    "panoramaImage": "/panoramas/la-recolte.jpg"
+    "panoramaImage": "/panoramas/la-recolte.jpg",
+    "timeZone": "Europe/Paris",
+    "city": "Paris",
+    "country": "FR"
   },
   {
     "id": "la-recyclerie-paris",
@@ -984,7 +1002,8 @@
     "miniText": "Espace hybride installé dans l’ancienne gare de la Petite Ceinture, La Recyclerie est un lieu de vie convivial mêlant café-cantine, bar, ferme urbaine, ateliers collaboratifs et événements culturels autour de l’écoresponsabilité.",
     "city": "Paris",
     "country": "FR",
-    "panoramaImage": "/panoramas/recyclerie.jpg"
+    "panoramaImage": "/panoramas/recyclerie.jpg",
+    "timeZone": "Europe/Paris"
   },
   {
     "id": "le-moulin-a-cafe-paris",
@@ -999,6 +1018,7 @@
     "miniText": "Café associatif, solidaire et participatif du 14e arrondissement de Paris, Le Moulin à Café est un lieu de vie favorisant le lien social, les rencontres et une restauration conviviale à prix accessibles, avec une démarche locale et engagée.",
     "city": "Paris",
     "country": "FR",
-    "panoramaImage": "/panoramas/moulin.jpg"
+    "panoramaImage": "/panoramas/moulin.jpg",
+    "timeZone": "Europe/Paris"
   }
 ]
