@@ -1469,7 +1469,7 @@ map.on("mouseenter", LAYER_ID, () => {
 
         if (isGlobe || z < 7.2) {
           try { heroReturnCamRef.current = { center: [lng, lat], zoom: 9.9, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
-          map.flyTo({ center: [lng, lat], zoom: 9.9, speed: 1.45, curve: 1.05, easing: (t) => t, essential: true });
+          map.flyTo({ center: [lng, lat], zoom: 9.9, speed: 2.6, curve: 1.05, easing: (t) => t, essential: true });
           return;
         }
 
