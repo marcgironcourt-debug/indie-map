@@ -915,7 +915,9 @@
     "address": "18 Bd des Batignolles, 75017 Paris, France",
     "phone": "+33 1 44 69 03 87",
     "category": "Épicerie",
-    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
+    "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
+    "panoramaImage": "/panoramas/la-recolte.jpg"
   },
   {
     "id": "place-la-recolte-beaubourg-paris",
@@ -926,7 +928,9 @@
     "address": "43 Rue Beaubourg, 75003 Paris, France",
     "phone": "+33 9 52 07 18 13",
     "category": "Épicerie",
-    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
+    "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
+    "panoramaImage": "/panoramas/la-recolte.jpg"
   },
   {
     "id": "place-la-recolte-chemin-vert-paris",
@@ -937,7 +941,9 @@
     "address": "108 Rue du Chemin Vert, 75011 Paris, France",
     "phone": "+33 9 70 21 18 54",
     "category": "Épicerie",
-    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
+    "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
+    "panoramaImage": "/panoramas/la-recolte.jpg"
   },
   {
     "id": "place-la-recolte-faidherbe-paris",
@@ -948,7 +954,9 @@
     "address": "11bis Rue Faidherbe, 75011 Paris, France",
     "phone": "+33 9 70 21 32 75",
     "category": "Épicerie",
-    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
+    "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
+    "panoramaImage": "/panoramas/la-recolte.jpg"
   },
   {
     "id": "place-la-recolte-chardon-lagache-paris",
@@ -959,6 +967,8 @@
     "address": "100 Rue Chardon Lagache, 75016 Paris, France",
     "phone": "+33 9 70 21 19 43",
     "category": "Épicerie",
-    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
+    "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
+    "panoramaImage": "/panoramas/la-recolte.jpg"
   }
 ]
