@@ -204,22 +204,6 @@
     "miniText": "Boutique de vêtements pour femmes basée à Montréal qui mise sur une mode éthique, durable et responsable, avec une production locale qui favorise la qualité et réduit l’impact environnemental. La marque privilégie des matières naturelles, des pratiques transparentes et soutient l’économie locale à chaque étape de fabrication."
   },
   {
-    "id": "cmiae0q6p000c9krf009kx4qk",
-    "name": "Bouquinerie du Plateau",
-    "city": "Montréal",
-    "address": "437 Av du Mont-Royal E, Montréal, QC",
-    "website": "https://bouquinerieduplateau.com",
-    "openingHours": "Lundi 11h00-19h00\nMardi 11h00-19h00\nMercredi 11h00-19h00\nJeudi 11h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche 10h00-19h00",
-    "lat": 45.52518,
-    "lng": -73.57435,
-    "category": "Librairie & bouquinerie",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:58:03.421Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 523 5628",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q000e9krfypgs7l2p",
     "name": "Café Dei Campi",
     "city": "Montréal",
