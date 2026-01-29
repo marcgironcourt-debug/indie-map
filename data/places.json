@@ -720,22 +720,6 @@
     "miniText": "Pub anglais installé dans un bâtiment historique du Vieux-Montréal. Proposant une cuisine raffinée inspirée des traditions britanniques et québécoises, mettant en valeur des produits locaux et saisonniers, un bar complet avec cocktails créatifs et une ambiance chaleureuse pour brunch, lunch et dîner dans un cadre convivial et animé."
   },
   {
-    "id": "cmiae0q6q001h9krfh0cie7fr",
-    "name": "vinvinvin",
-    "city": "Montréal",
-    "address": "1290 Rue Beaubien Est, Montréal, QC H2S 1P9",
-    "website": "https://vinvinvin.ca",
-    "openingHours": "Lundi 15h00-01h00\nMardi 15h00-01h00\nMercredi 15h00-01h00\nJeudi 15h00-01h00\nVendredi 15h00-03h00\nSamedi 15h00-03h00\nDimanche 15h00-01h00",
-    "lat": 45.532831,
-    "lng": -73.605889,
-    "category": "Bar à vin",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T22:53:09.446Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 514 379 6969",
-    "panoramaImage": ""
-  },
-  {
     "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
     "name": "La Textilerie",
     "city": "Paris",
