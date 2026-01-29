@@ -506,7 +506,8 @@
     "updatedAt": "2025-11-26T23:06:37.512Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 270 8388",
-    "panoramaImage": "/panoramas/pain.png"
+    "panoramaImage": "/panoramas/pain.png",
+    "miniText": "Boulangerie adaptant son savoir-faire aux farines, au levain et aux produits utilisés afin d’offrir pains, viennoiseries et créations de grande qualité au quotidien. Le lieu accorde une grande importance au choix des matières premières, en entretenant un lien direct avec ses producteurs et fournisseurs."
   },
   {
     "id": "cmiae0q6q00129krfhghyvr7x",
@@ -609,22 +610,6 @@
     "phone": "+1 514 495 4454",
     "panoramaImage": "/panorama/super.png",
     "miniText": "Café-Buvette fondé par deux passionnés de gastronomie. Super Condiments est né de leur volonté de redonner vie au circuit court et au commerce local, en mettant de l’avant une alimentation engagée, accessible et ancrée dans des relations directes avec les producteur·rices."
-  },
-  {
-    "id": "cmiae0q6q001b9krfi1qnlrmr",
-    "name": "Fanfare Brunch Boulangerie",
-    "city": "Montréal",
-    "address": "751 Rue Jarry Est, Montréal, QC H2P 1W3",
-    "website": "https://www.fanfare-brunch-boulangerie.com",
-    "openingHours": "Lundi Fermé\nMardi 07h30-19h00\nMercredi 07h30-19h00\nJeudi 07h30-19h00\nVendredi 07h30-19h00\nSamedi 07h30-18h00\nDimanche 07h30-18h00",
-    "lat": 45.546216,
-    "lng": -73.626834,
-    "category": "Boulangerie",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-26T23:06:02.247Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 438-289-7508",
-    "panoramaImage": ""
   },
   {
     "id": "cmiae0q6q001c9krfssksv65b",
