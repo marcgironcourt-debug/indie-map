@@ -879,5 +879,16 @@
     "panoramaImage": "/places/resistant.jpg",
     "miniText": "Restaurant engagé mettant en avant une cuisine issue de l’agriculture paysanne et de circuits courts, en lien direct avec des producteurs respectant le vivant. Les Résistants défendent une alimentation juste, locale et de saison, où chaque ingrédient est choisi pour son origine, sa qualité et son impact écologique.",
     "tags": []
+  },
+  {
+    "id": "place-champ-libre-cantine-paris",
+    "name": "La cantine Champ Libre",
+    "website": "https://www.champ-libre-cantine.fr",
+    "lat": 48.869977020132,
+    "lng": 2.359226039778,
+    "address": "9 Rue Taylor, 75010 Paris, France",
+    "phone": "+33 9 81 94 11 14",
+    "category": "Restaurant",
+    "openingHours": "Jeudi 12h00-15h00, 19h30-23h00\nVendredi 12h00-15h00, 19h30-23h00\nSamedi 12h00-15h00, 19h30-23h00\nDimanche Fermé\nLundi Fermé\nMardi 12h00-15h00, 19h30-23h00\nMercredi 12h00-15h00, 19h30-23h00"
   }
 ]
