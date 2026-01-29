@@ -719,22 +719,6 @@
     "miniText": "Brasserie artisanale installés dans le Vieux-Port de Montréal. Né en 2019 pour brasser sur place les bières BreWskey. Une grande salle conviviale avec cuisine ouverte sur la brasserie vitrée, une terrasse avec vue sur le port, plus de 30 lignes de bières et cask à pompe, et une mise en valeur de la cuisine locale, des alcools régionaux et des bières produites sur place."
   },
   {
-    "id": "cmiae0q6q001f9krf7mw3alzt",
-    "name": "Projet Pilote",
-    "city": "Montréal",
-    "address": "980 Rue Rachel Est, Montréal, QC H2J 2J3",
-    "website": "https://www.projetpilote.com",
-    "openingHours": "Lundi 17h00-01h00\nMardi 17h00-01h00\nMercredi 17h00-01h00\nJeudi 17h00-01h00\nVendredi 17h00-01h00\nSamedi 17h00-01h00\nDimanche 17h00-01h00",
-    "lat": 45.525132,
-    "lng": -73.574626,
-    "category": "Microbrasserie",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2025-11-30T13:06:28.851Z",
-    "timeZone": "America/Toronto",
-    "phone": "",
-    "panoramaImage": ""
-  },
-  {
     "id": "cmiae0q6q001g9krfglq8ad3s",
     "name": "Wolf & Workman",
     "city": "Montréal",
