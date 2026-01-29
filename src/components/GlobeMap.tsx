@@ -1590,7 +1590,7 @@ popupRef.current = null;
                     map.flyTo({
                       center: [lng, lat],
                       zoom: maxZ,
-                      speed: 0.62,
+                      speed: 1.15,
                       curve: 2.35,
                       easing: (t) => t * t * (3 - 2 * t),
                       essential: true
@@ -1618,8 +1618,8 @@ popupRef.current = null;
                          try { setDiscoverHeroOpen(true); } catch {}
                       try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
 
-                         try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 80); } catch {}
-                         try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 520); } catch {}
+                         try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
+                         try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
                        };
                        try { map.once("moveend", onEnd); } catch {}
                     } catch {}
@@ -2712,7 +2712,7 @@ mapRef.current = map;
               filter: discoverHeroZoom ? "saturate(1.05) contrast(1.05)" : "saturate(1.05) contrast(1.05) blur(10px)",
               transform: discoverHeroZoom ? "scale(1) translateY(0px)" : "scale(1.05) translateY(10px)",
               opacity: discoverHeroUrl ? (discoverHeroZoom ? 1 : 0) : 0,
-              transition: "opacity 900ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms ease",
+              transition: "opacity 450ms ease, transform 450ms cubic-bezier(0.16, 1, 0.3, 1), filter 450ms ease",
               willChange: "transform, opacity"
             }}
           />
