@@ -841,5 +841,24 @@
     "tags": [
       "Restaurant"
     ]
+  },
+  {
+    "id": "im_97d1ba5e93c993cfbc2815ca",
+    "type": "business",
+    "name": "Hoogan et Beaufort",
+    "city": "Montréal",
+    "address": "4095 Rue Molson, Montréal, QC H1Y 3L1",
+    "website": "https://www.hooganetbeaufort.com",
+    "openingHours": "Lundi 17h30-22h30\nMardi 11h30-13h30, 17h30-22h30\nMercredi 11h30-13h30, 17h30-22h30\nJeudi 11h30-13h30, 17h30-22h30\nVendredi 11h30-13h30, 17h30-22h30\nSamedi 17h30-22h30\nDimanche 17h30-22h30",
+    "lat": 45.541504200334,
+    "lng": -73.563617902605,
+    "category": "Restaurant",
+    "createdAt": "2026-01-29T20:17:53.748Z",
+    "updatedAt": "2026-01-29T20:17:53.748Z",
+    "timeZone": "America/Toronto",
+    "phone": "+1 514 903-1233",
+    "panoramaImage": "",
+    "miniText": "",
+    "tags": []
   }
 ]
