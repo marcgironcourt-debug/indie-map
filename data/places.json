@@ -826,18 +826,18 @@
     "region": "QC",
     "country": "Canada",
     "address": "1025 Rue Ontario Est, Montréal, QC H2L 1P9",
-    "website": "https://lemousso.com",
-    "phone": "+1 438-384-7410",
+    "website": "https://lemousso.com/",
+    "phone": "+1 438 384-7410",
     "category": "Restaurant",
     "type": "business",
     "lat": 45.5200521,
     "lng": -73.5632148,
-    "miniText": "Restaurant intime et décontracté offrant une expérience de menu dégustation qui met en valeur viandes, poissons, fruits de mer et légumes d’ici. Adaptations possibles selon allergies ou intolérances; option végétarienne possible, mais pas de menu végétalien. Réservation en ligne; certificats cadeaux disponibles sur place ou par courriel.",
+    "miniText": "Une expérience gastronomique intime et décontractée. Un seul service par soir rassemble une trentaine de convives autour d’un menu dégustation à base de produits locaux, pensé comme un parcours sensoriel.",
     "panoramaImage": null,
     "openingHours": null,
     "timeZone": "America/Toronto",
     "createdAt": "2026-01-29T19:12:16.260Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-01-29T19:48:18.861Z",
     "tags": [
       "Restaurant"
     ]
