@@ -833,11 +833,11 @@
     "lat": 45.5200521,
     "lng": -73.5632148,
     "miniText": "Une expérience gastronomique intime et décontractée. Un seul service par soir rassemble une trentaine de convives autour d’un menu dégustation à base de produits locaux, pensé comme un parcours sensoriel.",
-    "panoramaImage": null,
-    "openingHours": null,
+    "panoramaImage": "/places/mousso-panorama.png",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 18h00-22h00\nVendredi 18h00-22h00\nSamedi 18h00-22h00\nDimanche Fermé",
     "timeZone": "America/Toronto",
     "createdAt": "2026-01-29T19:12:16.260Z",
-    "updatedAt": "2026-01-29T19:48:18.861Z",
+    "updatedAt": "2026-01-29T19:58:15.306Z",
     "tags": [
       "Restaurant"
     ]
