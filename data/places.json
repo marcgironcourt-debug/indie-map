@@ -905,5 +905,60 @@
     "openingHours": "Jeudi 6h00-0h00\nVendredi 6h00-0h00\nSamedi 6h00-0h00\nDimanche 6h00-0h00\nLundi 6h00-0h00\nMardi 6h00-0h00\nMercredi 6h00-0h00",
     "miniText": "Brasserie moderne située au pied de la Tour Eiffel. Le restaurant propose une cuisine française contemporaine à partir de produits frais, avec des options végétariennes et sans gluten. La cuisine est principalement axée sur les produits de la mer et les végétaux, tout en travaillant certaines viandes dans le respect de l’animal. L’approche met à l’honneur des produits locaux et de saison, dans une recherche d’équilibre et de subtilité.",
     "panoramaImage": "/panoramas/frame-restaurant-bar.jpg"
+  },
+  {
+    "id": "place-la-recolte-batignolles-paris",
+    "name": "La Récolte – Batignolles",
+    "website": "https://www.la-recolte.net",
+    "lat": 48.8833476,
+    "lng": 2.3253732,
+    "address": "18 Bd des Batignolles, 75017 Paris, France",
+    "phone": "+33 1 44 69 03 87",
+    "category": "Épicerie",
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+  },
+  {
+    "id": "place-la-recolte-beaubourg-paris",
+    "name": "La Récolte – Beaubourg",
+    "website": "https://www.la-recolte.net",
+    "lat": 48.8625183,
+    "lng": 2.3540195,
+    "address": "43 Rue Beaubourg, 75003 Paris, France",
+    "phone": "+33 9 52 07 18 13",
+    "category": "Épicerie",
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+  },
+  {
+    "id": "place-la-recolte-chemin-vert-paris",
+    "name": "La Récolte – Chemin Vert",
+    "website": "https://www.la-recolte.net",
+    "lat": 48.8613711,
+    "lng": 2.3824418,
+    "address": "108 Rue du Chemin Vert, 75011 Paris, France",
+    "phone": "+33 9 70 21 18 54",
+    "category": "Épicerie",
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+  },
+  {
+    "id": "place-la-recolte-faidherbe-paris",
+    "name": "La Récolte – Faidherbe",
+    "website": "https://www.la-recolte.net",
+    "lat": 48.851533,
+    "lng": 2.3835966,
+    "address": "11bis Rue Faidherbe, 75011 Paris, France",
+    "phone": "+33 9 70 21 32 75",
+    "category": "Épicerie",
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
+  },
+  {
+    "id": "place-la-recolte-chardon-lagache-paris",
+    "name": "La Récolte – Chardon Lagache",
+    "website": "https://www.la-recolte.net",
+    "lat": 48.83986,
+    "lng": 2.262703,
+    "address": "100 Rue Chardon Lagache, 75016 Paris, France",
+    "phone": "+33 9 70 21 19 43",
+    "category": "Épicerie",
+    "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30"
   }
 ]
