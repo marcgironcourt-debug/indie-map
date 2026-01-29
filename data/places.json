@@ -892,5 +892,16 @@
     "openingHours": "Jeudi 12h00-15h00, 19h30-23h00\nVendredi 12h00-15h00, 19h30-23h00\nSamedi 12h00-15h00, 19h30-23h00\nDimanche Fermé\nLundi Fermé\nMardi 12h00-15h00, 19h30-23h00\nMercredi 12h00-15h00, 19h30-23h00",
     "miniText": "Cantine de quartier chaleureuse proposant une cuisine maison à partir de produits frais et de saison. Les légumes proviennent de notre ferme maraîchère bio dans le Vexin, complétés par des produits de producteurs engagés. La carte évolue chaque jour pour mettre en valeur des matières premières majoritairement biologiques et issues de pratiques agricoles vertueuses.",
     "panoramaImage": "/panoramas/cantine-champ-libre.jpg"
+  },
+  {
+    "id": "place-frame-restaurant-bar-paris",
+    "name": "FRAME RESTAURANT AND BAR",
+    "website": "https://www.framebrasserie.fr",
+    "lat": 48.855867008146,
+    "lng": 2.293292983572,
+    "address": "18 avenue de Suffren, 22 Rue Jean Rey Entrée au, 75015 Paris, France",
+    "phone": "+33 1 44 38 57 77",
+    "category": "Restaurant",
+    "openingHours": "Jeudi 6h00-0h00\nVendredi 6h00-0h00\nSamedi 6h00-0h00\nDimanche 6h00-0h00\nLundi 6h00-0h00\nMardi 6h00-0h00\nMercredi 6h00-0h00"
   }
 ]
