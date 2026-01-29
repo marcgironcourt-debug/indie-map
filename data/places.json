@@ -860,5 +860,24 @@
     "panoramaImage": "/places/hoogan-panorama.png",
     "miniText": "Cuisine de marché cuite au feu de bois, portée par une approche moderne, précise et tout en finesse. Hoogan et Beaufort propose une cuisine exigeante, sans produits transformés, où la qualité des ingrédients, l’équilibre des saveurs et des textures guident une démarche créative en constante évolution.",
     "tags": []
+  },
+  {
+    "id": "im_54700451df29f",
+    "type": "business",
+    "name": "Les Résistants",
+    "city": "Paris",
+    "address": "16 Rue du Château d'Eau, 75010 Paris, France",
+    "website": "https://www.lesresistants.fr/accueil/",
+    "openingHours": "Jeudi 12h00-14h00, 19h00-22h00\nVendredi 12h00-14h00, 19h00-22h00\nSamedi 12h00-14h00, 19h00-22h00\nDimanche 12h00-14h00, 19h00-22h00\nLundi 12h00-14h00, 19h00-22h00\nMardi 12h00-14h00, 19h00-22h00\nMercredi 12h00-14h00, 19h00-22h00",
+    "lat": 48.869988000426,
+    "lng": 2.36064903548,
+    "category": "Restaurant",
+    "createdAt": "2026-01-29T21:00:39.340Z",
+    "updatedAt": "2026-01-29T21:05:59.602Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 77 32 77 61",
+    "panoramaImage": "/places/resistant.jpg",
+    "miniText": "Restaurant engagé mettant en avant une cuisine issue de l’agriculture paysanne et de circuits courts, en lien direct avec des producteurs respectant le vivant. Les Résistants défendent une alimentation juste, locale et de saison, où chaque ingrédient est choisi pour son origine, sa qualité et son impact écologique.",
+    "tags": []
   }
 ]
