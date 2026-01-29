@@ -970,5 +970,20 @@
     "openingHours": "Lundi 09h30-20h30\nMardi 09h30-20h30\nMercredi 09h30-20h30\nJeudi 09h30-20h30\nVendredi 09h30-20h30\nSamedi 09h00-20h00\nDimanche 09h30-13h30",
     "miniText": "Depuis 2014, La Récolte œuvre pour promouvoir des produits issus d’une agriculture aux pratiques vertueuses et contribuer à son développement et à sa pérennité. L’enseigne défend un modèle de magasins permettant aux agriculteurs les plus engagés de continuer à exister, en rendant leurs produits accessibles.",
     "panoramaImage": "/panoramas/la-recolte.jpg"
+  },
+  {
+    "id": "la-recyclerie-paris",
+    "name": "La Recyclerie",
+    "website": "https://www.larecyclerie.com/",
+    "lat": 48.897611,
+    "lng": 2.344023,
+    "address": "83 boulevard Ornano, 75018 Paris, France",
+    "phone": "+33142575849",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 11h00-22h00\nMardi 11h00-00h00\nMercredi 11h00-00h00\nJeudi 11h00-00h00\nVendredi 11h00-02h00\nSamedi 11h00-02h00\nDimanche 11h00-22h00",
+    "miniText": "Espace hybride installé dans l’ancienne gare de la Petite Ceinture, La Recyclerie est un lieu de vie convivial mêlant café-cantine, bar, ferme urbaine, ateliers collaboratifs et événements culturels autour de l’écoresponsabilité.",
+    "city": "Paris",
+    "country": "FR",
+    "panoramaImage": "/panoramas/recyclerie.jpg"
   }
 ]
