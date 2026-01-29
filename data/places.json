@@ -1020,5 +1020,21 @@
     "country": "FR",
     "panoramaImage": "/panoramas/moulin.jpg",
     "timeZone": "Europe/Paris"
+  },
+  {
+    "id": "bistro-les-artizans-paris",
+    "name": "Bistro Les Artizans",
+    "website": "https://www.lesartizans.fr",
+    "lat": 48.863771981031,
+    "lng": 2.346513039594,
+    "address": "30 Rue Montorgueil, 75001 Paris, France",
+    "phone": "+33140284474",
+    "category": "Restaurant",
+    "openingHours": "Lundi 12h00-23h00\nMardi 12h00-23h00\nMercredi 12h00-23h00\nJeudi 12h00-23h00\nVendredi 12h00-23h00\nSamedi 12h00-23h00\nDimanche 12h00-23h00",
+    "miniText": "Bistro de quartier proposant une cuisine de marché faite maison, élaborée à partir de produits frais issus directement des producteurs. La carte met en avant des assiettes généreuses et savoureuses, accompagnées d’une sélection de vins choisis auprès de vignerons, dans une démarche privilégiant la qualité, le savoir-faire et la saisonnalité.",
+    "city": "Paris",
+    "country": "FR",
+    "timeZone": "Europe/Paris",
+    "panoramaImage": "/panoramas/bistro.jpg"
   }
 ]
