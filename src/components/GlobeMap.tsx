@@ -1561,6 +1561,25 @@ popupRef.current = null;
                   } catch {}
                 });
               }
+
+              const rb = el.querySelector("[data-route=\"1\"]") as HTMLElement | null;
+              if (rb) {
+                rb.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try {
+                    const dlat = Number(lat);
+                    const dlng = Number(lng);
+                    if (!Number.isFinite(dlat) || !Number.isFinite(dlng)) return;
+                    const ua = String((navigator as any)?.userAgent ?? "");
+                    if (/iPhone|iPad|iPod/i.test(ua)) {
+                      window.location.href = "http://maps.apple.com/?daddr=" + dlat + "," + dlng;
+                    } else {
+                      window.location.href = "geo:" + dlat + "," + dlng + "?q=" + dlat + "," + dlng;
+                    }
+                  } catch {}
+                });
+              }
+
               const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
               const setAddrActive = (on: boolean) => {
                 try {
@@ -2672,6 +2691,25 @@ mapRef.current = map;
                           } catch {}
                         });
                       }
+
+                      const rb = el.querySelector("[data-route=\"1\"]") as HTMLElement | null;
+                      if (rb) {
+                        rb.addEventListener("click", (ev: any) => {
+                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try {
+                            const dlat = Number((st as any).lat);
+                            const dlng = Number((st as any).lng);
+                            if (!Number.isFinite(dlat) || !Number.isFinite(dlng)) return;
+                            const ua = String((navigator as any)?.userAgent ?? "");
+                            if (/iPhone|iPad|iPod/i.test(ua)) {
+                              window.location.href = "http://maps.apple.com/?daddr=" + dlat + "," + dlng;
+                            } else {
+                              window.location.href = "geo:" + dlat + "," + dlng + "?q=" + dlat + "," + dlng;
+                            }
+                          } catch {}
+                        });
+                      }
+
                       const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
                       const setAddrActive = (on: boolean) => {
                         try {
