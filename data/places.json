@@ -1117,5 +1117,25 @@
     "timeZone": "Europe/Paris",
     "miniText": "Lieu de vie alternatif installé dans une ancienne caserne réhabilitée à Bordeaux, Darwin Eco-système rassemble coworking, entreprises engagées, espaces culturels, restauration responsable et initiatives liées à la transition écologique. Le site accueille également événements, pratiques sportives urbaines et projets d’économie sociale, dans une démarche de réemploi et de sobriété.",
     "panoramaImage": "/downloads/Darwin.png"
+  },
+  {
+    "name": "Kilogramme",
+    "website": "https://www.epiceriekilogramme.com",
+    "lat": 48.8785765,
+    "lng": 2.3711126,
+    "address": "10 Rue de Meaux, 75019 Paris, France",
+    "phone": "non renseigné",
+    "category": "Épicerie",
+    "openingHours": "Lundi 16h30-20h00\nMardi 11h00-14h30, 16h00-20h00\nMercredi 11h00-14h30, 16h00-20h00\nJeudi 11h00-14h30, 16h00-20h00\nVendredi 11h00-14h30, 16h00-20h00\nSamedi 10h00-20h00\nDimanche 10h00-13h00",
+    "id": "dbab7860-aec2-4adb-aa62-5df6492765b7",
+    "city": "Paris",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-01-31T18:49:17.278Z",
+    "updatedAt": "2026-01-31T18:55:57.182Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie spécialisée dans la vente de produits alimentaires et du quotidien en vrac et sans emballage. Le lieu met en avant des produits locaux, bio ou issus de filières responsables, ainsi que des alternatives durables pour réduire les déchets au quotidien.",
+    "panoramaImage": "/downloads/kilo.png"
   }
 ]
