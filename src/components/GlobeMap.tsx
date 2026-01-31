@@ -1644,14 +1644,19 @@ popupRef.current = null;
                     };
 
                     const copyBtn = mkBtn("Copier");
-                    copyBtn.addEventListener("click", (e2: any) => {
+                    copyBtn.addEventListener("click", async (e2: any) => {
                       try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                      const prev = String((copyBtn as any)?.textContent ?? "Copier");
+                      const flash = (t: string) => {
+                        try { (copyBtn as any).textContent = t; } catch {}
+                        try { setTimeout(() => { try { (copyBtn as any).textContent = prev; } catch {} }, 1200); } catch {}
+                      };
                       try {
-                        const txt = addr;
+                        const txt = String(addr || "");
+                        if (!txt.trim()) { flash("Erreur"); return; }
                         const clip = (navigator as any)?.clipboard?.writeText;
                         if (clip) {
-                          (navigator as any).clipboard.writeText(txt);
-                          return;
+                          try { await (navigator as any).clipboard.writeText(txt); flash("Copié ✓"); return; } catch {}
                         }
                         const ta = document.createElement("textarea");
                         ta.value = txt;
@@ -1660,12 +1665,15 @@ popupRef.current = null;
                         ta.style.left = "-9999px";
                         document.body.appendChild(ta);
                         ta.select();
-                        try { document.execCommand("copy"); } catch {}
+                        let ok = false;
+                        try { ok = !!document.execCommand("copy"); } catch {}
                         try { document.body.removeChild(ta); } catch {}
-                      } catch {}
+                        flash(ok ? "Copié ✓" : "Erreur");
+                      } catch {
+                        flash("Erreur");
+                      }
                     });
-
-                    const goBtn = mkBtn("Itinéraire →");
+const goBtn = mkBtn("Itinéraire →");
                     goBtn.addEventListener("click", (e2: any) => {
                       try { e2.preventDefault(); e2.stopPropagation(); } catch {}
                       try {
@@ -2747,14 +2755,19 @@ mapRef.current = map;
                             };
 
                             const copyBtn = mkBtn("Copier");
-                            copyBtn.addEventListener("click", (e2: any) => {
+                            copyBtn.addEventListener("click", async (e2: any) => {
                               try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                              const prev = String((copyBtn as any)?.textContent ?? "Copier");
+                              const flash = (t: string) => {
+                                try { (copyBtn as any).textContent = t; } catch {}
+                                try { setTimeout(() => { try { (copyBtn as any).textContent = prev; } catch {} }, 1200); } catch {}
+                              };
                               try {
-                                const txt = addr;
+                                const txt = String(addr || "");
+                                if (!txt.trim()) { flash("Erreur"); return; }
                                 const clip = (navigator as any)?.clipboard?.writeText;
                                 if (clip) {
-                                  (navigator as any).clipboard.writeText(txt);
-                                  return;
+                                  try { await (navigator as any).clipboard.writeText(txt); flash("Copié ✓"); return; } catch {}
                                 }
                                 const ta = document.createElement("textarea");
                                 ta.value = txt;
@@ -2763,12 +2776,15 @@ mapRef.current = map;
                                 ta.style.left = "-9999px";
                                 document.body.appendChild(ta);
                                 ta.select();
-                                try { document.execCommand("copy"); } catch {}
+                                let ok = false;
+                                try { ok = !!document.execCommand("copy"); } catch {}
                                 try { document.body.removeChild(ta); } catch {}
-                              } catch {}
+                                flash(ok ? "Copié ✓" : "Erreur");
+                              } catch {
+                                flash("Erreur");
+                              }
                             });
-
-                            const goBtn = mkBtn("Itinéraire →");
+const goBtn = mkBtn("Itinéraire →");
                             goBtn.addEventListener("click", (e2: any) => {
                               try { e2.preventDefault(); e2.stopPropagation(); } catch {}
                               try {
