@@ -1052,5 +1052,21 @@
     "timeZone": "America/Toronto",
     "miniText": "Pub proposant une cuisine et une offre de boissons pensées pour réduire au maximum l’impact environnemental. Le lieu privilégie des produits locaux et responsables, limite les emballages à usage unique et met en place des pratiques concrètes de réemploi et de réduction des déchets.",
     "panoramaImage": "/panoramas/cale.png"
+  },
+  {
+    "id": "place-67c7511b0cfd64c4",
+    "name": "Ferme & Cuisine Bika",
+    "city": "Saint-Blaise-sur-Richelieu",
+    "country": "CA",
+    "timeZone": "America/Toronto",
+    "address": "980 Chemin du Grand Bernier, Saint-Blaise-sur-Richelieu, QC J0J 1W0, Canada",
+    "website": "https://bika.farm",
+    "lat": 45.255745214064,
+    "lng": -73.290670026695,
+    "category": "Restaurant",
+    "openingHours": "",
+    "phone": "",
+    "miniText": "Ferme-table champêtre gourmande où la chef propose une expérience culinaire saisonnière à partir des aliments cultivés sur la ferme et d'autres fermes locales. Ouvert de juin à octobre.",
+    "panoramaImage": "/panoramas/bika.jpg"
   }
 ]
