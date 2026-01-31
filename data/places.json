@@ -1100,5 +1100,22 @@
     "phone": "",
     "miniText": "Atelier parisien qui conçoit des briques et du mobilier façonnées à la main à partir de textiles revalorisés. FabBRICK transforme des tissus en un matériau de design unique, alliant innovation, savoir-faire artisanal et esthétique. Chaque création met en valeur la texture, la couleur et l’histoire de la matière.",
     "panoramaImage": "downloads/fab.png"
+  },
+  {
+    "name": "Darwin Eco-système",
+    "city": "Bordeaux",
+    "website": "https://darwin.camp",
+    "lat": 44.8496336,
+    "lng": -0.5610742,
+    "address": "87 Quai des Queyries, 33100 Bordeaux, France",
+    "phone": "+33556775206",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 08h00-21h00\nMardi 08h00-21h00\nMercredi 08h00-21h00\nJeudi 08h00-23h30\nVendredi 08h00-23h30\nSamedi 08h00-23h30\nDimanche 08h00-21h00",
+    "id": "035c0c08-1b4e-4efd-a4c7-0bd450bf3e56",
+    "createdAt": "2026-01-31T18:31:52.019Z",
+    "updatedAt": "2026-01-31T18:31:52.019Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Lieu de vie alternatif installé dans une ancienne caserne réhabilitée à Bordeaux, Darwin Eco-système rassemble coworking, entreprises engagées, espaces culturels, restauration responsable et initiatives liées à la transition écologique. Le site accueille également événements, pratiques sportives urbaines et projets d’économie sociale, dans une démarche de réemploi et de sobriété.",
+    "panoramaImage": "/downloads/Darwin.png"
   }
 ]
