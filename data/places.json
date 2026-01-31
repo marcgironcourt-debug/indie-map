@@ -1036,5 +1036,15 @@
     "country": "FR",
     "timeZone": "Europe/Paris",
     "panoramaImage": "/panoramas/bistro.jpg"
+  },
+  {
+    "name": "La Cale - pub zéro déchet",
+    "website": "http://www.la-cale.com/",
+    "lat": 45.5386681,
+    "lng": -73.6084605,
+    "address": "6839 Rue St-Hubert, Montréal, QC H2S 2M7, Canada",
+    "phone": "+15143600634",
+    "category": "Restaurant / Bar / Pub",
+    "openingHours": "Lundi 11h30-23h00\nMardi 11h30-23h00\nMercredi 11h30-01h30\nJeudi 11h30-00h00\nVendredi 11h30-01h30\nSamedi 11h30-01h30\nDimanche 11h30-23h00"
   }
 ]
