@@ -1084,5 +1084,20 @@
     "phone": "",
     "miniText": "Table champêtre située sur une ferme maraîchère. Le restaurant propose des menus saisonniers en plein air ou dans la maison de ferme, composés principalement de légumes et produits cultivés sur place ainsi que d’ingrédients locaux. Ouverture saisonnière, consulter le site web.",
     "panoramaImage": "/panoramas/parcelles.png"
+  },
+  {
+    "id": "place-c74a394dbe8c57bd",
+    "name": "FabBRICK",
+    "city": "Paris",
+    "country": "FR",
+    "timeZone": "Europe/Paris",
+    "address": "140 Rue d'Aubervilliers, 75019 Paris, France",
+    "website": "https://www.fab-brick.com",
+    "lat": 48.89269700688,
+    "lng": 2.369691013531,
+    "category": "Atelier",
+    "openingHours": "",
+    "phone": "",
+    "miniText": "Atelier parisien qui conçoit des briques et du mobilier façonnées à la main à partir de textiles revalorisés. FabBRICK transforme des tissus en un matériau de design unique, alliant innovation, savoir-faire artisanal et esthétique. Chaque création met en valeur la texture, la couleur et l’histoire de la matière."
   }
 ]

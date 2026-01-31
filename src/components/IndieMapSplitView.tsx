@@ -69,6 +69,10 @@ function getCategorySentence(type: string): string {
     return "Vêtements";
   }
 
+  if (key.includes("atelier")) {
+    return "Atelier";
+  }
+
   if (key.includes("boutique")) {
     return "Boutique";
   }
@@ -628,10 +632,16 @@ React.useEffect(() => {
     return k.includes("boulangerie");
   };
 
+  const isAtelier = (t: string) => {
+    const k = t.toLowerCase();
+    return k.includes("atelier");
+  };
+
   const hasBook = rawCategories.some(isBook);
   const hasGrocery = rawCategories.some(isGrocery);
   const hasRestaurant = rawCategories.some(isRestaurant);
   const hasBakery = rawCategories.some(isBakery);
+  const hasAtelier = rawCategories.some(isAtelier);
 
   const categories = [
     ...rawCategories.filter(
@@ -640,12 +650,14 @@ React.useEffect(() => {
         !isBook(t) &&
         !isGrocery(t) &&
         !isRestaurant(t) &&
-        !isBakery(t)
+        !isBakery(t) &&
+        !isAtelier(t)
     ),
     ...(hasBook ? ["Librairie"] : []),
     ...(hasGrocery ? ["Épicerie"] : []),
     ...(hasRestaurant ? ["Restaurant"] : []),
     ...(hasBakery ? ["Boulangerie"] : []),
+    ...(hasAtelier ? ["Atelier"] : []),
   ];
 
   const filtered = source.filter((b) => {
@@ -692,6 +704,10 @@ React.useEffect(() => {
 
     if (category === "Boulangerie") {
       return k.includes("boulangerie");
+    }
+
+    if (category === "Atelier") {
+      return k.includes("atelier");
     }
 
     return b.type === category;
