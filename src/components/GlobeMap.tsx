@@ -2863,17 +2863,6 @@ const goBtn = mkBtn("Itinéraire →");
                       const btn = el.querySelector("[data-mini-close=\"1\"]") as HTMLElement | null;
                       if (btn) {
                         btn.addEventListener("click", (ev: any) => {
-                      const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
-                      if (pb) {
-                        pb.addEventListener("click", (ev: any) => {
-                          try { ev.preventDefault(); ev.stopPropagation(); } catch {}
-                          try {
-                            const dial = String((pb as any).getAttribute("data-tel") || "").trim();
-                            if (!dial) return;
-                            window.location.href = "tel:" + dial;
-                          } catch {}
-                        });
-                      }
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                           try { popupRef.current?.remove(); } catch {}
                           try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
@@ -2892,7 +2881,7 @@ const goBtn = mkBtn("Itinéraire →");
                     } catch {}
 
                     try {
-                                            const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+                      const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
                       const opening = String(((st as any)?.props?.openingHours ?? "")).trim();
                       const setHoursActive = (on: boolean) => {
                         try {
