@@ -895,7 +895,7 @@
   },
   {
     "id": "place-frame-restaurant-bar-paris",
-    "name": "FRAME RESTAURANT AND BAR",
+    "name": "Frame Brasserie",
     "website": "https://www.framebrasserie.fr",
     "lat": 48.855867008146,
     "lng": 2.293292983572,
@@ -903,7 +903,7 @@
     "phone": "+33 1 44 38 57 77",
     "category": "Restaurant",
     "openingHours": "Jeudi 6h00-0h00\nVendredi 6h00-0h00\nSamedi 6h00-0h00\nDimanche 6h00-0h00\nLundi 6h00-0h00\nMardi 6h00-0h00\nMercredi 6h00-0h00",
-    "miniText": "Brasserie moderne située au pied de la Tour Eiffel. Le restaurant propose une cuisine française contemporaine à partir de produits frais, avec des options végétariennes et sans gluten. La cuisine est principalement axée sur les produits de la mer et les végétaux, tout en travaillant certaines viandes dans le respect de l’animal. L’approche met à l’honneur des produits locaux et de saison, dans une recherche d’équilibre et de subtilité.",
+    "miniText": "Restaurant proposant une cuisine française contemporaine à partir de produits frais, avec des options végétariennes et sans gluten. La cuisine est principalement axée sur les produits de la mer et les végétaux, tout en travaillant certaines viandes dans le respect de l’animal. L’approche met à l’honneur des produits locaux et de saison.",
     "panoramaImage": "/panoramas/frame-restaurant-bar.jpg",
     "timeZone": "Europe/Paris",
     "city": "Paris",
