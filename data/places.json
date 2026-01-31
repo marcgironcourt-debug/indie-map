@@ -1151,10 +1151,11 @@
     "openingHours": "Mardi 12h00-20h00\nMercredi 12h00-20h00\nJeudi 12h00-20h00\nVendredi 12h00-20h00\nSamedi 10h00-19h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-01-31T19:04:27.462Z",
-    "updatedAt": "2026-01-31T19:04:27.462Z",
+    "updatedAt": "2026-01-31T19:13:34.090Z",
     "tags": [
       "Lieu alternatif"
     ],
-    "miniText": ""
+    "miniText": "Lieu associatif dédié à la réduction des déchets et au zéro gaspillage. Créée en 2017 à l’initiative de Zero Waste France, elle propose une boutique zéro déchet, un café associatif, une librairie et des espaces de ressources. On y organise aussi des ateliers, conférences et événements pour découvrir et pratiquer des alternatives durables au quotidien.",
+    "panoramaImage": "/downloads/maison.png"
   }
 ]
