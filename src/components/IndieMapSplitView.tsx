@@ -32,7 +32,7 @@ function normalizeCategoryLabel(raw: string): string {
   const key = (raw || "").toLowerCase();
 
   if (key.includes("lieu de vie")) {
-    return "Lieu de vie";
+    return "Lieu alternatif";
   }
 
   if (key.includes("café") || key.includes("cafe") || key.includes("coffee") || key.includes("brunch")) {
