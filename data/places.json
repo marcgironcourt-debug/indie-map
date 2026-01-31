@@ -1082,6 +1082,7 @@
     "category": "Restaurant",
     "openingHours": "",
     "phone": "",
-    "miniText": "Table champêtre située sur une ferme maraîchère. Le restaurant propose des menus saisonniers en plein air ou dans la maison de ferme, composés principalement de légumes et produits cultivés sur place ainsi que d’ingrédients locaux. Ouverture saisonnière, consulter le site web."
+    "miniText": "Table champêtre située sur une ferme maraîchère. Le restaurant propose des menus saisonniers en plein air ou dans la maison de ferme, composés principalement de légumes et produits cultivés sur place ainsi que d’ingrédients locaux. Ouverture saisonnière, consulter le site web.",
+    "panoramaImage": "/panoramas/parcelles.png"
   }
 ]
