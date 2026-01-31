@@ -31,7 +31,7 @@ const DEMO: Business[] = [
 function normalizeCategoryLabel(raw: string): string {
   const key = (raw || "").toLowerCase();
 
-  if (key.includes("lieu de vie")) {
+  if (key.includes("lieu alternatif") || key.includes("lieu de vie")) {
     return "Lieu alternatif";
   }
 

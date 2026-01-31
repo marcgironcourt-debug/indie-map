@@ -1137,5 +1137,24 @@
     ],
     "miniText": "Épicerie spécialisée dans la vente de produits alimentaires et du quotidien en vrac et sans emballage. Le lieu met en avant des produits locaux, bio ou issus de filières responsables, ainsi que des alternatives durables pour réduire les déchets au quotidien.",
     "panoramaImage": "/downloads/kilo.png"
+  },
+  {
+    "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+    "name": "La Maison du Zéro Déchet",
+    "city": "Paris",
+    "address": "1 Passage Jaqueline Giraud, 75012 Paris, France",
+    "website": "https://lamaisonduzerodechet.org",
+    "lat": 48.8484484,
+    "lng": 2.3857403,
+    "category": "Lieu alternatif",
+    "phone": "+33986543888",
+    "openingHours": "Mardi 12h00-20h00\nMercredi 12h00-20h00\nJeudi 12h00-20h00\nVendredi 12h00-20h00\nSamedi 10h00-19h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-01-31T19:04:27.462Z",
+    "updatedAt": "2026-01-31T19:04:27.462Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": ""
   }
 ]
