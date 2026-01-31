@@ -1157,5 +1157,25 @@
     ],
     "miniText": "Lieu associatif dédié à la réduction des déchets et au zéro gaspillage. Créée en 2017 à l’initiative de Zero Waste France, elle propose une boutique zéro déchet, un café associatif, une librairie et des espaces de ressources. On y organise aussi des ateliers, conférences et événements pour découvrir et pratiquer des alternatives durables au quotidien.",
     "panoramaImage": "/downloads/maison.png"
+  },
+  {
+    "id": "cf0dc4d6-d64b-4f88-8634-0bd64c927d9e",
+    "name": "Ground Control",
+    "city": "Paris",
+    "address": "81 Rue du Charolais, 75012 Paris, France",
+    "website": "https://www.groundcontrolparis.com",
+    "lat": 48.84385,
+    "lng": 2.38167,
+    "category": "lieu alternatif",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00-00h00\nJeudi 12h00-00h00\nVendredi 12h00-00h30\nSamedi 12h00-00h30\nDimanche 12h00-21h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-01-31T19:38:17.485Z",
+    "updatedAt": "2026-01-31T19:50:24.670Z",
+    "tags": [
+      "lieu alternatif"
+    ],
+    "miniText": "Lieu culturel rassemblant restaurants, bars, espaces culturels et événements autour de valeurs communes : engagement social, transition écologique et ouverture culturelle. Les restaurants du site sont labellisés Ecotable, garantissant un approvisionnement en circuits courts, des produits de saison, une cuisine maison, une part importante de produits bio ainsi que des actions de tri et de recyclage.",
+    "panoramaImage": "/downloads/ground.png"
   }
 ]
