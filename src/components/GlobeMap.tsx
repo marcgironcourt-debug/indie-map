@@ -1520,6 +1520,23 @@ map.on("mouseenter", LAYER_ID, () => {
             const el = document.createElement("div");
             el.style.pointerEvents = "auto";
             el.innerHTML = html;
+
+            const recenterMini = () => {
+              try {
+                const r = el.getBoundingClientRect();
+                const vh = Math.max(1, Number(window.innerHeight || 0));
+                const margin = 12;
+                let extra = 0;
+                if (r.top < margin) extra -= (margin - r.top);
+                if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
+                const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+                const base = 160;
+                const oy = clamp(base + extra, 80, 280);
+                try {
+                  map.easeTo({ center: [Number(lng), Number(lat)], zoom: map.getZoom(), duration: 220, offset: [0, oy], essential: true });
+                } catch {}
+              } catch {}
+            };
             try {
               const btn = el.querySelector("[data-mini-close=\"1\"]");
               if (btn) {
@@ -1617,13 +1634,19 @@ popupRef.current = null;
                       const showing = (cur === "none");
                       (panel as HTMLElement).style.display = showing ? "block" : "none";
                       try { setAddrActive(showing); } catch {}
+                      try { setTimeout(recenterMini, 0); } catch {}
                       return;
                     }
 
                     panel = document.createElement("div");
                     panel.setAttribute("data-addr-panel","1");
-                    panel.style.marginTop = "8px";
-                    panel.style.maxWidth = "320px";
+                    panel.style.position = "absolute";
+                    panel.style.left = "50%";
+                    panel.style.top = "100%";
+                    panel.style.width = "260px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.transform = "translateX(-50%) translateY(8px)";
+                    panel.style.zIndex = "3";
                     panel.style.padding = "10px 10px";
                     panel.style.background = "rgba(31,31,24,0.78)";
                     panel.style.border = "1px solid rgba(245,245,232,.14)";
@@ -1828,12 +1851,19 @@ popupRef.current = null;
                               const showing = (cur === "none");
                               (panel as HTMLElement).style.display = showing ? "block" : "none";
                               try { setHoursActive(showing); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
                               return;
                             }
                     panel = document.createElement("div");
                     panel.setAttribute("data-hours-panel","1");
-                    panel.style.marginTop = "8px";
-                    panel.style.maxWidth = "320px";
+                    panel.style.position = "absolute";
+                    panel.style.left = "50%";
+                    panel.style.top = "100%";
+                    panel.style.width = "260px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.transform = "translateX(-50%) translateY(8px)";
+                    panel.style.zIndex = "3";
                     panel.style.padding = "10px 10px";
                     panel.style.background = "rgba(31,31,24,0.78)";
                     panel.style.border = "1px solid rgba(245,245,232,.14)";
@@ -1890,6 +1920,8 @@ popupRef.current = null;
                     }
                     el.appendChild(panel);
                             try { setHoursActive(true); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
                             } catch {}
                 });
               }
@@ -2708,6 +2740,25 @@ mapRef.current = map;
                     el.style.pointerEvents = "auto";
                     el.innerHTML = html;
 
+                    const recenterMini = () => {
+                      try {
+                        const r = el.getBoundingClientRect();
+                        const vh = Math.max(1, Number(window.innerHeight || 0));
+                        const margin = 12;
+                        let extra = 0;
+                        if (r.top < margin) extra -= (margin - r.top);
+                        if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
+                        const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+                        const base = 160;
+                        const oy = clamp(base + extra, 80, 280);
+                        const lng0 = Number((st as any).lng);
+                        const lat0 = Number((st as any).lat);
+                        try {
+                          map.easeTo({ center: [lng0, lat0], zoom: map.getZoom(), duration: 220, offset: [0, oy], essential: true });
+                        } catch {}
+                      } catch {}
+                    };
+
                     try {
                       const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
                       if (pb) {
@@ -2783,13 +2834,19 @@ mapRef.current = map;
                               const showing = (cur === "none");
                               (panel as HTMLElement).style.display = showing ? "block" : "none";
                               try { setAddrActive(showing); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
                               return;
                             }
 
                             panel = document.createElement("div");
                             panel.setAttribute("data-addr-panel","1");
-                            panel.style.marginTop = "8px";
-                            panel.style.maxWidth = "320px";
+                            panel.style.position = "absolute";
+                    panel.style.left = "50%";
+                    panel.style.top = "100%";
+                    panel.style.width = "260px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.transform = "translateX(-50%) translateY(8px)";
+                    panel.style.zIndex = "3";
                             panel.style.padding = "10px 10px";
                             panel.style.background = "rgba(31,31,24,0.78)";
                             panel.style.border = "1px solid rgba(245,245,232,.14)";
@@ -2890,6 +2947,8 @@ const goBtn = mkBtn("Itinéraire →");
 
                             el.appendChild(panel);
                             try { setAddrActive(true); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
+                      try { setTimeout(recenterMini, 0); } catch {}
                           } catch {}
                         });
                       }
@@ -2952,8 +3011,13 @@ const goBtn = mkBtn("Itinéraire →");
                             }
                             panel = document.createElement("div");
                             panel.setAttribute("data-hours-panel","1");
-                            panel.style.marginTop = "8px";
-                            panel.style.maxWidth = "320px";
+                            panel.style.position = "absolute";
+                    panel.style.left = "50%";
+                    panel.style.top = "100%";
+                    panel.style.width = "260px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.transform = "translateX(-50%) translateY(8px)";
+                    panel.style.zIndex = "3";
                             panel.style.padding = "10px 10px";
                             panel.style.background = "rgba(31,31,24,0.78)";
                             panel.style.border = "1px solid rgba(245,245,232,.14)";
