@@ -1068,5 +1068,20 @@
     "phone": "",
     "miniText": "Ferme-table champêtre gourmande où la chef propose une expérience culinaire saisonnière à partir des aliments cultivés sur la ferme et d'autres fermes locales. Ouvert de juin à octobre.",
     "panoramaImage": "/panoramas/bika.jpg"
+  },
+  {
+    "id": "place-80cbddc626a1d010",
+    "name": "Parcelles",
+    "city": "Austin",
+    "country": "CA",
+    "timeZone": "America/Toronto",
+    "address": "21 Chemin Taylor, Austin, QC J0B 1B0, Canada",
+    "website": "https://www.parcellesaustin.com",
+    "lat": 45.204139386864,
+    "lng": -72.239553300775,
+    "category": "Restaurant",
+    "openingHours": "",
+    "phone": "",
+    "miniText": "Table champêtre située sur une ferme maraîchère. Le restaurant propose des menus saisonniers en plein air ou dans la maison de ferme, composés principalement de légumes et produits cultivés sur place ainsi que d’ingrédients locaux. Ouverture saisonnière, consulter le site web."
   }
 ]
