@@ -1562,13 +1562,135 @@ popupRef.current = null;
                 });
               }
               const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
+              const setAddrActive = (on: boolean) => {
+                try {
+                  if (!ab) return;
+                  if (on) {
+                    (ab as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                    (ab as any).style.background = "rgba(114,138,74,.20)";
+                    (ab as any).style.borderColor = "rgba(114,138,74,.70)";
+                  } else {
+                    (ab as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                    (ab as any).style.background = "rgba(0,0,0,0.14)";
+                    (ab as any).style.borderColor = "rgba(255,255,255,0.30)";
+                  }
+                } catch {}
+              };
               if (ab) {
                 ab.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                   try {
-                    const dest = encodeURIComponent(String(lat) + "," + String(lng));
-                    const url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
-                    window.location.href = url;
+                    const addr = String(((props as any)?.address ?? "")).trim();
+                    let panel = el.querySelector("[data-addr-panel=\"1\"]") as HTMLDivElement | null;
+                    if (!addr) {
+                      if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                      try { setAddrActive(false); } catch {}
+                      return;
+                    }
+                    if (panel) {
+                      const cur = String((panel as HTMLElement).style.display || "");
+                      const showing = (cur === "none");
+                      (panel as HTMLElement).style.display = showing ? "block" : "none";
+                      try { setAddrActive(showing); } catch {}
+                      return;
+                    }
+
+                    panel = document.createElement("div");
+                    panel.setAttribute("data-addr-panel","1");
+                    panel.style.marginTop = "8px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.padding = "10px 10px";
+                    panel.style.background = "rgba(31,31,24,0.78)";
+                    panel.style.border = "1px solid rgba(245,245,232,.14)";
+                    panel.style.borderRadius = "16px 6px 16px 6px";
+                    panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                    panel.style.backdropFilter = "blur(10px)";
+                    (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                    panel.style.color = "rgba(245,245,232,.92)";
+                    panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                    panel.style.fontSize = "12px";
+                    panel.style.lineHeight = "18px";
+                    panel.style.letterSpacing = ".02em";
+
+                    const text = document.createElement("div");
+                    text.textContent = addr;
+                    text.style.whiteSpace = "pre-wrap";
+                    (text.style as any).userSelect = "text";
+                    (text.style as any).webkitUserSelect = "text";
+                    panel.appendChild(text);
+
+                    const row = document.createElement("div");
+                    row.style.marginTop = "10px";
+                    row.style.display = "flex";
+                    row.style.alignItems = "center";
+                    row.style.justifyContent = "space-between";
+                    row.style.gap = "8px";
+
+                    const mkBtn = (label: string) => {
+                      const b = document.createElement("button");
+                      b.textContent = label;
+                      b.style.flex = "1";
+                      b.style.padding = "7px 8px";
+                      b.style.borderRadius = "12px 5px 12px 5px";
+                      b.style.border = "1px solid rgba(245,245,232,.18)";
+                      b.style.background = "rgba(0,0,0,0.14)";
+                      b.style.color = "rgba(245,245,232,.92)";
+                      b.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                      b.style.fontSize = "12px";
+                      b.style.letterSpacing = ".02em";
+                      b.style.cursor = "pointer";
+                      b.style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                      return b;
+                    };
+
+                    const copyBtn = mkBtn("Copier");
+                    copyBtn.addEventListener("click", (e2: any) => {
+                      try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                      try {
+                        const txt = addr;
+                        const clip = (navigator as any)?.clipboard?.writeText;
+                        if (clip) {
+                          (navigator as any).clipboard.writeText(txt);
+                          return;
+                        }
+                        const ta = document.createElement("textarea");
+                        ta.value = txt;
+                        ta.setAttribute("readonly", "true");
+                        ta.style.position = "fixed";
+                        ta.style.left = "-9999px";
+                        document.body.appendChild(ta);
+                        ta.select();
+                        try { document.execCommand("copy"); } catch {}
+                        try { document.body.removeChild(ta); } catch {}
+                      } catch {}
+                    });
+
+                    const goBtn = mkBtn("Itinéraire →");
+                    goBtn.addEventListener("click", (e2: any) => {
+                      try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                      try {
+                        const isIOS = /iPad|iPhone|iPod/.test(String((navigator as any)?.userAgent || ""));
+                        const latN = Number(lat);
+                        const lngN = Number(lng);
+                        let url = "";
+                        if (isIOS) {
+                          url = "http://maps.apple.com/?q=" + encodeURIComponent(addr);
+                        } else if (Number.isFinite(latN) && Number.isFinite(lngN)) {
+                          const dest = encodeURIComponent(String(latN) + "," + String(lngN));
+                          url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
+                        } else {
+                          url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addr);
+                        }
+                        window.location.href = url;
+                      } catch {}
+                    });
+
+                    row.appendChild(copyBtn);
+                    row.appendChild(goBtn);
+                    panel.appendChild(row);
+
+                    el.appendChild(panel);
+                    try { setAddrActive(true); } catch {}
                   } catch {}
                 });
               }
@@ -2543,13 +2665,135 @@ mapRef.current = map;
                         });
                       }
                       const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
+                      const setAddrActive = (on: boolean) => {
+                        try {
+                          if (!ab) return;
+                          if (on) {
+                            (ab as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                            (ab as any).style.background = "rgba(114,138,74,.20)";
+                            (ab as any).style.borderColor = "rgba(114,138,74,.70)";
+                          } else {
+                            (ab as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                            (ab as any).style.background = "rgba(0,0,0,0.14)";
+                            (ab as any).style.borderColor = "rgba(255,255,255,0.30)";
+                          }
+                        } catch {}
+                      };
                       if (ab) {
                         ab.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                           try {
-                            const dest = encodeURIComponent(String(Number((st as any).lat)) + "," + String(Number((st as any).lng)));
-                            const url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
-                            window.location.href = url;
+                            const addr = String(((st as any)?.props?.address ?? "")).trim();
+                            let panel = el.querySelector("[data-addr-panel=\"1\"]") as HTMLDivElement | null;
+                            if (!addr) {
+                              if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                              try { setAddrActive(false); } catch {}
+                              return;
+                            }
+                            if (panel) {
+                              const cur = String((panel as HTMLElement).style.display || "");
+                              const showing = (cur === "none");
+                              (panel as HTMLElement).style.display = showing ? "block" : "none";
+                              try { setAddrActive(showing); } catch {}
+                              return;
+                            }
+
+                            panel = document.createElement("div");
+                            panel.setAttribute("data-addr-panel","1");
+                            panel.style.marginTop = "8px";
+                            panel.style.maxWidth = "260px";
+                            panel.style.padding = "10px 10px";
+                            panel.style.background = "rgba(31,31,24,0.78)";
+                            panel.style.border = "1px solid rgba(245,245,232,.14)";
+                            panel.style.borderRadius = "16px 6px 16px 6px";
+                            panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                            panel.style.backdropFilter = "blur(10px)";
+                            (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                            panel.style.color = "rgba(245,245,232,.92)";
+                            panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                            panel.style.fontSize = "12px";
+                            panel.style.lineHeight = "18px";
+                            panel.style.letterSpacing = ".02em";
+
+                            const text = document.createElement("div");
+                            text.textContent = addr;
+                            text.style.whiteSpace = "pre-wrap";
+                            (text.style as any).userSelect = "text";
+                            (text.style as any).webkitUserSelect = "text";
+                            panel.appendChild(text);
+
+                            const row = document.createElement("div");
+                            row.style.marginTop = "10px";
+                            row.style.display = "flex";
+                            row.style.alignItems = "center";
+                            row.style.justifyContent = "space-between";
+                            row.style.gap = "8px";
+
+                            const mkBtn = (label: string) => {
+                              const b = document.createElement("button");
+                              b.textContent = label;
+                              b.style.flex = "1";
+                              b.style.padding = "7px 8px";
+                              b.style.borderRadius = "12px 5px 12px 5px";
+                              b.style.border = "1px solid rgba(245,245,232,.18)";
+                              b.style.background = "rgba(0,0,0,0.14)";
+                              b.style.color = "rgba(245,245,232,.92)";
+                              b.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                              b.style.fontSize = "12px";
+                              b.style.letterSpacing = ".02em";
+                              b.style.cursor = "pointer";
+                              b.style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                              return b;
+                            };
+
+                            const copyBtn = mkBtn("Copier");
+                            copyBtn.addEventListener("click", (e2: any) => {
+                              try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                              try {
+                                const txt = addr;
+                                const clip = (navigator as any)?.clipboard?.writeText;
+                                if (clip) {
+                                  (navigator as any).clipboard.writeText(txt);
+                                  return;
+                                }
+                                const ta = document.createElement("textarea");
+                                ta.value = txt;
+                                ta.setAttribute("readonly", "true");
+                                ta.style.position = "fixed";
+                                ta.style.left = "-9999px";
+                                document.body.appendChild(ta);
+                                ta.select();
+                                try { document.execCommand("copy"); } catch {}
+                                try { document.body.removeChild(ta); } catch {}
+                              } catch {}
+                            });
+
+                            const goBtn = mkBtn("Itinéraire →");
+                            goBtn.addEventListener("click", (e2: any) => {
+                              try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                              try {
+                                const isIOS = /iPad|iPhone|iPod/.test(String((navigator as any)?.userAgent || ""));
+                                const latN = Number((st as any).lat);
+                                const lngN = Number((st as any).lng);
+                                let url = "";
+                                if (isIOS) {
+                                  url = "http://maps.apple.com/?q=" + encodeURIComponent(addr);
+                                } else if (Number.isFinite(latN) && Number.isFinite(lngN)) {
+                                  const dest = encodeURIComponent(String(latN) + "," + String(lngN));
+                                  url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
+                                } else {
+                                  url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addr);
+                                }
+                                window.location.href = url;
+                              } catch {}
+                            });
+
+                            row.appendChild(copyBtn);
+                            row.appendChild(goBtn);
+                            panel.appendChild(row);
+
+                            el.appendChild(panel);
+                            try { setAddrActive(true); } catch {}
                           } catch {}
                         });
                       }
