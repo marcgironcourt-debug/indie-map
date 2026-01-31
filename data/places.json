@@ -1044,7 +1044,11 @@
     "lng": -73.6084605,
     "address": "6839 Rue St-Hubert, Montréal, QC H2S 2M7, Canada",
     "phone": "+15143600634",
-    "category": "Restaurant / Bar / Pub",
-    "openingHours": "Lundi 11h30-23h00\nMardi 11h30-23h00\nMercredi 11h30-01h30\nJeudi 11h30-00h00\nVendredi 11h30-01h30\nSamedi 11h30-01h30\nDimanche 11h30-23h00"
+    "category": "Brasserie / bar / pub",
+    "openingHours": "Lundi 11h30-23h00\nMardi 11h30-23h00\nMercredi 11h30-01h30\nJeudi 11h30-00h00\nVendredi 11h30-01h30\nSamedi 11h30-01h30\nDimanche 11h30-23h00",
+    "id": "im-7e922710f58fdfdb",
+    "city": "Montréal",
+    "country": "CA",
+    "timeZone": "America/Toronto"
   }
 ]
