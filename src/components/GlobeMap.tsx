@@ -29,6 +29,8 @@ type Kind =
   | "librairie"
   | "restaurant"
   | "boutique"
+  | "atelier"
+  | "atelier"
   | "microbrasserie"
   | "other";
 
@@ -63,6 +65,7 @@ function normalizeType(t?: string | null): Kind {
   )
     return "restaurant";
   if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book")) return "librairie";
+  if (v.includes("atelier")) return "atelier";
   if (v.includes("boutique locale") || v.includes("boutique")) return "boutique";
   return "other";
 }
@@ -426,6 +429,8 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     librairie: "#3B82F6",
     restaurant: cssVar("--restaurant", "#ef4444"),
     boutique: "#000000",
+    atelier: "#6B7280",
+    atelier: "#6B7280",
     microbrasserie: cssVar("--micro", "#f59e0b"),
     other: "#8C5A3C",
   };
@@ -1160,6 +1165,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
       librairie: "#3B82F6",
       restaurant: cssHslVar("--restaurant", "#ef4444"),
       boutique: "#000000",
+      atelier: "#6B7280",
       microbrasserie: cssHslVar("--micro", "#f59e0b"),
       other: "#8C5A3C",
     } as Record<Kind, string>;
@@ -1168,7 +1174,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   async function ensureImages(map: maplibregl.Map) {
     const stroke = "#FDF7F2";
     const pal = palette();
-    const kinds: Kind[] = ["cafe","epicerie","friperie","librairie","restaurant","boutique","microbrasserie","other"];
+    const kinds: Kind[] = ["cafe","epicerie","friperie","librairie","restaurant","boutique","atelier","microbrasserie","other"];
 
     const loadOne = (uri: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {
@@ -1897,7 +1903,7 @@ return;
 
     const features: any[] = [];
     for (const [id, b] of byId.entries()) {
-      const kind = normalizeType(b.type ?? null);
+      const kind = normalizeType(String((b as any).category ?? b.type ?? ""));
       const nameRaw = String(b.name ?? "");
 
       features.push({

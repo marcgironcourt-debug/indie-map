@@ -121,6 +121,12 @@ function getCategoryEmotion(type: string): string {
 function getCategoryStyle(cat: string, active: boolean): string {
   const key = cat.toLowerCase();
 
+
+  if (key.includes("atelier")) {
+    return active
+      ? "bg-[#6B7280] text-white"
+      : "bg-[#5C6E3B]/85 text-[#6B7280] border border-[#6B7280]/60";
+  }
   if (key.includes("café") || key.includes("cafe")) {
     return active
       ? "bg-[hsl(var(--cafe))] text-white"
