@@ -1847,10 +1847,46 @@ popupRef.current = null;
                     panel.style.lineHeight = "18px";
                     panel.style.letterSpacing = ".02em";
                     const parts = opening.split("\n").map(x => String(x||"").trim()).filter(Boolean);
+                    panel.style.display = "flex";
+                    panel.style.flexDirection = "column";
+                    panel.style.gap = "6px";
                     for (const l of parts) {
-                      const d = document.createElement("div");
-                      d.textContent = l;
-                      panel.appendChild(d);
+                      const m = String(l || "").match(/^([A-Za-zÀ-ÿ]+)\s+(.*)$/);
+                      if (m && m[1] && m[2]) {
+                        const row = document.createElement("div");
+                        row.style.display = "flex";
+                        row.style.alignItems = "baseline";
+                        row.style.gap = "10px";
+
+                        const day = document.createElement("span");
+                        day.textContent = m[1];
+                        day.style.fontWeight = "750";
+                        day.style.color = "rgba(245,245,232,.78)";
+                        day.style.whiteSpace = "nowrap";
+                        day.style.flex = "0 0 92px";
+
+                        const hours = document.createElement("span");
+                        hours.textContent = m[2];
+                        hours.style.fontWeight = "650";
+                        hours.style.color = "rgba(245,245,232,.92)";
+                        hours.style.textAlign = "right";
+                        hours.style.whiteSpace = "nowrap";
+
+                        const leader = document.createElement("span");
+                        leader.style.flex = "1";
+                        leader.style.borderBottom = "1px dotted rgba(245,245,232,.26)";
+                        leader.style.transform = "translateY(-2px)";
+                        leader.style.opacity = "0.9";
+
+                        row.appendChild(day);
+                        row.appendChild(leader);
+                        row.appendChild(hours);
+                        panel.appendChild(row);
+                      } else {
+                        const d = document.createElement("div");
+                        d.textContent = l;
+                        panel.appendChild(d);
+                      }
                     }
                     el.appendChild(panel);
                             try { setHoursActive(true); } catch {}
@@ -2931,10 +2967,46 @@ const goBtn = mkBtn("Itinéraire →");
                             panel.style.lineHeight = "18px";
                             panel.style.letterSpacing = ".02em";
                             const parts = opening.split("\n").map(x => String(x||"").trim()).filter(Boolean);
+                            panel.style.display = "flex";
+                            panel.style.flexDirection = "column";
+                            panel.style.gap = "6px";
                             for (const l of parts) {
-                              const d = document.createElement("div");
-                              d.textContent = l;
-                              panel.appendChild(d);
+                              const m = String(l || "").match(/^([A-Za-zÀ-ÿ]+)\s+(.*)$/);
+                              if (m && m[1] && m[2]) {
+                                const row = document.createElement("div");
+                                row.style.display = "flex";
+                                row.style.alignItems = "baseline";
+                                row.style.gap = "10px";
+
+                                const day = document.createElement("span");
+                                day.textContent = m[1];
+                                day.style.fontWeight = "750";
+                                day.style.color = "rgba(245,245,232,.78)";
+                                day.style.whiteSpace = "nowrap";
+                                day.style.flex = "0 0 92px";
+
+                                const hours = document.createElement("span");
+                                hours.textContent = m[2];
+                                hours.style.fontWeight = "650";
+                                hours.style.color = "rgba(245,245,232,.92)";
+                                hours.style.textAlign = "right";
+                                hours.style.whiteSpace = "nowrap";
+
+                                const leader = document.createElement("span");
+                                leader.style.flex = "1";
+                                leader.style.borderBottom = "1px dotted rgba(245,245,232,.26)";
+                                leader.style.transform = "translateY(-2px)";
+                                leader.style.opacity = "0.9";
+
+                                row.appendChild(day);
+                                row.appendChild(leader);
+                                row.appendChild(hours);
+                                panel.appendChild(row);
+                              } else {
+                                const d = document.createElement("div");
+                                d.textContent = l;
+                                panel.appendChild(d);
+                              }
                             }
                             el.appendChild(panel);
                             try { setHoursActive(true); } catch {}
