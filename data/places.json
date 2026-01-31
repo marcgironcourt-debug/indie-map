@@ -1096,8 +1096,9 @@
     "lat": 48.89269700688,
     "lng": 2.369691013531,
     "category": "Atelier",
-    "openingHours": "",
+    "openingHours": "Lundi 9h00-17h00\nMardi 9h00-17h00\nMercredi 9h00-17h00\nJeudi 9h00-17h00\nVendredi 9h00-17h00\nSamedi Fermé\nDimanche Fermé",
     "phone": "",
-    "miniText": "Atelier parisien qui conçoit des briques et du mobilier façonnées à la main à partir de textiles revalorisés. FabBRICK transforme des tissus en un matériau de design unique, alliant innovation, savoir-faire artisanal et esthétique. Chaque création met en valeur la texture, la couleur et l’histoire de la matière."
+    "miniText": "Atelier parisien qui conçoit des briques et du mobilier façonnées à la main à partir de textiles revalorisés. FabBRICK transforme des tissus en un matériau de design unique, alliant innovation, savoir-faire artisanal et esthétique. Chaque création met en valeur la texture, la couleur et l’histoire de la matière.",
+    "panoramaImage": "downloads/fab.png"
   }
 ]
