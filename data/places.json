@@ -1357,5 +1357,45 @@
     ],
     "miniText": "Librairie créé en 1845, spécialisée dans la vente de livres d’occasion, Boulinier s’inscrit dans une logique de réemploi culturel à grande échelle. Les ouvrages sont revendus à prix accessibles, favorisant la circulation des livres et l’accès à la lecture pour tous. Le modèle repose sur l’économie circulaire du livre, sans surproduction, en donnant une seconde vie aux ouvrages.",
     "panoramaImage": "/downloads/lib.png"
+  },
+  {
+    "id": "7a578e28-b1b2-464e-af2f-baa37bc537b6",
+    "name": "EMPREINTES",
+    "city": "Paris",
+    "address": "5 rue de Picardie, 75003 Paris, France",
+    "website": "https://www.empreintes-paris.com",
+    "lat": 48.863368979126,
+    "lng": 2.36213196179,
+    "category": "Boutique",
+    "phone": "+33 1 40 09 53 80",
+    "openingHours": "Lundi Fermé\nMardi 11h00-19h00\nMercredi 11h00-19h00\nJeudi 11h00-19h00\nVendredi 11h00-19h00\nSamedi 11h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique dédiée aux métiers d’art français, EMPREINTES présente des objets, bijoux et pièces de création réalisés en France par des artisans et artisanes sélectionnés. Porté par Ateliers d’Art de France, le lieu met en valeur le savoir-faire, la fabrication locale et la diversité des disciplines artisanales, à travers des pièces uniques ou produites en petites séries.",
+    "createdAt": "2026-02-02T17:10:56.916Z",
+    "updatedAt": "2026-02-02T17:16:32.203Z",
+    "panoramaImage": "/downloads/em.jpg"
+  },
+  {
+    "id": "ca73697a-b88f-405e-8bb3-4716355edddc",
+    "name": "Brasserie Vinatier",
+    "city": "Bordeaux",
+    "address": "3 Pl. Saint-Christoly, 33000 Bordeaux, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-vinatier/",
+    "lat": 44.839745995048,
+    "lng": -0.577292014182,
+    "category": "Brasserie / Bar",
+    "phone": "+33 5 54 52 54 58",
+    "openingHours": "Lundi 12h00–15h00, 19h00–0h00\nMardi 12h00–15h00, 19h00–0h00\nMercredi 12h00–15h00, 19h00–0h00\nJeudi 12h00–15h00, 19h00–0h00\nVendredi 12h00–15h00, 19h00–0h00\nSamedi 12h00–15h00, 19h00–0h00\nDimanche 12h00–15h00, 19h00–0h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T17:37:51.325Z",
+    "updatedAt": "2026-02-02T17:37:51.325Z",
+    "tags": [
+      "Brasserie / Bar"
+    ],
+    "miniText": "",
+    "panoramaImage": ""
   }
 ]
