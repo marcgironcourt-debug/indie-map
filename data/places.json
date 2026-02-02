@@ -1857,5 +1857,25 @@
     "panoramaImage": "/downloads/vaud.jpg",
     "createdAt": "2026-02-02T21:17:23.461Z",
     "updatedAt": "2026-02-02T21:19:47.211Z"
+  },
+  {
+    "id": "c3d87cf7-98e9-4d0d-96d1-b7f8d05a6d9d",
+    "name": "Restaurant Le Belvédère",
+    "city": "Fribourg",
+    "address": "Grand-Rue 36, 1700 Fribourg, Suisse",
+    "website": "https://restaurantdubelvedere.ch",
+    "lat": 46.804948573376,
+    "lng": 7.165134561791,
+    "category": "Restaurant",
+    "phone": "+41 26 323 44 08",
+    "openingHours": "Lundi : Fermé\nMardi : Fermé\nMercredi : 18h30–0h00\nJeudi : 18h30–0h00\nVendredi : 18h30–0h00\nSamedi : 10h00–14h30, 18h30–0h00\nDimanche : 10h00–16h00",
+    "timeZone": "Europe/Zurich",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits majoritairement régionaux. Le lieu met l’accent sur le fait-maison et une carte qui évolue selon les arrivages. Installé au cœur de la vieille ville, le restaurant offre une ambiance conviviale et accueille également des brunchs le week-end.",
+    "panoramaImage": "/downloads/pan.jpg",
+    "createdAt": "2026-02-02T21:33:40.315Z",
+    "updatedAt": "2026-02-02T21:34:54.467Z"
   }
 ]
