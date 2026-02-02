@@ -1617,5 +1617,25 @@
     "panoramaImage": "/downloads/rech.jpg",
     "createdAt": "2026-02-02T19:14:37.772Z",
     "updatedAt": "2026-02-02T19:17:48.781Z"
+  },
+  {
+    "id": "3419ea36-1804-497f-a408-903e33e26fc2",
+    "name": "Local'Attitude",
+    "city": "Bordeaux",
+    "address": "5 rue Étienne Huyard, 33300 Bordeaux, France",
+    "website": "https://www.localattitude.fr",
+    "lat": 44.8751,
+    "lng": -0.5569,
+    "category": "Épicerie",
+    "phone": "+33557192836",
+    "openingHours": "Lundi Fermé\nMardi 10h00-13h00 16h00-19h00\nMercredi 10h00-13h00 16h00-19h00\nJeudi 10h00-13h00 16h00-19h00\nVendredi 10h00-13h00 16h00-19h00\nSamedi 10h00-13h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie solidaire et participative du nord de Bordeaux, Local’Attitude propose un accès à une alimentation saine et locale grâce à l’engagement des adhérents et des bénévoles. L’association anime également des ateliers et des actions favorisant la mixité sociale.",
+    "panoramaImage": "/downloads/loc.jpg",
+    "createdAt": "2026-02-02T19:21:44.352Z",
+    "updatedAt": "2026-02-02T19:24:29.122Z"
   }
 ]
