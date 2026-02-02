@@ -48,7 +48,8 @@ function normalizeType(t?: string | null): Kind {
     v.includes("vêtement") ||
     v.includes("vetement") ||
     v.includes("clothes") ||
-    v.includes("fashion")
+    v.includes("fashion") ||
+    v.includes("mode")
   )
     return "friperie";
   if (

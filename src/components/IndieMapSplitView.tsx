@@ -66,7 +66,7 @@ function getCategorySentence(type: string): string {
   }
 
   if (key.includes("friperie") || key.includes("mode éthique") || key.includes("mode ethique") || key.includes("vêtement") || key.includes("vetement") || key.includes("textile")) {
-    return "Vêtements";
+    return "Mode";
   }
 
   if (key.includes("atelier")) {
@@ -156,7 +156,8 @@ function getCategoryStyle(cat: string, active: boolean): string {
     key.includes("mode éthique") ||
     key.includes("mode ethique") ||
     key.includes("vêtement") ||
-    key.includes("vetement")
+    key.includes("vetement") ||
+    key.includes("mode")
   ) {
     return active
       ? "bg-[hsl(var(--violet))] text-white"
