@@ -1717,5 +1717,25 @@
     "panoramaImage": "/downloads/autr.jpg",
     "createdAt": "2026-02-02T20:04:20.225Z",
     "updatedAt": "2026-02-02T20:07:25.088Z"
+  },
+  {
+    "id": "19b58c4b-6831-4ab8-985c-86ec6ed81052",
+    "name": "Carroussel",
+    "city": "Ussel",
+    "address": "Zone industrielle du Mazet, 19200 Ussel, France",
+    "website": "https://www.facebook.com/p/Ressourcerie-Le-Carroussel-100064632771361/?locale=fr_CA",
+    "lat": 45.55357699345,
+    "lng": 2.32771410973,
+    "category": "Boutique",
+    "phone": "+33 7 81 62 05 75",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 13h00–18h00\nJeudi Fermé\nVendredi Fermé\nSamedi 13h30–17h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Association locale dédiée au réemploi et à la réduction des déchets, Le Carroussel collecte, trie et revend des objets de seconde main afin de leur donner une nouvelle vie. La ressourcerie agit en faveur de l’économie circulaire tout en portant un projet solidaire, en rendant accessibles des biens à prix modérés et en favorisant l’insertion et le lien social sur le territoire d’Ussel.",
+    "createdAt": "2026-02-02T20:16:07.296Z",
+    "updatedAt": "2026-02-02T20:21:13.606Z",
+    "panoramaImage": "/downloads/car.png"
   }
 ]
