@@ -1677,5 +1677,25 @@
       "restaurant"
     ],
     "panoramaImage": "/downloads/symb.jpg"
+  },
+  {
+    "id": "79c96076-85de-42eb-8ad7-2280866aab58",
+    "name": "Le Tilleul",
+    "city": "Ussel",
+    "address": "1 Allée du château du Theil, 19200 Ussel",
+    "website": "https://www.chateaudutheil.com/restaurant",
+    "lat": 45.55975399239,
+    "lng": 2.326145014878,
+    "category": "Restaurant",
+    "phone": "+33 5 19 91 02 10",
+    "openingHours": "Dimanche 12:00-15:00\nLundi Fermé\nMardi Fermé\nMercredi 12:00-21:00\nJeudi 12:00-21:00\nVendredi 12:00-21:00\nSamedi 12:00-21:00",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant du Château, Le Tilleul propose une cuisine dont le menu évolue au fil des semaines. La carte met en avant les produits locaux et de saison, s’inspire de la nature environnante, et vise à réduire les déchets. Le chef Esteban Salazar propose aussi un menu à l’aveugle selon son inspiration.",
+    "panoramaImage": "/downloads/chat.jpg",
+    "createdAt": "2026-02-02T19:51:29.313Z",
+    "updatedAt": "2026-02-02T19:54:58.212Z"
   }
 ]
