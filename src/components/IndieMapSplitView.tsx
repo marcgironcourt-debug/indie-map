@@ -65,7 +65,7 @@ function getCategorySentence(type: string): string {
     return "Brasserie / bar / pub";
   }
 
-  if (key.includes("friperie") || key.includes("mode éthique") || key.includes("mode ethique") || key.includes("vêtement") || key.includes("vetement") || key.includes("textile")) {
+  if (key.includes("friperie") || key.includes("mode éthique") || key.includes("mode ethique") || key.includes("vêtement") || key.includes("vetement") || key.includes("vêtements") || key.includes("vetements") || key.includes("textile") || key.includes("mode")) {
     return "Mode";
   }
 

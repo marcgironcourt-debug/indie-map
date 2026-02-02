@@ -188,15 +188,15 @@
     "openingHours": "Lundi 10h00-18h00\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 10h00-17h00\nDimanche 11h00-17h00",
     "lat": 45.537023,
     "lng": -73.604664,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 315 4903",
     "panoramaImage": "/panorama/belle.png",
     "miniText": "Boutique qui met la mode locale au cœur de tout : plus de 150 créateur·ices québécois·es et plus de 3 000 produits, dont 80% local. L’équipe, 100 % féminine, croit en une économie plus humaine et locale, tout en encourageant une consommation moins mais mieux — notamment via des vêtements de seconde main locaux et des retouches offertes en boutique.",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -208,15 +208,15 @@
     "openingHours": "Lundi 11h00-18h00\nMardi 11h00-18h00\nMercredi 11h00-18h00\nJeudi 11h00-19h00\nVendredi 11h00-19h00\nSamedi 11h00-17h00\nDimanche 11h00-17h00",
     "lat": 45.5268613,
     "lng": -73.6015982,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 769 6094",
     "miniText": "Marque montréalaise fondée en 2009 par Anne-Marie et Catherine, atelier b crée des vêtements durables et minimalistes pour femme, homme et enfant, fabriqués localement à partir de fibres naturelles. Atelier b est la première marque au Canada à avoir mis en place une production manufacturière zéro déchet.",
     "panoramaImage": "/places/atelier-b-panorama.png",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -228,15 +228,15 @@
     "openingHours": "Lundi 10h00-17h00\nMardi 10h00-17h00\nMercredi 10h00-17h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 11h00-17h00\nDimanche Fermé",
     "lat": 45.5409595,
     "lng": -73.6226323,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 273 5700",
     "panoramaImage": "/panorama/cokluch.png",
     "miniText": "Boutique de vêtements pour femmes basée à Montréal qui mise sur une mode éthique, durable et responsable, avec une production locale qui favorise la qualité et réduit l’impact environnemental. La marque privilégie des matières naturelles, des pratiques transparentes et soutient l’économie locale à chaque étape de fabrication.",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -348,15 +348,15 @@
     "openingHours": "Lundi 11h00-18h00\nMardi 11h00-18h00\nMercredi 11h00-18h00\nJeudi 11h00-19h00\nVendredi 11h00-19h00\nSamedi 11h00-17h00\nDimanche 11h00-17h00",
     "lat": 45.524204,
     "lng": -73.5950112,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 903 8385",
     "panoramaImage": "/panorama/empire-echange-mile-end.jpg",
     "miniText": "Boutique d’échange et de vente fondée à Mile End en 2013, L’Empire de l’échange propose un concept alliant seconde vie des vêtements et sélection d’articles neufs de qualité, afin de soutenir les créateurs et artisans locaux. On y trouve aussi des produits de beauté, des articles de maison, des chandelles, de l’encens, des bijoux et d'autres articles.",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -408,15 +408,15 @@
     "openingHours": "Lundi 11h00-18h00\nMardi 11h00-18h00\nMercredi 11h00-18h00\nJeudi 11h00-19h00\nVendredi 11h00-19h00\nSamedi 11h00-17h00\nDimanche 11h00-17h00",
     "lat": 45.5236062,
     "lng": -73.5936195,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 271 2129",
     "panoramaImage": "/panorama/jennifer-glasgow-design.jpg",
     "miniText": "Maison de création montréalaise fondée en 2001, basée sur la slow fashion. Conçoit et fabrique sa propre collection à Montréal, en utilisant des matériaux durables. La boutique propose aussi une sélection soignée de marques de designers locaux, avec une attention particulière portée à la qualité, à l’éthique et au savoir-faire.",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -808,15 +808,15 @@
     "openingHours": "Lundi Fermé\nMardi 12h00-19h30\nMercredi 12h00-19h30\nJeudi 12h00-19h30\nVendredi 12h00-19h30\nSamedi 12h00-19h30\nDimanche Fermé",
     "lat": 48.8814181,
     "lng": 2.3629126,
-    "category": "Vêtements",
+    "category": "Mode",
     "createdAt": "2026-01-13T14:02:32.269Z",
-    "updatedAt": "2026-01-29T20:28:36.401Z",
+    "updatedAt": "2026-02-02T15:14:25.435Z",
     "timeZone": "Europe/Paris",
     "phone": "+33140357714",
     "panoramaImage": "/places/la-textilerie-panorama.png",
     "miniText": "La Textilerie est un lieu dédié au réemploi textile : friperie solidaire, recyclerie et ateliers de couture. On y dépose ses vêtements, on chine des pièces uniques, on apprend à réparer et transformer, et on peut aussi s’y poser autour d’un café. Un espace créatif pour consommer autrement.",
     "tags": [
-      "Vêtements"
+      "Mode"
     ]
   },
   {
@@ -1177,5 +1177,41 @@
     ],
     "miniText": "Lieu culturel rassemblant restaurants, bars, espaces culturels et événements autour de valeurs communes : engagement social, transition écologique et ouverture culturelle. Les restaurants du site sont labellisés Ecotable, garantissant un approvisionnement en circuits courts, des produits de saison, une cuisine maison, une part importante de produits bio ainsi que des actions de tri et de recyclage.",
     "panoramaImage": "/downloads/ground.png"
+  },
+  {
+    "id": "af6c815e-4e45-4bd7-9bd3-1a343041072f",
+    "name": "L'Appartement Français - Mode",
+    "city": "Paris",
+    "address": "16 Rue du Bourg Tibourg, 75004 Paris, France",
+    "website": "https://www.lappartementfrancais.fr/",
+    "lat": 48.8572155,
+    "lng": 2.3563547,
+    "category": "Mode",
+    "phone": "+33140245721",
+    "openingHours": "Lundi 13h00-19h00\nMardi 11h00-19h30\nMercredi 11h00-19h30\nJeudi 11h00-19h30\nVendredi 11h00-19h30\nSamedi 11h00-19h30\nDimanche 13h00-19h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T15:15:54.639Z",
+    "updatedAt": "2026-02-02T15:15:54.639Z",
+    "tags": [
+      "Mode"
+    ]
+  },
+  {
+    "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+    "name": "L'Appartement Français - Baskets",
+    "city": "Paris",
+    "address": "27 Rue du Bourg Tibourg, 75004 Paris, France",
+    "website": "https://www.lappartementfrancais.fr/",
+    "lat": 48.8575556,
+    "lng": 2.3562062,
+    "category": "Mode",
+    "phone": "+33145351153",
+    "openingHours": "Lundi 13h00-19h00\nMardi 11h00-19h30\nMercredi 11h00-19h30\nJeudi 11h00-19h30\nVendredi 11h00-19h30\nSamedi 11h00-19h30\nDimanche 13h00-19h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T15:15:54.639Z",
+    "updatedAt": "2026-02-02T15:15:54.639Z",
+    "tags": [
+      "Mode"
+    ]
   }
 ]
