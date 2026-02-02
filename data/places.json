@@ -1257,5 +1257,25 @@
     ],
     "miniText": "Café-brunch engagé dans une cuisine locavore et de saison. Les Fanés proposent des plats et un brunch faits maison à partir de produits frais, majoritairement bio et issus de circuits courts. Le lieu valorise une approche simple, sincère et responsable de l’alimentation, en lien direct avec les producteurs.",
     "panoramaImage": "/downloads/les.jpg"
+  },
+  {
+    "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+    "name": "Le Hasard Ludique",
+    "city": "Paris",
+    "address": "128 avenue de Saint-Ouen, 75018 Paris",
+    "website": "https://www.lehasardludique.paris",
+    "lat": 48.896503,
+    "lng": 2.345675,
+    "category": "Lieu de vie",
+    "phone": "+33142283591",
+    "openingHours": "Lundi fermé\nMardi fermé\nMercredi 12h00-0h00\nJeudi 12h00-0h00\nVendredi 12h00-1h00\nSamedi 12h00-1h00\nDimanche 11h30-21h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T16:06:55.748Z",
+    "updatedAt": "2026-02-02T16:06:55.748Z",
+    "tags": [
+      "Lieu de vie"
+    ],
+    "miniText": "Lieu proposant une cuisine faite maison à partir de produits de saison, avec une attention portée aux circuits courts et aux filières responsables. Labellisé Écotable, le lieu accueille également un brunch, des concerts, expositions et événements, dans une démarche mêlant création, convivialité et engagement écologique.",
+    "panoramaImage": ""
   }
 ]
