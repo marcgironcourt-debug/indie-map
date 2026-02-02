@@ -1391,12 +1391,12 @@
     "openingHours": "Lundi 12h00–15h00, 19h00–0h00\nMardi 12h00–15h00, 19h00–0h00\nMercredi 12h00–15h00, 19h00–0h00\nJeudi 12h00–15h00, 19h00–0h00\nVendredi 12h00–15h00, 19h00–0h00\nSamedi 12h00–15h00, 19h00–0h00\nDimanche 12h00–15h00, 19h00–0h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T17:37:51.325Z",
-    "updatedAt": "2026-02-02T17:37:51.325Z",
+    "updatedAt": "2026-02-02T18:09:59.526Z",
     "tags": [
       "Brasserie / Bar"
     ],
     "miniText": "",
-    "panoramaImage": ""
+    "panoramaImage": "/downloads/bras.png"
   },
   {
     "id": "7572f496-5e12-428f-95b8-e8108318e6c7",
