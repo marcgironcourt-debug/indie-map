@@ -1191,11 +1191,12 @@
     "openingHours": "Lundi 13h00-19h00\nMardi 11h00-19h30\nMercredi 11h00-19h30\nJeudi 11h00-19h30\nVendredi 11h00-19h30\nSamedi 11h00-19h30\nDimanche 13h00-19h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T15:15:54.639Z",
-    "updatedAt": "2026-02-02T15:22:00.287Z",
+    "updatedAt": "2026-02-02T15:26:33.030Z",
     "tags": [
       "Mode"
     ],
-    "miniText": "Boutique dédiée à la mode et aux accessoires fabriqués en France, mettant en avant des marques engagées dans une production locale et responsable. L’Appartement Français sélectionne des vêtements, pièces intemporelles et créations contemporaines conçues dans des ateliers français, avec une attention particulière portée à la qualité des matières, au savoir-faire et à la durabilité."
+    "miniText": "Boutique dédiée à la mode et aux accessoires fabriqués en France, mettant en avant des marques engagées dans une production locale et responsable. L’Appartement Français sélectionne des vêtements, pièces intemporelles et créations contemporaines conçues dans des ateliers français, avec une attention particulière portée à la qualité des matières, au savoir-faire et à la durabilité.",
+    "panoramaImage": "/downloads/apt.webp"
   },
   {
     "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
@@ -1210,10 +1211,11 @@
     "openingHours": "Lundi 13h00-19h00\nMardi 11h00-19h30\nMercredi 11h00-19h30\nJeudi 11h00-19h30\nVendredi 11h00-19h30\nSamedi 11h00-19h30\nDimanche 13h00-19h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T15:15:54.639Z",
-    "updatedAt": "2026-02-02T15:22:24.756Z",
+    "updatedAt": "2026-02-02T15:27:35.613Z",
     "tags": [
       "Mode"
     ],
-    "miniText": "Boutique spécialisée dans les baskets et accessoires fabriqués en France. L’Appartement Français y propose des sneakers conçues localement, associant design, confort et production responsable. Le lieu valorise des marques françaises engagées dans une fabrication maîtrisée, privilégiant les circuits courts et le savoir-faire artisanal."
+    "miniText": "Boutique spécialisée dans les baskets et accessoires fabriqués en France. L’Appartement Français y propose des sneakers conçues localement, associant design, confort et production responsable. Le lieu valorise des marques françaises engagées dans une fabrication maîtrisée, privilégiant les circuits courts et le savoir-faire artisanal.",
+    "panoramaImage": "/downloads/basket.webp"
   }
 ]
