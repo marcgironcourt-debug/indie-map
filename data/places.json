@@ -1411,11 +1411,11 @@
     "openingHours": "Lundi 9h00-23h30\nMardi 9h00-00h00\nMercredi 9h00-00h00\nJeudi 9h00-00h00\nVendredi 9h00-00h00\nSamedi 9h00-00h00\nDimanche 9h00-23h30",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T18:04:46.812Z",
-    "updatedAt": "2026-02-02T18:04:46.813Z",
+    "updatedAt": "2026-02-02T18:06:30.895Z",
     "tags": [
       "Brasserie / bar / pub"
     ],
     "miniText": "",
-    "panoramaImage": ""
+    "panoramaImage": "/downloads/bra.jpg"
   }
 ]
