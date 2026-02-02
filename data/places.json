@@ -1697,5 +1697,25 @@
     "panoramaImage": "/downloads/chat.jpg",
     "createdAt": "2026-02-02T19:51:29.313Z",
     "updatedAt": "2026-02-02T19:54:58.212Z"
+  },
+  {
+    "id": "80dcff5c-5c8c-426f-9bbc-c29bc2856f8f",
+    "name": "Autrement",
+    "city": "Ussel",
+    "address": "7 Bd de la Prade, 19200 Ussel, France",
+    "website": "https://www.facebook.com/p/Autrement-Restaurant-100064146909520/?locale=fr_FR",
+    "lat": 45.548208004585,
+    "lng": 2.312867996429,
+    "category": "Restaurant",
+    "phone": "+33 5 55 96 00 52",
+    "openingHours": "Lundi 12h00-14h00\nMardi 12h00-14h00\nMercredi 12h00-14h00\nJeudi 12h00-14h00\nVendredi 12h00-14h00\nSamedi 12h00-14h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine bio, 100 % faite maison et axée sur les produits locaux. Le menu change régulièrement selon les saisons et les arrivages.",
+    "panoramaImage": "/downloads/autr.jpg",
+    "createdAt": "2026-02-02T20:04:20.225Z",
+    "updatedAt": "2026-02-02T20:07:25.088Z"
   }
 ]
