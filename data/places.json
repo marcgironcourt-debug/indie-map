@@ -1477,5 +1477,25 @@
     ],
     "miniText": "",
     "panoramaImage": "/downloads/pre.jpg"
+  },
+  {
+    "id": "961742f8-b057-44d7-8693-c2b65369a7c7",
+    "name": "Brasserie Charlie",
+    "city": "Neuilly-sur-Seine",
+    "address": "5 Pl. Parmentier, 92200 Neuilly-sur-Seine, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-charlie/",
+    "lat": 48.880333993063,
+    "lng": 2.278965964112,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 1 74 54 13 76",
+    "openingHours": "Lundi 12h00-23h30\nMardi 12h00-23h30\nMercredi 12h00-23h30\nJeudi 12h00-00h00\nVendredi 12h00-00h00\nSamedi 12h00-00h00\nDimanche 12h00-23h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:28:48.768Z",
+    "updatedAt": "2026-02-02T18:29:31.586Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/char.png"
   }
 ]
