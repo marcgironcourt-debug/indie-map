@@ -1897,5 +1897,25 @@
     "panoramaImage": "",
     "createdAt": "2026-02-02T21:50:10.245Z",
     "updatedAt": "2026-02-02T21:50:10.245Z"
+  },
+  {
+    "id": "69d7a3c1-b882-4b02-96dc-dd17c24bb9ea",
+    "name": "Table des producteurs Libourne",
+    "city": "Libourne",
+    "address": "114 Bd de Garderose, 33500 Libourne, France",
+    "website": "https://www.jardineries-dupoirier.com/page/16-table-des-producteurs",
+    "lat": 44.902723005462,
+    "lng": -0.222494015574,
+    "category": "Épicerie",
+    "phone": "+33 5 57 51 10 09",
+    "openingHours": "lundi\t9h30–18h30\nmardi\t9h30–18h30\nmercredi\t9h30–18h30\njeudi\t9h30–18h30\nvendredi\t9h30–18h30\nsamedi\t9h30–18h30\ndimanche\tFermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T22:07:04.157Z",
+    "updatedAt": "2026-02-02T22:10:51.860Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie dédiée aux produits issus de producteurs locaux du Sud-Ouest, proposant une sélection en circuit court : viandes, charcuteries, volailles, fromages, conserves artisanales, miels, confitures, vins et bières régionales. Le lieu met en avant une relation directe avec les producteurs et une transparence sur l’origine des produits.",
+    "panoramaImage": "/downloads/table.jpg"
   }
 ]
