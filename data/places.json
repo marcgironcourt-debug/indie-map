@@ -1397,5 +1397,25 @@
     ],
     "miniText": "",
     "panoramaImage": ""
+  },
+  {
+    "id": "7572f496-5e12-428f-95b8-e8108318e6c7",
+    "name": "Brasserie Bellanger",
+    "city": "Paris",
+    "address": "140 Rue du Faubourg Poissonnière, 75010 Paris, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-bellanger/",
+    "lat": 48.880925001055,
+    "lng": 2.349941992364,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 9 54 00 99 65",
+    "openingHours": "Lundi 9h00-23h30\nMardi 9h00-00h00\nMercredi 9h00-00h00\nJeudi 9h00-00h00\nVendredi 9h00-00h00\nSamedi 9h00-00h00\nDimanche 9h00-23h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:04:46.812Z",
+    "updatedAt": "2026-02-02T18:04:46.813Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": ""
   }
 ]
