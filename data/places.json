@@ -1637,5 +1637,25 @@
     "panoramaImage": "/downloads/loc.jpg",
     "createdAt": "2026-02-02T19:21:44.352Z",
     "updatedAt": "2026-02-02T19:24:29.122Z"
+  },
+  {
+    "id": "83b2b04e-7581-4f4f-b952-63c59980567d",
+    "name": "Racines",
+    "city": "Bordeaux",
+    "address": "59 Rue Georges Bonnac, 33000 Bordeaux, France",
+    "website": "https://racines-bordeaux.com",
+    "lat": 44.84029,
+    "lng": -0.58406,
+    "category": "Restaurant",
+    "phone": "+33556984308",
+    "openingHours": "Lundi Fermé\nMardi 12h00-14h00 · 19h30-21h30\nMercredi 12h00-14h00 · 19h30-21h30\nJeudi 12h00-14h00 · 19h30-21h30\nVendredi 12h00-14h00 · 19h30-21h30\nSamedi 19h30-21h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Restaurant proposant une cuisine de saison centrée sur des produits locaux et soigneusement sourcés. La carte évolue régulièrement selon les arrivages et le marché. Racines met en avant une cuisine sincère, précise et ancrée dans son territoire, privilégiant le goût, la simplicité et le travail du produit.",
+    "createdAt": "2026-02-02T19:32:16.012Z",
+    "updatedAt": "2026-02-02T19:33:28.587Z",
+    "tags": [
+      "restaurant"
+    ],
+    "panoramaImage": "/downloads/racine.png"
   }
 ]
