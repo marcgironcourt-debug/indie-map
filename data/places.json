@@ -1757,5 +1757,25 @@
     "createdAt": "2026-02-02T20:25:30.825Z",
     "updatedAt": "2026-02-02T20:27:58.849Z",
     "panoramaImage": "/downloads/res.jpg"
+  },
+  {
+    "id": "79344f39-3341-4ef5-8636-41f6ba2ddf62",
+    "name": "La ferme de Pellachal",
+    "city": "Neuvic",
+    "address": "232 Rte des Faînes, 19160 Neuvic, France",
+    "website": "https://ferme-pellachal.fr",
+    "lat": 45.413438596117,
+    "lng": 2.279555823656,
+    "category": "Épicerie",
+    "phone": "+33 6 75 84 36 15",
+    "openingHours": "",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "La ferme de Pellachal propose une production agricole locale en vente directe. Le lieu met en avant un lien direct entre producteurs et consommateurs, avec une attention portée à la qualité des produits et à une agriculture ancrée dans son territoire. Légumes et viandes certifiés Bio.",
+    "createdAt": "2026-02-02T20:31:50.954Z",
+    "updatedAt": "2026-02-02T20:38:46.484Z",
+    "panoramaImage": "/downloads/fer.jpg"
   }
 ]
