@@ -1777,5 +1777,25 @@
     "createdAt": "2026-02-02T20:31:50.954Z",
     "updatedAt": "2026-02-02T20:38:46.484Z",
     "panoramaImage": "/downloads/fer.jpg"
+  },
+  {
+    "id": "ced1bae6-7290-43eb-a07c-163c6a210f53",
+    "name": "Ferme du Manus",
+    "city": "Neuvic",
+    "address": "2 Le Manus, 19160 Neuvic, France",
+    "website": "https://epl-haute-correze.fr/ferme-du-manus",
+    "lat": 45.377915015154,
+    "lng": 2.278648960534,
+    "category": "Épicerie",
+    "phone": "+33 6 86 35 99 71",
+    "openingHours": "Lundi 16h00-18h00\nMardi Fermé\nMercredi 14h00-16h00\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Ferme pédagogique et exploitation agricole portée par l’EPL de Haute-Corrèze. La Ferme du Manus produit et transforme localement des produits agricoles, proposés en vente directe. Le lieu a aussi une vocation éducative, accueillant des élèves et des visiteurs pour faire découvrir les métiers de l’agriculture.",
+    "panoramaImage": "/downloads/manu.jpg",
+    "createdAt": "2026-02-02T20:44:44.184Z",
+    "updatedAt": "2026-02-02T20:46:59.430Z"
   }
 ]
