@@ -1597,5 +1597,25 @@
     "createdAt": "2026-02-02T19:04:19.072Z",
     "updatedAt": "2026-02-02T19:05:37.747Z",
     "panoramaImage": "/downloads/casa.avif"
+  },
+  {
+    "id": "e7a4651c-fdb4-4c79-8c7b-b26c3d4e2a2e",
+    "name": "La Recharge",
+    "city": "Bordeaux",
+    "address": "38 Rue Sainte-Colombe, 33000 Bordeaux, France",
+    "website": "http://www.la-recharge.fr",
+    "lat": 44.837236998061,
+    "lng": -0.571253020582,
+    "category": "Épicerie",
+    "phone": "",
+    "openingHours": "Lundi 15h00-19h30\nMardi 10h00-19h30\nMercredi 10h00-19h30\nJeudi 10h00-19h30\nVendredi 10h00-19h30\nSamedi 10h00-19h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie spécialisée dans la vente en vrac et la réduction des emballages. Le principe est simple : venir avec ses propres contenants ou utiliser ceux disponibles en magasin, tout en privilégiant les producteurs locaux.",
+    "panoramaImage": "/downloads/rech.jpg",
+    "createdAt": "2026-02-02T19:14:37.772Z",
+    "updatedAt": "2026-02-02T19:17:48.781Z"
   }
 ]
