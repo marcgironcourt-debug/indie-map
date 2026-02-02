@@ -1657,5 +1657,25 @@
       "restaurant"
     ],
     "panoramaImage": "/downloads/racine.png"
+  },
+  {
+    "id": "1386742b-e0c7-45a3-bde4-233babedb206",
+    "name": "Symbiose",
+    "city": "Bordeaux",
+    "address": "4 Quai des Chartrons, 33000 Bordeaux, France",
+    "website": "https://symbiose-bordeaux.com",
+    "lat": 44.849025013321,
+    "lng": -0.570748010916,
+    "category": "Restaurant",
+    "phone": "+33556236773",
+    "openingHours": "Lundi Fermé\nMardi 12h00-14h00 · 19h30-22h00\nMercredi 12h00-14h00 · 19h30-22h00\nJeudi 12h00-14h00 · 19h30-22h00\nVendredi 12h00-14h00 · 19h30-22h30\nSamedi 19h30-22h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Restaurant s’appuyant sur un potager en permaculture cultivé par l’équipe, complété par des producteurs locaux soigneusement sélectionnés. La cuisine et le bar fonctionnent en symbiose : les produits sont utilisés dans leur globalité, aussi bien en cuisine que dans les cocktails, afin de limiter le gaspillage et valoriser chaque ingrédient.",
+    "createdAt": "2026-02-02T19:40:26.009Z",
+    "updatedAt": "2026-02-02T19:42:35.230Z",
+    "tags": [
+      "restaurant"
+    ],
+    "panoramaImage": "/downloads/symb.jpg"
   }
 ]
