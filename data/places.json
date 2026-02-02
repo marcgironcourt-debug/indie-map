@@ -1737,5 +1737,25 @@
     "createdAt": "2026-02-02T20:16:07.296Z",
     "updatedAt": "2026-02-02T20:21:13.606Z",
     "panoramaImage": "/downloads/car.png"
+  },
+  {
+    "id": "3d844e56-b7d8-4fe1-8904-c7da6776d441",
+    "name": "Ressourcerie ECOTRIouzoune",
+    "city": "Neuvic",
+    "address": "20 Rue de l'Agriculture, 19160 Neuvic, France",
+    "website": "https://eco-triouzoune.wixsite.com/website",
+    "lat": 45.380136009948,
+    "lng": 2.272306039125,
+    "category": "Boutique",
+    "phone": "+33 7 85 20 93 77",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 9h00–12h00, 15h00–18h00\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00–12h00, 15h00–18h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Ressourcerie associative engagée dans le réemploi et la réduction des déchets, ECOTRIouzoune collecte, valorise et revend des objets de seconde main afin de limiter le gaspillage et l’enfouissement. Le lieu s’inscrit dans une démarche d’économie circulaire et solidaire, en favorisant l’accès à des biens à prix accessibles.",
+    "createdAt": "2026-02-02T20:25:30.825Z",
+    "updatedAt": "2026-02-02T20:27:58.849Z",
+    "panoramaImage": "/downloads/res.jpg"
   }
 ]
