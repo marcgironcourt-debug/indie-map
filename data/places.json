@@ -1877,5 +1877,25 @@
     "panoramaImage": "/downloads/pan.jpg",
     "createdAt": "2026-02-02T21:33:40.315Z",
     "updatedAt": "2026-02-02T21:34:54.467Z"
+  },
+  {
+    "id": "cc759d74-afca-495c-b995-fd3249f16c34",
+    "name": "Boulangerie Saudan",
+    "city": "Fribourg",
+    "address": "Rte de Villars 38, 1700 Fribourg, Suisse",
+    "website": "https://www.boulangerie-saudan.ch",
+    "lat": 46.799959413148,
+    "lng": 7.137511329324,
+    "category": "Boulangerie",
+    "phone": "+41 26 424 15 83",
+    "openingHours": "Lundi : Fermé\nMardi : 6h30–18h30\nMercredi : 6h30–18h30\nJeudi : 6h30–18h30\nVendredi : 6h30–18h30\nSamedi : 7h30–17h00\nDimanche : 7h30–17h00",
+    "timeZone": "Europe/Zurich",
+    "tags": [
+      "boulangerie"
+    ],
+    "miniText": "Boulangerie artisanale accordant une attention particulière à l’origine et à la qualité de ses ingrédients. Les farines utilisées sont 100 % suisses. Les produits laitiers, les œufs et les pommes de terre proviennent de fournisseurs locaux, tandis que le chocolat est sourcé auprès d’un artisan suisse engagé. L’ensemble de la production repose sur une sélection rigoureuse des matières premières et un ancrage fort dans le tissu agricole régional.",
+    "panoramaImage": "",
+    "createdAt": "2026-02-02T21:50:10.245Z",
+    "updatedAt": "2026-02-02T21:50:10.245Z"
   }
 ]
