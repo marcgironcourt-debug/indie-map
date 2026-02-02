@@ -1457,5 +1457,25 @@
     ],
     "miniText": "",
     "panoramaImage": "/downloads/mar.jpg"
+  },
+  {
+    "id": "f106a6c6-28fd-4e44-a49f-fd3f642a53a1",
+    "name": "Brasserie des Prés",
+    "city": "Paris",
+    "address": "6 Cour du Commerce Saint-André, 75006 Paris, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-des-pres/",
+    "lat": 48.852949073719,
+    "lng": 2.339035266313,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 1 42 03 44 13",
+    "openingHours": "Lundi 12h00-00h00\nMardi 12h00-00h00\nMercredi 12h00-00h00\nJeudi 12h00-00h00\nVendredi 12h00-00h00\nSamedi 12h00-00h00\nDimanche 12h00-00h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:23:55.054Z",
+    "updatedAt": "2026-02-02T18:25:30.720Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/pre.jpg"
   }
 ]
