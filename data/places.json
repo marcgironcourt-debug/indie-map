@@ -1817,5 +1817,25 @@
     "panoramaImage": "/downloads/pap.avif",
     "createdAt": "2026-02-02T20:51:04.498Z",
     "updatedAt": "2026-02-02T20:56:51.747Z"
+  },
+  {
+    "id": "la-brouette-epicerie-durable-lausanne",
+    "name": "La Brouette, Épicerie Durable",
+    "city": "Lausanne",
+    "address": "Av. d'Echallens 79, 1004 Lausanne, Suisse",
+    "website": "https://www.labrouette.ch",
+    "lat": 46.528137167408,
+    "lng": 6.61584134259,
+    "category": "Épicerie",
+    "phone": "+41216250151",
+    "openingHours": "Lundi Fermé\nMardi 16h30-19h30\nMercredi 16h30-19h30\nJeudi Fermé\nVendredi 16h30-19h30\nSamedi 10h30-13h00\nSamedi 15h00-17h00\nDimanche Fermé",
+    "timeZone": "Europe/Zurich",
+    "tags": [
+      "epicerie"
+    ],
+    "miniText": "Épicerie proposant des produits alimentaires bio, locaux et majoritairement en vrac. Le lieu privilégie les circuits courts, la transparence sur l’origine des produits et la réduction des emballages. L’épicerie fonctionne sous forme associative et encourage une consommation responsable, accessible et ancrée dans le territoire.",
+    "panoramaImage": "/downloads/brou.webp",
+    "createdAt": "2026-02-02T21:02:50.279Z",
+    "updatedAt": "2026-02-02T21:07:27.808Z"
   }
 ]
