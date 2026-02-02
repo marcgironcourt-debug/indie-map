@@ -1497,5 +1497,25 @@
     ],
     "miniText": "",
     "panoramaImage": "/downloads/char.png"
+  },
+  {
+    "id": "c1a3617e-3be4-40e6-b062-fd12d0a8e85a",
+    "name": "Brasserie Campion",
+    "city": "Lille",
+    "address": "32 Rue Lepelletier, 59800 Lille, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-campion/",
+    "lat": 50.638655987866,
+    "lng": 3.06247702011,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 3 20 85 69 93",
+    "openingHours": "Lundi 12h00-14h30, 19h00-22h30\nMardi 12h00-14h30, 19h00-22h30\nMercredi 12h00-14h30, 19h00-22h30\nJeudi 12h00-14h30, 19h00-22h30\nVendredi 12h00-14h30, 19h00-23h00\nSamedi 12h00-15h00, 19h00-23h00\nDimanche 12h00-15h00, 19h00-22h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:32:43.359Z",
+    "updatedAt": "2026-02-02T18:33:27.264Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/camp.jpg"
   }
 ]
