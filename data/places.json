@@ -1577,5 +1577,25 @@
     "createdAt": "2026-02-02T18:55:08.027Z",
     "updatedAt": "2026-02-02T18:58:40.227Z",
     "panoramaImage": "/downloads/recol.png"
+  },
+  {
+    "id": "2ed3942b-6129-432e-94a5-7821194be8aa",
+    "name": "CASA GAÏA",
+    "city": "Bordeaux",
+    "address": "16 bis rue Latour, 33000 Bordeaux, France",
+    "website": "https://www.casagaia.fr/",
+    "lat": 44.850478,
+    "lng": -0.571111,
+    "category": "Restaurant",
+    "phone": "+33556528721",
+    "openingHours": "Lundi 12h00-14h30, 19h00-22h30\nMardi 12h00-14h30, 19h00-22h30\nMercredi 12h00-14h30, 19h00-22h30\nJeudi 12h00-14h30, 19h00-22h30\nVendredi 12h00-14h30, 19h00-22h30\nSamedi 12h00-14h30, 19h00-22h30\nDimanche 12h00-15h30",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant né de la volonté de proposer une cuisine respectueuse du vivant, fondée sur des produits majoritairement bio, locaux et de saison. Le projet s’appuie sur des relations directes avec des producteurs et artisans partageant les mêmes valeurs, en privilégiant les circuits courts et une agriculture responsable.",
+    "createdAt": "2026-02-02T19:04:19.072Z",
+    "updatedAt": "2026-02-02T19:05:37.747Z",
+    "panoramaImage": "/downloads/casa.avif"
   }
 ]
