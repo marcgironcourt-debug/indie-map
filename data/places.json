@@ -1417,5 +1417,25 @@
     ],
     "miniText": "",
     "panoramaImage": "/downloads/bra.jpg"
+  },
+  {
+    "id": "1d5feeb3-c591-4ba1-acf5-b2e1c07c45cd",
+    "name": "Brasserie Dubillot",
+    "city": "Paris",
+    "address": "222 Rue Saint-Denis, 75002 Paris, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-dubillot/",
+    "lat": 48.868100018645,
+    "lng": 2.35193596331,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 1 88 61 51 24",
+    "openingHours": "Lundi 9h00-00h00\nMardi 9h00-00h00\nMercredi 9h00-00h00\nJeudi 9h00-00h00\nVendredi 9h00-00h00\nSamedi 9h00-00h00\nDimanche 9h00-00h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:14:00.358Z",
+    "updatedAt": "2026-02-02T18:14:43.920Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/dub.jpg"
   }
 ]
