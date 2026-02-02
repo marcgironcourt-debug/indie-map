@@ -1217,5 +1217,25 @@
     ],
     "miniText": "Boutique spécialisée dans les baskets et accessoires fabriqués en France. L’Appartement Français y propose des sneakers conçues localement, associant design, confort et production responsable. Le lieu valorise des marques françaises engagées dans une fabrication maîtrisée, privilégiant les circuits courts et le savoir-faire artisanal.",
     "panoramaImage": "/downloads/basket.webp"
+  },
+  {
+    "id": "676f2a3d-437d-4eb6-abce-5d1d99a10c64",
+    "name": "Le Pavillon des Canaux",
+    "city": "Paris",
+    "address": "39 quai de Loire, 75019 Paris",
+    "website": "https://www.pavillondescanaux.com",
+    "lat": 48.887496,
+    "lng": 2.378686,
+    "category": "Café",
+    "phone": "",
+    "openingHours": "Lundi fermé\nMardi 11h00-00h00\nMercredi 11h00-00h00\nJeudi 11h00-00h00\nVendredi 11h00-02h00\nSamedi 11h00-02h00\nDimanche 11h00-00h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T15:36:33.863Z",
+    "updatedAt": "2026-02-02T15:41:10.869Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café-restaurant indépendant et éco-responsable. Cuisine faite maison à partir de produits frais, locaux et de saison, avec une forte attention portée aux circuits courts et à l’impact environnemental. Le lieu propose un brunch les samedis et dimanches ainsi qu’un espace convivial mêlant terrasse au bord de l’eau, pièces décorées comme une maison et programme d’ateliers ou d’événements culturels.",
+    "panoramaImage": "/downloads/pav.jpg"
   }
 ]
