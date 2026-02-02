@@ -1437,5 +1437,25 @@
     ],
     "miniText": "",
     "panoramaImage": "/downloads/dub.jpg"
+  },
+  {
+    "id": "f03f52a8-378b-4533-98c1-bc57bc8b8965",
+    "name": "Brasserie Martin",
+    "city": "Paris",
+    "address": "24 Rue Saint-Ambroise, 75011 Paris, France",
+    "website": "https://lanouvellegarde.com/fr/brasserie-martin/",
+    "lat": 48.862645998068,
+    "lng": 2.378583961343,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 1 48 05 34 36",
+    "openingHours": "Lundi 9h30-00h00\nMardi 9h30-00h00\nMercredi 9h30-00h00\nJeudi 9h30-00h00\nVendredi 9h30-00h00\nSamedi 9h30-00h00\nDimanche 9h30-00h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-02T18:18:28.356Z",
+    "updatedAt": "2026-02-02T18:19:14.424Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/mar.jpg"
   }
 ]
