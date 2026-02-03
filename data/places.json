@@ -2280,5 +2280,25 @@
     "createdAt": "2026-02-03T21:54:52.330Z",
     "updatedAt": "2026-02-03T21:55:26.770Z",
     "panoramaImage": "/downloads/qu.jpg"
+  },
+  {
+    "id": "38397d31-025d-4021-833c-a40911dbd446",
+    "name": "Zero Waste Daniel",
+    "city": "New York",
+    "address": "257 Varet St, Brooklyn, NY 11206, États-Unis",
+    "website": "https://zerowastedaniel.com",
+    "lat": 40.704269404851,
+    "lng": -73.933615225336,
+    "category": "Mode",
+    "phone": "+1 347-227-7060",
+    "openingHours": "mardi\t12h00–18h00\nmercredi\t12h00–18h00\njeudi\t12h00–20h00\nvendredi\t12h00–20h00\nsamedi\t12h00–20h00\ndimanche\t12h00–18h00\nlundi\tFermé",
+    "timeZone": "America/New_York",
+    "tags": [
+      "mode"
+    ],
+    "miniText": "Atelier de mode concevant des vêtements et accessoires à partir de chutes textiles récupérées auprès de marques et d’ateliers new-yorkais. Chaque pièce est produite localement, en séries limitées ou uniques, dans une démarche de réemploi visant à réduire les déchets de l’industrie textile.",
+    "panoramaImage": "/downloads/zero.jpg",
+    "createdAt": "2026-02-03T22:12:00.199Z",
+    "updatedAt": "2026-02-03T22:14:14.621Z"
   }
 ]
