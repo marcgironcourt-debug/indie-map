@@ -2040,5 +2040,45 @@
     "createdAt": "2026-02-03T17:39:03.499Z",
     "updatedAt": "2026-02-03T17:41:21.202Z",
     "panoramaImage": "/downloads/eaat.jpg"
+  },
+  {
+    "id": "13141e8c-2f4e-4aeb-98c1-1f2dd9354646",
+    "name": "Sweet Pickle Books",
+    "city": "New York",
+    "address": "47 Orchard St, New York, NY 10002, États-Unis",
+    "website": "https://www.sweetpicklebooks.com",
+    "lat": 40.716442317104,
+    "lng": -73.991352624256,
+    "category": "Librairie",
+    "phone": "+1 646-649-2484",
+    "openingHours": "lundi 10h00–20h00\nmardi 10h00–20h00\nmercredi 10h00–20h00\njeudi 10h00–20h00\nvendredi 10h00–21h00\nsamedi 10h00–21h00\ndimanche 10h00–20h00",
+    "timeZone": "America/New_York",
+    "miniText": "Librairie indépendante proposant exclusivement des livres d’occasion. Sweet Pickle Books fonctionne sur un modèle de réemploi culturel mêlant vente et échange de livres, associé à une production artisanale de pickles. Le lieu favorise la circulation des ouvrages et une approche alternative de l’accès à la culture, sans vente de livres neufs.",
+    "tags": [
+      "librairie"
+    ],
+    "createdAt": "2026-02-03T17:46:56.407Z",
+    "updatedAt": "2026-02-03T17:47:56.615Z",
+    "panoramaImage": "/downloads/pick.avif"
+  },
+  {
+    "id": "0279f151-68b5-44fa-81a6-31d2e668c550",
+    "name": "Tokio 7",
+    "city": "New York",
+    "address": "83 E 7th St, New York, NY 10003, USA",
+    "website": "https://tokio7ny.com/",
+    "lat": 40.727356,
+    "lng": -73.9860443,
+    "category": "Mode",
+    "phone": "+1 212 353 8443",
+    "openingHours": "Lundi 11h00-19h00\nMardi 11h00-19h00\nMercredi 11h00-19h00\nJeudi 11h00-19h00\nVendredi 11h00-19h00\nSamedi 11h00-19h00\nDimanche 11h00-19h00",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Friperie emblématique de l’East Village, proposant une sélection de vêtements vintage et de pièces de créateurs de seconde main. En favorisant le réemploi de vêtements de qualité, Tokio 7 s’inscrit dans une démarche d’économie circulaire tout en restant ancré dans la culture créative et indépendante de New York.",
+    "panoramaImage": "/downloads/tok.jpg",
+    "createdAt": "2026-02-03T18:07:50.263Z",
+    "updatedAt": "2026-02-03T18:10:04.497Z"
   }
 ]
