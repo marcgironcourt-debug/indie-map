@@ -425,7 +425,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
 
   const pal: any = {
     cafe: cssVar("--cafe", "#c26b3a"),
-    epicerie: "#728A4A",
+    epicerie: "#FF8FC7",
     friperie: cssVar("--violet", "#7c3aed"),
     librairie: "#3B82F6",
     restaurant: cssVar("--restaurant", "#ef4444"),
@@ -1172,7 +1172,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   function palette() {
     return {
       cafe: cssHslVar("--cafe", "#c26b3a"),
-      epicerie: "#728A4A",
+      epicerie: "#FF8FC7",
       friperie: cssHslVar("--violet", "#7c3aed"),
       librairie: "#3B82F6",
       restaurant: cssHslVar("--restaurant", "#ef4444"),
@@ -1514,7 +1514,10 @@ map.on("mouseenter", LAYER_ID, () => {
             const selEl = document.createElement("div");
             selEl.style.pointerEvents = "none";
             selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
-            selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
+            const kindSel = normalizeType(String((props as any)?.category ?? (props as any)?.type ?? ""));
+            const palSel = palette();
+            const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
+            selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
             selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
               .setLngLat([lng, lat])
               .addTo(map);
@@ -2735,7 +2738,11 @@ mapRef.current = map;
                       const selEl = document.createElement("div");
                       selEl.style.pointerEvents = "none";
                       selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
-                      selEl.innerHTML = svgPin("#728A4A", "rgba(245,245,232,0.92)", true);
+                      const propsSel = (st as any)?.props || {};
+                      const kindSel = normalizeType(String((propsSel as any)?.category ?? (propsSel as any)?.type ?? ""));
+                      const palSel = palette();
+                      const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
+                      selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
                       try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
                       selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
                         .setLngLat([Number((st as any).lng), Number((st as any).lat)])
