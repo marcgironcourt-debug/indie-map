@@ -135,8 +135,8 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
-      ? "bg-[hsl(var(--leaf))] text-white"
-      : "bg-[#5C6E3B]/85 text-[hsl(var(--leaf))] border border-[hsl(var(--leaf))]/60";
+      ? "bg-[#FF8FC7] text-black"
+      : "bg-[#5C6E3B]/85 text-[#FF8FC7] border border-[#FF8FC7]/60";
   }
 
   if (key.includes("boutique")) {
@@ -380,7 +380,7 @@ function MobileBottomSheet({
                   rel="noopener noreferrer"
                   className={
                     isPremium
-                      ? "inline-flex items-center rounded-full bg-[#728A4A] px-3 py-1 text-[11px] font-semibold text-black hover:bg-[#5C6E3B] transition"
+                      ? "inline-flex items-center rounded-full bg-[#FF8FC7] px-3 py-1 text-[11px] font-semibold text-black hover:bg-[#FF6FB6] transition"
                       : "inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800 transition"
                   }
                 >
