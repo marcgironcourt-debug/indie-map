@@ -139,6 +139,13 @@ function getCategoryStyle(cat: string, active: boolean): string {
       : "bg-[#5C6E3B]/85 text-[#FF8FC7] border border-[#FF8FC7]/60";
   }
 
+
+  if (key.includes("ferme") || key.includes("farm")) {
+    return active
+      ? "bg-white text-black"
+      : "bg-[#5C6E3B]/85 text-white border border-white/60";
+  }
+
   if (key.includes("boutique")) {
     return active
       ? "bg-black text-white"
@@ -650,7 +657,7 @@ React.useEffect(() => {
   const hasBakery = rawCategories.some(isBakery);
   const hasAtelier = rawCategories.some(isAtelier);
 
-  const categories = [
+  let categories = [
     ...rawCategories.filter(
       (t) =>
         !isClothing(t) &&
@@ -666,6 +673,8 @@ React.useEffect(() => {
     ...(hasBakery ? ["Boulangerie"] : []),
     ...(hasAtelier ? ["Atelier"] : []),
   ];
+
+  if (!categories.includes("Ferme")) categories.push("Ferme");
 
   const filtered = source.filter((b) => {
     const k = (b.type || "").toLowerCase();
