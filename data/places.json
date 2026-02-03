@@ -2020,5 +2020,25 @@
     "createdAt": "2026-02-03T17:05:23.007Z",
     "updatedAt": "2026-02-03T17:17:01.897Z",
     "panoramaImage": "/downloads/blue.png"
+  },
+  {
+    "id": "d3af0e98-e5e5-4c67-871d-b08cae02c8c9",
+    "name": "East Village Books",
+    "city": "New York",
+    "address": "99 St Marks Pl, New York, NY 10009, États-Unis",
+    "website": "https://www.newyorkcitybookbuyer.com",
+    "lat": 40.727391387675,
+    "lng": -73.984541238278,
+    "category": "Librairie",
+    "phone": "+1 212-477-8647",
+    "openingHours": "lundi 13h00–21h30\nmardi 13h00–21h30\nmercredi 13h00–21h30\njeudi 13h00–22h30\nvendredi 13h00–22h30\nsamedi 13h00–22h30\ndimanche 13h00–21h00",
+    "timeZone": "America/New_York",
+    "miniText": "Librairie spécialisée exclusivement dans les livres d’occasion. East Village Books achète et revend des ouvrages issus de bibliothèques personnelles, avec une sélection axée sur la littérature, les sciences humaines, l’art et la photographie. Le lieu fonctionne en circuit de réemploi culturel, sans vente de livres neufs.",
+    "tags": [
+      "librairie"
+    ],
+    "createdAt": "2026-02-03T17:39:03.499Z",
+    "updatedAt": "2026-02-03T17:41:21.202Z",
+    "panoramaImage": "/downloads/eaat.jpg"
   }
 ]
