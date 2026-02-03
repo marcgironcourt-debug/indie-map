@@ -2220,5 +2220,25 @@
     ],
     "miniText": "Brasserie brassant exclusivement avec des ingrédients issus de l’État de New York. Le lieu s’inscrit dans une démarche de circuit court en reliant directement agriculture locale et production de bière, avec une transformation sur place et une consommation majoritairement locale.",
     "panoramaImage": "/downloads/bras.png"
+  },
+  {
+    "id": "27a891f2-d752-4c3e-bef6-1524fbbe550c",
+    "name": "Strong Rope Brewery Gowanus",
+    "city": "New York",
+    "address": "574 President St, Brooklyn, NY 11215, États-Unis",
+    "website": "https://www.strongropebrewery.com/",
+    "lat": 40.676819971146,
+    "lng": -73.98414636682,
+    "category": "Brasserie",
+    "phone": "+1 929-337-8699",
+    "openingHours": "Lundi 15h00–22h00\nMardi 15h00–22h00\nMercredi 15h00–22h00\nJeudi 15h00–22h00\nVendredi 14h00–22h00\nSamedi 12h00–22h00\nDimanche 12h00–20h00",
+    "timeZone": "America/New_York",
+    "createdAt": "2026-02-03T21:14:31.226Z",
+    "updatedAt": "2026-02-03T21:16:06.722Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie brassant exclusivement avec des ingrédients issus de l’État de New York. Le lieu s’inscrit dans une démarche de circuit court en reliant directement agriculture locale et production de bière, avec une transformation sur place et une consommation majoritairement locale.",
+    "panoramaImage": "/downloads/bras.webp"
   }
 ]
