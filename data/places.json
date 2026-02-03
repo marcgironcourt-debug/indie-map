@@ -2180,5 +2180,25 @@
     ],
     "miniText": "Marché fermier emblématique de New York réunissant 140 producteurs locaux qui vendent directement fruits, légumes, pains, fromages et autres produits alimentaires de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
     "panoramaImage": "/downloads/un.png"
+  },
+  {
+    "id": "3c439dde-1c4f-4b49-bd1a-194b75717c0a",
+    "name": "ABC Kitchen",
+    "city": "New York",
+    "address": "35 E 18th St, New York, NY 10003, USA",
+    "website": "https://www.abckitchen.nyc",
+    "lat": 40.737705445261,
+    "lng": -73.989623353812,
+    "category": "Restaurant",
+    "phone": "+1 212-475-5829",
+    "openingHours": "Lundi 12h00–16h30, 17h00–22h00\nMardi 12h00–16h30, 17h00–22h00\nMercredi 12h00–16h30, 17h00–22h00\nJeudi 12h00–16h30, 17h00–22h00\nVendredi 12h00–16h30, 17h00–22h00\nSamedi 11h00–15h00, 17h00–22h00\nDimanche 11h00–15h00, 17h00–22h00",
+    "timeZone": "America/New_York",
+    "miniText": "Restaurant proposant une cuisine contemporaine axée sur des ingrédients biologiques, locaux et de saison. Le lieu travaille en étroite collaboration avec des fermes et producteurs régionaux, en privilégiant des pratiques agricoles responsables et une approche durable de la restauration.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-03T20:35:30.508Z",
+    "updatedAt": "2026-02-03T20:40:11.371Z",
+    "panoramaImage": "/downloads/abc.jpeg"
   }
 ]
