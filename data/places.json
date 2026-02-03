@@ -2100,5 +2100,25 @@
     "panoramaImage": "/downloads/bac.png",
     "createdAt": "2026-02-03T18:13:42.577Z",
     "updatedAt": "2026-02-03T18:16:33.310Z"
+  },
+  {
+    "id": "d3a4d291-98b4-4d7f-84ef-25c764e717d8",
+    "name": "Le Pavé",
+    "city": "Aubervilliers",
+    "address": "93 Rue du Port, 93300 Aubervilliers, France",
+    "website": "https://www.le-pave.com",
+    "lat": 48.919807015415,
+    "lng": 2.37294604181,
+    "category": "Atelier",
+    "phone": "+33189711059",
+    "openingHours": "Lundi 9h00–12h30, 13h30–17h00\nMardi 9h00–12h30, 13h30–17h00\nMercredi 9h00–12h30\nJeudi 9h00–12h30, 13h30–17h00\nVendredi 9h00–12h30, 13h30–17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-03T19:50:22.328Z",
+    "updatedAt": "2026-02-03T19:54:15.119Z",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Entreprise française qui développe, depuis son atelier d’Aubervilliers, des panneaux de matériaux durables fabriqués à partir de déchets plastiques auxquels une seconde vie est donnée, pour des usages d’agencement et de design.",
+    "panoramaImage": "/downloads/pav.jpg"
   }
 ]
