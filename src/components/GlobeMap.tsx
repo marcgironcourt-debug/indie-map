@@ -32,6 +32,7 @@ type Kind =
   | "atelier"
   | "atelier"
   | "microbrasserie"
+  | "ferme"
   | "other";
 
 function normalizeType(t?: string | null): Kind {
@@ -67,6 +68,7 @@ function normalizeType(t?: string | null): Kind {
     return "restaurant";
   if (v.includes("librairie") || v.includes("bouquinerie") || v.includes("bookstore") || v.includes("book")) return "librairie";
   if (v.includes("atelier")) return "atelier";
+  if (v.includes("ferme") || v.includes("farm")) return "ferme";
   if (v.includes("boutique locale") || v.includes("boutique")) return "boutique";
   return "other";
 }
@@ -1179,6 +1181,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
       boutique: "#000000",
       atelier: "#6B7280",
       microbrasserie: cssHslVar("--micro", "#f59e0b"),
+      ferme: "#FFFFFF",
       other: "#8C5A3C",
     } as Record<Kind, string>;
   }
@@ -1186,7 +1189,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   async function ensureImages(map: maplibregl.Map) {
     const stroke = "#FDF7F2";
     const pal = palette();
-    const kinds: Kind[] = ["cafe","epicerie","friperie","librairie","restaurant","boutique","atelier","microbrasserie","other"];
+    const kinds: Kind[] = ["cafe","epicerie","friperie","librairie","restaurant","boutique","atelier","ferme","microbrasserie","other"];
 
     const loadOne = (uri: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {

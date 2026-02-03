@@ -40,9 +40,7 @@ function normalizeCategoryLabel(raw: string): string {
   }
 
 
-function getCategorySentence(type: string): string {
-  return "";
-}
+
 
 
   if (key.includes("épicerie") || key.includes("epicerie") || key.includes("zéro déchet") || key.includes("zero dechet")) {
@@ -73,7 +71,12 @@ function getCategorySentence(type: string): string {
     return "Atelier";
   }
 
-  if (key.includes("boutique")) {
+  
+  if (key.includes("ferme") || key.includes("farm")) {
+    return "Ferme";
+  }
+
+if (key.includes("boutique")) {
     return "Boutique";
   }
 

@@ -1766,16 +1766,17 @@
     "website": "https://ferme-pellachal.fr",
     "lat": 45.413438596117,
     "lng": 2.279555823656,
-    "category": "Épicerie",
+    "category": "Ferme",
     "phone": "+33 6 75 84 36 15",
     "openingHours": "",
     "timeZone": "Europe/Paris",
     "tags": [
-      "Épicerie"
+      "Épicerie",
+      "Ferme"
     ],
     "miniText": "La ferme de Pellachal propose une production agricole locale en vente directe. Le lieu met en avant un lien direct entre producteurs et consommateurs, avec une attention portée à la qualité des produits et à une agriculture ancrée dans son territoire. Légumes et viandes certifiés Bio.",
     "createdAt": "2026-02-02T20:31:50.954Z",
-    "updatedAt": "2026-02-02T20:38:46.484Z",
+    "updatedAt": "2026-02-03T16:34:53.468Z",
     "panoramaImage": "/downloads/fer.jpg"
   },
   {
@@ -1786,17 +1787,18 @@
     "website": "https://epl-haute-correze.fr/ferme-du-manus",
     "lat": 45.377915015154,
     "lng": 2.278648960534,
-    "category": "Épicerie",
+    "category": "Ferme",
     "phone": "+33 6 86 35 99 71",
     "openingHours": "Lundi 16h00-18h00\nMardi Fermé\nMercredi 14h00-16h00\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche Fermé",
     "timeZone": "Europe/Paris",
     "tags": [
-      "Épicerie"
+      "Épicerie",
+      "Ferme"
     ],
     "miniText": "Ferme pédagogique et exploitation agricole portée par l’EPL de Haute-Corrèze. La Ferme du Manus produit et transforme localement des produits agricoles, proposés en vente directe. Le lieu a aussi une vocation éducative, accueillant des élèves et des visiteurs pour faire découvrir les métiers de l’agriculture.",
     "panoramaImage": "/downloads/manu.jpg",
     "createdAt": "2026-02-02T20:44:44.184Z",
-    "updatedAt": "2026-02-02T20:46:59.430Z"
+    "updatedAt": "2026-02-03T16:34:53.469Z"
   },
   {
     "id": "382d297a-6105-4540-94a3-cf2424745352",
@@ -1806,17 +1808,18 @@
     "website": "https://www.fermepapillons.fr/",
     "lat": 45.358543011992,
     "lng": 2.278158032465,
-    "category": "Épicerie",
+    "category": "Ferme",
     "phone": "+33 7 67 29 63 68",
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 15h00-19h00\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche Fermé",
     "timeZone": "Europe/Paris",
     "tags": [
-      "Épicerie"
+      "Épicerie",
+      "Ferme"
     ],
     "miniText": "Micro-ferme maraîchère produisant des légumes biologiques sur un hectare. Le projet s’inspire de la permaculture et des pratiques de maraîchage sur sol vivant, adaptées au terrain. La ferme propose également un accueil à la ferme dans deux tiny chalets pour deux personnes, permettant de séjourner au contact de la nature et de la forêt.",
     "panoramaImage": "/downloads/pap.avif",
     "createdAt": "2026-02-02T20:51:04.498Z",
-    "updatedAt": "2026-02-02T20:56:51.747Z"
+    "updatedAt": "2026-02-03T16:34:53.469Z"
   },
   {
     "id": "la-brouette-epicerie-durable-lausanne",
