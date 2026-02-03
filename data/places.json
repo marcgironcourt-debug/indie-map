@@ -2260,5 +2260,25 @@
     "createdAt": "2026-02-03T21:29:34.867Z",
     "updatedAt": "2026-02-03T21:36:07.909Z",
     "panoramaImage": "/downloads/bak.png"
+  },
+  {
+    "id": "92ea5882-ea20-47e5-8aee-cc434a08ec09",
+    "name": "Queens County Farm Museum",
+    "city": "New York",
+    "address": "73-50 Little Neck Pkwy, Floral Park, NY 11004, États-Unis",
+    "website": "https://www.queensfarm.org",
+    "lat": 40.748372800065,
+    "lng": -73.720173246097,
+    "category": "Ferme",
+    "phone": "+1 718-347-3276",
+    "openingHours": "mardi\t10h00–17h00\nmercredi\t10h00–17h00\njeudi\t10h00–17h00\nvendredi\t10h00–17h00\nsamedi\t10h00–17h00\ndimanche\t10h00–17h00\nlundi\t10h00–17h00",
+    "miniText": "Ferme préservant une pratique agricole vivante au cœur de New York. Le site produit fruits, légumes et produits fermiers selon des méthodes agricoles traditionnelles et propose une vente directe via son farm stand. La ferme joue également un rôle éducatif majeur en sensibilisant le public à l’agriculture locale, à la saisonnalité et au lien entre alimentation, territoire et patrimoine rural.",
+    "timeZone": "America/New_York",
+    "tags": [
+      "ferme"
+    ],
+    "createdAt": "2026-02-03T21:54:52.330Z",
+    "updatedAt": "2026-02-03T21:55:26.770Z",
+    "panoramaImage": "/downloads/qu.jpg"
   }
 ]
