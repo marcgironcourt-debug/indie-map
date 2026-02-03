@@ -2120,5 +2120,25 @@
     ],
     "miniText": "Entreprise française qui développe, depuis son atelier d’Aubervilliers, des panneaux de matériaux durables fabriqués à partir de déchets plastiques auxquels une seconde vie est donnée, pour des usages d’agencement et de design.",
     "panoramaImage": "/downloads/pav.jpg"
+  },
+  {
+    "id": "20f7a826-48d4-4d86-b471-804dbc6adf8b",
+    "name": "Clémentine et Cie",
+    "city": "Saint-Angel",
+    "address": "Zone du Le Bois Saint-Michel, 19200 Saint-Angel, France",
+    "website": "https://www.achetezenhautecorreze.fr/clementine-et-cie/",
+    "lat": 45.515740569318,
+    "lng": 2.257803493321,
+    "category": "Épicerie",
+    "phone": "+33555958276",
+    "openingHours": "Lundi 9h00–12h30, 14h30–18h30\nMardi 9h00–18h30\nMercredi 9h00–18h30\nJeudi 9h00–18h30\nVendredi 9h00–19h00\nSamedi 9h00–18h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-03T20:00:13.836Z",
+    "updatedAt": "2026-02-03T20:03:07.097Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie locale proposant fruits, légumes et produits alimentaires du quotidien, avec une attention portée à l’origine des produits et aux circuits courts. Le magasin s’inscrit dans une démarche de proximité, en valorisant les producteurs locaux et une alimentation accessible et ancrée dans le territoire de la Haute-Corrèze.",
+    "panoramaImage": "/downloads/clem.jpg"
   }
 ]
