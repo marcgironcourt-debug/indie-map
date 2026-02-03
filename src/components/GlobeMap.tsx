@@ -309,7 +309,7 @@ function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
   const parseRangesForLine = (line: any) => {
     try {
       const t = String(line || "");
-      const re = /(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/g;
+      const re = /(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/g;
       let m: any;
       const ranges: any[] = [];
       while ((m = re.exec(t)) !== null) {
@@ -476,7 +476,20 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
           ""
       );
 
-      const tz = tzRaw;
+      const norm = (x) =>
+        String(x || "")
+          .toLowerCase()
+          .trim()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+      const tzForCity = (city) => {
+        const c = norm(city);
+        if (c.includes("new york") || c === "nyc") return "America/New_York";
+        return "";
+      };
+
+      const tz = tzRaw || tzForCity(cityRaw);
 
       const fmt = tz
         ? new Intl.DateTimeFormat("fr-FR", { timeZone: tz, weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false })
@@ -507,14 +520,12 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
 
     const rest = String(todaysLine).slice(day.length).trim();
     if (!rest) return null;
-    if (rest.toLowerCase().includes("fermé") || rest.toLowerCase().includes("ferme")) {
-      return { label: "Fermé", color: CLOSED_COLOR };
-    }
+    const isClosedToday = rest.toLowerCase().includes("fermé") || rest.toLowerCase().includes("ferme");
 
-    const parts = rest.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
+    const parts = isClosedToday ? [] : rest.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
     const parsed = parts
       .map((p) => {
-        const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
+        const m = p.match(/(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/i);
         if (!m) return null;
         const sh = Number(m[1]);
         const sm = Number(m[2] ?? "00");
@@ -580,7 +591,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
           const parts2 = r2.split(/\s*(?:,|\/|;)\s*/).map((x) => x.trim()).filter(Boolean);
           let found = null as null | { sh:number; sm:number; a:number };
           for (const p of parts2) {
-            const m = p.match(/(\d{1,2})h(\d{2})\s*-\s*(\d{1,2})h(\d{2})/i);
+            const m = p.match(/(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/i);
             if (!m) continue;
             const sh = Number(m[1]);
             const sm = Number(m[2] ?? "00");
