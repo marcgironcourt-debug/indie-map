@@ -2000,5 +2000,25 @@
     "createdAt": "2026-02-03T16:18:41.728Z",
     "updatedAt": "2026-02-03T16:20:56.712Z",
     "panoramaImage": "/downloads/friend.jpg"
+  },
+  {
+    "id": "73e99ece-b08c-4ef2-9c41-0c7992e09140",
+    "name": "Blue Hill at Stone Barns",
+    "city": "Tarrytown",
+    "address": "630 Bedford Rd, Tarrytown, NY 10591, États-Unis",
+    "website": "https://www.bluehillfarm.com",
+    "lat": 41.103535746738,
+    "lng": -73.830266107726,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "lundi 17h30–21h30\nmardi 17h30–21h30\nmercredi 17h30–21h30\njeudi 17h30–21h30\nvendredi 17h30–21h30\nsamedi 17h30–21h30\ndimanche 11h30–14h30, 17h30–21h30",
+    "timeZone": "America/New_York",
+    "miniText": "Restaurant 2 étoiles Michelin, situé au sein de Stone Barns, centre agricole dédié à l’agriculture régénérative. Cuisine élaborée à partir des récoltes de la ferme, avec des menus qui évoluent selon les saisons, les sols et les cycles agricoles. Le lieu explore le lien direct entre agriculture, territoire et cuisine, dans une démarche durable et expérimentale extraordinaire.",
+    "tags": [
+      "restaurant"
+    ],
+    "createdAt": "2026-02-03T17:05:23.007Z",
+    "updatedAt": "2026-02-03T17:17:01.897Z",
+    "panoramaImage": "/downloads/blue.png"
   }
 ]
