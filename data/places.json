@@ -2240,5 +2240,25 @@
     ],
     "miniText": "Brasserie brassant exclusivement avec des ingrédients issus de l’État de New York. Le lieu s’inscrit dans une démarche de circuit court en reliant directement agriculture locale et production de bière, avec une transformation sur place et une consommation majoritairement locale.",
     "panoramaImage": "/downloads/bras.webp"
+  },
+  {
+    "id": "95c35bf0-d924-4db2-a7fb-469a32476c8b",
+    "name": "She Wolf Bakery",
+    "city": "New York",
+    "address": "141 Flushing Ave, Brooklyn, NY 11205, États-Unis",
+    "website": "https://www.shewolfbakery.com",
+    "lat": 40.698121362691,
+    "lng": -73.971195572042,
+    "category": "Boulangerie",
+    "phone": "",
+    "openingHours": "Lundi 8h00–17h00\nMardi 8h00–17h00\nMercredi 8h00–17h00\nJeudi 8h00–17h00\nVendredi 8h00–17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie spécialisée dans le pain au levain élaboré à partir de céréales anciennes cultivées exclusivement dans l’État de New York. Les farines sont moulues sur pierre sur place, permettant une maîtrise complète de la chaîne de production, du grain au pain.",
+    "createdAt": "2026-02-03T21:29:34.867Z",
+    "updatedAt": "2026-02-03T21:36:07.909Z",
+    "panoramaImage": "/downloads/bak.png"
   }
 ]
