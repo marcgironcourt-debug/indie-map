@@ -2200,5 +2200,25 @@
     "createdAt": "2026-02-03T20:35:30.508Z",
     "updatedAt": "2026-02-03T20:40:11.371Z",
     "panoramaImage": "/downloads/abc.jpeg"
+  },
+  {
+    "id": "e7b90588-150e-466d-a177-236ddf8c2a97",
+    "name": "Strong Rope Brewery",
+    "city": "New York",
+    "address": "185 Van Dyke St, Brooklyn, NY 11231, États-Unis",
+    "website": "https://www.strongropebrewery.com/",
+    "lat": 40.677222595865,
+    "lng": -74.018182425768,
+    "category": "Brasserie",
+    "phone": "+1 929-294-9379",
+    "openingHours": "Lundi 14h00–20h00\nMardi 14h00–20h00\nMercredi 14h00–20h00\nJeudi 14h00–20h00\nVendredi 12h00–21h00\nSamedi 12h00–21h00\nDimanche 12h00–20h00",
+    "timeZone": "America/New_York",
+    "createdAt": "2026-02-03T21:04:38.718Z",
+    "updatedAt": "2026-02-03T21:09:40.784Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie brassant exclusivement avec des ingrédients issus de l’État de New York. Le lieu s’inscrit dans une démarche de circuit court en reliant directement agriculture locale et production de bière, avec une transformation sur place et une consommation majoritairement locale.",
+    "panoramaImage": "/downloads/bras.png"
   }
 ]
