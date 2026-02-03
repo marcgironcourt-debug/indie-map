@@ -2140,5 +2140,25 @@
     ],
     "miniText": "Épicerie locale proposant fruits, légumes et produits alimentaires du quotidien, avec une attention portée à l’origine des produits et aux circuits courts. Le magasin s’inscrit dans une démarche de proximité, en valorisant les producteurs locaux et une alimentation accessible et ancrée dans le territoire de la Haute-Corrèze.",
     "panoramaImage": "/downloads/clem.jpg"
+  },
+  {
+    "id": "93b77c33-bdc3-486e-8297-22767874bf5e",
+    "name": "Bubby’s",
+    "city": "New York",
+    "address": "120 Hudson Street, New York, NY 10013, United States",
+    "website": "https://www.bubbys.com",
+    "lat": 40.719830827191,
+    "lng": -74.008424800825,
+    "category": "Café / brunch",
+    "phone": "+12122190666",
+    "openingHours": "Lundi 8h00–22h00\nMardi 8h00–22h00\nMercredi 8h00–22h00\nJeudi 8h00–22h00\nVendredi 8h00–22h00\nSamedi 8h00–22h00\nDimanche 8h00–22h00",
+    "timeZone": "America/New_York",
+    "createdAt": "2026-02-03T20:06:57.630Z",
+    "updatedAt": "2026-02-03T20:13:06.494Z",
+    "tags": [
+      "Café / brunch"
+    ],
+    "miniText": "Restaurant proposant une cuisine américaine faite maison, élaborée à partir de produits locaux issus de fermes partenaires. Connu pour ses brunchs, et ses recettes traditionnelles, le lieu défend depuis les années 1990 une approche engagée, transparente et ancrée dans le territoire new-yorkais, du producteur à l’assiette. Brunch et diner.",
+    "panoramaImage": "/downloads/bub.jpg"
   }
 ]
