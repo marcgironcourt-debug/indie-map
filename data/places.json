@@ -2080,5 +2080,25 @@
     "panoramaImage": "/downloads/tok.jpg",
     "createdAt": "2026-02-03T18:07:50.263Z",
     "updatedAt": "2026-02-03T18:10:04.497Z"
+  },
+  {
+    "id": "7d2dd1b9-9441-4a27-8e80-b626bb9777f2",
+    "name": "Beacon’s Closet",
+    "city": "New York",
+    "address": "10 W 13th St, New York, NY 10011, États-Unis",
+    "website": "https://beaconscloset.com/",
+    "lat": 40.735601378016,
+    "lng": -73.995041332205,
+    "category": "Mode",
+    "phone": "+1 718 486 0816",
+    "openingHours": "Lundi 11h00-20h00\nMardi 11h00-20h00\nMercredi 11h00-20h00\nJeudi 11h00-20h00\nVendredi 11h00-20h00\nSamedi 11h00-20h00\nDimanche 11h00-20h00",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Friperie vintage proposant une large sélection de vêtements et accessoires de seconde main, avec des options pour acheter, vendre ou échanger. L’inventaire évolue constamment, offrant des trouvailles mode variées dans une démarche d’économie circulaire tout en étant ancré dans la scène créative new-yorkaise.",
+    "panoramaImage": "/downloads/bac.png",
+    "createdAt": "2026-02-03T18:13:42.577Z",
+    "updatedAt": "2026-02-03T18:16:33.310Z"
   }
 ]
