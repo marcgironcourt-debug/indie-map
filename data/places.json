@@ -1957,5 +1957,45 @@
     "createdAt": "2026-02-03T15:46:03.516Z",
     "updatedAt": "2026-02-03T15:49:52.456Z",
     "panoramaImage": "/downloads/mark.jpg"
+  },
+  {
+    "id": "52a290b7-d36f-4738-b20b-069dd142a682",
+    "name": "Friend of a Farmer",
+    "city": "New York",
+    "address": "77 Irving Pl, Ground Floor, New York, NY 10003, États-Unis",
+    "website": "https://www.friendofafarmer.com",
+    "lat": 40.7368776,
+    "lng": -73.9868623,
+    "category": "Restaurant",
+    "phone": "+12124772188",
+    "openingHours": "Lundi 09h00–21h30\nMardi 09h00–21h30\nMercredi 09h00–21h30\nJeudi 09h00–21h30\nVendredi 09h00–21h30\nSamedi 09h00–21h30\nDimanche 09h00–21h30",
+    "timeZone": "America/New_York",
+    "miniText": "Restaurant défendant une cuisine américaine inspirée du terroir, fondée sur l’utilisation d’ingrédients frais, de saison et issus de producteurs locaux. Friend of a Farmer met en avant une approche simple et authentique de la ferme à la table, avec des plats faits maison valorisant le travail agricole et les circuits courts.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-03T16:18:41.728Z",
+    "updatedAt": "2026-02-03T16:20:56.710Z",
+    "panoramaImage": "/downloads/friend.jpg"
+  },
+  {
+    "id": "d6d698df-30d0-42ce-a79c-0200ef62a818",
+    "name": "Friend of a Farmer",
+    "city": "New York",
+    "address": "68 W 71st St, New York, NY 10023, États-Unis",
+    "website": "https://www.friendofafarmer.com",
+    "lat": 40.7764247,
+    "lng": -73.9790521,
+    "category": "Restaurant",
+    "phone": "+12124772188",
+    "openingHours": "Lundi 09h00–21h15\nMardi 09h00–21h15\nMercredi 09h00–21h15\nJeudi 09h00–21h15\nVendredi 09h00–21h15\nSamedi 09h00–21h15\nDimanche 09h00–21h15",
+    "timeZone": "America/New_York",
+    "miniText": "Restaurant défendant une cuisine américaine inspirée du terroir, fondée sur l’utilisation d’ingrédients frais, de saison et issus de producteurs locaux. Friend of a Farmer met en avant une approche simple et authentique de la ferme à la table, avec des plats faits maison valorisant le travail agricole et les circuits courts.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-03T16:18:41.728Z",
+    "updatedAt": "2026-02-03T16:20:56.712Z",
+    "panoramaImage": "/downloads/friend.jpg"
   }
 ]
