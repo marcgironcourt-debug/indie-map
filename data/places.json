@@ -1917,5 +1917,25 @@
     ],
     "miniText": "Épicerie dédiée aux produits issus de producteurs locaux du Sud-Ouest, proposant une sélection en circuit court : viandes, charcuteries, volailles, fromages, conserves artisanales, miels, confitures, vins et bières régionales. Le lieu met en avant une relation directe avec les producteurs et une transparence sur l’origine des produits.",
     "panoramaImage": "/downloads/table.jpg"
+  },
+  {
+    "id": "bdc5332b-f53a-418d-ae94-f39109724abf",
+    "name": "4th Street Food Co-op",
+    "city": "New York",
+    "address": "58 E 4th St, New York, NY 10003, États-Unis",
+    "website": "https://4thstreetfoodcoop.org",
+    "lat": 40.726546491835,
+    "lng": -73.990868988443,
+    "category": "Épicerie",
+    "phone": "+1 212 674 3623",
+    "openingHours": "lundi\t12h00–20h00\nmardi\t12h00–20h00\nmercredi\t16h00–20h00\njeudi\t12h00–20h00\nvendredi\t12h00–20h00\nsamedi\t12h00–18h00\ndimanche\t12h00–19h00",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie coopérative proposant des produits biologiques, locaux quand cela est possible, en vrac et issus du commerce équitable. La coopérative défend une alimentation accessible, une transparence sur l’origine des produits et une économie solidaire, en privilégiant les relations directes avec les producteurs et fournisseurs responsables.",
+    "createdAt": "2026-02-03T15:30:47.589Z",
+    "updatedAt": "2026-02-03T15:36:44.610Z",
+    "panoramaImage": "/downloads/4.jpg"
   }
 ]
