@@ -2160,5 +2160,25 @@
     ],
     "miniText": "Restaurant proposant une cuisine américaine faite maison, élaborée à partir de produits locaux issus de fermes partenaires. Connu pour ses brunchs, et ses recettes traditionnelles, le lieu défend depuis les années 1990 une approche engagée, transparente et ancrée dans le territoire new-yorkais, du producteur à l’assiette. Brunch et diner.",
     "panoramaImage": "/downloads/bub.jpg"
+  },
+  {
+    "id": "af28f802-2123-4352-8bdf-e0a8f427a49a",
+    "name": "Union Square Greenmarket",
+    "city": "New York",
+    "address": "Union Square W & E 17th St, New York, NY 10003, United States",
+    "website": "https://www.grownyc.org/greenmarket/manhattan-union-square-m",
+    "lat": 40.737123992637,
+    "lng": -73.990344365123,
+    "category": "Épicerie",
+    "phone": "+12127887900",
+    "openingHours": "Lundi 8h00–18h00\nMardi Fermé\nMercredi 8h00–18h00\nJeudi Fermé\nVendredi 8h00–18h00\nSamedi 8h00–18h00\nDimanche Fermé",
+    "timeZone": "America/New_York",
+    "createdAt": "2026-02-03T20:17:12.581Z",
+    "updatedAt": "2026-02-03T20:28:39.804Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Marché fermier emblématique de New York réunissant 140 producteurs locaux qui vendent directement fruits, légumes, pains, fromages et autres produits alimentaires de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
+    "panoramaImage": "/downloads/un.png"
   }
 ]
