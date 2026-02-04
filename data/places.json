@@ -2468,5 +2468,25 @@
     "createdAt": "2026-02-04T15:35:57.296Z",
     "updatedAt": "2026-02-04T15:37:17.601Z",
     "panoramaImage": "/downloads/mar.jpg"
+  },
+  {
+    "id": "18eb3db6-220c-429c-97b7-2bcd8f263740",
+    "name": "Canoe",
+    "city": "Toronto",
+    "address": "66 Wellington St W, 54th Floor, Toronto, ON M5K 1E9, Canada",
+    "website": "https://www.canoerestaurant.com",
+    "lat": 43.648704,
+    "lng": -79.381657,
+    "category": "Restaurant",
+    "phone": "+1 416-364-0054",
+    "openingHours": "Lundi 11h30–23h30\nMardi 11h30–23h30\nMercredi 11h30–23h30\nJeudi 11h30–23h30\nVendredi 11h30–23h30\nSamedi Fermé\nDimanche 11h45–13h45, 17h00–21h30",
+    "timeZone": "America/Toronto",
+    "miniText": "Restaurant gastronomique canadien mettant en valeur les produits du territoire canadien à travers des menus saisonniers construits autour d’ingrédients locaux. Le lieu s’inscrit dans une démarche de valorisation du patrimoine culinaire canadien, en reliant terroirs, saisons et créativité culinaire.",
+    "tags": [
+      "restaurant"
+    ],
+    "createdAt": "2026-02-04T15:56:36.841Z",
+    "updatedAt": "2026-02-04T15:57:58.217Z",
+    "panoramaImage": "/downloads/mar.jpg"
   }
 ]
