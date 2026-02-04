@@ -2528,5 +2528,25 @@
     ],
     "miniText": "Restaurant mettant en avant une cuisine entièrement faite maison, élaborée à partir de produits de producteurs de l’Ontario. Richmond Station travaille en lien direct avec des fermes locales et adapte sa carte en fonction des saisons et des arrivages.",
     "panoramaImage": "/downloads/rich.jpg"
+  },
+  {
+    "id": "e1f5b7d9-48ee-49fa-b092-8f40a56cfe80",
+    "name": "Union",
+    "city": "Toronto",
+    "address": "72 Ossington Ave, Toronto, ON M6J 2Y7, Canada",
+    "website": "https://union72.ca/",
+    "lat": 43.6458179,
+    "lng": -79.4195744,
+    "category": "Restaurant",
+    "phone": "+1 416-850-0093",
+    "openingHours": "lundi\t11h30–15h00, 17h00–22h00\nmardi\t11h30–15h00, 17h00–22h00\nmercredi\t11h30–15h00, 17h00–22h00\njeudi\t11h30–15h00, 17h00–22h00\nvendredi\t11h30–15h00, 17h00–22h00\nsamedi\t10h00–15h00, 17h00–22h00\ndimanche\t10h00–15h00, 17h00–22h00",
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-02-04T16:18:19.479Z",
+    "updatedAt": "2026-02-04T16:21:00.110Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de producteurs locaux de l’Ontario. Union construit sa carte autour des récoltes et des arrivages disponibles, avec une attention portée à la simplicité des plats, à la qualité des ingrédients et au lien direct avec le territoire.",
+    "panoramaImage": "/downloads/un.png"
   }
 ]
