@@ -2383,5 +2383,27 @@
     "createdAt": "2026-02-04T15:02:45.768Z",
     "updatedAt": "2026-02-04T15:06:01.577Z",
     "panoramaImage": "/downloads/marc.png"
+  },
+  {
+    "id": "3871073d-0b88-406c-ab70-477f026cf692",
+    "name": "Maker House",
+    "city": "Ottawa",
+    "address": "987 Wellington St W, Ottawa, ON K1Y 2X8, Canada",
+    "website": "https://makerhouse.com/",
+    "lat": 45.4056286,
+    "lng": -75.723049,
+    "category": "Boutique",
+    "phone": "+1 613-422-6253",
+    "openingHours": "Lundi 11h00–19h00\nMardi 11h00–19h00\nMercredi 11h00–19h00\nJeudi 11h00–19h00\nVendredi 11h00–19h00\nSamedi 10h00–18h00\nDimanche 11h00–17h00",
+    "timeZone": "America/Toronto",
+    "miniText": "Boutique d’Ottawa dédiée à la mise en valeur de l’artisanat canadien, proposant une sélection de cadeaux, objets pour la maison et articles créés par des artisans locaux et régionaux, avec une approche orientée vers les produits faits à la main et de qualité.",
+    "tags": [
+      "artisanat",
+      "créateurs canadiens",
+      "cadeaux locaux"
+    ],
+    "createdAt": "2026-02-04T15:11:02.752Z",
+    "updatedAt": "2026-02-04T15:13:21.472Z",
+    "panoramaImage": "/downloads/mak.jpg"
   }
 ]
