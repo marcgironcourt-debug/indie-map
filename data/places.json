@@ -2300,5 +2300,45 @@
     "panoramaImage": "/downloads/zero.jpg",
     "createdAt": "2026-02-03T22:12:00.199Z",
     "updatedAt": "2026-02-03T22:14:14.621Z"
+  },
+  {
+    "id": "6009dbc4-e1b6-49ee-b6a2-da104c5eefff",
+    "name": "Aiana Restaurant",
+    "city": "Ottawa",
+    "address": "50 O’Connor St, Ottawa, ON K1P 6L2, Canada",
+    "website": "http://aiana.ca/",
+    "lat": 45.4211429,
+    "lng": -75.6988665,
+    "category": "Restaurant",
+    "phone": "+1 613-680-8100",
+    "openingHours": "Lundi 11h00–22h00\nMardi 11h00–22h00\nMercredi 11h00–22h00\nJeudi 11h00–22h00\nVendredi 11h00–22h00\nSamedi 17h00–22h00\nDimanche Fermé",
+    "timeZone": "America/Toronto",
+    "miniText": "Cuisine canadienne contemporaine mettant en avant des ingrédients locaux et de saison. Aiana travaille avec des producteurs régionaux pour composer des plats qui évoluent au fil de l’année, dans une approche axée sur la fraîcheur, le terroir et une interprétation moderne de la cuisine canadienne.",
+    "tags": [
+      "restaurant"
+    ],
+    "createdAt": "2026-02-04T14:30:42.475Z",
+    "updatedAt": "2026-02-04T14:44:53.712Z",
+    "panoramaImage": "/downloads/aiana.png"
+  },
+  {
+    "id": "bd11d6be-4e22-46bd-b74f-7443b8fb42cc",
+    "name": "e18hteen",
+    "city": "Ottawa",
+    "address": "18 York St, Ottawa, ON K1N 5S6, Canada",
+    "website": "https://www.e18hteen.com/",
+    "lat": 45.4296846,
+    "lng": -75.6935714,
+    "category": "Restaurant",
+    "phone": "+1 613-244-1188",
+    "openingHours": "Lundi Fermé\nMardi 17h30–22h00\nMercredi 17h30–22h00\nJeudi 17h30–22h00\nVendredi 17h30–22h00\nSamedi 17h30–22h00\nDimanche Fermé",
+    "timeZone": "America/Toronto",
+    "miniText": "Restaurant gastronomique mettant en avant une cuisine canadienne contemporaine construite autour de produits régionaux et saisonniers. e18hteen travaille avec des producteurs locaux pour élaborer des menus dégustation qui évoluent au fil de l’année, dans une approche centrée sur le terroir et le savoir-faire.",
+    "tags": [
+      "restaurant"
+    ],
+    "createdAt": "2026-02-04T14:39:17.560Z",
+    "updatedAt": "2026-02-04T14:46:43.217Z",
+    "panoramaImage": "/downloads/18.jpeg"
   }
 ]
