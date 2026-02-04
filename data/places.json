@@ -2508,5 +2508,25 @@
     ],
     "miniText": "Restaurant élaborant ses menus à partir de produits locaux de saison, issus de fermes partenaires et de cueillette sauvage. La cuisine évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à l’origine des ingrédients et au respect des cycles naturels.",
     "panoramaImage": "/downloads/edu.jpg"
+  },
+  {
+    "id": "6d77b016-a4a7-413a-bed5-64481cc1df3d",
+    "name": "Richmond Station",
+    "city": "Toronto",
+    "address": "1 Richmond St W, Toronto, ON M5H 3W4, Canada",
+    "website": "https://richmondstation.ca/",
+    "lat": 43.6514536,
+    "lng": -79.3794917,
+    "category": "Restaurant",
+    "phone": "+1 647-748-1444",
+    "openingHours": "lundi\t11h30–14h30, 16h30–22h30\nmardi\t11h30–14h30, 16h30–22h30\nmercredi\t11h30–14h30, 16h30–22h30\njeudi\t11h30–14h30, 16h30–22h30\nvendredi\t11h30–14h30, 16h30–22h30\nsamedi\t16h30–22h30\ndimanche\t16h30–22h30",
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-02-04T16:14:05.361Z",
+    "updatedAt": "2026-02-04T16:14:33.741Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine entièrement faite maison, élaborée à partir de produits de producteurs de l’Ontario. Richmond Station travaille en lien direct avec des fermes locales et adapte sa carte en fonction des saisons et des arrivages.",
+    "panoramaImage": "/downloads/rich.jpg"
   }
 ]
