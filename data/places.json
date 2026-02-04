@@ -2362,5 +2362,26 @@
     "createdAt": "2026-02-04T14:52:21.642Z",
     "updatedAt": "2026-02-04T14:53:28.512Z",
     "panoramaImage": "/downloads/nu.jpg"
+  },
+  {
+    "id": "6f8aacf0-0810-4d83-bca5-e2972c6cdb50",
+    "name": "Ottawa Farmers’ Market (Lansdowne)",
+    "city": "Ottawa",
+    "address": "1000 Exhibition Way, Ottawa, ON K1S 3W7, Canada",
+    "website": "https://ottawafarmersmarket.ca/lansdowne-market/",
+    "lat": 45.40005778214,
+    "lng": -75.682817164661,
+    "category": "Épicerie",
+    "phone": "+1 613-417-3595",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche 10h00–15h00",
+    "timeZone": "America/Toronto",
+    "miniText": "Marché de producteurs fonctionnant sur un modèle strictement « producer-only » : seuls les producteurs et artisans vendent directement leurs produits. Les vendeurs sont situés dans un rayon d’environ 100 km autour d’Ottawa, favorisant un circuit court, local et transparent.",
+    "tags": [
+      "marché",
+      "producteurs locaux"
+    ],
+    "createdAt": "2026-02-04T15:02:45.768Z",
+    "updatedAt": "2026-02-04T15:06:01.577Z",
+    "panoramaImage": "/downloads/marc.png"
   }
 ]
