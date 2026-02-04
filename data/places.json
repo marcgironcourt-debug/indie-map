@@ -2656,5 +2656,64 @@
     "updatedAt": "2026-02-04T16:56:47.339Z",
     "id": "d77fe348-e20e-4638-a301-6d6f487e94f9",
     "panoramaImage": "/downloads/res.jpeg"
+  },
+  {
+    "name": "Restaurant Légende",
+    "city": "Quebec City",
+    "address": "255 Rue Saint-Paul, Québec, QC G1K 3W5, Canada",
+    "website": "https://www.restaurantlegende.com/",
+    "lat": 46.8168778,
+    "lng": -71.2100722,
+    "category": "Restaurant",
+    "phone": "+14186142555",
+    "openingHours": "mercredi 17h00–21h00\njeudi 17h00–21h00\nvendredi 17h00–21h30\nsamedi 17h00–21h30\ndimanche 17h00–21h00\nlundi 17h00–21h00\nmardi 17h00–21h00",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant du Vieux-Québec mettant en avant une cuisine ancrée dans le terroir québécois, avec des plats élaborés à partir d’ingrédients locaux et de saison.",
+    "createdAt": "2026-02-04T17:00:07.039Z",
+    "updatedAt": "2026-02-04T17:01:51.538Z",
+    "id": "568763b1-4e0a-4e90-97b2-a07a40b475c1",
+    "panoramaImage": "/downloads/leg.jpg"
+  },
+  {
+    "name": "The Acorn",
+    "city": "Toronto",
+    "address": "3995 Main St, Vancouver, BC V5V 3P3, Canada",
+    "website": "https://www.theacornrestaurant.ca",
+    "lat": 49.249729,
+    "lng": -123.101233,
+    "category": "Restaurant",
+    "phone": "+16045669001",
+    "openingHours": "Lundi Fermé\nMardi 17h00–22h00\nMercredi 17h00–22h00\nJeudi 17h00–22h00\nVendredi 17h00–22h30\nSamedi 17h00–22h30\nDimanche 17h00–22h00",
+    "timeZone": "America/Vancouver",
+    "miniText": "Restaurant végétarien mettant en avant une cuisine de saison élaborée à partir de produits issus de fermes locales de Colombie-Britannique. The Acorn construit ses menus autour des récoltes disponibles, avec une attention particulière portée à la traçabilité des ingrédients, aux relations directes avec les producteurs et au respect des cycles naturels.",
+    "panoramaImage": "/downloads/ac.jpg",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-04T18:08:02.712Z",
+    "updatedAt": "2026-02-04T18:28:31.644Z"
+  },
+  {
+    "name": "The Acorn Restaurant",
+    "city": "Vancouver",
+    "address": "3995 Main St, Vancouver, BC V5V 3P3, Canada",
+    "website": "https://www.theacornrestaurant.ca",
+    "lat": 49.249584194855,
+    "lng": -123.101433787076,
+    "category": "Restaurant",
+    "phone": "+16045669001",
+    "openingHours": "Lundi 17h30–22h00\nMardi 17h30–22h00\nMercredi 17h30–22h00\nJeudi 17h30–22h00\nVendredi 17h30–22h00\nSamedi 10h00–14h00, 17h30–22h00\nDimanche 10h00–14h00, 17h30–22h00",
+    "timeZone": "America/Vancouver",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien locavore cuisinant des ingrédients locaux et de saison, issus de liens avec des fermes et cueilleurs de Colombie-Britannique, avec une approche zéro déchet. Offre également brunch le week-end.",
+    "panoramaImage": "/downloads/ac.jpg",
+    "createdAt": "2026-02-04T18:32:43.071Z",
+    "updatedAt": "2026-02-04T18:39:46.899Z",
+    "id": "f5bae971-c760-4f84-b5b9-0bd0882a854a"
   }
 ]
