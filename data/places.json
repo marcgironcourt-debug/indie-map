@@ -2836,5 +2836,25 @@
     "miniText": "Ferme maraîchère proposant une vente directe de légumes de saison cultivés localement. Le lieu met en avant une production à petite échelle, un lien direct avec les habitants et une agriculture ancrée dans le territoire de la Haute-Gaspésie.",
     "panoramaImage": "/downloads/ja.jpg",
     "id": "fd7d374e-8962-4db2-af89-8950d0c928bc"
+  },
+  {
+    "name": "Fromagerie du Pied-De-Vent",
+    "city": "Havre-aux-Maisons",
+    "address": "149, chemin de la Pointe-Basse, Havre-aux-Maisons, QC G4T 5H7, Canada",
+    "website": "https://www.fromageriedupieddevent.com",
+    "lat": 47.396645,
+    "lng": -61.803664,
+    "category": "Ferme",
+    "phone": "+14189699292",
+    "openingHours": "Lundi 13h00–17h00\nMardi 13h00–17h00\nMercredi 13h00–17h00\nJeudi 13h00–17h00\nVendredi 13h00–17h00\nSamedi 11h00–17h00\nDimanche Fermé",
+    "timeZone": "America/Halifax",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-04T21:12:40.070Z",
+    "updatedAt": "2026-02-04T21:18:23.623Z",
+    "id": "cc961e6d-ab10-4883-b817-ab1ec380bb0f",
+    "miniText": "Fromagerie produisant des fromages fermiers à partir du lait de son propre troupeau. Le lieu maîtrise l’ensemble de la chaîne, de l’élevage à la transformation, avec une production ancrée dans le territoire, le climat insulaire et les savoir-faire locaux.",
+    "panoramaImage": "/downloads/fr.jpg"
   }
 ]
