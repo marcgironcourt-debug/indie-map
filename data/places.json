@@ -2448,5 +2448,25 @@
     "createdAt": "2026-02-04T15:31:09.281Z",
     "updatedAt": "2026-02-04T15:31:47.603Z",
     "panoramaImage": "/downloads/mar.jpg"
+  },
+  {
+    "id": "5d05af28-962f-4a3a-b2ce-71c8be3097b5",
+    "name": "Raise the Root Organic Market",
+    "city": "Toronto",
+    "address": "1164 Queen St E, Toronto, ON M4M 1L4, Canada",
+    "website": "https://www.raisetheroot.ca",
+    "lat": 43.662746,
+    "lng": -79.334219,
+    "category": "Épicerie",
+    "phone": "+1 416-466-7668",
+    "openingHours": "lundi Fermé\nmardi 10h00–19h00\nmercredi 10h00–19h00\njeudi 10h00–19h00\nvendredi 10h00–19h00\nsamedi 9h30–18h00\ndimanche 9h30–18h00",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Marché privilégiant les producteurs locaux et régionaux, en mettant en avant une alimentation saine, accessible et ancrée dans son quartier. Le lieu s’inscrit dans une démarche de soutien à l’agriculture durable et à l’économie locale.",
+    "createdAt": "2026-02-04T15:35:57.296Z",
+    "updatedAt": "2026-02-04T15:37:17.601Z",
+    "panoramaImage": "/downloads/mar.jpg"
   }
 ]
