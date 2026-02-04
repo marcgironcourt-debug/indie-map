@@ -2829,12 +2829,12 @@
     "openingHours": "Mercredi 13h00-17h30\nJeudi 13h00-17h30\nVendredi 13h00-17h30\nSamedi 13h00-17h30\nDimanche Fermé\nLundi Fermé\nMardi Fermé",
     "timeZone": "America/Toronto",
     "createdAt": "2026-02-04T20:54:25.581Z",
-    "updatedAt": "2026-02-04T21:01:26.121Z",
+    "updatedAt": "2026-02-04T21:08:15.954Z",
     "tags": [
       "Ferme"
     ],
-    "miniText": "",
-    "panoramaImage": "",
+    "miniText": "Ferme maraîchère proposant une vente directe de légumes de saison cultivés localement. Le lieu met en avant une production à petite échelle, un lien direct avec les habitants et une agriculture ancrée dans le territoire de la Haute-Gaspésie.",
+    "panoramaImage": "/downloads/ja.jpg",
     "id": "fd7d374e-8962-4db2-af89-8950d0c928bc"
   }
 ]
