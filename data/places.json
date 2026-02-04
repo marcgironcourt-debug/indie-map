@@ -2775,5 +2775,25 @@
     "updatedAt": "2026-02-04T20:26:01.207Z",
     "id": "56c9a8ae-d3a9-416c-b6aa-b051ef16c683",
     "panoramaImage": "/downloads/fe.jpg"
+  },
+  {
+    "id": "c80207de-9ef5-4b17-ad9f-71632b1777c3",
+    "name": "Restaurant Le Serpentine",
+    "city": "Sainte-Anne-des-Monts",
+    "address": "2001, route du Parc, Sainte-Anne-des-Monts (Parc national de la Gaspésie), Québec G4V 2E4",
+    "website": "https://www.tourisme-gaspesie.com/fr/restaurants/restaurant-le-serpentine-gite-du-mont-albert/",
+    "lat": 48.944594901495,
+    "lng": -66.122390491014,
+    "category": "Restaurant",
+    "phone": "418-763-2288",
+    "openingHours": "",
+    "timeZone": "America/Toronto",
+    "miniText": "Restaurant situé au Gîte du Mont-Albert, dans le parc national de la Gaspésie. Le Serpentine met en avant une cuisine qui rend hommage à la richesse de la région, en cuisinant des produits locaux.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-04T20:30:17.170Z",
+    "updatedAt": "2026-02-04T20:33:23.820Z",
+    "panoramaImage": "/downloads/se.jpg"
   }
 ]
