@@ -2694,7 +2694,8 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-04T18:08:02.712Z",
-    "updatedAt": "2026-02-04T18:28:31.644Z"
+    "updatedAt": "2026-02-04T21:04:33.210Z",
+    "id": "d16a2042-8ed2-4201-a7e9-7d2909d27aab"
   },
   {
     "name": "The Acorn Restaurant",
@@ -2795,5 +2796,45 @@
     "createdAt": "2026-02-04T20:30:17.170Z",
     "updatedAt": "2026-02-04T20:33:23.820Z",
     "panoramaImage": "/downloads/se.jpg"
+  },
+  {
+    "id": "3750b9ae-6eb9-43bd-9db9-238b8c47b894",
+    "name": "Coop du Cap",
+    "city": "Cap-au-Renard",
+    "address": "2 Rue Adhémar, Cap-au-Renard, QC G0E 1C0, Canada",
+    "website": "https://coopducap.org",
+    "lat": 49.190080812755,
+    "lng": -66.247611598227,
+    "category": "Épicerie",
+    "phone": "(418) 288-5080",
+    "openingHours": "",
+    "timeZone": "America/Toronto",
+    "miniText": "Coop du Cap est une coopérative de solidarité ancrée à Cap-au-Renard, dédiée à l’accès à des produits alimentaires locaux et régionaux. Le lieu fonctionne sur un modèle coopératif impliquant citoyens, producteurs et travailleurs, avec pour objectif de soutenir l’économie locale, de favoriser les circuits courts et de maintenir des services essentiels en milieu rural.",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-04T20:40:17.289Z",
+    "updatedAt": "2026-02-04T20:51:53.278Z",
+    "panoramaImage": "/downloads/co.png"
+  },
+  {
+    "name": "Jardin des bois",
+    "city": "Sainte-Anne-des-Monts",
+    "address": "392, route Bellevue, Sainte-Anne-des-Monts, QC G4V 2S6, Canada",
+    "website": "https://www.facebook.com/people/Jardin-des-Bois/100065031632637/",
+    "lat": 49.0772094,
+    "lng": -66.5030136,
+    "category": "Ferme",
+    "phone": "+1 418-763-2009",
+    "openingHours": "Mercredi 13h00-17h30\nJeudi 13h00-17h30\nVendredi 13h00-17h30\nSamedi 13h00-17h30\nDimanche Fermé\nLundi Fermé\nMardi Fermé",
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-02-04T20:54:25.581Z",
+    "updatedAt": "2026-02-04T21:01:26.121Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "",
+    "panoramaImage": "",
+    "id": "fd7d374e-8962-4db2-af89-8950d0c928bc"
   }
 ]
