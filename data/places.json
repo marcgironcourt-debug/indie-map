@@ -2636,5 +2636,25 @@
     "panoramaImage": "/downloads/art.jpeg",
     "createdAt": "2026-02-04T16:43:38.149Z",
     "updatedAt": "2026-02-04T16:47:04.517Z"
+  },
+  {
+    "name": "Restaurant Alentours",
+    "city": "Quebec City",
+    "address": "715 Rue Saint-Bernard, Québec, QC G1N 3G4, Canada",
+    "website": "https://restaurantalentours.com",
+    "lat": 46.8086046,
+    "lng": -71.2465837,
+    "category": "Restaurant",
+    "phone": "+15819852050",
+    "openingHours": "lundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi Fermé\nvendredi 18h00–22h00\nsamedi 18h00–22h00\ndimanche Fermé",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant offrant une cuisine locavore très rigoureuse, s’approvisionnant exclusivement dans un rayon d’environ 150 km autour de Québec. Menu surprise élaboré en fonction des produits locaux de saison.",
+    "createdAt": "2026-02-04T16:52:52.779Z",
+    "updatedAt": "2026-02-04T16:56:47.339Z",
+    "id": "d77fe348-e20e-4638-a301-6d6f487e94f9",
+    "panoramaImage": "/downloads/res.jpeg"
   }
 ]
