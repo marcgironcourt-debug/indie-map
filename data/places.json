@@ -2340,5 +2340,27 @@
     "createdAt": "2026-02-04T14:39:17.560Z",
     "updatedAt": "2026-02-04T14:46:43.217Z",
     "panoramaImage": "/downloads/18.jpeg"
+  },
+  {
+    "id": "8c865e9a-827d-4ae8-9171-baac12f3f932",
+    "name": "NU Grocery",
+    "city": "Ottawa",
+    "address": "143 Main St, Ottawa, ON K1S 5V9, Canada",
+    "website": "https://nugrocery.com/",
+    "lat": 45.4100281,
+    "lng": -75.678278,
+    "category": "Épicerie",
+    "phone": "+1 613-233-0678",
+    "openingHours": "Lundi Fermé\nMardi 09h00–19h00\nMercredi 09h00–19h00\nJeudi 09h00–19h00\nVendredi 09h00–19h00\nSamedi 10h00–17h00\nDimanche 10h00–17h00",
+    "timeZone": "America/Toronto",
+    "miniText": "Épicerie zéro déchet d’Ottawa, offrant une large sélection d’aliments, produits ménagers et articles durables avec priorité à l’origine locale et aux produits sans emballage, favorisant une approche responsable de la consommation.",
+    "tags": [
+      "épicerie",
+      "zéro déchet",
+      "produits locaux"
+    ],
+    "createdAt": "2026-02-04T14:52:21.642Z",
+    "updatedAt": "2026-02-04T14:53:28.512Z",
+    "panoramaImage": "/downloads/nu.jpg"
   }
 ]
