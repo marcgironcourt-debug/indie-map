@@ -2735,5 +2735,25 @@
     "miniText": "Restaurant axé sur une cuisine de saison élaborée exclusivement à partir de produits de fermes et de producteurs de Colombie-Britannique. Burdock & Co construit ses menus en fonction des récoltes et des micro-saisons du Pacifique Nord-Ouest, avec un fort accent sur la traçabilité, la relation directe avec les producteurs et le respect des cycles naturels.",
     "id": "e562fae6-166a-498c-bcbd-e3dd3044bec1",
     "panoramaImage": "/downloads/bu.png"
+  },
+  {
+    "id": "f537843e-661f-4446-985e-1f5a64041981",
+    "name": "Fable Kitchen",
+    "city": "Vancouver",
+    "address": "1944 W 4th Ave, Vancouver, BC V6J 1M5, Canada",
+    "website": "https://www.fablekitchen.ca",
+    "lat": 49.268287,
+    "lng": -123.155614,
+    "category": "Restaurant",
+    "phone": "+1 604-732-1322",
+    "openingHours": "Lundi 17h00–22h00\nMardi 17h00–22h00\nMercredi 17h00–22h00\nJeudi 17h00–22h00\nVendredi 17h00–22h30\nSamedi 10h00–14h30, 17h00–22h30\nDimanche 10h00–14h30, 17h00–22h00",
+    "timeZone": "America/Vancouver",
+    "createdAt": "2026-02-04T18:58:56.705Z",
+    "updatedAt": "2026-02-04T19:12:36.063Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de fermes et de producteurs de Colombie-Britannique. Fable Kitchen travaille en lien direct avec des fournisseurs locaux et adapte sa carte en fonction des récoltes et des arrivages, avec une attention particulière portée à la fraîcheur des ingrédients et au respect de la saisonnalité.",
+    "panoramaImage": "/downloads/fa.png"
   }
 ]
