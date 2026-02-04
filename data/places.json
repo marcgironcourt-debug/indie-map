@@ -2488,5 +2488,25 @@
     "createdAt": "2026-02-04T15:56:36.841Z",
     "updatedAt": "2026-02-04T15:57:58.217Z",
     "panoramaImage": "/downloads/mar.jpg"
+  },
+  {
+    "id": "5ab74550-5193-4c26-a25d-e521766ac070",
+    "name": "Edulis",
+    "city": "Toronto",
+    "address": "169 Niagara St, Toronto, ON M5V 1C9, Canada",
+    "website": "http://www.edulisrestaurant.com/",
+    "lat": 43.6419583,
+    "lng": -79.4065778,
+    "category": "Restaurant",
+    "phone": "+1 416-703-4222",
+    "openingHours": "mercredi\tFermé\njeudi\t18h30–23h30\nvendredi\t18h00–23h30\nsamedi\t18h00–23h30\ndimanche\t12h00–16h00\nlundi\tFermé\nmardi\tFermé",
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-02-04T16:07:12.293Z",
+    "updatedAt": "2026-02-04T16:10:19.645Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant élaborant ses menus à partir de produits locaux de saison, issus de fermes partenaires et de cueillette sauvage. La cuisine évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à l’origine des ingrédients et au respect des cycles naturels.",
+    "panoramaImage": "/downloads/edu.jpg"
   }
 ]
