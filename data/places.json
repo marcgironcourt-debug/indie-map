@@ -2755,5 +2755,25 @@
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de fermes et de producteurs de Colombie-Britannique. Fable Kitchen travaille en lien direct avec des fournisseurs locaux et adapte sa carte en fonction des récoltes et des arrivages, avec une attention particulière portée à la fraîcheur des ingrédients et au respect de la saisonnalité.",
     "panoramaImage": "/downloads/fa.png"
+  },
+  {
+    "name": "La Minoterie des Anciens",
+    "city": "Sainte-Anne-des-Monts",
+    "address": "6 rue du Parc Industriel, Sainte-Anne-des-Monts, QC G4V 2V9, Canada",
+    "website": "https://www.laminoteriedesanciens.com",
+    "lat": 49.12074030336,
+    "lng": -66.519465803411,
+    "category": "Épicerie",
+    "phone": "418-729-3813",
+    "openingHours": "",
+    "timeZone": "America/Toronto",
+    "miniText": "La Minoterie des Anciens transforme localement des grains biologiques afin de produire des farines, gruaux, huiles et graines sans gluten. L’entreprise s’appuie sur un savoir-faire de transformation artisanale et privilégie des matières premières issues de l’agriculture biologique.",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-04T20:23:08.989Z",
+    "updatedAt": "2026-02-04T20:26:01.207Z",
+    "id": "56c9a8ae-d3a9-416c-b6aa-b051ef16c683",
+    "panoramaImage": "/downloads/fe.jpg"
   }
 ]
