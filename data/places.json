@@ -2426,5 +2426,27 @@
     "createdAt": "2026-02-04T15:20:18.931Z",
     "updatedAt": "2026-02-04T15:24:21.004Z",
     "panoramaImage": "/downloads/mar.png"
+  },
+  {
+    "id": "f1d9b127-f1b3-46e8-9519-d79e0a232cac",
+    "name": "Fresh City Farms",
+    "city": "Toronto",
+    "address": "160 Downsview Park Blvd, North York, Toronto, ON M3K 0C8, Canada",
+    "website": "https://www.freshcityfarms.com/our-farm",
+    "lat": 43.744275,
+    "lng": -79.483659,
+    "category": "Ferme",
+    "phone": "+1 416-674-2642",
+    "openingHours": "Lundi 8h30–16h00\nMardi 8h30–16h00\nMercredi 8h30–16h00\nJeudi 8h30–16h00\nVendredi 8h30–16h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "America/Toronto",
+    "miniText": "Ferme urbaine située à Downsview Park, produisant des aliments au cœur de Toronto et s’appuyant sur des pratiques agricoles durables. Fresh City Farms développe un modèle de circuit court reliant production locale, distribution et consommation en milieu urbain.",
+    "tags": [
+      "ferme",
+      "agriculture urbaine",
+      "circuit court"
+    ],
+    "createdAt": "2026-02-04T15:31:09.281Z",
+    "updatedAt": "2026-02-04T15:31:47.603Z",
+    "panoramaImage": "/downloads/mar.jpg"
   }
 ]
