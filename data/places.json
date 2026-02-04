@@ -2856,5 +2856,25 @@
     "id": "cc961e6d-ab10-4883-b817-ab1ec380bb0f",
     "miniText": "Fromagerie produisant des fromages fermiers à partir du lait de son propre troupeau. Le lieu maîtrise l’ensemble de la chaîne, de l’élevage à la transformation, avec une production ancrée dans le territoire, le climat insulaire et les savoir-faire locaux.",
     "panoramaImage": "/downloads/fr.jpg"
+  },
+  {
+    "id": "af65de39-f35d-440a-b033-cbcc988168f9",
+    "name": "Les Champs Marins",
+    "city": "L’Étang-du-Nord",
+    "address": "90, chemin du Bois-Brûlé, L’Étang-du-Nord, QC G4T 3T5, Canada",
+    "website": "https://leschampsmarins.com",
+    "lat": 47.35722571954,
+    "lng": -61.930503399079,
+    "category": "Ferme",
+    "phone": "+14189863443",
+    "openingHours": "Mardi Fermé\nMercredi 16h00–19h00\nJeudi Fermé\nVendredi Fermé\nSamedi 16h00–19h00\nDimanche Fermé\nLundi Fermé",
+    "timeZone": "America/Halifax",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-04T21:23:14.738Z",
+    "updatedAt": "2026-02-04T21:25:04.101Z",
+    "miniText": "Ferme de maraîchage biologique, produisant une grande diversité de légumes. Les cultures sont menées sans produits chimiques de synthèse, et les légumes sont certifiés biologiques par Écocert Canada.",
+    "panoramaImage": "/downloads/ch.webp"
   }
 ]
