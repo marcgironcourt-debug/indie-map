@@ -2548,5 +2548,93 @@
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de producteurs locaux de l’Ontario. Union construit sa carte autour des récoltes et des arrivages disponibles, avec une attention portée à la simplicité des plats, à la qualité des ingrédients et au lien direct avec le territoire.",
     "panoramaImage": "/downloads/un.png"
+  },
+  {
+    "id": "1631ff8a-f6fb-446d-bde8-27ef705fa5a1",
+    "name": "Arts Market – Riverside",
+    "website": "https://artsmarket.ca",
+    "lat": 43.6765,
+    "lng": -79.3279,
+    "address": "790 Queen St E, Toronto, ON M4M 1H4, Canada",
+    "phone": "(647) 853-2787",
+    "category": "Artisanat / Créateurs locaux",
+    "openingHours": "mercredi\t11h00–18h00\njeudi\t11h00–18h00\nvendredi\t11h00–18h00\nsamedi\t11h00–18h00\ndimanche\t11h00–18h00\nlundi\t11h00–18h00\nmardi\t11h00–18h00",
+    "city": "Toronto",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "artisanat",
+      "créateurs",
+      "local"
+    ],
+    "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
+    "panoramaImage": "/downloads/art.jpeg",
+    "createdAt": "2026-02-04T16:43:38.149Z",
+    "updatedAt": "2026-02-04T16:47:04.517Z"
+  },
+  {
+    "id": "1ebaf00d-2a3f-4bc2-a62d-c7f71358c10d",
+    "name": "Arts Market – Junction",
+    "website": "https://artsmarket.ca",
+    "lat": 43.6569,
+    "lng": -79.456,
+    "address": "2978 Dundas St W, Toronto, ON M6P 2R1, Canada",
+    "phone": "(647) 853-2787",
+    "category": "Artisanat / Créateurs locaux",
+    "openingHours": "mercredi\t11h00–18h00\njeudi\t11h00–18h00\nvendredi\t11h00–18h00\nsamedi\t11h00–18h00\ndimanche\t11h00–18h00\nlundi\t11h00–18h00\nmardi\t11h00–18h00",
+    "city": "Toronto",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "artisanat",
+      "créateurs",
+      "local"
+    ],
+    "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
+    "panoramaImage": "/downloads/art.jpeg",
+    "createdAt": "2026-02-04T16:43:38.149Z",
+    "updatedAt": "2026-02-04T16:47:04.517Z"
+  },
+  {
+    "id": "e3325623-c47d-4d6a-bd95-6d4756f52abb",
+    "name": "Arts Market – Danforth",
+    "website": "https://artsmarket.ca",
+    "lat": 43.6844,
+    "lng": -79.3217,
+    "address": "1856 Danforth Ave, Toronto, ON M4C 1J4, Canada",
+    "phone": "(647) 853-2787",
+    "category": "Artisanat / Créateurs locaux",
+    "openingHours": "mercredi\t11h00–18h00\njeudi\t11h00–18h00\nvendredi\t11h00–18h00\nsamedi\t11h00–18h00\ndimanche\t11h00–18h00\nlundi\t11h00–18h00\nmardi\t11h00–18h00",
+    "city": "Toronto",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "artisanat",
+      "créateurs",
+      "local"
+    ],
+    "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
+    "panoramaImage": "/downloads/art.jpeg",
+    "createdAt": "2026-02-04T16:43:38.149Z",
+    "updatedAt": "2026-02-04T16:47:04.517Z"
+  },
+  {
+    "id": "bda11c5f-30b6-4d0a-af3e-88e6e539893a",
+    "name": "Arts Market – College",
+    "website": "https://artsmarket.ca",
+    "lat": 43.658,
+    "lng": -79.4216,
+    "address": "662 College St, Toronto, ON M6G 1B8, Canada",
+    "phone": "(647) 853-2787",
+    "category": "Artisanat / Créateurs locaux",
+    "openingHours": "mercredi\t11h00–18h00\njeudi\t11h00–18h00\nvendredi\t11h00–18h00\nsamedi\t11h00–18h00\ndimanche\t11h00–18h00\nlundi\t11h00–18h00\nmardi\t11h00–18h00",
+    "city": "Toronto",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "artisanat",
+      "créateurs",
+      "local"
+    ],
+    "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
+    "panoramaImage": "/downloads/art.jpeg",
+    "createdAt": "2026-02-04T16:43:38.149Z",
+    "updatedAt": "2026-02-04T16:47:04.517Z"
   }
 ]
