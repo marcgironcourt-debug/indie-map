@@ -2405,5 +2405,26 @@
     "createdAt": "2026-02-04T15:11:02.752Z",
     "updatedAt": "2026-02-04T15:13:21.472Z",
     "panoramaImage": "/downloads/mak.jpg"
+  },
+  {
+    "id": "4f4cfc2c-41c6-4347-afac-64b1e4706118",
+    "name": "Evergreen Brick Works Farmers Market",
+    "city": "Toronto",
+    "address": "550 Bayview Ave, Toronto, ON M4W 3X8, Canada",
+    "website": "https://www.evergreen.ca/evergreen-brick-works/market/",
+    "lat": 43.684547,
+    "lng": -79.365331,
+    "category": "Épicerie",
+    "phone": "+1 416-596-7670",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00–13h00\nDimanche Fermé",
+    "timeZone": "America/Toronto",
+    "miniText": "Marché de producteurs locaux organisé à Evergreen Brick Works, réunissant des fermes et artisans de l’Ontario vendant directement leur production. Le marché fonctionne sur un modèle de circuit court, avec une sélection saisonnière de fruits, légumes et produits alimentaires locaux.",
+    "tags": [
+      "marché",
+      "producteurs locaux"
+    ],
+    "createdAt": "2026-02-04T15:20:18.931Z",
+    "updatedAt": "2026-02-04T15:24:21.004Z",
+    "panoramaImage": "/downloads/mar.png"
   }
 ]
