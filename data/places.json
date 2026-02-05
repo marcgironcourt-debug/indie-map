@@ -3160,5 +3160,25 @@
     "createdAt": "2026-02-05T15:25:04.525Z",
     "updatedAt": "2026-02-05T15:30:05.105Z",
     "panoramaImage": "/downloads/d.png"
+  },
+  {
+    "id": "94caf53b-b337-48e2-8d6d-c193d568e7fa",
+    "name": "Coquine",
+    "city": "Portland",
+    "address": "6839 SE Belmont St, Portland, OR 97215, États-Unis",
+    "website": "https://www.coquinepdx.com",
+    "lat": 45.516257,
+    "lng": -122.593748,
+    "category": "Restaurant",
+    "phone": "+1 503-384-2483",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 17h00–22h00\nJeudi 17h00–22h00\nVendredi 17h00–22h00\nSamedi 17h00–22h00\nDimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite exclusivement autour de produits locaux et saisonniers de l’Oregon. Les menus évoluent en fonction des récoltes et des relations directes avec les fermes partenaires, la provenance des ingrédients, à la saisonnalité et au respect du travail agricole.",
+    "createdAt": "2026-02-05T15:34:23.489Z",
+    "updatedAt": "2026-02-05T15:35:20.948Z",
+    "panoramaImage": "/downloads/c.webp"
   }
 ]
