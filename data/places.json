@@ -3379,5 +3379,25 @@
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:51:34.121Z",
     "updatedAt": "2026-02-05T17:55:19.862Z"
+  },
+  {
+    "id": "17a9e7b9-3dd1-4a97-808b-360c685ca93b",
+    "name": "Plow",
+    "city": "San Francisco",
+    "address": "1299 18th St, San Francisco, CA 94107, USA",
+    "website": "https://www.eatatplow.com",
+    "lat": 37.762537673684,
+    "lng": -122.39535099572,
+    "category": "Brunch",
+    "phone": "+1 415-821-7569",
+    "openingHours": "jeudi\t7h00–14h00\nvendredi\t7h00–14h00\nsamedi\t8h00–14h00\ndimanche\t8h00–14h00\nlundi\t7h00–14h00\nmardi\t7h00–14h00\nmercredi\t7h00–14h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Brunch"
+    ],
+    "miniText": "Brunch reconnu pour sa cuisine de saison élaborée à partir de produits locaux californiens. Plow travaille avec des fermes partenaires et met en avant des ingrédients frais et sourcés, préparés entièrement sur place.",
+    "createdAt": "2026-02-05T18:10:54.570Z",
+    "updatedAt": "2026-02-05T18:14:21.166Z",
+    "panoramaImage": "/downloads/p.png"
   }
 ]
