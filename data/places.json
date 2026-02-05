@@ -2920,5 +2920,25 @@
     "panoramaImage": "/downloads/ma.png",
     "createdAt": "2026-02-05T12:51:27.215Z",
     "updatedAt": "2026-02-05T13:05:34.975Z"
+  },
+  {
+    "id": "daf4ee0c-08b6-48f5-872e-c5dc4591ca2a",
+    "name": "Capitol Hill Farmers Market",
+    "city": "Seattle",
+    "address": "E Barbara Bailey Way, Seattle, WA 98112, United States",
+    "website": "https://seattlefarmersmarkets.org/chfm",
+    "lat": 47.618758888583,
+    "lng": -122.320443883742,
+    "category": "Marché",
+    "phone": "+1 206-547-2278",
+    "openingHours": "jeudi\tFermé\nvendredi\tFermé\nsamedi\tFermé\ndimanche\t11h00–15h00\nlundi\tFermé\nmardi\t15h00–19h00\nmercredi\tFermé",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T13:20:38.528Z",
+    "updatedAt": "2026-02-05T13:24:37.567Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché de producteurs locaux réunissant fermes et artisans alimentaires de l’État de Washington. Les producteurs vendent directement fruits, légumes, pains, fromages, fleurs et produits transformés de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
+    "panoramaImage": "/downloads/ma.png"
   }
 ]
