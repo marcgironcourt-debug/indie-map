@@ -2940,5 +2940,25 @@
     ],
     "miniText": "Marché de producteurs locaux réunissant fermes et artisans alimentaires de l’État de Washington. Les producteurs vendent directement fruits, légumes, pains, fromages, fleurs et produits transformés de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
     "panoramaImage": "/downloads/ma.png"
+  },
+  {
+    "id": "9162e0a9-e294-4e0e-b7c4-71300dbd9c32",
+    "name": "Central Co-op",
+    "city": "Seattle",
+    "address": "1600 E Madison St, Seattle, WA 98122, United States",
+    "website": "https://www.centralcoop.coop/seattle-store.php",
+    "lat": 47.615342655971,
+    "lng": -122.311218046728,
+    "category": "Épicerie",
+    "phone": "+1 206-329-1545",
+    "openingHours": "lundi\t8h00–22h00\nmardi\t8h00–22h00\nmercredi\t8h00–22h00\njeudi\t8h00–22h00\nvendredi\t8h00–22h00\nsamedi\t8h00–22h00\ndimanche\t8h00–22h00",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T13:27:44.243Z",
+    "updatedAt": "2026-02-05T13:30:21.829Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative alimentaire mettant en avant des produits naturels et biologiques. La coopérative se présente comme dédiée aux pratiques durables, à l’ancrage local et à l’économie alimentaire régionale.",
+    "panoramaImage": "/downloads/ma.jpeg"
   }
 ]
