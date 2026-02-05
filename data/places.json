@@ -3559,5 +3559,25 @@
     ],
     "miniText": "Restaurant travaillant à partir de produits issus de fermes et de producteurs mexicains, avec une attention forte portée à la saisonnalité et aux ingrédients endémiques. Quintonil met en valeur le maïs natif, les légumes, herbes et produits du territoire mexicain, en construisant ses menus selon les récoltes et les disponibilités locales.",
     "panoramaImage": "/downloads/o.png"
+  },
+  {
+    "id": "41fa29b4-5f62-4e8d-bf35-d7f3e0a45877",
+    "name": "Casa Oaxaca El Restaurante",
+    "city": "Oaxaca",
+    "address": "Constitución 104-A, Ruta Independencia, Centro, 68000 Oaxaca de Juárez, Oaxaca, Mexico",
+    "website": "https://casaoaxacaelrestaurante.com",
+    "lat": 17.0652183,
+    "lng": -96.7222793,
+    "category": "Restaurant",
+    "phone": "+52 951 516 8889",
+    "openingHours": "lundi\t13h00–23h00\nmardi\t13h00–23h00\nmercredi\t13h00–23h00\njeudi\t13h00–23h00\nvendredi\t13h00–23h00\nsamedi\t13h00–23h00\ndimanche\t13h00–21h00",
+    "timeZone": "America/Mexico_City",
+    "createdAt": "2026-02-05T20:29:28.417Z",
+    "updatedAt": "2026-02-05T20:34:11.969Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant avec des producteurs et des fermes locales, mettant en avant les ingrédients du territoire d’Oaxaca selon les saisons, valorisant le maïs, les légumes, herbes, fromages et produits régionaux, en construisant une cuisine ancrée dans les traditions locales et le rythme des récoltes.",
+    "panoramaImage": "/downloads/c.jpg"
   }
 ]
