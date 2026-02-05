@@ -3040,5 +3040,25 @@
     "createdAt": "2026-02-05T14:09:10.943Z",
     "updatedAt": "2026-02-05T14:10:14.907Z",
     "panoramaImage": "/downloads/ma.webp"
+  },
+  {
+    "id": "5f8cd880-bf7c-4e94-95ca-a9a7725d380e",
+    "name": "The Corson Building",
+    "city": "Seattle",
+    "address": "5609 Corson Ave S, Seattle, WA 98108, États-Unis",
+    "website": "https://www.thecorsonbuilding.com",
+    "lat": 47.551960548177,
+    "lng": -122.320412743055,
+    "category": "Restaurant",
+    "phone": "+12067623330",
+    "openingHours": "lundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi 18h00–21h30\nvendredi 18h00–21h30\nsamedi 17h30–21h30\ndimanche 17h30–21h00",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir d’ingrédients issus de fermes et de producteurs de la région. Les menus évoluent en fonction des récoltes et des arrivages, avec une attention particulière portée à l’origine des produit et au respect des saisons.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-05T14:13:36.893Z",
+    "updatedAt": "2026-02-05T14:15:59.042Z",
+    "panoramaImage": "/downloads/ma.jpg"
   }
 ]
