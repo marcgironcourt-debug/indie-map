@@ -3339,5 +3339,25 @@
     "createdAt": "2026-02-05T17:05:20.197Z",
     "updatedAt": "2026-02-05T17:07:49.527Z",
     "panoramaImage": "/downloads/p.jpg"
+  },
+  {
+    "id": "f825e60c-0ba8-4a71-bb2d-b3b79b35eab8",
+    "name": "Outerlands",
+    "city": "San Francisco",
+    "address": "4001 Judah St, San Francisco, CA 94122, USA",
+    "website": "https://www.outerlandssf.com",
+    "lat": 37.7589,
+    "lng": -122.5109,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "Jeudi 17h00-21h00\nVendredi 17h00-21h30\nSamedi 9h30-14h00, 16h30-21h30\nDimanche 9h30-14h00, 16h30-21h00\nLundi 17h00-21h00\nMardi 17h00-21h00\nMercredi 17h00-21h00",
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir d’ingrédients issus de fermes locales de Californie. Outerlands met l’accent sur la simplicité, la transformation sur place et le respect des produits, avec un menu qui évolue selon les récoltes et les arrivages.",
+    "panoramaImage": "/downloads/o.jpg",
+    "tags": [
+      "Restaurant"
+    ],
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T17:46:35.342Z",
+    "updatedAt": "2026-02-05T17:47:51.527Z"
   }
 ]
