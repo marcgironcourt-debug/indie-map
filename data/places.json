@@ -3459,5 +3459,25 @@
     "createdAt": "2026-02-05T18:52:14.146Z",
     "updatedAt": "2026-02-05T18:56:22.900Z",
     "panoramaImage": "/downloads/f.jpg"
+  },
+  {
+    "id": "f4106d28-d3b8-47fb-b1bc-a800f3d1c428",
+    "name": "Reconsidered Goods",
+    "city": "Greensboro",
+    "address": "4118 Spring Garden St, Greensboro, NC 27407, United States",
+    "website": "https://www.reconsideredgoods.org",
+    "lat": 36.064643,
+    "lng": -79.845233,
+    "category": "Atelier",
+    "phone": "+1 336-763-5041",
+    "openingHours": "Mardi 11h00–17h00\nMercredi 11h00–17h00\nJeudi 11h00–17h00\nVendredi 11h00–17h00\nSamedi 11h00–17h00\nDimanche Fermé\nLundi Fermé",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Centre de réemploi créatif dédié à l’économie circulaire. Le lieu fonctionne comme un atelier de transformation et de redistribution, mettant à disposition des matières réutilisées pour la création, l’artisanat et la fabrication locale. Il contribue à réduire les déchets envoyés en décharge tout en soutenant une production créative ancrée dans le territoire.",
+    "createdAt": "2026-02-05T19:00:17.079Z",
+    "updatedAt": "2026-02-05T19:08:50.467Z",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
