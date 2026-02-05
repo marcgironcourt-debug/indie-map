@@ -3319,5 +3319,25 @@
     "createdAt": "2026-02-05T16:53:44.517Z",
     "updatedAt": "2026-02-05T16:56:48.333Z",
     "panoramaImage": "/downloads/g.png"
+  },
+  {
+    "id": "f02671a4-228a-4fd9-a838-8e7b263b3276",
+    "name": "The Progress",
+    "city": "San Francisco",
+    "address": "1525 Fillmore St, San Francisco, CA 94115, États-Unis",
+    "website": "https://statebirdsf.com/the-progress/",
+    "lat": 37.783835,
+    "lng": -122.432604,
+    "category": "Restaurant",
+    "phone": "+14156731294",
+    "openingHours": "Lundi 17h30–22h00\nMardi 17h30–22h00\nMercredi 17h30–22h00\nJeudi 17h30–22h00\nVendredi 17h30–22h00\nSamedi 17h30–22h00\nDimanche 17h30–22h00",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Restaurant proposant une cuisine de saison construite autour de produits issus de fermes et de producteurs californiens. Les menus évoluent en fonction des récoltes et des arrivages disponibles, avec une attention portée à l’origine des ingrédients et au travail des producteurs partenaires.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-05T17:05:20.197Z",
+    "updatedAt": "2026-02-05T17:07:49.527Z",
+    "panoramaImage": "/downloads/p.jpg"
   }
 ]
