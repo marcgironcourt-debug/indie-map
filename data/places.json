@@ -3539,5 +3539,25 @@
     "createdAt": "2026-02-05T19:39:54.463Z",
     "updatedAt": "2026-02-05T19:41:54.760Z",
     "panoramaImage": "/downloads/v.jpg"
+  },
+  {
+    "id": "334b194d-ad75-4454-823c-3caa504e2b09",
+    "name": "Quintonil",
+    "city": "Mexico City",
+    "address": "Av. Isaac Newton 55, Polanco IV Secc, Miguel Hidalgo, 11560 Ciudad de México, CDMX, Mexico",
+    "website": "https://quintonil.com",
+    "lat": 19.4308408,
+    "lng": -99.1917115,
+    "category": "Restaurant",
+    "phone": "+52 55 5280 2680",
+    "openingHours": "jeudi\t13h00–23h00\nvendredi\t13h00–23h00\nsamedi\t13h00–23h00\ndimanche\tFermé\nlundi\t13h00–23h00\nmardi\t13h00–23h00\nmercredi\t13h00–23h00",
+    "timeZone": "America/Mexico_City",
+    "createdAt": "2026-02-05T20:10:33.749Z",
+    "updatedAt": "2026-02-05T20:21:14.784Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant à partir de produits issus de fermes et de producteurs mexicains, avec une attention forte portée à la saisonnalité et aux ingrédients endémiques. Quintonil met en valeur le maïs natif, les légumes, herbes et produits du territoire mexicain, en construisant ses menus selon les récoltes et les disponibilités locales.",
+    "panoramaImage": "/downloads/o.png"
   }
 ]
