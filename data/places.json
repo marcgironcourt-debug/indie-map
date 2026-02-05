@@ -3098,7 +3098,27 @@
     ],
     "miniText": "Épicerie coopérative proposant une large sélection de produits alimentaires biologiques et locaux, privilégiant les circuits courts, les producteurs de l’Oregon et une gouvernance collective détenue par ses membres.",
     "createdAt": "2026-02-05T14:52:33.338Z",
-    "updatedAt": "2026-02-05T14:55:03.880Z",
+    "updatedAt": "2026-02-05T15:07:54.522Z",
+    "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "39d47ad1-a349-45a1-9ca4-6777385b79a2",
+    "name": "Village Market – Our Village Gardens",
+    "city": "Portland",
+    "address": "4632 N Trenton St, Portland, OR 97203, United States",
+    "website": "https://www.villagegardens.org/village-market",
+    "lat": 45.58835,
+    "lng": -122.71509,
+    "category": "Marché",
+    "phone": "+1 503-548-0374",
+    "openingHours": "Lundi 9h00–18h00\nMardi 9h00–18h00\nMercredi 9h00–18h00\nJeudi 9h00–18h00\nVendredi 9h00–18h00\nSamedi 9h00–21h00\nDimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché communautaire porté par l’organisation Our Village Gardens, proposant des produits alimentaires frais et locaux. Le lieu vise à améliorer l’accès à une alimentation saine et abordable dans le nord de Portland, en soutenant les producteurs régionaux et les initiatives alimentaires de quartier.",
+    "createdAt": "2026-02-05T15:00:05.090Z",
+    "updatedAt": "2026-02-05T15:03:19.240Z",
     "panoramaImage": "/downloads/a.png"
   }
 ]
