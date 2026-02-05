@@ -3020,5 +3020,25 @@
     "createdAt": "2026-02-05T13:57:43.276Z",
     "updatedAt": "2026-02-05T14:06:12.826Z",
     "panoramaImage": "/downloads/ma.png"
+  },
+  {
+    "id": "81c26b28-e6d5-46b9-9b6f-79a6639af370",
+    "name": "Terra Plata",
+    "city": "Seattle",
+    "address": "1501 Melrose Ave, Seattle, WA 98122, États-Unis",
+    "website": "https://www.terraplata.com",
+    "lat": 47.6145251,
+    "lng": -122.3281072,
+    "category": "Restaurant",
+    "phone": "+12063251501",
+    "openingHours": "lundi 16h00–22h00\nmardi 16h00–22h00\nmercredi 16h00–22h00\njeudi 16h00–22h00\nvendredi 16h00–22h00\nsamedi 09h30–14h00, 16h00–22h00\ndimanche 09h30–14h00, 16h00–21h00",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Restaurant mettant en avant une cuisine de saison inspirée du terroir du Pacific Northwest. Terra Plata travaille des ingrédients frais issus de producteurs locaux et propose une carte évolutive selon les récoltes. Le lieu se distingue par son potager sur le toit, intégré à la démarche culinaire, et par une approche centrée sur le respect des saisons et des produits.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-05T14:09:10.943Z",
+    "updatedAt": "2026-02-05T14:10:14.907Z",
+    "panoramaImage": "/downloads/ma.webp"
   }
 ]
