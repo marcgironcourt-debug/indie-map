@@ -3419,5 +3419,25 @@
     "createdAt": "2026-02-05T18:24:58.243Z",
     "updatedAt": "2026-02-05T18:26:23.341Z",
     "panoramaImage": "/downloads/b.jpg"
+  },
+  {
+    "id": "bdbe8ab0-b17d-4f8b-afee-705c5b72977d",
+    "name": "Foreign Cinema",
+    "city": "San Francisco",
+    "address": "2534 Mission St, San Francisco, CA 94110, États-Unis",
+    "website": "https://foreigncinema.com",
+    "lat": 37.756139,
+    "lng": -122.419193,
+    "category": "Restaurant",
+    "phone": "+1 415-648-7600",
+    "openingHours": "jeudi\t17h00–21h30\nvendredi\t17h00–22h00\nsamedi\t10h30–14h00, 17h00–22h00\ndimanche\t10h30–14h00, 17h00–21h00\nlundi\t17h00–21h30\nmardi\t17h00–21h30\nmercredi\t17h00–21h30",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mêlant cuisine de saison et programmation cinématographique. Foreign Cinema travaille avec des producteurs locaux et adapte ses menus en fonction des arrivages, dans une approche attentive à la qualité des ingrédients et à la saisonnalité. Le lieu combine restauration, culture et vie de quartier.",
+    "createdAt": "2026-02-05T18:31:10.194Z",
+    "updatedAt": "2026-02-05T18:36:12.630Z",
+    "panoramaImage": "/downloads/f.png"
   }
 ]
