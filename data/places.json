@@ -3180,5 +3180,25 @@
     "createdAt": "2026-02-05T15:34:23.489Z",
     "updatedAt": "2026-02-05T15:35:20.948Z",
     "panoramaImage": "/downloads/c.webp"
+  },
+  {
+    "id": "ac129af0-401f-49c4-acb7-af302b0d40ef",
+    "name": "ReClaim It",
+    "city": "Portland",
+    "address": "1 N Killingsworth St, Portland, OR 97217, États-Unis",
+    "website": "https://www.reclaimitpdx.org",
+    "lat": 45.562927,
+    "lng": -122.676663,
+    "category": "Atelier",
+    "phone": "+1 503-866-7855",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00–17h00\nJeudi 12h00–17h00\nVendredi 12h00–17h00\nSamedi 12h00–17h00\nDimanche 12h00–17h00",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T15:44:04.219Z",
+    "updatedAt": "2026-02-05T15:47:52.830Z",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Atelier de réemploi créatif récupérant des matériaux issus des déchets urbains pour leur donner une seconde vie. ReClaim It collecte, trie et remet en circulation bois, objets, outils et matériaux divers à destination des artisans, makers et habitants, dans une logique de réduction des déchets et d’économie circulaire locale.",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
