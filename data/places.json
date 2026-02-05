@@ -2960,5 +2960,45 @@
     ],
     "miniText": "Coopérative alimentaire mettant en avant des produits naturels et biologiques. La coopérative se présente comme dédiée aux pratiques durables, à l’ancrage local et à l’économie alimentaire régionale.",
     "panoramaImage": "/downloads/ma.jpeg"
+  },
+  {
+    "id": "946dd984-398a-4ddb-819b-748c129c50b4",
+    "name": "Beecher’s Handmade Cheese",
+    "city": "Seattle",
+    "address": "1600 Pike Pl, Seattle, WA 98101, United States",
+    "website": "https://beechershandmadecheese.com",
+    "lat": 47.60963,
+    "lng": -122.34179,
+    "category": "Épicerie",
+    "phone": "+1 206-956-1964",
+    "openingHours": "jeudi\t10h00–17h00\nvendredi\t10h00–17h00\nsamedi\t10h00–18h00\ndimanche\t10h00–18h00\nlundi\t10h00–17h00\nmardi\t10h00–17h00\nmercredi\t10h00–17h00",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T13:36:57.115Z",
+    "updatedAt": "2026-02-05T13:43:19.877Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Fromagerie produisant des fromages à partir de lait local, transformés sur place selon des méthodes traditionnelles. Beecher’s met en avant une fabrication transparente, des ingrédients simples et une volonté de relier production laitière régionale et alimentation de qualité.",
+    "panoramaImage": "/downloads/ma.png"
+  },
+  {
+    "id": "a0962134-5cca-4c75-b70a-e473800440b2",
+    "name": "Beecher’s Handmade Cheese",
+    "city": "Bellevue",
+    "address": "575 Bellevue Way NE #126, Bellevue, WA 98004, United States",
+    "website": "https://beechershandmadecheese.com",
+    "lat": 47.6157178510632,
+    "lng": -122.203794093553,
+    "category": "Épicerie",
+    "phone": "+1 425-777-9171",
+    "openingHours": "jeudi\t10h00–21h00\nvendredi\t10h00–21h00\nsamedi\t10h00–21h00\ndimanche\t11h00–19h00\nlundi\t10h00–21h00\nmardi\t10h00–21h00\nmercredi\t10h00–21h00",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T13:37:02.574Z",
+    "updatedAt": "2026-02-05T13:43:19.877Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Fromagerie produisant des fromages à partir de lait local, transformés sur place selon des méthodes traditionnelles. Beecher’s met en avant une fabrication transparente, des ingrédients simples et une volonté de relier production laitière régionale et alimentation de qualité.",
+    "panoramaImage": "/downloads/ma.png"
   }
 ]
