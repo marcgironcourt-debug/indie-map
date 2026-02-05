@@ -71,6 +71,10 @@ function normalizeCategoryLabel(raw: string): string {
     return "Atelier";
   }
 
+  if (key.includes("marché") || key.includes("marche") || key.includes("market") || key.includes("farmers market") || key.includes("public market") || key.includes("greenmarket")) {
+    return "Marché";
+  }
+
   
   if (key.includes("ferme") || key.includes("farm")) {
     return "Ferme";
@@ -201,6 +205,12 @@ function getCategoryStyle(cat: string, active: boolean): string {
     return active
       ? "bg-[hsl(var(--poi))] text-white"
       : "bg-[#5C6E3B]/85 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60";
+  }
+
+  if (key.includes("marché") || key.includes("marche") || key.includes("market")) {
+    return active
+      ? "bg-[#39FF14] text-black"
+      : "bg-[#5C6E3B]/85 text-[#39FF14] border border-[#39FF14]/60";
   }
 
   return active
@@ -654,11 +664,25 @@ React.useEffect(() => {
     return k.includes("atelier");
   };
 
+  const isMarket = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("marché") ||
+      k.includes("marche") ||
+      k.includes("market") ||
+      k.includes("farmers market") ||
+      k.includes("farmer\x27s market") ||
+      k.includes("greenmarket") ||
+      k.includes("public market")
+    );
+  };
+
   const hasBook = rawCategories.some(isBook);
   const hasGrocery = rawCategories.some(isGrocery);
   const hasRestaurant = rawCategories.some(isRestaurant);
   const hasBakery = rawCategories.some(isBakery);
   const hasAtelier = rawCategories.some(isAtelier);
+  const hasMarket = rawCategories.some(isMarket);
 
   let categories = [
     ...rawCategories.filter(
@@ -668,16 +692,20 @@ React.useEffect(() => {
         !isGrocery(t) &&
         !isRestaurant(t) &&
         !isBakery(t) &&
-        !isAtelier(t)
+        !isAtelier(t) &&
+        !isMarket(t)
     ),
     ...(hasBook ? ["Librairie"] : []),
     ...(hasGrocery ? ["Épicerie"] : []),
     ...(hasRestaurant ? ["Restaurant"] : []),
     ...(hasBakery ? ["Boulangerie"] : []),
     ...(hasAtelier ? ["Atelier"] : []),
+    ...(hasMarket ? ["Marché"] : []),
   ];
 
   if (!categories.includes("Ferme")) categories.push("Ferme");
+  if (!categories.includes("Marché")) categories.push("Marché");
+  categories = Array.from(new Set(categories));
 
   const filtered = source.filter((b) => {
     const k = (b.type || "").toLowerCase();
@@ -718,6 +746,18 @@ React.useEffect(() => {
         k.includes("cuisine du marché") ||
         k.includes("cuisine du marche") ||
         k.includes("restaurant")
+      );
+    }
+
+    if (category === "Marché") {
+      return (
+        k.includes("marché") ||
+        k.includes("marche") ||
+        k.includes("market") ||
+        k.includes("farmers market") ||
+        k.includes("farmer\x27s market") ||
+        k.includes("greenmarket") ||
+        k.includes("public market")
       );
     }
 

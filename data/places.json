@@ -2896,5 +2896,25 @@
     "panoramaImage": "/downloads/ma.jpg",
     "createdAt": "2026-02-05T12:27:03.321Z",
     "updatedAt": "2026-02-05T12:32:17.465Z"
+  },
+  {
+    "id": "d80fb161-b715-4a18-9365-5f1c8475c4eb",
+    "name": "Ballard Farmers Market",
+    "city": "Seattle",
+    "address": "5345 Ballard Ave NW, Seattle, WA 98107, États-Unis",
+    "website": "https://www.sfmamarkets.com/visit-ballard-farmers-market",
+    "lat": 47.667317,
+    "lng": -122.383872,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "Dimanche 09h00–14h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché fermier hebdomadaire réunissant des producteurs agricoles et artisans alimentaires de l’État de Washington, permettant l’achat direct de produits frais, favorisant les circuits courts, la saisonnalité et un lien direct entre producteurs et habitants.",
+    "panoramaImage": "/downloads/ma.png",
+    "createdAt": "2026-02-05T12:51:27.215Z",
+    "updatedAt": "2026-02-05T13:05:34.975Z"
   }
 ]
