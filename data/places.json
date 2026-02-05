@@ -3120,5 +3120,25 @@
     "createdAt": "2026-02-05T15:00:05.090Z",
     "updatedAt": "2026-02-05T15:03:19.240Z",
     "panoramaImage": "/downloads/a.png"
+  },
+  {
+    "id": "aa3620ad-406f-445c-bd1b-4b5132744b49",
+    "name": "Arden",
+    "city": "Portland",
+    "address": "417 NW 10th Ave, Portland, OR 97209, États-Unis",
+    "website": "https://www.ardenpdx.com",
+    "lat": 45.525744,
+    "lng": -122.681938,
+    "category": "Restaurant",
+    "phone": "+1 503-206-6097",
+    "openingHours": "Lundi 17h00–21h00\nMardi 17h00–21h00\nMercredi 17h00–21h00\nJeudi 17h00–21h00\nVendredi 17h00–21h00\nSamedi 17h00–21h00\nDimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine entièrement construite autour des produits locaux et saisonniers de l’Oregon et du Nord-Ouest Pacifique. Le menu évolue en fonction des récoltes et des arrivages de fermes partenaires, avec une attention particulière portée à l’origine des ingrédients.",
+    "createdAt": "2026-02-05T15:18:09.590Z",
+    "updatedAt": "2026-02-05T15:19:34.953Z",
+    "panoramaImage": "/downloads/p.jpg"
   }
 ]
