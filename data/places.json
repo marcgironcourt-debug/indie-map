@@ -3060,5 +3060,25 @@
     "createdAt": "2026-02-05T14:13:36.893Z",
     "updatedAt": "2026-02-05T14:15:59.042Z",
     "panoramaImage": "/downloads/ma.jpg"
+  },
+  {
+    "id": "2165348f-94c1-43a1-b835-bb6a02c5d842",
+    "name": "Bounty Kitchen",
+    "city": "Seattle",
+    "address": "7 Boston St, Seattle, WA 98109, États-Unis",
+    "website": "http://bountykitchenseattle.com",
+    "lat": 47.638239,
+    "lng": -122.356548,
+    "category": "Restaurant",
+    "phone": "+12066952017",
+    "openingHours": "lundi 10h00–20h00\nmardi 10h00–20h00\nmercredi 10h00–20h00\njeudi 10h00–20h00\nvendredi 10h00–20h00\nsamedi 10h00–20h00\ndimanche 10h00–20h00",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Restaurant proposant une cuisine axée sur une alimentation saine et de qualité. Bounty Kitchen prépare ses plats à partir de produits biologiques et d’ingrédients cultivés sur place. Le lieu accorde une place centrale aux légumes. Brunch le week-end.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-05T14:27:04.293Z",
+    "updatedAt": "2026-02-05T14:27:30.142Z",
+    "panoramaImage": "/downloads/ma.jpeg"
   }
 ]
