@@ -640,26 +640,6 @@
     ]
   },
   {
-    "id": "cmiae0q6q00159krfkxfpzlt1",
-    "name": "Maktaba Bookshop",
-    "city": "Montréal",
-    "address": "165 Rue Saint-Paul Ouest, Montréal, QC H2Y 1Z5",
-    "website": "https://www.maktaba.online",
-    "openingHours": "Lundi 11h00-18h00\nMardi 11h00-18h00\nMercredi 11h00-18h00\nJeudi 11h00-18h00\nVendredi 11h00-18h00\nSamedi 11h00-18h00\nDimanche 12h00-18h00",
-    "lat": 45.5033464,
-    "lng": -73.5551619,
-    "category": "Librairie",
-    "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
-    "timeZone": "America/Toronto",
-    "phone": "+1 438 773 3033",
-    "miniText": "Librairie-concept indépendante nichée dans un bâtiment patrimonial du Vieux-Port de Montréal. Elle propose une sélection soignée de livres, vinyles et objets culturels, ainsi qu’un espace convivial pour lire et créer du lien. Maktaba valorise la représentation culturelle, la diversité des voix et accueille des événements littéraires et communautaires.",
-    "panoramaImage": "/images/maktaba.png",
-    "tags": [
-      "Librairie"
-    ]
-  },
-  {
     "id": "cmiae0q6q00169krfgsew8ceg",
     "name": "La Réserve Naturelle",
     "city": "Montréal",
