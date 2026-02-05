@@ -2876,5 +2876,25 @@
     "updatedAt": "2026-02-04T21:25:04.101Z",
     "miniText": "Ferme de maraîchage biologique, produisant une grande diversité de légumes. Les cultures sont menées sans produits chimiques de synthèse, et les légumes sont certifiés biologiques par Écocert Canada.",
     "panoramaImage": "/downloads/ch.webp"
+  },
+  {
+    "id": "4609eeea-a3d4-40c4-911f-53ceda22eeda",
+    "name": "Pike Place Market",
+    "city": "Seattle",
+    "address": "85 Pike St, Seattle, WA 98101, États-Unis",
+    "website": "https://www.pikeplacemarket.org",
+    "lat": 47.609722,
+    "lng": -122.342222,
+    "category": "Marché",
+    "phone": "+1 206-682-7453",
+    "openingHours": "Lundi 09h00–18h00\nMardi 09h00–18h00\nMercredi 09h00–18h00\nJeudi 09h00–18h00\nVendredi 09h00–18h00\nSamedi 09h00–18h00\nDimanche 09h00–18h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché public historique de Seattle réunissant des producteurs agricoles, artisans alimentaires et commerçants indépendants. Pike Place Market permet l’achat direct de produits frais, de spécialités locales et de produits artisanaux, favorisant les circuits courts, le soutien aux producteurs régionaux et un lien direct entre habitants et vendeurs.",
+    "panoramaImage": "/downloads/ma.jpg",
+    "createdAt": "2026-02-05T12:27:03.321Z",
+    "updatedAt": "2026-02-05T12:32:17.465Z"
   }
 ]
