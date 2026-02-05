@@ -2169,14 +2169,15 @@
     "website": "https://www.grownyc.org/greenmarket/manhattan-union-square-m",
     "lat": 40.737123992637,
     "lng": -73.990344365123,
-    "category": "Épicerie",
+    "category": "Marché",
     "phone": "+12127887900",
     "openingHours": "Lundi 8h00–18h00\nMardi Fermé\nMercredi 8h00–18h00\nJeudi Fermé\nVendredi 8h00–18h00\nSamedi 8h00–18h00\nDimanche Fermé",
     "timeZone": "America/New_York",
     "createdAt": "2026-02-03T20:17:12.581Z",
-    "updatedAt": "2026-02-03T20:28:39.804Z",
+    "updatedAt": "2026-02-05T13:13:15.920Z",
     "tags": [
-      "Épicerie"
+      "Épicerie",
+      "Marché"
     ],
     "miniText": "Marché fermier emblématique de New York réunissant 140 producteurs locaux qui vendent directement fruits, légumes, pains, fromages et autres produits alimentaires de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
     "panoramaImage": "/downloads/un.png"
@@ -2371,17 +2372,18 @@
     "website": "https://ottawafarmersmarket.ca/lansdowne-market/",
     "lat": 45.40005778214,
     "lng": -75.682817164661,
-    "category": "Épicerie",
+    "category": "Marché",
     "phone": "+1 613-417-3595",
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche 10h00–15h00",
     "timeZone": "America/Toronto",
     "miniText": "Marché de producteurs fonctionnant sur un modèle strictement « producer-only » : seuls les producteurs et artisans vendent directement leurs produits. Les vendeurs sont situés dans un rayon d’environ 100 km autour d’Ottawa, favorisant un circuit court, local et transparent.",
     "tags": [
       "marché",
-      "producteurs locaux"
+      "producteurs locaux",
+      "Marché"
     ],
     "createdAt": "2026-02-04T15:02:45.768Z",
-    "updatedAt": "2026-02-04T15:06:01.577Z",
+    "updatedAt": "2026-02-05T13:12:50.221Z",
     "panoramaImage": "/downloads/marc.png"
   },
   {
@@ -2414,17 +2416,18 @@
     "website": "https://www.evergreen.ca/evergreen-brick-works/market/",
     "lat": 43.684547,
     "lng": -79.365331,
-    "category": "Épicerie",
+    "category": "Marché",
     "phone": "+1 416-596-7670",
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00–13h00\nDimanche Fermé",
     "timeZone": "America/Toronto",
     "miniText": "Marché de producteurs locaux organisé à Evergreen Brick Works, réunissant des fermes et artisans de l’Ontario vendant directement leur production. Le marché fonctionne sur un modèle de circuit court, avec une sélection saisonnière de fruits, légumes et produits alimentaires locaux.",
     "tags": [
       "marché",
-      "producteurs locaux"
+      "producteurs locaux",
+      "Marché"
     ],
     "createdAt": "2026-02-04T15:20:18.931Z",
-    "updatedAt": "2026-02-04T15:24:21.004Z",
+    "updatedAt": "2026-02-05T13:10:26.513Z",
     "panoramaImage": "/downloads/mar.png"
   },
   {
@@ -2457,16 +2460,17 @@
     "website": "https://www.raisetheroot.ca",
     "lat": 43.662746,
     "lng": -79.334219,
-    "category": "Épicerie",
+    "category": "Marché",
     "phone": "+1 416-466-7668",
     "openingHours": "lundi Fermé\nmardi 10h00–19h00\nmercredi 10h00–19h00\njeudi 10h00–19h00\nvendredi 10h00–19h00\nsamedi 9h30–18h00\ndimanche 9h30–18h00",
     "timeZone": "America/Toronto",
     "tags": [
-      "Épicerie"
+      "Épicerie",
+      "Marché"
     ],
     "miniText": "Marché privilégiant les producteurs locaux et régionaux, en mettant en avant une alimentation saine, accessible et ancrée dans son quartier. Le lieu s’inscrit dans une démarche de soutien à l’agriculture durable et à l’économie locale.",
     "createdAt": "2026-02-04T15:35:57.296Z",
-    "updatedAt": "2026-02-04T15:37:17.601Z",
+    "updatedAt": "2026-02-05T13:10:26.513Z",
     "panoramaImage": "/downloads/mar.jpg"
   },
   {
