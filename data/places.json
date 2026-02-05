@@ -3279,5 +3279,25 @@
     "panoramaImage": "/downloads/b.png",
     "createdAt": "2026-02-05T16:29:07.336Z",
     "updatedAt": "2026-02-05T16:39:02.133Z"
+  },
+  {
+    "id": "be0c9da6-7434-4314-9867-6af82b6bd3a7",
+    "name": "Ferry Plaza Farmers Market",
+    "city": "San Francisco",
+    "address": "One Ferry Building #50, 1 Ferry Plz, San Francisco, CA 94111, États-Unis",
+    "website": "https://foodwise.org/markets/ferry-plaza-farmers-market/",
+    "lat": 37.79553798856,
+    "lng": -122.393430016187,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi 10h00–14h00\nMercredi Fermé\nJeudi 10h00–14h00\nVendredi Fermé\nSamedi 8h00–14h00\nDimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Marché de producteurs emblématique de San Francisco, réunissant agriculteurs, artisans et producteurs alimentaires de Californie qui vendent directement leurs produits de saison. Le marché met l’accent sur les circuits courts, l’agriculture durable et la transparence des pratiques.",
+    "tags": [
+      "Marché"
+    ],
+    "createdAt": "2026-02-05T16:43:43.819Z",
+    "updatedAt": "2026-02-05T16:50:13.488Z",
+    "panoramaImage": "/downloads/m.png"
   }
 ]
