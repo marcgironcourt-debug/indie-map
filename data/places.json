@@ -3479,5 +3479,25 @@
     "createdAt": "2026-02-05T19:00:17.079Z",
     "updatedAt": "2026-02-05T19:08:50.467Z",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "0eac569d-5401-4f30-86ce-58e0b3b20f33",
+    "name": "Austin Creative Reuse Center",
+    "city": "Austin",
+    "address": "2005 Wheless Ln, Austin, TX 78723, United States",
+    "website": "https://austincreativereuse.org",
+    "lat": 30.309936,
+    "lng": -97.689408,
+    "category": "Atelier",
+    "phone": "+1 512-375-3041",
+    "openingHours": "Mardi 11h00–19h00\nMercredi 11h00–19h00\nJeudi 11h00–19h00\nVendredi 11h00–19h00\nSamedi 11h00–19h00\nDimanche 12h00–18h00\nLundi Fermé",
+    "timeZone": "America/Chicago",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Centre de réemploi créatif dédié à l’économie circulaire. Le lieu fonctionne comme un atelier de transformation et de redistribution, mettant à disposition des matières réutilisées pour la création, l’artisanat et la fabrication locale. Il contribue à réduire les déchets envoyés en décharge tout en soutenant une production créative ancrée dans le territoire d’Austin.",
+    "createdAt": "2026-02-05T19:12:57.475Z",
+    "updatedAt": "2026-02-05T19:15:25.861Z",
+    "panoramaImage": "/downloads/a.png"
   }
 ]
