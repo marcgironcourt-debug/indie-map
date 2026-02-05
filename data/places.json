@@ -3200,5 +3200,25 @@
     ],
     "miniText": "Atelier de réemploi créatif récupérant des matériaux issus des déchets urbains pour leur donner une seconde vie. ReClaim It collecte, trie et remet en circulation bois, objets, outils et matériaux divers à destination des artisans, makers et habitants, dans une logique de réduction des déchets et d’économie circulaire locale.",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "cb004a4b-d010-46f9-9634-71392e1562ec",
+    "name": "Looptworks",
+    "city": "Portland",
+    "address": "17401 NE Halsey St, Portland, OR 97230, États-Unis",
+    "website": "https://looptworks.com",
+    "lat": 45.535566502034,
+    "lng": -122.483006912509,
+    "category": "Atelier",
+    "phone": "+1 503-972-0168",
+    "openingHours": "Lundi 8h30–17h00\nMardi 8h30–17h00\nMercredi 9h00–17h00\nJeudi 9h00–17h00\nVendredi 8h30–17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T16:01:31.132Z",
+    "updatedAt": "2026-02-05T16:09:00.346Z",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Atelier travaillant avec des marques et des organisations à travers les États-Unis pour gérer et valoriser de grandes quantités de matériaux excédentaires. L’atelier collabore avec des marques de mode, des municipalités, des fabricants textiles et fournit également des fibres circulaires destinées à être réintégrées dans de nouveaux matériaux.",
+    "panoramaImage": "/downloads/l.webp"
   }
 ]
