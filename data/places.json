@@ -3140,5 +3140,25 @@
     "createdAt": "2026-02-05T15:18:09.590Z",
     "updatedAt": "2026-02-05T15:19:34.953Z",
     "panoramaImage": "/downloads/p.jpg"
+  },
+  {
+    "id": "76323e43-9092-4329-929a-79e528658029",
+    "name": "Cafe Rowan",
+    "city": "Portland",
+    "address": "4437 SE César E Chávez Blvd, Portland, OR 97202, États-Unis",
+    "website": "https://www.caferowan.com",
+    "lat": 45.490247,
+    "lng": -122.620357,
+    "category": "Restaurant",
+    "phone": "+1 503-841-5072",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 9h00–14h00\nJeudi 9h00–14h00\nVendredi 9h00–14h00\nSamedi 9h00–14h00\nDimanche 9h00–14h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison provenant de fermes de l’Oregon. Les plats évoluent selon les récoltes et les arrivages, avec une attention portée à l’origine des ingrédients et au respect du rythme agricole.",
+    "createdAt": "2026-02-05T15:25:04.525Z",
+    "updatedAt": "2026-02-05T15:30:05.105Z",
+    "panoramaImage": "/downloads/d.png"
   }
 ]
