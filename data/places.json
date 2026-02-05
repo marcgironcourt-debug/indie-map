@@ -3080,5 +3080,25 @@
     "createdAt": "2026-02-05T14:27:04.293Z",
     "updatedAt": "2026-02-05T14:27:30.142Z",
     "panoramaImage": "/downloads/ma.jpeg"
+  },
+  {
+    "id": "12bee703-0f47-4384-80b4-d02e5b89f799",
+    "name": "People’s Food Co-op",
+    "city": "Portland",
+    "address": "3029 SE 21st Ave, Portland, OR 97202, United States",
+    "website": "https://www.peoples.coop",
+    "lat": 45.50082,
+    "lng": -122.64494,
+    "category": "Épicerie",
+    "phone": "+1 503-548-0374",
+    "openingHours": "Lundi 9h00–21h00\nMardi 9h00–21h00\nMercredi 9h00–21h00\nJeudi 9h00–21h00\nVendredi 9h00–21h00\nSamedi 9h00–21h00\nDimanche 9h00–21h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie coopérative proposant une large sélection de produits alimentaires biologiques et locaux, privilégiant les circuits courts, les producteurs de l’Oregon et une gouvernance collective détenue par ses membres.",
+    "createdAt": "2026-02-05T14:52:33.338Z",
+    "updatedAt": "2026-02-05T14:55:03.880Z",
+    "panoramaImage": "/downloads/a.png"
   }
 ]
