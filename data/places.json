@@ -3359,5 +3359,25 @@
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:46:35.342Z",
     "updatedAt": "2026-02-05T17:47:51.527Z"
+  },
+  {
+    "id": "03266548-c980-4cc7-9099-c67233dc1daa",
+    "name": "Nopa",
+    "city": "San Francisco",
+    "address": "560 Divisadero St, San Francisco, CA 94117, USA",
+    "website": "https://www.nopasf.com",
+    "lat": 37.774901,
+    "lng": -122.437508,
+    "category": "Restaurant",
+    "phone": "+1 415-864-8643",
+    "openingHours": "Jeudi 17h30-22h00\nVendredi 17h30-23h00\nSamedi 17h30-23h00\nDimanche 17h00-21h30\nLundi 17h30-22h00\nMardi 17h30-22h00\nMercredi 17h30-22h00",
+    "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux de Californie. Nopa travaille une carte qui évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à la qualité des produits et au respect des saisons.",
+    "panoramaImage": "/downloads/n.png",
+    "tags": [
+      "Restaurant"
+    ],
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T17:51:34.121Z",
+    "updatedAt": "2026-02-05T17:55:19.862Z"
   }
 ]
