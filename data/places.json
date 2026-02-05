@@ -3499,5 +3499,25 @@
     "createdAt": "2026-02-05T19:12:57.475Z",
     "updatedAt": "2026-02-05T19:15:25.861Z",
     "panoramaImage": "/downloads/a.png"
+  },
+  {
+    "id": "b3ca84a5-0e89-4efb-9c18-4117144669af",
+    "name": "Naked Farmer",
+    "city": "Miami",
+    "address": "200 S Biscayne Blvd, Ste 145, Miami, FL 33131, États-Unis",
+    "website": "https://www.eatnakedfarmer.com/miami",
+    "lat": 25.772194,
+    "lng": -80.187721,
+    "category": "Restaurant",
+    "phone": "+1 305-614-3911",
+    "openingHours": "Lundi 10h30–22h00\nMardi 10h30–22h00\nMercredi 10h30–22h00\nJeudi 10h30–22h00\nVendredi 10h30–22h00\nSamedi 11h00–22h00\nDimanche 11h00–22h00",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant des plats préparés à partir d’ingrédients frais, de saison, issus de fermes locales de Floride. Naked Farmer met en avant une cuisine simple et transparente, avec une attention portée à l’origine des produits, aux circuits courts et à une alimentation accessible et responsable.",
+    "createdAt": "2026-02-05T19:21:25.784Z",
+    "updatedAt": "2026-02-05T19:26:30.891Z",
+    "panoramaImage": "/downloads/n.png"
   }
 ]
