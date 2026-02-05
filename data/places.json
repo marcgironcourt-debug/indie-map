@@ -3299,5 +3299,25 @@
     "createdAt": "2026-02-05T16:43:43.819Z",
     "updatedAt": "2026-02-05T16:50:13.488Z",
     "panoramaImage": "/downloads/m.png"
+  },
+  {
+    "id": "259b5bc5-36a7-43f0-ba96-f365fb7d2f6b",
+    "name": "Rainbow Grocery Cooperative",
+    "city": "San Francisco",
+    "address": "1745 Folsom St, San Francisco, CA 94103, États-Unis",
+    "website": "https://rainbow.coop",
+    "lat": 37.769151,
+    "lng": -122.415684,
+    "category": "Épicerie",
+    "phone": "+1 415-863-0620",
+    "openingHours": "Lundi 9h00–20h00\nMardi 9h00–20h00\nMercredi 9h00–20h00\nJeudi 9h00–20h00\nVendredi 9h00–20h00\nSamedi 9h00–20h00\nDimanche 9h00–20h00",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Coopérative alimentaire proposant une large sélection de produits biologiques, locaux et équitables, avec une attention particulière portée à l’origine des aliments, aux filières durables et à l’accessibilité. Le lieu s’inscrit dans une démarche historique de consommation responsable et de soutien aux producteurs indépendants.",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-05T16:53:44.517Z",
+    "updatedAt": "2026-02-05T16:56:48.333Z",
+    "panoramaImage": "/downloads/g.png"
   }
 ]
