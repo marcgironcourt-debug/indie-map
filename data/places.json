@@ -3599,5 +3599,25 @@
     ],
     "miniText": "Restaurant travaillant avec des fermes, pêcheurs et producteurs locaux de la péninsule du Yucatán, en construisant ses menus exclusivement à partir d’ingrédients de saison.",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "3112c942-b4d3-4044-bab8-a472bdeca17c",
+    "name": "Rancho San Josemaría",
+    "city": "Querétaro",
+    "address": "Camino La Noria el Milagro Km 2.5, Ejido el Milagro, 76981 Qro., Mexique",
+    "website": "https://www.ranchosanjosemaria.com",
+    "lat": 20.4724358,
+    "lng": -100.349,
+    "category": "Ferme",
+    "phone": "+52 442 130 2161",
+    "openingHours": "jeudi\t9h00–15h00\nvendredi\t9h00–15h00\nsamedi\t9h00–15h00\ndimanche\t9h00–15h00\nlundi\tFermé\nmardi\t9h00–15h00\nmercredi\t9h00–15h00",
+    "timeZone": "America/Mexico_City",
+    "createdAt": "2026-02-05T20:47:30.049Z",
+    "updatedAt": "2026-02-05T20:51:20.658Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme produisant ses fromages à partir du lait issu de son propre élevage, avec transformation et affinage sur place, en valorisant une production fermière locale, en circuit court, ancrée dans le territoire de Querétaro et le rythme de production agricole.",
+    "panoramaImage": "/downloads/s.jpg"
   }
 ]
