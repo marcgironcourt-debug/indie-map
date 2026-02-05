@@ -3439,5 +3439,25 @@
     "createdAt": "2026-02-05T18:31:10.194Z",
     "updatedAt": "2026-02-05T18:36:12.630Z",
     "panoramaImage": "/downloads/f.png"
+  },
+  {
+    "id": "a9ffb914-1874-40e8-9603-978f8eca662c",
+    "name": "FABSCRAP – Brooklyn Warehouse",
+    "city": "New York",
+    "address": "140 58th Street, Brooklyn Army Terminal, Building B, Unit 5H-4, Brooklyn, NY 11220, United States",
+    "website": "https://fabscrap.org",
+    "lat": 40.645557567778,
+    "lng": -74.023857560951,
+    "category": "Atelier",
+    "phone": "+1 929-276-3188",
+    "openingHours": "Mardi 9h00–17h00\nMercredi 9h00–17h00\nJeudi 9h00–17h00\nVendredi 9h00–17h00\nSamedi 9h00–17h00\nDimanche Fermé\nLundi Fermé",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Centre opérationnel dédié au recyclage textile, FABSCRAP collecte les déchets de tissu issus de marques, d’ateliers et d’entreprises new-yorkaises afin d’éviter leur enfouissement ou leur incinération. Le lieu constitue une infrastructure clé de l’économie circulaire textile locale, en traitant directement les flux de déchets de l’industrie de la mode.",
+    "createdAt": "2026-02-05T18:52:14.146Z",
+    "updatedAt": "2026-02-05T18:56:22.900Z",
+    "panoramaImage": "/downloads/f.jpg"
   }
 ]
