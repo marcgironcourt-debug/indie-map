@@ -3220,5 +3220,64 @@
     ],
     "miniText": "Atelier travaillant avec des marques et des organisations à travers les États-Unis pour gérer et valoriser de grandes quantités de matériaux excédentaires. L’atelier collabore avec des marques de mode, des municipalités, des fabricants textiles et fournit également des fibres circulaires destinées à être réintégrées dans de nouveaux matériaux.",
     "panoramaImage": "/downloads/l.webp"
+  },
+  {
+    "id": "0259cc63-b532-454c-86e5-5a1436795993",
+    "name": "Bi-Rite Market 18th Street",
+    "website": "https://biritemarket.com",
+    "lat": 37.7613794289775,
+    "lng": -122.424692944591,
+    "address": "3639 18th St, San Francisco, CA 94110, USA",
+    "phone": "+1 415-241-9760",
+    "category": "Épicerie",
+    "openingHours": "Lundi 8h00-21h00\nMardi 8h00-21h00\nMercredi 8h00-21h00\nJeudi 8h00-21h00\nVendredi 8h00-21h00\nSamedi 8h00-21h00\nDimanche 8h00-21h00",
+    "timeZone": "America/Los_Angeles",
+    "createdAt": "2026-02-05T16:17:28.701Z",
+    "updatedAt": "2026-02-05T16:39:02.131Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
+    "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "9586f924-accb-41b6-87e7-b0a7f66e29eb",
+    "name": "Bi-Rite Market Divisadero",
+    "city": "San Francisco",
+    "address": "550 Divisadero St, San Francisco, CA 94117, USA",
+    "website": "https://biritemarket.com",
+    "lat": 37.774509,
+    "lng": -122.4378445,
+    "category": "Épicerie",
+    "phone": "+1 415-551-7900",
+    "openingHours": "Lundi 8h00-21h00\nMardi 8h00-21h00\nMercredi 8h00-21h00\nJeudi 8h00-21h00\nVendredi 8h00-21h00\nSamedi 8h00-21h00\nDimanche 8h00-21h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-05T16:25:07.427Z",
+    "updatedAt": "2026-02-05T16:39:02.133Z",
+    "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
+    "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "15f52cf0-deb9-46b1-b92b-ae3dbe5b87ba",
+    "name": "Bi-Rite Market Polk Street",
+    "city": "San Francisco",
+    "address": "2140 Polk St, San Francisco, CA 94109, États-Unis",
+    "website": "https://biritemarket.com",
+    "lat": 37.796536901871,
+    "lng": -122.42159203739,
+    "phone": "+1 415-278-7800",
+    "category": "Épicerie",
+    "openingHours": "Lundi 8h00-21h00\nMardi 8h00-21h00\nMercredi 8h00-21h00\nJeudi 8h00-21h00\nVendredi 8h00-21h00\nSamedi 8h00-21h00\nDimanche 8h00-21h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
+    "panoramaImage": "/downloads/b.png",
+    "createdAt": "2026-02-05T16:29:07.336Z",
+    "updatedAt": "2026-02-05T16:39:02.133Z"
   }
 ]
