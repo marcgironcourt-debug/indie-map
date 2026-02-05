@@ -3579,5 +3579,25 @@
     ],
     "miniText": "Restaurant travaillant avec des producteurs et des fermes locales, mettant en avant les ingrédients du territoire d’Oaxaca selon les saisons, valorisant le maïs, les légumes, herbes, fromages et produits régionaux, en construisant une cuisine ancrée dans les traditions locales et le rythme des récoltes.",
     "panoramaImage": "/downloads/c.jpg"
+  },
+  {
+    "id": "5b3c9a51-f01a-48fe-b777-67d9590dfb0e",
+    "name": "Hartwood",
+    "city": "Tulum",
+    "address": "Carr. Tulum–Boca Paila Km 7.6, Zona Hotelera, 77780 Tulum, Quintana Roo, Mexico",
+    "website": "https://www.hartwoodtulum.com",
+    "lat": 20.138932,
+    "lng": -87.465487,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "lundi\tFermé\nmardi\t17h30–22h30\nmercredi\t17h30–22h30\njeudi\t17h30–22h30\nvendredi\t17h30–22h30\nsamedi\t17h30–22h30\ndimanche\t17h30–22h30",
+    "timeZone": "America/Cancun",
+    "createdAt": "2026-02-05T20:37:54.431Z",
+    "updatedAt": "2026-02-05T20:41:38.776Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant avec des fermes, pêcheurs et producteurs locaux de la péninsule du Yucatán, en construisant ses menus exclusivement à partir d’ingrédients de saison.",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
