@@ -3000,5 +3000,25 @@
     ],
     "miniText": "Fromagerie produisant des fromages à partir de lait local, transformés sur place selon des méthodes traditionnelles. Beecher’s met en avant une fabrication transparente, des ingrédients simples et une volonté de relier production laitière régionale et alimentation de qualité.",
     "panoramaImage": "/downloads/ma.png"
+  },
+  {
+    "id": "e5b8d4c9-066e-4a80-9923-025295d4e2c0",
+    "name": "Tilikum Place Cafe",
+    "city": "Seattle",
+    "address": "407 Cedar St, Seattle, WA 98121, États-Unis",
+    "website": "https://www.tilikumplacecafe.com",
+    "lat": 47.61798,
+    "lng": -122.34769,
+    "category": "Restaurant",
+    "phone": "+12062824830",
+    "openingHours": "jeudi 10h00–14h00, 17h00–21h00\nvendredi 10h00–14h00, 17h00–21h00\nsamedi 9h00–14h00, 17h00–21h00\ndimanche 9h00–14h00\nlundi Fermé\nmardi Fermé\nmercredi Fermé",
+    "timeZone": "America/Los_Angeles",
+    "miniText": "Restaurant proposant une cuisine de saison. Le lieu est particulièrement reconnu pour son brunch du week-end, préparé à partir d’ingrédients frais et travaillé maison, avec une attention portée à la simplicité des plats, aux produits disponibles localement et au respect des saisons.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-05T13:57:43.276Z",
+    "updatedAt": "2026-02-05T14:06:12.826Z",
+    "panoramaImage": "/downloads/ma.png"
   }
 ]
