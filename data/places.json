@@ -3399,5 +3399,25 @@
     "createdAt": "2026-02-05T18:10:54.570Z",
     "updatedAt": "2026-02-05T18:14:21.166Z",
     "panoramaImage": "/downloads/p.png"
+  },
+  {
+    "id": "e3a82922-2e6c-45a1-959f-56703b17e92d",
+    "name": "Tartine Manufactory",
+    "city": "San Francisco",
+    "address": "595 Alabama St, San Francisco, CA 94110, États-Unis",
+    "website": "https://tartinebakery.com",
+    "lat": 37.762986,
+    "lng": -122.411189,
+    "category": "Boulangerie",
+    "phone": "+1 415-757-0007",
+    "openingHours": "jeudi\t8h00–21h00\nvendredi\t8h00–21h00\nsamedi\t8h00–21h00\ndimanche\t8h00–21h00\nlundi\t8h00–16h00\nmardi\t8h00–21h00\nmercredi\t8h00–21h00",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie s'appuyant sur des fermentations longues et des méthodes artisanales. Le lieu met en avant l’importance de la manière dont les aliments sont cultivés et récoltés, considérée comme un enjeu social et écologique majeur. Les pains sont élaborés à partir de farines contenant tout ou partie du germe, des huiles et du son d’origine, produits et moulues localement.",
+    "createdAt": "2026-02-05T18:24:58.243Z",
+    "updatedAt": "2026-02-05T18:26:23.341Z",
+    "panoramaImage": "/downloads/b.jpg"
   }
 ]
