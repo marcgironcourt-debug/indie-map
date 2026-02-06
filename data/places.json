@@ -3781,5 +3781,25 @@
     "createdAt": "2026-02-06T19:26:59.855Z",
     "updatedAt": "2026-02-06T19:36:43.780Z",
     "panoramaImage": "/downloads/s.png"
+  },
+  {
+    "id": "350e4bb8-ae52-4726-b2f9-4557e5bcb5c9",
+    "name": "Restaurante Silvestre",
+    "city": "San José",
+    "address": "Avenida 11 955, San José Province, Amón, 10101, Costa Rica",
+    "website": "https://www.restaurantesilvestre.com",
+    "lat": 9.93974,
+    "lng": -84.07398,
+    "phone": "+506 2221 2465",
+    "category": "Restaurant",
+    "openingHours": "Vendredi 12h00–15h00, 18h00–21h45\nSamedi 12h00–14h45, 18h00–21h45\nDimanche 12h00–14h45, 18h00–21h45\nLundi 12h00–14h45, 18h00–21h45\nMardi 12h00–14h45, 18h00–21h45\nMercredi 12h00–14h45, 18h00–21h45\nJeudi 12h00–15h00, 18h00–21h45",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite autour des produits du territoire costaricien. Travaillant avec un réseau identifié de producteurs, d’agriculteurs et de pêcheurs locaux afin de valoriser les ingrédients, les saisons et les savoir-faire culinaires du Costa Rica à travers des menus évolutifs.",
+    "createdAt": "2026-02-06T19:39:35.380Z",
+    "updatedAt": "2026-02-06T19:44:59.899Z",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
