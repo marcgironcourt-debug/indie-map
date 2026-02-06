@@ -3639,5 +3639,25 @@
     ],
     "miniText": "Ferme produisant des fromages avec transformation et affinage sur place. Cava de Quesos Bocanegra valorise une production artisanale ancrée dans le territoire de Querétaro. Un restaurant basé sur les produits de la ferme fait également partie du site.",
     "panoramaImage": "/downloads/q.jpg"
+  },
+  {
+    "id": "5614a29b-da70-4e4c-b3b1-076323812ab8",
+    "name": "Mercado de Artesanías La Ciudadela",
+    "city": "Mexico City",
+    "address": "Balderas S/N, Colonia Centro, Cuauhtémoc, 06040 Ciudad de México, CDMX, Mexique",
+    "website": "https://www.facebook.com/MERCADODEARTESANIASLACIUDADELA",
+    "lat": 19.4308122,
+    "lng": -99.1493693,
+    "category": "Marché",
+    "phone": "+52 55 5510 1828",
+    "openingHours": "Lundi 10h00–19h00\nMardi 10h00–19h00\nMercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–19h00\nDimanche 10h00–18h00",
+    "timeZone": "America/Mexico_City",
+    "miniText": "Marché d’artisanat traditionnel proposant des objets faits main tels que textiles, poteries, bijoux, bois sculpté et articles décoratifs, issus de savoir-faire artisanaux régionaux. Le marché constitue un espace de vente directe valorisant les techniques artisanales et les cultures locales mexicaines.",
+    "tags": [
+      "Marché"
+    ],
+    "createdAt": "2026-02-06T18:11:58.324Z",
+    "updatedAt": "2026-02-06T18:17:04.086Z",
+    "panoramaImage": "/downloads/m.png"
   }
 ]
