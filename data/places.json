@@ -3760,5 +3760,26 @@
     "createdAt": "2026-02-06T19:10:29.829Z",
     "updatedAt": "2026-02-06T19:15:32.038Z",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "4fc437b8-891f-4e61-86f2-e9590693fab1",
+    "name": "Restaurante La Luna",
+    "city": "Nosara",
+    "address": "Playa Pelada, Nosara, Guanacaste Province, Costa Rica",
+    "website": "https://lalunanosara.com",
+    "lat": 9.9523,
+    "lng": -85.6721,
+    "phone": "+506 2682 0122",
+    "category": "Restaurant",
+    "openingHours": "vendredi 7h30–22h00\nsamedi 7h30–22h00\ndimanche 7h30–21h00\nlundi 7h30–22h00\nmardi 7h30–22h00\nmercredi 7h30–22h00\njeudi 7h30–22h00",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Restaurant",
+      "Beachfront"
+    ],
+    "miniText": "Restaurant travaillant selon une approche de la ferme à la table, s'approvisionnant auprès de fermes locales et de la pêche artisanale pour proposer des plats construits autour des produits disponibles, avec une attention portée à la saisonnalité et à l’origine des ingrédients.",
+    "createdAt": "2026-02-06T19:26:59.855Z",
+    "updatedAt": "2026-02-06T19:36:43.780Z",
+    "panoramaImage": "/downloads/s.png"
   }
 ]
