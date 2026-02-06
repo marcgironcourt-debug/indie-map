@@ -3720,5 +3720,25 @@
     "createdAt": "2026-02-06T18:54:37.593Z",
     "updatedAt": "2026-02-06T18:57:16.576Z",
     "panoramaImage": "/downloads/sa.png"
+  },
+  {
+    "id": "25e5770b-549c-4444-9f7a-f09e2d328986",
+    "name": "Café Monteverde Coffee Shop",
+    "city": "Monteverde",
+    "address": "Puntarenas Province, Monteverde, Costa Rica",
+    "website": "https://cafedemonteverde.com",
+    "lat": 10.30766,
+    "lng": -84.81059,
+    "phone": "+506 2645 7546",
+    "category": "Café",
+    "openingHours": "Vendredi 7h00–18h00\nSamedi 7h00–18h00\nDimanche 7h00–18h00\nLundi 7h00–18h00\nMardi 7h00–18h00\nMercredi 7h00–18h00\nJeudi 7h00–18h00",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café proposant du café cultivé et torréfié au Costa Rica. Le lieu met en avant l’origine des grains, le travail des producteurs locaux et une préparation soignée, dans un cadre ancré dans la région de Monteverde.",
+    "createdAt": "2026-02-06T19:01:35.071Z",
+    "updatedAt": "2026-02-06T19:08:15.643Z",
+    "panoramaImage": "/downloads/c.png"
   }
 ]
