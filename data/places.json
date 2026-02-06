@@ -3659,5 +3659,25 @@
     "createdAt": "2026-02-06T18:11:58.324Z",
     "updatedAt": "2026-02-06T18:17:04.086Z",
     "panoramaImage": "/downloads/m.png"
+  },
+  {
+    "id": "88d6f03e-b83e-45c6-b631-77e78bb99c7f",
+    "name": "Mercado El 100",
+    "city": "Mexico City",
+    "address": "C. Orizaba S/N, Centro Urbano Pdte. Juárez, Roma Sur, Cuauhtémoc, 06760 Ciudad de México, CDMX, Mexique",
+    "website": "https://mercadoel100.org",
+    "lat": 19.409544784968,
+    "lng": -99.157505621922,
+    "category": "Marché",
+    "phone": "+52 55 3872 6037",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche 9h00–14h00",
+    "timeZone": "America/Mexico_City",
+    "miniText": "Marché réunissant des fermes et transformateurs indépendants situés dans la région de Mexico. Mercado El 100 fonctionne en vente directe et met en avant des produits agricoles et alimentaires issus de circuits courts, biologique et cultivés ou transformés localement.",
+    "tags": [
+      "Marché"
+    ],
+    "createdAt": "2026-02-06T18:27:32.861Z",
+    "updatedAt": "2026-02-06T18:33:54.620Z",
+    "panoramaImage": "/downloads/b.png"
   }
 ]
