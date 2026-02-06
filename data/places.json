@@ -3679,5 +3679,25 @@
     "createdAt": "2026-02-06T18:27:32.861Z",
     "updatedAt": "2026-02-06T18:33:54.620Z",
     "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "f84c58d1-812e-4066-afbb-397eb8cdaded",
+    "name": "Sikwa Restaurante",
+    "city": "San José",
+    "address": "C. 41, San José, Los Yoses, Costa Rica",
+    "website": "https://www.sikwacostarica.com",
+    "lat": 9.93216,
+    "lng": -84.05743,
+    "phone": "+506 7093 1662",
+    "category": "Restaurant",
+    "openingHours": "Vendredi 18h00–22h00\nSamedi 18h00–22h00\nDimanche Fermé\nLundi Fermé\nMardi 18h00–22h00\nMercredi 18h00–22h00\nJeudi 18h00–22h00",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en valeur les ingrédients indigènes du Costa Rica à travers une cuisine ancrée dans les traditions culinaires locales. Sikwa travaille avec des producteurs et des communautés autochtones pour valoriser des variétés natives, des techniques ancestrales et des produits issus des territoires costariciens.",
+    "createdAt": "2026-02-06T18:46:20.888Z",
+    "updatedAt": "2026-02-06T18:51:14.443Z",
+    "panoramaImage": "/downloads/s.jpg"
   }
 ]
