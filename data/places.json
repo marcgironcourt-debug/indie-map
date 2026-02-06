@@ -3740,5 +3740,25 @@
     "createdAt": "2026-02-06T19:01:35.071Z",
     "updatedAt": "2026-02-06T19:08:15.643Z",
     "panoramaImage": "/downloads/c.png"
+  },
+  {
+    "id": "6ba7b1dc-9271-4859-b4bd-e0d7a5eec1c9",
+    "name": "Cafe Rosa Blanca",
+    "city": "Santa Bárbara",
+    "address": "C. Guachipelines, Heredia, Santa Bárbara, Costa Rica",
+    "website": "https://www.caferosablanca.com",
+    "lat": 10.01229,
+    "lng": -84.15963,
+    "phone": "+506 2269 3333",
+    "category": "Café",
+    "openingHours": "Vendredi 6h00–14h00\nSamedi 6h00–14h00\nDimanche Fermé\nLundi 6h00–14h00\nMardi 6h00–14h00\nMercredi 6h00–14h00\nJeudi 6h00–14h00",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café situé au sein du domaine Rosa Blanca. Le lieu propose du café cultivé et transformé sur place, avec une attention portée à l’origine des grains, aux méthodes de production et à la valorisation du terroir caféier costaricien.",
+    "createdAt": "2026-02-06T19:10:29.829Z",
+    "updatedAt": "2026-02-06T19:15:32.038Z",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
