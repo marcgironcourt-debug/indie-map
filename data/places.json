@@ -3699,5 +3699,26 @@
     "createdAt": "2026-02-06T18:46:20.888Z",
     "updatedAt": "2026-02-06T18:51:14.443Z",
     "panoramaImage": "/downloads/s.jpg"
+  },
+  {
+    "id": "f5055f1c-d877-4d3f-b86a-285005d82374",
+    "name": "Franco",
+    "city": "San José",
+    "address": "Avenida 7, Casa 3166, Barrio Escalante, San José 10101, Costa Rica",
+    "website": "https://www.franco.cr",
+    "lat": 9.9349554,
+    "lng": -84.0638774,
+    "phone": "+506 8956 2626",
+    "category": "Café",
+    "openingHours": "Vendredi 7h00–21h00\nSamedi 8h00–21h00\nDimanche 8h00–19h00\nLundi 7h00–20h00\nMardi 7h00–20h00\nMercredi 7h00–20h00\nJeudi 7h00–20h00",
+    "timeZone": "America/Costa_Rica",
+    "tags": [
+      "Restaurant",
+      "Café"
+    ],
+    "miniText": "Café de quartier situé à Barrio Escalante, proposant une offre de café de spécialité accompagnée d’une cuisine simple et soignée. Franco met en avant des produits travaillés sur place et s’inscrit dans la scène locale de San José, en lien avec la vie quotidienne du quartier.",
+    "createdAt": "2026-02-06T18:54:37.593Z",
+    "updatedAt": "2026-02-06T18:57:16.576Z",
+    "panoramaImage": "/downloads/sa.png"
   }
 ]
