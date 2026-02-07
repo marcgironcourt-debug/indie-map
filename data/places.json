@@ -3921,5 +3921,25 @@
     "createdAt": "2026-02-07T16:43:50.784Z",
     "updatedAt": "2026-02-07T16:51:03.631Z",
     "panoramaImage": "/downloads/m.png"
+  },
+  {
+    "id": "7fdcb05f-38b9-4dc4-a012-a91e53496567",
+    "name": "Celele",
+    "city": "Cartagena",
+    "address": "Calle del Espíritu Santo, Cra. 10c #29-200, Getsemaní, Cartagena de Indias, Bolívar, Colombie",
+    "website": "https://celelerestaurante.com",
+    "lat": 10.422171,
+    "lng": -75.544476,
+    "category": "Restaurant",
+    "phone": "+57 301 7420389",
+    "openingHours": "Lundi 12h00–17h00, 18h30–23h00\nMardi 12h00–14h00, 18h30–23h00\nMercredi 12h00–17h00, 18h30–23h00\nJeudi 12h00–17h00, 18h30–23h00\nVendredi 12h00–17h00, 18h30–23h00\nSamedi 12h00–17h00, 18h30–23h00\nDimanche 12h00–17h00, 18h30–23h00",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine ancrée dans les produits et les écosystèmes de la côte caraïbe colombienne. Celele travaille avec des producteurs, pêcheurs et fournisseurs locaux afin de valoriser des ingrédients régionaux, des pratiques artisanales et la biodiversité du territoire.",
+    "createdAt": "2026-02-07T16:57:45.066Z",
+    "updatedAt": "2026-02-07T17:03:24.990Z",
+    "panoramaImage": "/downloads/c.png"
   }
 ]
