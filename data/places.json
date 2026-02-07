@@ -4041,5 +4041,25 @@
     "createdAt": "2026-02-07T19:45:46.520Z",
     "updatedAt": "2026-02-07T19:48:16.461Z",
     "panoramaImage": "/downloads/l.jpg"
+  },
+  {
+    "id": "83ec1a5c-6a26-4d0e-90a6-6dfd71d1df5d",
+    "name": "Cuia Café e Restaurante",
+    "city": "São Paulo",
+    "address": "Av. Ipiranga, 200 - loja 48 - República, São Paulo - SP, 01046-010, Brésil",
+    "website": "https://cuiacafeerestaurante.shop",
+    "lat": -23.5478,
+    "lng": -46.6409,
+    "category": "Restaurant",
+    "phone": "+55 11 95981-8555",
+    "openingHours": "samedi\t10h00–23h00\ndimanche\t10h00–17h00\nlundi\t10h00–16h00\nmardi\t10h00–22h00\nmercredi\t10h00–22h00\njeudi\t10h00–22h00\nvendredi\t10h00–22h00",
+    "timeZone": "America/Sao_Paulo",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine ancrée dans les produits brésiliens et les savoir-faire culinaires locaux. Cuia travaille à partir d’ingrédients issus de producteurs régionaux et propose une carte qui évolue selon les saisons.",
+    "createdAt": "2026-02-07T19:53:04.447Z",
+    "updatedAt": "2026-02-07T19:58:14.013Z",
+    "panoramaImage": "/downloads/c.png"
   }
 ]
