@@ -3861,5 +3861,25 @@
     ],
     "miniText": "Lieu hybride réunissant restaurant, hébergement et ferme, proposant une cuisine élaborée à partir de produits cultivés sur place ou issus de fermes locales de la région.",
     "panoramaImage": "/downloads/v.jpg"
+  },
+  {
+    "id": "d64f5154-c00c-4a8a-9f46-78ee7fac34e9",
+    "name": "Finca Luna Nueva Lodge",
+    "city": "La Fortuna",
+    "address": "San Isidro Peñas Blancas, Peñas Blancas, La Fortuna 158, 4400, Costa Rica",
+    "website": "http://fincalunanuevalodge.com",
+    "lat": 10.49392,
+    "lng": -84.68237,
+    "phone": "+506 8808 2110",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 0h00-23h59\nMardi 0h00-23h59\nMercredi 0h00-23h59\nJeudi 0h00-23h59\nVendredi 0h00-23h59\nSamedi 0h00-23h59\nDimanche 0h00-23h59",
+    "timeZone": "America/Costa_Rica",
+    "createdAt": "2026-02-07T15:48:09.322Z",
+    "updatedAt": "2026-02-07T15:51:42.536Z",
+    "tags": [
+      "Lieu de vie"
+    ],
+    "miniText": "Lieu combinant lodge, ferme régénérative et restauration. Le site développe une agriculture biologique et régénérative, utilisée au sein du restaurant. Avec une attention portée aux écosystèmes et à la relation entre habitat, alimentation et territoire.",
+    "panoramaImage": "/downloads/a.jpg"
   }
 ]
