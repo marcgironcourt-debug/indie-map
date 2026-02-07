@@ -4021,5 +4021,25 @@
     "createdAt": "2026-02-07T19:36:47.225Z",
     "updatedAt": "2026-02-07T19:41:48.985Z",
     "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "eaf81223-febf-4af5-ad6c-25c20dfea98b",
+    "name": "Lasai",
+    "city": "Rio de Janeiro",
+    "address": "Largo dos Leões, 35 - Humaitá, Rio de Janeiro - RJ, 22271-020, Brésil",
+    "website": "https://lasai.com.br/",
+    "lat": -22.966896,
+    "lng": -43.228441,
+    "category": "Restaurant",
+    "phone": "+55 21 3449-1854",
+    "openingHours": "samedi\t19h00–2h00\ndimanche\tFermé\nlundi\tFermé\nmardi\t19h00–0h00\nmercredi\t19h00–0h00\njeudi\t19h00–0h00\nvendredi\t19h00–0h00",
+    "timeZone": "America/Sao_Paulo",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant accordant une place centrale aux ingrédients issus de cultures propres et de partenariats agricoles, avec une attention particulière portée à la biodiversité, à la fraîcheur et à la provenance des produits. La cuisine évolue en fonction des récoltes et du rythme des saisons.",
+    "createdAt": "2026-02-07T19:45:46.520Z",
+    "updatedAt": "2026-02-07T19:48:16.461Z",
+    "panoramaImage": "/downloads/l.jpg"
   }
 ]
