@@ -4181,5 +4181,45 @@
     "panoramaImage": "/downloads/r.jpg",
     "createdAt": "2026-02-07T21:18:39.389Z",
     "updatedAt": "2026-02-07T21:18:39.389Z"
+  },
+  {
+    "id": "c40b94e6-0377-4db2-bc79-2a4b89c4fae2",
+    "name": "Cave à vin de Rangiroa",
+    "city": "Rangiroa",
+    "address": "3836+8GW, Rangiroa, Polynésie française",
+    "website": "https://vindetahiti.com",
+    "lat": -14.9546,
+    "lng": -147.6609,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "lundi 16h00–19h00\nmardi 16h00–19h00\nmercredi 16h00–19h00\njeudi 16h00–19h00\nvendredi 16h00–19h00\nsamedi 16h00–19h00\ndimanche Fermé",
+    "timeZone": "Pacific/Tahiti",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Domaine viticole situé sur l’atoll de Rangiroa, produisant des vins à partir de raisins cultivés localement. Le lieu associe production agricole, vinification et vente directe, avec un ancrage fort dans le territoire et un savoir-faire unique en Polynésie française.",
+    "createdAt": "2026-02-07T21:22:40.445Z",
+    "updatedAt": "2026-02-07T21:26:54.001Z",
+    "panoramaImage": "/downloads/t.png"
+  },
+  {
+    "id": "79cc71a4-cb95-407a-918b-8c7903e8b98c",
+    "name": "Aquapac",
+    "city": "Taiarapu-Ouest",
+    "address": "4PVW+X92, Taiarapu-Ouest, Polynésie française",
+    "website": "https://www.facebook.com/AquapacTahiti/?locale=fr_CA",
+    "lat": -17.8014935,
+    "lng": -149.295375,
+    "category": "Ferme",
+    "phone": "+689 40 57 16 33",
+    "openingHours": "lundi 8h00–16h00\nmardi 8h00–16h00\nmercredi 8h00–16h00\njeudi 8h00–16h00\nvendredi 8h00–16h00\nsamedi Fermé\ndimanche Fermé",
+    "timeZone": "Pacific/Tahiti",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Producteur de crevettes à Teahupo’o, proposant des produits frais et surgelés. La ferme est active depuis 1981 et met en avant un élevage responsable, sans conservateurs, sans additifs.",
+    "createdAt": "2026-02-07T21:31:39.543Z",
+    "updatedAt": "2026-02-07T21:33:11.315Z",
+    "panoramaImage": "/downloads/a.jpg"
   }
 ]
