@@ -4121,5 +4121,65 @@
     "createdAt": "2026-02-07T20:21:32.866Z",
     "updatedAt": "2026-02-07T20:32:46.555Z",
     "panoramaImage": "/downloads/d.png"
+  },
+  {
+    "id": "4aaef65c-384b-440d-af19-1cb951f8e10f",
+    "name": "Fazenda Carnielli",
+    "city": "Venda Nova do Imigrante",
+    "address": "Rodovia Pedro Cola KM 04, Providência, Venda Nova do Imigrante – ES, 29375-000, Brésil",
+    "website": "https://www.carnielli.com.br",
+    "lat": -20.3519,
+    "lng": -41.1336,
+    "category": "Ferme",
+    "phone": "+55 28 98804-6973",
+    "openingHours": "samedi 8h00–17h30\ndimanche 8h00–16h30\nlundi 8h00–17h30\nmardi 8h00–17h30\nmercredi 8h00–17h30\njeudi 8h00–17h30\nvendredi 8h00–17h30",
+    "miniText": "Ferme développant du café, des légumes et des viandes issus de l’exploitation. Ouvrant ses portes au public pour des visites permettant de découvrir le quotidien de la ferme, les cultures, les élevages et les produits transformés sur place.",
+    "timeZone": "America/Sao_Paulo",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-07T20:51:16.430Z",
+    "updatedAt": "2026-02-07T20:52:23.839Z",
+    "panoramaImage": "/downloads/f.jpg"
+  },
+  {
+    "id": "5beee8d7-2564-4c41-8ae9-5d3c49d8e9cb",
+    "name": "VINI VINI Traiteur",
+    "city": "Papeete",
+    "address": "Port de Pêche, Papeete, Tahiti PF 98702, Polynésie française",
+    "website": "https://www.vinivini.pf/#le-traiteur",
+    "lat": -17.5372634,
+    "lng": -149.5660301,
+    "category": "Restaurant",
+    "phone": "+689 87 32 76 68",
+    "openingHours": "lundi 7h00–13h00\nmardi 7h00–13h00\nmercredi 7h00–13h00\njeudi 7h00–13h00\nvendredi 7h00–13h00\nsamedi 7h00–12h00\ndimanche Fermé",
+    "timeZone": "Pacific/Tahiti",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Traiteur installé au port de pêche de Papeete, proposant une cuisine préparée à partir de produits de la mer et d’ingrédients locaux. Le lieu travaille au rythme des arrivages, dans une logique de fraîcheur, de simplicité et d’ancrage dans l’économie maritime polynésienne.",
+    "createdAt": "2026-02-07T21:04:47.160Z",
+    "updatedAt": "2026-02-07T21:09:32.864Z",
+    "panoramaImage": "/downloads/v.png"
+  },
+  {
+    "id": "2a34ed18-dedf-4a0d-98f1-e9ea608ff4d1",
+    "name": "Rotui Juice Factory",
+    "city": "Moorea",
+    "address": "BP23 PAOPAO, MOOREA 98728, Polynésie française",
+    "website": "https://rotui.pf",
+    "lat": -17.538229,
+    "lng": -149.829195,
+    "category": "Ferme",
+    "phone": "+689 40 55 20 00",
+    "openingHours": "lundi 9h00–17h00\nmardi 9h00–17h00\nmercredi 9h00–17h00\njeudi 9h00–17h00\nvendredi 9h00–17h00\nsamedi 9h00–16h00\ndimanche Fermé",
+    "timeZone": "Pacific/Tahiti",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Atelier de production transformant des fruits cultivés localement en jus et boissons. Le lieu associe production agricole et transformation sur site, avec un ancrage fort dans le territoire et les filières locales.",
+    "panoramaImage": "/downloads/r.jpg",
+    "createdAt": "2026-02-07T21:18:39.389Z",
+    "updatedAt": "2026-02-07T21:18:39.389Z"
   }
 ]
