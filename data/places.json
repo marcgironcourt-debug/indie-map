@@ -3961,5 +3961,25 @@
     "createdAt": "2026-02-07T17:05:38.646Z",
     "updatedAt": "2026-02-07T17:15:59.825Z",
     "panoramaImage": "/downloads/a.png"
+  },
+  {
+    "id": "c8266d7d-33e5-4050-b1bb-0606322775cf",
+    "name": "OLIVANTO Huerto de Olivos",
+    "city": "Sutamarchán",
+    "address": "Km 8.5 vía Villa de Leyva – Sutamarchá, Boyacá, Colombia",
+    "website": "https://olivanto.com",
+    "lat": 5.666309674965,
+    "lng": -73.511713313326,
+    "category": "Ferme",
+    "phone": "+57 322 953 3690",
+    "openingHours": "Samedi 10h00-18h00\nDimanche 10h00-18h00\nLundi 10h00-18h00\nMardi Fermé\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Oliveraie développant une production agricole locale adaptée au terroir andin, avec un travail centré sur la culture, la transformation et la valorisation de l’olive sur place. Le lieu est visitable et permet de découvrir le processus de production ainsi que les produits issus du verger.",
+    "createdAt": "2026-02-07T18:03:56.398Z",
+    "updatedAt": "2026-02-07T18:10:37.862Z",
+    "panoramaImage": "/downloads/o.png"
   }
 ]
