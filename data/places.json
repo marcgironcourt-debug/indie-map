@@ -3801,5 +3801,25 @@
     "createdAt": "2026-02-06T19:39:35.380Z",
     "updatedAt": "2026-02-06T19:44:59.899Z",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "d072fbc4-63b8-4b87-bb79-33df9e5707f6",
+    "name": "Tico Pod Art House & Gifts",
+    "city": "Jaco",
+    "address": "Pastor Diaz Ave, Jacó, Puntarenas Province, Costa Rica",
+    "website": "https://www.facebook.com/TicoPod/",
+    "lat": 9.61468,
+    "lng": -84.62803,
+    "phone": "+506 2643 2068",
+    "category": "Boutique",
+    "openingHours": "Lundi 9h00-20h00\nMardi 9h00-20h00\nMercredi 9h00-20h00\nJeudi 9h00-20h00\nVendredi 9h00-20h00\nSamedi 9h00-20h00\nDimanche 9h00-19h00",
+    "timeZone": "America/Costa_Rica",
+    "createdAt": "2026-02-07T15:14:41.232Z",
+    "updatedAt": "2026-02-07T15:18:21.945Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique d’art et d’artisanat mettant en avant le travail d’artistes et de créateurs costariciens. Le lieu propose des objets faits main, des pièces uniques et des œuvres locales, avec une attention portée à la créativité, aux savoir-faire artisanaux et à la scène artistique indépendante de Jacó.",
+    "panoramaImage": "/downloads/t.jpg"
   }
 ]
