@@ -4061,5 +4061,25 @@
     "createdAt": "2026-02-07T19:53:04.447Z",
     "updatedAt": "2026-02-07T19:58:14.013Z",
     "panoramaImage": "/downloads/c.png"
+  },
+  {
+    "id": "4acc3381-0182-4c0b-8d25-e8f7e5bc6f8b",
+    "name": "Banana Verde",
+    "city": "São Paulo",
+    "address": "Rua Harmonia, 278 - Vila Madalena, São Paulo - SP, 05435-000, Brésil",
+    "website": "https://www.bananaverde.com.br",
+    "lat": -23.55947,
+    "lng": -46.68973,
+    "category": "Restaurant",
+    "phone": "+55 11 3814-4828",
+    "openingHours": "samedi\t12h00–22h00\ndimanche\t12h00–22h00\nlundi\t12h00–22h00\nmardi\t12h00–22h00\nmercredi\t12h00–22h00\njeudi\t12h00–22h00\nvendredi\t12h00–22h00",
+    "timeZone": "America/Sao_Paulo",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien proposant une cuisine élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux. Banana Verde met en avant les produits brésiliens, les légumes de saison et une approche attentive à l’origine des ingrédients.",
+    "createdAt": "2026-02-07T20:02:51.234Z",
+    "updatedAt": "2026-02-07T20:07:36.702Z",
+    "panoramaImage": "/downloads/a.png"
   }
 ]
