@@ -4001,5 +4001,25 @@
     "createdAt": "2026-02-07T18:13:39.059Z",
     "updatedAt": "2026-02-07T19:14:17.667Z",
     "panoramaImage": "/downloads/a.jpg"
+  },
+  {
+    "id": "b012836e-8837-47d5-854b-88a023124afb",
+    "name": "Corrutela",
+    "city": "São Paulo",
+    "address": "R. Medeiros de Albuquerque, 256 - Vila Madalena, São Paulo - SP, 05436-060, Brésil",
+    "website": "https://www.instagram.com/corrutela/?hl=en",
+    "lat": -23.5552457,
+    "lng": -46.6859733,
+    "category": "Restaurant",
+    "phone": "+55 11 3097-9490",
+    "openingHours": "samedi\t12h00–16h00, 19h00–23h00\ndimanche\t12h00–16h30\nlundi\tFermé\nmardi\tFermé\nmercredi\t12h00–16h00, 19h00–23h00\njeudi\t12h00–16h00, 19h00–23h00\nvendredi\t12h00–16h00, 19h00–23h00",
+    "timeZone": "America/Sao_Paulo",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une approche centrée sur les produits brésiliens, les saisons et les circuits courts. Le lieu travaille avec des producteurs locaux et met en avant des ingrédients issus de l’agriculture régionale, valorisés à travers une cuisine ouverte et évolutive.",
+    "createdAt": "2026-02-07T19:36:47.225Z",
+    "updatedAt": "2026-02-07T19:41:48.985Z",
+    "panoramaImage": "/downloads/b.png"
   }
 ]
