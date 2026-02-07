@@ -3941,5 +3941,25 @@
     "createdAt": "2026-02-07T16:57:45.066Z",
     "updatedAt": "2026-02-07T17:03:24.990Z",
     "panoramaImage": "/downloads/c.png"
+  },
+  {
+    "id": "ae7c7164-8634-42e5-aefd-74cd2ccaf5e6",
+    "name": "Abasto Usaquén",
+    "city": "Bogotá",
+    "address": "Cl. 118 #5-41, Bogotá, Colombie",
+    "website": "https://abasto.com.co",
+    "lat": 4.703203,
+    "lng": -74.030276,
+    "category": "Restaurant",
+    "phone": "+57 601 6751319",
+    "openingHours": "Lundi 7h00–16h00\nMardi 7h00–22h00\nMercredi 7h00–22h00\nJeudi 7h00–22h00\nVendredi 7h00–22h00\nSamedi 8h00–22h00\nDimanche 8h00–16h30",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant à partir de produits locaux colombiens, avec une attention portée à l’origine des ingrédients et aux circuits courts. Abasto collabore avec des producteurs et artisans alimentaires afin de proposer une cuisine de saison, des plats simples et une offre quotidienne ancrée dans le territoire.",
+    "createdAt": "2026-02-07T17:05:38.646Z",
+    "updatedAt": "2026-02-07T17:15:59.825Z",
+    "panoramaImage": "/downloads/a.png"
   }
 ]
