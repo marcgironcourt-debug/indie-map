@@ -3901,5 +3901,25 @@
     "createdAt": "2026-02-07T16:12:10.520Z",
     "updatedAt": "2026-02-07T16:13:43.785Z",
     "panoramaImage": "/downloads/l.jpg"
+  },
+  {
+    "id": "0a8034aa-6924-402b-b887-efcfe812f735",
+    "name": "Mesa Franca",
+    "city": "Bogotá",
+    "address": "Cl. 61 #5-56, Bogotá, Colombie",
+    "website": "https://www.restaurantemesafranca.com",
+    "lat": 4.654774,
+    "lng": -74.056012,
+    "category": "Restaurant",
+    "phone": "+57 601 9157530",
+    "openingHours": "Lundi Fermé\nMardi 19h00–22h00\nMercredi 12h00–16h00, 19h00–22h00\nJeudi 12h00–16h00, 19h00–23h00\nVendredi 12h00–16h00, 19h00–23h00\nSamedi 13h00–23h00\nDimanche 13h00–17h00",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite à partir de produits locaux colombiens. Travaillant avec des producteurs et fournisseurs à petite échelle afin de valoriser des ingrédients frais, des circuits courts et une approche culinaire attentive à l’origine des produits.",
+    "createdAt": "2026-02-07T16:43:50.784Z",
+    "updatedAt": "2026-02-07T16:51:03.631Z",
+    "panoramaImage": "/downloads/m.png"
   }
 ]
