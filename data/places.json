@@ -3841,5 +3841,25 @@
     ],
     "miniText": "Restaurant proposant une cuisine préparée à partir d’ingrédients cultivés sur place ou issus de fermes locales de la région de La Fortuna. Les plats mettent en avant la saisonnalité, la fraîcheur des produits et une approche directe entre production agricole et assiette.",
     "panoramaImage": "/downloads/f.jpg"
+  },
+  {
+    "id": "aa5992d8-9608-48a2-af0e-3545c4eeef77",
+    "name": "Farm to Table Escondido",
+    "city": "Monteverde",
+    "address": "700 suroeste Escuela Cerro Plano, Puntarenas, Monteverde, 60109, Costa Rica",
+    "website": "https://www.valleescondidocr.com/restaurant",
+    "lat": 10.31087,
+    "lng": -84.81856,
+    "phone": "+506 2645 5156",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 11h00-20h30\nMardi 11h00-20h30\nMercredi 11h00-20h30\nJeudi 11h00-20h30\nVendredi 11h00-20h30\nSamedi 11h00-20h30\nDimanche 11h00-20h30",
+    "timeZone": "America/Costa_Rica",
+    "createdAt": "2026-02-07T15:39:27.904Z",
+    "updatedAt": "2026-02-07T15:44:30.090Z",
+    "tags": [
+      "Lieu de vie"
+    ],
+    "miniText": "Lieu hybride réunissant restaurant, hébergement et ferme, proposant une cuisine élaborée à partir de produits cultivés sur place ou issus de fermes locales de la région.",
+    "panoramaImage": "/downloads/v.jpg"
   }
 ]
