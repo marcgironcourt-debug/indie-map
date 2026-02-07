@@ -3881,5 +3881,25 @@
     ],
     "miniText": "Lieu combinant lodge, ferme régénérative et restauration. Le site développe une agriculture biologique et régénérative, utilisée au sein du restaurant. Avec une attention portée aux écosystèmes et à la relation entre habitat, alimentation et territoire.",
     "panoramaImage": "/downloads/a.jpg"
+  },
+  {
+    "id": "dbc4d4c5-84e7-4ef4-90b6-575867ecbae0",
+    "name": "Leo",
+    "city": "Bogotá",
+    "address": "Cl. 65 Bis #4-23, Bogotá, Colombie",
+    "website": "https://restauranteleo.com",
+    "lat": 4.657964,
+    "lng": -74.056878,
+    "category": "Restaurant",
+    "phone": "+57 317 6616866",
+    "openingHours": "Lundi 12h00–14h00, 18h45–23h00\nMardi 12h00–14h00, 18h45–23h00\nMercredi 12h00–14h00, 18h45–23h00\nJeudi 12h00–14h00, 18h45–23h00\nVendredi 12h00–14h00, 18h45–23h00\nSamedi 12h00–14h00, 18h45–23h00\nDimanche Fermé",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine construite à partir des écosystèmes colombiens. Leo travaille en lien direct avec des producteurs, pêcheurs, cueilleurs et communautés rurales de différentes régions du pays afin de valoriser des ingrédients locaux, souvent endémiques, et des savoir-faire alimentaires traditionnels.",
+    "createdAt": "2026-02-07T16:12:10.520Z",
+    "updatedAt": "2026-02-07T16:13:43.785Z",
+    "panoramaImage": "/downloads/l.jpg"
   }
 ]
