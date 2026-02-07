@@ -3821,5 +3821,25 @@
     ],
     "miniText": "Boutique d’art et d’artisanat mettant en avant le travail d’artistes et de créateurs costariciens. Le lieu propose des objets faits main, des pièces uniques et des œuvres locales, avec une attention portée à la créativité, aux savoir-faire artisanaux et à la scène artistique indépendante de Jacó.",
     "panoramaImage": "/downloads/t.jpg"
+  },
+  {
+    "id": "377c38ec-8ece-48ae-a2f8-c9d6ff680ccd",
+    "name": "La Finquita from Farm to Table",
+    "city": "La Fortuna",
+    "address": "21007, Provincia de Alajuela, La Fortuna, Costa Rica",
+    "website": "https://lafinquitafarm.com",
+    "lat": 10.46796,
+    "lng": -84.64164,
+    "phone": "+506 6415 2437",
+    "category": "Restaurant",
+    "openingHours": "Lundi 8h00-16h00\nMardi 8h00-16h00\nMercredi 8h00-16h00\nJeudi 8h00-16h00\nVendredi 8h00-16h00\nSamedi 8h00-16h00\nDimanche 8h00-16h00",
+    "timeZone": "America/Costa_Rica",
+    "createdAt": "2026-02-07T15:27:41.009Z",
+    "updatedAt": "2026-02-07T15:34:19.107Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine préparée à partir d’ingrédients cultivés sur place ou issus de fermes locales de la région de La Fortuna. Les plats mettent en avant la saisonnalité, la fraîcheur des produits et une approche directe entre production agricole et assiette.",
+    "panoramaImage": "/downloads/f.jpg"
   }
 ]
