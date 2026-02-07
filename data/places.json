@@ -3981,5 +3981,25 @@
     "createdAt": "2026-02-07T18:03:56.398Z",
     "updatedAt": "2026-02-07T18:10:37.862Z",
     "panoramaImage": "/downloads/o.png"
+  },
+  {
+    "id": "fcc11eab-9d5d-49ea-a2b0-d37382b1bf58",
+    "name": "Mini Mal",
+    "city": "Bogotá",
+    "address": "Tv. 4 Bis #56A-52, Bogotá, Colombie",
+    "website": "https://mini-mal.org/",
+    "lat": 4.6424757,
+    "lng": -74.060343,
+    "category": "Restaurant",
+    "phone": "+57 601 4550630",
+    "openingHours": "Samedi 12h00-22h00\nDimanche 12h00-17h00\nLundi Fermé\nMardi 12h00-15h00, 19h00-22h00\nMercredi 12h00-15h00, 19h00-22h00\nJeudi 12h00-15h00, 19h00-22h00\nVendredi 12h00-22h00",
+    "timeZone": "America/Bogota",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant consacré à la valorisation de la diversité alimentaire colombienne, à travers une cuisine construite en lien direct avec les territoires, les produits et les savoir-faire locaux. Mini Mal collabore avec des producteurs et communautés pour préserver et transmettre des ingrédients, pratiques et traditions culinaires du pays.",
+    "createdAt": "2026-02-07T18:13:39.059Z",
+    "updatedAt": "2026-02-07T19:14:17.667Z",
+    "panoramaImage": "/downloads/a.jpg"
   }
 ]
