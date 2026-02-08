@@ -4284,5 +4284,27 @@
     "createdAt": "2026-02-08T16:33:03.798Z",
     "updatedAt": "2026-02-08T16:36:57.821Z",
     "panoramaImage": "/downloads/a.jpg"
+  },
+  {
+    "id": "d112376f-eeb2-4a4b-bb01-f8f206f2154e",
+    "name": "CENTRO DE TEXTILES TRADICIONALES",
+    "city": "Chinchero",
+    "address": "JW5X+4Q6, Chinchero 08651, Pérou",
+    "website": "https://www.textilescusco.org/",
+    "lat": -13.3926,
+    "lng": -72.0489,
+    "phone": "+51 236 880",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 9h00-17h00\nMardi 9h00-17h00\nMercredi 9h00-17h00\nJeudi 9h00-17h00\nVendredi 9h00-17h00\nSamedi 9h00-17h00\nDimanche 9h00-17h00",
+    "timeZone": "America/Lima",
+    "tags": [
+      "Lieu de vie",
+      "Artisanat",
+      "Textile"
+    ],
+    "miniText": "Lieu communautaire dédié à la préservation et à la transmission des savoir-faire textiles andins. Le centre rassemble des artisanes de la région de Chinchero qui travaillent le tissage traditionnel à partir de fibres locales et de teintures naturelles. Il fonctionne comme un espace de production, de formation et de partage, visant à maintenir vivantes les pratiques textiles ancestrales.",
+    "createdAt": "2026-02-08T16:53:46.704Z",
+    "updatedAt": "2026-02-08T16:58:01.083Z",
+    "panoramaImage": "/downloads/p.png"
   }
 ]
