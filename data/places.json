@@ -4263,5 +4263,26 @@
     "createdAt": "2026-02-08T16:18:56.875Z",
     "updatedAt": "2026-02-08T16:29:34.409Z",
     "panoramaImage": "/downloads/p.png"
+  },
+  {
+    "id": "aa3598ab-0c70-4ee9-bbe7-2b5d585fd212",
+    "name": "El Albergue",
+    "city": "Ollantaytambo",
+    "address": "PPPH+QRH, Ollantaytambo 08675, Pérou",
+    "website": "https://elalbergue.com/",
+    "lat": -13.2589,
+    "lng": -72.2658,
+    "phone": "+51 84 204049",
+    "category": "Lieu de vie",
+    "openingHours": "Lundi 12h00-15h00, 18h00-21h00\nMardi 12h00-15h00, 18h00-21h00\nMercredi 12h00-15h00, 18h00-21h00\nJeudi 12h00-15h00, 18h00-21h00\nVendredi 12h00-15h00, 18h00-21h00\nSamedi 12h00-15h00, 18h00-21h00\nDimanche 12h00-15h00, 18h00-21h00",
+    "timeZone": "America/Lima",
+    "tags": [
+      "Lieu de vie",
+      "Farm to table"
+    ],
+    "miniText": "Lieu de vie combinant restaurant, hébergement et ferme biologique. El Albergue développe une production agricole sur place, incluant jardins, vergers et cultures alimentaires, utilisée directement au sein de sa cuisine. Le lieu s’inscrit dans une relation étroite entre agriculture, alimentation et accueil.",
+    "createdAt": "2026-02-08T16:33:03.798Z",
+    "updatedAt": "2026-02-08T16:36:57.821Z",
+    "panoramaImage": "/downloads/a.jpg"
   }
 ]
