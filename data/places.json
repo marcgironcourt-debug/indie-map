@@ -4326,5 +4326,26 @@
     "createdAt": "2026-02-08T17:07:55.794Z",
     "updatedAt": "2026-02-08T17:14:34.278Z",
     "panoramaImage": "/downloads/c.png"
+  },
+  {
+    "id": "b7140101-fca0-409b-99b4-035a542399d4",
+    "name": "Concept Singe Rouge",
+    "city": "Macouria",
+    "address": "Rue du Singe Rouge, 969, Macouria 97355, Guyane française",
+    "website": "https://www.instagram.com/conceptsingerouge/",
+    "lat": 5.06250379,
+    "lng": -52.59897009,
+    "phone": "+594694945161",
+    "category": "Ferme",
+    "openingHours": "dimanche Fermé\nlundi Fermé\nmardi Fermé\nmercredi 9h00–17h00\njeudi Fermé\nvendredi Fermé\nsamedi Fermé",
+    "timeZone": "America/Cayenne",
+    "createdAt": "2026-02-08T17:47:20.891Z",
+    "updatedAt": "2026-02-08T17:54:40.021Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une production locale, en cultivant des produits issus de pratiques agricoles respectueuses de l’environnement et valorisant une distribution en circuit court sur le territoire guyanais. Le projet inclut une production végétale en agroforesterie et permaculture, ainsi que des actions d’inclusion sociale en proposant des formations et activités adaptées aux personnes en situation de handicap.",
+    "panoramaImage": "/downloads/h.jpg",
+    "updatedfAt": "2026-02-08T17:53:08.990Z"
   }
 ]
