@@ -4242,5 +4242,26 @@
     "createdAt": "2026-02-08T16:05:41.831Z",
     "updatedAt": "2026-02-08T16:14:53.005Z",
     "panoramaImage": "/downloads/m.jpg"
+  },
+  {
+    "id": "e09c43b8-9b7b-46f6-8a6e-10f4918db6a2",
+    "name": "Central Restaurante",
+    "city": "Lima",
+    "address": "Av. Pedro de Osma 301, Barranco 15063, Pérou",
+    "website": "https://centralrestaurante.com.pe",
+    "lat": -12.1449,
+    "lng": -77.0208,
+    "phone": "+51 1 242 8515",
+    "category": "Restaurant",
+    "openingHours": "Lundi 12h45-13h45, 19h00-20h30\nMardi 12h45-13h45, 19h00-20h30\nMercredi 12h45-13h45, 19h00-20h30\nJeudi 12h45-13h45, 19h00-20h30\nVendredi 12h45-13h45, 19h00-20h30\nSamedi 12h45-13h45, 19h00-20h30\nDimanche Fermé",
+    "timeZone": "America/Lima",
+    "tags": [
+      "Restaurant",
+      "Farm to table"
+    ],
+    "miniText": "Restaurant développant une cuisine construite autour des écosystèmes du Pérou. Central travaille en lien direct avec des producteurs, agriculteurs et communautés situés à différentes altitudes, afin de valoriser la biodiversité et les savoirs alimentaires du territoire.",
+    "createdAt": "2026-02-08T16:18:56.875Z",
+    "updatedAt": "2026-02-08T16:29:34.409Z",
+    "panoramaImage": "/downloads/p.png"
   }
 ]
