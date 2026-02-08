@@ -4306,5 +4306,25 @@
     "createdAt": "2026-02-08T16:53:46.704Z",
     "updatedAt": "2026-02-08T16:58:01.083Z",
     "panoramaImage": "/downloads/p.png"
+  },
+  {
+    "id": "9fcad977-88a4-4ec1-9ba4-3d85db40b350",
+    "name": "NEIRA CAFÉ LAB",
+    "city": "Miraflores",
+    "address": "Ca. Enrique Palacios 1074, Miraflores 15074, Pérou",
+    "website": "https://neiracafelab.com/nosotros/",
+    "lat": -12.1219,
+    "lng": -77.0304,
+    "phone": "+51 960 545 913",
+    "category": "Café",
+    "openingHours": "Lundi 7h00-20h00\nMardi 7h00-20h00\nMercredi 7h00-20h00\nJeudi 7h00-20h00\nVendredi 7h00-20h00\nSamedi 7h00-20h00\nDimanche 7h00-20h00",
+    "timeZone": "America/Lima",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café travaillant avec des producteurs locaux et sélectionnant des lots identifiés issus de différentes régions du Pérou. Le lieu met l’accent sur la torréfaction, l’extraction et la compréhension du café, dans une approche pédagogique et artisanale.",
+    "createdAt": "2026-02-08T17:07:55.794Z",
+    "updatedAt": "2026-02-08T17:14:34.278Z",
+    "panoramaImage": "/downloads/c.png"
   }
 ]
