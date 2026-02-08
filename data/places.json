@@ -4221,5 +4221,26 @@
     "createdAt": "2026-02-07T21:31:39.543Z",
     "updatedAt": "2026-02-07T21:33:11.315Z",
     "panoramaImage": "/downloads/a.jpg"
+  },
+  {
+    "id": "39cb2095-6e4f-4527-bf5f-513419ab8c40",
+    "name": "MIL Centro",
+    "city": "Maras",
+    "address": "Vía a Moray, Maras 08655, Pérou",
+    "website": "https://milcentro.pe",
+    "lat": -13.3156,
+    "lng": -72.2017,
+    "phone": "+51 970 645 908",
+    "category": "Restaurant",
+    "openingHours": "Lundi Fermé\nMardi 12h00-14h30\nMercredi 12h00-14h30\nJeudi 12h00-14h30\nVendredi 12h00-14h30\nSamedi 12h00-14h30\nDimanche 12h00-14h30",
+    "timeZone": "America/Lima",
+    "tags": [
+      "Restaurant",
+      "Farm to table"
+    ],
+    "miniText": "Restaurant développant une cuisine fondée sur l’étude des écosystèmes andins et des relations entre altitude, biodiversité et alimentation. Le lieu travaille en lien direct avec des communautés locales, des agriculteurs et des chercheurs afin de cultiver, récolter et transformer des ingrédients issus des territoires environnants.",
+    "createdAt": "2026-02-08T16:05:41.831Z",
+    "updatedAt": "2026-02-08T16:14:53.005Z",
+    "panoramaImage": "/downloads/m.jpg"
   }
 ]
