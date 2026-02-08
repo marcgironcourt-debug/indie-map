@@ -4347,5 +4347,25 @@
     "miniText": "Ferme développant une production locale, en cultivant des produits issus de pratiques agricoles respectueuses de l’environnement et valorisant une distribution en circuit court sur le territoire guyanais. Le projet inclut une production végétale en agroforesterie et permaculture, ainsi que des actions d’inclusion sociale en proposant des formations et activités adaptées aux personnes en situation de handicap.",
     "panoramaImage": "/downloads/h.jpg",
     "updatedfAt": "2026-02-08T17:53:08.990Z"
+  },
+  {
+    "id": "4e19bfd4-fc84-4843-8588-161cbf3c6aca",
+    "name": "Délices De Guyane",
+    "city": "Remire-Montjoly",
+    "address": "PAE de Dégrad des Cannes, 18 Rue de l’industrie, Remire-Montjoly 97354, Guyane française",
+    "website": "https://www.delices-de-guyane.fr/fr/",
+    "lat": 4.868449,
+    "lng": -52.278316,
+    "phone": "+594594353869",
+    "category": "Épicerie",
+    "openingHours": "dimanche Fermé\nlundi 9h00–16h00\nmardi 9h00–16h00\nmercredi 9h00–16h00\njeudi 9h00–16h00\nvendredi 9h00–16h00\nsamedi Fermé",
+    "timeZone": "America/Cayenne",
+    "createdAt": "2026-02-08T18:02:28.855Z",
+    "updatedAt": "2026-02-08T18:14:19.736Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie spécialisée dans la valorisation des produits du terroir guyanais, proposant une large gamme de spécialités locales, incluant confitures, épices, condiments, chocolats, rhums arrangés et produits transformés à partir de matières premières issues du territoire.",
+    "panoramaImage": "/downloads/u.png"
   }
 ]
