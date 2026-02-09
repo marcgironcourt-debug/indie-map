@@ -4387,5 +4387,25 @@
     "createdAt": "2026-02-09T17:26:21.788Z",
     "updatedAt": "2026-02-09T17:33:10.688Z",
     "panoramaImage": "/downloads/soul.png"
+  },
+  {
+    "id": "0afed602-04fc-4677-9b2d-936f4c27d098",
+    "name": "Good Neighbor Gardens",
+    "city": "San Diego",
+    "address": "3550 Park Blvd #26, San Diego, CA 92103, États-Unis",
+    "website": "https://www.goodneighborgardens.com",
+    "lat": 32.742904793817,
+    "lng": -117.147984633757,
+    "category": "Ferme",
+    "phone": "+1 858-375-6121",
+    "openingHours": "lundi 8h00–18h00\nmardi 8h00–18h00\nmercredi 8h00–18h00\njeudi 8h00–18h00\nvendredi 8h00–18h00\nsamedi Fermé\ndimanche Fermé",
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme urbaine et centre de jardinage communautaire à San Diego. Elle promeut l’agriculture écologique en transformant des jardins résidentiels et scolaires en espaces productifs de légumes et de fruits locaux, en offrant des programmes éducatifs, des abonnements CSA et en renforçant la sécurité alimentaire de la communauté.",
+    "createdAt": "2026-02-09T17:39:07.596Z",
+    "updatedAt": "2026-02-09T17:42:44.874Z",
+    "panoramaImage": "/downloads/good.png"
   }
 ]
