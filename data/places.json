@@ -4507,5 +4507,25 @@
     "createdAt": "2026-02-09T19:07:10.133Z",
     "updatedAt": "2026-02-09T19:16:58.106Z",
     "panoramaImage": "/downloads/sc.png"
+  },
+  {
+    "id": "f2b37b53-6f31-408f-9a53-13d6f004a99d",
+    "name": "Boragó",
+    "city": "Santiago",
+    "address": "Costanera Sur S.J.E. de Balaguer 5970, 7640804 Vitacura, Región Metropolitana, Chili",
+    "website": "https://borago.cl",
+    "lat": -33.382523,
+    "lng": -70.584099,
+    "category": "Restaurant",
+    "phone": "+56 2 2953 8893",
+    "openingHours": "Lundi 17h30-22h00\nMardi 17h30-22h00\nMercredi 17h30-22h00\nJeudi 17h30-22h00\nVendredi 17h30-22h00\nSamedi 17h30-22h00\nDimanche Fermé",
+    "timeZone": "America/Santiago",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant explorant les écosystèmes du territoire à travers une cuisine fondée sur la saisonnalité, la cueillette et le travail avec des producteurs, pêcheurs et cueilleurs locaux. Boragó construit ses menus à partir d’ingrédients endémiques et de savoir-faire liés aux paysages du Chili, dans une démarche attentive aux cycles naturels et à l’origine des produits.",
+    "panoramaImage": "/downloads/chili.png",
+    "createdAt": "2026-02-09T19:30:46.454Z",
+    "updatedAt": "2026-02-09T19:39:02.372Z"
   }
 ]
