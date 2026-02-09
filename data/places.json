@@ -4588,5 +4588,25 @@
     ],
     "miniText": "Restaurant mettant en avant une cuisine nordique contemporaine fondée sur des produits locaux. Dill travaille avec des producteurs, pêcheurs et cueilleurs islandais, en intégrant fermentation, saisonnalité et savoir-faire traditionnels dans une approche culinaire ancrée dans le territoire.",
     "panoramaImage": "/downloads/dill.png"
+  },
+  {
+    "id": "41879151-39a3-4293-bb9b-52e327f7743d",
+    "name": "Vogafjós Farm Resort",
+    "city": "Mývatn",
+    "address": "Vogar, 660 Myvatn, Islande",
+    "website": "https://www.vogafjosfarmresort.is",
+    "lat": 65.624139,
+    "lng": -16.9228021,
+    "category": "Lieu de vie",
+    "phone": "+354 464 3800",
+    "openingHours": "Lundi 12h00-21h00\nMardi 12h00-21h00\nMercredi 12h00-21h00\nJeudi 12h00-21h00\nVendredi 12h00-21h00\nSamedi 12h00-21h00\nDimanche 12h00-21h00",
+    "timeZone": "Atlantic/Reykjavik",
+    "createdAt": "2026-02-09T22:10:45.284Z",
+    "updatedAt": "2026-02-09T22:12:54.823Z",
+    "tags": [
+      "lieu-de-vie"
+    ],
+    "miniText": "Lieu de vie combinant ferme, hébergement et restaurant. Vogafjós Farm Resort valorise la production locale, notamment laitière, et propose une cuisine directement issue de la ferme, dans une approche ancrée dans le territoire et le quotidien rural islandais.",
+    "panoramaImage": "/downloads/vo.png"
   }
 ]
