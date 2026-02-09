@@ -4427,5 +4427,25 @@
     "createdAt": "2026-02-09T17:49:51.029Z",
     "updatedAt": "2026-02-09T17:57:13.943Z",
     "panoramaImage": "/downloads/miel.jpg"
+  },
+  {
+    "id": "ffd30466-fb45-4457-b5a0-87747803c9dd",
+    "name": "Blue Bird Bistro",
+    "city": "Kansas City",
+    "address": "1700 Summit St, Kansas City, MO 64108, États-Unis",
+    "website": "https://www.bluebirdbistro.com",
+    "lat": 39.090873,
+    "lng": -94.604027,
+    "category": "Restaurant",
+    "phone": "+1 816-221-7559",
+    "openingHours": "lundi 7h00–21h00\nmardi 7h00–21h00\nmercredi 7h00–21h00\njeudi 7h00–21h00\nvendredi 7h00–21h00\nsamedi 7h00–21h00\ndimanche 9h00–13h00",
+    "timeZone": "America/Chicago",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant à partir de produits locaux et biologiques provenant de fermes du Missouri et du Kansas. Les menus évoluent selon les saisons et les arrivages, avec une attention portée à la traçabilité des ingrédients, aux relations directes avec les producteurs et au respect du rythme agricole.",
+    "createdAt": "2026-02-09T18:13:03.666Z",
+    "updatedAt": "2026-02-09T18:16:33.485Z",
+    "panoramaImage": "/downloads/blue.png"
   }
 ]
