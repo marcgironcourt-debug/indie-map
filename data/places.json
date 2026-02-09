@@ -4487,5 +4487,25 @@
     "createdAt": "2026-02-09T18:39:51.947Z",
     "updatedAt": "2026-02-09T18:44:37.137Z",
     "panoramaImage": "/downloads/west.webp"
+  },
+  {
+    "id": "acb662e1-81cb-4578-9a25-29519342865a",
+    "name": "ScrapsKC",
+    "city": "Kansas City",
+    "address": "3269 Roanoke Rd, Kansas City, MO 64111, États-Unis",
+    "website": "https://scrapskc.org",
+    "lat": 39.06196,
+    "lng": -94.61586,
+    "phone": "+1 816-522-4305",
+    "category": "Atelier",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00–18h00\nJeudi 12h00–18h00\nVendredi 12h00–18h00\nSamedi 10h00–18h00\nDimanche Fermé",
+    "timeZone": "America/Chicago",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Centre de réemploi créatif dédié à la récupération et à la redistribution de matériaux issus d’entreprises, d’écoles et de particuliers. ScrapsKC met à disposition des matières réutilisées pour l’artisanat et la création, et propose des ateliers afin de transmettre des pratiques de réemploi et de réduction des déchets à l’échelle locale.",
+    "createdAt": "2026-02-09T19:07:10.133Z",
+    "updatedAt": "2026-02-09T19:16:58.106Z",
+    "panoramaImage": "/downloads/sc.png"
   }
 ]
