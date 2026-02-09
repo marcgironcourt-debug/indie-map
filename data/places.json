@@ -4261,8 +4261,8 @@
     ],
     "miniText": "Restaurant développant une cuisine construite autour des écosystèmes du Pérou. Central travaille en lien direct avec des producteurs, agriculteurs et communautés situés à différentes altitudes, afin de valoriser la biodiversité et les savoirs alimentaires du territoire.",
     "createdAt": "2026-02-08T16:18:56.875Z",
-    "updatedAt": "2026-02-08T16:29:34.409Z",
-    "panoramaImage": "/downloads/p.png"
+    "updatedAt": "2026-02-09T16:26:32.478Z",
+    "panoramaImage": "/downloads/r.png"
   },
   {
     "id": "aa3598ab-0c70-4ee9-bbe7-2b5d585fd212",
@@ -4367,5 +4367,25 @@
     ],
     "miniText": "Épicerie spécialisée dans la valorisation des produits du terroir guyanais, proposant une large gamme de spécialités locales, incluant confitures, épices, condiments, chocolats, rhums arrangés et produits transformés à partir de matières premières issues du territoire.",
     "panoramaImage": "/downloads/u.png"
+  },
+  {
+    "id": "5b01fa3f-aceb-4150-827e-040d931a7009",
+    "name": "Soul Fire Farm",
+    "city": "Petersburgh",
+    "address": "1972 NY-2, Petersburgh, NY 12138, États-Unis",
+    "website": "https://www.soulfirefarm.org",
+    "lat": 42.770760326074,
+    "lng": -73.410569295944,
+    "category": "Ferme",
+    "phone": "+1 518-880-2034",
+    "openingHours": "",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme communautaire dédiée à l’agriculture régénérative et à la souveraineté alimentaire. Le lieu combine production agricole, formation et transmission de savoirs, avec un accent particulier sur l’accès à la terre, la justice alimentaire et le soutien aux communautés.",
+    "createdAt": "2026-02-09T17:26:21.788Z",
+    "updatedAt": "2026-02-09T17:33:10.688Z",
+    "panoramaImage": "/downloads/soul.png"
   }
 ]
