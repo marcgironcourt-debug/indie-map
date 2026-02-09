@@ -4547,5 +4547,26 @@
     "panoramaImage": "/downloads/99.jpeg",
     "createdAt": "2026-02-09T19:54:53.208Z",
     "updatedAt": "2026-02-09T20:01:01.184Z"
+  },
+  {
+    "id": "f37e9659-57dd-4873-b518-9262b0e43767",
+    "name": "Ecocitex MUT Tobalaba",
+    "city": "Santiago",
+    "address": "Av. Apoquindo 2730, étage -1, Las Condes (Métro Tobalaba)",
+    "website": "https://www.ecocitex.cl",
+    "lat": -33.417916541336,
+    "lng": -70.601179035003,
+    "category": "Boutique",
+    "phone": "",
+    "openingHours": "Lundi 10h00-20h00\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 10h00-20h00\nDimanche 10h00-20h00",
+    "timeZone": "America/Santiago",
+    "tags": [
+      "Atelier",
+      "Boutique"
+    ],
+    "miniText": "Boutique basée sur le recyclage de vêtements et de matières existantes. Ecocitex développe une production locale fondée sur la revalorisation, la réduction des déchets textiles et la fabrication à partir de fibres récupérées, dans une démarche d’économie circulaire et sociale.",
+    "panoramaImage": "/downloads/eco.webp",
+    "createdAt": "2026-02-09T20:05:37.170Z",
+    "updatedAt": "2026-02-09T20:19:01.455Z"
   }
 ]
