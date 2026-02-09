@@ -4527,5 +4527,25 @@
     "panoramaImage": "/downloads/chili.png",
     "createdAt": "2026-02-09T19:30:46.454Z",
     "updatedAt": "2026-02-09T19:39:02.372Z"
+  },
+  {
+    "id": "7a8cc11d-21a9-4a77-90b8-3139691a71a2",
+    "name": "99 Restaurante",
+    "city": "Santiago",
+    "address": "Alonso de Córdova 4355, 7560801 Vitacura, Región Metropolitana, Chili",
+    "website": "https://99restaurante.com",
+    "lat": -33.40509,
+    "lng": -70.58347,
+    "category": "Restaurant",
+    "phone": "+56 9 3104 4567",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 20h00-23h00\nJeudi 20h00-23h00\nVendredi 20h00-23h00\nSamedi 20h00-23h00\nDimanche Fermé",
+    "timeZone": "America/Santiago",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant exclusivement à partir de produits locaux chiliens, sélectionnés en lien direct avec des producteurs et artisans alimentaires. 99 Restaurante propose une cuisine construite autour des saisons, des territoires et des savoir-faire, avec des menus évoluant selon les disponibilités et les cycles naturels.",
+    "panoramaImage": "/downloads/99.jpeg",
+    "createdAt": "2026-02-09T19:54:53.208Z",
+    "updatedAt": "2026-02-09T20:01:01.184Z"
   }
 ]
