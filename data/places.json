@@ -4407,5 +4407,25 @@
     "createdAt": "2026-02-09T17:39:07.596Z",
     "updatedAt": "2026-02-09T17:42:44.874Z",
     "panoramaImage": "/downloads/good.png"
+  },
+  {
+    "id": "425c697c-8403-44fa-988c-005cd7b9a869",
+    "name": "Andrew’s Honey",
+    "city": "New York",
+    "address": "315 Columbus Ave Union Square, New York, NY 10023, États-Unis",
+    "website": "https://www.andrewshoney.com",
+    "lat": 40.779094989774,
+    "lng": -73.977201960039,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "lundi Fermé\nmardi 9h00–18h00\nmercredi 9h00–18h00\njeudi 9h00–18h00\nvendredi 9h00–18h00\nsamedi 9h00–17h00\ndimanche 9h00–17h00",
+    "timeZone": "America/New_York",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme apicole spécialisée dans le miel artisanal et les produits de la ruche. L’activité développe une apiculture locale et respectueuse des abeilles, avec des ruches entretenues dans l’État de New York, le Connecticut et au cœur même de la ville de New York, contribuant à une production urbaine et territoriale de miels aux profils variés.",
+    "createdAt": "2026-02-09T17:49:51.029Z",
+    "updatedAt": "2026-02-09T17:57:13.943Z",
+    "panoramaImage": "/downloads/miel.jpg"
   }
 ]
