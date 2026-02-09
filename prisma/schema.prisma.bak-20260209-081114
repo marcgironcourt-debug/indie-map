@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Place {
-  id           String   @id @default(cuid())
-  name         String
-  city         String
-  address      String?
-  website      String?
+  id          String   @id @default(cuid())
+  name        String
+  city        String
+  address     String?
+  website     String?
   openingHours String?
-  lat          Float?
-  lng          Float?
-  description  String?
-  category     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  lat         Float?
+  lng         Float?
+  description String?
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Business {
@@ -32,11 +32,10 @@ model Business {
   updatedAt     DateTime @updatedAt
 }
 
+
 model Event {
-  id        String   @id @default(uuid())
-  eventType String
+  id        String    (uuid())  eventType String
   placeId   String
   city      String
   category  String
-  createdAt DateTime @default(now())
-}
+  createdAt DateTime (now())}
