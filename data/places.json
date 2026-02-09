@@ -4143,26 +4143,6 @@
     "panoramaImage": "/downloads/f.jpg"
   },
   {
-    "id": "5beee8d7-2564-4c41-8ae9-5d3c49d8e9cb",
-    "name": "VINI VINI Traiteur",
-    "city": "Papeete",
-    "address": "Port de Pêche, Papeete, Tahiti PF 98702, Polynésie française",
-    "website": "https://www.vinivini.pf/#le-traiteur",
-    "lat": -17.5372634,
-    "lng": -149.5660301,
-    "category": "Restaurant",
-    "phone": "+689 87 32 76 68",
-    "openingHours": "lundi 7h00–13h00\nmardi 7h00–13h00\nmercredi 7h00–13h00\njeudi 7h00–13h00\nvendredi 7h00–13h00\nsamedi 7h00–12h00\ndimanche Fermé",
-    "timeZone": "Pacific/Tahiti",
-    "tags": [
-      "Restaurant"
-    ],
-    "miniText": "Traiteur installé au port de pêche de Papeete, proposant une cuisine préparée à partir de produits de la mer et d’ingrédients locaux. Le lieu travaille au rythme des arrivages, dans une logique de fraîcheur, de simplicité et d’ancrage dans l’économie maritime polynésienne.",
-    "createdAt": "2026-02-07T21:04:47.160Z",
-    "updatedAt": "2026-02-07T21:09:32.864Z",
-    "panoramaImage": "/downloads/v.png"
-  },
-  {
     "id": "2a34ed18-dedf-4a0d-98f1-e9ea608ff4d1",
     "name": "Rotui Juice Factory",
     "city": "Moorea",
