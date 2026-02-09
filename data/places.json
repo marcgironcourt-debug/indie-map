@@ -4568,5 +4568,25 @@
     "panoramaImage": "/downloads/eco.webp",
     "createdAt": "2026-02-09T20:05:37.170Z",
     "updatedAt": "2026-02-09T20:19:01.455Z"
+  },
+  {
+    "id": "d0473c74-22f2-4738-a181-2180ee305b4c",
+    "name": "Dill Restaurant",
+    "city": "Reykjavík",
+    "address": "Laugavegur 59, 101 Reykjavík, Islande",
+    "website": "https://www.dillrestaurant.is/en/home/",
+    "lat": 64.1444754,
+    "lng": -21.9226351,
+    "category": "Restaurant",
+    "phone": "+354 552 1522",
+    "openingHours": "Lundi Fermé\nMardi 18h00-00h00\nMercredi 18h00-00h00\nJeudi 18h00-00h00\nVendredi 18h00-00h00\nSamedi 18h00-00h00\nDimanche Fermé",
+    "timeZone": "Atlantic/Reykjavik",
+    "createdAt": "2026-02-09T21:48:22.625Z",
+    "updatedAt": "2026-02-09T21:58:13.226Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine nordique contemporaine fondée sur des produits locaux. Dill travaille avec des producteurs, pêcheurs et cueilleurs islandais, en intégrant fermentation, saisonnalité et savoir-faire traditionnels dans une approche culinaire ancrée dans le territoire.",
+    "panoramaImage": "/downloads/dill.png"
   }
 ]
