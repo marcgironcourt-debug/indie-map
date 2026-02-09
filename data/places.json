@@ -4608,5 +4608,25 @@
     ],
     "miniText": "Lieu de vie combinant ferme, hébergement et restaurant. Vogafjós Farm Resort valorise la production locale, notamment laitière, et propose une cuisine directement issue de la ferme, dans une approche ancrée dans le territoire et le quotidien rural islandais.",
     "panoramaImage": "/downloads/vo.png"
+  },
+  {
+    "id": "42a4a694-2b52-482a-80af-aed429aa8177",
+    "name": "Efsti-Dalur II",
+    "city": "Laugarvatn",
+    "address": "Bláskógabyggð, 801 Laugarvatn, Islande",
+    "website": "https://efstidalur.is/",
+    "lat": 64.2406389,
+    "lng": -20.5531944,
+    "category": "Lieu de vie",
+    "phone": "+354 486 1186",
+    "openingHours": "Lundi 11h30-20h00\nMardi 11h30-20h00\nMercredi 11h30-20h00\nJeudi 11h30-20h00\nVendredi 11h30-20h00\nSamedi 11h30-20h00\nDimanche 11h30-20h00",
+    "timeZone": "Atlantic/Reykjavik",
+    "createdAt": "2026-02-09T22:30:36.718Z",
+    "updatedAt": "2026-02-09T22:30:36.719Z",
+    "tags": [
+      "lieu-de-vie"
+    ],
+    "miniText": "Lieu de vie combinant ferme, restaurant, hébergement et produits laitiers. Efsti-Dalur II valorise la production locale avec ses glaces maison, fromages et produits issus de sa ferme en Islande.",
+    "panoramaImage": "/downloads/ef.png"
   }
 ]
