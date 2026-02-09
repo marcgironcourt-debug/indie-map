@@ -4447,5 +4447,25 @@
     "createdAt": "2026-02-09T18:13:03.666Z",
     "updatedAt": "2026-02-09T18:16:33.485Z",
     "panoramaImage": "/downloads/blue.png"
+  },
+  {
+    "id": "ef95eee4-9cf9-4f63-8270-2a73738c6cee",
+    "name": "The Farmhouse",
+    "city": "Vancouver",
+    "address": "352 E 10th Ave, Vancouver, BC V5T 1Z7",
+    "website": "https://farmhouseon10th.com/",
+    "lat": 49.262873,
+    "lng": -123.099847,
+    "category": "Restaurant",
+    "phone": "(604) 260-2477",
+    "openingHours": "lundi 12h00–22h00\nmardi 12h00–22h00\nmercredi 12h00–22h00\njeudi 12h00–22h00\nvendredi 12h00–22h00\nsamedi 10h00–22h00\ndimanche 10h00–22h00",
+    "timeZone": "America/Vancouver",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant italien proposant une cuisine élaborée à partir de produits locaux et de saison, avec une attention portée à l’origine des ingrédients et aux relations directes avec les producteurs. Tous les ingrédients viennent de la région et la majorité des vins également.",
+    "createdAt": "2026-02-09T18:25:45.393Z",
+    "updatedAt": "2026-02-09T18:32:36.310Z",
+    "panoramaImage": "/downloads/far.png"
   }
 ]
