@@ -4467,5 +4467,25 @@
     "createdAt": "2026-02-09T18:25:45.393Z",
     "updatedAt": "2026-02-09T18:32:36.310Z",
     "panoramaImage": "/downloads/far.png"
+  },
+  {
+    "id": "38cc2fba-1d50-4271-b6a7-c7607aaf0165",
+    "name": "The Westside Local",
+    "city": "Kansas City",
+    "address": "1663 Summit St, Kansas City, MO 64108, États-Unis",
+    "website": "https://thewestsidelocal.com",
+    "lat": 39.09052,
+    "lng": -94.603219,
+    "category": "Restaurant",
+    "phone": "+1 816-997-9089",
+    "openingHours": "lundi Fermé\nmardi 11h00–21h00\nmercredi 11h00–21h00\njeudi 11h00–21h00\nvendredi 11h00–22h00\nsamedi 11h00–22h00\ndimanche 10h00–14h00, 17h00–21h00",
+    "timeZone": "America/Chicago",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison. The Westside Local travaille avec des fermes et producteurs du Missouri et du Kansas.",
+    "createdAt": "2026-02-09T18:39:51.947Z",
+    "updatedAt": "2026-02-09T18:44:37.137Z",
+    "panoramaImage": "/downloads/west.webp"
   }
 ]
