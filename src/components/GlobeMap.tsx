@@ -1590,33 +1590,65 @@ popupRef.current = null;
             try {
               const db = el.querySelector("[data-discover=\"1\"]");
               const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+              const setPhoneActive = (on: boolean) => {
+                try {
+                  if (!pb) return;
+                  if (on) {
+                    (pb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                    (pb as any).style.background = "rgba(114,138,74,.20)";
+                    (pb as any).style.borderColor = "rgba(114,138,74,.70)";
+                  } else {
+                    (pb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                    (pb as any).style.background = "rgba(0,0,0,0.14)";
+                    (pb as any).style.borderColor = "rgba(255,255,255,0.30)";
+                  }
+                } catch {}
+              };
               if (pb) {
                 pb.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
                   try {
                     const dial = String((pb as any).getAttribute("data-tel") || "").trim();
                     let panel = el.querySelector("[data-phone-panel=\"1\"]") as HTMLDivElement | null;
-                    if (!panel) {
-                      panel = document.createElement("div");
-                      panel.setAttribute("data-phone-panel", "1");
-                      (panel as any).style.marginTop = "10px";
-                      (panel as any).style.display = "none";
-                      (panel as any).style.padding = "10px 10px";
-                      (panel as any).style.borderRadius = "14px 6px 14px 6px";
-                      (panel as any).style.background = "rgba(0,0,0,0.14)";
-                      (panel as any).style.border = "1px solid rgba(255,255,255,0.18)";
-                      (panel as any).style.boxShadow = "0 10px 22px rgba(0,0,0,0.20)";
-                      el.appendChild(panel);
+
+                    if (panel) {
+                      const cur = String((panel as HTMLElement).style.display || "");
+                      const showing = (cur === "none");
+                      (panel as HTMLElement).style.display = showing ? "block" : "none";
+                      try { setPhoneActive(showing); } catch {}
+                      try { setTimeout(recenterMini, 0); } catch {}
+                      return;
                     }
-                    const cur = String((panel as any).style.display || "");
-                    const next = (cur === "none" || cur === "") ? "block" : "none";
-                    (panel as any).style.display = next;
-                    if (next !== "block") return;
+
+                    panel = document.createElement("div");
+                    panel.setAttribute("data-phone-panel","1");
+                    panel.style.position = "absolute";
+                    panel.style.left = "50%";
+                    panel.style.top = "100%";
+                    panel.style.width = "260px";
+                    panel.style.maxWidth = "260px";
+                    panel.style.transform = "translateX(-50%) translateY(8px)";
+                    panel.style.zIndex = "3";
+                    panel.style.padding = "10px 10px";
+                    panel.style.background = "rgba(31,31,24,0.78)";
+                    panel.style.border = "1px solid rgba(245,245,232,.14)";
+                    panel.style.borderRadius = "16px 6px 16px 6px";
+                    panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                    panel.style.backdropFilter = "blur(10px)";
+                    (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                    panel.style.color = "rgba(245,245,232,.92)";
+                    panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                    panel.style.fontSize = "12px";
+                    panel.style.lineHeight = "18px";
+                    panel.style.letterSpacing = ".02em";
 
                     if (!dial) {
                       panel.innerHTML =
                         "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
                         "<div style=\"margin-top:6px;opacity:.90;\" >Téléphone inconnu</div>";
+                      el.appendChild(panel);
+                      try { setPhoneActive(true); } catch {}
+                      try { setTimeout(recenterMini, 0); } catch {}
                       return;
                     }
 
@@ -1624,8 +1656,12 @@ popupRef.current = null;
                       "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
                       "<div style=\"margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px;\" >" +
                         "<span style=\"opacity:.92;font-weight:700;\" >" + escapeHtml(dial) + "</span>" +
-                        "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.26);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Appeler</button>" +
+                        "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(245,245,232,.18);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" >Appeler</button>" +
                       "</div>";
+
+                    el.appendChild(panel);
+                    try { setPhoneActive(true); } catch {}
+                    try { setTimeout(recenterMini, 0); } catch {}
 
                     const cb = panel.querySelector("[data-phone-call=\"1\"]") as HTMLElement | null;
                     if (cb) {
@@ -2844,14 +2880,27 @@ mapRef.current = map;
                             let panel = el.querySelector("[data-phone-panel=\"1\"]") as HTMLDivElement | null;
                             if (!panel) {
                               panel = document.createElement("div");
-                              panel.setAttribute("data-phone-panel", "1");
-                              (panel as any).style.marginTop = "10px";
-                              (panel as any).style.display = "none";
-                              (panel as any).style.padding = "10px 10px";
-                              (panel as any).style.borderRadius = "14px 6px 14px 6px";
-                              (panel as any).style.background = "rgba(0,0,0,0.14)";
-                              (panel as any).style.border = "1px solid rgba(255,255,255,0.18)";
-                              (panel as any).style.boxShadow = "0 10px 22px rgba(0,0,0,0.20)";
+                              panel.setAttribute("data-phone-panel","1");
+                              panel.style.position = "absolute";
+                              panel.style.left = "50%";
+                              panel.style.top = "100%";
+                              panel.style.width = "260px";
+                              panel.style.maxWidth = "260px";
+                              panel.style.transform = "translateX(-50%) translateY(8px)";
+                              panel.style.zIndex = "3";
+                              panel.style.padding = "10px 10px";
+                              panel.style.background = "rgba(31,31,24,0.78)";
+                              panel.style.border = "1px solid rgba(245,245,232,.14)";
+                              panel.style.borderRadius = "16px 6px 16px 6px";
+                              panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                              panel.style.backdropFilter = "blur(10px)";
+                              (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                              panel.style.color = "rgba(245,245,232,.92)";
+                              panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                              panel.style.fontSize = "12px";
+                              panel.style.lineHeight = "18px";
+                              panel.style.letterSpacing = ".02em";
+                              panel.style.display = "none";
                               el.appendChild(panel);
                             }
                             const cur = String((panel as any).style.display || "");
