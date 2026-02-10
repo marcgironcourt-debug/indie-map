@@ -4947,5 +4947,45 @@
     "createdAt": "2026-02-10T21:01:10.002Z",
     "updatedAt": "2026-02-10T21:09:26.358Z",
     "panoramaImage": "/downloads/mar.png"
+  },
+  {
+    "id": "8574e559-c07f-4b0a-8641-33600f4929e2",
+    "name": "Squash Cafe & Shop",
+    "city": "Liverpool",
+    "address": "112-114 Windsor St, Liverpool L8 8EQ, Royaume-Uni",
+    "website": "https://squashliverpool.co.uk",
+    "lat": 53.3849,
+    "lng": -2.9507,
+    "phone": "+44 151 707 7897",
+    "category": "Lieu alternatif",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 10h00-16h00\nJeudi 10h00-16h00\nVendredi 10h00-16h00\nSamedi 10h00-16h00\nDimanche 10h00-16h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif associant café, boutique, ferme urbaine et pratiques artistiques, développant un modèle local reliant alimentation, culture et territoire. Le projet cultive des fruits et légumes dans sa ferme urbaine et collabore avec des producteurs de la région.",
+    "createdAt": "2026-02-10T21:54:36.611Z",
+    "updatedAt": "2026-02-10T22:05:16.443Z",
+    "panoramaImage": "/downloads/s.png"
+  },
+  {
+    "id": "7edde064-aed2-43f5-a03a-75b9ad220c64",
+    "name": "The Kindling Trust",
+    "city": "Manchester",
+    "address": "Bridge 5 Mill, 22a Beswick Street, Manchester M4 7HR, Royaume-Uni",
+    "website": "https://kindling.org.uk",
+    "lat": 53.4879,
+    "lng": -2.2276,
+    "phone": "+44 161 818 8384",
+    "category": "Lieu alternatif",
+    "openingHours": "Lundi 9h00-17h00\nMardi 9h00-17h00\nMercredi 9h00-17h00\nJeudi 9h00-17h00\nVendredi 9h00-17h00\nSamedi 9h00-17h00\nDimanche Fermé",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif travaillant avec des communautés, des agriculteurs, des acteurs de santé et des décideurs pour transformer le système alimentaire. Le collectif développe et accompagne des initiatives liées à l’agriculture et à l’alimentation, avec l’objectif de soutenir les producteurs, restaurer les sols et placer la santé et le bien-être des communautés au centre.",
+    "createdAt": "2026-02-10T22:07:10.773Z",
+    "updatedAt": "2026-02-10T22:11:19.118Z",
+    "panoramaImage": "/downloads/ferme.jpg"
   }
 ]
