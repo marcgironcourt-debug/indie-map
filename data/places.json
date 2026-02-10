@@ -4867,5 +4867,85 @@
     "createdAt": "2026-02-10T19:32:55.926Z",
     "updatedAt": "2026-02-10T19:34:40.974Z",
     "panoramaImage": "/downloads/ja.png"
+  },
+  {
+    "id": "8ab54697-1dd2-4755-9efd-5aeebea2beb5",
+    "name": "Phoebe English Studio",
+    "city": "London",
+    "address": "Art Hub Studios, Mornington Centre, Stanley Street, London SE8 4BL, United Kingdom",
+    "website": "https://www.phoebeenglish.com",
+    "lat": 51.47943,
+    "lng": -0.02764,
+    "category": "Mode",
+    "phone": "",
+    "openingHours": "",
+    "timeZone": "Europe/London",
+    "tags": [
+      "mode"
+    ],
+    "miniText": "Studio de mode développant une approche fondée sur la mode circulaire, la réduction des déchets, la durabilité des matières, et la transparence des processus de fabrication. Le studio privilégie une création réfléchie, hors des logiques de production de masse. Les visites du studio se font uniquement sur rendez-vous.",
+    "createdAt": "2026-02-10T20:31:14.663Z",
+    "updatedAt": "2026-02-10T20:37:33.500Z",
+    "panoramaImage": "/downloads/ph.webp"
+  },
+  {
+    "id": "fcd25915-f478-43da-80f1-17b994f67756",
+    "name": "The Fields Beneath",
+    "city": "London",
+    "address": "52a Prince of Wales Rd, London NW5 3LN, United Kingdom",
+    "website": "https://www.thefieldsbeneath.com",
+    "lat": 51.55292,
+    "lng": -0.14164,
+    "category": "Café",
+    "phone": "",
+    "openingHours": "mardi 7h30–16h00\nmercredi 7h30–16h00\njeudi 7h30–16h00\nvendredi 7h30–16h00\nsamedi 8h00–17h00\ndimanche 9h00–16h00\nlundi 7h30–16h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "café"
+    ],
+    "miniText": "Café travaillant en lien avec des torréfacteurs et producteurs identifiés. The Fields Beneath met l’accent sur la qualité des grains, la saisonnalité des produits et une approche attentive à l’origine des ingrédients. Le lieu s’inscrit dans une démarche artisanale, centrée sur le goût et le savoir-faire.",
+    "createdAt": "2026-02-10T20:41:48.178Z",
+    "updatedAt": "2026-02-10T20:48:15.489Z",
+    "panoramaImage": "/downloads/caf.png"
+  },
+  {
+    "id": "1774aaa9-68d6-4647-bfd6-2e41e363e744",
+    "name": "Flourish Produce",
+    "city": "Hildersham",
+    "address": "1 Cooks Pen Farm, Hildersham CB21 6BS, United Kingdom",
+    "website": "https://www.flourishproduce.co.uk",
+    "lat": 52.12384,
+    "lng": 0.20063,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "mardi 7h00–16h30\nmercredi 7h00–16h30\njeudi 7h00–16h30\nvendredi 7h00–16h30\nsamedi Fermé\ndimanche Fermé\nlundi 7h00–16h30",
+    "timeZone": "Europe/London",
+    "tags": [
+      "ferme"
+    ],
+    "miniText": "Ferme développant une agriculture régénérative, centrée sur la santé des sols, la biodiversité et la durabilité des écosystèmes agricoles. Flourish Produce cultive des fruits et légumes de saison et organise leur distribution locale afin de limiter les distances de transport et préserver la fraîcheur des produits.",
+    "createdAt": "2026-02-10T20:50:35.076Z",
+    "updatedAt": "2026-02-10T20:59:03.117Z",
+    "panoramaImage": "/downloads/fe.png"
+  },
+  {
+    "id": "4cd3eb8c-4e6e-427e-9ec9-bb7d274d2a69",
+    "name": "Borough Market",
+    "city": "London",
+    "address": "London SE1 9AL, United Kingdom",
+    "website": "https://boroughmarket.org.uk",
+    "lat": 51.50552,
+    "lng": -0.09156,
+    "category": "Marché",
+    "phone": "+44 20 7407 1002",
+    "openingHours": "mardi 10h00–17h00\nmercredi 10h00–17h00\njeudi 10h00–17h00\nvendredi 10h00–17h00\nsamedi 9h00–17h00\ndimanche 10h00–16h00\nlundi Fermé",
+    "timeZone": "Europe/London",
+    "tags": [
+      "marché"
+    ],
+    "miniText": "Marché rassemblant producteurs, artisans et commerçants indépendants. Borough Market met l’accent sur la qualité des produits, les savoir-faire artisanaux et les filières alimentaires responsables.",
+    "createdAt": "2026-02-10T21:01:10.002Z",
+    "updatedAt": "2026-02-10T21:09:26.358Z",
+    "panoramaImage": "/downloads/mar.png"
   }
 ]
