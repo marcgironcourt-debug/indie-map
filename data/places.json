@@ -4787,5 +4787,85 @@
     "createdAt": "2026-02-10T18:29:02.254Z",
     "updatedAt": "2026-02-10T18:37:53.409Z",
     "panoramaImage": "/downloads/ba.jpg"
+  },
+  {
+    "id": "b18ef8ed-afcc-46d3-aecf-1875111decc5",
+    "name": "Higher Ground",
+    "city": "Londres",
+    "address": "Faulkner House, New York St, Manchester M1 4DY, Royaume-Uni",
+    "website": "https://highergroundmcr.co.uk",
+    "lat": 53.4795953,
+    "lng": -2.2382344,
+    "category": "Restaurant",
+    "phone": "+44 161 470 9821",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 17h00–22h00\nJeudi 12h30–13h30, 17h00–22h00\nVendredi 12h30–14h00, 17h30–23h30\nSamedi 12h30–14h00, 17h30–23h30\nDimanche Fermé",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite autour de produits britanniques de saison, issus de fermes et de producteurs locaux. Le restaurant travaille notamment avec Cinderwood Market Garden, la ferme biologique, qui cultive légumes et herbes pour Higher Ground et d’autres restaurants de Manchester.",
+    "createdAt": "2026-02-10T18:51:59.482Z",
+    "updatedAt": "2026-02-10T19:06:16.939Z",
+    "panoramaImage": "/downloads/hi.png"
+  },
+  {
+    "id": "ea76b740-600e-4101-80ae-8718d6ca3b49",
+    "name": "Cinderwood Market Garden",
+    "city": "Nantwich",
+    "address": "Poole Old Hall Ln, Nantwich CW5 6AL, Royaume-Uni",
+    "website": "https://www.cinderwoodmarketgarden.co",
+    "lat": 53.0957297,
+    "lng": -2.5379064,
+    "category": "Ferme",
+    "phone": "+44 7979 123 991",
+    "openingHours": "",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme biologique et régénérative , cultivant des légumes et des herbes destinés à des restaurants et acteurs locaux. Le site fonctionne comme un market garden à échelle humaine, avec une production orientée vers des circuits courts, réservé aux restaurateurs.",
+    "createdAt": "2026-02-10T19:15:01.975Z",
+    "updatedAt": "2026-02-10T19:16:07.309Z",
+    "panoramaImage": "/downloads/ci.webp"
+  },
+  {
+    "id": "67901948-4c6a-4b88-abeb-4c0c63654080",
+    "name": "Where the Light Gets In",
+    "city": "Londres",
+    "address": "7 Rostron Brow, Stockport SK1 1JY, Royaume-Uni",
+    "website": "https://www.wtlgi.co",
+    "lat": 53.410794,
+    "lng": -2.156097,
+    "category": "Restaurant",
+    "phone": "+44 161 477 5744",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 18h00–23h00\nJeudi 18h00–23h00\nVendredi 18h00–23h00\nSamedi 12h00–14h00, 18h00–23h00\nDimanche Fermé",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine centrée sur le territoire, les saisons, la relation directe avec les producteurs et leur jardin communautaire \"The Landing\". Le lieu fonctionne autour de menus dégustation évolutifs, construits selon les récoltes, les fermentations, les conservations et les savoir-faire locaux.",
+    "createdAt": "2026-02-10T19:24:02.184Z",
+    "updatedAt": "2026-02-10T19:25:10.442Z",
+    "panoramaImage": "/downloads/w.jpg"
+  },
+  {
+    "id": "f76deb8f-74b6-40d1-9587-649446cc6714",
+    "name": "The Landing",
+    "city": "Londres",
+    "address": "54 Great Underbank, Stockport SK1 1PD, Royaume-Uni",
+    "website": "https://www.thelandingcic.co.uk",
+    "lat": 53.410247,
+    "lng": -2.155217,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Jardin communautaire et projet alimentaire développant une production locale de légumes et de plantes comestibles. Le lieu fonctionne comme un espace collectif dédié à la culture, à l’apprentissage et à la relation directe entre territoire, alimentation et communauté. Conçu par le restaurant \"Where The Light Gets In\".",
+    "createdAt": "2026-02-10T19:32:55.926Z",
+    "updatedAt": "2026-02-10T19:34:40.974Z",
+    "panoramaImage": "/downloads/ja.png"
   }
 ]
