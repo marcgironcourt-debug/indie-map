@@ -4608,5 +4608,25 @@
     ],
     "miniText": "Lieu de vie combinant ferme, restaurant, hébergement et produits laitiers. Efsti-Dalur II valorise la production locale avec ses glaces maison, fromages et produits issus de sa ferme en Islande.",
     "panoramaImage": "/downloads/ef.png"
+  },
+  {
+    "id": "7e34b6ee-f933-4357-9570-bafabdc80efe",
+    "name": "Friðheimar",
+    "city": "Reykholt",
+    "address": "5HH4+225 Friðheimar, 806 Reykholt, Islande",
+    "website": "https://fridheimar.is",
+    "lat": 64.177503,
+    "lng": -20.4448859,
+    "category": "Ferme",
+    "phone": "+354 486 8894",
+    "openingHours": "lundi\t11h30–16h00\nmardi\t11h30–16h00\nmercredi\t11h30–16h00\njeudi\t11h30–16h00\nvendredi\t11h30–16h00\nsamedi\t11h30–16h00\ndimanche\t11h30–16h00",
+    "timeZone": "Atlantic/Reykjavik",
+    "createdAt": "2026-02-10T14:38:58.260Z",
+    "updatedAt": "2026-02-10T14:51:44.463Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme spécialisée dans la culture de tomates en serre géothermique. Friðheimar produit toute l’année grâce à l’énergie géothermique et valorise sa production sur place à travers un restaurant ouvert au public. Le lieu permet de découvrir les techniques agricoles locales, l’usage des ressources naturelles islandaises et une alimentation directement issue de la ferme.",
+    "panoramaImage": "/downloads/fr.png"
   }
 ]
