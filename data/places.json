@@ -4747,5 +4747,45 @@
     "createdAt": "2026-02-10T18:11:10.727Z",
     "updatedAt": "2026-02-10T18:17:38.067Z",
     "panoramaImage": "/downloads/fe.webp"
+  },
+  {
+    "id": "3f6bf5a2-5544-4537-bd82-3f1cf4904306",
+    "name": "Hackney City Farm",
+    "city": "London",
+    "address": "1a Goldsmiths Row, Haggerston Park, London E2 8QA, Royaume-Uni",
+    "website": "https://hackneycityfarm.co.uk",
+    "lat": 51.53545,
+    "lng": -0.07164,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "lundi\tFermé\nmardi\t10h00–16h30\nmercredi\t10h00–16h30\njeudi\t10h00–16h30\nvendredi\t10h00–16h30\nsamedi\t10h00–16h30\ndimanche\t10h00–16h30",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme urbaine communautaire située au cœur de l’est de Londres, dédiée à l’agriculture urbaine, à l’éducation et au lien avec le vivant. Hackney City Farm accueille des animaux, développe des activités pédagogiques et promeut une relation directe entre les habitants, l’alimentation et les écosystèmes urbains.",
+    "createdAt": "2026-02-10T18:20:43.301Z",
+    "updatedAt": "2026-02-10T18:25:00.715Z",
+    "panoramaImage": "/downloads/lo.png"
+  },
+  {
+    "id": "c0b0ad34-2dc9-4689-9f8e-bad715f33c78",
+    "name": "Hearth",
+    "city": "London",
+    "address": "Unit 30, 86B Wallis Rd, London E9 5LN, Royaume-Uni",
+    "website": "https://www.hearthbakery.co.uk",
+    "lat": 51.54373,
+    "lng": -0.03862,
+    "category": "Boulangerie",
+    "phone": "",
+    "openingHours": "lundi\tFermé\nmardi\tFermé\nmercredi\t9h00–15h00\njeudi\t9h00–15h00\nvendredi\t9h00–15h00\nsamedi\t9h00–15h00\ndimanche\t9h00–15h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie s'approvisionnant majoritairement auprès de fermes biologiques situé au plus proche de la boulangerie, utilisant des céréales cultivées au Royaume-Uni, moulues à la pierre et traçables à la ferme. Menu changeant tous les mois en fonction des saisons et produits locaux.",
+    "createdAt": "2026-02-10T18:29:02.254Z",
+    "updatedAt": "2026-02-10T18:37:53.409Z",
+    "panoramaImage": "/downloads/ba.jpg"
   }
 ]
