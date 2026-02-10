@@ -4648,5 +4648,104 @@
     ],
     "miniText": "Boutique de vêtements proposant des pièces conçues et produites en Islande à partir de matières naturelles locales. Farmers & Friends met en avant le savoir-faire textile islandais, des collections inspirées du climat et des traditions du pays, ainsi qu’une production ancrée dans le territoire.",
     "panoramaImage": "/downloads/fa.jpg"
+  },
+  {
+    "id": "54336f50-c54c-4f48-9366-9172ecf24d2a",
+    "name": "The Duke Organic",
+    "city": "London",
+    "address": "30 St Peter's St, London N1 8JT, Royaume-Uni",
+    "website": "https://www.dukeorganic.co.uk",
+    "lat": 51.53485,
+    "lng": -0.098608,
+    "category": "Pub",
+    "phone": "+44 20 7359 3066",
+    "openingHours": "lundi\tFermé\nmardi\t12h00–23h30\nmercredi\t12h00–23h30\njeudi\t12h00–23h30\nvendredi\t12h00–23h30\nsamedi\t12h00–23h30\ndimanche\t12h00–18h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Pub"
+    ],
+    "miniText": "Pub proposant une cuisine et des boissons élaborées à partir d’ingrédients certifiés bio. The Duke Organic met en avant des produits de saison, une carte de bières et de vins biologiques, ainsi qu’une approche attentive à l’origine des aliments et aux pratiques agricoles durables.",
+    "createdAt": "2026-02-10T16:21:55.043Z",
+    "updatedAt": "2026-02-10T16:25:45.731Z",
+    "panoramaImage": "/downloads/du.png"
+  },
+  {
+    "id": "6d9b75dc-89c1-46ef-91f8-02f5dfe67d57",
+    "name": "The Pig and Butcher",
+    "city": "London",
+    "address": "80 Liverpool Rd, London N1 0QD, Royaume-Uni",
+    "website": "https://thepigandbutcher.co.uk",
+    "lat": 51.5376,
+    "lng": -0.106688,
+    "category": "Pub",
+    "phone": "+44 20 7226 8304",
+    "openingHours": "lundi\t12h00–23h00\nmardi\t12h00–23h00\nmercredi\t12h00–23h00\njeudi\t12h00–23h00\nvendredi\t12h00–23h00\nsamedi\t8h30–23h00\ndimanche\t11h30–22h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Pub"
+    ],
+    "miniText": "Pub mettant au cœur de sa démarche le travail de la viande issue d’élevages britanniques responsables et l’utilisation d’ingrédients locaux. The Pig and Butcher privilégie des animaux élevés en plein air, des produits locaux et valorise l’ensemble à travers une cuisine saisonnière.",
+    "createdAt": "2026-02-10T16:31:41.016Z",
+    "updatedAt": "2026-02-10T16:42:06.423Z",
+    "panoramaImage": "/downloads/ph.png"
+  },
+  {
+    "id": "4702dbe6-e829-414b-a14c-0155d70fd9b5",
+    "name": "Restaurant Story",
+    "city": "London",
+    "address": "199 Tooley St, London SE1 2JX, Royaume-Uni",
+    "website": "https://restaurantstory.co.uk",
+    "lat": 51.5027614,
+    "lng": -0.0777802,
+    "category": "Restaurant",
+    "phone": "+44 20 7183 2117",
+    "openingHours": "lundi\tFermé\nmardi\t18h00–21h00\nmercredi\t18h00–21h00\njeudi\t18h00–21h00\nvendredi\t12h00–14h00, 18h00–21h00\nsamedi\t12h00–14h00, 18h00–21h00\ndimanche\tFermé",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite autour de produits britanniques de saison, avec une attention portée à l’origine des ingrédients et au travail des producteurs locaux.",
+    "createdAt": "2026-02-10T16:48:58.987Z",
+    "updatedAt": "2026-02-10T16:53:11.100Z",
+    "panoramaImage": "/downloads/s.png"
+  },
+  {
+    "id": "f1e406df-9478-4d9e-b5e8-cf1d7fa42e3c",
+    "name": "E5 Bakehouse",
+    "city": "London",
+    "address": "396 Mentmore Terrace, London E8 3PH, Royaume-Uni",
+    "website": "https://e5bakehouse.com",
+    "lat": 51.5411105,
+    "lng": -0.057587,
+    "category": "Boulangerie",
+    "phone": "+44 20 8525 2890",
+    "openingHours": "lundi\t7h30–16h00\nmardi\t7h30–16h00\nmercredi\t7h30–16h00\njeudi\t7h30–16h00\nvendredi\t7h30–16h00\nsamedi\t8h00–16h00\ndimanche\t8h00–16h00",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie artisanale travaillant à partir des produits cultives sur sa ferme située dans le Suffolk, engagée dans des pratiques agricoles régénératives favorisant la biodiversité. La ferme fournit chaque semaine céréales, légumes et fruits à la boulangerie, dans une démarche globale visant à améliorer l’impact social, économique et environnemental de l’activité.",
+    "createdAt": "2026-02-10T16:57:51.947Z",
+    "updatedAt": "2026-02-10T17:20:13.699Z",
+    "panoramaImage": "/downloads/bo.png"
+  },
+  {
+    "id": "5e898b25-96b3-4e11-946c-1e52e09d4a60",
+    "name": "Fellows Farm",
+    "city": "Ipswich",
+    "address": "King’s Ln, Ipswich IP6 9TS, Royaume-Uni",
+    "website": "https://www.fellowsfarm.co.uk",
+    "lat": 52.1617,
+    "lng": 1.0756,
+    "category": "Ferme",
+    "phone": "+44 7548 300244",
+    "timeZone": "Europe/London",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme agricole engagée dans des pratiques régénératives visant à restaurer la biodiversité et la qualité des sols. Fellows Farm développe une production de céréales, fruits et légumes issue d’une agriculture attentive aux écosystèmes. Ferme faisant partie de la boulangerie E5 Bakehouse.",
+    "createdAt": "2026-02-10T18:11:10.727Z",
+    "updatedAt": "2026-02-10T18:17:38.067Z",
+    "panoramaImage": "/downloads/fe.webp"
   }
 ]
