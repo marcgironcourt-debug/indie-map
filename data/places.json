@@ -4628,5 +4628,25 @@
     ],
     "miniText": "Ferme spécialisée dans la culture de tomates en serre géothermique. Friðheimar produit toute l’année grâce à l’énergie géothermique et valorise sa production sur place à travers un restaurant ouvert au public. Le lieu permet de découvrir les techniques agricoles locales, l’usage des ressources naturelles islandaises et une alimentation directement issue de la ferme.",
     "panoramaImage": "/downloads/fr.png"
+  },
+  {
+    "id": "299dbced-386a-4e28-8796-ae373b9131f5",
+    "name": "Farmers & Friends",
+    "city": "Reykjavík",
+    "address": "Laugavegur 37, 101 Reykjavík, Islande",
+    "website": "https://www.farmersmarket.is",
+    "lat": 64.1452236,
+    "lng": -21.9263828,
+    "category": "Mode",
+    "phone": "+354 552 1965",
+    "openingHours": "lundi\t10h00–18h00\nmardi\t10h00–18h00\nmercredi\t10h00–18h00\njeudi\t10h00–18h00\nvendredi\t10h00–18h00\nsamedi\t11h00–18h00\ndimanche\t11h00–18h00",
+    "timeZone": "Atlantic/Reykjavik",
+    "createdAt": "2026-02-10T14:58:29.233Z",
+    "updatedAt": "2026-02-10T15:00:03.518Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Boutique de vêtements proposant des pièces conçues et produites en Islande à partir de matières naturelles locales. Farmers & Friends met en avant le savoir-faire textile islandais, des collections inspirées du climat et des traditions du pays, ainsi qu’une production ancrée dans le territoire.",
+    "panoramaImage": "/downloads/fa.jpg"
   }
 ]
