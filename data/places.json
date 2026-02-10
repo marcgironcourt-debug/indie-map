@@ -4987,5 +4987,65 @@
     "createdAt": "2026-02-10T22:07:10.773Z",
     "updatedAt": "2026-02-10T22:11:19.118Z",
     "panoramaImage": "/downloads/ferme.jpg"
+  },
+  {
+    "id": "e7f8a66a-5320-4a5e-9237-2fa21706729b",
+    "name": "The Fumbally",
+    "city": "Dublin",
+    "address": "Fumbally Ln, The Liberties, Dublin 8, D08 HFF2, Irlande",
+    "website": "https://thefumbally.ie/",
+    "lat": 53.336991,
+    "lng": -6.27299,
+    "phone": "+353 1 529 8732",
+    "category": "Lieu alternatif",
+    "openingHours": "Lundi Fermé\nMardi 8h00–17h00\nMercredi 8h00–17h00\nJeudi 8h00–17h00\nVendredi 8h00–17h00\nSamedi 9h00–17h00\nDimanche 10h00–15h00",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-10T22:31:53.379Z",
+    "updatedAt": "2026-02-10T22:41:38.185Z",
+    "miniText": "Lieu alternatif né d’un projet communautaire, mettant l’accent sur la cuisine maison, les produits locaux et de saison, et le lien social. Le lieu se veut accessible, inclusif et ancré dans son quartier, en favorisant des pratiques alimentaires durables, un espace ouvert aux rencontres, aux initiatives culturelles et à la vie collective.",
+    "panoramaImage": "/downloads/sr.png"
+  },
+  {
+    "id": "30c2aefc-6ddc-49ed-b930-3a66c6f67109",
+    "name": "Kai Restaurant",
+    "city": "Galway",
+    "address": "22 Sea Rd, Galway, H91 DX47, Irlande",
+    "website": "https://www.kairestaurant.ie/",
+    "lat": 53.2696156,
+    "lng": -9.0611718,
+    "phone": "+353 91 526 003",
+    "category": "Restaurant",
+    "openingHours": "Lundi Fermé\nMardi 11h00–16h00, 18h00–23h30\nMercredi 11h00–16h00, 18h00–23h30\nJeudi 11h00–16h00, 18h00–23h30\nVendredi 11h00–16h00, 18h00–23h30\nSamedi 11h00–16h00, 18h00–23h30\nDimanche Fermé",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-10T22:44:03.226Z",
+    "updatedAt": "2026-02-10T22:48:32.104Z",
+    "miniText": "Restaurant mettant l’accent sur une cuisine saisonnière et locale, inspirée des produits irlandais, avec un menu changeant en fonction des arrivages et une forte identité culinaire.",
+    "panoramaImage": "/downloads/ki.png"
+  },
+  {
+    "id": "73ab14a1-0efa-4cec-aa8b-b67975834683",
+    "name": "Neantóg Kitchen Garden School",
+    "city": "Cliffony",
+    "address": "Neantóg, Ballincastle, Cliffony, Co. Sligo, F91 HW82, Irlande",
+    "website": "https://www.neantog.com/",
+    "lat": 54.4221693,
+    "lng": -8.4586429,
+    "phone": "+353 87 902 9893",
+    "category": "Lieu alternatif",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 10h00–16h00\nDimanche Fermé",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-10T23:01:17.318Z",
+    "updatedAt": "2026-02-10T23:01:49.588Z",
+    "miniText": "Lieu alternatif dédié à l’apprentissage du maraîchage biologique et de la cuisine à partir du jardin. Neantóg Kitchen Garden School transmet des pratiques agricoles respectueuses des sols et du vivant, en reliant culture alimentaire, pédagogie, autonomie et lien au territoire rural irlandais.",
+    "panoramaImage": "/downloads/sc.jpg"
   }
 ]
