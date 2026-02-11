@@ -6017,5 +6017,45 @@
     ],
     "miniText": "Lieu alternatif proposant des ateliers et temps collectifs mêlant jardinage, cuisine participative et partage de savoir-faire, en lien avec des jardins et projets locaux à Lyon. Elle accueille aussi le public à la Maison des Fleurs, au Parc de Gerland.",
     "panoramaImage": "/downloads/b.png"
+  },
+  {
+    "id": "3691e3ef-49e2-4874-acdc-fce50e3d8ca2",
+    "name": "Bloempot",
+    "city": "Lille",
+    "address": "22 Rue des Bouchers, 59800 Lille, France",
+    "website": "https://www.bloempot.fr",
+    "lat": 50.6376193,
+    "lng": 3.0632367,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "Mardi 12h00-13h30\nMercredi 12h00-13h30\nJeudi 12h00-13h30\nVendredi 12h00-13h30\nSamedi 12h00-13h30\nDimanche Fermé\nLundi Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T15:43:46.467Z",
+    "updatedAt": "2026-02-11T15:48:23.550Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant à l’honneur les produits des Hauts-de-France à travers une cuisine inspirée des traditions nordiques. Bloempot travaille en lien direct avec des producteurs régionaux et construit ses menus selon les saisons, en valorisant fermentation, conservation artisanale et savoir-faire du territoire.",
+    "panoramaImage": "/downloads/li.png"
+  },
+  {
+    "id": "d47fc88c-f3b9-45b6-842e-40a3f1893924",
+    "name": "Gare Saint Sauveur",
+    "city": "Lille",
+    "address": "17 Bd Jean-Baptiste Lebas, 59800 Lille, France",
+    "website": "https://garesaintsauveur.lille3000.com",
+    "lat": 50.6299532,
+    "lng": 3.0705517,
+    "category": "Lieu alternatif",
+    "phone": "+33 3 20 52 10 39",
+    "openingHours": "Mercredi 12h00-00h00\nJeudi 12h00-01h00\nVendredi 12h00-02h00\nSamedi 12h00-02h00\nDimanche 12h00-21h00\nLundi Fermé\nMardi Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T15:52:17.567Z",
+    "updatedAt": "2026-02-11T15:57:36.931Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/downloads/lil.png",
+    "miniText": "Ancienne gare de marchandises réhabilitée en espace culturel et lieu de vie. La Gare Saint Sauveur accueille expositions, concerts, projections, événements et espaces de restauration dans une dynamique ouverte et accessible, au cœur de Lille. Un site emblématique mêlant patrimoine industriel et création contemporaine."
   }
 ]
