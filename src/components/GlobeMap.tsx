@@ -443,7 +443,6 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     restaurant: cssVar("--restaurant", "#ef4444"),
     boutique: "#000000",
     atelier: "#6B7280",
-    atelier: "#6B7280",
     microbrasserie: cssVar("--micro", "#f59e0b"),
     other: "#8C5A3C",
   };
@@ -488,14 +487,14 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
           ""
       );
 
-      const norm = (x) =>
+      const norm = (x: unknown) =>
         String(x || "")
           .toLowerCase()
           .trim()
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
 
-      const tzForCity = (city) => {
+      const tzForCity = (city: unknown) => {
         const c = norm(city);
         if (c.includes("new york") || c === "nyc") return "America/New_York";
         return "";
@@ -1558,7 +1557,7 @@ map.on("mouseenter", LAYER_ID, () => {
                 let extra = 0;
                 if (r.top < margin) extra -= (margin - r.top);
                 if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
-                const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+                const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
                 const base = 160;
                 const oy = clamp(base + extra, 80, 280);
                 try {
@@ -2859,7 +2858,7 @@ mapRef.current = map;
                         let extra = 0;
                         if (r.top < margin) extra -= (margin - r.top);
                         if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
-                        const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+                        const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
                         const base = 160;
                         const oy = clamp(base + extra, 80, 280);
                         const lng0 = Number((st as any).lng);

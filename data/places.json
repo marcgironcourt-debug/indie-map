@@ -5047,5 +5047,85 @@
     "updatedAt": "2026-02-10T23:01:49.588Z",
     "miniText": "Lieu alternatif dédié à l’apprentissage du maraîchage biologique et de la cuisine à partir du jardin. Neantóg Kitchen Garden School transmet des pratiques agricoles respectueuses des sols et du vivant, en reliant culture alimentaire, pédagogie, autonomie et lien au territoire rural irlandais.",
     "panoramaImage": "/downloads/sc.jpg"
+  },
+  {
+    "id": "cd3e5310-312f-4185-b132-7d89773ddcdc",
+    "name": "Goatsbridge Trout Farm",
+    "city": "Thomastown",
+    "address": "Jerpointchurch, Thomastown, Co. Kilkenny, Irlande",
+    "website": "http://www.goatsbridgetrout.ie/",
+    "lat": 52.5072751,
+    "lng": -7.166111099999999,
+    "phone": "+353861425146",
+    "category": "Ferme",
+    "openingHours": "Lundi 9h00–17h00\nMardi 9h00–17h00\nMercredi 9h00–17h00\nJeudi 9h00–17h00\nVendredi 9h00–17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-10T23:15:52.061Z",
+    "updatedAt": "2026-02-10T23:20:13.029Z",
+    "miniText": "Ferme aquacole familiale spécialisée dans l’élevage de truites en eau de source. Développant une production respectueuse des écosystèmes, basée sur une gestion durable de l’eau, le bien-être animal et des pratiques environnementales strictes, avec transformation et vente directe sur le site.",
+    "panoramaImage": "/downloads/go.webp"
+  },
+  {
+    "id": "73114e6e-b33a-46b0-8305-9aad6e7edf19",
+    "name": "Knocknarea Farm Shop",
+    "city": "Strandhill",
+    "address": "Knocknarea Farm, Larass Or Strandhill, Upper Strandhill, Co. Sligo, F91 W65R, Irlande",
+    "website": "https://www.knocknareafarm.com",
+    "lat": 54.2652898,
+    "lng": -8.565952,
+    "phone": "+353 87 947 8714",
+    "category": "Ferme",
+    "openingHours": "Lundi 9h00–20h00\nMardi 9h00–20h00\nMercredi 9h00–20h00\nJeudi 9h00–20h00\nVendredi 9h00–20h00\nSamedi 9h00–20h00\nDimanche 9h00–20h00",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-10T23:32:28.144Z",
+    "updatedAt": "2026-02-10T23:33:43.344Z",
+    "miniText": "Ferme engagée dans une agriculture régénérative visant à restaurer les sols, la biodiversité et les écosystèmes locaux. Développant des pratiques agricoles durables fondées sur la santé des terres, l’élevage extensif et la production responsable, avec une boutique à la ferme favorisant la vente directe et le lien au territoire.",
+    "panoramaImage": "/downloads/dr.webp"
+  },
+  {
+    "id": "55806a41-9b14-4252-9b87-8dae949ffc40",
+    "name": "Ocean Bar & Restaurant",
+    "city": "Enniscrone",
+    "address": "Main St, Carrowhubbuck South, Enniscrone, Co. Sligo, F26 Y3Y9, Irlande",
+    "website": "https://theoceansandshotel.ie/eat-drink/ocean-bar-restaurant/",
+    "lat": 54.215157623205,
+    "lng": -9.084900869209,
+    "phone": "+353 96 26700",
+    "category": "Restaurant",
+    "openingHours": "Lundi 16h30–20h00\nMardi 16h30–20h00\nMercredi 16h30–20h00\nJeudi 16h30–20h00\nVendredi 15h00–20h30\nSamedi 12h30–20h30\nDimanche 12h30–20h30",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-10T23:37:08.137Z",
+    "updatedAt": "2026-02-10T23:45:20.564Z",
+    "miniText": "Restaurant de bord de mer proposant une cuisine axée sur les produits locaux et de saison, avec une attention particulière portée aux produits de la mer irlandais. L’Ocean Bar & Restaurant met en avant une cuisine soignée, ancrée dans le territoire côtier d’Enniscrone, dans un cadre ouvert sur l’océan.",
+    "panoramaImage": "/downloads/res.webp"
+  },
+  {
+    "id": "9faf5dc2-2245-492a-8973-bb297a7443aa",
+    "name": "Pasta Fresca!",
+    "city": "Sligo",
+    "address": "Grattan St, Magheraboy, Sligo, F91 AEP2, Irlande",
+    "website": "https://pastafrescasligo.com",
+    "lat": 54.2719049,
+    "lng": -8.4757783,
+    "phone": "+353 83 110 2048",
+    "category": "Épicerie",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 10h30–18h00\nJeudi 10h30–18h00\nVendredi 10h30–18h00\nSamedi 10h30–17h00\nDimanche Fermé",
+    "timeZone": "Europe/Dublin",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-10T23:46:58.129Z",
+    "updatedAt": "2026-02-10T23:49:39.801Z",
+    "miniText": "Épicerie artisanale spécialisée dans la fabrication et la vente de pâtes fraîches, préparées sur place à partir d’ingrédients locaux et de qualité. Mettant en avant un savoir-faire culinaire inspiré des traditions italiennes, avec une production locale, fraîche et accessible au cœur de Sligo.",
+    "panoramaImage": "/downloads/pas.webp"
   }
 ]
