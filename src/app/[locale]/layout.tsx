@@ -1,14 +1,22 @@
 import React from "react";
+import {setRequestLocale} from "next-intl/server";
+import {locales, defaultLocale} from "../../../i18n";
 
-export const metadata = {
-  title: "Indie Map",
-  description: "Carte + liste des commerces indépendants",
-};
+export default async function LocaleLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode;
+  params: Promise<{locale: string}>;
+}) {
+  const {locale} = await params;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="fr">
-      <body>{children}</body>
-    </html>
-  );
+  const candidate = locale ?? defaultLocale;
+  const finalLocale = (locales as readonly string[]).includes(candidate)
+    ? candidate
+    : defaultLocale;
+
+  setRequestLocale(finalLocale);
+
+  return <>{children}</>;
 }

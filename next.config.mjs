@@ -1,7 +1,11 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
 const nextConfig = {
-  typescript: { ignoreBuildErrors: true },
-  typedRoutes: false,
   devIndicators: false,
+  typedRoutes: false,
+  typescript: { ignoreBuildErrors: true }
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
