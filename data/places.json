@@ -5917,5 +5917,65 @@
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant exclusivement avec des producteurs français identifiés, en privilégiant les circuits courts et les produits de saison. Les Résistants construit ses menus à partir d’ingrédients sourcés directement auprès de fermes et artisans, avec une attention portée à la traçabilité, au respect du territoire et à une cuisine ancrée dans l’agriculture paysanne."
+  },
+  {
+    "id": "6ec87517-c97d-48cc-ab9f-0b4f5dc0a4a0",
+    "name": "Pickles",
+    "city": "Nantes",
+    "address": "2 Rue du Marais, 44000 Nantes, France",
+    "website": "https://www.pickles-restaurant.com",
+    "lat": 47.218709,
+    "lng": -1.553345,
+    "category": "Restaurant",
+    "phone": "+33 2 51 84 11 89",
+    "openingHours": "Mercredi 12h00-14h30, 19h30-23h00\nJeudi 12h00-14h30, 19h30-23h00\nVendredi 12h00-14h30, 19h30-23h00\nSamedi 12h00-14h30, 19h30-23h00\nDimanche Fermé\nLundi Fermé\nMardi 19h30-21h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T14:19:25.071Z",
+    "updatedAt": "2026-02-11T14:20:21.295Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine construite autour des produits de saison et des arrivages du moment. Pickles travaille en lien avec des producteurs et maraîchers afin d’élaborer une carte courte, évolutive, centrée sur le goût et la fraîcheur des ingrédients.",
+    "panoramaImage": "/downloads/pi.jpeg"
+  },
+  {
+    "id": "0020d041-c208-44ca-8b8d-5a4c54c8aad7",
+    "name": "Ô Bocal",
+    "city": "Nantes",
+    "address": "10 bis Allée des Tanneurs, 44000 Nantes, France",
+    "website": "https://obocal.com/",
+    "lat": 47.213844,
+    "lng": -1.558036,
+    "category": "Épicerie",
+    "phone": "+33 2 28 29 74 86",
+    "openingHours": "Mercredi 10h00-19h30\nJeudi 10h00-19h30\nVendredi 10h00-19h30\nSamedi 9h30-19h00\nDimanche Fermé\nLundi Fermé\nMardi 10h00-19h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T14:26:16.737Z",
+    "updatedAt": "2026-02-11T14:27:01.144Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie proposant des produits locaux, bio et en vrac. Elle met en avant des producteurs régionaux et privilégie les circuits courts afin de proposer une offre alimentaire responsable, avec une attention particulière portée à la réduction des emballages et à la consommation durable.",
+    "panoramaImage": "/downloads/o.jpg"
+  },
+  {
+    "id": "e5659137-93d4-42da-be40-f7f670a2102c",
+    "name": "Les Récupérables",
+    "city": "Rennes",
+    "address": "144 Rue de Nantes, 35000 Rennes, France",
+    "website": "https://www.lesrecuperables.fr",
+    "lat": 48.095437,
+    "lng": -1.690171,
+    "category": "Restaurant",
+    "phone": "+33 2 99 85 91 94",
+    "openingHours": "Mercredi 12h00-18h00\nJeudi 12h00-18h00\nVendredi 12h00-18h00\nSamedi 11h30-18h30\nDimanche Fermé\nLundi Fermé\nMardi 12h00-18h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T14:31:48.900Z",
+    "updatedAt": "2026-02-11T14:33:55.678Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Café-restaurant proposant une cuisine maison axée sur la saisonnalité et le travail des producteurs locaux. L’établissement met en valeur des produits locaux et biologiques, en adoptant des pratiques respectueuses de l’environnement telles que la gestion des circuits courts et la réduction des déchets.",
+    "panoramaImage": "/downloads/r.png"
   }
 ]
