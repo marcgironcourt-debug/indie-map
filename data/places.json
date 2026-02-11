@@ -5977,5 +5977,45 @@
     ],
     "miniText": "Café-restaurant proposant une cuisine maison axée sur la saisonnalité et le travail des producteurs locaux. L’établissement met en valeur des produits locaux et biologiques, en adoptant des pratiques respectueuses de l’environnement telles que la gestion des circuits courts et la réduction des déchets.",
     "panoramaImage": "/downloads/r.png"
+  },
+  {
+    "id": "c3344503-16f0-48df-9814-149843337ce9",
+    "name": "Prairial",
+    "city": "Lyon",
+    "address": "1 Pl. Hubert Mounier, 69002 Lyon, France",
+    "website": "https://www.prairial-restaurant.fr/fr",
+    "lat": 45.7416646,
+    "lng": 4.8226194,
+    "category": "Restaurant",
+    "phone": "+33 4 87 78 32 51",
+    "openingHours": "Lundi Fermé\nMardi 20h00-21h15\nMercredi 20h00-21h15\nJeudi 20h00-21h15\nVendredi 12h00-13h15\nVendredi 20h00-21h15\nSamedi 12h00-13h15\nSamedi 20h00-21h15\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T15:14:20.660Z",
+    "updatedAt": "2026-02-11T15:17:36.971Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir de produits locaux et sourcés auprès de producteurs identifiés. Prairial propose des menus courts et évolutifs, centrés sur le végétal et le rythme naturel des récoltes, avec une attention particulière portée à l’origine des ingrédients et au territoire.",
+    "panoramaImage": "/downloads/p.png"
+  },
+  {
+    "id": "8e681e4b-be24-4b98-898d-5b2e95c3ee2c",
+    "name": "La Légumerie",
+    "city": "Lyon",
+    "address": "Maison des Fleurs – Parc de Gerland, 24 Allée Pierre de Coubertin, 69007 Lyon, France",
+    "website": "https://lalegumerie.over-blog.com",
+    "lat": 45.72791,
+    "lng": 4.82442,
+    "category": "Lieu alternatif",
+    "phone": "+33 4 87 37 81 34",
+    "openingHours": "",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-11T15:23:55.631Z",
+    "updatedAt": "2026-02-11T15:32:29.167Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif proposant des ateliers et temps collectifs mêlant jardinage, cuisine participative et partage de savoir-faire, en lien avec des jardins et projets locaux à Lyon. Elle accueille aussi le public à la Maison des Fleurs, au Parc de Gerland.",
+    "panoramaImage": "/downloads/b.png"
   }
 ]
