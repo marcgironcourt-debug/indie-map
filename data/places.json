@@ -3335,9 +3335,9 @@
       "Marché"
     ],
     "miniText": "Marché fermier hebdomadaire réunissant des producteurs agricoles et artisans alimentaires de l’État de Washington, permettant l’achat direct de produits frais, favorisant les circuits courts, la saisonnalité et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/ma.png",
+    "panoramaImage": "/downloads/Seattle | Ballard Farmers Market.png",
     "createdAt": "2026-02-05T12:51:27.215Z",
-    "updatedAt": "2026-02-05T13:05:34.975Z",
+    "updatedAt": "2026-02-12T14:58:47.533Z",
     "translations": {
       "miniText": {}
     }
@@ -3355,12 +3355,12 @@
     "openingHours": "jeudi\tFermé\nvendredi\tFermé\nsamedi\tFermé\ndimanche\t11h00–15h00\nlundi\tFermé\nmardi\t15h00–19h00\nmercredi\tFermé",
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T13:20:38.528Z",
-    "updatedAt": "2026-02-05T13:24:37.567Z",
+    "updatedAt": "2026-02-12T15:02:21.613Z",
     "tags": [
       "Marché"
     ],
     "miniText": "Marché de producteurs locaux réunissant fermes et artisans alimentaires de l’État de Washington. Les producteurs vendent directement fruits, légumes, pains, fromages, fleurs et produits transformés de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/ma.png",
+    "panoramaImage": "/downloads/Seattle | Capitol Hill Farmers Market .png",
     "translations": {
       "miniText": {}
     }
@@ -3401,12 +3401,12 @@
     "openingHours": "jeudi\t10h00–17h00\nvendredi\t10h00–17h00\nsamedi\t10h00–18h00\ndimanche\t10h00–18h00\nlundi\t10h00–17h00\nmardi\t10h00–17h00\nmercredi\t10h00–17h00",
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T13:36:57.115Z",
-    "updatedAt": "2026-02-05T13:43:19.877Z",
+    "updatedAt": "2026-02-12T15:04:46.377Z",
     "tags": [
       "Épicerie"
     ],
     "miniText": "Fromagerie produisant des fromages à partir de lait local, transformés sur place selon des méthodes traditionnelles. Beecher’s met en avant une fabrication transparente, des ingrédients simples et une volonté de relier production laitière régionale et alimentation de qualité.",
-    "panoramaImage": "/downloads/ma.png",
+    "panoramaImage": "/downloads/Beecher’s.jpg",
     "translations": {
       "miniText": {}
     }
@@ -3424,12 +3424,12 @@
     "openingHours": "jeudi\t10h00–21h00\nvendredi\t10h00–21h00\nsamedi\t10h00–21h00\ndimanche\t11h00–19h00\nlundi\t10h00–21h00\nmardi\t10h00–21h00\nmercredi\t10h00–21h00",
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T13:37:02.574Z",
-    "updatedAt": "2026-02-05T13:43:19.877Z",
+    "updatedAt": "2026-02-12T15:04:46.378Z",
     "tags": [
       "Épicerie"
     ],
     "miniText": "Fromagerie produisant des fromages à partir de lait local, transformés sur place selon des méthodes traditionnelles. Beecher’s met en avant une fabrication transparente, des ingrédients simples et une volonté de relier production laitière régionale et alimentation de qualité.",
-    "panoramaImage": "/downloads/ma.png",
+    "panoramaImage": "/downloads/Beecher’s.jpg",
     "translations": {
       "miniText": {}
     }
@@ -3543,8 +3543,8 @@
     ],
     "miniText": "Épicerie coopérative proposant une large sélection de produits alimentaires biologiques et locaux, privilégiant les circuits courts, les producteurs de l’Oregon et une gouvernance collective détenue par ses membres.",
     "createdAt": "2026-02-05T14:52:33.338Z",
-    "updatedAt": "2026-02-05T15:07:54.522Z",
-    "panoramaImage": "/downloads/b.png",
+    "updatedAt": "2026-02-12T13:57:29.040Z",
+    "panoramaImage": "/downloads/Portland People’s Food Co-op.png",
     "translations": {
       "miniText": {}
     }
@@ -3654,12 +3654,12 @@
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00–17h00\nJeudi 12h00–17h00\nVendredi 12h00–17h00\nSamedi 12h00–17h00\nDimanche 12h00–17h00",
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T15:44:04.219Z",
-    "updatedAt": "2026-02-05T15:47:52.830Z",
+    "updatedAt": "2026-02-12T14:34:27.152Z",
     "tags": [
       "Atelier"
     ],
     "miniText": "Atelier de réemploi créatif récupérant des matériaux issus des déchets urbains pour leur donner une seconde vie. ReClaim It collecte, trie et remet en circulation bois, objets, outils et matériaux divers à destination des artisans, makers et habitants, dans une logique de réduction des déchets et d’économie circulaire locale.",
-    "panoramaImage": "/downloads/r.png",
+    "panoramaImage": "/downloads/Portland | ReClaim It.png",
     "translations": {
       "miniText": {}
     }
@@ -3699,12 +3699,12 @@
     "openingHours": "Lundi 8h00-21h00\nMardi 8h00-21h00\nMercredi 8h00-21h00\nJeudi 8h00-21h00\nVendredi 8h00-21h00\nSamedi 8h00-21h00\nDimanche 8h00-21h00",
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T16:17:28.701Z",
-    "updatedAt": "2026-02-05T16:39:02.131Z",
+    "updatedAt": "2026-02-12T14:45:45.412Z",
     "tags": [
       "Épicerie"
     ],
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/b.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.png",
     "translations": {
       "miniText": {}
     }
@@ -3725,9 +3725,9 @@
       "Épicerie"
     ],
     "createdAt": "2026-02-05T16:25:07.427Z",
-    "updatedAt": "2026-02-05T16:39:02.133Z",
+    "updatedAt": "2026-02-12T14:45:45.413Z",
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/b.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.png",
     "translations": {
       "miniText": {}
     }
@@ -3748,9 +3748,9 @@
       "Épicerie"
     ],
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/b.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.png",
     "createdAt": "2026-02-05T16:29:07.336Z",
-    "updatedAt": "2026-02-05T16:39:02.133Z",
+    "updatedAt": "2026-02-12T14:45:45.413Z",
     "translations": {
       "miniText": {}
     }
@@ -3979,8 +3979,8 @@
     ],
     "miniText": "Centre de réemploi créatif dédié à l’économie circulaire. Le lieu fonctionne comme un atelier de transformation et de redistribution, mettant à disposition des matières réutilisées pour la création, l’artisanat et la fabrication locale. Il contribue à réduire les déchets envoyés en décharge tout en soutenant une production créative ancrée dans le territoire.",
     "createdAt": "2026-02-05T19:00:17.079Z",
-    "updatedAt": "2026-02-05T19:08:50.467Z",
-    "panoramaImage": "/downloads/r.png",
+    "updatedAt": "2026-02-12T14:02:47.887Z",
+    "panoramaImage": "/downloads/reconsidered.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4136,12 +4136,12 @@
     "openingHours": "lundi\tFermé\nmardi\t17h30–22h30\nmercredi\t17h30–22h30\njeudi\t17h30–22h30\nvendredi\t17h30–22h30\nsamedi\t17h30–22h30\ndimanche\t17h30–22h30",
     "timeZone": "America/Cancun",
     "createdAt": "2026-02-05T20:37:54.431Z",
-    "updatedAt": "2026-02-05T20:41:38.776Z",
+    "updatedAt": "2026-02-12T14:13:58.574Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant avec des fermes, pêcheurs et producteurs locaux de la péninsule du Yucatán, en construisant ses menus exclusivement à partir d’ingrédients de saison.",
-    "panoramaImage": "/downloads/r.png",
+    "panoramaImage": "/downloads/Hartwood.png",
     "translations": {
       "miniText": {}
     }
@@ -4232,8 +4232,8 @@
       "Marché"
     ],
     "createdAt": "2026-02-06T18:27:32.861Z",
-    "updatedAt": "2026-02-06T18:33:54.620Z",
-    "panoramaImage": "/downloads/b.png",
+    "updatedAt": "2026-02-12T14:49:49.181Z",
+    "panoramaImage": "/downloads/Mexico City | Mercado El 100.png",
     "translations": {
       "miniText": {}
     }
@@ -4302,8 +4302,8 @@
     ],
     "miniText": "Café proposant du café cultivé et torréfié au Costa Rica. Le lieu met en avant l’origine des grains, le travail des producteurs locaux et une préparation soignée, dans un cadre ancré dans la région de Monteverde.",
     "createdAt": "2026-02-06T19:01:35.071Z",
-    "updatedAt": "2026-02-06T19:08:15.643Z",
-    "panoramaImage": "/downloads/c.png",
+    "updatedAt": "2026-02-12T15:09:44.220Z",
+    "panoramaImage": "/downloads/Café Monteverde.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4325,8 +4325,8 @@
     ],
     "miniText": "Café situé au sein du domaine Rosa Blanca. Le lieu propose du café cultivé et transformé sur place, avec une attention portée à l’origine des grains, aux méthodes de production et à la valorisation du terroir caféier costaricien.",
     "createdAt": "2026-02-06T19:10:29.829Z",
-    "updatedAt": "2026-02-06T19:15:32.038Z",
-    "panoramaImage": "/downloads/r.png",
+    "updatedAt": "2026-02-12T14:18:45.888Z",
+    "panoramaImage": "/downloads/Cafe Rosa Blanca.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4372,8 +4372,8 @@
     ],
     "miniText": "Restaurant proposant une cuisine construite autour des produits du territoire costaricien. Travaillant avec un réseau identifié de producteurs, d’agriculteurs et de pêcheurs locaux afin de valoriser les ingrédients, les saisons et les savoir-faire culinaires du Costa Rica à travers des menus évolutifs.",
     "createdAt": "2026-02-06T19:39:35.380Z",
-    "updatedAt": "2026-02-06T19:44:59.899Z",
-    "panoramaImage": "/downloads/r.png",
+    "updatedAt": "2026-02-12T14:23:26.805Z",
+    "panoramaImage": "/downloads/Restaurante Silvestre.png",
     "translations": {
       "miniText": {}
     }
@@ -4533,8 +4533,8 @@
     ],
     "miniText": "Restaurant développant une cuisine ancrée dans les produits et les écosystèmes de la côte caraïbe colombienne. Celele travaille avec des producteurs, pêcheurs et fournisseurs locaux afin de valoriser des ingrédients régionaux, des pratiques artisanales et la biodiversité du territoire.",
     "createdAt": "2026-02-07T16:57:45.066Z",
-    "updatedAt": "2026-02-07T17:03:24.990Z",
-    "panoramaImage": "/downloads/c.png",
+    "updatedAt": "2026-02-12T15:12:45.858Z",
+    "panoramaImage": "/downloads/Celele.png",
     "translations": {
       "miniText": {}
     }
@@ -4625,8 +4625,8 @@
     ],
     "miniText": "Restaurant développant une approche centrée sur les produits brésiliens, les saisons et les circuits courts. Le lieu travaille avec des producteurs locaux et met en avant des ingrédients issus de l’agriculture régionale, valorisés à travers une cuisine ouverte et évolutive.",
     "createdAt": "2026-02-07T19:36:47.225Z",
-    "updatedAt": "2026-02-07T19:41:48.985Z",
-    "panoramaImage": "/downloads/b.png",
+    "updatedAt": "2026-02-12T14:52:59.349Z",
+    "panoramaImage": "/downloads/São Paulo | Corrutela.png",
     "translations": {
       "miniText": {}
     }
@@ -4671,8 +4671,8 @@
     ],
     "miniText": "Restaurant mettant en avant une cuisine ancrée dans les produits brésiliens et les savoir-faire culinaires locaux. Cuia travaille à partir d’ingrédients issus de producteurs régionaux et propose une carte qui évolue selon les saisons.",
     "createdAt": "2026-02-07T19:53:04.447Z",
-    "updatedAt": "2026-02-07T19:58:14.013Z",
-    "panoramaImage": "/downloads/c.png",
+    "updatedAt": "2026-02-12T15:17:11.260Z",
+    "panoramaImage": "/downloads/Cuia Café.png",
     "translations": {
       "miniText": {}
     }
@@ -4719,29 +4719,6 @@
     "createdAt": "2026-02-07T20:21:28.777Z",
     "updatedAt": "2026-02-07T20:28:17.709Z",
     "panoramaImage": "/downloads/c.png",
-    "translations": {
-      "miniText": {}
-    }
-  },
-  {
-    "id": "315f85f1-7eb8-428c-8a1b-14434afbbf32",
-    "name": "Coffee Lab",
-    "city": "São Paulo",
-    "address": "Rua Fernão Dias, 682 - Pinheiros, São Paulo - SP, 05427-001, Brésil",
-    "website": "https://www.coffeelab.com.br",
-    "lat": -23.567025,
-    "lng": -46.6957453,
-    "category": "Café",
-    "phone": "+55 11 99148-8052",
-    "openingHours": "samedi\t9h00–18h00\ndimanche\t9h00–18h00\nlundi\t9h00–18h00\nmardi\t9h00–18h00\nmercredi\t9h00–18h00\njeudi\t9h00–18h00\nvendredi\t9h00–18h00",
-    "timeZone": "America/Sao_Paulo",
-    "tags": [
-      "Café"
-    ],
-    "miniText": "Café travaillant en lien direct avec des producteurs brésiliens et met en avant des cafés de terroir torréfiés sur place. Le lieu accorde une attention particulière à la traçabilité, aux méthodes d’extraction et à la valorisation du travail agricole, avec une approche pédagogique autour du café et de ses origines.",
-    "createdAt": "2026-02-07T20:21:32.866Z",
-    "updatedAt": "2026-02-07T20:32:46.555Z",
-    "panoramaImage": "/downloads/d.png",
     "translations": {
       "miniText": {}
     }
@@ -4880,8 +4857,8 @@
     ],
     "miniText": "Restaurant développant une cuisine construite autour des écosystèmes du Pérou. Central travaille en lien direct avec des producteurs, agriculteurs et communautés situés à différentes altitudes, afin de valoriser la biodiversité et les savoirs alimentaires du territoire.",
     "createdAt": "2026-02-08T16:18:56.875Z",
-    "updatedAt": "2026-02-09T16:26:32.478Z",
-    "panoramaImage": "/downloads/r.png",
+    "updatedAt": "2026-02-12T14:28:39.390Z",
+    "panoramaImage": "/downloads/Lima | Central Restaurante.png",
     "translations": {
       "miniText": {}
     }
@@ -5971,12 +5948,12 @@
     "openingHours": "Mercredi 12h00-18h00\nJeudi 12h00-18h00\nVendredi 12h00-18h00\nSamedi 11h30-18h30\nDimanche Fermé\nLundi Fermé\nMardi 12h00-18h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-11T14:31:48.900Z",
-    "updatedAt": "2026-02-11T14:33:55.678Z",
+    "updatedAt": "2026-02-12T14:31:25.170Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Café-restaurant proposant une cuisine maison axée sur la saisonnalité et le travail des producteurs locaux. L’établissement met en valeur des produits locaux et biologiques, en adoptant des pratiques respectueuses de l’environnement telles que la gestion des circuits courts et la réduction des déchets.",
-    "panoramaImage": "/downloads/r.png"
+    "panoramaImage": "/downloads/Rennes | Les Récupérables .png"
   },
   {
     "id": "c3344503-16f0-48df-9814-149843337ce9",
