@@ -6117,5 +6117,25 @@
     ],
     "miniText": "Boulangerie fondée avec la volonté de proposer un pain sans gluten élaboré à partir de riz biologique. Transformant le riz en farine dans son propre moulin. Le projet repose sur la maîtrise de la filière, de la sélection du grain jusqu’à la panification, avec une production artisanale intégrée.",
     "panoramaImage": "/downloads/bou.png"
+  },
+  {
+    "id": "e41dc32c-113a-49be-be1e-d9d03bcedbaf",
+    "name": "Marché des Lices",
+    "city": "Rennes",
+    "address": "Place des Lices, 35000 Rennes, France",
+    "website": "https://www.tourisme-rennes.com/decouvrir-rennes/week-end/marche-des-lices-rennes-2/",
+    "lat": 48.112595,
+    "lng": -1.6848779,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 7h30–13h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-12T13:35:31.130Z",
+    "updatedAt": "2026-02-12T13:43:43.248Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché rassemblant des producteurs, artisans et commerçants majoritairement issus de Bretagne et des environs, proposant fruits et légumes de saison, produits laitiers, viandes, poissons, pains et spécialités régionales. Valorisant les productions locales et le lien direct avec les territoires agricoles bretons.",
+    "panoramaImage": "/downloads/rtr.png"
   }
 ]
