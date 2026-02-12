@@ -1584,12 +1584,12 @@
     "openingHours": "Lundi 12h00–15h00, 19h00–0h00\nMardi 12h00–15h00, 19h00–0h00\nMercredi 12h00–15h00, 19h00–0h00\nJeudi 12h00–15h00, 19h00–0h00\nVendredi 12h00–15h00, 19h00–0h00\nSamedi 12h00–15h00, 19h00–0h00\nDimanche 12h00–15h00, 19h00–0h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T17:37:51.325Z",
-    "updatedAt": "2026-02-02T18:47:20.366Z",
+    "updatedAt": "2026-02-12T20:51:59.778Z",
     "tags": [
       "Brasserie / Bar"
     ],
     "miniText": "Nouvelle Garde est un collectif de brasseries qui fait vivre la tradition française, avec une cuisine 100 % maison, des produits frais de saison et un engagement fort pour une restauration responsable et locale. Inspirées par l’art de vivre français, ses adresses défendent le patrimoine culinaire, valorisent les producteurs en circuit court et créent des lieux conviviaux où se croisent plaisir, qualité et authenticité.",
-    "panoramaImage": "/downloads/bras.png",
+    "panoramaImage": "/downloads/brasserie-vinatier.jpg",
     "translations": {
       "miniText": {}
     }
@@ -1653,12 +1653,12 @@
     "openingHours": "Lundi 9h30-00h00\nMardi 9h30-00h00\nMercredi 9h30-00h00\nJeudi 9h30-00h00\nVendredi 9h30-00h00\nSamedi 9h30-00h00\nDimanche 9h30-00h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-02T18:18:28.356Z",
-    "updatedAt": "2026-02-02T18:47:20.367Z",
+    "updatedAt": "2026-02-12T19:04:43.172Z",
     "tags": [
       "Brasserie / bar / pub"
     ],
     "miniText": "Nouvelle Garde est un collectif de brasseries qui fait vivre la tradition française, avec une cuisine 100 % maison, des produits frais de saison et un engagement fort pour une restauration responsable et locale. Inspirées par l’art de vivre français, ses adresses défendent le patrimoine culinaire, valorisent les producteurs en circuit court et créent des lieux conviviaux où se croisent plaisir, qualité et authenticité.",
-    "panoramaImage": "/downloads/mar.jpg",
+    "panoramaImage": "/downloads/brasserie-martin.png",
     "translations": {
       "miniText": {}
     }
@@ -2304,8 +2304,8 @@
       "restaurant"
     ],
     "createdAt": "2026-02-03T17:05:23.007Z",
-    "updatedAt": "2026-02-05T14:19:27.603Z",
-    "panoramaImage": "/downloads/blue.png",
+    "updatedAt": "2026-02-12T21:04:59.172Z",
+    "panoramaImage": "/downloads/blue-hill-stone-barns.avif",
     "translations": {
       "miniText": {}
     }
@@ -2415,12 +2415,12 @@
     "openingHours": "Lundi 9h00–12h30, 13h30–17h00\nMardi 9h00–12h30, 13h30–17h00\nMercredi 9h00–12h30\nJeudi 9h00–12h30, 13h30–17h00\nVendredi 9h00–12h30, 13h30–17h00\nSamedi Fermé\nDimanche Fermé",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-03T19:50:22.328Z",
-    "updatedAt": "2026-02-03T19:54:15.119Z",
+    "updatedAt": "2026-02-12T20:44:11.678Z",
     "tags": [
       "Atelier"
     ],
     "miniText": "Entreprise française qui développe, depuis son atelier d’Aubervilliers, des panneaux de matériaux durables fabriqués à partir de déchets plastiques auxquels une seconde vie est donnée, pour des usages d’agencement et de design.",
-    "panoramaImage": "/downloads/pav.jpg",
+    "panoramaImage": "/downloads/le-pave.png",
     "translations": {
       "miniText": {}
     }
@@ -2798,8 +2798,8 @@
       "circuit court"
     ],
     "createdAt": "2026-02-04T15:31:09.281Z",
-    "updatedAt": "2026-02-04T15:31:47.603Z",
-    "panoramaImage": "/downloads/mar.jpg",
+    "updatedAt": "2026-02-12T19:09:02.707Z",
+    "panoramaImage": "/downloads/fresh-city-farms.jpg",
     "translations": {
       "miniText": {}
     }
@@ -2812,18 +2812,17 @@
     "website": "https://www.raisetheroot.ca",
     "lat": 43.662746,
     "lng": -79.334219,
-    "category": "Marché",
+    "category": "Épicerie",
     "phone": "+1 416-466-7668",
     "openingHours": "lundi Fermé\nmardi 10h00–19h00\nmercredi 10h00–19h00\njeudi 10h00–19h00\nvendredi 10h00–19h00\nsamedi 9h30–18h00\ndimanche 9h30–18h00",
     "timeZone": "America/Toronto",
     "tags": [
-      "Épicerie",
-      "Marché"
+      "Épicerie"
     ],
     "miniText": "Marché privilégiant les producteurs locaux et régionaux, en mettant en avant une alimentation saine, accessible et ancrée dans son quartier. Le lieu s’inscrit dans une démarche de soutien à l’agriculture durable et à l’économie locale.",
     "createdAt": "2026-02-04T15:35:57.296Z",
-    "updatedAt": "2026-02-05T13:10:26.513Z",
-    "panoramaImage": "/downloads/mar.jpg",
+    "updatedAt": "2026-02-12T19:12:08.171Z",
+    "panoramaImage": "/downloads/raise-the-root-organic-market.jpg",
     "translations": {
       "miniText": {}
     }
@@ -3550,29 +3549,6 @@
     }
   },
   {
-    "id": "39d47ad1-a349-45a1-9ca4-6777385b79a2",
-    "name": "Village Market – Our Village Gardens",
-    "city": "Portland",
-    "address": "4632 N Trenton St, Portland, OR 97203, United States",
-    "website": "https://www.villagegardens.org/village-market",
-    "lat": 45.58835,
-    "lng": -122.71509,
-    "category": "Marché",
-    "phone": "+1 503-548-0374",
-    "openingHours": "Lundi 9h00–18h00\nMardi 9h00–18h00\nMercredi 9h00–18h00\nJeudi 9h00–18h00\nVendredi 9h00–18h00\nSamedi 9h00–21h00\nDimanche Fermé",
-    "timeZone": "America/Los_Angeles",
-    "tags": [
-      "Marché"
-    ],
-    "miniText": "Marché communautaire porté par l’organisation Our Village Gardens, proposant des produits alimentaires frais et locaux. Le lieu vise à améliorer l’accès à une alimentation saine et abordable dans le nord de Portland, en soutenant les producteurs régionaux et les initiatives alimentaires de quartier.",
-    "createdAt": "2026-02-05T15:00:05.090Z",
-    "updatedAt": "2026-02-05T15:03:19.240Z",
-    "panoramaImage": "/downloads/a.png",
-    "translations": {
-      "miniText": {}
-    }
-  },
-  {
     "id": "aa3620ad-406f-445c-bd1b-4b5132744b49",
     "name": "Arden",
     "city": "Portland",
@@ -3772,8 +3748,8 @@
       "Marché"
     ],
     "createdAt": "2026-02-05T16:43:43.819Z",
-    "updatedAt": "2026-02-05T16:50:13.488Z",
-    "panoramaImage": "/downloads/m.png",
+    "updatedAt": "2026-02-12T19:46:14.500Z",
+    "panoramaImage": "/downloads/ferry-plaza-farmers-market.png",
     "translations": {
       "miniText": {}
     }
@@ -3887,8 +3863,8 @@
     ],
     "miniText": "Brunch reconnu pour sa cuisine de saison élaborée à partir de produits locaux californiens. Plow travaille avec des fermes partenaires et met en avant des ingrédients frais et sourcés, préparés entièrement sur place.",
     "createdAt": "2026-02-05T18:10:54.570Z",
-    "updatedAt": "2026-02-05T18:14:21.166Z",
-    "panoramaImage": "/downloads/p.png",
+    "updatedAt": "2026-02-12T19:53:50.849Z",
+    "panoramaImage": "/downloads/plow.png",
     "translations": {
       "miniText": {}
     }
@@ -3956,8 +3932,8 @@
     ],
     "miniText": "Centre opérationnel dédié au recyclage textile, FABSCRAP collecte les déchets de tissu issus de marques, d’ateliers et d’entreprises new-yorkaises afin d’éviter leur enfouissement ou leur incinération. Le lieu constitue une infrastructure clé de l’économie circulaire textile locale, en traitant directement les flux de déchets de l’industrie de la mode.",
     "createdAt": "2026-02-05T18:52:14.146Z",
-    "updatedAt": "2026-02-05T18:56:22.900Z",
-    "panoramaImage": "/downloads/f.jpg",
+    "updatedAt": "2026-02-12T20:07:12.734Z",
+    "panoramaImage": "/downloads/fabscrap.png",
     "translations": {
       "miniText": {}
     }
@@ -4002,8 +3978,8 @@
     ],
     "miniText": "Centre de réemploi créatif dédié à l’économie circulaire. Le lieu fonctionne comme un atelier de transformation et de redistribution, mettant à disposition des matières réutilisées pour la création, l’artisanat et la fabrication locale. Il contribue à réduire les déchets envoyés en décharge tout en soutenant une production créative ancrée dans le territoire d’Austin.",
     "createdAt": "2026-02-05T19:12:57.475Z",
-    "updatedAt": "2026-02-05T19:15:25.861Z",
-    "panoramaImage": "/downloads/a.png",
+    "updatedAt": "2026-02-12T19:19:41.271Z",
+    "panoramaImage": "/downloads/austin-creative-reuse-center.png",
     "translations": {
       "miniText": {}
     }
@@ -4048,8 +4024,8 @@
       "Épicerie"
     ],
     "createdAt": "2026-02-05T19:35:26.699Z",
-    "updatedAt": "2026-02-05T19:41:54.760Z",
-    "panoramaImage": "/downloads/v.jpg",
+    "updatedAt": "2026-02-12T20:16:34.877Z",
+    "panoramaImage": "/downloads/verde-market.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4071,8 +4047,8 @@
       "Épicerie"
     ],
     "createdAt": "2026-02-05T19:39:54.463Z",
-    "updatedAt": "2026-02-05T19:41:54.760Z",
-    "panoramaImage": "/downloads/v.jpg",
+    "updatedAt": "2026-02-12T20:16:34.878Z",
+    "panoramaImage": "/downloads/verde-market.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4209,8 +4185,8 @@
       "Marché"
     ],
     "createdAt": "2026-02-06T18:11:58.324Z",
-    "updatedAt": "2026-02-06T18:17:04.086Z",
-    "panoramaImage": "/downloads/m.png",
+    "updatedAt": "2026-02-12T19:49:38.262Z",
+    "panoramaImage": "/downloads/mercado-la-ciudadela.png",
     "translations": {
       "miniText": {}
     }
@@ -4332,30 +4308,6 @@
     }
   },
   {
-    "id": "4fc437b8-891f-4e61-86f2-e9590693fab1",
-    "name": "Restaurante La Luna",
-    "city": "Nosara",
-    "address": "Playa Pelada, Nosara, Guanacaste Province, Costa Rica",
-    "website": "https://lalunanosara.com",
-    "lat": 9.9523,
-    "lng": -85.6721,
-    "phone": "+506 2682 0122",
-    "category": "Restaurant",
-    "openingHours": "vendredi 7h30–22h00\nsamedi 7h30–22h00\ndimanche 7h30–21h00\nlundi 7h30–22h00\nmardi 7h30–22h00\nmercredi 7h30–22h00\njeudi 7h30–22h00",
-    "timeZone": "America/Costa_Rica",
-    "tags": [
-      "Restaurant",
-      "Beachfront"
-    ],
-    "miniText": "Restaurant travaillant selon une approche de la ferme à la table, s'approvisionnant auprès de fermes locales et de la pêche artisanale pour proposer des plats construits autour des produits disponibles, avec une attention portée à la saisonnalité et à l’origine des ingrédients.",
-    "createdAt": "2026-02-06T19:26:59.855Z",
-    "updatedAt": "2026-02-06T19:36:43.780Z",
-    "panoramaImage": "/downloads/s.png",
-    "translations": {
-      "miniText": {}
-    }
-  },
-  {
     "id": "350e4bb8-ae52-4726-b2f9-4557e5bcb5c9",
     "name": "Restaurante Silvestre",
     "city": "San José",
@@ -4414,12 +4366,12 @@
     "openingHours": "Lundi 8h00-16h00\nMardi 8h00-16h00\nMercredi 8h00-16h00\nJeudi 8h00-16h00\nVendredi 8h00-16h00\nSamedi 8h00-16h00\nDimanche 8h00-16h00",
     "timeZone": "America/Costa_Rica",
     "createdAt": "2026-02-07T15:27:41.009Z",
-    "updatedAt": "2026-02-07T15:34:19.107Z",
+    "updatedAt": "2026-02-12T20:09:46.609Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine préparée à partir d’ingrédients cultivés sur place ou issus de fermes locales de la région de La Fortuna. Les plats mettent en avant la saisonnalité, la fraîcheur des produits et une approche directe entre production agricole et assiette.",
-    "panoramaImage": "/downloads/f.jpg",
+    "panoramaImage": "/downloads/la-finquita.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4460,12 +4412,12 @@
     "openingHours": "Lundi 0h00-23h59\nMardi 0h00-23h59\nMercredi 0h00-23h59\nJeudi 0h00-23h59\nVendredi 0h00-23h59\nSamedi 0h00-23h59\nDimanche 0h00-23h59",
     "timeZone": "America/Costa_Rica",
     "createdAt": "2026-02-07T15:48:09.322Z",
-    "updatedAt": "2026-02-07T15:51:42.536Z",
+    "updatedAt": "2026-02-12T19:31:12.466Z",
     "tags": [
       "Lieu de vie"
     ],
     "miniText": "Lieu combinant lodge, ferme régénérative et restauration. Le site développe une agriculture biologique et régénérative, utilisée au sein du restaurant. Avec une attention portée aux écosystèmes et à la relation entre habitat, alimentation et territoire.",
-    "panoramaImage": "/downloads/a.jpg",
+    "panoramaImage": "/downloads/finca-luna-nueva-lodge.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4556,8 +4508,8 @@
     ],
     "miniText": "Restaurant travaillant à partir de produits locaux colombiens, avec une attention portée à l’origine des ingrédients et aux circuits courts. Abasto collabore avec des producteurs et artisans alimentaires afin de proposer une cuisine de saison, des plats simples et une offre quotidienne ancrée dans le territoire.",
     "createdAt": "2026-02-07T17:05:38.646Z",
-    "updatedAt": "2026-02-07T17:15:59.825Z",
-    "panoramaImage": "/downloads/a.png",
+    "updatedAt": "2026-02-12T19:26:52.136Z",
+    "panoramaImage": "/downloads/abasto-usaquen.png",
     "translations": {
       "miniText": {}
     }
@@ -4602,8 +4554,8 @@
     ],
     "miniText": "Restaurant consacré à la valorisation de la diversité alimentaire colombienne, à travers une cuisine construite en lien direct avec les territoires, les produits et les savoir-faire locaux. Mini Mal collabore avec des producteurs et communautés pour préserver et transmettre des ingrédients, pratiques et traditions culinaires du pays.",
     "createdAt": "2026-02-07T18:13:39.059Z",
-    "updatedAt": "2026-02-07T19:14:17.667Z",
-    "panoramaImage": "/downloads/a.jpg",
+    "updatedAt": "2026-02-12T19:34:48.268Z",
+    "panoramaImage": "/downloads/mini-mal.png",
     "translations": {
       "miniText": {}
     }
@@ -4694,8 +4646,8 @@
     ],
     "miniText": "Restaurant végétarien proposant une cuisine élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux. Banana Verde met en avant les produits brésiliens, les légumes de saison et une approche attentive à l’origine des ingrédients.",
     "createdAt": "2026-02-07T20:02:51.234Z",
-    "updatedAt": "2026-02-07T20:07:36.702Z",
-    "panoramaImage": "/downloads/a.png",
+    "updatedAt": "2026-02-12T19:29:42.223Z",
+    "panoramaImage": "/downloads/banana-verde.png",
     "translations": {
       "miniText": {}
     }
@@ -4717,8 +4669,8 @@
     ],
     "miniText": "Café travaillant en lien direct avec des producteurs brésiliens et met en avant des cafés de terroir torréfiés sur place. Le lieu accorde une attention particulière à la traçabilité, aux méthodes d’extraction et à la valorisation du travail agricole, avec une approche pédagogique autour du café et de ses origines.",
     "createdAt": "2026-02-07T20:21:28.777Z",
-    "updatedAt": "2026-02-07T20:28:17.709Z",
-    "panoramaImage": "/downloads/c.png",
+    "updatedAt": "2026-02-12T15:34:36.831Z",
+    "panoramaImage": "/downloads/coffee-lab.png",
     "translations": {
       "miniText": {}
     }
@@ -4809,8 +4761,8 @@
     ],
     "miniText": "Producteur de crevettes à Teahupo’o, proposant des produits frais et surgelés. La ferme est active depuis 1981 et met en avant un élevage responsable, sans conservateurs, sans additifs.",
     "createdAt": "2026-02-07T21:31:39.543Z",
-    "updatedAt": "2026-02-07T21:33:11.315Z",
-    "panoramaImage": "/downloads/a.jpg",
+    "updatedAt": "2026-02-12T19:39:43.865Z",
+    "panoramaImage": "/downloads/aquapac.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4881,8 +4833,8 @@
     ],
     "miniText": "Lieu de vie combinant restaurant, hébergement et ferme biologique. El Albergue développe une production agricole sur place, incluant jardins, vergers et cultures alimentaires, utilisée directement au sein de sa cuisine. Le lieu s’inscrit dans une relation étroite entre agriculture, alimentation et accueil.",
     "createdAt": "2026-02-08T16:33:03.798Z",
-    "updatedAt": "2026-02-08T16:36:57.821Z",
-    "panoramaImage": "/downloads/a.jpg",
+    "updatedAt": "2026-02-12T19:41:19.000Z",
+    "panoramaImage": "/downloads/el-albergue.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4906,8 +4858,8 @@
     ],
     "miniText": "Lieu communautaire dédié à la préservation et à la transmission des savoir-faire textiles andins. Le centre rassemble des artisanes de la région de Chinchero qui travaillent le tissage traditionnel à partir de fibres locales et de teintures naturelles. Il fonctionne comme un espace de production, de formation et de partage, visant à maintenir vivantes les pratiques textiles ancestrales.",
     "createdAt": "2026-02-08T16:53:46.704Z",
-    "updatedAt": "2026-02-08T16:58:01.083Z",
-    "panoramaImage": "/downloads/p.png",
+    "updatedAt": "2026-02-12T19:56:19.845Z",
+    "panoramaImage": "/downloads/centro-textiles-tradicionales.png",
     "translations": {
       "miniText": {}
     }
@@ -5068,8 +5020,8 @@
     ],
     "miniText": "Restaurant travaillant à partir de produits locaux et biologiques provenant de fermes du Missouri et du Kansas. Les menus évoluent selon les saisons et les arrivages, avec une attention portée à la traçabilité des ingrédients, aux relations directes avec les producteurs et au respect du rythme agricole.",
     "createdAt": "2026-02-09T18:13:03.666Z",
-    "updatedAt": "2026-02-09T18:16:33.485Z",
-    "panoramaImage": "/downloads/blue.png",
+    "updatedAt": "2026-02-12T21:00:27.512Z",
+    "panoramaImage": "/downloads/blue-bird-bistro.png",
     "translations": {
       "miniText": {}
     }
@@ -5391,8 +5343,8 @@
     ],
     "miniText": "Restaurant proposant une cuisine construite autour de produits britanniques de saison, avec une attention portée à l’origine des ingrédients et au travail des producteurs locaux.",
     "createdAt": "2026-02-10T16:48:58.987Z",
-    "updatedAt": "2026-02-10T16:53:11.100Z",
-    "panoramaImage": "/downloads/s.png",
+    "updatedAt": "2026-02-12T20:35:40.587Z",
+    "panoramaImage": "/downloads/restaurant-story.jpeg",
     "translations": {
       "miniText": {}
     }
