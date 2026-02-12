@@ -6057,5 +6057,65 @@
     ],
     "panoramaImage": "/downloads/lil.png",
     "miniText": "Ancienne gare de marchandises réhabilitée en espace culturel et lieu de vie. La Gare Saint Sauveur accueille expositions, concerts, projections, événements et espaces de restauration dans une dynamique ouverte et accessible, au cœur de Lille. Un site emblématique mêlant patrimoine industriel et création contemporaine."
+  },
+  {
+    "id": "f979c7b1-7983-48b2-99ca-acc0de91630d",
+    "name": "Le Bricheton",
+    "city": "Paris",
+    "address": "50 Rue de la Réunion, 75020 Paris, France",
+    "website": "https://www.instagram.com/lebricheton/?hl=fr",
+    "lat": 48.8553466,
+    "lng": 2.4015893,
+    "category": "Boulangerie",
+    "phone": "",
+    "openingHours": "Mardi 16h00–20h00\nMercredi 16h00–20h00\nJeudi 16h00–20h00\nVendredi 16h00–20h00\nSamedi 16h00–20h00\nDimanche 10h30–13h00\nLundi Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-12T12:54:39.693Z",
+    "updatedAt": "2026-02-12T12:59:12.998Z",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie cultivant et transformant des blés anciens issus de Seine-et-Marne pour produire son propre pain. Le projet s’inscrit dans une logique de maîtrise de la filière, du grain au pain, avec une attention particulière portée aux variétés anciennes et aux méthodes traditionnelles de panification.",
+    "panoramaImage": "/downloads/bo.png"
+  },
+  {
+    "id": "d15268fc-e7e5-4cb5-b975-d7d52afc01eb",
+    "name": "La Ferme des 7 Chemins",
+    "city": "Plessé",
+    "address": "4 Le Bas Gué, 44630 Le Dresny à Plessé, France",
+    "website": "https://www.lafermedes7chemins.fr",
+    "lat": 47.541642,
+    "lng": -1.882214,
+    "category": "Ferme",
+    "phone": "+33 6 52 52 64 59",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 16h30–19h00\nSamedi 10h00–12h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-12T13:08:06.616Z",
+    "updatedAt": "2026-02-12T13:12:50.298Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme en agriculture biologique produisant du lait, élevant des porcs et cultivant des fruits et légumes. La Ferme des 7 Chemins développe une activité de polyculture-élevage où les différentes productions coexistent sur une même exploitation. Les produits sont issus de la ferme et proposés en vente directe, dans une logique de circuit court et d’ancrage local.",
+    "panoramaImage": "/downloads/fer.png"
+  },
+  {
+    "id": "0057497c-3fe3-49ba-8bbf-53698127efdd",
+    "name": "Boulangerie Chambelland",
+    "city": "Paris",
+    "address": "14 Rue Ternaux, 75011 Paris, France",
+    "website": "https://www.chambelland.com",
+    "lat": 48.8644193,
+    "lng": 2.3733822,
+    "category": "Boulangerie",
+    "phone": "+33 1 43 55 07 30",
+    "openingHours": "Lundi 8h30–19h30\nMardi 8h30–19h30\nMercredi 8h30–19h30\nJeudi 8h30–19h30\nVendredi 8h30–19h30\nSamedi 8h30–19h30\nDimanche 9h00–18h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-12T13:22:28.531Z",
+    "updatedAt": "2026-02-12T13:24:25.781Z",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie fondée avec la volonté de proposer un pain sans gluten élaboré à partir de riz biologique. Transformant le riz en farine dans son propre moulin. Le projet repose sur la maîtrise de la filière, de la sélection du grain jusqu’à la panification, avec une production artisanale intégrée.",
+    "panoramaImage": "/downloads/bou.png"
   }
 ]
