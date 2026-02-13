@@ -6718,5 +6718,84 @@
     ],
     "miniText": "Épicerie collaborant directement avec agriculteurs et producteurs locaux de Campanie pour offrir des fruits, légumes et produits naturels biologiques. L’activité promeut une alimentation saine, éthique et accessible, avec une attention particulière à la saisonnalité, à la territorialité des productions et aux emballages recyclables.",
     "panoramaImage": "/downloads/ortoin.jpg"
+  },
+  {
+    "id": "720aa53c-e515-4f1f-bbf7-90efc42605ff",
+    "name": "Fermier Restaurant",
+    "city": "Pretoria",
+    "address": "141 Lynnwood Rd, The Willows 340-Jr, Pretoria, Afrique du Sud",
+    "website": "http://www.fermierrestaurant.com",
+    "lat": -25.76730742147436,
+    "lng": 28.315554835582194,
+    "category": "Restaurant",
+    "phone": "+27 76 072 5261",
+    "openingHours": "Mardi 18h45–22h00\nMercredi 18h45–22h00\nJeudi 18h45–22h00\nVendredi 18h45–22h00\nSamedi 18h45–22h00\nDimanche Fermé\nLundi Fermé",
+    "timeZone": "Africa/Johannesburg",
+    "createdAt": "2026-02-13T23:03:57.434Z",
+    "updatedAt": "2026-02-13T23:11:45.145Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant conçu comme un écosystème autonome, intégrant production agricole, élevage et transformation dans une logique de saisonnalité et de responsabilité environnementale. Fermier travaille en lien direct avec des producteurs partageant la même philosophie, utilisant des matériaux et savoir-faire locaux jusque dans la construction et l’artisanat du lieu.",
+    "panoramaImage": "/downloads/fermierrest.png"
+  },
+  {
+    "id": "ceee7240-1f6f-45c8-ad4c-7b3f1b514d47",
+    "name": "Greenhouse Restaurant",
+    "city": "Paarl",
+    "address": "Babylonstoren, Klapmuts–Simondium Rd, près de Paarl, Western Cape, Afrique du Sud",
+    "website": "https://babylonstoren.com/greenhouse",
+    "lat": -33.825473904890984,
+    "lng": 18.924158195102645,
+    "category": "Restaurant",
+    "phone": "+27 21 863 3852",
+    "openingHours": "Lundi 9h00–18h00\nMardi 9h00–18h00\nMercredi 9h00–18h00\nJeudi 9h00–18h00\nVendredi 9h00–18h00\nSamedi 9h00–18h00\nDimanche 9h00–18h00",
+    "timeZone": "Africa/Johannesburg",
+    "createdAt": "2026-02-13T23:28:21.594Z",
+    "updatedAt": "2026-02-13T23:31:23.211Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant situé au cœur du domaine Babylonstoren, proposant une cuisine élaborée à partir des fruits, légumes et herbes cultivés sur place, centrée sur la saisonnalité, la récolte quotidienne du potager et la valorisation directe des produits du domaine.",
+    "panoramaImage": "/downloads/babylonr.png"
+  },
+  {
+    "id": "c8cc88a6-45bd-44ae-a0ba-082e115e4acd",
+    "name": "Goedgedacht Trust",
+    "city": "Malmesbury",
+    "address": "Goedgedacht Farm, Riebeeksrivier Rd, Malmesbury, 7300, Afrique du Sud",
+    "website": "https://www.goedgedacht.org",
+    "lat": -33.38093173423842,
+    "lng": 18.84804015092462,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "openingHours": "Lundi 8h00–16h00\nMardi 8h00–16h00\nMercredi 8h00–16h00\nJeudi 8h00–16h00\nVendredi 8h00–16h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Africa/Johannesburg",
+    "createdAt": "2026-02-13T23:36:02.010Z",
+    "updatedAt": "2026-02-13T23:38:13.293Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant agriculture locale, développement communautaire et programmes éducatifs. Le lieu met en lien production agricole et initiatives sociales afin de renforcer l’autonomie et la résilience des communautés rurales. En accompagnant les enfants et les jeunes adultes.",
+    "panoramaImage": "/downloads/Goedgedacht.jpg"
+  },
+  {
+    "id": "8716c188-1c86-4290-a6be-bc2e4671b78f",
+    "name": "Livingseeds Heirloom Seeds",
+    "city": "Klipview",
+    "address": "26 Herring Rd, Klipview, 1962, Afrique du Sud",
+    "website": "https://www.livingseeds.co.za",
+    "lat": -26.47609292815009,
+    "lng": 28.0512037644178,
+    "category": "Ferme",
+    "phone": "+27 16 100 0824",
+    "openingHours": "Lundi 9h00–16h00\nMardi 9h00–16h00\nMercredi 9h00–16h00\nJeudi 9h00–16h00\nVendredi 9h00–16h00\nSamedi 9h00–14h00\nDimanche Fermé",
+    "timeZone": "Africa/Johannesburg",
+    "createdAt": "2026-02-13T23:41:41.263Z",
+    "updatedAt": "2026-02-13T23:41:41.265Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme spécialisée dans la conservation et la production de semences anciennes. Livingseeds travaille à la préservation de variétés potagères traditionnelles, à la multiplication locale de semences et à la transmission de savoir-faire agricoles favorisant l’autonomie alimentaire."
   }
 ]
