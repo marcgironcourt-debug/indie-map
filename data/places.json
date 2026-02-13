@@ -6299,5 +6299,25 @@
     "createdAt": "2026-02-13T17:55:12.488Z",
     "updatedAt": "2026-02-13T17:55:31.668Z",
     "panoramaImage": "/downloads/kosturica.jpg"
+  },
+  {
+    "id": "1e8fe209-50db-494c-808f-93e4abb0644a",
+    "name": "Mercado de Productores",
+    "city": "Madrid",
+    "address": "Avenida del Planetario & C. Meneses, Arganzuela, 28045 Madrid, Espagne",
+    "website": "https://mercadoproductores.es",
+    "lat": 40.39545692234216,
+    "lng": -3.6823940693151576,
+    "category": "Marché",
+    "phone": "+34 622 25 58 51",
+    "openingHours": "Dimanche 10h00–16h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé",
+    "timeZone": "Europe/Madrid",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "",
+    "createdAt": "2026-02-13T18:03:38.489Z",
+    "updatedAt": "2026-02-13T18:08:13.481Z",
+    "panoramaImage": "/downloads/mercado.png"
   }
 ]
