@@ -6518,5 +6518,85 @@
     ],
     "miniText": "Épicerie proposant une sélection de produits alimentaires responsables, durables, biologiques, le tout avec le moins d\\u0027emballages possible. Mettant l’accent sur la qualité, la transparence et des filières respectueuses, en favorisant des producteurs engagés et des circuits plus responsables.",
     "panoramaImage": "/downloads/dersache.jpg"
+  },
+  {
+    "id": "8bbce4fb-f0a1-42fd-8563-bb1a286ad0e7",
+    "name": "Trattoria Pennestri",
+    "city": "Rome",
+    "address": "Via Giovanni da Empoli, 5, 00154 Roma RM, Italie",
+    "website": "https://trattoriapennestri.it",
+    "lat": 41.87347260059401,
+    "lng": 12.479716093253407,
+    "category": "Restaurant",
+    "phone": "+39 06 574 2418",
+    "openingHours": "Vendredi 12h00-15h00, 19h00-23h00\nSamedi 12h00-15h00, 19h00-23h00\nDimanche 12h00-15h00, 19h00-23h00\nLundi Fermé\nMardi 19h00-23h00\nMercredi 19h00-23h00\nJeudi 19h00-23h00",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T20:47:42.129Z",
+    "updatedAt": "2026-02-13T20:50:25.094Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine saisonnière élaborée à partir de produits issus de producteurs régionaux identifiés. Mettant en avant des légumes de saison et des filières artisanales locales. La carte évolue selon les disponibilités agricoles et privilégie une approche contemporaine ancrée dans le territoire.",
+    "panoramaImage": "/downloads/pennestri.jpg"
+  },
+  {
+    "id": "c9b37249-6fb6-4b90-8abf-ccc019cd7036",
+    "name": "SantoPalato",
+    "city": "Rome",
+    "address": "Via Gallia, 28, 00183 Roma RM, Italie",
+    "website": "https://www.santopalatoroma.it",
+    "lat": 41.88155930656094,
+    "lng": 12.501485264417806,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "Vendredi 12h30-14h30, 19h30-22h00\nSamedi 12h30-14h30, 19h30-22h00\nDimanche 12h30-15h00\nLundi 12h30-14h30, 19h30-22h00\nMardi 12h30-14h30, 19h30-22h00\nMercredi 12h30-14h30, 19h30-22h00\nJeudi 12h30-14h30, 19h30-22h00",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T20:55:37.295Z",
+    "updatedAt": "2026-02-13T20:57:44.428Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Trattoria mettant à l’honneur les recettes traditionnelles et les produits issus de producteurs régionaux identifiés. SantoPalato valorise les abats, les légumes de saison et les matières premières locales, avec une carte courte évoluant selon les disponibilités agricoles et une approche ancrée dans le territoire.",
+    "panoramaImage": "/downloads/santopala.png"
+  },
+  {
+    "id": "c0af76ca-3ae5-4fbc-9153-02d7f79d8b47",
+    "name": "Città dell'Altra Economia",
+    "city": "Rome",
+    "address": "Largo Dino Frisullo, snc, 00153 Roma RM, Italie",
+    "website": "https://www.cittadellaltraeconomia.org",
+    "lat": 41.874987219705226,
+    "lng": 12.472994164417798,
+    "category": "Lieu alternatif",
+    "phone": "+39 06 575 8272",
+    "openingHours": "Vendredi 7h30-0h00\nSamedi 7h30-0h00\nDimanche 7h30-0h00\nLundi Fermé\nMardi 7h30-0h00\nMercredi 7h30-0h00\nJeudi 7h30-0h00",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T21:02:41.184Z",
+    "updatedAt": "2026-02-13T21:12:09.688Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Centre dédié à la promotion de l’économie alternative et solidaire, situé dans l’ancien complexe industriel de Testaccio. Città dell'Altra Economia accueille initiatives liées à l’agriculture biologique, au commerce équitable, à la durabilité environnementale et à l’innovation sociale, ainsi que des événements culturels et associatifs.",
+    "panoramaImage": "/downloads/citta.png"
+  },
+  {
+    "id": "12c8b90e-6964-4945-95d6-0d8977120404",
+    "name": "Campagna Amica Market",
+    "city": "Rome",
+    "address": "Via di S. Teodoro, 74, 00186 Roma RM, Italie",
+    "website": "https://mercatocircomassimo.campagnamica.it",
+    "lat": 41.88897620068507,
+    "lng": 12.483341406746593,
+    "category": "Marché",
+    "phone": "+39 06 4888 8963",
+    "openingHours": "Vendredi Fermé\nSamedi 8h00-15h00\nDimanche 8h00-15h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T21:15:13.626Z",
+    "updatedAt": "2026-02-13T21:19:51.505Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché de producteurs locaux vendant directement leurs fruits, légumes et produits fermiers. Le marché met en avant la saisonnalité, la traçabilité et le circuit court, avec une relation directe entre producteurs locaux et consommateurs.",
+    "panoramaImage": "/downloads/merccampa.png"
   }
 ]
