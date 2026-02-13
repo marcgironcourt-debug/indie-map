@@ -6020,5 +6020,125 @@
     ],
     "miniText": "Marché rassemblant des producteurs, artisans et commerçants majoritairement issus de Bretagne et des environs, proposant fruits et légumes de saison, produits laitiers, viandes, poissons, pains et spécialités régionales. Valorisant les productions locales et le lien direct avec les territoires agricoles bretons.",
     "panoramaImage": "/downloads/rtr.png"
+  },
+  {
+    "id": "03fb0246-dba8-4f0f-aa99-8697bb8a637d",
+    "name": "Flourish at Glenavon Farm",
+    "city": "Bristol",
+    "address": "Glenavon Farm, Bath Rd, Saltford, Bristol BS31 3TJ, Royaume-Uni",
+    "website": "https://www.flourish-group.co.uk",
+    "lat": 51.4056356,
+    "lng": -2.4592685,
+    "category": "Lieu alternatif",
+    "phone": "+44 1225 536644",
+    "openingHours": "Lundi 8h00-18h00\nMardi 8h00-18h00\nMercredi 8h00-18h00\nJeudi 8h00-18h00\nVendredi 8h00-18h00\nSamedi 8h00-18h00\nDimanche 9h00-16h00",
+    "timeZone": "Europe/London",
+    "createdAt": "2026-02-13T14:36:13.105Z",
+    "updatedAt": "2026-02-13T14:39:59.513Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif installé mêlant agriculture régénérative, inclusion sociale et restauration locale. Flourish développe des projets autour de la formation et du lien communautaire, tout en cultivant et valorisant des produits issus de la ferme et de producteurs locaux. Le lieu accueille un café et des espaces ouverts au public, ancrés dans une démarche sociale et territoriale.",
+    "panoramaImage": "/downloads/Flourish-at-Glenavon.png"
+  },
+  {
+    "id": "cf9a0bfb-d381-4b09-9461-f16747ac001f",
+    "name": "Le Paysan Urbain",
+    "city": "Marseille",
+    "address": "20 Bd Madeleine Rémusat, 13013 Marseille, France",
+    "website": "https://lepaysanurbain.fr/marseille/",
+    "lat": 43.3317574,
+    "lng": 5.4244086,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "openingHours": "Lundi 9h00-17h00\nMardi 9h00-17h00\nMercredi 9h00-17h00\nJeudi 9h00-17h00\nVendredi 9h00-17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T15:06:46.595Z",
+    "updatedAt": "2026-02-13T15:08:53.664Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif développant une agriculture en plein cœur de Marseille. Le Paysan Urbain cultive des micro pousses destinés aux circuits courts, tout en portant un projet d’insertion et de formation autour des métiers agricoles urbains. Le lieu s’inscrit dans une démarche sociale, environnementale et territoriale.",
+    "panoramaImage": "/downloads/Le-Paysan-Urbain.png"
+  },
+  {
+    "id": "731ee23e-1d8a-4042-995c-5e7b7df48aff",
+    "name": "Ferme du Roy d'Espagne",
+    "city": "Marseille",
+    "address": "Rue Jules Rimet, 13009 Marseille, France",
+    "website": "https://www.fermeduroydespagne.org",
+    "lat": 43.2446962,
+    "lng": 5.4038163,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 16h00-18h00\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-12h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T15:14:22.148Z",
+    "updatedAt": "2026-02-13T15:17:13.291Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une production agricole en lien avec le territoire et les habitants. La ferme propose des temps pédagogiques et une vente directe de produits issus de ses cultures, dans une démarche de proximité, de transmission et d’agriculture responsable.",
+    "panoramaImage": "/downloads/ferme-roy.png"
+  },
+  {
+    "id": "1ad7b9df-686d-4af7-9882-ae7b8bf44e4d",
+    "name": "Les Jardins de Cidamos",
+    "city": "Fontvieille",
+    "address": "Route de l'Aqueduc, 13990 Fontvieille, France",
+    "website": "http://www.jardinsdecidamos.com",
+    "lat": 43.703248636104824,
+    "lng": 4.725844535582197,
+    "category": "Ferme",
+    "phone": "+33 6 20 10 13 91",
+    "openingHours": "Lundi Fermé\nMardi 10h00-12h00, 16h00-19h00\nMercredi 10h00-12h00\nJeudi 10h00-12h00\nVendredi 10h00-12h00, 16h00-19h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T15:24:00.028Z",
+    "updatedAt": "2026-02-13T15:24:25.435Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une production agricole locale en lien avec le territoire. Les Jardins de Cidamos cultivent des fruits et légumes destinés à la vente directe, dans une démarche de proximité, de saisonnalité et d’agriculture responsable.",
+    "panoramaImage": "/downloads/jardins-de-cidmos.jpg"
+  },
+  {
+    "id": "116025d4-635c-442c-9283-4c4effa8a870",
+    "name": "Bière de la Plaine",
+    "city": "Marseille",
+    "address": "49 Rue des 3 Frères Barthélémy, 13006 Marseille, France",
+    "website": "https://www.brasseriedelaplaine.fr",
+    "lat": 43.29360696171985,
+    "lng": 5.3863344932534085,
+    "category": "Brasserie / bar / pub",
+    "phone": "+33 4 91 47 32 54",
+    "openingHours": "Lundi Fermé\nMardi 15h00-19h30\nMercredi 15h00-19h30\nJeudi 15h00-19h30\nVendredi 15h00-19h30\nSamedi 15h00-19h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T15:29:08.385Z",
+    "updatedAt": "2026-02-13T15:45:50.656Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ],
+    "miniText": "Microbrasserie engagée dans une production artisanale et biologique. Privilégiant les petits producteurs bio, locaux et artisanaux. La brasserie s’inscrit également dans une logique d’économie circulaire, notamment par la valorisation de ses drêches en alimentation animale.",
+    "panoramaImage": "/downloads/biere-de-plaine.png"
+  },
+  {
+    "id": "7123619e-0b20-414f-b967-5e52ca10ada0",
+    "name": "La bonne épicerie",
+    "city": "Marseille",
+    "address": "103 Boulevard Notre Dame, 13006 Marseille, France",
+    "website": "https://www.facebook.com/labonneepicerie/?locale=fr_FR",
+    "lat": 43.28538552092509,
+    "lng": 5.3747157779109855,
+    "category": "Épicerie",
+    "phone": "+33 9 86 42 05 18",
+    "openingHours": "Lundi 9h00-13h00, 15h00-19h45\nMardi 9h00-13h00, 15h00-19h45\nMercredi 9h00-13h00, 15h00-19h45\nJeudi 9h00-13h00, 15h00-19h45\nVendredi 9h00-13h00, 15h00-19h45\nSamedi 9h00-19h45\nDimanche 9h00-13h00, 16h00-19h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T15:49:52.402Z",
+    "updatedAt": "2026-02-13T15:53:40.022Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie de quartier proposant une alimentation générale composée exclusivement de produits locaux, saisonniers, issus de l’agriculture biologique et de qualité. Le lieu met en avant un approvisionnement de proximité et des producteurs engagés.",
+    "panoramaImage": "/downloads/la-bonne.jpg"
   }
 ]
