@@ -6598,5 +6598,65 @@
     ],
     "miniText": "Marché de producteurs locaux vendant directement leurs fruits, légumes et produits fermiers. Le marché met en avant la saisonnalité, la traçabilité et le circuit court, avec une relation directe entre producteurs locaux et consommateurs.",
     "panoramaImage": "/downloads/merccampa.png"
+  },
+  {
+    "id": "0bcd0755-3806-45b3-a0d9-15ea7cafdbf1",
+    "name": "Ristorante Erba Brusca",
+    "city": "Milano",
+    "address": "Alzaia Naviglio Pavese, 286, 20142 Milano MI, Italie",
+    "website": "https://erbabrusca.it/",
+    "lat": 45.42305877416798,
+    "lng": 9.167448379760227,
+    "category": "Restaurant",
+    "phone": "+39 351 516 6021",
+    "openingHours": "Vendredi 19h30–23h00\nSamedi 12h30–15h00, 19h30–23h00\nDimanche 12h00–15h30, 19h30–23h00\nLundi 19h30–23h00\nMardi 19h30–23h00\nMercredi 19h30–23h00\nJeudi 19h30–23h00",
+    "timeZone": "Europe/Rome",
+    "miniText": "Restaurant travaillant une cuisine de saison étroitement liée à son potager. Mettant en avant des légumes, herbes et fleurs cultivés sur place, complétés par des produits issus de producteurs locaux, dans une approche centrée sur la saisonnalité et le respect des ingrédients.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-13T21:34:20.339Z",
+    "updatedAt": "2026-02-13T21:39:26.872Z",
+    "panoramaImage": "/downloads/erbab.png"
+  },
+  {
+    "id": "0af17e63-0743-4d36-8c2a-100b58315420",
+    "name": "Cascina Cuccagna",
+    "city": "Milano",
+    "address": "Via Privata Cuccagna, 2/4, 20135 Milano MI, Italie",
+    "website": "https://www.cuccagna.org",
+    "lat": 45.45121345574668,
+    "lng": 9.2115323644178,
+    "category": "Lieu alternatif",
+    "phone": "+39 02 8342 1007",
+    "openingHours": "Vendredi 9h00–0h00\nSamedi 9h00–1h00\nDimanche 9h00–1h00\nLundi 9h00–1h00\nMardi 9h00–1h00\nMercredi 9h00–1h00\nJeudi 9h00–1h00",
+    "timeZone": "Europe/Rome",
+    "miniText": "Lieu alternatif mêlant agriculture urbaine, restauration, marchés de producteurs et initiatives culturelles. Le site accueille des projets liés à l’alimentation durable, aux circuits courts et à la vie communautaire, au cœur d’un ancien domaine agricole réhabilité.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-13T21:43:25.461Z",
+    "updatedAt": "2026-02-13T21:43:45.456Z",
+    "panoramaImage": "/downloads/cuccagna.jpg"
+  },
+  {
+    "id": "dadafac8-96b2-4afc-b253-061ee7afed9e",
+    "name": "Cascina Nascosta",
+    "city": "Milano",
+    "address": "Viale Emilio Alemagna, 14, 20121 Milano MI, Italie",
+    "website": "https://cascinanascosta.org",
+    "lat": 45.47383519852646,
+    "lng": 9.172539606746593,
+    "category": "Lieu alternatif",
+    "phone": "+39 340 675 5196",
+    "openingHours": "Vendredi 9h00–23h30\nSamedi 9h00–23h30\nDimanche 9h00–16h00\nLundi Fermé\nMardi 9h00–23h30\nMercredi 9h00–23h30\nJeudi 9h00–23h30",
+    "timeZone": "Europe/Rome",
+    "miniText": "Lieu alternatif mêlant café-restauration, projets associatifs et initiatives autour de l’écologie urbaine. Cascina Nascosta accueille des activités culturelles et communautaires, avec une programmation et des partenariats orientés vers la durabilité et la vie locale.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-13T21:46:28.481Z",
+    "updatedAt": "2026-02-13T21:48:14.209Z",
+    "panoramaImage": "/downloads/cascina.png"
   }
 ]
