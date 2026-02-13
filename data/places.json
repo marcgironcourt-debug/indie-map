@@ -6319,5 +6319,104 @@
     "createdAt": "2026-02-13T18:03:38.489Z",
     "updatedAt": "2026-02-13T18:08:13.481Z",
     "panoramaImage": "/downloads/mercado.png"
+  },
+  {
+    "id": "4b9d5c98-e9fc-4513-8a5b-dc231dcbf9fe",
+    "name": "Nobelhart & Schmutzig",
+    "city": "Berlin",
+    "address": "Friedrichstraße 218, 10969 Berlin, Allemagne",
+    "website": "https://nobelhartundschmutzig.com",
+    "lat": 52.505454448997185,
+    "lng": 13.390412435582197,
+    "category": "restaurant",
+    "phone": "+49 30 25940610",
+    "openingHours": "Vendredi 18h00-0h00\nSamedi 18h00-0h00\nDimanche Fermé\nLundi Fermé\nMardi 18h00-0h00\nMercredi 18h00-0h00\nJeudi 18h00-0h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T18:21:06.158Z",
+    "updatedAt": "2026-02-13T18:25:23.920Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant travaillant exclusivement avec des producteurs de la région Berlin. Construisant ses menus autour des saisons et des ingrédients disponibles localement, avec une transparence sur l’origine des produits et une volonté de valoriser le terroir régional.",
+    "panoramaImage": "/downloads/nobelhart.png"
+  },
+  {
+    "id": "5cbb3b7d-9e17-4ace-9b8d-b92330fa91af",
+    "name": "Lokal",
+    "city": "Berlin",
+    "address": "Linienstraße 160, 10115 Berlin, Allemagne",
+    "website": "https://www.lokal-berlinmitte.de",
+    "lat": 52.52800631583691,
+    "lng": 13.394817150924618,
+    "category": "restaurant",
+    "phone": "+49 30 28449500",
+    "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche Fermé\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T18:29:56.612Z",
+    "updatedAt": "2026-02-13T18:33:28.436Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant mettant l’accent sur une cuisine allemande de saison, élaborée à partir de produits régionaux. Lokal travaille en lien avec des producteurs locaux et construit ses menus autour des disponibilités du moment, dans une approche centrée sur la qualité des ingrédients et le terroir.",
+    "panoramaImage": "/downloads/lokalb.png"
+  },
+  {
+    "id": "6d3b5e97-0b52-4639-9af9-b76e8567e387",
+    "name": "Jolesch",
+    "city": "Berlin",
+    "address": "Muskauer Str. 1, 10997 Berlin, Allemagne",
+    "website": "https://jolesch.de",
+    "lat": 52.500836498958996,
+    "lng": 13.434017793253407,
+    "category": "restaurant",
+    "phone": "+49 30 6123581",
+    "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche 17h00-0h00\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T18:36:06.345Z",
+    "updatedAt": "2026-02-13T18:38:53.382Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/jolesch.jpg"
+  },
+  {
+    "id": "e8876c96-e5f8-4223-8976-cb5de3fee217",
+    "name": "Jolesch",
+    "city": "Berlin",
+    "address": "Muskauer Str. 1, 10997 Berlin, Allemagne",
+    "website": "https://jolesch.de",
+    "lat": 52.500836498958996,
+    "lng": 13.434017793253407,
+    "category": "restaurant",
+    "phone": "+49 30 6123581",
+    "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche 17h00-0h00\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T18:37:53.389Z",
+    "updatedAt": "2026-02-13T18:37:53.389Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine autrichienne traditionnelle, mettant à l’honneur des produits artisanaux et locaux. Jolesch valorise une approche authentique, centrée sur la qualité des ingrédients et le respect des recettes traditionnelles."
+  },
+  {
+    "id": "282567e9-02ca-4af7-a019-a7263d28ad9a",
+    "name": "Michelberger",
+    "city": "Berlin",
+    "address": "Warschauer Str. 39-40, 10243 Berlin, Allemagne",
+    "website": "https://www.michelbergerhotel.com/en/food-and-drink/",
+    "lat": 52.504586851018196,
+    "lng": 13.447889940474187,
+    "category": "restaurant",
+    "phone": "+49 30 297785924",
+    "openingHours": "Vendredi 7h00-11h00, 12h00-14h00, 17h30-23h00\nSamedi 7h00-14h00, 17h30-23h00\nDimanche 7h00-15h00\nLundi 7h00-11h00, 12h00-14h00\nMardi 7h00-11h00, 12h00-14h00, 17h30-23h00\nMercredi 7h00-11h00, 12h00-14h00, 17h30-23h00\nJeudi 7h00-11h00, 12h00-14h00, 17h30-23h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T18:42:15.909Z",
+    "updatedAt": "2026-02-13T18:44:10.715Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison axée sur des produits locaux. La carte évolue selon les récoltes et met en avant des ingrédients issus de fermes régionales, avec une approche centrée sur la qualité et le respect du produit.",
+    "panoramaImage": "/downloads/michelber.png"
   }
 ]
