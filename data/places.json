@@ -6219,5 +6219,85 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison mettant en avant des produits frais et une sélection de vins naturels. L’établissement s’inscrit dans une approche conviviale et indépendante, avec une attention portée aux producteurs et aux matières premières."
+  },
+  {
+    "id": "66f8e0b2-d9aa-46c3-846c-270ea01798c4",
+    "name": "Can Masdeu",
+    "city": "Barcelona",
+    "address": "Camí Sant Llàtzer, 12, Nou Barris, 08035 Barcelona, Espagne",
+    "website": "https://canmasdeu.net/",
+    "lat": 41.44595922698417,
+    "lng": 2.1572729932534074,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 16h00-21h00\nVendredi Fermé\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Madrid",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant jardins collectifs, production maraîchère et activités culturelles. Le lieu fonctionne comme un espace autogéré mêlant agriculture urbaine, ateliers, événements et initiatives locales autour de l’écologie et de l’autonomie alimentaire.",
+    "createdAt": "2026-02-13T17:35:43.702Z",
+    "updatedAt": "2026-02-13T17:39:42.663Z",
+    "panoramaImage": "/downloads/masdeu.png"
+  },
+  {
+    "id": "9f3ff907-177a-4fe2-b7df-f0713a0c8ba5",
+    "name": "Rasoterra",
+    "city": "Barcelona",
+    "address": "Carrer del Palau, 5, Ciutat Vella, 08002 Barcelona, Espagne",
+    "website": "https://www.rasoterra.cat",
+    "lat": 41.381365852857996,
+    "lng": 2.178170650924618,
+    "category": "Restaurant",
+    "phone": "+34 933 18 69 26",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 19h30-23h00\nJeudi 19h30-23h00\nVendredi 19h30-23h00\nSamedi 13h00-16h00\nSamedi 19h30-23h00\nDimanche 13h00-16h00",
+    "timeZone": "Europe/Madrid",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant vegan proposant une cuisine de saison élaborée à partir de produits biologiques et locaux. Mettant en avant les circuits courts, une sélection de vins naturels et une approche engagée autour de l’alimentation durable et du respect des producteurs.",
+    "createdAt": "2026-02-13T17:43:33.271Z",
+    "updatedAt": "2026-02-13T17:46:49.769Z",
+    "panoramaImage": "/downloads/rasoterra.png"
+  },
+  {
+    "id": "c0ef0192-af85-4861-819f-e5a76a91602d",
+    "name": "Thinking MU Rosselló Store",
+    "city": "Barcelona",
+    "address": "Carrer del Rosselló, 220, Eixample, 08008 Barcelona, Espagne",
+    "website": "https://thinkingmu.com",
+    "lat": 41.39554782367232,
+    "lng": 2.1596288767121057,
+    "category": "Mode",
+    "phone": "+34 691 18 82 74",
+    "openingHours": "Lundi 11h00-20h30\nMardi 11h00-20h30\nMercredi 11h00-20h30\nJeudi 11h00-20h30\nVendredi 11h00-20h30\nSamedi 11h00-20h30\nDimanche Fermé",
+    "timeZone": "Europe/Madrid",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Marque proposant des vêtements conçus à partir de matières biologiques et recyclées, notamment coton bio, chanvre et fibres responsables. Thinking MU développe une mode engagée autour de la transparence, de la réduction d’impact environnemental et d’une production réfléchie.",
+    "createdAt": "2026-02-13T17:51:17.453Z",
+    "updatedAt": "2026-02-13T17:52:04.784Z",
+    "panoramaImage": "/downloads/thinking.jpg"
+  },
+  {
+    "id": "3963b8db-cf40-45d3-b5a5-3fb36696c803",
+    "name": "La Kosturica",
+    "city": "Canovelles",
+    "address": "Masia Can Marquès, s/n, 08420 Canovelles, Barcelona, Espagne",
+    "website": "https://lakosturica.cat/",
+    "lat": 41.63416915649734,
+    "lng": 2.2550722779109864,
+    "category": "Ferme",
+    "phone": "+34 646 03 67 57",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 15h00-19h00\nJeudi Fermé\nVendredi 15h00-17h00\nSamedi 10h00-13h00\nDimanche Fermé",
+    "timeZone": "Europe/Madrid",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une production locale basée sur le sol vivant et la saisonnalité. La Kosturica propose une vente directe et des paniers, avec une approche régénérative visant à renforcer la biodiversité, limiter les intrants et maintenir un lien direct entre producteurs et habitants.",
+    "createdAt": "2026-02-13T17:55:12.488Z",
+    "updatedAt": "2026-02-13T17:55:31.668Z",
+    "panoramaImage": "/downloads/kosturica.jpg"
   }
 ]
