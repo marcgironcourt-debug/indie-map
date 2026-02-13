@@ -2484,13 +2484,13 @@
     "openingHours": "Lundi 8h00–18h00\nMardi Fermé\nMercredi 8h00–18h00\nJeudi Fermé\nVendredi 8h00–18h00\nSamedi 8h00–18h00\nDimanche Fermé",
     "timeZone": "America/New_York",
     "createdAt": "2026-02-03T20:17:12.581Z",
-    "updatedAt": "2026-02-05T13:13:15.920Z",
+    "updatedAt": "2026-02-13T13:11:12.187Z",
     "tags": [
       "Épicerie",
       "Marché"
     ],
     "miniText": "Marché fermier emblématique de New York réunissant 140 producteurs locaux qui vendent directement fruits, légumes, pains, fromages et autres produits alimentaires de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/un.png",
+    "panoramaImage": "/downloads/union-square.png",
     "translations": {
       "miniText": {}
     }
@@ -2773,8 +2773,8 @@
       "Marché"
     ],
     "createdAt": "2026-02-04T15:20:18.931Z",
-    "updatedAt": "2026-02-05T13:10:26.513Z",
-    "panoramaImage": "/downloads/mar.png",
+    "updatedAt": "2026-02-13T13:20:32.301Z",
+    "panoramaImage": "/downloads/evergreen-brick.png",
     "translations": {
       "miniText": {}
     }
@@ -3066,29 +3066,6 @@
     }
   },
   {
-    "name": "The Acorn",
-    "city": "Toronto",
-    "address": "3995 Main St, Vancouver, BC V5V 3P3, Canada",
-    "website": "https://www.theacornrestaurant.ca",
-    "lat": 49.249729,
-    "lng": -123.101233,
-    "category": "Restaurant",
-    "phone": "+16045669001",
-    "openingHours": "Lundi Fermé\nMardi 17h00–22h00\nMercredi 17h00–22h00\nJeudi 17h00–22h00\nVendredi 17h00–22h30\nSamedi 17h00–22h30\nDimanche 17h00–22h00",
-    "timeZone": "America/Vancouver",
-    "miniText": "Restaurant végétarien mettant en avant une cuisine de saison élaborée à partir de produits issus de fermes locales de Colombie-Britannique. The Acorn construit ses menus autour des récoltes disponibles, avec une attention particulière portée à la traçabilité des ingrédients, aux relations directes avec les producteurs et au respect des cycles naturels.",
-    "panoramaImage": "/downloads/ac.jpg",
-    "tags": [
-      "Restaurant"
-    ],
-    "createdAt": "2026-02-04T18:08:02.712Z",
-    "updatedAt": "2026-02-04T21:04:33.210Z",
-    "id": "d16a2042-8ed2-4201-a7e9-7d2909d27aab",
-    "translations": {
-      "miniText": {}
-    }
-  },
-  {
     "name": "The Acorn Restaurant",
     "city": "Vancouver",
     "address": "3995 Main St, Vancouver, BC V5V 3P3, Canada",
@@ -3311,9 +3288,9 @@
       "Marché"
     ],
     "miniText": "Marché public historique de Seattle réunissant des producteurs agricoles, artisans alimentaires et commerçants indépendants. Pike Place Market permet l’achat direct de produits frais, de spécialités locales et de produits artisanaux, favorisant les circuits courts, le soutien aux producteurs régionaux et un lien direct entre habitants et vendeurs.",
-    "panoramaImage": "/downloads/ma.jpg",
+    "panoramaImage": "/downloads/pike-place.png",
     "createdAt": "2026-02-05T12:27:03.321Z",
-    "updatedAt": "2026-02-05T12:32:17.465Z",
+    "updatedAt": "2026-02-13T13:36:52.145Z",
     "translations": {
       "miniText": {}
     }
@@ -3360,29 +3337,6 @@
     ],
     "miniText": "Marché de producteurs locaux réunissant fermes et artisans alimentaires de l’État de Washington. Les producteurs vendent directement fruits, légumes, pains, fromages, fleurs et produits transformés de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
     "panoramaImage": "/downloads/Seattle | Capitol Hill Farmers Market .png",
-    "translations": {
-      "miniText": {}
-    }
-  },
-  {
-    "id": "9162e0a9-e294-4e0e-b7c4-71300dbd9c32",
-    "name": "Central Co-op",
-    "city": "Seattle",
-    "address": "1600 E Madison St, Seattle, WA 98122, United States",
-    "website": "https://www.centralcoop.coop/seattle-store.php",
-    "lat": 47.615342655971,
-    "lng": -122.311218046728,
-    "category": "Épicerie",
-    "phone": "+1 206-329-1545",
-    "openingHours": "lundi\t8h00–22h00\nmardi\t8h00–22h00\nmercredi\t8h00–22h00\njeudi\t8h00–22h00\nvendredi\t8h00–22h00\nsamedi\t8h00–22h00\ndimanche\t8h00–22h00",
-    "timeZone": "America/Los_Angeles",
-    "createdAt": "2026-02-05T13:27:44.243Z",
-    "updatedAt": "2026-02-05T13:30:21.829Z",
-    "tags": [
-      "Épicerie"
-    ],
-    "miniText": "Coopérative alimentaire mettant en avant des produits naturels et biologiques. La coopérative se présente comme dédiée aux pratiques durables, à l’ancrage local et à l’économie alimentaire régionale.",
-    "panoramaImage": "/downloads/ma.jpeg",
     "translations": {
       "miniText": {}
     }
@@ -3565,8 +3519,8 @@
     ],
     "miniText": "Restaurant proposant une cuisine entièrement construite autour des produits locaux et saisonniers de l’Oregon et du Nord-Ouest Pacifique. Le menu évolue en fonction des récoltes et des arrivages de fermes partenaires, avec une attention particulière portée à l’origine des ingrédients.",
     "createdAt": "2026-02-05T15:18:09.590Z",
-    "updatedAt": "2026-02-05T15:19:34.953Z",
-    "panoramaImage": "/downloads/p.jpg",
+    "updatedAt": "2026-02-13T13:41:46.942Z",
+    "panoramaImage": "/downloads/arden.jpg",
     "translations": {
       "miniText": {}
     }
@@ -3794,8 +3748,8 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-05T17:05:20.197Z",
-    "updatedAt": "2026-02-05T17:07:49.527Z",
-    "panoramaImage": "/downloads/p.jpg",
+    "updatedAt": "2026-02-13T13:45:55.527Z",
+    "panoramaImage": "/downloads/the-progress.png",
     "translations": {
       "miniText": {}
     }
@@ -3812,13 +3766,13 @@
     "phone": "",
     "openingHours": "Jeudi 17h00-21h00\nVendredi 17h00-21h30\nSamedi 9h30-14h00, 16h30-21h30\nDimanche 9h30-14h00, 16h30-21h00\nLundi 17h00-21h00\nMardi 17h00-21h00\nMercredi 17h00-21h00",
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir d’ingrédients issus de fermes locales de Californie. Outerlands met l’accent sur la simplicité, la transformation sur place et le respect des produits, avec un menu qui évolue selon les récoltes et les arrivages.",
-    "panoramaImage": "/downloads/o.jpg",
+    "panoramaImage": "/downloads/Outerlands.png",
     "tags": [
       "Restaurant"
     ],
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:46:35.342Z",
-    "updatedAt": "2026-02-05T17:47:51.527Z",
+    "updatedAt": "2026-02-13T13:56:29.718Z",
     "translations": {
       "miniText": {}
     }
@@ -3835,13 +3789,13 @@
     "phone": "+1 415-864-8643",
     "openingHours": "Jeudi 17h30-22h00\nVendredi 17h30-23h00\nSamedi 17h30-23h00\nDimanche 17h00-21h30\nLundi 17h30-22h00\nMardi 17h30-22h00\nMercredi 17h30-22h00",
     "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux de Californie. Nopa travaille une carte qui évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à la qualité des produits et au respect des saisons.",
-    "panoramaImage": "/downloads/n.png",
+    "panoramaImage": "/downloads/Nopa.png",
     "tags": [
       "Restaurant"
     ],
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:51:34.121Z",
-    "updatedAt": "2026-02-05T17:55:19.862Z",
+    "updatedAt": "2026-02-13T14:05:11.254Z",
     "translations": {
       "miniText": {}
     }
@@ -4066,12 +4020,12 @@
     "openingHours": "jeudi\t13h00–23h00\nvendredi\t13h00–23h00\nsamedi\t13h00–23h00\ndimanche\tFermé\nlundi\t13h00–23h00\nmardi\t13h00–23h00\nmercredi\t13h00–23h00",
     "timeZone": "America/Mexico_City",
     "createdAt": "2026-02-05T20:10:33.749Z",
-    "updatedAt": "2026-02-05T20:21:14.784Z",
+    "updatedAt": "2026-02-13T14:09:13.340Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant à partir de produits issus de fermes et de producteurs mexicains, avec une attention forte portée à la saisonnalité et aux ingrédients endémiques. Quintonil met en valeur le maïs natif, les légumes, herbes et produits du territoire mexicain, en construisant ses menus selon les récoltes et les disponibilités locales.",
-    "panoramaImage": "/downloads/o.png",
+    "panoramaImage": "/downloads/Quintonil.png",
     "translations": {
       "miniText": {}
     }
@@ -4135,12 +4089,12 @@
     "openingHours": "jeudi\t9h00–15h00\nvendredi\t9h00–15h00\nsamedi\t9h00–15h00\ndimanche\t9h00–15h00\nlundi\tFermé\nmardi\t9h00–15h00\nmercredi\t9h00–15h00",
     "timeZone": "America/Mexico_City",
     "createdAt": "2026-02-05T20:47:30.049Z",
-    "updatedAt": "2026-02-05T20:51:20.658Z",
+    "updatedAt": "2026-02-13T14:16:16.409Z",
     "tags": [
       "Ferme"
     ],
     "miniText": "Ferme produisant ses fromages à partir du lait issu de son propre élevage, avec transformation et affinage sur place, en valorisant une production fermière locale, en circuit court, ancrée dans le territoire de Querétaro et le rythme de production agricole.",
-    "panoramaImage": "/downloads/s.jpg",
+    "panoramaImage": "/downloads/San Josemaría.jpg",
     "translations": {
       "miniText": {}
     }
@@ -4439,8 +4393,8 @@
     ],
     "miniText": "Restaurant développant une cuisine construite à partir des écosystèmes colombiens. Leo travaille en lien direct avec des producteurs, pêcheurs, cueilleurs et communautés rurales de différentes régions du pays afin de valoriser des ingrédients locaux, souvent endémiques, et des savoir-faire alimentaires traditionnels.",
     "createdAt": "2026-02-07T16:12:10.520Z",
-    "updatedAt": "2026-02-07T16:13:43.785Z",
-    "panoramaImage": "/downloads/l.jpg",
+    "updatedAt": "2026-02-13T14:19:03.470Z",
+    "panoramaImage": "/downloads/Leo.jpg",
     "translations": {
       "miniText": {}
     }
@@ -5366,8 +5320,8 @@
     ],
     "miniText": "Boulangerie artisanale travaillant à partir des produits cultives sur sa ferme située dans le Suffolk, engagée dans des pratiques agricoles régénératives favorisant la biodiversité. La ferme fournit chaque semaine céréales, légumes et fruits à la boulangerie, dans une démarche globale visant à améliorer l’impact social, économique et environnemental de l’activité.",
     "createdAt": "2026-02-10T16:57:51.947Z",
-    "updatedAt": "2026-02-10T17:20:13.699Z",
-    "panoramaImage": "/downloads/bo.png",
+    "updatedAt": "2026-02-13T14:25:20.952Z",
+    "panoramaImage": "/downloads/Bakehouse.png",
     "translations": {
       "miniText": {}
     }
@@ -5595,8 +5549,8 @@
     ],
     "miniText": "Ferme développant une agriculture régénérative, centrée sur la santé des sols, la biodiversité et la durabilité des écosystèmes agricoles. Flourish Produce cultive des fruits et légumes de saison et organise leur distribution locale afin de limiter les distances de transport et préserver la fraîcheur des produits.",
     "createdAt": "2026-02-10T20:50:35.076Z",
-    "updatedAt": "2026-02-10T20:59:03.117Z",
-    "panoramaImage": "/downloads/fe.png",
+    "updatedAt": "2026-02-13T14:27:28.221Z",
+    "panoramaImage": "/downloads/Flourish Produce.png",
     "translations": {
       "miniText": {}
     }
