@@ -6140,5 +6140,84 @@
     ],
     "miniText": "Épicerie de quartier proposant une alimentation générale composée exclusivement de produits locaux, saisonniers, issus de l’agriculture biologique et de qualité. Le lieu met en avant un approvisionnement de proximité et des producteurs engagés.",
     "panoramaImage": "/downloads/la-bonne.jpg"
+  },
+  {
+    "id": "f47f8668-2001-45fb-8f78-7bb2a124b265",
+    "name": "Restaurant Le Chistera",
+    "city": "Bayonne",
+    "address": "42 Rue Port Neuf, 64100 Bayonne, France",
+    "website": "http://lechistera.com/",
+    "lat": 43.491981968482015,
+    "lng": -1.4764259067465924,
+    "category": "Restaurant",
+    "phone": "+33 5 59 59 25 93",
+    "openingHours": "Lundi Fermé\nMardi 12h00–14h00\nMercredi 12h00–14h00\nJeudi 12h00–14h00\nVendredi 12h00–14h00, 19h00–21h00\nSamedi 12h00–14h00, 19h00–21h00\nDimanche 12h00–14h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T16:22:52.885Z",
+    "updatedAt": "2026-02-13T16:27:11.599Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine basque maison élaborée à partir de produits frais et de saison. Le Chistera met à l’honneur les spécialités du territoire, ancrée dans la tradition culinaire locale.",
+    "panoramaImage": "/downloads/le-chis.png"
+  },
+  {
+    "id": "4f8d218b-7e2d-46c7-88dd-9bc988d5b4ea",
+    "name": "Ostalapia",
+    "city": "Ahetze",
+    "address": "2621 Chem. d'Ostalapea, 64210 Ahetze, France",
+    "website": "https://www.ostalapia.fr/fr",
+    "lat": 43.4006774568478,
+    "lng": -1.5971461490753818,
+    "category": "Restaurant",
+    "phone": "+33 5 59 54 73 79",
+    "openingHours": "Lundi 12h00–14h00, 19h30–22h00\nMardi Fermé\nMercredi Fermé\nJeudi 12h00–14h00, 19h30–22h00\nVendredi 12h00–14h00, 19h30–22h00\nSamedi 12h00–14h00, 19h30–22h00\nDimanche 12h00–14h00, 19h30–22h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T16:36:24.813Z",
+    "updatedAt": "2026-02-13T16:40:33.349Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant s’appuyant sur des producteurs locaux, proposant une cuisine centrée sur les produits du Pays basque. L’établissement met en avant la qualité des matières premières, la saisonnalité et un lien étroit avec son environnement rural. Des chambres à la ferme sont également proposées.",
+    "panoramaImage": "/downloads/ostalapia.png"
+  },
+  {
+    "id": "09836644-de9e-4f2c-8646-3dceaf6d49f3",
+    "name": "La Galupe",
+    "city": "Urt",
+    "address": "15 Le Port, 64240 Urt, France",
+    "website": "https://lagalupe.fr/",
+    "lat": 43.49965093712612,
+    "lng": -1.2982556779109868,
+    "category": "Restaurant",
+    "phone": "+33 5 59 20 30 70",
+    "openingHours": "Lundi Fermé\nMardi 12h00–15h00\nMercredi Fermé\nJeudi 12h00–14h00, 19h00–21h00\nVendredi 12h00–14h00, 19h00–21h00\nSamedi 12h00–14h00, 19h00–21h00\nDimanche 10h00–15h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T16:43:58.632Z",
+    "updatedAt": "2026-02-13T16:47:08.491Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine maison mettant à l’honneur les produits du Pays basque et de saison. L’établissement s’inscrit dans une démarche ancrée dans le territoire, avec une attention portée à la qualité des matières premières et à son environnement.",
+    "panoramaImage": "/downloads/galupe.png"
+  },
+  {
+    "id": "6f9f3a0d-b2d1-4e47-97e9-f6187fcb9e3f",
+    "name": "Chéri Bibi",
+    "city": "Biarritz",
+    "address": "50 Rue d'Espagne, 64200 Biarritz, France",
+    "website": "https://cheribibibiarritz.com",
+    "lat": 43.474727270890924,
+    "lng": -1.5638135625685656,
+    "category": "Restaurant",
+    "phone": "+33 5 40 07 11 50",
+    "openingHours": "Lundi 19h00–00h00\nMardi Fermé\nMercredi Fermé\nJeudi 19h00–00h00\nVendredi 19h00–00h00\nSamedi 19h00–00h00\nDimanche 19h00–00h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-13T17:00:50.241Z",
+    "updatedAt": "2026-02-13T17:00:50.241Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison mettant en avant des produits frais et une sélection de vins naturels. L’établissement s’inscrit dans une approche conviviale et indépendante, avec une attention portée aux producteurs et aux matières premières."
   }
 ]
