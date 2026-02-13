@@ -6418,5 +6418,105 @@
     ],
     "miniText": "Restaurant proposant une cuisine de saison axée sur des produits locaux. La carte évolue selon les récoltes et met en avant des ingrédients issus de fermes régionales, avec une approche centrée sur la qualité et le respect du produit.",
     "panoramaImage": "/downloads/michelber.png"
+  },
+  {
+    "id": "3f4d9f97-6bc3-459d-9ea8-fe97ac4e811e",
+    "name": "Gut&Bösel",
+    "city": "Briesen (Mark)",
+    "address": "Schlossstraße 32, 15518 Briesen (Mark), Allemagne",
+    "website": "https://www.gutundboesel.org",
+    "lat": 52.38514212211394,
+    "lng": 14.284432879760223,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 16h00–18h00\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T19:06:07.266Z",
+    "updatedAt": "2026-02-13T19:08:42.699Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une agriculture régénérative à grande échelle en Brandebourg. Travaillant sur la restauration des sols, la biodiversité et la résilience des écosystèmes agricoles, en combinant pratiques holistiques et expérimentation autour de nouveaux modèles ruraux durables.",
+    "panoramaImage": "/downloads/gut.png"
+  },
+  {
+    "id": "1fe25050-3acc-48b5-8c87-09d6c433240c",
+    "name": "Hofgemeinschaft Heggelbach",
+    "city": "Herdwangen-Schönach",
+    "address": "Heggelbach 8, 88634 Herdwangen-Schönach, Allemagne",
+    "website": "https://hofgemeinschaft-heggelbach.de",
+    "lat": 47.85089519560002,
+    "lng": 9.139277550924616,
+    "category": "Lieu alternatif",
+    "phone": "+49 7557 8668",
+    "openingHours": "Lundi Fermé\nMardi 17h00–19h00\nMercredi Fermé\nJeudi Fermé\nVendredi 17h00–19h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T19:12:18.584Z",
+    "updatedAt": "2026-02-13T19:14:15.509Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Communauté agricole collective développant une production biodynamique et diversifiée en Allemagne. Hofgemeinschaft Heggelbach associe agriculture, transformation et vente directe, et propose également des hébergements sur place, dans un modèle coopératif fondé sur l’autonomie, la responsabilité partagée et un ancrage territorial durable.",
+    "panoramaImage": "/downloads/Heggelbachquer.jpg"
+  },
+  {
+    "id": "e2e1b04e-e0bc-408d-9962-d92f837ed239",
+    "name": "Holzmarkt 25",
+    "city": "Berlin",
+    "address": "Holzmarktstraße 25, 10243 Berlin, Allemagne",
+    "website": "https://www.holzmarkt.com",
+    "lat": 52.511418173805,
+    "lng": 13.426822606746592,
+    "category": "Lieu alternatif",
+    "phone": "+49 30 47361686",
+    "openingHours": "Lundi 8h00–22h00\nMardi 8h00–22h00\nMercredi 8h00–22h00\nJeudi 8h00–22h00\nVendredi 8h00–23h00\nSamedi 8h00–23h00\nDimanche 8h00–23h00",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T19:19:47.518Z",
+    "updatedAt": "2026-02-13T19:25:40.495Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Village urbain alternatif rassemblant espaces culturels, artisanat, restauration et initiatives communautaires. Le projet fonctionne selon un modèle coopératif visant à préserver un lieu indépendant dédié à la création, à la culture et à des formes d’économie locale plus durables.",
+    "panoramaImage": "/downloads/holz.png"
+  },
+  {
+    "id": "4feb8c94-54ff-4e05-86f7-2df43bc410a8",
+    "name": "Utopiastadt",
+    "city": "Wuppertal",
+    "address": "Mirker Str. 48, 42105 Wuppertal, Allemagne",
+    "website": "https://utopiastadt.eu/utopiastadt-en/",
+    "lat": 51.266875929703055,
+    "lng": 7.145050693253409,
+    "category": "Lieu alternatif",
+    "phone": "+49 202 39348657",
+    "openingHours": "",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T19:34:14.547Z",
+    "updatedAt": "2026-02-13T19:37:16.900Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif installé dans une ancienne gare, Utopiastadt réunit ateliers, coworking, initiatives citoyennes, événements culturels et un restaurant basé sur des produits locaux. Le lieu fonctionne comme plateforme collaborative dédiée à l’innovation sociale, à la culture indépendante et à des formes d’économie urbaine participative.",
+    "panoramaImage": "/downloads/utopiast.png"
+  },
+  {
+    "id": "85930875-1fbb-494c-b3e8-a634b72481b2",
+    "name": "DER SACHE WEGEN",
+    "city": "Berlin",
+    "address": "Lychener Str. 47, 10437 Berlin, Allemagne",
+    "website": "https://der-sache-wegen.de",
+    "lat": 52.544426947043426,
+    "lng": 13.4180167644178,
+    "category": "Épicerie",
+    "phone": "+49 30 85626102",
+    "openingHours": "Lundi 10h00–19h00\nMardi 10h00–19h00\nMercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–19h00\nDimanche Fermé",
+    "timeZone": "Europe/Berlin",
+    "createdAt": "2026-02-13T19:46:17.961Z",
+    "updatedAt": "2026-02-13T19:46:48.238Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie proposant une sélection de produits alimentaires responsables, durables, biologiques, le tout avec le moins d\\u0027emballages possible. Mettant l’accent sur la qualité, la transparence et des filières respectueuses, en favorisant des producteurs engagés et des circuits plus responsables.",
+    "panoramaImage": "/downloads/dersache.jpg"
   }
 ]
