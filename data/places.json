@@ -6658,5 +6658,65 @@
     "createdAt": "2026-02-13T21:46:28.481Z",
     "updatedAt": "2026-02-13T21:48:14.209Z",
     "panoramaImage": "/downloads/cascina.png"
+  },
+  {
+    "id": "62c1431b-c4c3-47b3-a464-d636577d85f6",
+    "name": "Veritas",
+    "city": "Napoli",
+    "address": "C.so Vittorio Emanuele, 141, 80121 Napoli NA, Italie",
+    "website": "http://www.veritasrestaurant.it",
+    "lat": 40.83740124215321,
+    "lng": 14.231359806746593,
+    "category": "Restaurant",
+    "phone": "+39 081 660585",
+    "openingHours": "Lundi 19h30–22h00\nMardi 19h30–22h00\nMercredi 19h30–22h00\nJeudi 19h30–22h00\nVendredi 19h30–22h00\nSamedi 19h30–22h00\nDimanche Fermé",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T22:04:19.196Z",
+    "updatedAt": "2026-02-13T22:08:02.142Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine contemporaine ancrée dans le terroir. Construisant ses menus autour de produits locaux et saisonniers, en valorisant les matières premières régionales et un travail précis sur les saveurs, entre tradition méditerranéenne et interprétation moderne.",
+    "panoramaImage": "/downloads/veritas.png"
+  },
+  {
+    "id": "dee940c5-c14a-4241-8f46-c44ee716920b",
+    "name": "Tenuta Vannulo",
+    "city": "Capaccio Paestum",
+    "address": "Via Galileo Galilei, 101, 84047 Capaccio Paestum SA, Italie",
+    "website": "https://www.tenutavannulo.com",
+    "lat": 40.44637050894084,
+    "lng": 15.021282950924624,
+    "category": "Ferme",
+    "phone": "+39 0828 727894",
+    "openingHours": "Lundi 7h30–19h30\nMardi 7h30–19h30\nMercredi 7h30–19h30\nJeudi 7h30–19h30\nVendredi 7h30–19h30\nSamedi 7h30–19h30\nDimanche 7h30–19h30",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T22:11:40.245Z",
+    "updatedAt": "2026-02-13T22:15:23.276Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme spécialisée dans l’élevage de bufflonnes et la production artisanale de mozzarella di bufala bio. Développant un modèle intégré où l’élevage, la transformation et la vente se font sur place, avec une attention portée au bien-être animal, à la traçabilité et à la production locale en circuit court. Dégustation de produit laitiers proposée sur place.",
+    "panoramaImage": "/downloads/tenuta.png"
+  },
+  {
+    "id": "55c7ed5c-a49a-452f-afca-37cb92a1649f",
+    "name": "L'Orto va in Città",
+    "city": "Napoli",
+    "address": "Via Santa Chiara, 30, 80134 Napoli NA, Italie",
+    "website": "https://ortovaincitta.it/",
+    "lat": 40.84603292835739,
+    "lng": 14.254232306746593,
+    "category": "Épicerie",
+    "phone": "+39 081 1917 9334",
+    "openingHours": "Lundi 10h00–20h00\nMardi 10h00–20h00\nMercredi 10h00–20h00\nJeudi 10h00–20h00\nVendredi 10h00–20h00\nSamedi 10h00–20h00\nDimanche Fermé",
+    "timeZone": "Europe/Rome",
+    "createdAt": "2026-02-13T22:37:16.310Z",
+    "updatedAt": "2026-02-13T22:37:41.458Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie collaborant directement avec agriculteurs et producteurs locaux de Campanie pour offrir des fruits, légumes et produits naturels biologiques. L’activité promeut une alimentation saine, éthique et accessible, avec une attention particulière à la saisonnalité, à la territorialité des productions et aux emballages recyclables.",
+    "panoramaImage": "/downloads/ortoin.jpg"
   }
 ]
