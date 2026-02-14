@@ -7195,5 +7195,68 @@
     "createdAt": "2026-02-14T15:44:09.392Z",
     "updatedAt": "2026-02-14T15:48:11.974Z",
     "panoramaImage": "/downloads/organicken.png"
+  },
+  {
+    "id": "7e390eac-01a3-4272-997a-42c22e6b60ed",
+    "name": "This Is Us World",
+    "city": "Lagos",
+    "country": "NG",
+    "address": "19A Military Street, Onikan, Lagos Island, Nigeria",
+    "website": "https://thisisusworld.com",
+    "lat": 6.4549,
+    "lng": 3.3965,
+    "category": "Mode",
+    "phone": "",
+    "openingHours": "Mardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-18h00\nDimanche 12h00-18h00\nLundi Fermé",
+    "timeZone": "Africa/Lagos",
+    "createdAt": "2026-02-14T16:15:53.209Z",
+    "updatedAt": "2026-02-14T16:18:15.604Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Marque produisant des vêtements à partir de coton cultivé et transformé localement. This Is Us World développe une chaîne textile ancrée sur le territoire, en valorisant la fibre nationale et une fabrication en atelier à Lagos. L’approche met l’accent sur la qualité des matières, la production locale et une mode pensée pour soutenir l’économie textile nigériane.",
+    "panoramaImage": "/downloads/thisisusne.avif"
+  },
+  {
+    "id": "24b76bd1-1ca3-4b9f-a1d8-5542569b7889",
+    "name": "Nike Art Gallery",
+    "city": "Lagos",
+    "country": "NG",
+    "address": "2 Nike Art Gallery Rd, Lekki Phase I, Lekki 106104, Lagos, Nigeria",
+    "website": "https://nikeartfoundation.com",
+    "lat": 6.431635035747345,
+    "lng": 3.4818871797602235,
+    "category": "Boutique",
+    "phone": "+234 803 409 6656",
+    "openingHours": "Lundi 10h00-18h00\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-18h00\nDimanche 13h00-18h00",
+    "timeZone": "Africa/Lagos",
+    "createdAt": "2026-02-14T16:33:08.327Z",
+    "updatedAt": "2026-02-14T16:37:33.382Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique - galerie dédiée à l’art nigérian contemporain et traditionnel. Nike Art Gallery expose peintures, sculptures et textiles, notamment le textile Adire teint à l’indigo, et soutient la transmission des savoir-faire artisanaux à travers des initiatives culturelles et éducatives. Le lieu met en valeur la création locale et le patrimoine artistique nigérian.",
+    "panoramaImage": "/downloads/galeryneg.png"
+  },
+  {
+    "id": "880d6cf2-dc20-4805-8e26-6280e209069e",
+    "name": "Soilless Farm Lab",
+    "city": "Abeokuta",
+    "country": "NG",
+    "address": "Soilless Farm Lab Village, Kurere Village, Awowo, Abeokuta 110120, Ogun State, Nigeria",
+    "website": "https://sfarmlab.com/",
+    "lat": 7.049764754550227,
+    "lng": 3.178106193253408,
+    "category": "Ferme",
+    "phone": "+234 901 486 5033",
+    "openingHours": "Lundi 8h00-17h00\nMardi 8h00-17h00\nMercredi 8h00-17h00\nJeudi 8h00-17h00\nVendredi 8h00-17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Africa/Lagos",
+    "createdAt": "2026-02-14T16:46:22.320Z",
+    "updatedAt": "2026-02-14T16:49:50.753Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme spécialisée dans l’agriculture hors-sol produisant des légumes et herbes à destination du marché local. Soilless Farm Lab développe des systèmes hydroponiques et des solutions agricoles innovantes visant à améliorer la productivité, réduire l’usage des sols et renforcer la sécurité alimentaire au Nigeria. Le projet combine production, recherche et formation agricole.",
+    "panoramaImage": "/downloads/soilers.png"
   }
 ]
