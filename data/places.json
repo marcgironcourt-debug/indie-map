@@ -7090,5 +7090,47 @@
     "miniText": "Ferme spécialisée dans la conservation et la production de semences anciennes. Livingseeds travaille à la préservation de variétés potagères traditionnelles, à la multiplication locale de semences et à la transmission de savoir-faire agricoles favorisant l’autonomie alimentaire.",
     "country": "ZA",
     "panoramaImage": "/downloads/lseeds.png"
+  },
+  {
+    "id": "154ee7f9-8db1-4558-ba01-f94057180a35",
+    "name": "Jardin Bio-Aromatique",
+    "city": "Ourika",
+    "country": "MA",
+    "address": "Tnine, Ourika 40000, Maroc",
+    "website": "https://www.jardin-bioaromatique-ourika.com",
+    "lat": 31.380153229267943,
+    "lng": -7.7843227644178015,
+    "category": "Lieu alternatif",
+    "phone": "+212 5 24 48 21 49",
+    "openingHours": "lundi 9h00–18h00\nmardi 9h00–18h00\nmercredi 9h00–18h00\njeudi 9h00–18h00\nvendredi 9h00–18h00\nsamedi 9h00–18h00\ndimanche 9h00–18h00",
+    "timeZone": "Africa/Casablanca",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "",
+    "panoramaImage": "/downloads/jardinbiom.jpg",
+    "createdAt": "2026-02-14T15:00:51.505Z",
+    "updatedAt": "2026-02-14T15:04:54.463Z"
+  },
+  {
+    "id": "45cce060-01b6-4f60-9ecf-29c2cb49be1d",
+    "name": "Dar Moha",
+    "city": "Marrakesh",
+    "country": "MA",
+    "address": "81 Rue Dar el Bacha, Marrakesh 40000, Maroc",
+    "website": "https://darmoha.ma/",
+    "lat": 31.631759538359336,
+    "lng": -7.993227377910988,
+    "category": "Restaurant",
+    "phone": "+212 5 24 38 64 00",
+    "openingHours": "lundi 12h00–23h00\nmardi 12h00–23h00\nmercredi 12h00–23h00\njeudi 12h00–23h00\nvendredi 12h00–23h00\nsamedi 12h00–23h00\ndimanche 12h00–23h00",
+    "timeZone": "Africa/Casablanca",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant installé dans un riad, proposant une cuisine marocaine contemporaine inspirée des recettes traditionnelles. Dar Moha met en avant des produits locaux et de saison, revisités avec une approche gastronomique, dans un cadre architectural typique valorisant le patrimoine marocain.",
+    "panoramaImage": "/downloads/darmoha.png",
+    "createdAt": "2026-02-14T15:07:08.839Z",
+    "updatedAt": "2026-02-14T15:13:15.225Z"
   }
 ]
