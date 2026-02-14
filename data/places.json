@@ -7426,5 +7426,47 @@
     "createdAt": "2026-02-14T18:08:53.888Z",
     "updatedAt": "2026-02-14T18:09:14.523Z",
     "panoramaImage": "/downloads/gostlina.jpg"
+  },
+  {
+    "id": "460fa578-28bc-42c7-bca6-5d73e947947c",
+    "name": "BioBazar",
+    "city": "Warszawa",
+    "country": "PL",
+    "address": "wejście od, Żelazna 51/53, Łucka 1/3/5, 00-841 Warszawa, Pologne",
+    "website": "https://biobazar.org.pl/biobazar-warszawa-fabryka-norblina/",
+    "lat": 52.23262786436707,
+    "lng": 20.990342664417803,
+    "category": "Épicerie",
+    "phone": "+48 508 717 445",
+    "openingHours": "samedi 7h30–16h00\ndimanche Fermé\nlundi Fermé\nmardi 10h00–19h00\nmercredi 10h00–19h00\njeudi 10h00–19h00\nvendredi 10h00–19h00",
+    "timeZone": "Europe/Warsaw",
+    "createdAt": "2026-02-14T18:32:52.380Z",
+    "updatedAt": "2026-02-14T18:44:19.594Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie réunissant des producteurs biologiques et artisanaux polonais. BioBazar met en avant des produits issus de l’agriculture biologique certifiée, vendus directement par les producteurs ou distributeurs spécialisés, avec un accent sur la qualité, la saisonnalité et la traçabilité des filières locales.",
+    "panoramaImage": "/downloads/biobazr.png"
+  },
+  {
+    "id": "bf67d41f-7063-4c3a-a2d1-9733002756f4",
+    "name": "BioBazar Huta Baildon",
+    "city": "Katowice",
+    "country": "PL",
+    "address": "Johna Baildona 66, 40-115 Katowice, Pologne",
+    "website": "https://biobazar.org.pl/biobazar-warszawa-fabryka-norblina/",
+    "lat": 50.26789895737493,
+    "lng": 18.994335706746593,
+    "category": "Épicerie",
+    "phone": "+48 795 614 422",
+    "openingHours": "samedi 7h00–14h00\ndimanche Fermé\nlundi Fermé\nmardi Fermé\nmercredi 7h00–17h00\njeudi Fermé\nvendredi 12h00–18h00",
+    "timeZone": "Europe/Warsaw",
+    "createdAt": "2026-02-14T18:35:25.063Z",
+    "updatedAt": "2026-02-14T18:44:19.594Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie réunissant des producteurs biologiques et artisanaux polonais. BioBazar met en avant des produits issus de l’agriculture biologique certifiée, vendus directement par les producteurs ou distributeurs spécialisés, avec un accent sur la qualité, la saisonnalité et la traçabilité des filières locales.",
+    "panoramaImage": "/downloads/biobazr.png"
   }
 ]
