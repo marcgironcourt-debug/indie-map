@@ -7258,5 +7258,68 @@
     ],
     "miniText": "Ferme spécialisée dans l’agriculture hors-sol produisant des légumes et herbes à destination du marché local. Soilless Farm Lab développe des systèmes hydroponiques et des solutions agricoles innovantes visant à améliorer la productivité, réduire l’usage des sols et renforcer la sécurité alimentaire au Nigeria. Le projet combine production, recherche et formation agricole.",
     "panoramaImage": "/downloads/soilers.png"
+  },
+  {
+    "id": "5f4e981c-7a9c-491b-841a-ef2289d4e1e6",
+    "name": "Studio 189",
+    "city": "Accra",
+    "country": "Ghana",
+    "address": "12th Lane, Accra, Ghana",
+    "website": "https://studiooneeightynine.com",
+    "lat": 5.567183499325334,
+    "lng": -0.18418593558219734,
+    "category": "Mode",
+    "phone": "+233 55 112 5938",
+    "openingHours": "samedi 9h00–18h00\n\ndimanche Fermé\n\nlundi Fermé\n\nmardi 9h00–18h00\n\nmercredi 9h00–18h00\n\njeudi 9h00–18h00\n\nvendredi 9h00–18h00",
+    "timeZone": "Africa/Accra",
+    "createdAt": "2026-02-14T16:53:12.630Z",
+    "updatedAt": "2026-02-14T16:56:40.287Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Marque de mode développant des collections conçues et fabriquées localement. L’atelier met en avant des savoir-faire artisanaux, notamment le tissage et la teinture naturelle, avec une production réalisée à la main et une attention portée à l’impact social, à l’autonomisation des artisans et à la valorisation des matières locales.",
+    "panoramaImage": "/downloads/studio189.webp"
+  },
+  {
+    "id": "00dcbdf0-bdd2-4c28-9e55-ed4f5a9771fb",
+    "name": "MAFI MAFI",
+    "city": "Addis-Abeba",
+    "country": "Éthiopie",
+    "address": "Addis-Abeba, Éthiopie",
+    "website": "https://www.mafimafiet.com",
+    "lat": 9.011979242358827,
+    "lng": 38.76863827791098,
+    "category": "Mode",
+    "phone": "+251 96 108 0019",
+    "openingHours": "samedi 8h30–17h00\n\ndimanche Fermé\n\nlundi 8h30–20h00\n\nmardi 8h30–17h00\n\nmercredi 8h30–17h00\n\njeudi 8h30–17h00\n\nvendredi Fermé",
+    "timeZone": "Africa/Addis_Ababa",
+    "createdAt": "2026-02-14T17:01:05.682Z",
+    "updatedAt": "2026-02-14T17:03:20.519Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Marque de mode se présentant comme une entreprise sociale qui forme et emploie des artisan·es. La marque met en avant le tissage artisanal et la fabrication locale en Éthiopie, avec une attention portée à l’impact social et à la communauté de son atelier.",
+    "panoramaImage": "/downloads/mafimafi.png"
+  },
+  {
+    "id": "d6b44fe6-d061-4471-bed3-137f00112365",
+    "name": "Sidai Designs",
+    "city": "Arusha",
+    "country": "Tanzanie",
+    "address": "15 Kanisa Rd, Arusha, Tanzanie",
+    "website": "https://sidaidesigns.com",
+    "lat": -3.370618194500786,
+    "lng": 36.697574393253404,
+    "category": "Atelier",
+    "phone": "+255 762 159 259",
+    "openingHours": "samedi 10h00–16h00\n\ndimanche Fermé\n\nlundi 10h00–17h00\n\nmardi 10h00–17h00\n\nmercredi 10h00–17h00\n\njeudi 10h00–17h00\n\nvendredi 10h00–17h00",
+    "timeZone": "Africa/Dar_es_Salaam",
+    "createdAt": "2026-02-14T17:09:31.866Z",
+    "updatedAt": "2026-02-14T17:11:02.181Z",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Atelier collaborant avec des artisanes maasaï pour créer des bijoux et accessoires réalisés à la main. Le projet met en avant le savoir-faire traditionnel perlé, avec une production locale visant à soutenir l’autonomie économique des femmes et à valoriser l’artisanat tanzanien.",
+    "panoramaImage": "/downloads/sidaides.png"
   }
 ]
