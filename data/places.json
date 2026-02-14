@@ -7321,5 +7321,110 @@
     ],
     "miniText": "Atelier collaborant avec des artisanes maasaï pour créer des bijoux et accessoires réalisés à la main. Le projet met en avant le savoir-faire traditionnel perlé, avec une production locale visant à soutenir l’autonomie économique des femmes et à valoriser l’artisanat tanzanien.",
     "panoramaImage": "/downloads/sidaides.png"
+  },
+  {
+    "id": "3c2f9997-b052-443e-a611-efbc32f7d3f9",
+    "name": "Hiša Franko",
+    "city": "Kobarid",
+    "country": "Slovenia",
+    "address": "Staro selo 1, 5222 Kobarid, Slovénie",
+    "website": "http://www.hisafranko.com/",
+    "lat": 46.2473901703596,
+    "lng": 13.537788222089013,
+    "category": "Restaurant",
+    "phone": "+386 5 389 41 20",
+    "openingHours": "samedi 19h00–23h00\ndimanche 19h00–23h00\nlundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi Fermé\nvendredi Fermé",
+    "timeZone": "Europe/Ljubljana",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant avec des producteurs locaux des vallées environnantes et des ingrédients issus de la montagne. Hiša Franko développe une cuisine profondément liée au territoire slovène, avec une forte saisonnalité et un approvisionnement régional.",
+    "createdAt": "2026-02-14T17:44:35.105Z",
+    "updatedAt": "2026-02-14T17:46:34.656Z",
+    "panoramaImage": "/downloads/hisafr.png"
+  },
+  {
+    "id": "53dbff12-4e7c-44fd-bf18-b9c3fc16be9f",
+    "name": "Kane",
+    "city": "Bucharest",
+    "country": "Romania",
+    "address": "Strada Dianei 9, 020971 București, Roumanie",
+    "website": "https://kanerestaurant.ro/",
+    "lat": 44.437931230998466,
+    "lng": 26.10623677976022,
+    "category": "Restaurant",
+    "phone": "+40 799 008 001",
+    "openingHours": "samedi 18h30–22h00\ndimanche Fermé\nlundi Fermé\nmardi 18h30–22h00\nmercredi 18h30–22h00\njeudi 18h30–22h00\nvendredi 18h30–22h00",
+    "timeZone": "Europe/Bucharest",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant travaillant exclusivement avec des producteurs locaux et des ingrédients issus du territoire national. Kane développe une cuisine contemporaine ancrée dans les saisons locales, mettant en avant des variétés traditionnelles et des matières premières provenant de fermes roumaines.",
+    "createdAt": "2026-02-14T17:49:30.690Z",
+    "updatedAt": "2026-02-14T17:54:09.570Z",
+    "panoramaImage": "/downloads/kanere.png"
+  },
+  {
+    "id": "e42fc861-17fd-40a1-98a7-09d6f4174c92",
+    "name": "Onyx",
+    "city": "Budapest",
+    "country": "Hungary",
+    "address": "Budapest, Vörösmarty tér 7-8, 1051 Hongrie",
+    "website": "https://onyxrestaurant.hu/en",
+    "lat": 47.497447524508225,
+    "lng": 19.050541735582193,
+    "category": "Restaurant",
+    "phone": "+36 30 508 0622",
+    "openingHours": "samedi 18h30–22h00\ndimanche 18h30–22h00\nlundi 18h30–22h00\nmardi Fermé\nmercredi Fermé\njeudi 18h30–22h00\nvendredi 18h30–22h00",
+    "timeZone": "Europe/Budapest",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant des produits hongrois et des producteurs locaux, avec un travail approfondi sur les ingrédients traditionnels. Onyx développe une cuisine contemporaine ancrée dans le territoire hongrois, en valorisant les saisons et les matières premières nationales.",
+    "createdAt": "2026-02-14T17:56:41.088Z",
+    "updatedAt": "2026-02-14T17:59:22.721Z",
+    "panoramaImage": "/downloads/onyxresta.png"
+  },
+  {
+    "id": "f6152e12-fe9f-48c0-ae31-e1108ed29a88",
+    "name": "Ficović",
+    "city": "Ston",
+    "country": "Croatia",
+    "address": "Hodilje 30, 20230, Ston, Croatie",
+    "website": "http://www.restaurantficovic.com",
+    "lat": 42.858722433600505,
+    "lng": 17.690394193253404,
+    "category": "Restaurant",
+    "phone": "+385 95 393 4185",
+    "openingHours": "",
+    "timeZone": "Europe/Zagreb",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant familial situé dans un village ostréicole de la baie de Ston, travaillant principalement les huîtres et produits issus de la production locale. Ficović propose une cuisine dalmate ancrée dans le territoire, avec un approvisionnement direct en fruits de mer et ingrédients régionaux.",
+    "createdAt": "2026-02-14T18:03:12.249Z",
+    "updatedAt": "2026-02-14T18:05:20.920Z",
+    "panoramaImage": "/downloads/ficovic.png"
+  },
+  {
+    "id": "6f16b48c-5b4e-47d0-980a-5b86022ac2d8",
+    "name": "Gostilna Repovž",
+    "city": "Šentjanž",
+    "country": "Slovenia",
+    "address": "Šentjanž 14, 8297 Šentjanž, Slovénie",
+    "website": "https://gostilna-repovz.si/",
+    "lat": 46.011337873065905,
+    "lng": 15.169176679760225,
+    "category": "Restaurant",
+    "phone": "+386 51 367 194",
+    "openingHours": "samedi 12h00–22h00\ndimanche 7h30–17h00\nlundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi 13h00–22h00\nvendredi 13h00–22h00",
+    "timeZone": "Europe/Ljubljana",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Ferme familiale slovène produisant céréales, légumes, élevage et transformation artisanale sur place. Gostilna Repovž propose une cuisine traditionnelle ancrée dans le terroir local, valorisant les produits issus de leur propre exploitation et des producteurs régionaux.",
+    "createdAt": "2026-02-14T18:08:53.888Z",
+    "updatedAt": "2026-02-14T18:09:14.523Z",
+    "panoramaImage": "/downloads/gostlina.jpg"
   }
 ]
