@@ -7083,11 +7083,12 @@
     "openingHours": "Lundi 9h00–16h00\nMardi 9h00–16h00\nMercredi 9h00–16h00\nJeudi 9h00–16h00\nVendredi 9h00–16h00\nSamedi 9h00–14h00\nDimanche Fermé",
     "timeZone": "Africa/Johannesburg",
     "createdAt": "2026-02-13T23:41:41.263Z",
-    "updatedAt": "2026-02-13T23:41:41.265Z",
+    "updatedAt": "2026-02-14T00:27:44.933Z",
     "tags": [
       "Ferme"
     ],
     "miniText": "Ferme spécialisée dans la conservation et la production de semences anciennes. Livingseeds travaille à la préservation de variétés potagères traditionnelles, à la multiplication locale de semences et à la transmission de savoir-faire agricoles favorisant l’autonomie alimentaire.",
-    "country": "ZA"
+    "country": "ZA",
+    "panoramaImage": "/downloads/lseeds.png"
   }
 ]
