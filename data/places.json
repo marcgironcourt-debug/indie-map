@@ -7132,5 +7132,68 @@
     "panoramaImage": "/downloads/darmoha.png",
     "createdAt": "2026-02-14T15:07:08.839Z",
     "updatedAt": "2026-02-14T15:13:15.225Z"
+  },
+  {
+    "id": "0ad067c5-0a6f-42db-b410-3de5147be51a",
+    "name": "Gjenge Makers LTD",
+    "city": "Nairobi",
+    "country": "KE",
+    "address": "Butere Rd, Nairobi, Kenya",
+    "website": "https://www.gjenge.co.ke/",
+    "lat": -1.3031957048538756,
+    "lng": 36.83854610859583,
+    "category": "Atelier",
+    "phone": "+254 768 188934",
+    "openingHours": "Lundi 8h15-17h00\nMardi 8h15-17h00\nMercredi 8h15-17h00\nJeudi 8h15-17h00\nVendredi 8h15-17h00\nSamedi 8h15-17h00\nDimanche Fermé",
+    "timeZone": "Africa/Nairobi",
+    "tags": [
+      "Atelier"
+    ],
+    "miniText": "Atelier transformant des déchets plastiques collectés localement en pavés et briques de construction. Développant des matériaux durables fabriqués à partir de plastique recyclé, avec une production réalisée sur place et orientée vers la réduction des déchets et la valorisation des ressources locales.",
+    "createdAt": "2026-02-14T15:33:32.394Z",
+    "updatedAt": "2026-02-14T15:36:12.159Z",
+    "panoramaImage": "/downloads/gjenge.jpg"
+  },
+  {
+    "id": "318cd2b7-de2f-4135-80e2-169c5c33b471",
+    "name": "Cultiva Farm",
+    "city": "Nairobi",
+    "country": "KE",
+    "address": "Pofu Rd, Nairobi, Kenya",
+    "website": "https://cultivakenya.com",
+    "lat": -1.3568936609417392,
+    "lng": 36.73908480674659,
+    "category": "Restaurant",
+    "phone": "+254 701 579902",
+    "openingHours": "Lundi Fermé\nMardi 12h00-22h00\nMercredi 8h00-22h00\nJeudi 8h00-22h00\nVendredi 8h00-22h00\nSamedi 8h00-22h00\nDimanche 8h00-22h00",
+    "timeZone": "Africa/Nairobi",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant cultivant ses légumes, herbes et fleurs comestibles sur sa propre ferme attenante. Cultiva développe une cuisine de saison directement liée à sa production agricole, avec un approvisionnement local complémentaire et une approche axée sur la fraîcheur, la traçabilité et le respect des sols.",
+    "createdAt": "2026-02-14T15:38:57.377Z",
+    "updatedAt": "2026-02-14T15:40:41.510Z",
+    "panoramaImage": "/downloads/cultivafar.png"
+  },
+  {
+    "id": "04a9c1c4-161a-4087-92e2-147c3bad0d12",
+    "name": "Organic Farmers Market",
+    "city": "Nairobi",
+    "country": "KE",
+    "address": "Marula Ln, Nairobi, Kenya",
+    "website": "https://www.facebook.com/OFMNairobi/",
+    "lat": -1.3361309779641755,
+    "lng": 36.70489132208902,
+    "category": "Marché",
+    "phone": "+254 712 879803",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-17h00\nDimanche Fermé",
+    "timeZone": "Africa/Nairobi",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché hebdomadaire réunissant des producteurs locaux vendant directement fruits, légumes, miel, produits laitiers et produits transformés artisanaux. L’Organic Farmers Market met en avant des pratiques agricoles durables et favorise un lien direct entre agriculteurs et consommateurs.",
+    "createdAt": "2026-02-14T15:44:09.392Z",
+    "updatedAt": "2026-02-14T15:48:11.974Z",
+    "panoramaImage": "/downloads/organicken.png"
   }
 ]
