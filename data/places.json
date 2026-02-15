@@ -7741,5 +7741,131 @@
     "createdAt": "2026-02-15T15:47:09.190Z",
     "updatedAt": "2026-02-15T15:48:53.539Z",
     "panoramaImage": "/downloads/buzuruna.png"
+  },
+  {
+    "id": "4e7a44d9-2ca3-4586-9bca-be2e789f311f",
+    "name": "Bokja",
+    "city": "Beirut",
+    "country": "Lebanon",
+    "address": "Mkhallissiye, Beirut 1100, Liban",
+    "website": "https://bokja.com/",
+    "lat": 33.89399398549631,
+    "lng": 35.50812179325341,
+    "category": "Mode",
+    "phone": "+961 1 975 576",
+    "openingHours": "Dimanche Fermé\nLundi 10h00–19h00\nMardi 10h00–19h00\nMercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–18h00",
+    "timeZone": "Asia/Beirut",
+    "miniText": "Maison de design fondée à Beyrouth, Bokja crée des pièces textiles brodés à la main, réalisés en collaboration avec des artisanes locales. L’atelier développe une production ancrée au Liban, mêlant savoir-faire traditionnel, travail manuel et création contemporaine, avec une attention portée à la transmission artisanale et à l’emploi local.",
+    "createdAt": "2026-02-15T16:10:10.135Z",
+    "updatedAt": "2026-02-15T16:12:12.067Z",
+    "tags": [
+      "Mode"
+    ],
+    "panoramaImage": "/bokjab.jpg"
+  },
+  {
+    "id": "16628643-589d-4497-9d99-a635847168a6",
+    "name": "Fair Trade Egypt",
+    "city": "Cairo",
+    "country": "Egypt",
+    "address": "27 Yehia Ibrahim, Mohammed Mazhar, Zamalek, Cairo Governorate 11211, Egypte",
+    "website": "https://fairtradeegypt.org",
+    "lat": 30.060873143190534,
+    "lng": 31.223372093253403,
+    "category": "Boutique",
+    "phone": "+20 2 27365123",
+    "openingHours": "Dimanche 9h00–20h00\nLundi 9h00–20h00\nMardi 9h00–20h00\nMercredi 9h00–20h00\nJeudi 9h00–20h00\nVendredi 9h00–20h00\nSamedi 9h00–20h00",
+    "timeZone": "Africa/Cairo",
+    "miniText": "Boutique travaillant avec des artisanes et producteurs ruraux a travers le pays. La boutique propose des produits d artisanat fabriques en Egypte, issus de filieres locales visant a soutenir les communautes rurales et a valoriser les savoir-faire traditionnels.",
+    "createdAt": "2026-02-15T16:18:52.447Z",
+    "updatedAt": "2026-02-15T16:20:23.596Z",
+    "tags": [
+      "Boutique"
+    ],
+    "panoramaImage": "/lecaired.png"
+  },
+  {
+    "id": "a0339238-4aa6-428c-ac8f-a86d79b007b5",
+    "name": "Marché Souk El Tayeb",
+    "city": "Beirut",
+    "country": "Lebanon",
+    "address": "Jisr el Wati, Tohwita, Liban",
+    "website": "https://www.soukeltayeb.com",
+    "lat": 33.87781230344149,
+    "lng": 35.529259364417804,
+    "category": "Marché",
+    "phone": "+961 70 827 179",
+    "openingHours": "Dimanche Fermé\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00–16h00",
+    "timeZone": "Asia/Beirut",
+    "miniText": "Marché de producteurs réunissant des agriculteurs et producteurs locaux. Mettant en avant l’alimentation, les traditions culinaires, le patrimoine rural et l’environnement au Liban, avec une démarche de soutien aux communautés et filières locales.",
+    "createdAt": "2026-02-15T16:24:41.330Z",
+    "updatedAt": "2026-02-15T16:26:28.580Z",
+    "tags": [
+      "Marché"
+    ],
+    "panoramaImage": "/beyrmar.png"
+  },
+  {
+    "id": "0efa51c2-5934-4030-b521-af42d78b9e91",
+    "name": "OD Urla",
+    "city": "Urla",
+    "country": "Turkey",
+    "address": "Süt Pınarı Mevkii, Rüstem, 2018/9 Sokak No:28, 35430 Urla/İzmir, Turquie",
+    "website": "https://www.odurla.com",
+    "lat": 38.34488196161671,
+    "lng": 26.761007235582195,
+    "category": "Restaurant",
+    "phone": "+90 539 775 12 21",
+    "openingHours": "Dimanche 13h00–0h00\nLundi Fermé\nMardi 15h00–0h00\nMercredi 15h00–0h00\nJeudi 15h00–0h00\nVendredi 15h00–0h00\nSamedi 13h00–0h00",
+    "timeZone": "Europe/Istanbul",
+    "miniText": "Restaurant développant une approche de la table à la ferme, avec une production agricole sur place et un approvisionnement auprès de producteurs locaux de la région égéenne. La cuisine met en avant des ingrédients de saison cultivés sur place ou sélectionnés directement auprès de fermes locales, dans une logique de terroir et de circuit court.",
+    "createdAt": "2026-02-15T16:30:40.291Z",
+    "updatedAt": "2026-02-15T16:33:44.041Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/odurla.png"
+  },
+  {
+    "id": "378afd3c-3b91-4280-8e4e-984183252d46",
+    "name": "Hiç Lokanta - Urla",
+    "city": "Urla",
+    "country": "Turkey",
+    "address": "Sanat Sokağı, Yeni, Zafer Cd. No:52, 35430 Urla/İzmir, Turquie",
+    "website": "https://hicurla.com/hic-lokanta/",
+    "lat": 38.3223070401588,
+    "lng": 26.764907549075375,
+    "category": "Restaurant",
+    "phone": "+90 536 352 15 15",
+    "openingHours": "Dimanche 12h00–0h00\nLundi 12h00–0h00\nMardi Fermé\nMercredi 12h00–0h00\nJeudi 12h00–0h00\nVendredi 12h00–0h00\nSamedi 12h00–0h00",
+    "timeZone": "Europe/Istanbul",
+    "miniText": "Restaurant mettant en avant une cuisine de saison. L’établissement travaille des produits locaux sélectionnés auprès de producteurs de la région et propose une carte évolutive centrée sur les ingrédients et les traditions culinaires anatoliennes.",
+    "createdAt": "2026-02-15T16:37:58.605Z",
+    "updatedAt": "2026-02-15T16:41:06.223Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/hiujtur.png"
+  },
+  {
+    "id": "632885cc-0ae1-41f7-ba4f-d2676e164bd1",
+    "name": "Narköy",
+    "city": "Kandıra",
+    "country": "Turkey",
+    "address": "Kerpe, Kerpe caddesi Yayla mevkii No : 13A, 41600 Kandıra/Kocaeli, Turquie",
+    "website": "https://narkoy.com/",
+    "lat": 41.12423064717415,
+    "lng": 30.20101713558219,
+    "category": "Lieu alternatif",
+    "phone": "+90 549 529 54 49",
+    "openingHours": "",
+    "timeZone": "Europe/Istanbul",
+    "miniText": "Lieu alternatif combinant ferme, hébergement et restauration. Narköy développe une production agricole locale et des activités pédagogiques autour de l’agriculture, de l’écologie et de l’alimentation, avec une approche centrée sur la nature et le lien au territoire.",
+    "createdAt": "2026-02-15T16:52:28.999Z",
+    "updatedAt": "2026-02-15T16:53:32.268Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/narkoyt.jpg"
   }
 ]
