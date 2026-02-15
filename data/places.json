@@ -7573,5 +7573,173 @@
     ],
     "miniText": "Ferme spécialisée dans les solutions agricoles durables et l’agriculture en environnement contrôlé, Green Life GCC développe des systèmes hydroponiques et des projets de production locale adaptés au climat désertique. Le projet met en avant l’autonomie alimentaire, l’optimisation des ressources et une agriculture innovante destinée au marché koweïtien.",
     "panoramaImage": "/downloads/greenlifek.jpg"
+  },
+  {
+    "id": "0aa4b033-3bc0-49c6-aeb7-f13350323823",
+    "name": "The Eucalyptus",
+    "city": "Jerusalem",
+    "country": "IL",
+    "address": "Felt St 14, Jerusalem, Israel",
+    "website": "https://www.the-eucalyptus.com",
+    "lat": 31.77485903781907,
+    "lng": 35.22699699325341,
+    "category": "Restaurant",
+    "phone": "+972 2-624-4331",
+    "openingHours": "dimanche 17h30–21h00\nlundi 17h30–21h00\nmardi 17h30–21h00\nmercredi 17h30–21h00\njeudi 17h30–22h00\nvendredi Fermé\nsamedi Fermé",
+    "timeZone": "Asia/Jerusalem",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine inspirée des produits indigènes de la région. The Eucalyptus met en avant des herbes sauvages, légumes de saison et ingrédients locaux issus du terroir israélien, avec une approche ancrée dans l’histoire culinaire de Jérusalem et du Moyen-Orient.",
+    "createdAt": "2026-02-15T14:56:44.896Z",
+    "updatedAt": "2026-02-15T15:02:53.963Z",
+    "panoramaImage": "/downloads/eucp.png"
+  },
+  {
+    "id": "daf4e5b7-9d04-453d-a427-82f72f838c8e",
+    "name": "LOWE",
+    "city": "Dubai",
+    "country": "AE",
+    "address": "Canvas - Wadi Al Safa 3 - Legends - Dubai - United Arab Emirates",
+    "website": "https://lowe-dubai.com/",
+    "lat": 25.092899025413757,
+    "lng": 55.302675779760214,
+    "category": "Restaurant",
+    "phone": "+971 4 320 1890",
+    "openingHours": "dimanche 8h00–16h00, 18h00–23h00\nlundi Fermé\nmardi Fermé\nmercredi 8h00–16h00, 18h00–23h00\njeudi 8h00–16h00, 18h00–23h00\nvendredi 8h00–16h00, 18h00–23h00\nsamedi 8h00–16h00, 18h00–23h00",
+    "timeZone": "Asia/Dubai",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine axée sur la saisonnalité et les producteurs locaux des Émirats arabes unis. LOWE travaille avec des fermes régionales, développe des techniques de fermentation et met l’accent sur la réduction du gaspillage alimentaire, avec une approche centrée sur la qualité des ingrédients et l’origine des produits.",
+    "createdAt": "2026-02-15T15:05:10.298Z",
+    "updatedAt": "2026-02-15T15:05:36.605Z",
+    "panoramaImage": "/downloads/lowed.jpg"
+  },
+  {
+    "id": "3d5dbba9-6b31-419d-823a-fbae7746e6ef",
+    "name": "Beit Sitti",
+    "city": "Amman",
+    "country": "JO",
+    "address": "#16 Mohammad Ali Al Saadi Str., Amman, Jordan",
+    "website": "https://beitsitti.com/",
+    "lat": 31.954384649592445,
+    "lng": 35.929420550924625,
+    "category": "Restaurant",
+    "phone": "+962 7 7755 7744",
+    "openingHours": "dimanche 10h00–22h00\nlundi 10h00–22h00\nmardi 10h00–22h00\nmercredi 10h00–22h00\njeudi 10h00–22h00\nvendredi 10h00–22h00\nsamedi 10h00–22h00",
+    "timeZone": "Asia/Amman",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une expérience de cuisine et de repas, fondée par trois sœurs. Le lieu propose une immersion dans la cuisine arabe avec la préparation de plats de saison, puis un repas partagé dans une atmosphère familiale.",
+    "createdAt": "2026-02-15T15:10:03.736Z",
+    "updatedAt": "2026-02-15T15:13:28.446Z",
+    "panoramaImage": "/downloads/amamj.png"
+  },
+  {
+    "id": "5de267a3-e644-4a8d-ad3e-3d5376eb7228",
+    "name": "OCD TLV",
+    "city": "Tel Aviv",
+    "country": "IL",
+    "address": "Tirtsa St 17, Tel Aviv-Yafo, Israel",
+    "website": "https://www.ocdtlv.com/ocd",
+    "lat": 32.05569887482253,
+    "lng": 34.76053025092462,
+    "category": "Restaurant",
+    "phone": "+972 3-556-6774",
+    "openingHours": "dimanche 18h00–23h30\nlundi 18h00–23h30\nmardi 18h00–23h30\nmercredi 18h00–23h30\njeudi 18h00–23h30\nvendredi Fermé\nsamedi Fermé",
+    "timeZone": "Asia/Jerusalem",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant un menu dégustation unique évoluant selon la saison et les arrivages. OCD TLV travaille avec des producteurs et fermes locales israéliennes, mettant l’accent sur la précision technique, la qualité des ingrédients et une expérience culinaire centrée sur le produit et sa provenance.",
+    "createdAt": "2026-02-15T15:16:45.101Z",
+    "updatedAt": "2026-02-15T15:19:15.343Z",
+    "panoramaImage": "/downloads/ocdd.png"
+  },
+  {
+    "id": "dc944d84-c00d-44e3-8762-f33865133cad",
+    "name": "BOCA",
+    "city": "Dubai",
+    "country": "AE",
+    "address": "Gate Village 6 - near DIFC Parking - Zaa'beel Second - DIFC - Dubai - United Arab Emirates",
+    "website": "https://boca.ae/",
+    "lat": 25.21406659937383,
+    "lng": 55.28329502208901,
+    "category": "Restaurant",
+    "phone": "+971 4 323 1833",
+    "openingHours": "dimanche 12h00–0h30\nlundi 12h00–0h30\nmardi 12h00–0h30\nmercredi 12h00–0h30\njeudi 12h30–1h30\nvendredi 12h30–1h30\nsamedi 12h30–1h30",
+    "timeZone": "Asia/Dubai",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant méditerranéen mettant en avant une cuisine axée sur la saisonnalité et les produits issus de fermes et producteurs locaux des Émirats arabes unis. BOCA travaille sur la transparence du sourcing, la valorisation des filières régionales et la réduction de l’empreinte environnementale, avec une approche centrée sur la qualité des ingrédients et leur origine.",
+    "createdAt": "2026-02-15T15:24:59.960Z",
+    "updatedAt": "2026-02-15T15:25:38.239Z",
+    "panoramaImage": "/downloads/bocadub.jpg"
+  },
+  {
+    "id": "024df645-33aa-4936-8005-7e13ebe3800c",
+    "name": "Neot Smadar",
+    "city": "Neot Semadar",
+    "country": "IL",
+    "address": "צומת שיזפון, Neot Semadar, 8886000, Israel",
+    "website": "https://neot-semadar.com/הפונדק/",
+    "lat": 30.04813638667321,
+    "lng": 35.01428995092463,
+    "category": "Lieu alternatif",
+    "phone": "+972 8-635-8180",
+    "openingHours": "dimanche 7h30–17h00\nlundi 7h30–16h00\nmardi 7h30–16h00\nmercredi 7h30–16h00\njeudi 7h30–20h00\nvendredi 7h30–15h00\nsamedi 11h00–17h00",
+    "timeZone": "Asia/Jerusalem",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Éco village associant une agriculture biologique, production locale (vignobles, vergers, fromages, artisanat) et accueil du public, avec une approche communautaire centrée sur l’autonomie, la gestion durable de l’eau et la vie collective. Le lieu propose également, des visites, hébergement et restauration.",
+    "createdAt": "2026-02-15T15:30:46.732Z",
+    "updatedAt": "2026-02-15T15:36:56.703Z",
+    "panoramaImage": "/downloads/neotsama.jpg"
+  },
+  {
+    "id": "5c0f70af-ac62-4133-92cc-ecf2e644f407",
+    "name": "Greening The Desert Project",
+    "city": "Juwafat al-Kafrayn",
+    "country": "JO",
+    "address": "VJCJ+PH5 Juwafat al-Kafrayn, Jordan",
+    "website": "https://www.greeningthedesertproject.org",
+    "lat": 31.87179096762489,
+    "lng": 35.63146327918624,
+    "category": "Lieu alternatif",
+    "phone": "+962 7 9758 4750",
+    "openingHours": "",
+    "timeZone": "Asia/Amman",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Projet de régénération écologique démontrant la restauration de sols désertifiés par des techniques de permaculture. Greening The Desert Project développe des systèmes agroforestiers, la gestion durable de l’eau et la production locale adaptée aux conditions arides, avec une vocation éducative et démonstrative. Visite, hébergement et restauration sont proposées.",
+    "createdAt": "2026-02-15T15:42:23.189Z",
+    "updatedAt": "2026-02-15T15:43:06.621Z",
+    "panoramaImage": "/downloads/greenthe.jpg"
+  },
+  {
+    "id": "9412c3dc-99dd-4431-a972-826f3b85f70c",
+    "name": "Buzuruna Juzuruna",
+    "city": "Saadnayel",
+    "country": "LB",
+    "address": "Saadnayel, Lebanon",
+    "website": "https://www.instagram.com/buzurunajuzuruna/",
+    "lat": 33.81384396718611,
+    "lng": 35.88194677976022,
+    "category": "Ferme",
+    "phone": "+961 81 075 284",
+    "openingHours": "dimanche Fermé\nlundi 15h30–19h00\nmardi 9h00–12h30, 15h30–19h00\nmercredi 9h00–12h30, 15h30–19h00\njeudi 9h00–12h30, 15h30–19h00\nvendredi 9h00–12h30, 15h30–19h00\nsamedi 9h00–12h30",
+    "timeZone": "Asia/Beirut",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme agroécologique engagée dans la préservation des semences paysannes et de la biodiversité cultivée, développant une production biologique locale et transmettant des pratiques agricoles durables afin de renforcer l’autonomie et la souveraineté alimentaire au Liban.",
+    "createdAt": "2026-02-15T15:47:09.190Z",
+    "updatedAt": "2026-02-15T15:48:53.539Z",
+    "panoramaImage": "/downloads/buzuruna.png"
   }
 ]
