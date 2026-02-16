@@ -7867,5 +7867,194 @@
       "Lieu alternatif"
     ],
     "panoramaImage": "/narkoyt.jpg"
+  },
+  {
+    "id": "a3b0f3b4-ef94-4b82-81e5-84cb25714e7e",
+    "name": "Organic Mandya Office",
+    "city": "Mandya",
+    "country": "India",
+    "address": "GWG4+WPV, Gautaham Badavane, Mandya, Karnataka 571403, Inde",
+    "website": "https://organicmandya.com/pages/about-us",
+    "lat": 12.527524301090748,
+    "lng": 76.9068127644178,
+    "category": "Épicerie",
+    "phone": "+91 9590922000",
+    "openingHours": "Lundi 8h00–21h00\nMardi 8h00–21h00\nMercredi 8h00–21h00\nJeudi 8h00–21h00\nVendredi 8h00–21h00\nSamedi 8h00–21h00\nDimanche 8h00–21h00",
+    "timeZone": "Asia/Kolkata",
+    "createdAt": "2026-02-16T13:57:19.440Z",
+    "updatedAt": "2026-02-16T13:57:54.681Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative regroupant des agriculteurs du district de Mandya. Commercialisation directement des produits issus de l’agriculture biologique locale, notamment millets, céréales, légumineuses et produits transformés. L’organisation met en avant la traçabilité et la rémunération équitable des producteurs.",
+    "panoramaImage": "/downloads/organicmand.jpg"
+  },
+  {
+    "city": "Bengaluru",
+    "country": "India",
+    "category": "Café",
+    "phone": "+91 97399 99112",
+    "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café « de la ferme à la tasse », exploitant un domaine de 140 acres où sont cultivés arabica et robusta. Le café est ensuite torréfié quotidiennement à Bengaluru avant d’être expédié à des clients particuliers et professionnels à travers l’Inde. L’entreprise met en avant un modèle intégré couvrant culture, transformation et distribution, avec une approche expérimentale et orientée qualité.",
+    "createdAt": "2026-02-16T14:12:33.611Z",
+    "updatedAt": "2026-02-16T14:23:42.288Z",
+    "id": "fb0a7f81-b318-4dc6-992e-84daed64f611",
+    "name": "Maverick & Farmer Coffee – Halasuru",
+    "address": "Gate #3, Gangadhar Chetty Rd, Halasuru, Rukmani Colony, Sivanchetti Gardens, Bengaluru, Karnataka 560042, Inde",
+    "lat": 12.994425131171516,
+    "lng": 77.6158088870735,
+    "openingHours": "Lundi 8h30–23h00\nMardi 8h30–23h00\nMercredi 8h30–23h00\nJeudi 8h30–23h00\nVendredi 8h30–23h00\nSamedi 8h30–23h00\nDimanche 8h30–23h00",
+    "panoramaImage": "/downloads/mav1.png"
+  },
+  {
+    "city": "Bengaluru",
+    "country": "India",
+    "category": "Café",
+    "phone": "+91 97399 99112",
+    "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café « de la ferme à la tasse », exploitant un domaine de 140 acres où sont cultivés arabica et robusta. Le café est ensuite torréfié quotidiennement à Bengaluru avant d’être expédié à des clients particuliers et professionnels à travers l’Inde. L’entreprise met en avant un modèle intégré couvrant culture, transformation et distribution, avec une approche expérimentale et orientée qualité.",
+    "createdAt": "2026-02-16T14:12:33.611Z",
+    "updatedAt": "2026-02-16T14:27:02.361Z",
+    "id": "8cae2d5d-c415-4870-9e9e-14aeb577a181",
+    "name": "Maverick & Farmer Coffee – Koramangala",
+    "address": "163, 15th Main Rd, 4th Block, Koramangala, Bengaluru, Karnataka 560034, Inde",
+    "lat": 12.96086578038005,
+    "lng": 77.64145997204749,
+    "openingHours": "Lundi 9h00–23h00\nMardi 9h00–23h00\nMercredi 9h00–23h00\nJeudi 9h00–23h00\nVendredi 9h00–23h00\nSamedi 9h00–22h30\nDimanche 9h00–23h00",
+    "panoramaImage": "/downloads/mav2.png"
+  },
+  {
+    "city": "Bengaluru",
+    "country": "India",
+    "category": "Café",
+    "phone": "+91 97399 99112",
+    "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café « de la ferme à la tasse », exploitant un domaine de 140 acres où sont cultivés arabica et robusta. Le café est ensuite torréfié quotidiennement à Bengaluru avant d’être expédié à des clients particuliers et professionnels à travers l’Inde. L’entreprise met en avant un modèle intégré couvrant culture, transformation et distribution, avec une approche expérimentale et orientée qualité.",
+    "createdAt": "2026-02-16T14:12:33.611Z",
+    "updatedAt": "2026-02-16T14:30:21.690Z",
+    "id": "c47d898d-9bb4-44a7-b6b1-7a1f19b6dd35",
+    "name": "Maverick & Farmer Coffee – Cunningham Rd",
+    "address": "37, Cunningham Rd, near Fortis Hospital Pvt Ltd, Abshot Layout, Vasanth Nagar, Bengaluru, Karnataka 560001, Inde",
+    "lat": 13.001767717848516,
+    "lng": 77.59525706278723,
+    "openingHours": "Lundi 9h00–23h00\nMardi 9h00–23h00\nMercredi 9h00–23h00\nJeudi 9h00–23h00\nVendredi 9h00–23h00\nSamedi 9h00–23h00\nDimanche 9h00–23h00",
+    "panoramaImage": "/downloads/mav3.jpg"
+  },
+  {
+    "country": "India",
+    "category": "Épicerie",
+    "website": "https://sahajaaharam.com",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative de producteurs pratiquant une agriculture naturelle et biologique. Sahaja Aharam commercialise directement des produits cultivés par ses agriculteurs membres, avec une approche centrée sur le sol vivant, la transparence et le lien direct entre producteurs et consommateurs.",
+    "createdAt": "2026-02-16T14:51:27.790Z",
+    "updatedAt": "2026-02-16T15:04:46.275Z",
+    "id": "651a6ecb-4784-4bcd-92a3-58b7cab776f6",
+    "name": "Sahaja Aharam Organic Store",
+    "city": "Hyderabad",
+    "address": "MIG-2, 181, 9th Phase, Kukatpally, Hyderabad, Telangana 500085, Inde",
+    "lat": 17.488543397043,
+    "lng": 78.379190591341,
+    "phone": "+91 85001 93300",
+    "openingHours": "Lundi 8h00–20h00\nMardi 8h00–20h00\nMercredi 8h00–20h00\nJeudi 8h00–20h00\nVendredi 8h00–20h00\nSamedi 8h00–20h00\nDimanche 8h00–20h00",
+    "panoramaImage": "/downloads/sahaja.jpeg"
+  },
+  {
+    "country": "India",
+    "category": "Épicerie",
+    "website": "https://sahajaaharam.com",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative de producteurs pratiquant une agriculture naturelle et biologique. Sahaja Aharam commercialise directement des produits cultivés par ses agriculteurs membres, avec une approche centrée sur le sol vivant, la transparence et le lien direct entre producteurs et consommateurs.",
+    "createdAt": "2026-02-16T14:51:27.790Z",
+    "updatedAt": "2026-02-16T15:04:46.275Z",
+    "id": "95ffe458-7999-4687-b722-c7fb1ec2462e",
+    "name": "Sahaja Aharam Ashu Organics Food Store",
+    "city": "Secunderabad",
+    "address": "Ground Floor, Sri Nilayam Apartment, adjacent to Soumya Renova Hospital, R & D Colony, Karkhana, Secunderabad, Telangana 500015, Inde",
+    "lat": 17.409371,
+    "lng": 78.483661,
+    "phone": "+91 90000 05840",
+    "openingHours": "Lundi 9h00–14h00, 16h00–21h00\nMardi 9h00–14h00, 16h00–21h00\nMercredi 9h00–14h00, 16h00–21h00\nJeudi 9h00–14h00, 16h00–21h00\nVendredi 9h00–14h00, 16h00–21h00\nSamedi 9h00–14h00, 16h00–21h00\nDimanche Fermé",
+    "panoramaImage": "/downloads/sahaja.jpeg"
+  },
+  {
+    "country": "India",
+    "category": "Épicerie",
+    "website": "https://sahajaaharam.com",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative de producteurs pratiquant une agriculture naturelle et biologique. Sahaja Aharam commercialise directement des produits cultivés par ses agriculteurs membres, avec une approche centrée sur le sol vivant, la transparence et le lien direct entre producteurs et consommateurs.",
+    "createdAt": "2026-02-16T14:51:27.790Z",
+    "updatedAt": "2026-02-16T15:04:46.275Z",
+    "id": "34903dac-1da8-439f-abf7-7e78dfa03e67",
+    "name": "Sahaja Aharam Producer Company Ltd.",
+    "city": "Secunderabad",
+    "address": "Vanjari Sangham, Street No 9, Doctor ZMES Society, Line 2, Krishna Giri Enclave, Tarnaka, Secunderabad, Telangana 500017, Inde",
+    "lat": 17.429569562631,
+    "lng": 78.535420884628,
+    "phone": "+91 85005 83300",
+    "openingHours": "Lundi 8h30–20h00\nMardi 8h30–20h00\nMercredi 8h30–20h00\nJeudi 8h30–20h00\nVendredi 8h30–20h00\nSamedi 8h30–20h00\nDimanche 8h30–17h00",
+    "panoramaImage": "/downloads/sahaja.jpeg"
+  },
+  {
+    "country": "India",
+    "category": "Épicerie",
+    "website": "https://sahajaaharam.com",
+    "timeZone": "Asia/Kolkata",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Coopérative de producteurs pratiquant une agriculture naturelle et biologique. Sahaja Aharam commercialise directement des produits cultivés par ses agriculteurs membres, avec une approche centrée sur le sol vivant, la transparence et le lien direct entre producteurs et consommateurs.",
+    "createdAt": "2026-02-16T14:51:27.790Z",
+    "updatedAt": "2026-02-16T15:04:46.275Z",
+    "id": "5bd778d4-57f8-42f0-9fce-6eafb5385654",
+    "name": "Sahaja Village Organic Store (The Mud House)",
+    "city": "Kurnool",
+    "address": "Ameena, Ameen Abbas Nagar Rd, Venkata Ramana Colony, SVR Colony, Kurnool, Andhra Pradesh 518003, Inde",
+    "lat": 15.833031207245,
+    "lng": 78.018674500295,
+    "phone": "+91 82966 84656",
+    "openingHours": "Lundi Fermé\nMardi 9h00–20h00\nMercredi 6h00–20h00\nJeudi 9h00–20h00\nVendredi 9h00–20h00\nSamedi 6h00–20h00\nDimanche 9h00–20h00",
+    "panoramaImage": "/downloads/sahaja.jpeg"
+  },
+  {
+    "id": "938ca9bc-e684-457a-89f5-9f1982a5fad2",
+    "name": "Solitude Farm of Auroville",
+    "city": "Auroville",
+    "country": "India",
+    "address": "Auroville, Tamil Nadu 605101, Inde",
+    "website": "https://solitude.farm/",
+    "lat": 12.006082394733573,
+    "lng": 79.7979551355822,
+    "category": "Lieu alternatif",
+    "phone": "+91 98433 19260",
+    "openingHours": "Lundi 9h00–15h30\nMardi 9h00–15h30\nMercredi 9h00–15h30\nJeudi 9h00–15h30\nVendredi 9h00–16h00\nSamedi 9h00–16h00\nDimanche Fermé",
+    "timeZone": "Asia/Kolkata",
+    "createdAt": "2026-02-16T15:17:42.491Z",
+    "updatedAt": "2026-02-16T15:25:17.858Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif développés autour de l’agriculture naturelle et de la permaculture. Le lieu met en avant une production locale diversifiée (fruits, légumes, céréales, millets, riz, plantes comestibles). Le restaurant propose une cuisine « farm to plate » à partir de récoltes quotidiennes et le site organise aussi des ateliers, formations et visites pédagogiques.",
+    "panoramaImage": "/downloads/solitudefer.png"
   }
 ]
