@@ -8161,5 +8161,67 @@
     "createdAt": "2026-02-17T15:39:32.478Z",
     "updatedAt": "2026-02-17T15:46:11.518Z",
     "panoramaImage": "/downloads/pucessaint.png"
+  },
+  {
+    "id": "c584921a-e8a0-44e3-9c67-8e0fa172f0f5",
+    "name": "Association for Craft Producers",
+    "city": "Kathmandu",
+    "country": "NP",
+    "address": "Ganeshman Singh Path, Kathmandu 44600, Népal",
+    "website": "https://www.acp.org.np",
+    "lat": 27.696303491039142,
+    "lng": 85.29070310489736,
+    "category": "Boutique",
+    "phone": "+977 1-5375108",
+    "openingHours": "Lundi 9h30–17h30\nMardi 9h30–17h30\nMercredi 9h30–17h30\nJeudi 9h30–17h30\nVendredi 9h30–17h30\nSamedi Fermé\nDimanche 9h30–17h30",
+    "timeZone": "Asia/Kathmandu",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Coopérative artisanale travaillANT avec des artisanes népalaises pour produire des textiles et objets faits main à partir de matières naturelles locales. La fabrication est réalisée au Népal, avec une approche axée sur le commerce équitable, la transmission des savoir-faire traditionnels et le soutien économique des communautés rurales.",
+    "createdAt": "2026-02-17T16:05:10.891Z",
+    "updatedAt": "2026-02-17T16:05:10.891Z"
+  },
+  {
+    "id": "99bed9a9-27c8-4016-95e6-c1c877d1bf5b",
+    "name": "Okharbot Organic Farm",
+    "city": "Dhulikhel",
+    "country": "NP",
+    "address": "Okharbot, Ward 12, Dhulikhel 45200, Népal",
+    "website": "https://www.okharbot.com/",
+    "lat": 27.58880418716228,
+    "lng": 85.56431589325341,
+    "category": "Lieu alternatif",
+    "phone": "+977 985-1155066",
+    "openingHours": "Lundi 7h00–19h00\nMardi 7h00–19h00\nMercredi 7h00–19h00\nJeudi 7h00–19h00\nVendredi 7h00–19h00\nSamedi 7h00–19h00\nDimanche 7h00–19h00",
+    "timeZone": "Asia/Kathmandu",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif développant une production agricole locale en permaculture. Cultivant fruits, légumes et produits de saison sur place, proposant des repas préparés à partir des récoltes de la ferme, organisant des visites pédagogiques et disposant d’un hébergement au sein du site dans une démarche agroécologique centrée sur l’autonomie et la durabilité.",
+    "createdAt": "2026-02-17T16:19:37.224Z",
+    "updatedAt": "2026-02-17T16:21:17.439Z",
+    "panoramaImage": "/downloads/okhabot.jpeg"
+  },
+  {
+    "id": "850df3ff-1fe6-4f52-b8fd-c072d129cf69",
+    "name": "Mountain View Eco Farm",
+    "city": "Lekhnath",
+    "country": "NP",
+    "address": "Amar Siddha Marg, Lekhnath 33700, Népal",
+    "website": "https://www.facebook.com/mvefnepal/",
+    "lat": 28.161991367029945,
+    "lng": 84.10103034417801,
+    "category": "Lieu alternatif",
+    "phone": "+977 976-9484035",
+    "openingHours": "",
+    "timeZone": "Asia/Kathmandu",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant ferme biologique, hébergement rural et volontariat. Mountain View Eco Farm développe une production agricole locale durable et accueille visiteurs et volontaires pour une immersion dans la vie agricole, avec des repas préparés à partir des produits cultivés sur place.",
+    "createdAt": "2026-02-17T16:31:06.468Z",
+    "updatedAt": "2026-02-17T16:35:42.135Z",
+    "panoramaImage": "/downloads/mountaineco.jpg"
   }
 ]
