@@ -8223,5 +8223,89 @@
     "createdAt": "2026-02-17T16:31:06.468Z",
     "updatedAt": "2026-02-17T16:35:42.135Z",
     "panoramaImage": "/downloads/mountaineco.jpg"
+  },
+  {
+    "id": "ffb66fb5-991c-4b96-bff4-d719efa7b421",
+    "name": "Pomelo for Myanmar",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "150 Dhammazedi Road, Yangon, Myanmar",
+    "website": "https://www.instagram.com/pomeloformyanmar/?hl=fr",
+    "lat": 16.80655892322709,
+    "lng": 96.14698329325343,
+    "category": "Boutique",
+    "phone": "+95 9 975 065941",
+    "openingHours": "Lundi 10h00–17h00\nMardi 10h00–17h00\nMercredi 10h00–17h00\nJeudi 10h00–17h00\nVendredi 10h00–17h00\nSamedi 10h00–17h00\nDimanche 10h00–17h00",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-17T16:50:48.797Z",
+    "updatedAt": "2026-02-17T16:53:12.302Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique sociale travaillant avec des artisanes et producteurs locaux au Myanmar. Pomelo développe des collections d’objets, textiles et accessoires fabriqués à la main, en mettant l’accent sur la production locale, la transmission de savoir-faire et l’autonomie économique des communautés partenaires.",
+    "panoramaImage": "/downloads/pomelone.jpg"
+  },
+  {
+    "id": "3530530f-274a-4583-9349-f87d495c5476",
+    "name": "Sunflower Art & Natural Dye Textiles",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "R44Q+JR7, Shan Kone St, Yangon, Myanmar",
+    "website": "https://www.facebook.com/sunflowerstextilegallery/",
+    "lat": 16.806751181846625,
+    "lng": 96.1395170067466,
+    "category": "Boutique",
+    "phone": "+95 9 45001 1956",
+    "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-17T16:58:45.544Z",
+    "updatedAt": "2026-02-17T17:02:17.066Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique proposant des créations artisanales autour de la teinture naturelle. Le lieu met en avant des pièces textiles et objets d’art réalisés avec des procédés de coloration d’origine naturelle.",
+    "panoramaImage": "/downloads/sunflow.jpg"
+  },
+  {
+    "id": "e1649df2-f9f0-4a8c-a8ef-afb343e477e0",
+    "name": "Kokkoya Organics",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "Bawga Street 2, Yangon, Myanmar",
+    "website": "https://kokkoyaorganics.com",
+    "lat": 16.827732457976374,
+    "lng": 96.20529282208899,
+    "category": "Lieu alternatif",
+    "phone": "+95 9 779 524055",
+    "openingHours": "Mardi 9h30–17h00\nMercredi 9h30–17h00\nJeudi 9h30–17h00\nVendredi 9h30–17h00\nSamedi 9h30–17h00\nDimanche 9h30–17h00\nLundi Fermé",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-17T17:14:05.556Z",
+    "updatedAt": "2026-02-17T17:19:18.343Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant une ferme urbaine biologique qui cultive des légumes en agriculture régénérative, gère un café fermier, une boulangerie et un magasin de produits frais. L’espace propose des ateliers, des visites de la ferme et met l’accent sur la santé du sol, la connexion à la nature et l’accès à des aliments cultivés localement.",
+    "panoramaImage": "/downloads/kokkoya.png"
+  },
+  {
+    "id": "f73bc222-485a-471d-9a0e-3c81a2b7fa24",
+    "name": "Marché Bogyoke",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "11143 Bo Gyoke Aung San Rd, Yangon, Myanmar",
+    "website": "https://fr.wikipedia.org/wiki/Marché_Bogyoke",
+    "lat": 16.78053506765638,
+    "lng": 96.15560897976025,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "Mardi 9h00–17h30\nMercredi 9h00–17h30\nJeudi 9h00–17h30\nVendredi 9h00–17h30\nSamedi 9h00–17h30\nDimanche 9h00–17h30\nLundi Fermé",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-17T17:23:06.673Z",
+    "updatedAt": "2026-02-17T17:28:54.226Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché regroupant des centaines de stands d’artisanat, bijoux, textiles et produits locaux. Le Marché Bogyoke constitue un lieu central du commerce traditionnel birman, mêlant production artisanale, échanges locaux et vie quotidienne.",
+    "panoramaImage": "/downloads/bogyote.png"
   }
 ]
