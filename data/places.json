@@ -8056,5 +8056,110 @@
     ],
     "miniText": "Lieu alternatif développés autour de l’agriculture naturelle et de la permaculture. Le lieu met en avant une production locale diversifiée (fruits, légumes, céréales, millets, riz, plantes comestibles). Le restaurant propose une cuisine « farm to plate » à partir de récoltes quotidiennes et le site organise aussi des ateliers, formations et visites pédagogiques.",
     "panoramaImage": "/downloads/solitudefer.png"
+  },
+  {
+    "id": "2b8d89ef-44a3-4fba-9e0a-60c4c1f40b5f",
+    "name": "The Farm Restaurant",
+    "city": "Chennai",
+    "country": "India",
+    "address": "1-277, Rajiv Gandhi Salai, Semmancheri, Egattur, Chennai, Tamil Nadu 600119, Inde",
+    "website": "https://www.thefarmchennai.com",
+    "lat": 12.86703414811005,
+    "lng": 80.226970722089,
+    "category": "Restaurant",
+    "phone": "+91 91760 50562",
+    "openingHours": "Lundi Fermé\nMardi 11h00–18h30\nMercredi 11h00–18h30\nJeudi 11h00–18h30\nVendredi 11h00–18h30\nSamedi 11h00–18h30\nDimanche 11h00–18h30",
+    "timeZone": "Asia/Kolkata",
+    "createdAt": "2026-02-16T15:30:46.611Z",
+    "updatedAt": "2026-02-16T15:34:38.100Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant situé au sein d’une ferme biologique à Chennai. The Farm développe une production agricole locale (légumes, produits laitiers, boulangerie, fromages, conserves) utilisée directement dans sa cuisine. L’établissement met en avant des ingrédients issus de sa propre ferme avec une approche centrée sur la saisonnalité et la transformation artisanale.",
+    "panoramaImage": "/downloads/thefarmin.png"
+  },
+  {
+    "id": "3b4b1ee1-de49-4123-b80c-9fce22984461",
+    "name": "Our Native Village",
+    "city": "Bengaluru",
+    "country": "IN",
+    "address": "Survey No 72, Junnasandra, Hesaraghatta, Kodihalli Village, Bengaluru, Karnataka 560088, Inde",
+    "website": "https://www.swiftbook.io/inst/#home?propertyId=981M8gVTVjuifNjs5RAx8AP7a11iHbEzTq8Y5ZkCeGPivtsb9kj3zTgyOTQ=&JDRN=Y",
+    "lat": 13.17997711703083,
+    "lng": 77.4693542932534,
+    "category": "Lieu alternatif",
+    "phone": "+91 63641 23461",
+    "openingHours": "Lundi Ouvert jour et nuit\nMardi Ouvert jour et nuit\nMercredi Ouvert jour et nuit\nJeudi Ouvert jour et nuit\nVendredi Ouvert jour et nuit\nSamedi Ouvert jour et nuit\nDimanche Ouvert jour et nuit",
+    "timeZone": "Asia/Kolkata",
+    "createdAt": "2026-02-16T15:46:14.803Z",
+    "updatedAt": "2026-02-16T15:54:19.182Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif conçu comme un village traditionnel fonctionnant selon des principes de durabilité. Le site met en avant une architecture écologique, l’autonomie énergétique, la conservation de l’eau, le recyclage et une gestion responsable des ressources. Restaurant proposant des plats issus en majorité d’aliments biologiques provenant du jardin.",
+    "panoramaImage": "/downloads/ournative.png"
+  },
+  {
+    "id": "66e832b2-d1a8-4da2-8d01-a2395b06fa15",
+    "name": "Le Maraîcher",
+    "city": "Collonges-la-Rouge",
+    "country": "FR",
+    "address": "6 Rue de la Garde, 19500 Collonges-la-Rouge, France",
+    "website": "https://lemaraicher.fr",
+    "lat": 45.06001972683208,
+    "lng": 1.6548002355821978,
+    "category": "Restaurant",
+    "phone": "+33 7 69 99 55 80",
+    "openingHours": "",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant de la ferme à la table, les légumes et aromatiques viennent du jardin du domaine. La cuisine est faite maison et de saison, avec des produits de terroir et une sélection de fournisseurs locaux dans une démarche de transparence et de circuit court.",
+    "createdAt": "2026-02-17T15:15:01.434Z",
+    "updatedAt": "2026-02-17T15:15:57.289Z",
+    "panoramaImage": "/downloads/maraicherco.jpg"
+  },
+  {
+    "id": "87e723c7-0d2c-4857-a4fe-40fb76551c1d",
+    "name": "La Ruelle",
+    "city": "Ségur-le-Château",
+    "country": "FR",
+    "address": "3 Av. du Château, 19230 Ségur-le-Château, France",
+    "website": "https://www.laruellesegur.com",
+    "lat": 45.42898445914999,
+    "lng": 1.306101306746592,
+    "category": "Lieu alternatif",
+    "phone": "+33 6 52 32 53 24",
+    "openingHours": "Mardi Fermé\nMercredi Fermé\nJeudi 10h00–15h00, 18h00–22h00\nVendredi 10h00–15h00, 18h00–22h00\nSamedi 10h00–23h00\nDimanche 11h30–17h30\nLundi Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif regroupant café-restaurant, boutique/épicerie et activités culturelles (concerts, théâtre, expos, ateliers…), avec une volonté affichée de valoriser la production locale et de créer du lien entre habitants et visiteurs.",
+    "createdAt": "2026-02-17T15:20:39.023Z",
+    "updatedAt": "2026-02-17T15:35:17.621Z",
+    "panoramaImage": "/downloads/laruellecor.png"
+  },
+  {
+    "id": "7b582871-a3f1-4f36-a4c9-47d26b71baed",
+    "name": "Marché aux Puces St-Michel",
+    "city": "Montréal",
+    "country": "CA",
+    "address": "7707 Av. Shelley, Montréal, QC H2A 0A2, Canada",
+    "website": "https://www.mapstmichel.com",
+    "lat": 45.56266854310788,
+    "lng": -73.60465706256856,
+    "category": "Boutique",
+    "phone": "(514) 691-1062",
+    "openingHours": "Mardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 9h00–17h00\nSamedi 9h00–17h00\nDimanche 9h00–17h00\nLundi Fermé",
+    "timeZone": "America/Toronto",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Grande boutique couverte réunissant des vendeurs indépendants proposant des articles variés : objets de seconde main, antiquités, vêtements, accessoires et produits divers. Le Marché aux Puces St-Michel fonctionne comme un espace permanent où particuliers et commerçants tiennent des kiosques.",
+    "createdAt": "2026-02-17T15:39:32.478Z",
+    "updatedAt": "2026-02-17T15:46:11.518Z",
+    "panoramaImage": "/downloads/pucessaint.png"
   }
 ]
