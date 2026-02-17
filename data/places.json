@@ -8307,5 +8307,173 @@
     ],
     "miniText": "Marché regroupant des centaines de stands d’artisanat, bijoux, textiles et produits locaux. Le Marché Bogyoke constitue un lieu central du commerce traditionnel birman, mêlant production artisanale, échanges locaux et vie quotidienne.",
     "panoramaImage": "/downloads/bogyote.png"
+  },
+  {
+    "id": "a7360347-7d59-4df6-b6da-e3586f714d3a",
+    "name": "Lao Buffalo Dairy",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "Ban Muang Khay, Luang Prabang, Laos",
+    "website": "https://www.laosbuffalodairy.com",
+    "lat": 19.793515089420058,
+    "lng": 101.9865050932534,
+    "category": "Ferme",
+    "phone": "+856 30 96 90 487",
+    "openingHours": "Mercredi 9h30–17h00\nJeudi 9h30–17h00\nVendredi 9h30–17h00\nSamedi 9h30–17h00\nDimanche 9h30–17h00\nLundi 9h30–17h00\nMardi 9h30–17h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T17:47:33.769Z",
+    "updatedAt": "2026-02-17T17:50:51.031Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme laitière spécialisée dans l’élevage de bufflonnes et la transformation locale du lait en fromages, yaourts et glaces. Lao Buffalo Dairy développe une filière laitière au Laos en travaillant avec des éleveurs locaux et en produisant sur place, avec un objectif d’amélioration des revenus ruraux et de valorisation agricole.",
+    "panoramaImage": "/downloads/laosbuff.png"
+  },
+  {
+    "id": "dc25c48b-5c3c-4e47-953f-c8c3cc8c27b7",
+    "name": "The Living Land Company",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "Luang Prabang, Laos",
+    "website": "https://livinglandlao.org",
+    "lat": 19.86042306082852,
+    "lng": 102.1035759932534,
+    "category": "Lieu alternatif",
+    "phone": "+856 20 55 199 208",
+    "openingHours": "Mercredi Ouvert jour et nuit\nJeudi Ouvert jour et nuit\nVendredi Ouvert jour et nuit\nSamedi Ouvert jour et nuit\nDimanche Ouvert jour et nuit\nLundi Ouvert jour et nuit\nMardi Ouvert jour et nuit",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T17:55:50.230Z",
+    "updatedAt": "2026-02-17T17:58:42.522Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif dédié à la préservation des méthodes traditionnelles de culture du riz au Laos. The Living Land Company travaille avec des agriculteurs locaux pour maintenir les pratiques agricoles manuelles et transmettre les savoir-faire liés à la riziculture. Le site propose également des repas préparés à partir de produits locaux ainsi qu’un hébergement rural intégré à l’exploitation.",
+    "panoramaImage": "/downloads/livinglaor.jpg"
+  },
+  {
+    "id": "2fe412ea-f49a-43ec-b9e3-06c30d342859",
+    "name": "Organic Farm",
+    "city": "Vang Vieng",
+    "country": "Laos",
+    "address": "XC6V+FQR, Vang Vieng, Laos",
+    "website": "https://www.facebook.com/organicfarmvangvieng/?locale=vi_VN",
+    "lat": 18.961438233366778,
+    "lng": 102.4443792355822,
+    "category": "Lieu alternatif",
+    "phone": "+856 23 511 220",
+    "openingHours": "Mercredi 8h00–17h00\nJeudi 8h00–17h00\nVendredi 8h00–17h00\nSamedi 8h00–17h00\nDimanche 8h00–17h00\nLundi 8h00–17h00\nMardi 8h00–17h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:02:04.472Z",
+    "updatedAt": "2026-02-17T18:02:38.289Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif mêlant agriculture biologique, production locale, restauration sur place et hébergement. Organic Farm cultive légumes et plantes sur le site et propose des repas préparés à partir de ses récoltes, dans une démarche centrée sur l’agriculture durable et la valorisation des produits locaux.",
+    "panoramaImage": "/downloads/farmlaosrrrr.jpg"
+  },
+  {
+    "id": "cba06dc5-42af-4b05-a2d1-6164d71223bf",
+    "name": "Ock Pop Tok Living Craft Centre",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "Ban Saylom, Luang Prabang, Laos",
+    "website": "https://www.ockpoptok.com",
+    "lat": 19.879780342835733,
+    "lng": 102.1205004232879,
+    "category": "Boutique",
+    "phone": "+856 71 212 597",
+    "openingHours": "Mercredi 8h00–20h00\nJeudi 8h00–20h00\nVendredi 8h00–20h00\nSamedi 8h00–20h00\nDimanche 8h00–20h00\nLundi 8h00–20h00\nMardi 8h00–20h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:06:36.772Z",
+    "updatedAt": "2026-02-17T18:08:09.633Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique dédiés au textile traditionnel lao, travaillant avec des artisanes locales pour préserver les techniques de tissage, de teinture naturelle et de production artisanale. Ock Pop Tok valorise le savoir-faire textile du Laos à travers la création, la transmission et la vente de pièces fabriquées localement.",
+    "panoramaImage": "/downloads/ocklaos.jpeg"
+  },
+  {
+    "id": "65778144-aac0-4f63-9e84-31a54c0f1443",
+    "name": "The Boutique by Ock Pop Tok",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "07 Ban Phonheung Phayalaungmuengchan Rd, Luang Prabang 06000, Laos",
+    "website": "https://www.ockpoptok.com",
+    "lat": 19.896301740968916,
+    "lng": 102.14162289945148,
+    "category": "Boutique",
+    "phone": "+856 71 254 761",
+    "openingHours": "Mercredi 8h00–21h00\nJeudi 8h00–21h00\nVendredi 8h00–21h00\nSamedi 8h00–21h00\nDimanche 8h00–21h00\nLundi 8h00–21h00\nMardi 8h00–21h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:06:40.176Z",
+    "updatedAt": "2026-02-17T18:08:09.633Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique dédiés au textile traditionnel lao, travaillant avec des artisanes locales pour préserver les techniques de tissage, de teinture naturelle et de production artisanale. Ock Pop Tok valorise le savoir-faire textile du Laos à travers la création, la transmission et la vente de pièces fabriquées localement.",
+    "panoramaImage": "/downloads/ocklaos.jpeg"
+  },
+  {
+    "id": "d03d8ce8-9332-48d8-82ee-eb5f359b54e5",
+    "name": "Saffron Coffee",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "Khem Kong Road, Luang Prabang, Laos",
+    "website": "https://saffroncoffee.com",
+    "lat": 19.895328635547543,
+    "lng": 102.13829852208902,
+    "category": "Café",
+    "phone": "+856 20 59 078 642",
+    "openingHours": "Mercredi 6h00–17h00\nJeudi 6h00–17h00\nVendredi 6h00–17h00\nSamedi 6h00–17h00\nDimanche 6h00–17h00\nLundi 6h00–17h00\nMardi 6h00–17h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:11:53.391Z",
+    "updatedAt": "2026-02-17T18:22:03.091Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café et torréfacteur mettant en avant des grains cultivés au Laos, notamment sur le plateau des Bolovens. Saffron Coffee travaille directement avec des producteurs locaux et assure la torréfaction sur place afin de valoriser la filière café lao et proposer un café issu du territoire.",
+    "panoramaImage": "/downloads/saffronlao.png"
+  },
+  {
+    "id": "f870362a-ec35-49eb-af9c-f70a4b3556eb",
+    "name": "Ma Te Sai",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "Kingkitsarath Rd, Luang Prabang 06000, Laos",
+    "website": "https://matesai.com/",
+    "lat": 19.88910145576695,
+    "lng": 102.1381192644178,
+    "category": "Boutique",
+    "phone": "+856 20 56 260 620",
+    "openingHours": "Mercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00\nLundi 10h00–19h00\nMardi 10h00–19h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:32:15.567Z",
+    "updatedAt": "2026-02-17T18:33:45.564Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique d’artisanat travaillant avec des artisans locaux et des communautés rurales pour valoriser des objets faits main issus du territoire. Ma Te Sai met en avant des pièces textiles et artisanales fabriquées au Laos, dans une démarche de préservation des savoir-faire et de production locale.",
+    "panoramaImage": "/downloads/matesailao.webp"
+  },
+  {
+    "id": "17b8e070-af94-493d-a70f-667c9afe5cfd",
+    "name": "Tamarind",
+    "city": "Luang Prabang",
+    "country": "Laos",
+    "address": "V4VR+VMF, Kingkitsarath Rd, Luang Prabang, Laos",
+    "website": "https://www.tamarindlaos.com",
+    "lat": 19.894871782067973,
+    "lng": 102.14172943743144,
+    "category": "Restaurant",
+    "phone": "+856 71 213 128",
+    "openingHours": "Mercredi 11h00–16h15, 17h30–21h30\nJeudi 11h00–16h15, 17h30–21h30\nVendredi 11h00–16h15, 17h30–21h30\nSamedi 11h00–16h15, 17h30–21h30\nDimanche Fermé\nLundi 11h00–16h15, 17h30–21h30\nMardi 11h00–16h15, 17h30–21h30",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-17T18:38:34.333Z",
+    "updatedAt": "2026-02-17T18:41:18.286Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant la cuisine traditionnelle lao et la découverte des ingrédients locaux. Tamarind valorise les produits du territoire à travers des recettes régionales et propose également des ateliers culinaires pour transmettre les bases de la gastronomie lao.",
+    "panoramaImage": "/downloads/tamarinlaos.png"
   }
 ]
