@@ -9060,5 +9060,124 @@
     ],
     "miniText": "Marque de mode produisant localement au Cambodge. Dorsu développe des vêtements en petites séries en utilisant principalement des surplus de tissus issus de l’industrie textile locale, avec une fabrication transparente et une production ancrée dans le territoire.",
     "panoramaImage": "/downloads/dorsucam.png"
+  },
+  {
+    "id": "498935d2-88d7-4d05-ba42-c8943afe43de",
+    "name": "Organic Circle Garden",
+    "city": "Hoi An",
+    "address": "Tổ 5 thôn Thanh Đông, Cẩm Thanh, Hội An, Quảng Nam, Vietnam",
+    "website": "https://thanhdongorganicfarm.com",
+    "lat": 15.887845960865755,
+    "lng": 108.35461367976022,
+    "category": "Lieu alternatif",
+    "phone": "+84 905 775 864",
+    "openingHours": "Lundi 0h00–23h59\nMardi 0h00–23h59\nMercredi 0h00–23h59\nJeudi 0h00–23h59\nVendredi 0h00–23h59\nSamedi 0h00–23h59\nDimanche 0h00–23h59",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T17:47:10.846Z",
+    "updatedAt": "2026-02-18T17:47:45.304Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif proposant des cours d'agriculture et de cuisine, un restaurant et une ferme cultivant des légumes selon des méthodes agricoles naturelles. Le lieu développe une approche communautaire reliant production alimentaire, transmission de savoir-faire et expérience directe du travail agricole vietnamien.",
+    "panoramaImage": "/downloads/thandongvi.jpg"
+  },
+  {
+    "id": "7b3e95c8-da59-4a04-a954-40f0f778084f",
+    "name": "The Field",
+    "city": "Hoi An",
+    "address": "Vong Nhi hamlet, Tống Văn Sương, Cẩm Thanh, Hội An, Quảng Nam, Vietnam",
+    "website": "https://thefieldhoian.com",
+    "lat": 15.884508398312255,
+    "lng": 108.3587893932534,
+    "category": "Restaurant",
+    "phone": "+84 235 3923 977",
+    "openingHours": "Lundi 10h00–21h00\nMardi 10h00–21h00\nMercredi 10h00–21h00\nJeudi 10h00–21h00\nVendredi 10h00–21h00\nSamedi 10h00–21h00\nDimanche 10h00–21h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T17:52:55.170Z",
+    "updatedAt": "2026-02-18T17:54:02.575Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une approche du jardin à la table, avec un jardin cultivé sur place, des ingrédients locaux, et une démarche zéro déchet s’inscrivant dans une logique d’économie circulaire. L’expérience associe cuisine vietnamienne et cadre naturel rural.",
+    "panoramaImage": "/downloads/thefieldv.png"
+  },
+  {
+    "id": "dd377f0b-c949-4196-92ec-10c9d3a723f9",
+    "name": "An Nhien Garden Vegetarian",
+    "city": "Hue",
+    "address": "Kiệt 11 Tỉnh lộ 10, Phú Thượng, Phú Vang, Thành phố Huế 530000, Vietnam",
+    "website": "https://annhienvegetarian.com/?utm_source=Post&utm_medium=GMBG&utm_id=GoogleMyBusiness",
+    "lat": 16.493725072446257,
+    "lng": 107.5994304355822,
+    "category": "Restaurant",
+    "phone": "+84 948 106 066",
+    "openingHours": "Lundi 10h00–21h30\nMardi 10h00–21h30\nMercredi 10h00–21h30\nJeudi 10h00–21h30\nVendredi 10h00–21h30\nSamedi 10h00–21h30\nDimanche 10h00–21h30",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T18:01:04.861Z",
+    "updatedAt": "2026-02-18T18:02:01.520Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien installé dans un jardin à Huế, proposant une cuisine vietnamienne traditionnelle, élaborée à partir d’ingrédients locaux. Le lieu met en avant une atmosphère paisible au cœur d’un espace végétalisé, associant gastronomie végétarienne et cadre naturel.",
+    "panoramaImage": "/downloads/annhiengar.jpeg"
+  },
+  {
+    "id": "1bd396a2-9ac7-4a59-b1cc-af30a01d4965",
+    "name": "Shop Craft Link",
+    "city": "Hanoi",
+    "address": "51 P. Văn Miếu, Văn Miếu – Quốc Tử Giám, Đống Đa, Hà Nội, Vietnam",
+    "website": "https://craftlink.com.vn/vn/about-craftlink/Gioi-thieu-Craft-Link.html",
+    "lat": 21.028004172785028,
+    "lng": 105.83624636626703,
+    "category": "Artisanat",
+    "phone": "+84 24 3733 6101",
+    "openingHours": "Lundi 9h00–18h00\nMardi 9h00–18h00\nMercredi 9h00–18h00\nJeudi 9h00–18h00\nVendredi 9h00–18h00\nSamedi 9h00–18h00\nDimanche 9h00–18h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T18:04:59.911Z",
+    "updatedAt": "2026-02-18T18:08:17.009Z",
+    "tags": [
+      "Artisanat"
+    ],
+    "miniText": "Boutique d’artisanat travaillant avec des artisans issus de minorités ethniques et de villages ruraux du Vietnam. Craft Link développe des filières locales de production textile, broderie, bambou et objets faits main, avec une démarche visant à soutenir les communautés artisanales et préserver les savoir-faire traditionnels.",
+    "panoramaImage": "/downloads/craftvieth.png"
+  },
+  {
+    "id": "c766f4d4-e2b7-47b8-bacb-e3eabe2b101a",
+    "name": "Reaching Out Arts & Crafts",
+    "city": "Hoi An",
+    "address": "131 Trần Phú, Phường Minh An, Hội An, Quảng Nam 560000, Vietnam",
+    "website": "https://www.reachingoutvietnam.com",
+    "lat": 15.877262088422198,
+    "lng": 108.3273000932534,
+    "category": "Boutique",
+    "phone": "+84 935 323 626",
+    "openingHours": "Lundi 8h00–20h00\nMardi 8h00–20h00\nMercredi 8h00–20h00\nJeudi Fermé\nVendredi Fermé\nSamedi 8h00–20h00\nDimanche 8h00–20h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T18:11:25.918Z",
+    "updatedAt": "2026-02-18T18:14:09.266Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique d’artisanat développant des objets faits main en collaboration avec des artisans vietnamiens en situation de handicap, valorisant des savoir-faire traditionnels (bois, textile, laque, céramique) à travers une production locale visant l’inclusion et l’autonomie économique.",
+    "panoramaImage": "/downloads/reachvietn.png"
+  },
+  {
+    "id": "841ed6cd-cffb-4538-8fd5-4eb7e18ece01",
+    "name": "Vụn Art",
+    "city": "Hanoi",
+    "address": "16 P. Lụa, Vạn Phúc, Hà Đông, Hà Nội 100000, Vietnam",
+    "website": "https://vunart.vn/",
+    "lat": 20.97997405162216,
+    "lng": 105.77433035092463,
+    "category": "Boutique",
+    "phone": "+84 912 573 876",
+    "openingHours": "Lundi 8h00–17h30\nMardi 8h00–17h30\nMercredi 8h00–17h30\nJeudi 8h00–17h30\nVendredi 8h00–17h30\nSamedi 8h00–17h30\nDimanche Fermé",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T18:18:50.417Z",
+    "updatedAt": "2026-02-18T18:18:50.417Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique-atelier transformant des chutes de soie en créations artisanales (tableaux, objets et cadeaux faits main). Le projet fonctionne comme une démarche à impact social, mettant en avant le travail d’artisans en situation de handicap et la valorisation de matières textiles récupérées."
   }
 ]
