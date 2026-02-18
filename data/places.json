@@ -8372,27 +8372,6 @@
     "panoramaImage": "/downloads/farmlaosrrrr.jpg"
   },
   {
-    "id": "cba06dc5-42af-4b05-a2d1-6164d71223bf",
-    "name": "Ock Pop Tok Living Craft Centre",
-    "city": "Luang Prabang",
-    "country": "Laos",
-    "address": "Ban Saylom, Luang Prabang, Laos",
-    "website": "https://www.ockpoptok.com",
-    "lat": 19.879780342835733,
-    "lng": 102.1205004232879,
-    "category": "Boutique",
-    "phone": "+856 71 212 597",
-    "openingHours": "Mercredi 8h00–20h00\nJeudi 8h00–20h00\nVendredi 8h00–20h00\nSamedi 8h00–20h00\nDimanche 8h00–20h00\nLundi 8h00–20h00\nMardi 8h00–20h00",
-    "timeZone": "Asia/Vientiane",
-    "createdAt": "2026-02-17T18:06:36.772Z",
-    "updatedAt": "2026-02-17T18:08:09.633Z",
-    "tags": [
-      "Boutique"
-    ],
-    "miniText": "Boutique dédiés au textile traditionnel lao, travaillant avec des artisanes locales pour préserver les techniques de tissage, de teinture naturelle et de production artisanale. Ock Pop Tok valorise le savoir-faire textile du Laos à travers la création, la transmission et la vente de pièces fabriquées localement.",
-    "panoramaImage": "/downloads/ocklaos.jpeg"
-  },
-  {
     "id": "65778144-aac0-4f63-9e84-31a54c0f1443",
     "name": "The Boutique by Ock Pop Tok",
     "city": "Luang Prabang",
@@ -8892,5 +8871,194 @@
       "Restaurant"
     ],
     "panoramaImage": "/downloads/spooncafe.png"
+  },
+  {
+    "id": "fce3fcbc-c780-47a5-bf5a-086be9aa4e35",
+    "name": "Akha Ama Phrasingh",
+    "city": "Chiang Mai",
+    "country": "TH",
+    "address": "175 2 Rachadamnoen Rd, Tambon Si Phum, Mueang Chiang Mai District, Chiang Mai 50200, Thaïlande",
+    "website": "https://www.akhaamacoffee.com",
+    "lat": 18.792532287750863,
+    "lng": 98.98309583106766,
+    "category": "Café",
+    "phone": "+66 88 267 8014",
+    "openingHours": "Lundi 8h00–17h30\nMardi 8h00–17h30\nMercredi 8h00–17h30\nJeudi 8h00–17h30\nVendredi 8h00–17h30\nSamedi 8h00–17h30\nDimanche 8h00–17h30",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-18T15:59:08.547Z",
+    "updatedAt": "2026-02-18T16:09:42.018Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café travaillant en lien direct avec des fermes locales, développant une torréfaction sur place et valorisant le café cultivé en altitude selon une approche axée sur la traçabilité, la qualité et une rémunération plus équitable des producteurs.",
+    "panoramaImage": "/downloads/akha-ama-phrasingsh.png"
+  },
+  {
+    "id": "b83fc6b2-8506-4da3-b92c-d6cf4681a0ec",
+    "name": "Akha Ama Coffee",
+    "city": "Chiang Mai",
+    "country": "TH",
+    "address": "Moonmuang Soi 9, Tambon Si Phum, Mueang Chiang Mai District, Chiang Mai 50200, Thaïlande",
+    "website": "https://www.akhaamacoffee.com",
+    "lat": 18.810907076867874,
+    "lng": 98.99874810930864,
+    "category": "Café",
+    "phone": "+66 88 267 8014",
+    "openingHours": "Lundi 8h00–17h00\nMardi 8h00–17h00\nMercredi 8h00–17h00\nJeudi 8h00–17h00\nVendredi 8h00–17h00\nSamedi 8h00–17h00\nDimanche 8h00–17h00",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-18T15:59:08.547Z",
+    "updatedAt": "2026-02-18T16:12:10.665Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café travaillant en lien direct avec des fermes locales, développant une torréfaction sur place et valorisant le café cultivé en altitude selon une approche axée sur la traçabilité, la qualité et une rémunération plus équitable des producteurs.",
+    "panoramaImage": "/downloads/akha-ama-coffee.png"
+  },
+  {
+    "id": "afee9f57-d979-470f-a942-f147b982461e",
+    "name": "EASY Specialty Coffee",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "30A Bo Yar Nyunt Rd, Yangon 11191, Myanmar",
+    "website": "https://humbleoriginscoffee.com",
+    "lat": 16.78362474902455,
+    "lng": 96.15573089325342,
+    "category": "Café",
+    "phone": "+95 9 42056 7077",
+    "openingHours": "Lundi 8h00–20h00\nMardi 8h00–20h00\nMercredi 8h00–20h00\nJeudi 8h00–20h00\nVendredi 8h00–20h00\nSamedi 8h00–20h00\nDimanche 8h00–20h00",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-18T16:15:04.240Z",
+    "updatedAt": "2026-02-18T16:17:58.479Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café travaillant des grains cultivés au Myanmar, notamment issus des régions montagneuses de l’État Shan. EASY Specialty Coffee développe une torréfaction locale et met en avant la traçabilité, la qualité des micro-lots et une collaboration directe avec les producteurs.",
+    "panoramaImage": "/downloads/easybirm.png"
+  },
+  {
+    "id": "2821b94b-04ec-449d-b735-f06c67c30344",
+    "name": "Folkcharm Studio",
+    "city": "Bangkok",
+    "country": "TH",
+    "address": "เลข ที่ 19/10 แยก หัวหมาก, Hua Mak, Bang Kapi, Bangkok 10240, Thaïlande",
+    "website": "https://folkcharm.com/",
+    "lat": 13.75467109630911,
+    "lng": 100.64989956441778,
+    "category": "Mode",
+    "phone": "+66 64 229 6414",
+    "openingHours": "Lundi 10h00–17h00\nMardi 10h00–17h00\nMercredi 10h00–17h00\nJeudi 10h00–17h00\nVendredi 10h00–17h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-18T16:34:38.105Z",
+    "updatedAt": "2026-02-18T16:35:10.980Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Studio de mode travaillant des textiles thaïlandais tissés à la main et teintés naturellement. Folkcharm développe des collections en petites séries en collaboration avec des communautés rurales, valorisant le coton local, les savoir-faire artisanaux et une production lente ancrée dans le territoire.",
+    "panoramaImage": "/downloads/folkcharmt.jpg"
+  },
+  {
+    "id": "04ed7e7b-1285-4264-9b12-74cb9a19b315",
+    "name": "Ock Pop Tok Living Craft Centre",
+    "city": "Luang Prabang",
+    "country": "LA",
+    "address": "Ban Saylom, Luang Prabang, Laos",
+    "website": "https://www.ockpoptok.com/visit-us/",
+    "lat": 19.8787310329126,
+    "lng": 102.12072036441778,
+    "category": "Lieu alternatif",
+    "phone": "+856 71 212 597",
+    "openingHours": "Lundi 8h00–20h00\nMardi 8h00–20h00\nMercredi 8h00–20h00\nJeudi 8h00–20h00\nVendredi 8h00–20h00\nSamedi 8h00–20h00\nDimanche 8h00–20h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-18T16:38:54.999Z",
+    "updatedAt": "2026-02-18T16:47:30.283Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif dédié au tissage traditionnel laotien, Ock Pop Tok travaille la soie et le coton produits localement et met en valeur les savoir-faire textiles transmis par les communautés rurales. Le lieu combine ateliers, formation, production, restauration, hébergement et espace de visite afin de préserver et transmettre les techniques artisanales du territoire.",
+    "panoramaImage": "/downloads/ockcamb.jpeg"
+  },
+  {
+    "id": "545e330e-0c97-4a9a-918c-fa9972f807b7",
+    "name": "Passa Paa",
+    "city": "Luang Prabang",
+    "country": "LA",
+    "address": "79 Sakkaline Rd, Luang Prabang, Laos",
+    "website": "https://www.instagram.com/passapaa/?hl=fr",
+    "lat": 19.89423860288471,
+    "lng": 102.1400652355822,
+    "category": "Mode",
+    "phone": "+856 30 52 52 471",
+    "openingHours": "Lundi 8h00–21h00\nMardi 8h00–21h00\nMercredi 8h00–21h00\nJeudi 8h00–21h00\nVendredi 8h00–21h00\nSamedi 9h00–21h00\nDimanche 9h00–21h00",
+    "timeZone": "Asia/Vientiane",
+    "createdAt": "2026-02-18T16:50:36.693Z",
+    "updatedAt": "2026-02-18T16:51:31.074Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Boutique de mode mettant en valeur des textiles laotiens tissés et réalisés localement. Passa Paa propose des pièces en petites séries basées sur des matières traditionnelles, avec une production ancrée dans l’artisanat du territoire et le travail de communautés locales.",
+    "panoramaImage": "/downloads/passalao.jpg"
+  },
+  {
+    "id": "11100b91-8db3-4013-b09e-4218e36e482c",
+    "name": "Hla Day",
+    "city": "Yangon",
+    "country": "MM",
+    "address": "81 Pansodan Street, 1st floor Middle lower block, Between Mahabandoola and Merchant Rd, Yangon, Myanmar",
+    "website": "https://www.hladaymyanmar.org",
+    "lat": 16.772583113744457,
+    "lng": 96.16140674907537,
+    "category": "Boutique",
+    "phone": "+95 9 45224 1465",
+    "openingHours": "Lundi 9h30–18h30\nMardi 11h00–18h30\nMercredi 9h30–18h30\nJeudi 9h30–18h30\nVendredi 9h30–18h30\nSamedi 9h30–18h30\nDimanche 9h30–18h30",
+    "timeZone": "Asia/Yangon",
+    "createdAt": "2026-02-18T16:54:09.511Z",
+    "updatedAt": "2026-02-18T16:56:44.700Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique artisanale soutenant des producteurs et artisans du Myanmar. Hla Day met en valeur des textiles et objets réalisés localement, en travaillant directement avec des communautés rurales et des ateliers indépendants afin de préserver les savoir-faire traditionnels et soutenir une production équitable.",
+    "panoramaImage": "/downloads/hladay.png"
+  },
+  {
+    "id": "41f8515b-774a-45bd-a52a-6ea6b363ea4a",
+    "name": "Sana Hastakala",
+    "city": "Lalitpur",
+    "country": "NP",
+    "address": "Lalitpur 44600, Népal",
+    "website": "https://sanahastakala.com/",
+    "lat": 27.67903582258987,
+    "lng": 85.30939827976023,
+    "category": "Boutique",
+    "phone": "+977 1-5451559",
+    "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–17h00\nDimanche 10h00–18h00",
+    "timeZone": "Asia/Kathmandu",
+    "createdAt": "2026-02-18T17:02:28.729Z",
+    "updatedAt": "2026-02-18T17:07:08.802Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Sana Hastakala est une organisation de commerce équitable fondée pour promouvoir l’artisanat traditionnel népalais. Elle commercialise une large gamme d’objets artisanaux faits à la main — textiles, accessoires, céramiques, articles pour la maison, etc. — produits par un réseau de centaines d’artisans locaux et en soutenant leur développement socio-économique.",
+    "panoramaImage": "/downloads/sannepa.png"
+  },
+  {
+    "id": "4308cd1e-be97-4a41-8e18-49488d496d6b",
+    "name": "Dorsu",
+    "city": "Phnom Penh",
+    "country": "KH",
+    "address": "299 Preah Ang Duong - GF04, Phnom Penh 12000, Cambodge",
+    "website": "https://shopdorsu.com/",
+    "lat": 11.572462125579044,
+    "lng": 104.91912817791098,
+    "category": "Mode",
+    "phone": "+855 15 964 115",
+    "openingHours": "Lundi Fermé\nMardi 11h00–18h00\nMercredi 11h00–18h00\nJeudi 11h00–18h00\nVendredi 11h00–18h00\nSamedi 11h00–18h00\nDimanche 11h00–18h00",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T17:09:14.042Z",
+    "updatedAt": "2026-02-18T17:11:21.966Z",
+    "tags": [
+      "Mode"
+    ],
+    "miniText": "Marque de mode produisant localement au Cambodge. Dorsu développe des vêtements en petites séries en utilisant principalement des surplus de tissus issus de l’industrie textile locale, avec une fabrication transparente et une production ancrée dans le territoire.",
+    "panoramaImage": "/downloads/dorsucam.png"
   }
 ]
