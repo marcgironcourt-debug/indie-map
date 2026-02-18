@@ -9430,5 +9430,89 @@
     ],
     "miniText": "Restaurant mettant en avant les ingrédients indigènes et régionaux de Malaisie. Développant une cuisine contemporaine fondée sur la recherche de produits locaux issus de forêts et de fermes, valorisant la biodiversité alimentaire malaisienne et les savoir-faire du territoire.",
     "panoramaImage": "/downloads/restaumal.png"
+  },
+  {
+    "id": "27e3128e-eef7-45eb-9b2e-4b611a285a39",
+    "name": "Locavore NXT",
+    "city": "Ubud",
+    "country": "ID",
+    "address": "Jl. A.A. Gede Rai Gang Pura Panti Bija, Lodtunduh, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonésie",
+    "website": "https://locavorenxt.com",
+    "phone": "+62 821-4495-6226",
+    "lat": -8.541086998771162,
+    "lng": 115.25737311534243,
+    "category": "Restaurant",
+    "openingHours": "jeudi 12h00–13h30, 17h30–20h30\nvendredi 12h00–13h30, 17h30–20h30\nsamedi 12h00–13h30, 17h30–20h30\ndimanche Fermé\nlundi 17h30–20h30\nmardi 17h30–20h30\nmercredi 17h30–20h30",
+    "timeZone": "Asia/Makassar",
+    "miniText": "Restaurant conçu comme un écosystème culinaire centré sur les ingrédients indonésiens. Mettant en avant la recherche, la fermentation, la transformation et l’utilisation intégrale de produits issus de producteurs locaux. Le lieu fonctionne comme un espace expérimental combinant cuisine, agriculture, bar, magasin, durabilité et développement de filières locales.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-18T20:58:55.016Z",
+    "updatedAt": "2026-02-18T21:05:39.328Z",
+    "panoramaImage": "/downloads/locavoreindio.png"
+  },
+  {
+    "id": "c1f5aa44-3c86-4ea7-bbcb-88b925c41ce2",
+    "name": "Threads of Life Store",
+    "city": "Ubud",
+    "country": "ID",
+    "address": "Jl. Kajeng No.24, Ubud, Kec. Gianyar, Kabupaten Gianyar, Bali 80571, Indonésie",
+    "website": "https://threadsoflife.com/",
+    "phone": "+62 361 972187",
+    "lat": -8.500873802671098,
+    "lng": 115.26127407835769,
+    "category": "Boutique",
+    "openingHours": "jeudi 10h00–18h00\nvendredi 10h00–18h00\nsamedi 10h00–18h00\ndimanche 10h00–18h00\nlundi 10h00–18h00\nmardi 10h00–18h00\nmercredi 10h00–18h00",
+    "timeZone": "Asia/Makassar",
+    "miniText": "Boutique valorisant des textiles indonésiens réalisés à la main et des teintures naturelles. Travaillant avec des artisans et communautés de différentes îles d’Indonésie pour préserver des savoir-faire, soutenir des filières locales et assurer une traçabilité culturelle et artisanale des pièces proposées.",
+    "tags": [
+      "Boutique"
+    ],
+    "createdAt": "2026-02-18T21:10:39.715Z",
+    "updatedAt": "2026-02-18T21:11:24.657Z",
+    "panoramaImage": "/downloads/threadsin.jpg"
+  },
+  {
+    "id": "84593695-4f06-42ad-aba1-839e842e2d14",
+    "name": "KAFE",
+    "city": "Ubud",
+    "country": "ID",
+    "address": "Jl. Hanoman No.44B, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonésie",
+    "website": "http://kafe-bali.com/",
+    "phone": "+62 811-1793-455",
+    "lat": -8.51388004096752,
+    "lng": 115.26415750674659,
+    "category": "Restaurant",
+    "openingHours": "jeudi 7h00–23h00\nvendredi 7h00–23h00\nsamedi 7h00–23h00\ndimanche 7h00–23h00\nlundi 7h00–23h00\nmardi 7h00–23h00\nmercredi 7h00–23h00",
+    "timeZone": "Asia/Makassar",
+    "miniText": "Restaurant mettant en avant une cuisine préparée à partir d’ingrédients biologiques et locaux. Développant une approche axée sur la qualité nutritionnelle, la transformation artisanale sur place et la collaboration avec des producteurs balinais, dans une logique de durabilité et de soutien aux filières locales.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-18T21:15:13.696Z",
+    "updatedAt": "2026-02-18T21:16:52.741Z",
+    "panoramaImage": "/downloads/ubudindon.png"
+  },
+  {
+    "id": "b0ad8178-7a22-4b43-a2af-81b22b7d73da",
+    "name": "Bali Asli",
+    "city": "Karangasem",
+    "country": "ID",
+    "address": "Jl. Gelumpang, bukit cinta, Kec. Karangasem, Kabupaten Karangasem, Bali 80811, Indonésie",
+    "website": "https://baliasli.com.au/",
+    "phone": "+62 822-3690-9215",
+    "lat": -8.426249900587035,
+    "lng": 115.6074637644178,
+    "category": "Restaurant",
+    "openingHours": "jeudi 8h00–19h30\nvendredi 8h00–19h30\nsamedi 8h00–19h30\ndimanche 8h00–19h30\nlundi 8h00–19h30\nmardi 8h00–19h30\nmercredi 8h00–19h30",
+    "timeZone": "Asia/Makassar",
+    "miniText": "Restaurant mettant en avant la cuisine traditionnelle balinaise à partir d’ingrédients issus de producteurs locaux. Valorisant les recettes ancestrales, les techniques culinaires locales et le travail direct avec les agriculteurs environnants. Le lieu propose également des cours de cuisine permettant de transmettre les savoir-faire balinais et de découvrir les produits du territoire.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-18T21:19:44.063Z",
+    "updatedAt": "2026-02-18T21:22:41.789Z",
+    "panoramaImage": "/downloads/baliasliin.png"
   }
 ]
