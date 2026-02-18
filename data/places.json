@@ -9367,5 +9367,68 @@
       "Ferme"
     ],
     "panoramaImage": "/downloads/somofarmviet.webp"
+  },
+  {
+    "id": "7a7c26b1-95a2-4abb-a80f-1e5230616265",
+    "name": "A Little Farm On The Hill",
+    "city": "Janda Baik",
+    "country": "MY",
+    "address": "Lot 161 Tanarimba, Persiaran Enderong, Kampung Janda Baik, 28750 Bentong, Pahang, Malaisie",
+    "website": "https://alittlefarmonthehill.com",
+    "lat": 3.3329701817181645,
+    "lng": 101.81284076441781,
+    "category": "Restaurant",
+    "phone": "+60 9-233 0194",
+    "openingHours": "Jeudi 12h30–16h00\nVendredi 12h30–16h00\nSamedi 12h30–16h00\nDimanche 12h30–16h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé",
+    "timeZone": "Asia/Kuala_Lumpur",
+    "createdAt": "2026-02-18T20:20:39.076Z",
+    "updatedAt": "2026-02-18T20:22:59.772Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant situé au sein d’une ferme biologique, développant une production agricole naturelle (légumes, herbes, fleurs comestibles) cultivée sur place et proposant une cuisine saisonnière directement liée aux récoltes de la ferme. L’établissement met en avant une approche durable intégrant compostage, gestion écologique des sols et lien direct entre production et assiette.",
+    "panoramaImage": "/downloads/littlefarmma.png"
+  },
+  {
+    "id": "246c91ec-05d8-4fd3-932f-b62da3cf8abe",
+    "name": "Kebun Kebun Bangsar",
+    "city": "Kuala Lumpur",
+    "country": "MY",
+    "address": "Lorong Bukit Pantai, Bangsar, 59100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaisie",
+    "website": "https://www.kebunkebunbangsar.org",
+    "lat": 3.1242677706998343,
+    "lng": 101.66837729325339,
+    "category": "Ferme",
+    "phone": "+60 16-414 1620",
+    "openingHours": "Jeudi 8h30–19h00\nVendredi 8h30–19h00\nSamedi 8h30–19h00\nDimanche 8h30–19h00\nLundi Fermé\nMardi 8h30–19h00\nMercredi 8h30–19h00",
+    "timeZone": "Asia/Kuala_Lumpur",
+    "createdAt": "2026-02-18T20:27:11.075Z",
+    "updatedAt": "2026-02-18T20:29:04.588Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme urbaine communautaire en permaculture cultivant fruits, légumes et herbes dans une logique participative et éducative. Le projet fonctionne grâce à l’implication de bénévoles et vise à renforcer l’autonomie alimentaire locale, la sensibilisation à l’agriculture urbaine et la réappropriation d’espaces verts en ville.",
+    "panoramaImage": "/downloads/kebunperma.jpg"
+  },
+  {
+    "id": "745246d9-7f2f-47da-8369-55017d3cd24f",
+    "name": "Dewakan",
+    "city": "Kuala Lumpur",
+    "country": "MY",
+    "address": "Platinum Park, Level 48, Skyviews, Naza Tower @, Persiaran KLCC, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaisie",
+    "website": "https://www.dewakan.my/#/",
+    "lat": 3.1548051509216832,
+    "lng": 101.7184350932534,
+    "category": "Restaurant",
+    "phone": "+60 12-789 6720",
+    "openingHours": "Jeudi 18h00–23h30\nVendredi 18h00–23h30\nSamedi 18h00–23h30\nDimanche Fermé\nLundi 18h00–23h30\nMardi 18h00–23h30\nMercredi 18h00–23h30",
+    "timeZone": "Asia/Kuala_Lumpur",
+    "createdAt": "2026-02-18T20:36:09.137Z",
+    "updatedAt": "2026-02-18T20:37:06.662Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant les ingrédients indigènes et régionaux de Malaisie. Développant une cuisine contemporaine fondée sur la recherche de produits locaux issus de forêts et de fermes, valorisant la biodiversité alimentaire malaisienne et les savoir-faire du territoire.",
+    "panoramaImage": "/downloads/restaumal.png"
   }
 ]
