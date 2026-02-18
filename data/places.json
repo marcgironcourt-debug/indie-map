@@ -8475,5 +8475,422 @@
     ],
     "miniText": "Restaurant mettant en avant la cuisine traditionnelle lao et la découverte des ingrédients locaux. Tamarind valorise les produits du territoire à travers des recettes régionales et propose également des ateliers culinaires pour transmettre les bases de la gastronomie lao.",
     "panoramaImage": "/downloads/tamarinlaos.png"
+  },
+  {
+    "id": "4bc4fa4f-5cbf-44c5-95c5-1a4689ed7f54",
+    "name": "Pun Pun Organic Farm",
+    "city": "Chiang Mai",
+    "country": "Thailand",
+    "address": "80 1 Ban Pao, Mae Taeng District, Chiang Mai 50150, Thaïlande",
+    "website": "https://punpunthailand.org",
+    "lat": 19.215080817925358,
+    "lng": 99.01228285092462,
+    "category": "Lieu alternatif",
+    "phone": "+66 81 470 1461",
+    "openingHours": "Lundi 9h30–16h00\nMardi Fermé\nMercredi 9h30–16h00\nJeudi 9h30–16h00\nVendredi 9h30–16h00\nSamedi 9h30–16h00\nDimanche 9h30–16h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Ferme biologique et centre de vie autonome près de Chiang Mai. Pun Pun pratique l’agriculture régénérative sans produits chimiques, conserve et multiplie des semences locales traditionnelles et organise des formations autour de la vie durable, de la construction naturelle et de la souveraineté alimentaire.",
+    "createdAt": "2026-02-17T19:39:14.420Z",
+    "updatedAt": "2026-02-17T19:43:42.029Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/downloads/punpuntha.png"
+  },
+  {
+    "id": "393a099e-b10d-4f2f-baa3-f73c4dd9b0b9",
+    "name": "Pun Pun Organic Farm",
+    "city": "Chiang Mai",
+    "country": "Thailand",
+    "address": "80 1 Ban Pao, Mae Taeng District, Chiang Mai 50150, Thaïlande",
+    "website": "https://punpunthailand.org",
+    "lat": 19.215080817925358,
+    "lng": 99.01228285092462,
+    "category": "Lieu alternatif",
+    "phone": "+66 81 470 1461",
+    "openingHours": "Lundi 9h30–16h00\nMardi Fermé\nMercredi 9h30–16h00\nJeudi 9h30–16h00\nVendredi 9h30–16h00\nSamedi 9h30–16h00\nDimanche 9h30–16h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Ferme biologique et centre de vie autonome près de Chiang Mai. Pun Pun pratique l’agriculture régénérative sans produits chimiques, conserve et multiplie des semences locales traditionnelles et organise des formations autour de la vie durable, de la construction naturelle et de la souveraineté alimentaire.",
+    "createdAt": "2026-02-17T19:41:46.003Z",
+    "updatedAt": "2026-02-17T19:41:46.004Z",
+    "tags": [
+      "Lieu alternatif"
+    ]
+  },
+  {
+    "id": "565e029e-393d-4eb1-b308-4e17c0b83539",
+    "name": "Rai Ruen Rom",
+    "city": "Chiang Rai",
+    "country": "Thailand",
+    "address": "Ngio, Thoeng District, Chiang Rai 57160, Thaïlande",
+    "website": "https://www.rairuenrom.com",
+    "lat": 19.657211578936447,
+    "lng": 100.15695622208902,
+    "category": "Lieu alternatif",
+    "phone": "+66 81 451 7122",
+    "openingHours": "",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Ferme régénérative développant une production agricole biologique diversifiée et un modèle intégré mêlant culture, transformation et hébergement. Le lieu met en avant l’autonomie alimentaire, les savoir-faire locaux et une approche durable ancrée dans le territoire.",
+    "createdAt": "2026-02-17T19:49:10.356Z",
+    "updatedAt": "2026-02-17T19:50:24.402Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/downloads/rairuen.jpg"
+  },
+  {
+    "id": "91a9e4ed-c43e-4614-a293-f0bd255b4174",
+    "name": "Sookjai Farmer's Market",
+    "city": "Nakhon Pathom",
+    "country": "Thailand",
+    "address": "21, Tambon Yai Cha, Sam Phran District, Nakhon Pathom 73110, Thaïlande",
+    "website": "https://suansampran.com/sookjai-market/",
+    "lat": 13.736073683873228,
+    "lng": 100.2433514355822,
+    "category": "Marché",
+    "phone": "+66 98 709 8252",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 8h00–15h00\nDimanche 8h00–15h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Marché réunissant des producteurs et artisans alimentaires de la région de Nakhon Pathom. Sookjai Farmer's Market privilégie la vente directe, la saisonnalité et des produits issus de fermes locales à petite échelle.",
+    "createdAt": "2026-02-17T19:53:12.790Z",
+    "updatedAt": "2026-02-17T19:58:09.267Z",
+    "tags": [
+      "Marché"
+    ],
+    "panoramaImage": "/downloads/nakhonthsi.png"
+  },
+  {
+    "id": "ef5e0877-db5e-4784-bfcd-c20203cedd85",
+    "name": "Mindful Farm",
+    "city": "Chiang Mai",
+    "country": "Thailand",
+    "address": "Unnamed Rd Mae Sap, Samoeng District, Chiang Mai 50250, Thaïlande",
+    "website": "https://mindfulfarmers.wixsite.com/thailand",
+    "lat": 18.95048589403185,
+    "lng": 98.67260636441779,
+    "category": "Lieu alternatif",
+    "phone": "+66 93 434 6203",
+    "openingHours": "",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Ferme développant une production agricole biologique à petite échelle et accueillant visiteurs et volontaires autour de pratiques durables, d’autonomie alimentaire et de transmission de savoir-faire liés à la vie rurale. Hébergement et restauration disponible sur place. Proposant des ateliers ainsi que des retraites de méditation.",
+    "createdAt": "2026-02-17T20:02:40.498Z",
+    "updatedAt": "2026-02-17T20:06:06.066Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/downloads/mindfulthail.png"
+  },
+  {
+    "id": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
+    "name": "Jing Jai Market Chiang Mai",
+    "city": "Chiang Mai",
+    "country": "Thailand",
+    "address": "46 Atsadathon Rd, Pa Tan Sub-district, Mueang Chiang Mai District, Chiang Mai 50300, Thaïlande",
+    "website": "https://www.jingjaicentralchiangmai.com",
+    "lat": 18.80618752154406,
+    "lng": 98.995681522089,
+    "category": "Marché",
+    "phone": "+66 53 231 520",
+    "openingHours": "Lundi 8h00–22h00\nMardi 8h00–22h00\nMercredi 8h00–22h00\nJeudi 8h00–22h00\nVendredi 8h00–22h00\nSamedi 6h30–22h00\nDimanche 6h30–22h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Marché permanent à Chiang Mai réunissant producteurs locaux, artisans et stands alimentaires. Jing Jai Market met en avant des produits régionaux, des fermes biologiques et des circuits courts dans un espace ouvert favorisant la rencontre entre producteurs et consommateurs.",
+    "createdAt": "2026-02-17T20:11:11.349Z",
+    "updatedAt": "2026-02-17T20:17:35.085Z",
+    "tags": [
+      "Marché"
+    ],
+    "panoramaImage": "/downloads/jingjaith.png"
+  },
+  {
+    "id": "354ffbff-dd57-41d6-aeea-05727e96a46d",
+    "name": "Patom Organic Living",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "address": "9 2 Soi Phrom Phak, Khlong Tan Nuea, Watthana, Bangkok 10110, Thaïlande",
+    "website": "https://www.patom.com",
+    "lat": 13.738704406255646,
+    "lng": 100.5791233355822,
+    "category": "Lieu alternatif",
+    "phone": "+66 2 084 8649",
+    "openingHours": "Lundi 9h00–18h00\nMardi 9h00–18h00\nMercredi 9h00–18h00\nJeudi 9h00–18h00\nVendredi 9h00–18h00\nSamedi 9h00–18h00\nDimanche 9h00–18h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Lieu combinant café, boutique et production agricole biologique issue d’une ferme familiale en Thaïlande. Patom Organic Living développe des produits transformés à partir de matières premières locales et met en avant une approche durable reliant agriculture, transformation artisanale et consommation responsable.",
+    "createdAt": "2026-02-17T20:21:36.031Z",
+    "updatedAt": "2026-02-17T20:25:20.193Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "panoramaImage": "/downloads/phromthai.png"
+  },
+  {
+    "id": "10109f7e-4978-4349-9286-2917ace4408b",
+    "name": "Bo.lan",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "address": "24 Sukhumvit 53 Alley, Khlong Tan Nuea, Watthana, Bangkok 10110, Thaïlande",
+    "website": "http://www.bolan.co.th/",
+    "lat": 13.726458058723853,
+    "lng": 100.577916077911,
+    "category": "Restaurant",
+    "phone": "+66 2 260 2962",
+    "openingHours": "Lundi 18h00–22h00\nMardi Fermé\nMercredi Fermé\nJeudi 18h00–22h00\nVendredi 12h00–14h30, 18h00–22h00\nSamedi 12h00–14h30, 18h00–22h00\nDimanche 12h00–14h30, 18h00–22h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Restaurant engagé dans une cuisine de saison mettant en avant des ingrédients locaux et des producteurs nationaux. Bo.lan développe une approche durable intégrant traçabilité, réduction des déchets et valorisation du patrimoine culinaire thaïlandais.",
+    "createdAt": "2026-02-17T20:28:03.276Z",
+    "updatedAt": "2026-02-17T20:31:30.776Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/downloads/botahilo.png"
+  },
+  {
+    "id": "3ffa35e3-ac7e-4976-ad0c-254cf5e23303",
+    "name": "Haoma",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "address": "231, 3 Sukhumvit 31, Khlong Toei Nuea, Watthana, Bangkok 10110, Thaïlande",
+    "website": "https://www.haoma.dk",
+    "lat": 13.743149703487559,
+    "lng": 100.5676490067466,
+    "category": "Restaurant",
+    "phone": "+66 2 544 0449",
+    "openingHours": "Lundi Fermé\nMardi 17h30–23h00\nMercredi 17h30–23h00\nJeudi 17h30–23h00\nVendredi 17h30–23h00\nSamedi 12h00–14h00, 17h30–23h00\nDimanche 12h00–14h00, 17h30–23h00",
+    "timeZone": "Asia/Bangkok",
+    "miniText": "Restaurant intégrant une micro-ferme urbaine et un potager sur place. Haoma développe une cuisine de saison centrée sur des ingrédients locaux, avec une approche durable combinant production intégrée, réduction des déchets et traçabilité des produits.",
+    "createdAt": "2026-02-17T20:34:22.181Z",
+    "updatedAt": "2026-02-17T20:41:49.122Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/downloads/haomathail.png"
+  },
+  {
+    "id": "e8341f96-495b-4a86-afc8-f2cd0a14950a",
+    "name": "Sorn",
+    "city": "Bangkok",
+    "country": "Thaïlande",
+    "address": "56 Sukhumvit 26, Khlong Tan Nuea, Khlong Toei, Bangkok 10110, Thaïlande",
+    "website": "https://sornfinesouthern.com/#",
+    "lat": 13.723288006107744,
+    "lng": 100.56853046441779,
+    "category": "Restaurant",
+    "phone": "+66 99 081 1119",
+    "openingHours": "Lundi 18h00–22h00\nMardi 18h00–22h00\nMercredi 18h00–22h00\nJeudi 18h00–22h00\nVendredi 18h00–22h00\nSamedi Fermé\nDimanche 18h00–22h00",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-17T20:43:58.542Z",
+    "updatedAt": "2026-02-17T20:47:48.680Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant dédié à la cuisine du sud de la Thaïlande mettant en avant des ingrédients régionaux spécifiques et des produits issus de producteurs locaux. Sorn valorise le patrimoine culinaire du sud à travers une approche saisonnière et une recherche approfondie sur les savoir-faire traditionnels.",
+    "panoramaImage": "/downloads/sorn.png"
+  },
+  {
+    "id": "5004b591-ceeb-4035-8008-1d164db23565",
+    "name": "GINGER FARM kitchen",
+    "city": "Chiang Mai",
+    "country": "TH",
+    "address": "One Nimman, Nimmanahaeminda Road, Suthep, Mueang Chiang Mai District, Chiang Mai 50200, Thaïlande",
+    "website": "https://www.gingerfarmkitchen.com",
+    "lat": 18.80006824183718,
+    "lng": 98.967520377911,
+    "category": "Restaurant",
+    "phone": "+66 52 080 927",
+    "openingHours": "Lundi 11h00–23h00\nMardi 11h00–23h00\nMercredi 11h00–23h00\nJeudi 11h00–23h00\nVendredi 11h00–23h00\nSamedi 11h00–23h00\nDimanche 11h00–23h00",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-17T20:53:09.904Z",
+    "updatedAt": "2026-02-17T20:57:39.566Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine thaïlandaise élaborée à partir des produits de la ferme. L’établissement valorise des ingrédients locaux et développe une approche de la ferme à la table, centrée sur la saisonnalité, la traçabilité et la mise en avant du patrimoine culinaire du nord de la Thaïlande.",
+    "panoramaImage": "/downloads/gingerkit.png"
+  },
+  {
+    "id": "371c1442-12da-4cde-bfd5-d4da60c83221",
+    "name": "Ginger Farm",
+    "city": "Chiang Mai",
+    "country": "TH",
+    "address": "34/1 Moo 12 Hang Khawe Soi 9 Thawangtan Saraphi Chiang Mai 50140, Thaïlande",
+    "website": "https://www.gingerfarmkitchen.com/ginger-farm-1",
+    "lat": 18.732927735028873,
+    "lng": 99.00359865039917,
+    "category": "Ferme",
+    "phone": "+66 52 000 841",
+    "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-17T21:01:52.003Z",
+    "updatedAt": "2026-02-17T21:04:24.585Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme cultivant notamment du riz biologique servi dans les restaurants Ginger Farm. Le site comprend potagers, jardins biologiques et élevage d’animaux, et développe des pratiques agricoles durables centrées sur la saisonnalité et les produits du nord de la Thaïlande. La ferme organise des ateliers quotidiens ainsi que des séminaires, événements privés et activités pédagogiques.",
+    "panoramaImage": "/downloads/gingerfarm.webp"
+  },
+  {
+    "id": "4bc09b13-8667-4de8-accd-2f00d852b9eb",
+    "name": "PRU",
+    "city": "Phuket",
+    "country": "TH",
+    "address": "60, Cherngtalay, 13 Srisoonthorn Road, Cherngtalay 1, Tambon Choeng Thale, Thalang District, Phuket 83110, Thaïlande",
+    "website": "https://www.prurestaurant.com",
+    "lat": 8.038721638550054,
+    "lng": 98.2767186355822,
+    "category": "Restaurant",
+    "phone": "+66 76 683 344",
+    "openingHours": "Lundi Fermé\nMardi 18h00–22h30\nMercredi 18h00–22h30\nJeudi 18h00–22h30\nVendredi 12h00–15h00, 18h00–22h30\nSamedi 12h00–15h00, 18h00–22h30\nDimanche Fermé",
+    "timeZone": "Asia/Bangkok",
+    "createdAt": "2026-02-17T21:08:07.634Z",
+    "updatedAt": "2026-02-17T21:12:24.884Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une approche durable visant à réduire l’usage des combustibles fossiles et privilégiant des pratiques responsables comme l’utilisation de bois et de charbon produits sur place. PRU soutient activement les producteurs, pêcheurs et artisans locaux, valorisant les ingrédients thaïlandais et les savoir-faire régionaux tout au long de l’expérience proposée.",
+    "panoramaImage": "/downloads/pruphu.png"
+  },
+  {
+    "id": "b7245dfb-e802-474c-8f7f-bff1f3994eff",
+    "name": "Artisans d'Angkor",
+    "city": "Siem Reap",
+    "country": "Cambodia",
+    "address": "Chantiers-Ecoles Stung Thmey, Street, Krong Siem Reap, Cambodge",
+    "website": "https://artisansangkor.com",
+    "phone": "+855 12 222 404",
+    "category": "Boutique",
+    "lat": 13.352627137375029,
+    "lng": 103.85196263558221,
+    "openingHours": "mercredi 7h30–18h00\njeudi 7h30–18h00\nvendredi 7h30–18h00\nsamedi 7h30–18h00\ndimanche 7h30–18h00\nlundi 7h30–18h00\nmardi 7h30–18h00",
+    "miniText": "Entreprise sociale fondée pour préserver et transmettre les savoir-faire artisanaux khmers. Formant des artisans dans les domaines de la sculpture sur bois et sur pierre, de la laque, de la soie et de l’orfèvrerie, avec une production réalisée localement dans ses ateliers au Cambodge. Le projet soutient l’emploi rural et la valorisation du patrimoine culturel à travers des boutiques et ateliers ouverts au public.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:01:06.550Z",
+    "updatedAt": "2026-02-18T15:03:40.043Z",
+    "tags": [
+      "Boutique"
+    ],
+    "panoramaImage": "/downloads/siemreapart.jpg"
+  },
+  {
+    "id": "2e98d3b5-f38d-4fa5-8e66-2c9f626130a6",
+    "name": "Lotus Silk Farm",
+    "city": "Siem Reap",
+    "country": "Cambodia",
+    "address": "11 road 63, Phnom Krom 17250, Cambodge",
+    "website": "https://www.lotussilkfarm.com/en/",
+    "phone": "+855 92 529 001",
+    "category": "Ferme",
+    "lat": 13.294386009108488,
+    "lng": 103.83135272208901,
+    "openingHours": "mercredi 8h30–17h30\njeudi 8h30–17h30\nvendredi 8h30–17h30\nsamedi 8h30–17h30\ndimanche 8h30–17h30\nlundi 8h30–17h30\nmardi 8h30–17h30",
+    "miniText": "Ferme spécialisée dans la culture du lotus et la production artisanale de soie de lotus. Lotus Silk Farm cultive ses propres fleurs, extrait manuellement les fibres issues des tiges et réalise sur place le filage et le tissage. Le lieu associe agriculture locale et transformation textile artisanale, valorisant un savoir-faire cambodgien rare autour de la fibre de lotus.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:07:24.441Z",
+    "updatedAt": "2026-02-18T15:08:05.818Z",
+    "tags": [
+      "Ferme"
+    ],
+    "panoramaImage": "/downloads/lotusfarcm.jpg"
+  },
+  {
+    "id": "5d79a98c-f332-43d5-a4d6-0f03269345d3",
+    "name": "La Plantation Farm & Shop",
+    "city": "Kampot",
+    "country": "Cambodia",
+    "address": "J868+CJ, Bosjheng village, Kampot, Cambodge",
+    "website": "https://laplantation.com",
+    "phone": "+855 17 842 505",
+    "category": "Ferme",
+    "lat": 10.610218544293001,
+    "lng": 104.31622486441779,
+    "openingHours": "mercredi 9h00–17h00\njeudi 9h00–17h00\nvendredi 9h00–17h00\nsamedi 9h00–17h00\ndimanche 9h00–17h00\nlundi 9h00–17h00\nmardi 9h00–17h00",
+    "miniText": "Ferme spécialisée dans la culture du poivre de Kampot, certifiée biologique et engagée dans des pratiques agricoles durables. La Plantation cultive, récolte et transforme sur place différentes variétés de poivre et d’épices. Le site associe production agricole, transformation artisanale, accueil du public au sein de la ferme, une boutique et un hébergement.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:12:52.563Z",
+    "updatedAt": "2026-02-18T15:14:50.103Z",
+    "tags": [
+      "Ferme"
+    ],
+    "panoramaImage": "/downloads/laplantcam.jpg"
+  },
+  {
+    "id": "61edac16-52c9-4dc8-b063-68b6a0563ed1",
+    "name": "Paradise Gardens Kampot",
+    "city": "Kampot",
+    "country": "Cambodia",
+    "address": "NR33, Kampot 70702, Cambodge",
+    "website": "https://www.paradisekampot.com",
+    "phone": "+855 90 810 888",
+    "category": "Ferme",
+    "lat": 10.610456262507283,
+    "lng": 104.20667730674658,
+    "openingHours": "mercredi 8h00–17h30\njeudi 8h00–17h30\nvendredi 8h00–17h30\nsamedi 8h00–17h30\ndimanche Fermé\nlundi 8h00–17h30\nmardi 8h00–17h30",
+    "miniText": "Ferme spécialisée dans le poivre de Kampot cultivé en agriculture biologique. La boutique de Kampot propose les produits et des informations sur la culture du poivre, avec la possibilité de participer à un tour de ferme.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:21:25.469Z",
+    "updatedAt": "2026-02-18T15:22:05.782Z",
+    "tags": [
+      "Ferme"
+    ],
+    "panoramaImage": "/downloads/kampotcam.jpg"
+  },
+  {
+    "id": "1ba761bc-f8a1-4c7c-9a7a-e101634fd9f5",
+    "name": "Jaan Bai Restaurant",
+    "city": "Battambang",
+    "country": "Cambodia",
+    "address": "Street 2, Battambang 02000, Cambodge",
+    "website": "https://www.instagram.com/jaanbai/?hl=fr",
+    "phone": "+855 78 263 144",
+    "category": "Restaurant",
+    "lat": 13.101674440799133,
+    "lng": 103.19859294907538,
+    "openingHours": "mercredi 11h00–22h00\njeudi 11h00–22h00\nvendredi 11h00–22h00\nsamedi 11h00–22h00\ndimanche 11h00–22h00\nlundi 11h00–22h00\nmardi 11h00–22h00",
+    "miniText": "Restaurant proposant une cuisine cambodgienne contemporaine travaillée à partir d’ingrédients locaux et de saison, tout en formant et employant des jeunes issus de milieux vulnérables. Le projet associe restauration de qualité et impact social au niveau local.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:26:34.884Z",
+    "updatedAt": "2026-02-18T15:26:34.886Z",
+    "tags": [
+      "Restaurant"
+    ]
+  },
+  {
+    "id": "4b0f882a-7e59-4c1b-98ad-2acddca95cb1",
+    "name": "Cuisine Wat Damnak",
+    "city": "Siem Reap",
+    "country": "Cambodia",
+    "address": "City, Wat Damnak market, street, Village, Krong Siem Reap 93108, Cambodge",
+    "website": "http://www.cuisinewatdamnak.com",
+    "phone": "+855 77 347 762",
+    "category": "Restaurant",
+    "lat": 13.349870495374208,
+    "lng": 103.86018997976022,
+    "openingHours": "mercredi 18h00–23h00\njeudi 18h00–23h00\nvendredi 18h00–23h00\nsamedi 18h00–23h00\ndimanche Fermé\nlundi 18h00–23h00\nmardi 18h00–23h00",
+    "miniText": "Restaurant proposant une cuisine cambodgienne centrée sur les ingrédients locaux et de saison. Élaborant des menus évolutifs mettant en avant les produits du marché régional et les traditions culinaires khmères, avec une approche axée sur la fraîcheur et le terroir.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:31:34.634Z",
+    "updatedAt": "2026-02-18T15:31:34.634Z",
+    "tags": [
+      "Restaurant"
+    ]
+  },
+  {
+    "id": "899db484-dea9-43e0-83e0-c1f33a7c5a6c",
+    "name": "SPOONS Café Restaurant",
+    "city": "Siem Reap",
+    "country": "Cambodia",
+    "address": "0142, Group 5, Pave Road, Wat Damnak Village, Salakomreouk Commune, Siem Reap 17254, Cambodge",
+    "website": "https://www.spoonscambodia.org/about-the-caf-and-restaurant",
+    "phone": "+855 76 277 6667",
+    "category": "Restaurant",
+    "lat": 13.349427340003835,
+    "lng": 103.85699040674659,
+    "openingHours": "mercredi 7h00–22h00\njeudi 7h00–22h00\nvendredi 7h00–22h00\nsamedi 7h00–22h00\ndimanche 7h00–22h00\nlundi 7h00–22h00\nmardi 7h00–22h00",
+    "miniText": "Café Restaurant formant des jeunes issus de milieux défavorisés aux métiers de la restauration et de l’hôtellerie. L’établissement propose une cuisine cambodgienne et internationale travaillée à partir d’ingrédients locaux et de saison, associant formation professionnelle et impact social au niveau local.",
+    "timeZone": "Asia/Phnom_Penh",
+    "createdAt": "2026-02-18T15:37:53.888Z",
+    "updatedAt": "2026-02-18T15:42:26.769Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/downloads/spooncafe.png"
   }
 ]
