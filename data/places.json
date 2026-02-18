@@ -9262,5 +9262,26 @@
     "miniText": "Café vietnamien mettant en avant le patrimoine et les terroirs du café local biologique et respectueux de lenvironnement. Valorisant des grains vietnamiens issus de différentes régions productrices, torréfiés et préparés avec une approche axée sur l origine et la traçabilité.",
     "createdAt": "2026-02-18T19:05:51.974Z",
     "updatedAt": "2026-02-18T19:05:51.974Z"
+  },
+  {
+    "id": "3ab3be40-a14c-4def-a188-3717a8d32823",
+    "name": "Tuấn Family Organic Farm",
+    "city": "Hội An",
+    "country": "VN",
+    "address": "Tổ 04 Thôn Trà Quế, Cẩm Hà, Hội An, Quảng Nam 51317, Vietnam",
+    "website": "https://hoianorganic.asia",
+    "lat": 15.901622731016491,
+    "lng": 108.33901470703701,
+    "category": "Restaurant",
+    "phone": "+84 912 323 044",
+    "openingHours": "Lundi 9h00–20h00\nMardi 9h00–20h00\nMercredi 9h00–20h00\nJeudi 9h00–20h00\nVendredi 9h00–20h00\nSamedi 9h30–20h00\nDimanche 9h30–20h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-02-18T19:28:01.134Z",
+    "updatedAt": "2026-02-18T19:28:48.167Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant familial cultivant légumes et herbes aromatiques selon les méthodes agricoles traditionnelles locales et les utilise directement dans les plats préparés sur place. L’expérience combine visite du potager et cuisine vietnamienne élaborée à partir des récoltes du jour.",
+    "panoramaImage": "/downloads/tuantoviet.jpg"
   }
 ]
