@@ -9179,5 +9179,88 @@
       "Boutique"
     ],
     "miniText": "Boutique-atelier transformant des chutes de soie en créations artisanales (tableaux, objets et cadeaux faits main). Le projet fonctionne comme une démarche à impact social, mettant en avant le travail d’artisans en situation de handicap et la valorisation de matières textiles récupérées."
+  },
+  {
+    "id": "5c7d677d-b731-43e9-a8ce-c94a5ec37c5d",
+    "name": "HOME Hanoi",
+    "city": "Hanoi",
+    "country": "VN",
+    "address": "75 P. Nguyễn Đình Chiểu, Lê Đại Hành, Hai Bà Trưng, Hà Nội, Vietnam",
+    "website": "https://homevietnameserestaurants.com",
+    "lat": 21.01201463145181,
+    "lng": 105.84616726435966,
+    "category": "Restaurant",
+    "phone": "+84 889 038 822",
+    "openingHours": "Jeudi 11h00-13h30, 17h30-21h30\nVendredi 11h00-13h30, 17h30-21h30\nSamedi 11h00-13h30, 17h30-21h30\nDimanche 11h00-13h30, 17h30-21h30\nLundi 11h00-13h30, 17h30-21h30\nMardi 11h00-13h30, 17h30-21h30\nMercredi 11h30-13h30, 17h30-21h30",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine traditionnelle revisitée dans un cadre inspiré des maisons anciennes de Hanoï. HOME met en avant des recettes emblématiques du Nord du Vietnam, préparées à partir d’ingrédients locaux et de saison.",
+    "createdAt": "2026-02-18T18:39:27.395Z",
+    "updatedAt": "2026-02-18T18:40:37.711Z",
+    "panoramaImage": "/downloads/homehanoi.jpg"
+  },
+  {
+    "id": "faa11533-30a7-445d-ac24-75602f5bd33e",
+    "name": "Duong's Restaurant",
+    "city": "Hanoi",
+    "country": "VN",
+    "address": "27 Ng. Huyện, Hàng Trống, Hoàn Kiếm, Hà Nội 10000, Vietnam",
+    "website": "https://duongsrestaurant.com",
+    "lat": 21.02963952793942,
+    "lng": 105.84857923558219,
+    "category": "Restaurant",
+    "phone": "+84 24 3636 4567",
+    "openingHours": "Jeudi 11h00-22h00\nVendredi 11h00-22h00\nSamedi 11h00-22h00\nDimanche 11h00-22h00\nLundi 11h00-22h00\nMardi 11h00-22h00\nMercredi 11h00-22h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine vietnamienne traditionnelle revisitée avec une approche moderne. Duong’s Restaurant met en avant des recettes emblématiques du Vietnam préparées à partir d’ingrédients locaux, dans un cadre élégant au cœur du vieux quartier de Hanoï.",
+    "createdAt": "2026-02-18T18:50:20.280Z",
+    "updatedAt": "2026-02-18T18:52:33.841Z",
+    "panoramaImage": "/downloads/duonghan.jpg"
+  },
+  {
+    "id": "e864474e-daac-4d08-9ead-977a705ebf9b",
+    "name": "Hum Signature",
+    "city": "Ho Chi Minh City",
+    "country": "VN",
+    "address": "32 Võ Văn Tần, Phường 6, Quận 3, Thành phố Hồ Chí Minh 70000, Vietnam",
+    "website": "https://hum-dining.vn/thuc-don-my-thuc/",
+    "lat": 10.779010353518405,
+    "lng": 106.69203620674661,
+    "category": "Restaurant",
+    "phone": "+84 898 868 229",
+    "openingHours": "Jeudi 18h00-22h00\nVendredi 18h00-22h00\nSamedi 18h00-22h00\nDimanche 18h00-22h00\nLundi 18h00-22h00\nMardi 18h00-22h00\nMercredi 18h00-22h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien proposant une cuisine vietnamienne contemporaine inspirée des produits végétaux locaux. Hum Signature met en avant des ingrédients de saison travaillés avec une approche gastronomique et artistique.",
+    "createdAt": "2026-02-18T18:55:49.611Z",
+    "updatedAt": "2026-02-18T18:59:05.189Z",
+    "panoramaImage": "/downloads/humvietn.png"
+  },
+  {
+    "id": "3e871801-4b3e-41b7-a17d-7c2ab1fcc93d",
+    "name": "SHIN Heritage",
+    "city": "Ho Chi Minh City",
+    "country": "VN",
+    "address": "27 Lưu Văn Lang, Phường Bến Thành, Quận 1, Thành phố Hồ Chí Minh 700000, Vietnam",
+    "website": "https://shincaphe.com/",
+    "lat": 10.804305026316307,
+    "lng": 106.69892031112279,
+    "category": "Café",
+    "phone": "",
+    "openingHours": "Jeudi 7h30-18h30\nVendredi 7h30-18h30\nSamedi 7h30-18h30\nDimanche 7h30-18h30\nLundi 7h30-18h30\nMardi 7h30-18h30\nMercredi 7h30-18h30",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café vietnamien mettant en avant le patrimoine et les terroirs du café local biologique et respectueux de lenvironnement. Valorisant des grains vietnamiens issus de différentes régions productrices, torréfiés et préparés avec une approche axée sur l origine et la traçabilité.",
+    "createdAt": "2026-02-18T19:05:51.974Z",
+    "updatedAt": "2026-02-18T19:05:51.974Z"
   }
 ]
