@@ -9283,5 +9283,89 @@
     ],
     "miniText": "Restaurant familial cultivant légumes et herbes aromatiques selon les méthodes agricoles traditionnelles locales et les utilise directement dans les plats préparés sur place. L’expérience combine visite du potager et cuisine vietnamienne élaborée à partir des récoltes du jour.",
     "panoramaImage": "/downloads/tuantoviet.jpg"
+  },
+  {
+    "id": "1e946d97-4f49-41eb-9dfd-ff9f5750a448",
+    "name": "Tra Que Herb Garden",
+    "city": "Hội An",
+    "country": "Vietnam",
+    "address": "Cầu, Cẩm Hà, Hội An, Quảng Nam, Vietnam",
+    "website": "https://www.traqueherbgarden.com",
+    "lat": 15.899709338978896,
+    "lng": 108.338481877911,
+    "category": "Restaurant",
+    "phone": "+84 905 149 377",
+    "openingHours": "Lundi 9h00-16h00\nMardi 9h00-16h00\nMercredi 9h00-16h00\nJeudi 9h00-16h00\nVendredi 9h00-16h00\nSamedi 9h00-16h00\nDimanche 9h00-16h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "miniText": "Restaurant proposant une cuisine vietnamienne préparée avec des herbes et légumes cultivés sur place. L’établissement met en avant les produits issus du jardin et valorise les pratiques agricoles traditionnelles du village, avec une approche centrée sur la fraîcheur et les ingrédients de saison.",
+    "createdAt": "2026-02-18T19:38:31.618Z",
+    "updatedAt": "2026-02-18T19:43:21.884Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/downloads/traquevietg.jpg"
+  },
+  {
+    "id": "c779691b-7585-417b-927a-63e94abee366",
+    "name": "Shamballa",
+    "city": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "address": "17-19 Đ. Trịnh Văn Cấn, St, Quận 1, Thành phố Hồ Chí Minh 70000, Vietnam",
+    "website": "https://www.shamballa.co/location/pure-vegetarian-teahouse-saigon/",
+    "lat": 10.781203393424134,
+    "lng": 106.70269491999676,
+    "category": "Restaurant",
+    "phone": "+84 917 876 788",
+    "openingHours": "Lundi 10h00-22h00\nMardi 10h00-22h00\nMercredi 10h00-22h00\nJeudi 10h00-22h00\nVendredi 10h00-22h00\nSamedi 10h00-22h00\nDimanche 10h00-22h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "miniText": "Restaurant végétarien proposant une cuisine axée sur des plats à base de légumes, tofu et herbes aromatiques. Cultivant légumes et herbes sur place et utilisant des produits locaux. L’établissement met en avant une approche culinaire centrée sur le végétal, dans un cadre pensé autour du thé et d’une atmosphère apaisante.",
+    "createdAt": "2026-02-18T19:50:10.532Z",
+    "updatedAt": "2026-02-18T19:52:35.095Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "panoramaImage": "/downloads/shamballviet.png"
+  },
+  {
+    "id": "ab68b5b4-50e3-4240-aafb-91d948d23472",
+    "name": "Đèo Mây Farm",
+    "city": "Đà Lạt",
+    "country": "Vietnam",
+    "address": "Hẻm 32 Đ. 3/4, Phường 3, Đà Lạt, Lâm Đồng, Vietnam",
+    "website": "https://www.facebook.com/people/Đèo-Mây-farm/100066430943646/?mibextid=ZbWKwL",
+    "lat": 11.917473671074308,
+    "lng": 108.441465722089,
+    "category": "Ferme",
+    "phone": "+84 854 737 468",
+    "openingHours": "Lundi 6h00-20h30\nMardi 6h00-20h30\nMercredi 6h00-20h30\nJeudi 6h00-20h30\nVendredi 6h00-20h30\nSamedi 6h00-20h30\nDimanche 6h00-20h30",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "miniText": "Ferme biologique spécialisée notamment dans la culture de fraises et de produits agricoles locaux. Proposant une expérience de cueillette sur place ainsi qu’un espace permettant de déguster des boissons et préparations simples dans un environnement naturel avec vue panoramique.",
+    "createdAt": "2026-02-18T19:56:28.365Z",
+    "updatedAt": "2026-02-18T19:58:56.863Z",
+    "tags": [
+      "Ferme"
+    ],
+    "panoramaImage": "/downloads/deofraise.png"
+  },
+  {
+    "id": "b1481392-6038-4311-aff2-c6c8e108464b",
+    "name": "Somo Farm Cửu Long",
+    "city": "Vinh Long",
+    "country": "Vietnam",
+    "address": "Khóm 3, Mang Thít District, Vinh Long 893510, Vietnam",
+    "website": "http://somofarmcuulong.somogroup.vn/",
+    "lat": 10.180109338772152,
+    "lng": 106.09375655092461,
+    "category": "Ferme",
+    "phone": "+84 896 164 555",
+    "openingHours": "Lundi 7h30-21h00\nMardi 7h30-21h00\nMercredi 7h30-21h00\nJeudi 7h30-21h00\nVendredi 7h30-21h00\nSamedi 7h30-21h00\nDimanche 7h30-21h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "miniText": "Ferme écologique combinant production agricole biologique, restaurant de la ferme à la table et activités immersives. Somo Farm Cửu Long valorise les produits issus de la ferme et met en avant la culture rurale locale à travers une expérience ancrée dans le territoire.",
+    "createdAt": "2026-02-18T20:03:38.730Z",
+    "updatedAt": "2026-02-18T20:04:03.901Z",
+    "tags": [
+      "Ferme"
+    ],
+    "panoramaImage": "/downloads/somofarmviet.webp"
   }
 ]
