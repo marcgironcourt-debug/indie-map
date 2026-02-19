@@ -9954,5 +9954,65 @@
     ],
     "miniText": "Boulangerie travaillant directement avec des agriculteurs et cultivant ses propres céréales, moulues sur place. Les pains, viennoiseries et pâtisseries sont élaborés à partir de farines fraîchement moulues. L’approche privilégie l’agriculture biologique, la réduction des transports et des emballages.",
     "panoramaImage": "/downloads/apbak.png"
+  },
+  {
+    "id": "77136e2a-13f0-4a6d-9bb7-a0e97c2dd93c",
+    "name": "Brae Restaurant",
+    "city": "Birregurra",
+    "address": "4285 Cape Otway Rd, Birregurra VIC 3242, Australie",
+    "website": "https://www.braerestaurant.com",
+    "lat": -38.34679107126693,
+    "lng": 143.8072105710878,
+    "category": "Restaurant",
+    "phone": "+61 3 5236 2226",
+    "openingHours": "Vendredi 12h00–18h00\nSamedi 12h00–18h00\nDimanche 12h00–18h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 17h00–22h00",
+    "timeZone": "Australia/Melbourne",
+    "createdAt": "2026-02-19T18:36:29.922Z",
+    "updatedAt": "2026-02-19T18:42:02.583Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant installé sur une propriété rurale avec potager et vergers. L’établissement développe une cuisine australienne centrée sur la saisonnalité, en utilisant des ingrédients cultivés sur place et provenant de producteurs régionaux. L’expérience repose sur un menu dégustation évolutif mettant en avant le lien entre agriculture, territoire et gastronomie.",
+    "panoramaImage": "/downloads/brae.png"
+  },
+  {
+    "id": "517cbe95-01d7-45b2-8831-4fad04a5a186",
+    "name": "The Agrarian Kitchen",
+    "city": "New Norfolk",
+    "address": "11a The Avenue, New Norfolk TAS 7140, Australie",
+    "website": "https://www.theagrariankitchen.com",
+    "lat": -42.78531196931886,
+    "lng": 147.06435702873765,
+    "category": "Restaurant",
+    "phone": "+61 3 6262 0011",
+    "openingHours": "Vendredi 11h00–14h00\nSamedi 11h00–14h00\nDimanche 11h00–14h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé",
+    "timeZone": "Australia/Hobart",
+    "createdAt": "2026-02-19T18:45:32.779Z",
+    "updatedAt": "2026-02-19T18:45:58.094Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant et potager développant une approche de la ferme à la table, centrée sur la culture saisonnière et la transformation sur place des produits du jardin. The Agrarian Kitchen met en avant les ingrédients locaux de Tasmanie et une cuisine ancrée dans l’agriculture et le territoire.",
+    "panoramaImage": "/downloads/agrarianki.webp"
+  },
+  {
+    "id": "bffff765-d99b-44e3-94c6-c6f8e9d64d00",
+    "name": "Restaurant Botanic",
+    "city": "Adelaide",
+    "address": "Plane Tree Dr, Adelaide SA 5000, Australie",
+    "website": "https://restaurantbotanic.com.au",
+    "lat": -34.917592662920654,
+    "lng": 138.60997552869617,
+    "category": "Restaurant",
+    "phone": "+61 8 8223 3526",
+    "openingHours": "Vendredi 18h00–0h00\nSamedi 18h00–0h00\nDimanche 12h00–17h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 18h00–0h00",
+    "timeZone": "Australia/Adelaide",
+    "createdAt": "2026-02-19T18:50:00.381Z",
+    "updatedAt": "2026-02-19T18:50:38.203Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant situé au sein du jardin botanique d’Adelaide, développant une cuisine contemporaine centrée sur les produits australiens et la saisonnalité. L’établissement accorde une attention particulière aux ingrédients australiens indigènes, valorisant leurs saveurs, leur histoire et leur lien avec la terre, dans une démarche fondée sur la recherche, la compréhension et le respect des produits.",
+    "panoramaImage": "/downloads/botanicaus.jpg"
   }
 ]
