@@ -10014,5 +10014,105 @@
     ],
     "miniText": "Restaurant situé au sein du jardin botanique d’Adelaide, développant une cuisine contemporaine centrée sur les produits australiens et la saisonnalité. L’établissement accorde une attention particulière aux ingrédients australiens indigènes, valorisant leurs saveurs, leur histoire et leur lien avec la terre, dans une démarche fondée sur la recherche, la compréhension et le respect des produits.",
     "panoramaImage": "/downloads/botanicaus.jpg"
+  },
+  {
+    "id": "b5a130cd-5947-4dd4-b25d-1b803046a6dd",
+    "name": "Fat Pig Farm",
+    "city": "Glaziers Bay",
+    "address": "80 Dillons Hill Rd, Glaziers Bay TAS 7109, Australie",
+    "website": "https://fatpig.farm/",
+    "lat": -43.13964542420528,
+    "lng": 147.013243401847,
+    "category": "Ferme",
+    "phone": "+61 415 168 285",
+    "openingHours": "",
+    "timeZone": "Australia/Hobart",
+    "createdAt": "2026-02-19T19:09:23.412Z",
+    "updatedAt": "2026-02-19T19:12:45.288Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme développant une production agricole intégrée autour de l’élevage porcin, du maraîchage et de la transformation artisanale sur place. Fat Pig Farm valorise les produits issus de la propriété à travers des repas fermiers organisés sur réservation, mettant en avant la saisonnalité, l’autonomie alimentaire et le lien direct entre production et assiette.",
+    "panoramaImage": "/downloads/fatpigfarm.png"
+  },
+  {
+    "id": "3a5068d8-c9b5-4144-8212-e0e37f8626b0",
+    "name": "Africola",
+    "city": "Adelaide",
+    "address": "4 East Terrace, Adelaide SA 5000, Australie",
+    "website": "http://www.africola.com.au/",
+    "lat": -34.92087906135747,
+    "lng": 138.6108065767058,
+    "category": "Restaurant",
+    "phone": "+61 8 8223 3885",
+    "openingHours": "vendredi 18h00–23h00\nsamedi 18h00–23h00\ndimanche Fermé\nlundi 18h00–23h00\nmardi 18h00–23h00\nmercredi 18h00–23h00\njeudi 18h00–23h00",
+    "timeZone": "Australia/Adelaide",
+    "createdAt": "2026-02-19T19:29:00.537Z",
+    "updatedAt": "2026-02-19T19:31:20.379Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine d’inspiration africaine, mettant en avant des ingrédients sélectionnés auprès de producteurs locaux, avec une carte évolutive, axée sur la saisonnalité et le partage.",
+    "panoramaImage": "/downloads/africola.png"
+  },
+  {
+    "id": "7f323f8e-7989-473c-b948-5fc4af5d68e7",
+    "name": "The Lost Loaf",
+    "city": "Adelaide",
+    "address": "6/14 Fourth St, Bowden SA 5007, Australie",
+    "website": "https://www.thelostloaf.com",
+    "lat": -34.90586033963495,
+    "lng": 138.57869751534113,
+    "category": "Boulangerie",
+    "phone": "",
+    "openingHours": "vendredi 8h00–15h00\nsamedi 8h00–15h00\ndimanche 8h00–15h00\nlundi Fermé\nmardi Fermé\nmercredi 8h00–15h00\njeudi 8h00–15h00",
+    "timeZone": "Australia/Adelaide",
+    "createdAt": "2026-02-19T19:34:18.979Z",
+    "updatedAt": "2026-02-19T19:39:19.642Z",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie artisanale spécialisée dans le pain au levain et les produits de boulangerie fabriqués à partir d’ingrédients sélectionnés avec soin. Développant une production en petite série et mettant en avant des farines et matières premières issues de producteurs locaux.",
+    "panoramaImage": "/downloads/thelostloaf.png"
+  },
+  {
+    "id": "a7f8ee65-4261-4c23-94df-c02ae99592b3",
+    "name": "The Salopian Inn",
+    "city": "McLaren Vale",
+    "address": "Main Rd, McLaren Vale SA 5171, Australie",
+    "website": "https://salopian.com.au/",
+    "lat": -35.22910793968779,
+    "lng": 138.55145814787053,
+    "category": "Restaurant",
+    "phone": "+61 8 8323 8769",
+    "openingHours": "vendredi 12h00–21h00\nsamedi 12h00–21h00\ndimanche 12h00–17h00\nlundi 12h00–17h00\nmardi 12h00–17h00\nmercredi 12h00–17h00\njeudi 12h00–21h00",
+    "timeZone": "Australia/Adelaide",
+    "createdAt": "2026-02-19T19:45:26.226Z",
+    "updatedAt": "2026-02-19T19:53:44.040Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant asiatique mettant en avant une cuisine axée sur les produits de saison et les ingrédients issus de producteurs locaux. Développant également un potager et un jardin d’herbes aromatiques utilisés en cuisine, valorisant une approche ancrée dans le terroir.",
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 14_50_50.png"
+  },
+  {
+    "id": "aea856f0-8b30-4929-adde-a5b74137567a",
+    "name": "Adelaide Showground Farmers' Market",
+    "city": "Adelaide",
+    "address": "Rose Terrace, Wayville SA 5034, Australie",
+    "website": "https://adelaidefarmersmarket.com.au",
+    "lat": -34.94547995155671,
+    "lng": 138.58560617485875,
+    "category": "Marché",
+    "phone": "+61 8 8231 8155",
+    "openingHours": "dimanche 8h30–12h30",
+    "timeZone": "Australia/Adelaide",
+    "createdAt": "2026-02-19T19:57:02.781Z",
+    "updatedAt": "2026-02-19T20:03:00.194Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché de producteurs organisé chaque dimanche matin, réunissant des agriculteurs et artisans alimentaires locaux Le lieu met en avant des produits frais, de saison et achetés directement aux producteurs.",
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.png"
   }
 ]
