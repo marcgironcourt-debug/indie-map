@@ -10234,5 +10234,105 @@
     "createdAt": "2026-02-19T22:36:50.942Z",
     "updatedAt": "2026-02-19T22:40:18.123Z",
     "panoramaImage": "/downloads/longchee.png"
+  },
+  {
+    "id": "93fc8d23-dd0e-49b9-a9e1-3be1b5c3ad18",
+    "name": "Perth City Farm",
+    "city": "Perth",
+    "address": "1 City Farm Pl, East Perth WA 6004, Australie",
+    "website": "https://perthcityfarm.org.au",
+    "lat": -31.95058287227643,
+    "lng": 115.8707259864782,
+    "category": "Ferme",
+    "phone": "+61 8 9325 7229",
+    "openingHours": "vendredi 9h00–15h00\nsamedi 7h30–11h30\ndimanche Fermé\nlundi 9h00–15h00\nmardi 9h00–15h00\nmercredi 9h00–15h00\njeudi 9h00–15h00",
+    "timeZone": "Australia/Perth",
+    "createdAt": "2026-02-19T22:57:44.601Z",
+    "updatedAt": "2026-02-19T22:58:58.631Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme communautaire et éducative dédiée à la durabilité environnementale. Le lieu propose des ateliers et actions concrètes autour des modes de vie sobres (réduction des déchets, pratiques durables), s’appuie sur une ferme urbaine évolutive, une pépinière, un potager de production et un espace de recyclage, et accueille un marché de producteurs le samedi.",
+    "panoramaImage": "/downloads/perthfar.jpg"
+  },
+  {
+    "id": "17be949a-d396-4162-b8b9-6fb8baed29c1",
+    "name": "Wildflower",
+    "city": "Perth",
+    "address": "COMO The Treasury Level 4, 1 Cathedral Ave, Perth WA 6000, Australie",
+    "website": "https://wildflowerperth.com.au",
+    "lat": -31.95557873774838,
+    "lng": 115.8603409017894,
+    "category": "Restaurant",
+    "phone": "+61 8 6168 7855",
+    "openingHours": "vendredi 12h00–14h30, 17h30–22h00\nsamedi 17h30–22h00\ndimanche Fermé\nlundi Fermé\nmardi 17h30–22h00\nmercredi 12h00–14h30, 17h30–22h00\njeudi 12h00–14h30, 17h30–22h00",
+    "timeZone": "Australia/Perth",
+    "createdAt": "2026-02-19T23:04:29.312Z",
+    "updatedAt": "2026-02-19T23:05:47.159Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine contemporaine guidée par l'éthique autochtone des six saisons. Les menus évoluent avec les saisons valorisant les ressources, les producteurs et les agriculteurs locaux",
+    "panoramaImage": "/downloads/wildflower.jpg"
+  },
+  {
+    "id": "375664c7-0f6e-4a5b-ad38-0d917a583b67",
+    "name": "One Mile Brewery",
+    "city": "Darwin",
+    "address": "8/111 Coonawarra Rd, Winnellie NT 0820, Australie",
+    "website": "https://www.onemilebrewery.com.au",
+    "lat": -12.429452639489803,
+    "lng": 130.8855594710562,
+    "category": "Brasserie",
+    "phone": "+61 429 782 870",
+    "openingHours": "vendredi 16h00–20h00\nsamedi 12h00–20h00\ndimanche Fermé\nlundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi 16h00–20h00",
+    "timeZone": "Australia/Darwin",
+    "createdAt": "2026-02-19T23:35:03.768Z",
+    "updatedAt": "2026-02-19T23:37:38.751Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie artisanale brassant des bières reflétant l’esprit de Darwin. Privilégiant des ingrédients frais et locaux et une fabrication sans additifs ni conservateurs, pour proposer des bières inspirées du territoire.",
+    "panoramaImage": "/downloads/brasssdarw.png"
+  },
+  {
+    "id": "559f1526-3914-4632-8d42-159a833d3ed9",
+    "name": "Essa Restaurant",
+    "city": "Brisbane",
+    "address": "181 Robertson St, Fortitude Valley QLD 4006, Australie",
+    "website": "https://essa.restaurant/",
+    "lat": -27.45693918809152,
+    "lng": 153.0402548460004,
+    "category": "Restaurant",
+    "phone": "+61 7 3177 1011",
+    "openingHours": "vendredi 12h00–23h00\nsamedi 17h00–23h00\ndimanche 12h00–16h00\nlundi Fermé\nmardi 17h00–23h00\nmercredi 17h00–23h00\njeudi 17h00–23h00",
+    "timeZone": "Australia/Brisbane",
+    "createdAt": "2026-02-19T23:40:44.160Z",
+    "updatedAt": "2026-02-19T23:44:24.778Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine contemporaine cuite au feu de bois et guidée par la saisonnalité. Valorisant des ingrédients issus de producteurs locaux et proposant une carte évolutive centrée sur les produits et le territoire.",
+    "panoramaImage": "/downloads/essabrisb.png"
+  },
+  {
+    "id": "b50aa1c7-b391-476a-a4d1-e21afe8cf89f",
+    "name": "Kooroomba",
+    "city": "Brisbane",
+    "address": "168 F M Bells Rd, Mount Alford QLD 4310, Australie",
+    "website": "https://www.kooroomba.com.au/",
+    "lat": -28.065730618302304,
+    "lng": 152.61393447104243,
+    "category": "Restaurant",
+    "phone": "+61 7 5463 0022",
+    "openingHours": "vendredi 10h00–15h00\nsamedi 10h00–16h00\ndimanche 10h00–16h00\nlundi Fermé\nmardi Fermé\nmercredi 10h00–15h00\njeudi 10h00–15h00",
+    "timeZone": "Australia/Brisbane",
+    "createdAt": "2026-02-19T23:50:22.052Z",
+    "updatedAt": "2026-02-19T23:54:08.738Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Domaine viticole et ferme de lavande proposant un restaurant sur place mettant en valeur les produits de la propriété et des producteurs régionaux, avec une vue sur les vignobles et les cultures environnantes.",
+    "panoramaImage": "/downloads/koorombabri.jpg"
   }
 ]
