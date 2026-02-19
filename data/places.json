@@ -10114,5 +10114,125 @@
     ],
     "miniText": "Marché de producteurs organisé chaque dimanche matin, réunissant des agriculteurs et artisans alimentaires locaux Le lieu met en avant des produits frais, de saison et achetés directement aux producteurs.",
     "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.png"
+  },
+  {
+    "id": "70d24e11-780c-4856-b19c-261babf91378",
+    "name": "Farmer's Daughters",
+    "city": "Melbourne",
+    "address": "95 Exhibition Street, 80 Collins Precinct, Melbourne VIC 3000, Australie",
+    "website": "https://www.farmersdaughters.com.au/?utm_source=Google&utm_medium=GMB&utm_campaign=Map",
+    "lat": -37.81335067841743,
+    "lng": 144.9711432171882,
+    "category": "Restaurant",
+    "phone": "+61 3 9116 8682",
+    "openingHours": "vendredi\t12h00–21h30\nsamedi\t11h30–21h30\ndimanche\t11h30–21h00\nlundi\t12h00–21h00\nmardi\t12h00–21h00\nmercredi\t12h00–21h00\njeudi\t12h00–21h30",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Restaurant mettant en avant les produits locaux. Travaillant directement avec des agriculteurs, éleveurs et producteurs locaux afin de valoriser les ingrédients du territoire à travers une cuisine de saison centrée sur la traçabilité et l’origine des produits.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-19T22:09:27.205Z",
+    "updatedAt": "2026-02-19T22:10:14.344Z",
+    "panoramaImage": "/downloads/farmersme.jpg"
+  },
+  {
+    "id": "79f38769-268c-4b90-9a98-fc74c04c33fe",
+    "name": "Common Ground Project",
+    "city": "Freshwater Creek",
+    "address": "675 Anglesea Rd, Freshwater Creek VIC 3217, Australie",
+    "website": "https://www.commongroundproject.com.au",
+    "lat": -38.25948311614766,
+    "lng": 144.27635337301172,
+    "category": "Lieu alternatif",
+    "phone": "+61 3 5264 5082",
+    "openingHours": "vendredi\tFermé\nsamedi\tFermé\ndimanche\tFermé\nlundi\tFermé\nmardi\t9h00–16h00\nmercredi\t9h00–16h00\njeudi\t9h00–16h00",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Lieu alternatif combinant ferme régénérative, production maraîchère et formation. Common Ground Project développe une agriculture durable et sociale, avec des légumes cultivés sur place utilisés en cuisine. Le lieu soutient également des programmes d’insertion et d’accès à l’alimentation locale pour la communauté.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-19T22:15:00.783Z",
+    "updatedAt": "2026-02-19T22:15:27.197Z",
+    "panoramaImage": "/downloads/commonmelb.jpg"
+  },
+  {
+    "id": "e2acf43d-57a0-453f-b025-c6398b287519",
+    "name": "Tedesca",
+    "city": "Red Hill",
+    "address": "1175 Mornington-Flinders Rd, Red Hill VIC 3937, Australie",
+    "website": "https://www.tedesca.com.au/",
+    "lat": -38.38067079287316,
+    "lng": 144.9935888133064,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "vendredi\t12h30–16h30\nsamedi\t12h30–16h30\ndimanche\t12h30–16h30\nlundi\t12h30–16h30\nmardi\tFermé\nmercredi\tFermé\njeudi\tFermé",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Restaurant mettant en avant une cuisine de saison centrée sur les produits de la région. Tedesca valorise les ingrédients issus de son potager et travaille avec des producteurs locaux pour proposer un menu évolutif ancré dans le territoire.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-19T22:18:38.798Z",
+    "updatedAt": "2026-02-19T22:19:09.227Z",
+    "panoramaImage": "/downloads/tedescame.jpg"
+  },
+  {
+    "id": "1b8109c2-06b1-489d-9dfa-08364d9e3f4f",
+    "name": "Provenance",
+    "city": "Beechworth",
+    "address": "86 Ford St, Beechworth VIC 3747, Australie",
+    "website": "https://www.theprovenance.com.au",
+    "lat": -36.35898807784323,
+    "lng": 146.68780019996234,
+    "category": "Restaurant",
+    "phone": "+61 3 5728 1786",
+    "openingHours": "vendredi\t17h30–21h00\nsamedi\t17h30–21h00\ndimanche\t17h30–20h30\nlundi\t17h30–20h30\nmardi\tFermé\nmercredi\tFermé\njeudi\tFermé",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Restaurant d'inspiration japonaise mettant en avant une cuisine de saison fondée sur les produits régionaux. Provenance travaille avec des producteurs identifiés et valorise les ingrédients locaux à travers un menu évolutif centré sur l’origine et la qualité des produits.",
+    "panoramaImage": "/downloads/provennace.jpg",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-19T22:27:22.460Z",
+    "updatedAt": "2026-02-19T22:27:22.460Z"
+  },
+  {
+    "id": "62ba3c4c-d186-4b3f-9484-40f3a1ba7794",
+    "name": "Green Olive at Red Hill",
+    "city": "Main Ridge",
+    "address": "1180 Mornington-Flinders Rd, Main Ridge VIC 3928, Australie",
+    "website": "http://www.greenolive.com.au/",
+    "lat": -38.38181008530697,
+    "lng": 144.99121798458262,
+    "category": "Lieu alternatif",
+    "phone": "+61 409 997 400",
+    "openingHours": "vendredi\t9h00–17h00\nsamedi\t9h00–17h00\ndimanche\t9h00–17h00\nlundi\t9h00–17h00\nmardi\t9h00–17h00\nmercredi\t9h00–17h00\njeudi\t9h00–17h00",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Lieu alternatif combinant ferme, restaurant et lieu événementiel. Mettant en avant des produits cultivés sur place (oliveraie, jardin/potager) et travaillant avec des producteurs locaux pour proposer une cuisine simple et de saison. Le lieu inclut aussi une boutique de produits de la ferme et du terroir.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-19T22:32:32.600Z",
+    "updatedAt": "2026-02-19T22:33:02.332Z",
+    "panoramaImage": "/downloads/greennmel.jpg"
+  },
+  {
+    "id": "f83cb808-1af4-48f8-851e-09d32549e8b0",
+    "name": "Long Paddock Cheese",
+    "city": "Castlemaine",
+    "address": "9 Walker St, Castlemaine VIC 3450, Australie",
+    "website": "https://longpaddockcheese.com.au",
+    "lat": -37.05588140921029,
+    "lng": 144.21394286321168,
+    "category": "Épicerie",
+    "phone": "+61 3 5472 3142",
+    "openingHours": "vendredi\t9h30–16h30\nsamedi\t9h30–16h30\ndimanche\t9h30–16h30\nlundi\tFermé\nmardi\tFermé\nmercredi\tFermé\njeudi\t9h30–16h30",
+    "timeZone": "Australia/Melbourne",
+    "miniText": "Épicerie spécialisée dans les fromages artisanaux produits sur place. Mettant en avant un travail direct avec des fermes laitières locales et valorisant des fromages fabriqués selon des méthodes traditionnelles, avec une attention particulière portée à l’origine et à la qualité des ingrédients.",
+    "tags": [
+      "Épicerie"
+    ],
+    "createdAt": "2026-02-19T22:36:50.942Z",
+    "updatedAt": "2026-02-19T22:40:18.123Z",
+    "panoramaImage": "/downloads/longchee.png"
   }
 ]
