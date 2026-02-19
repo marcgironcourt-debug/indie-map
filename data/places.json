@@ -9654,5 +9654,305 @@
     "panoramaImage": "/downloads/workssyd.png",
     "createdAt": "2026-02-19T15:28:40.143Z",
     "updatedAt": "2026-02-19T15:44:11.435Z"
+  },
+  {
+    "id": "dd706975-224c-4061-aabb-550836d5e42e",
+    "name": "Maloney’s Grocer Coogee",
+    "city": "Sydney",
+    "address": "214 Coogee Bay Rd, Coogee NSW 2034, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.920641,
+    "lng": 151.256944,
+    "category": "Épicerie",
+    "phone": "+61 2 9665 3957",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:24:54.466Z",
+    "updatedAt": "2026-02-19T16:30:19.953Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/maloneysgr.jpeg"
+  },
+  {
+    "id": "938ba9e4-98be-455b-a0ff-fc9067b182f1",
+    "name": "Maloney’s Grocer Woollahra",
+    "city": "Sydney",
+    "address": "68 Moncur St, Woollahra NSW 2025, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.889545,
+    "lng": 151.242031,
+    "category": "Épicerie",
+    "phone": "+61 2 9328 6900",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:24:54.466Z",
+    "updatedAt": "2026-02-19T16:30:19.954Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/maloneysgr.jpeg"
+  },
+  {
+    "id": "630aa831-55e9-4156-9311-270de7b1ba0d",
+    "name": "Maloney’s Grocer Surry Hills",
+    "city": "Sydney",
+    "address": "Shop 4, 490 Crown St, Surry Hills NSW 2010, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.88496,
+    "lng": 151.21269,
+    "category": "Épicerie",
+    "phone": "+61 2 9698 8600",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:24:54.466Z",
+    "updatedAt": "2026-02-19T16:30:19.954Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/maloneysgr.jpeg"
+  },
+  {
+    "id": "49528427-ec89-4278-96c7-570038626808",
+    "name": "Maloney’s Grocer Rozelle",
+    "city": "Sydney",
+    "address": "731 Darling St, Rozelle NSW 2039, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.861998,
+    "lng": 151.170233,
+    "category": "Épicerie",
+    "phone": "+61 2 9810 4140",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:24:54.466Z",
+    "updatedAt": "2026-02-19T16:30:19.954Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/maloneysgr.jpeg"
+  },
+  {
+    "id": "18a55ba6-38a6-42df-9af5-2cd9dcb6e20c",
+    "name": "Maloney’s Grocer Coogee",
+    "city": "Sydney",
+    "address": "214 Coogee Bay Rd, Coogee NSW 2034, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.920641,
+    "lng": 151.256944,
+    "category": "Épicerie",
+    "phone": "+61 2 9665 3957",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:26:14.680Z",
+    "updatedAt": "2026-02-19T16:26:14.680Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/downloads/maloneysgr.jpeg"
+  },
+  {
+    "id": "3c6bb0be-594e-4785-8896-b11271837b2b",
+    "name": "Maloney’s Grocer Woollahra",
+    "city": "Sydney",
+    "address": "68 Moncur St, Woollahra NSW 2025, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.889545,
+    "lng": 151.242031,
+    "category": "Épicerie",
+    "phone": "+61 2 9328 6900",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:26:14.680Z",
+    "updatedAt": "2026-02-19T16:26:14.680Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/downloads/maloneysgr.jpeg"
+  },
+  {
+    "id": "d2726252-1cad-457a-9bb4-4c4b0850d8ef",
+    "name": "Maloney’s Grocer Surry Hills",
+    "city": "Sydney",
+    "address": "Shop 4, 490 Crown St, Surry Hills NSW 2010, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.88496,
+    "lng": 151.21269,
+    "category": "Épicerie",
+    "phone": "+61 2 9698 8600",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:26:14.680Z",
+    "updatedAt": "2026-02-19T16:26:14.680Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/downloads/maloneysgr.jpeg"
+  },
+  {
+    "id": "01f1215f-caa1-4685-a5d3-deb9b4868ff8",
+    "name": "Maloney’s Grocer Rozelle",
+    "city": "Sydney",
+    "address": "731 Darling St, Rozelle NSW 2039, Australia",
+    "website": "https://maloneysgrocer.com.au/",
+    "lat": -33.861998,
+    "lng": 151.170233,
+    "category": "Épicerie",
+    "phone": "+61 2 9810 4140",
+    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:26:14.680Z",
+    "updatedAt": "2026-02-19T16:26:14.680Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
+    "panoramaImage": "/downloads/maloneysgr.jpeg"
+  },
+  {
+    "id": "2989e1ee-efe5-449d-8942-38094fa83431",
+    "name": "Bondi Markets",
+    "city": "Sydney",
+    "address": "Campbell Parade, Bondi Beach NSW 2026, Australia",
+    "website": "https://bondimarkets.com.au",
+    "lat": -33.888334674511974,
+    "lng": 151.2770537729779,
+    "category": "Marché",
+    "phone": "+61 402 045 990",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-13h00\nDimanche 10h00-16h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:31:56.453Z",
+    "updatedAt": "2026-02-19T16:43:57.226Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
+    "panoramaImage": "/bondimar.png"
+  },
+  {
+    "id": "a30d2b44-bdf3-4f24-a1f3-ca5b4eea956c",
+    "name": "Bondi Markets",
+    "city": "Sydney",
+    "address": "Campbell Parade, Bondi Beach NSW 2026, Australia",
+    "website": "https://bondimarkets.com.au",
+    "lat": -33.888334674511974,
+    "lng": 151.2770537729779,
+    "category": "Marché",
+    "phone": "+61 402 045 990",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-13h00\nDimanche 10h00-16h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:34:37.466Z",
+    "updatedAt": "2026-02-19T16:34:37.466Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
+    "panoramaImage": ""
+  },
+  {
+    "id": "b6c76af7-fbcb-48ff-85ad-27d96212bebe",
+    "name": "Young Henrys",
+    "city": "Sydney",
+    "address": "76 Wilford St, Newtown NSW 2042, Australia",
+    "website": "https://www.younghenrys.com",
+    "lat": -33.897940068273286,
+    "lng": 151.17437887109776,
+    "category": "Brasserie",
+    "phone": "+61 2 9519 0048",
+    "openingHours": "Lundi 15h00-20h00\nMardi 15h00-20h00\nMercredi 15h00-20h00\nJeudi 15h00-20h00\nVendredi 14h00-20h00\nSamedi 12h00-20h00\nDimanche 12h00-18h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:49:01.318Z",
+    "updatedAt": "2026-02-19T16:53:39.787Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie artisanale indépendante brassant des bières, cidres et spiritueux avec un fort ancrage local, en mettant l’accent sur la communauté, l’innovation et des pratiques durables.",
+    "panoramaImage": "/brasserisydne.png"
+  },
+  {
+    "id": "ce15d994-186a-4c13-bbb7-ab108a1363ca",
+    "name": "Batch Brewing Company",
+    "city": "Sydney",
+    "address": "44 Sydenham Rd, Marrickville NSW 2204, Australia",
+    "website": "https://batchbrewingco.com.au",
+    "lat": -33.91161751931209,
+    "lng": 151.16487769994927,
+    "category": "Brasserie",
+    "phone": "+61 2 9550 5432",
+    "openingHours": "Lundi 14h00-20h00\nMardi 14h00-20h00\nMercredi 12h00-20h00\nJeudi 12h00-20h00\nVendredi 10h00-21h00\nSamedi 10h00-21h00\nDimanche 10h00-20h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T16:58:46.381Z",
+    "updatedAt": "2026-02-19T17:01:19.919Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie artisanale spécialisée dans la production de bières craft brassées sur place. Développant une gamme variée de recettes avec une approche indépendante, en mettant en avant le savoir-faire brassicole et une implantation locale à Sydney",
+    "panoramaImage": "/bresydne.png"
+  },
+  {
+    "id": "fcf6a0f5-eb7e-4ac0-8472-e05d0471dba9",
+    "name": "Love, Tilly Devine",
+    "city": "Sydney",
+    "address": "91 Crown Ln, Darlinghurst NSW 2010, Australia",
+    "website": "https://www.lovetillydevine.com",
+    "lat": -33.87451186107135,
+    "lng": 151.21579949995927,
+    "category": "Bar",
+    "phone": "+61 2 9326 9297",
+    "openingHours": "Lundi Fermé\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00\nVendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche Fermé",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T17:05:31.858Z",
+    "updatedAt": "2026-02-19T17:31:44.961Z",
+    "tags": [
+      "Bar"
+    ],
+    "miniText": "Bar à vin mettant en avant de jeunes producteurs australiens de vins naturels. La carte propose des assiettes et collations élaborées à partir de produits issus de petits agriculteurs et producteurs locaux, privilégiant qualité et respect de la terre.",
+    "panoramaImage": "/lovesyd.png"
+  },
+  {
+    "id": "4e74fd43-4da5-445d-8c89-717722771b05",
+    "name": "Two Chaps",
+    "city": "Sydney",
+    "address": "122 Chapel St, Marrickville NSW 2204, Australia",
+    "website": "https://www.twochaps.com.au",
+    "lat": -33.905373814587925,
+    "lng": 151.162080644108,
+    "category": "Brunch",
+    "phone": "+61 2 9572 8858",
+    "openingHours": "Lundi 7h00-14h00\nMardi 7h00-14h00\nMercredi 7h00-14h00\nJeudi 7h00-14h00\nVendredi 7h00-14h00\nSamedi 7h30-14h30\nDimanche 8h00-14h30",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T17:24:24.719Z",
+    "updatedAt": "2026-02-19T17:30:17.267Z",
+    "tags": [
+      "Brunch"
+    ],
+    "miniText": "Café-brunch engagé dans une approche saisonnière et un approvisionnement local responsable. Pains au levain et pâtisseries sont fabriqués à la main chaque jour à partir de farines australiennes biologiques. Le lieu propose également un café torréfié localement.",
+    "panoramaImage": "/twochaps.png"
+  },
+  {
+    "id": "6f1be367-59e5-47f1-916a-c68676351155",
+    "name": "A.P House (A.P Bakery)",
+    "city": "Sydney",
+    "address": "L2/80 Commonwealth St, Surry Hills NSW 2010, Australia",
+    "website": "https://www.apbakery.com.au",
+    "lat": -33.879218684353084,
+    "lng": 151.21102431339884,
+    "category": "Boulangerie",
+    "phone": "",
+    "openingHours": "Lundi 7h30-15h00\nMardi 7h30-15h00\nMercredi 7h30-15h00\nJeudi 7h30-15h00\nVendredi 7h30-15h00\nSamedi 7h30-15h00\nDimanche 7h30-15h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-02-19T17:42:28.113Z",
+    "updatedAt": "2026-02-19T17:58:57.754Z",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Boulangerie travaillant directement avec des agriculteurs et cultivant ses propres céréales, moulues sur place. Les pains, viennoiseries et pâtisseries sont élaborés à partir de farines fraîchement moulues. L’approche privilégie l’agriculture biologique, la réduction des transports et des emballages.",
+    "panoramaImage": "/downloads/apbak.png"
   }
 ]
