@@ -9514,5 +9514,145 @@
     "createdAt": "2026-02-18T21:19:44.063Z",
     "updatedAt": "2026-02-18T21:22:41.789Z",
     "panoramaImage": "/downloads/baliasliin.png"
+  },
+  {
+    "id": "da0649f5-cf44-47b2-a357-fea632e3eaa6",
+    "name": "The Botanica Vaucluse",
+    "city": "Sydney",
+    "address": "2 Laguna St, Vaucluse NSW 2030, Australie",
+    "website": "https://www.thebotanicavaucluse.com.au",
+    "lat": -33.858885303702145,
+    "lng": 151.27982703558226,
+    "category": "Restaurant",
+    "phone": "+61 2 9072 0539",
+    "openingHours": "Vendredi 12h00–17h00\nSamedi 9h00–22h00\nDimanche 9h00–17h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant installé dans une ancienne maison entourée d’un jardin comestible, développant une cuisine de saison basée sur les récoltes du potager sur place et des produits sourcés auprès de producteurs locaux. La carte évolue selon les saisons et met en avant légumes, herbes et ingrédients frais cultivés ou sélectionnés en lien direct avec le territoire.",
+    "panoramaImage": "/downloads/botanica.png",
+    "createdAt": "2026-02-19T14:54:17.636Z",
+    "updatedAt": "2026-02-19T14:57:24.476Z"
+  },
+  {
+    "id": "8212cd35-2b77-462e-beca-58946e2463fa",
+    "name": "Margaret",
+    "city": "Sydney",
+    "address": "30-36 Bay St, Double Bay NSW 2028, Australie",
+    "website": "https://themargaretfamily.com",
+    "lat": -33.8767727026997,
+    "lng": 151.2414995932534,
+    "category": "Restaurant",
+    "phone": "+61 2 9068 8888",
+    "openingHours": "Vendredi 12h00–23h00\nSamedi 12h00–23h00\nDimanche 12h00–22h00\nLundi Fermé\nMardi Fermé\nMercredi 18h00–23h00\nJeudi 12h00–23h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine centrée sur des produits australiens de qualité, sourcés auprès de pêcheurs, éleveurs et producteurs locaux. La carte évolue selon les saisons et valorise viandes, poissons et ingrédients frais travaillés dans une approche simple et axée sur le produit.",
+    "panoramaImage": "/downloads/margaret.png",
+    "createdAt": "2026-02-19T15:00:53.603Z",
+    "updatedAt": "2026-02-19T15:02:48.873Z"
+  },
+  {
+    "id": "a0f5bf1a-802f-4c2c-ac55-3f60421dc580",
+    "name": "Yellow",
+    "city": "Sydney",
+    "address": "57 Macleay St, Potts Point NSW 2011, Australie",
+    "website": "https://www.yellowsydney.com.au",
+    "lat": -33.86858828326315,
+    "lng": 151.22547867976022,
+    "category": "Restaurant",
+    "phone": "+61 2 9332 2344",
+    "openingHours": "Vendredi 18h00–21h30\nSamedi 12h00–14h00, 18h00–21h30\nDimanche 12h00–14h00, 18h00–21h00\nLundi Fermé\nMardi Fermé\nMercredi 18h00–21h30\nJeudi 18h00–21h30",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien proposant un menu dégustation de saison élaboré à partir de légumes et produits australiens sourcés auprès de producteurs locaux. Yellow met en avant une approche centrée sur l’ingrédient, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
+    "panoramaImage": "/downloads/yellowsyd.webp",
+    "createdAt": "2026-02-19T15:06:59.864Z",
+    "updatedAt": "2026-02-19T15:07:32.115Z"
+  },
+  {
+    "id": "0c6c0823-9255-4de0-868d-62e37dcff4ad",
+    "name": "Farmhouse Kings Cross",
+    "city": "Sydney",
+    "address": "Shop 4/40 Bayswater Rd, Rushcutters Bay NSW 2011, Australie",
+    "website": "https://farmhousekingscross.com.au",
+    "lat": -33.87495297722917,
+    "lng": 151.22476410674656,
+    "category": "Restaurant",
+    "phone": "+61 448 413 791",
+    "openingHours": "Vendredi 18h00–22h30\nSamedi 18h00–22h30\nDimanche 14h00–17h00, 18h30–21h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 18h00–22h30",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Farmhouse Kings Cross développe une carte évolutive centrée sur les ingrédients, valorisant la fraîcheur, la traçabilité et le lien direct avec le territoire.",
+    "panoramaImage": "/downloads/farmhousesyd.jpg",
+    "createdAt": "2026-02-19T15:10:31.764Z",
+    "updatedAt": "2026-02-19T15:10:57.482Z"
+  },
+  {
+    "id": "5446612f-b923-40d7-be1a-3e0c1ffa29a2",
+    "name": "Arthur Surry Hills",
+    "city": "Sydney",
+    "address": "544 Bourke St, Surry Hills NSW 2010, Australie",
+    "website": "https://www.arthurrestaurant.com",
+    "lat": -33.888806981714495,
+    "lng": 151.2154606932534,
+    "category": "Restaurant",
+    "phone": "+61 468 991 088",
+    "openingHours": "Vendredi 17h30–23h00\nSamedi 12h30–15h00, 17h30–23h00\nDimanche 12h30–15h00, 18h00–23h00\nLundi Fermé\nMardi Fermé\nMercredi 18h00–23h00\nJeudi 18h00–23h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant un menu dégustation de saison élaboré à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Arthur développe une cuisine centrée sur les ingrédients, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
+    "panoramaImage": "",
+    "createdAt": "2026-02-19T15:13:53.346Z",
+    "updatedAt": "2026-02-19T15:13:53.346Z"
+  },
+  {
+    "id": "60b43ec8-da0a-4f0b-ae7c-308bebd115b3",
+    "name": "Pocket City Farms",
+    "city": "Sydney",
+    "address": "31A Mallett St, Camperdown NSW 2050, Australie",
+    "website": "https://www.pocketcityfarms.com.au",
+    "lat": -33.88789579253247,
+    "lng": 151.17674669325342,
+    "category": "Ferme",
+    "phone": "",
+    "openingHours": "Vendredi 7h00–21h00\nSamedi 8h00–21h00\nDimanche 8h00–21h00\nLundi Fermé\nMardi 7h00–15h00\nMercredi 7h00–15h00\nJeudi 7h00–15h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme urbaine biologique développant une production maraîchère locale destinée aux habitants et aux commerces environnants. Le projet met en avant l’agriculture régénérative, la vente directe, des paniers de légumes et des programmes éducatifs visant à reconnecter la communauté à la production alimentaire locale.",
+    "panoramaImage": "/downloads/pocketfarm.jpeg",
+    "createdAt": "2026-02-19T15:16:08.923Z",
+    "updatedAt": "2026-02-19T15:16:39.595Z"
+  },
+  {
+    "id": "062a2cc0-29de-4216-aff7-c4f32b63bb03",
+    "name": "Carriageworks",
+    "city": "Sydney",
+    "address": "245 Wilson St, Eveleigh NSW 2015, Australie",
+    "website": "https://carriageworks.com.au",
+    "lat": -33.89313376724606,
+    "lng": 151.1919514644178,
+    "category": "Lieu alternatif",
+    "phone": "+61 2 8571 9099",
+    "openingHours": "Vendredi 10h00–17h00\nSamedi 10h00–17h00\nDimanche 10h00–17h00\nLundi Fermé\nMardi Fermé\nMercredi 10h00–17h00\nJeudi 10h00–17h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif accueillant expositions, performances, événements artistiques et un marché fermier mettant en avant des producteurs locaux. Le lieu fonctionne comme une plateforme dédiée à la création contemporaine et aux initiatives culturelles et alimentaires ancrées dans le territoire.",
+    "panoramaImage": "/downloads/workssyd.png",
+    "createdAt": "2026-02-19T15:28:40.143Z",
+    "updatedAt": "2026-02-19T15:44:11.435Z"
   }
 ]
