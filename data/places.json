@@ -10714,5 +10714,45 @@
     ],
     "miniText": "Bar-boutique spécialisé dans le saké japonais, proposant une sélection rigoureuse de producteurs issus de différentes régions du Japon ainsi que des bières brassées sur place. L’établissement met en avant la diversité des sakés et valorise la découverte des terroirs à travers dégustation et conseil.",
     "panoramaImage": "/downloads/hasegawatok.png"
+  },
+  {
+    "id": "509871a4-36d7-4920-bea3-5a8c949a0085",
+    "name": "BONUS TRACK",
+    "city": "Tokyo",
+    "address": "Japon, 〒155-0033 Tokyo, Setagaya City, Daita, 2 Chome−36−15 BONUS TRACK 2F",
+    "website": "https://bonus-track.net",
+    "lat": 35.659492977197814,
+    "lng": 139.66406475092458,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "openingHours": "samedi 8h00–21h00\ndimanche 8h00–21h00\nlundi 8h00–21h00\nmardi 8h00–21h00\nmercredi 8h00–21h00\njeudi 8h00–21h00\nvendredi 8h00–21h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T17:51:28.120Z",
+    "updatedAt": "2026-02-20T17:53:55.873Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif réunissant restaurants, cafés, librairie et petites boutiques indépendantes. Fonctionnant comme un micro-écosystème de quartier favorisant les commerces locaux, les initiatives culturelles et la vie communautaire dans un cadre à taille humaine.",
+    "panoramaImage": "/downloads/bonus-tok.png"
+  },
+  {
+    "id": "8de0d98e-92a5-4041-b49f-e534d3d26874",
+    "name": "Kurkku Fields",
+    "city": "Kisarazu",
+    "address": "2503 Yana, Kisarazu, Chiba 292-0812, Japon",
+    "website": "https://kurkkufields.jp",
+    "lat": 35.32396904059315,
+    "lng": 139.9821695644178,
+    "category": "Lieu alternatif",
+    "phone": "+81 438-53-8776",
+    "openingHours": "samedi 10h00–17h00\ndimanche 10h00–17h00\nlundi 10h00–17h00\nmardi Fermé\nmercredi Fermé\njeudi 10h00–17h00\nvendredi 10h00–17h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T18:08:28.023Z",
+    "updatedAt": "2026-02-20T18:17:46.375Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant ferme biologique, restaurants, charcuterie, boutique, boulangerie et hébergement au cœur de la campagne de Chiba. Kurkku Fields développe une agriculture durable et régénérative, valorise les produits cultivés sur place et propose une expérience mêlant alimentation locale, artisanat et engagement écologique.",
+    "panoramaImage": "/downloads/kurkkj.jpg"
   }
 ]
