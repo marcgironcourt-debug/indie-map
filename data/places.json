@@ -10554,5 +10554,65 @@
     ],
     "miniText": "Restaurant proposant une cuisine japonaise et kaiseki inspirée du cœur du zen, mettant en valeur les ingrédients des quatre saisons. Utilisant des produits soigneusement sélectionnés selon la saison, dans une approche ancrée dans le territoire.",
     "panoramaImage": "/downloads/hachinokij.jpg"
+  },
+  {
+    "id": "2d200e82-e130-4df9-a192-5457d8fe4206",
+    "name": "L’Effervescence",
+    "city": "Tokyo",
+    "address": "2 Chome-26-4 Nishiazabu, Minato City, Tokyo 106-0031, Japon",
+    "website": "http://www.leffervescence.jp",
+    "lat": 35.66042320907421,
+    "lng": 139.71945327976022,
+    "category": "Restaurant",
+    "phone": "+81 3-5766-9500",
+    "openingHours": "samedi\t11h30–12h30, 18h00–20h00\ndimanche\tFermé\nlundi\tFermé\nmardi\t11h30–12h30, 18h00–20h00\nmercredi\t11h30–12h30, 18h00–20h00\njeudi\t11h30–12h30, 18h00–20h00\nvendredi\t11h30–12h30, 18h00–20h00",
+    "timeZone": "Asia/Tokyo",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant français développant une cuisine contemporaine intégrant des ingrédients japonais de saison issus de producteurs identifiés. Mettant en avant la traçabilité des produits, la durabilité et une approche respectueuse des cycles naturels à travers une cuisine franco-japonaise.",
+    "createdAt": "2026-02-20T15:38:19.850Z",
+    "updatedAt": "2026-02-20T15:40:06.266Z",
+    "panoramaImage": "/downloads/lefferv.jpg"
+  },
+  {
+    "id": "b7a7f40e-f2e7-4a6d-a5dc-da38c5c96f8b",
+    "name": "Café Slow",
+    "city": "Tokyo",
+    "address": "2 Chome-20-10 Higashimotomachi, Kokubunji, Tokyo 185-0022, Japon",
+    "website": "https://cafeslow.com/",
+    "lat": 35.69677463529326,
+    "lng": 139.4815109509246,
+    "category": "Café",
+    "phone": "+81 42-401-8505",
+    "openingHours": "samedi\t11h00–18h00\ndimanche\t11h00–18h00\nlundi\tFermé\nmardi\t11h00–18h00\nmercredi\t11h00–18h00\njeudi\t11h00–18h00\nvendredi\t11h00–18h00",
+    "timeZone": "Asia/Tokyo",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café travaillant des produits de saison issus de producteurs japonais. Développant une approche centrée sur l’agriculture durable, les circuits courts et l’organisation d’événements culturels et écologiques au sein du lieu.",
+    "createdAt": "2026-02-20T15:43:39.672Z",
+    "updatedAt": "2026-02-20T15:49:50.486Z",
+    "panoramaImage": "/downloads/cafeslox.png"
+  },
+  {
+    "id": "75002e9d-fade-4db0-83ac-99c5fdce4b5f",
+    "name": "Mr. Farmer",
+    "city": "Tokyo",
+    "address": "Japon, 〒150-0001 Tokyo, Shibuya, Jingumae, 4 Chome−5−12 セピア原宿ビル 1Ｆ",
+    "website": "https://mr-farmer.jp/",
+    "lat": 35.66829032367922,
+    "lng": 139.71195625092457,
+    "category": "Café",
+    "phone": "+81 3-5413-4215",
+    "openingHours": "samedi\t9h00–21h00\ndimanche\t9h00–21h00\nlundi\t10h00–21h00\nmardi\t10h00–21h00\nmercredi\t10h00–21h00\njeudi\t10h00–21h00\nvendredi\t10h00–21h00",
+    "timeZone": "Asia/Tokyo",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café mettant en avant des légumes biologiques issus de fermes japonaises partenaires. Développant une cuisine centrée sur les produits végétaux de saison, valorisant la provenance des ingrédients et une alimentation axée sur le respect des cycles agricoles.",
+    "createdAt": "2026-02-20T15:53:21.212Z",
+    "updatedAt": "2026-02-20T15:56:53.570Z",
+    "panoramaImage": "/downloads/mrfarmert.png"
   }
 ]
