@@ -10813,5 +10813,44 @@
     "createdAt": "2026-02-20T18:49:39.381Z",
     "updatedAt": "2026-02-20T18:50:06.292Z",
     "panoramaImage": "/downloads/rebuiljp.webp"
+  },
+  {
+    "id": "0d366431-2459-481f-be08-602a2350bafd",
+    "name": "Aoyama Farmers Market",
+    "city": "Tokyo",
+    "address": "5 Chome-53-70 Jingumae, Shibuya, Tokyo 150-0001, Japon",
+    "website": "http://farmersmarkets.jp/",
+    "lat": 35.66227085367422,
+    "lng": 139.708511522089,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "samedi 10h00–16h00\ndimanche 10h00–16h00\nlundi Fermé\nmardi Fermé\nmercredi Fermé\njeudi Fermé\nvendredi Fermé",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Marché de producteurs organisé chaque week-end, réunissant agriculteurs japonais, artisans alimentaires et initiatives locales engagées. Le Aoyama Farmers Market met en avant des produits de saison, souvent issus de petites exploitations, favorisant la vente directe et les circuits courts au cœur de Tokyo.",
+    "tags": [
+      "Marché"
+    ],
+    "createdAt": "2026-02-20T19:00:43.749Z",
+    "updatedAt": "2026-02-20T19:00:43.749Z"
+  },
+  {
+    "id": "62d35afe-11ab-46fa-a407-09b97d53d53e",
+    "name": "Exploitation Agricole Opunohu",
+    "city": "Moorea-Maiao",
+    "address": "Moorea-Maiao, Polynésie française",
+    "website": "https://www.facebook.com/eaopunohu/?locale=fr_CA",
+    "lat": -17.53288650459985,
+    "lng": -149.83388889140417,
+    "category": "Ferme",
+    "phone": "+689 40 56 11 34",
+    "openingHours": "vendredi 8h45–16h00\ndimanche Fermé\nsamedi 8h45–12h15\nlundi 8h45–16h00\nmardi 8h45–16h00\nmercredi 8h45–16h00\njeudi 8h45–15h00",
+    "timeZone": "Pacific/Tahiti",
+    "miniText": "La ferme du Lycée agricole d Opunohu, produisant fruits, légumes et produits locaux destinés à la vente directe. L Exploitation Agricole Opunohu participe à l approvisionnement du territoire en produits cultivés sur place, dans un cadre naturel emblématique de la Polynésie française.",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-20T19:11:28.932Z",
+    "updatedAt": "2026-02-20T19:17:10.638Z",
+    "panoramaImage": "/panorama/mooreafr.png"
   }
 ]
