@@ -10654,5 +10654,65 @@
     ],
     "miniText": "Boutique artisanale spécialisé dans la fabrication d’Edo furin, clochettes en verre soufflé peintes à la main selon une technique traditionnelle de l’époque Edo. Perpétuant un savoir-faire verrier, en produisant chaque pièce de manière artisanale dans le respect des méthodes historiques.",
     "panoramaImage": "/downloads/verretoky.png"
+  },
+  {
+    "id": "349e0df9-e518-49f5-8a8f-350b527a49af",
+    "name": "Hitachino Brewing Lab",
+    "city": "Tokyo",
+    "address": "Japon, 〒101-0041 Tokyo, Chiyoda City, Kanda Sudacho, 1 Chome−25−4 マーチエキュート神田万世橋 N1 区画",
+    "website": "https://kiuchibrewery.co.jp/shop/brewing_kanda/",
+    "lat": 35.69854167136326,
+    "lng": 139.77121562959476,
+    "category": "Brasserie",
+    "phone": "+81 3-3254-3434",
+    "openingHours": "Lundi 11h00–21h00\nMardi 11h00–22h00\nMercredi 11h00–22h00\nJeudi 11h00–22h00\nVendredi 11h00–22h00\nSamedi 11h00–22h00\nDimanche 11h00–21h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T17:14:21.222Z",
+    "updatedAt": "2026-02-20T17:24:27.138Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
+    "panoramaImage": "/downloads/hitachinobr.png"
+  },
+  {
+    "id": "300e0ec1-f21c-4df1-88ba-936ea9b7302b",
+    "name": "Hitachino Brewing Tokyo Yaesu",
+    "city": "Tokyo",
+    "address": "Japon, 〒100-0005 Tokyo, Chiyoda City, Marunouchi, 1 Chome−9−1 グランスタ八重洲 2F",
+    "website": "https://kiuchibrewery.co.jp/shop/brewing_yaesu/",
+    "lat": 35.6822637928741,
+    "lng": 139.76857480739696,
+    "category": "Brasserie",
+    "phone": "+81 3-6551-2515",
+    "openingHours": "Lundi 11h00–22h00\nMardi 11h00–22h00\nMercredi 11h00–22h00\nJeudi 11h00–22h00\nVendredi 11h00–22h00\nSamedi 11h00–22h00\nDimanche 11h00–21h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T17:14:21.222Z",
+    "updatedAt": "2026-02-20T17:20:16.617Z",
+    "tags": [
+      "Brasserie"
+    ],
+    "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
+    "panoramaImage": "/downloads/hitachotok.png"
+  },
+  {
+    "id": "408d99d4-2531-4854-b19c-5e80a3bdf5bc",
+    "name": "Hasegawa Saketen",
+    "city": "Tokyo",
+    "address": "Japon, 〒100-0005 Tokyo, Chiyoda City, Marunouchi, 1 Chome−9−1 B1 JR東日本東京駅構内",
+    "website": "https://www.hasegawasaketen.com/index.html",
+    "lat": 35.68166301236781,
+    "lng": 139.76680863558218,
+    "category": "Bar",
+    "phone": "+81 3-6420-3409",
+    "openingHours": "Lundi 7h00–22h00\nMardi 7h00–22h00\nMercredi 7h00–22h00\nJeudi 7h00–22h00\nVendredi 7h00–22h00\nSamedi 7h00–22h00\nDimanche 7h00–21h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T17:31:10.367Z",
+    "updatedAt": "2026-02-20T17:33:24.863Z",
+    "tags": [
+      "Bar"
+    ],
+    "miniText": "Bar-boutique spécialisé dans le saké japonais, proposant une sélection rigoureuse de producteurs issus de différentes régions du Japon ainsi que des bières brassées sur place. L’établissement met en avant la diversité des sakés et valorise la découverte des terroirs à travers dégustation et conseil.",
+    "panoramaImage": "/downloads/hasegawatok.png"
   }
 ]
