@@ -10614,5 +10614,45 @@
     "createdAt": "2026-02-20T15:53:21.212Z",
     "updatedAt": "2026-02-20T15:56:53.570Z",
     "panoramaImage": "/downloads/mrfarmert.png"
+  },
+  {
+    "id": "fa170f13-66d8-41d6-868d-1ba4c97aa02c",
+    "name": "Ozu Washi",
+    "city": "Tokyo",
+    "address": "3 Chome-6-2 Nihonbashihoncho, Chuo City, Tokyo 103-0023, Japon",
+    "website": "https://www.ozuwashi.net",
+    "lat": 35.689007948092474,
+    "lng": 139.7764866797602,
+    "category": "Boutique",
+    "phone": "+81 3-3662-1184",
+    "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche Fermé",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T16:19:12.704Z",
+    "updatedAt": "2026-02-20T16:22:28.243Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique historique fondée en 1653 spécialisée dans le washi japonais traditionnel. Sélectionnant et proposant des papiers artisanaux issus d’ateliers régionaux, perpétuant des techniques ancestrales utilisées pour l’écriture, l’estampe et les arts décoratifs.",
+    "panoramaImage": "/downloads/ozuwashi.jpg"
+  },
+  {
+    "id": "be785a45-9a74-4c95-b2df-101932251114",
+    "name": "Shinohara Maruyoshi Furin",
+    "city": "Tokyo",
+    "address": "4 Chome-25-10 Taito, 台東区 Taito City, Tokyo 110-0016, Japon",
+    "website": "https://www.edo-fuurin.com",
+    "lat": 35.70687395136316,
+    "lng": 139.78125345092462,
+    "category": "Boutique",
+    "phone": "+81 3-3832-0227",
+    "openingHours": "Lundi Fermé\nMardi 11h00–12h30, 13h30–17h00\nMercredi 11h00–12h30, 13h30–17h00\nJeudi 11h00–12h30, 13h30–17h00\nVendredi 11h00–12h30, 13h30–18h00\nSamedi 10h30–12h30, 13h30–18h00\nDimanche Fermé",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T16:23:38.673Z",
+    "updatedAt": "2026-02-20T16:34:32.748Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique artisanale spécialisé dans la fabrication d’Edo furin, clochettes en verre soufflé peintes à la main selon une technique traditionnelle de l’époque Edo. Perpétuant un savoir-faire verrier, en produisant chaque pièce de manière artisanale dans le respect des méthodes historiques.",
+    "panoramaImage": "/downloads/verretoky.png"
   }
 ]
