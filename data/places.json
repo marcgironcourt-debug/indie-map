@@ -10434,5 +10434,125 @@
     "createdAt": "2026-02-20T14:13:04.712Z",
     "updatedAt": "2026-02-20T14:18:22.163Z",
     "panoramaImage": "/downloads/kibitoky.png"
+  },
+  {
+    "id": "69322eea-70f6-4c09-ae2e-1fa1c9dc22a1",
+    "name": "We Are The Farm Shibuya",
+    "city": "Tokyo",
+    "address": "〒150-0046 Tokyo, Shibuya, Shoto, 1 Chome−28−11 Pigeon 髙田ビル 1F, Japon",
+    "website": "https://shops.allfarm.co.jp/wearethefarm-shibuya/?utm_source=google&utm_medium=meo",
+    "lat": 35.6603835400013,
+    "lng": 139.69360146191823,
+    "category": "Restaurant",
+    "phone": "+81 50-5385-3480",
+    "openingHours": "Lundi 9h00–15h00, 17h00–23h00\nMardi 11h00–15h00, 17h00–23h00\nMercredi 11h00–15h00, 17h00–23h00\nJeudi 11h00–15h00, 17h00–23h00\nVendredi 11h00–15h00, 17h00–23h00\nSamedi 11h00–15h00, 17h00–23h00\nDimanche 11h00–15h00, 17h00–23h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T14:32:02.448Z",
+    "updatedAt": "2026-02-20T14:37:50.629Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
+    "panoramaImage": "/downloads/wearshib.png"
+  },
+  {
+    "id": "23ed4acf-17f5-4d06-ac99-6a5c3b740db3",
+    "name": "WE ARE THE FARM Meguro",
+    "city": "Tokyo",
+    "address": "〒153-0063 Tokyo, Meguro City, Meguro, 1 Chome−5−16 B1F, Japon",
+    "website": "https://shops.allfarm.co.jp/wearethefarm-meguro/",
+    "lat": 35.63641947365226,
+    "lng": 139.71294215397273,
+    "category": "Restaurant",
+    "phone": "+81 50-5385-3483",
+    "openingHours": "Lundi 11h00–14h30, 17h00–23h00\nMardi 11h00–14h30, 17h00–23h00\nMercredi 11h00–14h30, 17h00–23h00\nJeudi 11h00–14h30, 17h00–23h00\nVendredi 11h00–14h30, 17h00–23h00\nSamedi 11h00–14h30, 17h00–23h00\nDimanche 11h00–14h30, 17h00–23h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T14:42:04.173Z",
+    "updatedAt": "2026-02-20T14:45:12.378Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
+    "panoramaImage": "/downloads/weratokyo.png"
+  },
+  {
+    "id": "e7796342-749e-4532-9190-d26e106cb8f3",
+    "name": "We Are The Farm Akasaka",
+    "city": "Tokyo",
+    "address": "〒107-0052 Tokyo, Minato City, Akasaka, 2 Chome−17−69 赤坂エミナンス 1F, Japon",
+    "website": "https://shops.allfarm.co.jp/wearethefarm-akasaka/?utm_source=google&utm_medium=meo",
+    "lat": 35.671819415972344,
+    "lng": 139.7385792355822,
+    "category": "Restaurant",
+    "phone": "+81 50-5385-3481",
+    "openingHours": "Lundi 11h30–14h30, 18h00–23h00\nMardi 11h30–14h30, 18h00–23h00\nMercredi 11h30–14h30, 18h00–23h00\nJeudi 11h30–14h30, 18h00–23h00\nVendredi 11h30–14h30, 18h00–23h00\nSamedi 17h00–23h00\nDimanche 18h00–22h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T14:48:04.752Z",
+    "updatedAt": "2026-02-20T14:50:05.432Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
+    "panoramaImage": "/downloads/veareska.jpg"
+  },
+  {
+    "id": "3c4329aa-464a-41e6-bb20-d0c0638e93e8",
+    "name": "The Farm Cafe",
+    "city": "Katori",
+    "address": "761-2 Nishitabe, Katori, Chiba 287-0103, Japon",
+    "website": "https://www.thefarm.jp/eat/cafe/",
+    "lat": 35.83340173300025,
+    "lng": 140.51101681437063,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "openingHours": "Lundi 11h00–16h00\nMardi 11h00–16h00\nMercredi 11h00–16h00\nJeudi 11h00–16h00\nVendredi 11h00–16h00\nSamedi 11h00–16h00\nDimanche 11h00–16h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T14:57:10.680Z",
+    "updatedAt": "2026-02-20T14:59:07.643Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif proposant une cuisine et des boissons préparées à partir de produits issus de la ferme et du territoire environnant. The Farm s’inscrit dans une expérience immersive mêlant agriculture, hébergement et activités rurales, valorisant un lien direct entre production locale et consommation sur place.",
+    "panoramaImage": "/downloads/thefarmchi.png"
+  },
+  {
+    "id": "2aa7efb9-86d2-44fa-892c-6b8001b7d502",
+    "name": "Vegan 8ablish",
+    "city": "Tokyo",
+    "address": "〒105-0001 Tokyo, Minato City, Toranomon, 5 Chome−8−1 麻布台ヒルズ ガーデンプラザA 2F, Japon",
+    "website": "https://8ablish.com/",
+    "lat": 35.66264101836636,
+    "lng": 139.74349982208898,
+    "category": "Restaurant",
+    "phone": "+81 3-6432-0288",
+    "openingHours": "Lundi 11h00–19h00\nMardi 11h00–19h00\nMercredi 11h00–19h00\nJeudi 11h00–19h00\nVendredi 11h00–19h00\nSamedi 11h00–19h00\nDimanche 11h00–19h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T15:03:10.394Z",
+    "updatedAt": "2026-02-20T15:04:55.814Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant vegan proposant une cuisine 100% végétale et des boissons à base d’ingrédients d’origine végétale. Mettant en avant une offre centrée sur l’alimentation végétale dans un format accessible, sur place et à emporter.",
+    "panoramaImage": "/downloads/farmcafet.png"
+  },
+  {
+    "id": "bcaf48f9-a316-48ee-8f93-95481aec5587",
+    "name": "Hachinoki Kita-Kamakura Shinkan",
+    "city": "Kamakura",
+    "address": "350 Yamanouchi, Kamakura, Kanagawa 247-0062, Japon",
+    "website": "https://www.hachinoki.co.jp/menu.html?utm_source=Google&utm_medium=Google&utm_campaign=Google&utm_id=Google&utm_term=Google&utm_content=Google",
+    "lat": 35.33486469148184,
+    "lng": 139.5475795355822,
+    "category": "Restaurant",
+    "phone": "+81 467-23-3723",
+    "openingHours": "Lundi 11h30–13h30\nMardi 11h30–13h30\nMercredi 11h30–13h30\nJeudi Fermé\nVendredi 11h30–13h30\nSamedi 11h30–13h30\nDimanche 11h30–13h30",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T15:09:05.225Z",
+    "updatedAt": "2026-02-20T15:10:55.984Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine japonaise et kaiseki inspirée du cœur du zen, mettant en valeur les ingrédients des quatre saisons. Utilisant des produits soigneusement sélectionnés selon la saison, dans une approche ancrée dans le territoire.",
+    "panoramaImage": "/downloads/hachinokij.jpg"
   }
 ]
