@@ -10754,5 +10754,64 @@
     ],
     "miniText": "Lieu alternatif combinant ferme biologique, restaurants, charcuterie, boutique, boulangerie et hébergement au cœur de la campagne de Chiba. Kurkku Fields développe une agriculture durable et régénérative, valorise les produits cultivés sur place et propose une expérience mêlant alimentation locale, artisanat et engagement écologique.",
     "panoramaImage": "/downloads/kurkkj.jpg"
+  },
+  {
+    "id": "2efbf49d-fffb-444a-89b1-b3399fe12d74",
+    "name": "Kitazawa Bookstore",
+    "city": "Tokyo",
+    "address": "Japon, 〒101-0051 Tokyo, Chiyoda City, Kanda Jinbocho, 2 Chome−5 2F",
+    "website": "https://www.kitazawa.co.jp",
+    "lat": 35.69571976046868,
+    "lng": 139.7563153509246,
+    "category": "Librairie",
+    "phone": "+81 3-3263-0011",
+    "openingHours": "samedi 12h00–17h00\ndimanche Fermé\nlundi 12h00–17h00\nmardi 12h00–17h00\nmercredi 12h00–17h00\njeudi 12h00–17h00\nvendredi 12h00–17h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Librairie se consacrant aux livres anciens et d’occasion en langues occidentales, avec une sélection centrée sur la littérature, l’histoire et les sciences humaines. L’établissement valorise la circulation longue des ouvrages et le patrimoine imprimé international.",
+    "tags": [
+      "Librairie"
+    ],
+    "createdAt": "2026-02-20T18:39:35.233Z",
+    "updatedAt": "2026-02-20T18:39:35.233Z"
+  },
+  {
+    "id": "ffd83b35-3ab6-422c-b2f5-096dafe7d95f",
+    "name": "Ohya Shobo",
+    "city": "Tokyo",
+    "address": "1 Chome-1 Kanda Jinbocho, Chiyoda City, Tokyo 101-0051, Japon",
+    "website": "https://www.ohya-shobo.com",
+    "lat": 35.696035476234776,
+    "lng": 139.7605533797602,
+    "category": "Librairie",
+    "phone": "+81 3-3291-0062",
+    "openingHours": "samedi 11h00–18h00\ndimanche Fermé\nlundi Fermé\nmardi 11h00–18h00\nmercredi 11h00–18h00\njeudi 11h00–18h00\nvendredi 11h00–18h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Librairie spécialisée dans les livres rares et anciens, avec un accent particulier sur les ouvrages japonais et occidentaux liés à l’histoire, à la culture et aux sciences humaines.",
+    "tags": [
+      "Librairie"
+    ],
+    "createdAt": "2026-02-20T18:44:38.587Z",
+    "updatedAt": "2026-02-20T18:45:34.468Z",
+    "panoramaImage": "/downloads/ohyash.jpg"
+  },
+  {
+    "id": "7ebe7f6f-c7c7-4860-8800-e5a157556896",
+    "name": "ReBuilding Center JAPAN",
+    "city": "Suwa",
+    "address": "3-8 Kowata, Suwa, Nagano 392-0024, Japon",
+    "website": "https://rebuildingcenter.jp",
+    "lat": 36.041328254825615,
+    "lng": 138.1189836355822,
+    "category": "Atelier",
+    "phone": "+81 266-78-8967",
+    "openingHours": "samedi 10h00–17h00\ndimanche 10h00–17h00\nlundi 10h00–17h00\nmardi 10h00–17h00\nmercredi Fermé\njeudi Fermé\nvendredi 10h00–17h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Atelier spécialisé dans la récupération et la revalorisation de matériaux issus de bâtiments anciens. ReBuilding Center JAPAN collecte, restaure et revend ces matériaux pour prolonger leur cycle de vie et préserver le patrimoine constructif local.",
+    "tags": [
+      "Atelier"
+    ],
+    "createdAt": "2026-02-20T18:49:39.381Z",
+    "updatedAt": "2026-02-20T18:50:06.292Z",
+    "panoramaImage": "/downloads/rebuiljp.webp"
   }
 ]
