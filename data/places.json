@@ -10354,5 +10354,85 @@
     ],
     "miniText": "Restaurant développant une cuisine fondée sur la saisonnalité et les écosystèmes locaux. Travaillant avec des producteurs, pêcheurs et agriculteurs japonais afin de valoriser les ingrédients issus de différentes régions du pays. L’approche met en avant la biodiversité et la traçabilité des produits.",
     "panoramaImage": "/downloads/narisawato.png"
+  },
+  {
+    "id": "fe5ed44b-9ae1-4288-ae95-594702c52205",
+    "name": "Daigo",
+    "city": "Tokyo",
+    "address": "〒105-0002 Tokyo, Minato City, Atago, 2 Chome−3−1 愛宕グリーンヒルズフォレストタワー, Japon",
+    "website": "http://www.atago-daigo.jp/",
+    "lat": 35.66366890037635,
+    "lng": 139.7489680644178,
+    "category": "Restaurant",
+    "phone": "+81 3-3431-0811",
+    "openingHours": "vendredi\t11h30–15h00, 17h00–22h00\nsamedi\t11h30–22h00\ndimanche\t11h30–15h00, 17h00–22h00\nlundi\t11h30–15h00, 17h00–22h00\nmardi\t11h30–15h00, 17h00–22h00\nmercredi\t11h30–15h00, 17h00–22h00\njeudi\t11h30–15h00, 17h00–22h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Restaurant proposant une expérience gastronomique raffinée fondée sur des ingrédients végétaux de saison, travaillés selon des techniques héritées des temples zen, dans un cadre sobre et élégant au cœur de Tokyo.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-20T13:46:44.764Z",
+    "updatedAt": "2026-02-20T13:55:25.032Z",
+    "panoramaImage": "/downloads/daigotok.png"
+  },
+  {
+    "id": "d52d0067-75ca-4c4f-8593-26a790b7c2a0",
+    "name": "Mominoki House",
+    "city": "Tokyo",
+    "address": "2 Chome-18-5 Jingumae, Shibuya, Tokyo 150-0001, Japon",
+    "website": "https://www.mominoki-house.net",
+    "lat": 35.67265693557175,
+    "lng": 139.709843222089,
+    "category": "Restaurant",
+    "phone": "+81 3-3405-9144",
+    "openingHours": "vendredi\t11h00–14h30, 17h00–22h00\nsamedi\t11h00–14h30, 17h00–22h00\ndimanche\t11h00–21h00\nlundi\tFermé\nmardi\t11h00–14h30, 17h00–22h00\nmercredi\t11h00–14h30, 17h00–22h00\njeudi\t11h00–14h30, 17h00–22h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Restaurant pionnier de la cuisine naturelle à Tokyo, proposant une cuisine végétarienne et naturelle élaborée à partir d’ingrédients issus de l’agriculture durable. Le lieu met en avant une alimentation respectueuse du corps et de l’environnement.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-20T13:59:26.016Z",
+    "updatedAt": "2026-02-20T14:03:04.201Z",
+    "panoramaImage": "/downloads/mominokijap.png"
+  },
+  {
+    "id": "55716d7f-60e9-4966-8e92-0924b81a694e",
+    "name": "Brown Rice",
+    "city": "Tokyo",
+    "address": "5 Chome-1-8 Jingumae, Shibuya, Tokyo 150-0001, Japon",
+    "website": "https://brownrice.jp/",
+    "lat": 35.66577826330127,
+    "lng": 139.70990007976022,
+    "category": "Restaurant",
+    "phone": "+81 3-5778-5416",
+    "openingHours": "vendredi\t11h30–18h00\nsamedi\t11h30–18h00\ndimanche\t11h30–18h00\nlundi\t11h30–18h00\nmardi\t11h30–18h00\nmercredi\t11h30–18h00\njeudi\t11h30–18h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Restaurant végétarien mettant en avant une cuisine japonaise naturelle centrée sur le riz complet et les produits biologiques. Brown Rice valorise des ingrédients issus de l’agriculture durable et propose une alimentation respectueuse du corps et de l’environnement.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-20T14:07:34.759Z",
+    "updatedAt": "2026-02-20T14:09:33.410Z",
+    "panoramaImage": "/downloads/brownric.png"
+  },
+  {
+    "id": "52644b6a-bbde-4a36-b0df-815d7bc3edd3",
+    "name": "Kabi",
+    "city": "Tokyo",
+    "address": "4 Chome-10-8 Meguro, Meguro City, Tokyo 153-0063, Japon",
+    "website": "https://kabi.tokyo/",
+    "lat": 35.63160344316938,
+    "lng": 139.70387633558218,
+    "category": "Restaurant",
+    "phone": "+81 3-6451-2413",
+    "openingHours": "vendredi\t19h00–0h00\nsamedi\t12h00–14h00, 19h00–0h00\ndimanche\tFermé\nlundi\tFermé\nmardi\t19h00–0h00\nmercredi\t19h00–0h00\njeudi\t19h00–0h00",
+    "timeZone": "Asia/Tokyo",
+    "miniText": "Restaurant développant une cuisine créative axée sur la fermentation, les produits de saison et les ingrédients locaux. Kabi propose une expérience gastronomique évolutive mettant en avant des techniques artisanales et une approche attentive à l’origine des produits.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-20T14:13:04.712Z",
+    "updatedAt": "2026-02-20T14:18:22.163Z",
+    "panoramaImage": "/downloads/kibitoky.png"
   }
 ]
