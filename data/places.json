@@ -10334,5 +10334,25 @@
     ],
     "miniText": "Domaine viticole et ferme de lavande proposant un restaurant sur place mettant en valeur les produits de la propriété et des producteurs régionaux, avec une vue sur les vignobles et les cultures environnantes.",
     "panoramaImage": "/downloads/koorombabri.jpg"
+  },
+  {
+    "id": "efbd9b44-af06-42dd-a066-1067bdcdf1c5",
+    "name": "Narisawa",
+    "city": "Tokyo",
+    "address": "2 Chome-6-15 Minamiaoyama, Minato City, Tokyo 107-0062, Japon",
+    "website": "https://www.narisawa-yoshihiro.com",
+    "lat": 35.6717129687498,
+    "lng": 139.72192605092462,
+    "category": "Restaurant",
+    "phone": "+81 3-5785-0799",
+    "openingHours": "vendredi 12h00–14h30, 17h30–20h00\nsamedi 12h00–14h30, 17h30–20h00\ndimanche Fermé\nlundi Fermé\nmardi 12h00–14h30, 17h30–20h00\nmercredi 12h00–14h30, 17h30–20h00\njeudi 12h00–14h30, 17h30–20h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-20T13:31:31.380Z",
+    "updatedAt": "2026-02-20T13:41:24.411Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine fondée sur la saisonnalité et les écosystèmes locaux. Travaillant avec des producteurs, pêcheurs et agriculteurs japonais afin de valoriser les ingrédients issus de différentes régions du pays. L’approche met en avant la biodiversité et la traçabilité des produits.",
+    "panoramaImage": "/downloads/narisawato.png"
   }
 ]
