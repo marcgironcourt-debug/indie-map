@@ -10852,5 +10852,145 @@
     "createdAt": "2026-02-20T19:11:28.932Z",
     "updatedAt": "2026-02-20T19:17:10.638Z",
     "panoramaImage": "/panorama/mooreafr.png"
+  },
+  {
+    "id": "79c117a1-5222-480a-947d-6d176b92f104",
+    "name": "OHARA FARMY",
+    "city": "Kyoto",
+    "address": "243-1 Oharanomuracho, Sakyo Ward, Kyoto, 601-1247, Japon",
+    "website": "http://farmyproject.com/",
+    "lat": 35.112663117232195,
+    "lng": 135.82172019325344,
+    "category": "Ferme",
+    "phone": "+81 80-8946-4816",
+    "openingHours": "Lundi 9h30-17h00\nMardi 9h30-17h00\nMercredi 9h30-17h00\nJeudi Fermé\nVendredi 9h30-17h00\nSamedi 9h30-17h00\nDimanche 9h30-17h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T16:21:41.484Z",
+    "updatedAt": "2026-02-22T16:24:42.021Z",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme proposant de se reconnecter à la terre à travers la location de parcelles cultivables et des expériences autour du jardinage. Le lieu met à disposition du matériel, un accompagnement pour démarrer et organise aussi des événements réguliers.",
+    "panoramaImage": "/downloads/farmkolk.png"
+  },
+  {
+    "id": "8deeacc5-6a8d-4cca-8070-229c0e40965e",
+    "name": "Mumokuteki Café",
+    "city": "Kyoto",
+    "address": "Japon, 〒604-8061 Kyoto, Nakagyo Ward, Shikibucho, 261 ヒューマンフォーラムビル 2F",
+    "website": "https://mumokuteki.com/cafe",
+    "lat": 35.00667800540906,
+    "lng": 135.76661446441776,
+    "category": "Café",
+    "phone": "+81 50-3164-9733",
+    "openingHours": "Lundi 11h30-19h00\nMardi 11h30-19h00\nMercredi Fermé\nJeudi 11h30-19h00\nVendredi 11h30-19h00\nSamedi 11h30-19h00\nDimanche 11h30-19h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T16:29:00.473Z",
+    "updatedAt": "2026-02-22T16:30:22.877Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Café engagé dans une alimentation biologique et végétarienne, mettant en avant des ingrédients naturels et des produits issus du Japon. Mumokuteki propose une cuisine de saison dans une démarche attentive à la qualité des matières premières.",
+    "panoramaImage": "/downloads/mumokyotoca.jpg"
+  },
+  {
+    "id": "9d2efd3f-d6a9-41b3-b280-9c3913bb257e",
+    "name": "Hyotei",
+    "city": "Kyoto",
+    "address": "35 Nanzenji Kusakawacho, Sakyo Ward, Kyoto, 606-8437, Japon",
+    "website": "http://hyotei.co.jp/",
+    "lat": 35.01152753510376,
+    "lng": 135.7867783932534,
+    "category": "Restaurant",
+    "phone": "+81 75-771-4116",
+    "openingHours": "Lundi 8h00-11h00, 12h00-16h00, 17h00-21h30\nMardi 8h00-11h00, 12h00-16h00, 17h00-21h30\nMercredi 8h00-11h00, 12h00-16h00, 17h00-21h30\nJeudi 8h00-11h00, 12h00-16h00, 17h00-21h30\nVendredi 8h00-11h00, 12h00-16h00, 17h00-21h30\nSamedi 8h00-11h00, 12h00-16h00, 17h00-21h30\nDimanche 8h00-11h00, 12h00-16h00, 17h00-21h30",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T16:32:57.216Z",
+    "updatedAt": "2026-02-22T16:34:20.994Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant traditionnel de kaiseki fondé il y a plus de 400 ans, Hyotei propose une cuisine japonaise saisonnière ancrée dans les traditions de Kyoto. Le lieu met en valeur les produits de saison et l’esthétique culinaire propre à la culture locale.",
+    "panoramaImage": "/downloads/hyoteikyo.jpg"
+  },
+  {
+    "id": "8a73642c-de23-4fa4-90d9-8f40e27f7bbe",
+    "name": "VOG Kyoto",
+    "city": "Kyoto",
+    "address": "Mikihan, bldg 2F, 574 Nakanocho, Nakagyo Ward, Kyoto, 604-8042, Japon",
+    "website": "https://vogkyoto.com",
+    "lat": 35.00483022491674,
+    "lng": 135.7684039932534,
+    "category": "Restaurant",
+    "phone": "+81 90-9867-5533",
+    "openingHours": "Lundi Fermé\nMardi 12h00-15h30, 17h30-22h30\nMercredi 12h00-15h30, 17h30-22h30\nJeudi 12h00-15h30, 17h30-22h30\nVendredi 16h00-22h30\nSamedi 11h30-15h30, 17h30-22h30\nDimanche 11h30-15h30, 17h30-22h30",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T16:38:40.975Z",
+    "updatedAt": "2026-02-22T16:42:32.911Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant végétarien / vegan avec des options sans gluten. VOG Kyoto met en avant des plats nourrissants et des ingrédients de saison, et sert ses assiettes dans une sélection de poteries locales liées à l’artisanat de Kyoto.",
+    "panoramaImage": "/downloads/nakanochok.png"
+  },
+  {
+    "id": "96975938-ed30-408c-b172-68a34dba490f",
+    "name": "Kyōto Denim",
+    "city": "Kyoto",
+    "address": "79-3 Koinaricho, Shimogyo Ward, Kyoto, 600-8208, Japon",
+    "website": "https://kyoto-denim.com",
+    "lat": 34.987532497922246,
+    "lng": 135.7628738644178,
+    "category": "Boutique",
+    "phone": "+81 75-352-1053",
+    "openingHours": "Lundi 9h00-19h00\nMardi 9h00-19h00\nMercredi 9h00-19h00\nJeudi 9h00-19h00\nVendredi 9h00-19h00\nSamedi 9h00-19h00\nDimanche 9h00-19h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T17:15:15.957Z",
+    "updatedAt": "2026-02-22T17:16:00.836Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique spécialisée dans la création d'accessoires en denim intégrant des techniques textiles traditionnelles japonaises. Kyōto Denim développe des pièces fabriquées au Japon, mêlant savoir-faire artisanal et esthétique contemporaine.",
+    "panoramaImage": "/downloads/denimkyoto.png"
+  },
+  {
+    "id": "e1f8baee-1684-493b-8ba6-0118a9688c61",
+    "name": "Premarché Gelateria",
+    "city": "Tokyo",
+    "address": "Japon, 〒153-0051 Tokyo, Meguro City, Kamimeguro, 2 Chome−9−36 目黒銀座ビル1F",
+    "website": "https://gelato.organic",
+    "lat": 35.64339106458503,
+    "lng": 139.699489822089,
+    "category": "Café",
+    "phone": "+81 3-6303-0141",
+    "openingHours": "Lundi 12h00-20h00\nMardi 12h00-20h00\nMercredi 12h00-20h00\nJeudi Fermé\nVendredi 12h00-20h00\nSamedi 12h00-20h00\nDimanche 12h00-20h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T17:19:05.686Z",
+    "updatedAt": "2026-02-22T17:21:43.317Z",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "Gelateria engagée dans l’utilisation d’ingrédients biologiques et naturels, sans additifs artificiels. Développant des recettes à base de matières premières sélectionnées avec attention, dans une démarche axée sur la qualité et la transparence.",
+    "panoramaImage": "/downloads/gelatokyo.png"
+  },
+  {
+    "id": "7d8bdb5f-b5d1-4445-aa13-3cda1c524812",
+    "name": "Asahiyaki Shop & Gallery",
+    "city": "Kyoto",
+    "address": "Mataburi-67 Uji, Kyoto 611-0021, Japon",
+    "website": "https://asahiyaki.com/",
+    "lat": 34.89097470398749,
+    "lng": 135.8095109644178,
+    "category": "Boutique",
+    "phone": "+81 774-23-2511",
+    "openingHours": "Lundi Fermé\nMardi 10h00–17h00\nMercredi 10h00–17h00\nJeudi 10h00–17h00\nVendredi 10h00–17h00\nSamedi 10h00–17h00\nDimanche 10h00–17h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T17:24:01.584Z",
+    "updatedAt": "2026-02-22T17:34:52.576Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique présentant des pièces façonnées selon des techniques transmises de génération en génération, avec une attention particulière portée aux émaux et à l’esthétique liée à la cérémonie du thé.",
+    "panoramaImage": "/downloads/cermkyot.png"
   }
 ]
