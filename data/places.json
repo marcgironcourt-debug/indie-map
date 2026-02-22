@@ -6153,20 +6153,20 @@
     "name": "Bloempot",
     "city": "Lille",
     "address": "22 Rue des Bouchers, 59800 Lille, France",
-    "website": "https://www.bloempot.fr",
-    "lat": 50.6376193,
-    "lng": 3.0632367,
+    "website": "https://www.bloempot.fr/",
+    "lat": 50.63818169688867,
+    "lng": 3.0581043220879636,
     "category": "Restaurant",
     "phone": "",
-    "openingHours": "Mardi 12h00-13h30\nMercredi 12h00-13h30\nJeudi 12h00-13h30\nVendredi 12h00-13h30\nSamedi 12h00-13h30\nDimanche Fermé\nLundi Fermé",
+    "openingHours": "Lundi Fermé\nMardi 12h00-13h30, 19h00-21h00\nMercredi 12h00-13h30, 19h00-21h00\nJeudi 12h00-13h30, 19h00-21h00\nVendredi 12h00-13h30, 19h00-21h00\nSamedi 12h00-13h30, 19h00-21h00\nDimanche Fermé",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-11T15:43:46.467Z",
-    "updatedAt": "2026-02-11T15:48:23.550Z",
+    "updatedAt": "2026-02-22T22:10:40.976Z",
     "tags": [
       "Restaurant"
     ],
-    "miniText": "Restaurant mettant à l’honneur les produits des Hauts-de-France à travers une cuisine inspirée des traditions nordiques. Bloempot travaille en lien direct avec des producteurs régionaux et construit ses menus selon les saisons, en valorisant fermentation, conservation artisanale et savoir-faire du territoire.",
-    "panoramaImage": "/downloads/li.png",
+    "miniText": "Restaurant mettant en avant une cuisine du Nord fondée sur les produits régionaux et de saison. Travaillant en lien étroit avec des producteurs locaux et valorisant le terroir des Hauts-de-France dans une approche contemporaine, ancrée dans le territoire.",
+    "panoramaImage": "/downloads/bluempolil.png",
     "country": "FR"
   },
   {
@@ -11232,5 +11232,110 @@
     ],
     "miniText": "Boutique mettant en avant des produits alimentaires et artisanaux issus de la préfecture d’Hiroshima. Yume Plaza rassemble des spécialités locales — agrumes, saké, produits transformés et souvenirs régionaux — dans un espace dédié à la valorisation du territoire.",
     "panoramaImage": "/downloads/yunehirosh.png"
+  },
+  {
+    "id": "6de60d40-28bc-44e1-9659-cb30631eac6a",
+    "name": "La Clairière",
+    "city": "Lille",
+    "country": "FR",
+    "address": "75 Bd de la Liberté, 59000 Lille, France",
+    "website": "https://www.laclairiere-restaurant.com",
+    "lat": 50.634554344299424,
+    "lng": 3.0572467048161367,
+    "category": "Restaurant",
+    "phone": "+33 3 20 11 23 16",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00-14h30\nJeudi 12h00-14h30, 19h30-22h00\nVendredi 12h00-14h30, 19h30-22h00\nSamedi 12h00-14h30, 19h30-22h00\nDimanche 11h00-15h00",
+    "timeZone": "Europe/Paris",
+    "miniText": "Restaurant végétalien proposant une cuisine à base d’ingrédients frais, bio et locaux, avec des plats faits maison, un brunch dominical et une carte qui évolue selon les saisons. La Clairière met l’accent sur les produits de saison et les jus frais.",
+    "tags": [
+      "Restaurant"
+    ],
+    "createdAt": "2026-02-22T22:16:36.043Z",
+    "updatedAt": "2026-02-22T22:19:34.752Z",
+    "panoramaImage": "/downloads/clairlil.png"
+  },
+  {
+    "id": "66fc44be-eee7-432b-b646-5ad945e90770",
+    "name": "La Moulinette",
+    "city": "Lille",
+    "country": "FR",
+    "address": "105 Bd Victor Hugo, 59000 Lille, France",
+    "website": "https://lamoulinettelille.fr",
+    "lat": 50.622476933529335,
+    "lng": 3.06248700859352,
+    "category": "Lieu alternatif",
+    "phone": "+33 3 74 44 17 04",
+    "openingHours": "Lundi Fermé\nMardi 12h00-00h00\nMercredi 12h00-00h00\nJeudi 12h00-01h00\nVendredi 12h00-02h00\nSamedi 11h30-02h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Lieu alternatif combinant un café-cantine végétarienne et végane, bar et lieu culturel. La Moulinette propose une restauration le midi, un brunch le samedi et une petite restauration en soirée, avec une programmation d’événements co-construite avec les voisin·es, collectifs et associations partenaires.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-22T22:24:15.947Z",
+    "updatedAt": "2026-02-22T22:26:12.947Z",
+    "panoramaImage": "/downloads/moulinelile.jpg"
+  },
+  {
+    "id": "f9fab1bc-f6b2-43cf-87fd-d7d00f7b708b",
+    "name": "La Vie est Belt",
+    "city": "Roubaix",
+    "country": "FR",
+    "address": "17 Rue du Nouveau Monde, 59100 Roubaix, France",
+    "website": "https://lavieestbelt.fr/",
+    "lat": 50.69797041486704,
+    "lng": 3.1762858085935206,
+    "category": "Mode",
+    "phone": "+33 6 11 92 09 89",
+    "openingHours": "Lundi 09h00-12h30, 13h30-16h30\nMardi 09h00-12h30, 13h30-16h30\nMercredi 09h00-12h30, 13h30-16h30\nJeudi 09h00-12h30, 13h30-16h30\nVendredi 09h00-12h30, 13h30-16h30\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Marque d’accessoires de mode conçus à partir de matières upcyclées (notamment pneus de vélo), fabriqués en France dans des ateliers solidaires du Nord. Mettant en avant la valorisation des savoir-faire locaux et l’inclusion via des ateliers partenaires.",
+    "tags": [
+      "Mode"
+    ],
+    "createdAt": "2026-02-22T22:29:41.759Z",
+    "updatedAt": "2026-02-22T22:35:20.774Z",
+    "panoramaImage": "/downloads/bekltlille.png"
+  },
+  {
+    "id": "f7a7feb0-e4ce-4ea8-9fa4-ac42540c40eb",
+    "name": "La Condition Publique",
+    "city": "Roubaix",
+    "country": "FR",
+    "address": "14 Pl. du Général Faidherbe, 59100 Roubaix, France",
+    "website": "https://laconditionpublique.com",
+    "lat": 50.690873635432474,
+    "lng": 3.1894974644175926,
+    "category": "Lieu alternatif",
+    "phone": "+33 3 28 33 48 33",
+    "openingHours": "Lundi 10h00-19h00\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 14h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Lieu culturel et alternatif accueillant expositions, événements, ateliers et initiatives artistiques. Le site comprend également des espaces partagés et un rooftop végétalisé, participant à une dynamique locale mêlant culture, écologie et engagement territorial.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "createdAt": "2026-02-22T22:48:01.108Z",
+    "updatedAt": "2026-02-22T22:55:06.536Z",
+    "panoramaImage": "/downloads/conditiorou.png"
+  },
+  {
+    "id": "4b2dc8a2-54b6-43de-afdd-1b3ce79257d6",
+    "name": "Le Jardin de Cocagne",
+    "city": "Villeneuve-d'Ascq",
+    "country": "FR",
+    "address": "Europarc de la Haute Borne, 59650 Villeneuve-d'Ascq, France",
+    "website": "https://jardin-haute-borne.cocagnebio.fr",
+    "lat": 50.60065362623353,
+    "lng": 3.152054635582407,
+    "category": "Ferme",
+    "phone": "+33 3 59 52 01 85",
+    "openingHours": "Lundi Fermé\nMardi 11h30-19h00\nMercredi Fermé\nJeudi Fermé\nVendredi 11h30-19h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "miniText": "Ferme produisant des légumes bio distribués en circuit court, en favorisant l’emploi et l’accompagnement de personnes en situation de précarité.",
+    "tags": [
+      "Ferme"
+    ],
+    "createdAt": "2026-02-22T23:06:54.511Z",
+    "updatedAt": "2026-02-22T23:08:55.375Z",
+    "panoramaImage": "/downloads/jardinvill.png"
   }
 ]
