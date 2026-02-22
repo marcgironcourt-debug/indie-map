@@ -11152,5 +11152,85 @@
     ],
     "miniText": "Restaurant et café axé sur une cuisine utilisant des ingrédients cultivés naturellement, dont légumes, riz et produits durables. Love Table met en avant l’origine des produits et propose une cuisine sensible à l’agriculture respectueuse de la terre.",
     "panoramaImage": "/downloads/lovetableosa.png"
+  },
+  {
+    "id": "3f71d742-a7bc-4d06-b961-701eff5c6569",
+    "name": "ONOMICHI U2",
+    "city": "Onomichi",
+    "address": "5-11 Nishigoshocho, Onomichi, Hiroshima 722-0037, Japon",
+    "website": "https://onomichi-u2.com/",
+    "lat": 34.4020012614895,
+    "lng": 133.1899930257875,
+    "category": "Lieu alternatif",
+    "phone": "+81 848-21-0550",
+    "openingHours": "",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T20:29:20.218Z",
+    "updatedAt": "2026-02-22T20:31:41.615Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant restaurant, commerces, boulangerie et hébergement, mettant en avant les produits de la région et s’inscrivant dans une dynamique de revitalisation locale autour du port d’Onomichi.",
+    "panoramaImage": "/downloads/onomichihir.jpg"
+  },
+  {
+    "id": "a4a8134e-f0fb-49bc-be1a-b1777b0b6298",
+    "name": "Nagataya",
+    "city": "Hiroshima",
+    "address": "Japon, 〒730-0051 Hiroshima, Naka Ward, Otemachi, 1 Chome−7−19 重石ビル １F",
+    "website": "http://nagataya-okonomi.com/",
+    "lat": 34.39446388696878,
+    "lng": 132.45453327976023,
+    "category": "Restaurant",
+    "phone": "+81 82-247-0787",
+    "openingHours": "Lundi 11h00–20h00\nMardi Fermé\nMercredi 11h00–20h00\nJeudi 11h00–20h00\nVendredi 11h00–20h00\nSamedi 11h00–20h00\nDimanche 11h00–20h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T20:37:24.377Z",
+    "updatedAt": "2026-02-22T20:41:11.968Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant mettant en avant l okonomiyaki, une recette locale emblématique composée de chou, nouilles et ingrédients régionaux, dans une approche ancrée dans la tradition culinaire d’Hiroshima.",
+    "panoramaImage": "/downloads/nagatayahiros.png"
+  },
+  {
+    "id": "a462397d-101b-4b8c-8242-446dd1ac0175",
+    "name": "Kakiya",
+    "city": "Miyajima",
+    "address": "539 Miyajimacho, Hatsukaichi, Hiroshima 739-0588, Japon",
+    "website": "https://www.kaki-ya.jp",
+    "lat": 34.29870790114631,
+    "lng": 132.3217198932534,
+    "category": "Restaurant",
+    "phone": "+81 829-44-2747",
+    "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T20:45:28.287Z",
+    "updatedAt": "2026-02-22T20:49:10.827Z",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant spécialisé dans les huîtres d’Hiroshima, produit emblématique de la baie locale. L’établissement propose différentes préparations mettant en valeur les huîtres issues des élevages de la région, dans une approche centrée sur la tradition culinaire de Miyajima.",
+    "panoramaImage": "/downloads/kakiyamiy.png"
+  },
+  {
+    "id": "7103fe58-66da-48fd-85b7-3e1be48ab5de",
+    "name": "Yume Plaza",
+    "city": "Hiroshima",
+    "address": "Japon, 〒730-0035 Hiroshima, Naka Ward, Hondori, 8−28 2F",
+    "website": "https://www.yumeplaza.com",
+    "lat": 34.39308291822527,
+    "lng": 132.45937203743142,
+    "category": "Boutique",
+    "phone": "+81 82-544-1122",
+    "openingHours": "Lundi 10h00–19h00\nMardi 10h00–19h00\nMercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–19h00\nDimanche 10h00–19h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T21:08:10.233Z",
+    "updatedAt": "2026-02-22T21:08:10.233Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique mettant en avant des produits alimentaires et artisanaux issus de la préfecture d’Hiroshima. Yume Plaza rassemble des spécialités locales — agrumes, saké, produits transformés et souvenirs régionaux — dans un espace dédié à la valorisation du territoire.",
+    "panoramaImage": "/downloads/yunehirosh.png"
   }
 ]
