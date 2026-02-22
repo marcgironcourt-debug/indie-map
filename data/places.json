@@ -10992,5 +10992,65 @@
     ],
     "miniText": "Boutique présentant des pièces façonnées selon des techniques transmises de génération en génération, avec une attention particulière portée aux émaux et à l’esthétique liée à la cérémonie du thé.",
     "panoramaImage": "/downloads/cermkyot.png"
+  },
+  {
+    "id": "1140266d-2d00-4d51-b09d-99f4aa9304f1",
+    "name": "Fushimi Sake Village",
+    "city": "Kyoto",
+    "address": "82番2 Hiranocho, Fushimi Ward, Kyoto, 612-8057, Japon",
+    "website": "https://fushimi-sakagura-kouji.com",
+    "lat": 34.93265832409426,
+    "lng": 135.76062533743143,
+    "category": "Bar",
+    "phone": "+81 75-601-2430",
+    "openingHours": "Lundi 11h00–22h00\nMardi 11h00–22h00\nMercredi 11h00–22h00\nJeudi 11h00–22h00\nVendredi 11h00–22h00\nSamedi 11h00–22h00\nDimanche 11h00–22h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T18:09:06.580Z",
+    "updatedAt": "2026-02-22T18:13:15.183Z",
+    "tags": [
+      "Bar"
+    ],
+    "miniText": "Bar collectif regroupant plusieurs brasseries locales de saké au sein d’un même espace. Le lieu permet de déguster une sélection variée de sakés produits dans la région de Kyoto, directement issus des kura environnantes, accompagnés de petits plats adaptés à la dégustation.",
+    "panoramaImage": "/downloads/fushisakekuy.png"
+  },
+  {
+    "id": "99b8a053-89cb-4181-ad0a-3a75acd8a81d",
+    "name": "Sake Bar Yoramu",
+    "city": "Kyoto",
+    "address": "Japon, 〒604-0831 Kyoto, Nakagyo Ward, Matsuyacho, 35-1",
+    "website": "http://www.sakebar-yoramu.com",
+    "lat": 35.01373054164582,
+    "lng": 135.76118992208905,
+    "category": "Bar",
+    "phone": "+81 75-213-1512",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 18h00–0h00\nJeudi 18h00–0h00\nVendredi 18h00–0h00\nSamedi 18h00–0h00\nDimanche Fermé",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T18:16:25.396Z",
+    "updatedAt": "2026-02-22T18:20:23.481Z",
+    "tags": [
+      "Bar"
+    ],
+    "miniText": "Bar spécialisé dans le saké japonais proposant une sélection de producteurs artisanaux issus de différentes régions du Japon. Mettanr l’accent sur la dégustation, la découverte des styles et la mise en valeur du travail des brasseurs, dans un espace intimiste dédié au saké.",
+    "panoramaImage": "/downloads/sakekyouti.png"
+  },
+  {
+    "id": "a0868b8d-a73b-46b2-81a3-e99ae44e9640",
+    "name": "The Terminal Kyoto",
+    "city": "Kyoto",
+    "address": "Japon, 〒600-8445 Kyoto, Shimogyo Ward, 新町通仏光寺下ル 岩戸山町４２４番地",
+    "website": "https://kyoto.theterminal.jp",
+    "lat": 35.000932911485506,
+    "lng": 135.75699352208898,
+    "category": "Lieu alternatif",
+    "phone": "+81 75-344-2544",
+    "openingHours": "Lundi 9h30–18h00\nMardi 9h30–18h00\nMercredi 9h30–18h00\nJeudi 9h30–18h00\nVendredi 9h30–18h00\nSamedi 9h30–18h00\nDimanche 9h30–18h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T18:25:37.158Z",
+    "updatedAt": "2026-02-22T18:26:20.561Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant café, coworking et programmation culturelle au sein d’un bâtiment réhabilité. Le lieu accueille événements, expositions et rencontres, tout en proposant un environnement ouvert dédié aux échanges, à la créativité et aux initiatives locales.",
+    "panoramaImage": "/downloads/theterminalkyo.jpg"
   }
 ]
