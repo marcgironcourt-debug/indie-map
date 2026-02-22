@@ -11052,5 +11052,105 @@
     ],
     "miniText": "Lieu alternatif combinant café, coworking et programmation culturelle au sein d’un bâtiment réhabilité. Le lieu accueille événements, expositions et rencontres, tout en proposant un environnement ouvert dédié aux échanges, à la créativité et aux initiatives locales.",
     "panoramaImage": "/downloads/theterminalkyo.jpg"
+  },
+  {
+    "id": "d621f4ba-cfaf-47dd-a668-77c49b8017df",
+    "name": "Fujiya 1935",
+    "city": "Osaka",
+    "address": "2 Chome-4-14 Yariyamachi, Chuo Ward, Osaka, 540-0027, Japan",
+    "website": "http://fujiya1935.com/",
+    "lat": 34.683187581620594,
+    "lng": 135.5119164067466,
+    "category": "Restaurant",
+    "phone": "+81 6-6941-2483",
+    "openingHours": "Lundi 12h00-13h00\nMardi 12h00-13h00\nMercredi 12h00-13h00\nJeudi 12h00-13h00\nVendredi 12h00-13h00\nSamedi 12h00-13h00\nDimanche Fermé",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T19:13:43.516Z",
+    "updatedAt": "2026-02-22T19:16:13.912Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant développant une cuisine ancrée dans les produits japonais de saison. Travaillant des ingrédients issus du territoire et proposant une interprétation moderne de la tradition culinaire japonaise.",
+    "panoramaImage": "/downloads/fujiya1935.jpg"
+  },
+  {
+    "id": "01fbc3ae-0c1f-4714-a3ea-e8b53bf82a23",
+    "name": "Minoh Beer Warehouse",
+    "city": "Minoh",
+    "address": "3 Chome-14-18 Makiochi, Minoh, Osaka 562-0004, Japan",
+    "website": "https://www.minoh-beer.jp",
+    "lat": 34.82353810921719,
+    "lng": 135.47273969695186,
+    "category": "Brasserie",
+    "phone": "+81 72-725-7234",
+    "openingHours": "Lundi 11h00-21h00\nMardi 11h00-21h00\nMercredi 11h00-21h00\nJeudi Fermé\nVendredi 11h00-21h00\nSamedi 11h00-21h00\nDimanche 11h00-20h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T19:19:24.922Z",
+    "updatedAt": "2026-02-22T19:29:35.561Z",
+    "tags": [
+      "brasserie"
+    ],
+    "miniText": "Brasserie développant des recettes artisanales mettant en valeur des ingrédients japonais et proposant un espace sur place pour déguster ses bières accompagnées d’une cuisine simple.",
+    "panoramaImage": "/downloads/minobeerosk.png"
+  },
+  {
+    "id": "af8d1765-b407-46f9-aebb-0042ded22844",
+    "name": "Salon de AManTo",
+    "city": "Osaka",
+    "address": "1 Chome-7-26 Nakazakinishi, Kita Ward, Osaka, 530-0015, Japan",
+    "website": "https://amanto.jp/cafe/",
+    "lat": 34.70829099440771,
+    "lng": 135.5044041644178,
+    "category": "Café",
+    "phone": "+81 6-6371-5840",
+    "openingHours": "Lundi 12h00-22h00\nMardi 12h00-22h00\nMercredi 12h00-22h00\nJeudi 12h00-22h00\nVendredi 12h00-22h00\nSamedi 12h00-22h00\nDimanche 12h00-22h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T19:32:45.820Z",
+    "updatedAt": "2026-02-22T19:37:34.024Z",
+    "tags": [
+      "café"
+    ],
+    "miniText": "Café indépendant accueillant expositions, concerts et événements culturels. Salon de AManTo fonctionne comme un espace communautaire mêlant café, art et initiatives créatives locales.",
+    "panoramaImage": "/downloads/amantoos.jpg"
+  },
+  {
+    "id": "7345e669-a93d-4b12-ba6f-499327950106",
+    "name": "Kuromon Ichiba Market",
+    "city": "Osaka",
+    "address": "2 Chome Nipponbashi, Chuo Ward, Osaka, 542-0073, Japan",
+    "website": "https://kuromon.com/jp/",
+    "lat": 34.66548526499752,
+    "lng": 135.5062352355822,
+    "category": "Marché",
+    "phone": "",
+    "openingHours": "Lundi 9h00-18h00\nMardi 9h00-18h00\nMercredi 9h00-18h00\nJeudi 9h00-18h00\nVendredi 9h00-18h00\nSamedi 9h00-18h00\nDimanche 9h00-18h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T19:51:05.434Z",
+    "updatedAt": "2026-02-22T19:58:31.188Z",
+    "tags": [
+      "marche"
+    ],
+    "miniText": "Marché regroupant de nombreux commerçants indépendants proposant produits frais, spécialités régionales et ingrédients japonais. Kuromon Ichiba joue un rôle central dans l’approvisionnement alimentaire local et met en valeur le travail d’artisans et de producteurs du territoire.",
+    "panoramaImage": "/downloads/kurommaroas.png"
+  },
+  {
+    "id": "1a9dc5c6-60f1-46f4-b150-9d1fbd5e14e3",
+    "name": "Love Table",
+    "city": "Osaka",
+    "address": "Herbis Plaza B2, 2 Chome-5-25 Umeda, Kita Ward, Osaka, 530-0001, Japan",
+    "website": "https://lovetable.amebaownd.com",
+    "lat": 34.69911751503874,
+    "lng": 135.49308569325342,
+    "category": "Restaurant",
+    "phone": "+81 6-6454-3690",
+    "openingHours": "Lundi 11h00-22h00\nMardi 11h00-22h00\nMercredi 11h00-22h00\nJeudi 11h00-22h00\nVendredi 11h00-22h00\nSamedi 11h00-22h00\nDimanche 11h00-22h00",
+    "timeZone": "Asia/Tokyo",
+    "createdAt": "2026-02-22T20:10:57.940Z",
+    "updatedAt": "2026-02-22T20:14:32.736Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant et café axé sur une cuisine utilisant des ingrédients cultivés naturellement, dont légumes, riz et produits durables. Love Table met en avant l’origine des produits et propose une cuisine sensible à l’agriculture respectueuse de la terre.",
+    "panoramaImage": "/downloads/lovetableosa.png"
   }
 ]
