@@ -2112,9 +2112,17 @@ return;
 
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
+    const el = ref.current as any;
+    try {
+      el.style.opacity = "0";
+      el.style.transition = "opacity 180ms ease";
+      el.style.willChange = "opacity";
+    } catch {}
 
+
+    /* __IM_FADEIN_MAP__ */
     const map = new maplibregl.Map({
-      container: ref.current,
+      container: el,
       style: STYLE_URL,
       center: [0, 0],
       zoom: isMobile ? 1.4 : 2.4,
@@ -2125,6 +2133,44 @@ return;
     });
 
     try { (window as any).__IM_MAP__ = map; } catch {}
+
+    /* __IM_REVEAL_READY__ */
+    try {
+      const reveal = () => {
+        try {
+          requestAnimationFrame(() => requestAnimationFrame(() => { try { el.style.opacity = "1"; } catch {} }));
+        } catch {
+          try { el.style.opacity = "1"; } catch {}
+        }
+      };
+
+      let done = false;
+      const finish = () => { if (done) return; done = true; reveal(); };
+
+      let tries = 0;
+      const t = setInterval(() => {
+        tries++;
+        try {
+          const okStyle = (map as any).isStyleLoaded?.() === true;
+          const okTiles = (map as any).areTilesLoaded?.() === true;
+          const okPins = (() => { try { return !!map.getLayer(LAYER_ID); } catch { return false; } })();
+          if (okStyle && okTiles && okPins) {
+            clearInterval(t);
+            finish();
+          } else if (tries >= 60) {
+            clearInterval(t);
+            finish();
+          }
+        } catch {
+          if (tries >= 60) {
+            clearInterval(t);
+            finish();
+          }
+        }
+      }, 100);
+    } catch {}
+/* __IM_REVEAL_READY__ */
+
 
 
     
@@ -2660,7 +2706,7 @@ mapRef.current = map;
 
   return (
     <div className="relative h-full w-full">
-      <div ref={ref} className="h-full w-full" />
+      <div ref={ref} className="h-full w-full" style={{ opacity: 0, transition: "opacity 180ms ease", willChange: "opacity" }} />
       <style>{`\
         .maplibregl-canvas{transition:filter 220ms ease;}\
         .im-globe-dim .maplibregl-canvas{filter:brightness(.40) saturate(.90) contrast(.98);}\

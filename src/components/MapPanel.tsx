@@ -25,20 +25,46 @@ export default function MapPanel(props: {
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
-    darkMap?: boolean;
+  darkMap?: boolean;
   onToggleDarkMap?: () => void;
 }) {
   const { items = [], selectedId, onSelect, darkMap } = props;
 
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  React.useEffect(() => {
+    const run = () => {
+      try {
+        void import("./GlobeMap");
+      } catch {}
+    };
+
+    const ric = (globalThis as any).requestIdleCallback as undefined | ((cb: () => void, opts?: any) => any);
+
+    if (typeof ric === "function") {
+      ric(run, { timeout: 1200 });
+    } else {
+      setTimeout(run, 600);
+    }
+  }, []);
+
   return (
     <section className="relative h-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
       <div className="h-full">
-        <ClientMap
-          items={items}
-          selectedId={selectedId}
-onSelect={onSelect}
-          darkMap={darkMap}
-/>
+        {mounted ? (
+          <ClientMap
+            items={items}
+            selectedId={selectedId}
+            onSelect={onSelect}
+            darkMap={darkMap}
+          />
+        ) : (
+          <div className="h-full w-full" />
+        )}
       </div>
     </section>
   );
