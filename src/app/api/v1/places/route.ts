@@ -1,4 +1,5 @@
 import {NextResponse} from "next/server";
+import { normalizePlace } from "./_normalize";
 import fs from "node:fs";
 import path from "node:path";
 import {locales, defaultLocale} from "../../../../../i18n";
@@ -22,7 +23,7 @@ export async function GET(req: Request) {
     }
 
     if (lang === defaultLocale) {
-      return NextResponse.json(parsed);
+      return NextResponse.json(parsed.map(normalizePlace));
     }
 
     const out = parsed.map((x) => {
@@ -45,7 +46,7 @@ export async function GET(req: Request) {
       return x;
     });
 
-    return NextResponse.json(out);
+    return NextResponse.json(out.map(normalizePlace));
   } catch (err) {
     console.error("[/api/v1/places] Erreur de lecture places.json", err);
     return NextResponse.json([]);

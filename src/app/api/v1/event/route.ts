@@ -1,18 +1,46 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-const ALLOWED = new Set(["view_place", "click_itinerary", "click_phone", "click_website", "click_copy_address"]);
+const ALLOWED = new Set([
+  "view_place",
+  "click_itinerary",
+  "click_phone",
+  "click_website",
+  "click_copy_address",
+]);
+
+type EventPayload = {
+  eventType?: unknown;
+  placeId?: unknown;
+  city?: unknown;
+  category?: unknown;
+};
+
+function isObject(v: unknown): v is Record<string, unknown> {
+  return !!v && typeof v === "object" && !Array.isArray(v);
+}
 
 export async function POST(req: Request) {
   try {
     const raw = await req.text().catch(() => "");
-    const body = (() => { try { return JSON.parse(raw); } catch { return null; } })();
-    if (!body || typeof body !== "object") return NextResponse.json({ ok: false }, { status: 400 });
+    const bodyUnknown: unknown = (() => {
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return null;
+      }
+    })();
 
-    const eventType = (body as any).eventType;
-    const placeId = (body as any).placeId;
-    const city = (body as any).city;
-    const category = (body as any).category;
+    if (!isObject(bodyUnknown)) {
+      return NextResponse.json({ ok: false }, { status: 400 });
+    }
+
+    const body = bodyUnknown as EventPayload;
+
+    const eventType = body.eventType;
+    const placeId = body.placeId;
+    const city = body.city;
+    const category = body.category;
 
     if (typeof eventType !== "string" || !ALLOWED.has(eventType)) {
       return NextResponse.json({ ok: false }, { status: 400 });

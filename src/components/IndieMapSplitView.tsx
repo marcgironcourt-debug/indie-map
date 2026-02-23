@@ -810,30 +810,10 @@ React.useEffect(() => {
       </div>
       )}
 
-
-
-      <div className="absolute bottom-3 left-0 right-0 z-[1350] flex justify-center">
-        <nav
-          className={
-            (darkMap
-              ? "bg-[#5C6E3B] text-white border border-white/20"
-              : "bg-[#5C6E3B]/85/95 text-white border border-white/20") +
-            " rounded-full px-4 py-1 flex items-center gap-6 text-xs font-medium"
-          }
-        >
-          <Link href="/a-propos" className="flex items-center gap-1 hover:opacity-80">
-            <span>Pourquoi Indie Map ?</span>
-          </Link>
-          <Link href="/contribution" className="flex items-center gap-1 hover:opacity-80">
-            <span>Contribution</span>
-          </Link>
-          <Link
-            href="/pour-les-commercants"
-            className="flex items-center gap-1 hover:opacity-80"
-          >
-            <span>Espace commerçant</span>
-          </Link>
-        </nav>
+      <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
+        <Link href="privacy" className="text-xs opacity-70 hover:opacity-100 underline">
+          Privacy / Confidentialité
+        </Link>
       </div>
 
       <MobileBottomSheet business={selectedBusiness}

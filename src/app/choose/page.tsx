@@ -25,6 +25,10 @@ export default function ChooseLanguagePage() {
         <p className="mt-6 text-xs opacity-70">
           Tu pourras changer plus tard via un bouton dans l’interface.
         </p>
+
+        <div className="mt-4 text-xs opacity-70">
+          <Link href="/privacy" className="underline">Privacy / Confidentialité</Link>
+        </div>
       </div>
     </main>
   );
