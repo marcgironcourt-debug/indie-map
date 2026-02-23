@@ -37,16 +37,26 @@ export default function MapPanel(props: {
   }, []);
 
   React.useEffect(() => {
+    type IdleDeadline = {
+      readonly didTimeout: boolean;
+      timeRemaining: () => number;
+    };
+
+    type RequestIdleCallback = (
+      cb: (deadline: IdleDeadline) => void,
+      opts?: { timeout?: number }
+    ) => number;
+
     const run = () => {
       try {
         void import("./GlobeMap");
       } catch {}
     };
 
-    const ric = (globalThis as any).requestIdleCallback as undefined | ((cb: () => void, opts?: any) => any);
+    const ric = (globalThis as unknown as { requestIdleCallback?: RequestIdleCallback }).requestIdleCallback;
 
     if (typeof ric === "function") {
-      ric(run, { timeout: 1200 });
+      ric(() => run(), { timeout: 1200 });
     } else {
       setTimeout(run, 600);
     }

@@ -54,7 +54,12 @@ export default async function PrivacyPage({ params }: Props) {
             permettent pas d’identifier un utilisateur.
           </p>
 
-          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>5. Contact</h2>
+          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>5. Conservation des données</h2>
+          <p>
+            Les événements d'usage sont conservés pour une durée limitée afin de produire des statistiques agrégées et d'améliorer l'application. La durée de conservation peut évoluer, mais restera raisonnable et proportionnée à ces finalités.
+          </p>
+
+          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>6. Contact</h2>
           <p>Pour toute question relative à la confidentialité, contactez-nous via le site officiel Indie Map.</p>
         </>
       ) : (
@@ -99,7 +104,12 @@ export default async function PrivacyPage({ params }: Props) {
             businesses. These statistics do not allow identification of individuals.
           </p>
 
-          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>5. Contact</h2>
+          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>5. Data Retention</h2>
+          <p>
+            Usage events are retained for a limited period to produce aggregated statistics and improve the product. Retention may evolve, but will remain reasonable and proportionate to these purposes.
+          </p>
+
+          <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>6. Contact</h2>
           <p>For any privacy-related questions, please contact us via the official Indie Map website.</p>
         </>
       )}
