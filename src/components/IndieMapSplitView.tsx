@@ -541,7 +541,7 @@ React.useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const r = await fetch("/api/places");
+        const r = await fetch("/api/v1/places");
         if (!r.ok) throw new Error("Erreur de chargement");
         const j = await r.json();
         const arr = Array.isArray(j) ? j : j?.data || [];

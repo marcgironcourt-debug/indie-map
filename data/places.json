@@ -1047,7 +1047,10 @@
       "miniText": {}
     },
     "country": "FR",
-    "city": "Paris"
+    "city": "Paris",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-frame-restaurant-bar-paris",
@@ -1066,7 +1069,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-la-recolte-batignolles-paris",
@@ -1085,7 +1090,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-la-recolte-beaubourg-paris",
@@ -1104,7 +1111,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-la-recolte-chemin-vert-paris",
@@ -1123,7 +1132,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-la-recolte-faidherbe-paris",
@@ -1142,7 +1153,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-la-recolte-chardon-lagache-paris",
@@ -1161,7 +1174,9 @@
     "country": "FR",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "la-recyclerie-paris",
@@ -1180,7 +1195,9 @@
     "timeZone": "Europe/Paris",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "le-moulin-a-cafe-paris",
@@ -1199,7 +1216,9 @@
     "timeZone": "Europe/Paris",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "bistro-les-artizans-paris",
@@ -1218,7 +1237,9 @@
     "panoramaImage": "/panoramas/bistro.jpg",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "name": "La Cale - pub zéro déchet",
@@ -1237,7 +1258,9 @@
     "panoramaImage": "/panoramas/cale.png",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-67c7511b0cfd64c4",
@@ -1256,7 +1279,9 @@
     "panoramaImage": "/panoramas/bika.jpg",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-80cbddc626a1d010",
@@ -1275,7 +1300,9 @@
     "panoramaImage": "/panoramas/parcelles.png",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "id": "place-c74a394dbe8c57bd",
@@ -1294,7 +1321,9 @@
     "panoramaImage": "downloads/fab.png",
     "translations": {
       "miniText": {}
-    }
+    },
+    "createdAt": "2026-02-23T00:00:00.000Z",
+    "updatedAt": "2026-02-23T14:43:11.178Z"
   },
   {
     "name": "Darwin Eco-système",
@@ -7263,7 +7292,7 @@
     "id": "5f4e981c-7a9c-491b-841a-ef2289d4e1e6",
     "name": "Studio 189",
     "city": "Accra",
-    "country": "Ghana",
+    "country": "GH",
     "address": "12th Lane, Accra, Ghana",
     "website": "https://studiooneeightynine.com",
     "lat": 5.567183499325334,
@@ -7284,7 +7313,7 @@
     "id": "00dcbdf0-bdd2-4c28-9e55-ed4f5a9771fb",
     "name": "MAFI MAFI",
     "city": "Addis-Abeba",
-    "country": "Éthiopie",
+    "country": "ET",
     "address": "Addis-Abeba, Éthiopie",
     "website": "https://www.mafimafiet.com",
     "lat": 9.011979242358827,
@@ -7305,7 +7334,7 @@
     "id": "d6b44fe6-d061-4471-bed3-137f00112365",
     "name": "Sidai Designs",
     "city": "Arusha",
-    "country": "Tanzanie",
+    "country": "TZ",
     "address": "15 Kanisa Rd, Arusha, Tanzanie",
     "website": "https://sidaidesigns.com",
     "lat": -3.370618194500786,
@@ -7326,7 +7355,7 @@
     "id": "3c2f9997-b052-443e-a611-efbc32f7d3f9",
     "name": "Hiša Franko",
     "city": "Kobarid",
-    "country": "Slovenia",
+    "country": "SI",
     "address": "Staro selo 1, 5222 Kobarid, Slovénie",
     "website": "http://www.hisafranko.com/",
     "lat": 46.2473901703596,
@@ -7347,7 +7376,7 @@
     "id": "53dbff12-4e7c-44fd-bf18-b9c3fc16be9f",
     "name": "Kane",
     "city": "Bucharest",
-    "country": "Romania",
+    "country": "RO",
     "address": "Strada Dianei 9, 020971 București, Roumanie",
     "website": "https://kanerestaurant.ro/",
     "lat": 44.437931230998466,
@@ -7368,7 +7397,7 @@
     "id": "e42fc861-17fd-40a1-98a7-09d6f4174c92",
     "name": "Onyx",
     "city": "Budapest",
-    "country": "Hungary",
+    "country": "HU",
     "address": "Budapest, Vörösmarty tér 7-8, 1051 Hongrie",
     "website": "https://onyxrestaurant.hu/en",
     "lat": 47.497447524508225,
@@ -7389,7 +7418,7 @@
     "id": "f6152e12-fe9f-48c0-ae31-e1108ed29a88",
     "name": "Ficović",
     "city": "Ston",
-    "country": "Croatia",
+    "country": "HR",
     "address": "Hodilje 30, 20230, Ston, Croatie",
     "website": "http://www.restaurantficovic.com",
     "lat": 42.858722433600505,
@@ -7410,7 +7439,7 @@
     "id": "6f16b48c-5b4e-47d0-980a-5b86022ac2d8",
     "name": "Gostilna Repovž",
     "city": "Šentjanž",
-    "country": "Slovenia",
+    "country": "SI",
     "address": "Šentjanž 14, 8297 Šentjanž, Slovénie",
     "website": "https://gostilna-repovz.si/",
     "lat": 46.011337873065905,
@@ -7746,7 +7775,7 @@
     "id": "4e7a44d9-2ca3-4586-9bca-be2e789f311f",
     "name": "Bokja",
     "city": "Beirut",
-    "country": "Lebanon",
+    "country": "LB",
     "address": "Mkhallissiye, Beirut 1100, Liban",
     "website": "https://bokja.com/",
     "lat": 33.89399398549631,
@@ -7767,7 +7796,7 @@
     "id": "16628643-589d-4497-9d99-a635847168a6",
     "name": "Fair Trade Egypt",
     "city": "Cairo",
-    "country": "Egypt",
+    "country": "EG",
     "address": "27 Yehia Ibrahim, Mohammed Mazhar, Zamalek, Cairo Governorate 11211, Egypte",
     "website": "https://fairtradeegypt.org",
     "lat": 30.060873143190534,
@@ -7788,7 +7817,7 @@
     "id": "a0339238-4aa6-428c-ac8f-a86d79b007b5",
     "name": "Marché Souk El Tayeb",
     "city": "Beirut",
-    "country": "Lebanon",
+    "country": "LB",
     "address": "Jisr el Wati, Tohwita, Liban",
     "website": "https://www.soukeltayeb.com",
     "lat": 33.87781230344149,
@@ -7809,7 +7838,7 @@
     "id": "0efa51c2-5934-4030-b521-af42d78b9e91",
     "name": "OD Urla",
     "city": "Urla",
-    "country": "Turkey",
+    "country": "TR",
     "address": "Süt Pınarı Mevkii, Rüstem, 2018/9 Sokak No:28, 35430 Urla/İzmir, Turquie",
     "website": "https://www.odurla.com",
     "lat": 38.34488196161671,
@@ -7830,7 +7859,7 @@
     "id": "378afd3c-3b91-4280-8e4e-984183252d46",
     "name": "Hiç Lokanta - Urla",
     "city": "Urla",
-    "country": "Turkey",
+    "country": "TR",
     "address": "Sanat Sokağı, Yeni, Zafer Cd. No:52, 35430 Urla/İzmir, Turquie",
     "website": "https://hicurla.com/hic-lokanta/",
     "lat": 38.3223070401588,
@@ -7851,7 +7880,7 @@
     "id": "632885cc-0ae1-41f7-ba4f-d2676e164bd1",
     "name": "Narköy",
     "city": "Kandıra",
-    "country": "Turkey",
+    "country": "TR",
     "address": "Kerpe, Kerpe caddesi Yayla mevkii No : 13A, 41600 Kandıra/Kocaeli, Turquie",
     "website": "https://narkoy.com/",
     "lat": 41.12423064717415,
@@ -7872,7 +7901,7 @@
     "id": "a3b0f3b4-ef94-4b82-81e5-84cb25714e7e",
     "name": "Organic Mandya Office",
     "city": "Mandya",
-    "country": "India",
+    "country": "IN",
     "address": "GWG4+WPV, Gautaham Badavane, Mandya, Karnataka 571403, Inde",
     "website": "https://organicmandya.com/pages/about-us",
     "lat": 12.527524301090748,
@@ -7891,7 +7920,7 @@
   },
   {
     "city": "Bengaluru",
-    "country": "India",
+    "country": "IN",
     "category": "Café",
     "phone": "+91 97399 99112",
     "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
@@ -7912,7 +7941,7 @@
   },
   {
     "city": "Bengaluru",
-    "country": "India",
+    "country": "IN",
     "category": "Café",
     "phone": "+91 97399 99112",
     "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
@@ -7933,7 +7962,7 @@
   },
   {
     "city": "Bengaluru",
-    "country": "India",
+    "country": "IN",
     "category": "Café",
     "phone": "+91 97399 99112",
     "website": "https://www.maverickandfarmer.com/?srsltid=AfmBOorauGkIPyz5cDTbIit7t5qBZ9FHQswq0YLztu4Gbu4q-zJ2V0U1",
@@ -7953,7 +7982,7 @@
     "panoramaImage": "/downloads/mav3.jpg"
   },
   {
-    "country": "India",
+    "country": "IN",
     "category": "Épicerie",
     "website": "https://sahajaaharam.com",
     "timeZone": "Asia/Kolkata",
@@ -7974,7 +8003,7 @@
     "panoramaImage": "/downloads/sahaja.jpeg"
   },
   {
-    "country": "India",
+    "country": "IN",
     "category": "Épicerie",
     "website": "https://sahajaaharam.com",
     "timeZone": "Asia/Kolkata",
@@ -7995,7 +8024,7 @@
     "panoramaImage": "/downloads/sahaja.jpeg"
   },
   {
-    "country": "India",
+    "country": "IN",
     "category": "Épicerie",
     "website": "https://sahajaaharam.com",
     "timeZone": "Asia/Kolkata",
@@ -8016,7 +8045,7 @@
     "panoramaImage": "/downloads/sahaja.jpeg"
   },
   {
-    "country": "India",
+    "country": "IN",
     "category": "Épicerie",
     "website": "https://sahajaaharam.com",
     "timeZone": "Asia/Kolkata",
@@ -8040,7 +8069,7 @@
     "id": "938ca9bc-e684-457a-89f5-9f1982a5fad2",
     "name": "Solitude Farm of Auroville",
     "city": "Auroville",
-    "country": "India",
+    "country": "IN",
     "address": "Auroville, Tamil Nadu 605101, Inde",
     "website": "https://solitude.farm/",
     "lat": 12.006082394733573,
@@ -8061,7 +8090,7 @@
     "id": "2b8d89ef-44a3-4fba-9e0a-60c4c1f40b5f",
     "name": "The Farm Restaurant",
     "city": "Chennai",
-    "country": "India",
+    "country": "IN",
     "address": "1-277, Rajiv Gandhi Salai, Semmancheri, Egattur, Chennai, Tamil Nadu 600119, Inde",
     "website": "https://www.thefarmchennai.com",
     "lat": 12.86703414811005,
@@ -8312,7 +8341,7 @@
     "id": "a7360347-7d59-4df6-b6da-e3586f714d3a",
     "name": "Lao Buffalo Dairy",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "Ban Muang Khay, Luang Prabang, Laos",
     "website": "https://www.laosbuffalodairy.com",
     "lat": 19.793515089420058,
@@ -8333,7 +8362,7 @@
     "id": "dc25c48b-5c3c-4e47-953f-c8c3cc8c27b7",
     "name": "The Living Land Company",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "Luang Prabang, Laos",
     "website": "https://livinglandlao.org",
     "lat": 19.86042306082852,
@@ -8354,7 +8383,7 @@
     "id": "2fe412ea-f49a-43ec-b9e3-06c30d342859",
     "name": "Organic Farm",
     "city": "Vang Vieng",
-    "country": "Laos",
+    "country": "LA",
     "address": "XC6V+FQR, Vang Vieng, Laos",
     "website": "https://www.facebook.com/organicfarmvangvieng/?locale=vi_VN",
     "lat": 18.961438233366778,
@@ -8375,7 +8404,7 @@
     "id": "65778144-aac0-4f63-9e84-31a54c0f1443",
     "name": "The Boutique by Ock Pop Tok",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "07 Ban Phonheung Phayalaungmuengchan Rd, Luang Prabang 06000, Laos",
     "website": "https://www.ockpoptok.com",
     "lat": 19.896301740968916,
@@ -8396,7 +8425,7 @@
     "id": "d03d8ce8-9332-48d8-82ee-eb5f359b54e5",
     "name": "Saffron Coffee",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "Khem Kong Road, Luang Prabang, Laos",
     "website": "https://saffroncoffee.com",
     "lat": 19.895328635547543,
@@ -8417,7 +8446,7 @@
     "id": "f870362a-ec35-49eb-af9c-f70a4b3556eb",
     "name": "Ma Te Sai",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "Kingkitsarath Rd, Luang Prabang 06000, Laos",
     "website": "https://matesai.com/",
     "lat": 19.88910145576695,
@@ -8438,7 +8467,7 @@
     "id": "17b8e070-af94-493d-a70f-667c9afe5cfd",
     "name": "Tamarind",
     "city": "Luang Prabang",
-    "country": "Laos",
+    "country": "LA",
     "address": "V4VR+VMF, Kingkitsarath Rd, Luang Prabang, Laos",
     "website": "https://www.tamarindlaos.com",
     "lat": 19.894871782067973,
@@ -8459,7 +8488,7 @@
     "id": "4bc4fa4f-5cbf-44c5-95c5-1a4689ed7f54",
     "name": "Pun Pun Organic Farm",
     "city": "Chiang Mai",
-    "country": "Thailand",
+    "country": "TH",
     "address": "80 1 Ban Pao, Mae Taeng District, Chiang Mai 50150, Thaïlande",
     "website": "https://punpunthailand.org",
     "lat": 19.215080817925358,
@@ -8480,7 +8509,7 @@
     "id": "393a099e-b10d-4f2f-baa3-f73c4dd9b0b9",
     "name": "Pun Pun Organic Farm",
     "city": "Chiang Mai",
-    "country": "Thailand",
+    "country": "TH",
     "address": "80 1 Ban Pao, Mae Taeng District, Chiang Mai 50150, Thaïlande",
     "website": "https://punpunthailand.org",
     "lat": 19.215080817925358,
@@ -8500,7 +8529,7 @@
     "id": "565e029e-393d-4eb1-b308-4e17c0b83539",
     "name": "Rai Ruen Rom",
     "city": "Chiang Rai",
-    "country": "Thailand",
+    "country": "TH",
     "address": "Ngio, Thoeng District, Chiang Rai 57160, Thaïlande",
     "website": "https://www.rairuenrom.com",
     "lat": 19.657211578936447,
@@ -8521,7 +8550,7 @@
     "id": "91a9e4ed-c43e-4614-a293-f0bd255b4174",
     "name": "Sookjai Farmer's Market",
     "city": "Nakhon Pathom",
-    "country": "Thailand",
+    "country": "TH",
     "address": "21, Tambon Yai Cha, Sam Phran District, Nakhon Pathom 73110, Thaïlande",
     "website": "https://suansampran.com/sookjai-market/",
     "lat": 13.736073683873228,
@@ -8542,7 +8571,7 @@
     "id": "ef5e0877-db5e-4784-bfcd-c20203cedd85",
     "name": "Mindful Farm",
     "city": "Chiang Mai",
-    "country": "Thailand",
+    "country": "TH",
     "address": "Unnamed Rd Mae Sap, Samoeng District, Chiang Mai 50250, Thaïlande",
     "website": "https://mindfulfarmers.wixsite.com/thailand",
     "lat": 18.95048589403185,
@@ -8563,7 +8592,7 @@
     "id": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
     "name": "Jing Jai Market Chiang Mai",
     "city": "Chiang Mai",
-    "country": "Thailand",
+    "country": "TH",
     "address": "46 Atsadathon Rd, Pa Tan Sub-district, Mueang Chiang Mai District, Chiang Mai 50300, Thaïlande",
     "website": "https://www.jingjaicentralchiangmai.com",
     "lat": 18.80618752154406,
@@ -8584,7 +8613,7 @@
     "id": "354ffbff-dd57-41d6-aeea-05727e96a46d",
     "name": "Patom Organic Living",
     "city": "Bangkok",
-    "country": "Thailand",
+    "country": "TH",
     "address": "9 2 Soi Phrom Phak, Khlong Tan Nuea, Watthana, Bangkok 10110, Thaïlande",
     "website": "https://www.patom.com",
     "lat": 13.738704406255646,
@@ -8605,7 +8634,7 @@
     "id": "10109f7e-4978-4349-9286-2917ace4408b",
     "name": "Bo.lan",
     "city": "Bangkok",
-    "country": "Thailand",
+    "country": "TH",
     "address": "24 Sukhumvit 53 Alley, Khlong Tan Nuea, Watthana, Bangkok 10110, Thaïlande",
     "website": "http://www.bolan.co.th/",
     "lat": 13.726458058723853,
@@ -8626,7 +8655,7 @@
     "id": "3ffa35e3-ac7e-4976-ad0c-254cf5e23303",
     "name": "Haoma",
     "city": "Bangkok",
-    "country": "Thailand",
+    "country": "TH",
     "address": "231, 3 Sukhumvit 31, Khlong Toei Nuea, Watthana, Bangkok 10110, Thaïlande",
     "website": "https://www.haoma.dk",
     "lat": 13.743149703487559,
@@ -8647,7 +8676,7 @@
     "id": "e8341f96-495b-4a86-afc8-f2cd0a14950a",
     "name": "Sorn",
     "city": "Bangkok",
-    "country": "Thaïlande",
+    "country": "TH",
     "address": "56 Sukhumvit 26, Khlong Tan Nuea, Khlong Toei, Bangkok 10110, Thaïlande",
     "website": "https://sornfinesouthern.com/#",
     "lat": 13.723288006107744,
@@ -8731,7 +8760,7 @@
     "id": "b7245dfb-e802-474c-8f7f-bff1f3994eff",
     "name": "Artisans d'Angkor",
     "city": "Siem Reap",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "Chantiers-Ecoles Stung Thmey, Street, Krong Siem Reap, Cambodge",
     "website": "https://artisansangkor.com",
     "phone": "+855 12 222 404",
@@ -8752,7 +8781,7 @@
     "id": "2e98d3b5-f38d-4fa5-8e66-2c9f626130a6",
     "name": "Lotus Silk Farm",
     "city": "Siem Reap",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "11 road 63, Phnom Krom 17250, Cambodge",
     "website": "https://www.lotussilkfarm.com/en/",
     "phone": "+855 92 529 001",
@@ -8773,7 +8802,7 @@
     "id": "5d79a98c-f332-43d5-a4d6-0f03269345d3",
     "name": "La Plantation Farm & Shop",
     "city": "Kampot",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "J868+CJ, Bosjheng village, Kampot, Cambodge",
     "website": "https://laplantation.com",
     "phone": "+855 17 842 505",
@@ -8794,7 +8823,7 @@
     "id": "61edac16-52c9-4dc8-b063-68b6a0563ed1",
     "name": "Paradise Gardens Kampot",
     "city": "Kampot",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "NR33, Kampot 70702, Cambodge",
     "website": "https://www.paradisekampot.com",
     "phone": "+855 90 810 888",
@@ -8815,7 +8844,7 @@
     "id": "1ba761bc-f8a1-4c7c-9a7a-e101634fd9f5",
     "name": "Jaan Bai Restaurant",
     "city": "Battambang",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "Street 2, Battambang 02000, Cambodge",
     "website": "https://www.instagram.com/jaanbai/?hl=fr",
     "phone": "+855 78 263 144",
@@ -8835,7 +8864,7 @@
     "id": "4b0f882a-7e59-4c1b-98ad-2acddca95cb1",
     "name": "Cuisine Wat Damnak",
     "city": "Siem Reap",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "City, Wat Damnak market, street, Village, Krong Siem Reap 93108, Cambodge",
     "website": "http://www.cuisinewatdamnak.com",
     "phone": "+855 77 347 762",
@@ -8855,7 +8884,7 @@
     "id": "899db484-dea9-43e0-83e0-c1f33a7c5a6c",
     "name": "SPOONS Café Restaurant",
     "city": "Siem Reap",
-    "country": "Cambodia",
+    "country": "KH",
     "address": "0142, Group 5, Pave Road, Wat Damnak Village, Salakomreouk Commune, Siem Reap 17254, Cambodge",
     "website": "https://www.spoonscambodia.org/about-the-caf-and-restaurant",
     "phone": "+855 76 277 6667",
@@ -9079,7 +9108,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif proposant des cours d'agriculture et de cuisine, un restaurant et une ferme cultivant des légumes selon des méthodes agricoles naturelles. Le lieu développe une approche communautaire reliant production alimentaire, transmission de savoir-faire et expérience directe du travail agricole vietnamien.",
-    "panoramaImage": "/downloads/thandongvi.jpg"
+    "panoramaImage": "/downloads/thandongvi.jpg",
+    "country": "VN"
   },
   {
     "id": "7b3e95c8-da59-4a04-a954-40f0f778084f",
@@ -9099,7 +9129,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une approche du jardin à la table, avec un jardin cultivé sur place, des ingrédients locaux, et une démarche zéro déchet s’inscrivant dans une logique d’économie circulaire. L’expérience associe cuisine vietnamienne et cadre naturel rural.",
-    "panoramaImage": "/downloads/thefieldv.png"
+    "panoramaImage": "/downloads/thefieldv.png",
+    "country": "VN"
   },
   {
     "id": "dd377f0b-c949-4196-92ec-10c9d3a723f9",
@@ -9119,7 +9150,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant végétarien installé dans un jardin à Huế, proposant une cuisine vietnamienne traditionnelle, élaborée à partir d’ingrédients locaux. Le lieu met en avant une atmosphère paisible au cœur d’un espace végétalisé, associant gastronomie végétarienne et cadre naturel.",
-    "panoramaImage": "/downloads/annhiengar.jpeg"
+    "panoramaImage": "/downloads/annhiengar.jpeg",
+    "country": "VN"
   },
   {
     "id": "1bd396a2-9ac7-4a59-b1cc-af30a01d4965",
@@ -9139,7 +9171,8 @@
       "Artisanat"
     ],
     "miniText": "Boutique d’artisanat travaillant avec des artisans issus de minorités ethniques et de villages ruraux du Vietnam. Craft Link développe des filières locales de production textile, broderie, bambou et objets faits main, avec une démarche visant à soutenir les communautés artisanales et préserver les savoir-faire traditionnels.",
-    "panoramaImage": "/downloads/craftvieth.png"
+    "panoramaImage": "/downloads/craftvieth.png",
+    "country": "VN"
   },
   {
     "id": "c766f4d4-e2b7-47b8-bacb-e3eabe2b101a",
@@ -9159,7 +9192,8 @@
       "Boutique"
     ],
     "miniText": "Boutique d’artisanat développant des objets faits main en collaboration avec des artisans vietnamiens en situation de handicap, valorisant des savoir-faire traditionnels (bois, textile, laque, céramique) à travers une production locale visant l’inclusion et l’autonomie économique.",
-    "panoramaImage": "/downloads/reachvietn.png"
+    "panoramaImage": "/downloads/reachvietn.png",
+    "country": "VN"
   },
   {
     "id": "841ed6cd-cffb-4538-8fd5-4eb7e18ece01",
@@ -9178,7 +9212,8 @@
     "tags": [
       "Boutique"
     ],
-    "miniText": "Boutique-atelier transformant des chutes de soie en créations artisanales (tableaux, objets et cadeaux faits main). Le projet fonctionne comme une démarche à impact social, mettant en avant le travail d’artisans en situation de handicap et la valorisation de matières textiles récupérées."
+    "miniText": "Boutique-atelier transformant des chutes de soie en créations artisanales (tableaux, objets et cadeaux faits main). Le projet fonctionne comme une démarche à impact social, mettant en avant le travail d’artisans en situation de handicap et la valorisation de matières textiles récupérées.",
+    "country": "VN"
   },
   {
     "id": "5c7d677d-b731-43e9-a8ce-c94a5ec37c5d",
@@ -9288,7 +9323,7 @@
     "id": "1e946d97-4f49-41eb-9dfd-ff9f5750a448",
     "name": "Tra Que Herb Garden",
     "city": "Hội An",
-    "country": "Vietnam",
+    "country": "VN",
     "address": "Cầu, Cẩm Hà, Hội An, Quảng Nam, Vietnam",
     "website": "https://www.traqueherbgarden.com",
     "lat": 15.899709338978896,
@@ -9309,7 +9344,7 @@
     "id": "c779691b-7585-417b-927a-63e94abee366",
     "name": "Shamballa",
     "city": "Ho Chi Minh City",
-    "country": "Vietnam",
+    "country": "VN",
     "address": "17-19 Đ. Trịnh Văn Cấn, St, Quận 1, Thành phố Hồ Chí Minh 70000, Vietnam",
     "website": "https://www.shamballa.co/location/pure-vegetarian-teahouse-saigon/",
     "lat": 10.781203393424134,
@@ -9330,7 +9365,7 @@
     "id": "ab68b5b4-50e3-4240-aafb-91d948d23472",
     "name": "Đèo Mây Farm",
     "city": "Đà Lạt",
-    "country": "Vietnam",
+    "country": "VN",
     "address": "Hẻm 32 Đ. 3/4, Phường 3, Đà Lạt, Lâm Đồng, Vietnam",
     "website": "https://www.facebook.com/people/Đèo-Mây-farm/100066430943646/?mibextid=ZbWKwL",
     "lat": 11.917473671074308,
@@ -9351,7 +9386,7 @@
     "id": "b1481392-6038-4311-aff2-c6c8e108464b",
     "name": "Somo Farm Cửu Long",
     "city": "Vinh Long",
-    "country": "Vietnam",
+    "country": "VN",
     "address": "Khóm 3, Mang Thít District, Vinh Long 893510, Vietnam",
     "website": "http://somofarmcuulong.somogroup.vn/",
     "lat": 10.180109338772152,
@@ -9533,7 +9568,8 @@
     "miniText": "Restaurant installé dans une ancienne maison entourée d’un jardin comestible, développant une cuisine de saison basée sur les récoltes du potager sur place et des produits sourcés auprès de producteurs locaux. La carte évolue selon les saisons et met en avant légumes, herbes et ingrédients frais cultivés ou sélectionnés en lien direct avec le territoire.",
     "panoramaImage": "/downloads/botanica.png",
     "createdAt": "2026-02-19T14:54:17.636Z",
-    "updatedAt": "2026-02-19T14:57:24.476Z"
+    "updatedAt": "2026-02-19T14:57:24.476Z",
+    "country": "AU"
   },
   {
     "id": "8212cd35-2b77-462e-beca-58946e2463fa",
@@ -9553,7 +9589,8 @@
     "miniText": "Restaurant mettant en avant une cuisine centrée sur des produits australiens de qualité, sourcés auprès de pêcheurs, éleveurs et producteurs locaux. La carte évolue selon les saisons et valorise viandes, poissons et ingrédients frais travaillés dans une approche simple et axée sur le produit.",
     "panoramaImage": "/downloads/margaret.png",
     "createdAt": "2026-02-19T15:00:53.603Z",
-    "updatedAt": "2026-02-19T15:02:48.873Z"
+    "updatedAt": "2026-02-19T15:02:48.873Z",
+    "country": "AU"
   },
   {
     "id": "a0f5bf1a-802f-4c2c-ac55-3f60421dc580",
@@ -9573,7 +9610,8 @@
     "miniText": "Restaurant végétarien proposant un menu dégustation de saison élaboré à partir de légumes et produits australiens sourcés auprès de producteurs locaux. Yellow met en avant une approche centrée sur l’ingrédient, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
     "panoramaImage": "/downloads/yellowsyd.webp",
     "createdAt": "2026-02-19T15:06:59.864Z",
-    "updatedAt": "2026-02-19T15:07:32.115Z"
+    "updatedAt": "2026-02-19T15:07:32.115Z",
+    "country": "AU"
   },
   {
     "id": "0c6c0823-9255-4de0-868d-62e37dcff4ad",
@@ -9593,7 +9631,8 @@
     "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Farmhouse Kings Cross développe une carte évolutive centrée sur les ingrédients, valorisant la fraîcheur, la traçabilité et le lien direct avec le territoire.",
     "panoramaImage": "/downloads/farmhousesyd.jpg",
     "createdAt": "2026-02-19T15:10:31.764Z",
-    "updatedAt": "2026-02-19T15:10:57.482Z"
+    "updatedAt": "2026-02-19T15:10:57.482Z",
+    "country": "AU"
   },
   {
     "id": "5446612f-b923-40d7-be1a-3e0c1ffa29a2",
@@ -9613,7 +9652,8 @@
     "miniText": "Restaurant proposant un menu dégustation de saison élaboré à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Arthur développe une cuisine centrée sur les ingrédients, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
     "panoramaImage": "",
     "createdAt": "2026-02-19T15:13:53.346Z",
-    "updatedAt": "2026-02-19T15:13:53.346Z"
+    "updatedAt": "2026-02-19T15:13:53.346Z",
+    "country": "AU"
   },
   {
     "id": "60b43ec8-da0a-4f0b-ae7c-308bebd115b3",
@@ -9633,7 +9673,8 @@
     "miniText": "Ferme urbaine biologique développant une production maraîchère locale destinée aux habitants et aux commerces environnants. Le projet met en avant l’agriculture régénérative, la vente directe, des paniers de légumes et des programmes éducatifs visant à reconnecter la communauté à la production alimentaire locale.",
     "panoramaImage": "/downloads/pocketfarm.jpeg",
     "createdAt": "2026-02-19T15:16:08.923Z",
-    "updatedAt": "2026-02-19T15:16:39.595Z"
+    "updatedAt": "2026-02-19T15:16:39.595Z",
+    "country": "AU"
   },
   {
     "id": "062a2cc0-29de-4216-aff7-c4f32b63bb03",
@@ -9653,7 +9694,8 @@
     "miniText": "Lieu alternatif accueillant expositions, performances, événements artistiques et un marché fermier mettant en avant des producteurs locaux. Le lieu fonctionne comme une plateforme dédiée à la création contemporaine et aux initiatives culturelles et alimentaires ancrées dans le territoire.",
     "panoramaImage": "/downloads/workssyd.png",
     "createdAt": "2026-02-19T15:28:40.143Z",
-    "updatedAt": "2026-02-19T15:44:11.435Z"
+    "updatedAt": "2026-02-19T15:44:11.435Z",
+    "country": "AU"
   },
   {
     "id": "dd706975-224c-4061-aabb-550836d5e42e",
@@ -9673,7 +9715,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/maloneysgr.jpeg"
+    "panoramaImage": "/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "938ba9e4-98be-455b-a0ff-fc9067b182f1",
@@ -9693,7 +9736,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/maloneysgr.jpeg"
+    "panoramaImage": "/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "630aa831-55e9-4156-9311-270de7b1ba0d",
@@ -9713,7 +9757,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/maloneysgr.jpeg"
+    "panoramaImage": "/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "49528427-ec89-4278-96c7-570038626808",
@@ -9733,7 +9778,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/maloneysgr.jpeg"
+    "panoramaImage": "/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "18a55ba6-38a6-42df-9af5-2cd9dcb6e20c",
@@ -9753,7 +9799,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg"
+    "panoramaImage": "/downloads/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "3c6bb0be-594e-4785-8896-b11271837b2b",
@@ -9773,7 +9820,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg"
+    "panoramaImage": "/downloads/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "d2726252-1cad-457a-9bb4-4c4b0850d8ef",
@@ -9793,7 +9841,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg"
+    "panoramaImage": "/downloads/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "01f1215f-caa1-4685-a5d3-deb9b4868ff8",
@@ -9813,7 +9862,8 @@
       "Épicerie"
     ],
     "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg"
+    "panoramaImage": "/downloads/maloneysgr.jpeg",
+    "country": "AU"
   },
   {
     "id": "2989e1ee-efe5-449d-8942-38094fa83431",
@@ -9833,7 +9883,8 @@
       "Marché"
     ],
     "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": "/bondimar.png"
+    "panoramaImage": "/bondimar.png",
+    "country": "AU"
   },
   {
     "id": "a30d2b44-bdf3-4f24-a1f3-ca5b4eea956c",
@@ -9853,7 +9904,8 @@
       "Marché"
     ],
     "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": ""
+    "panoramaImage": "",
+    "country": "AU"
   },
   {
     "id": "b6c76af7-fbcb-48ff-85ad-27d96212bebe",
@@ -9873,7 +9925,8 @@
       "Brasserie"
     ],
     "miniText": "Brasserie artisanale indépendante brassant des bières, cidres et spiritueux avec un fort ancrage local, en mettant l’accent sur la communauté, l’innovation et des pratiques durables.",
-    "panoramaImage": "/brasserisydne.png"
+    "panoramaImage": "/brasserisydne.png",
+    "country": "AU"
   },
   {
     "id": "ce15d994-186a-4c13-bbb7-ab108a1363ca",
@@ -9893,7 +9946,8 @@
       "Brasserie"
     ],
     "miniText": "Brasserie artisanale spécialisée dans la production de bières craft brassées sur place. Développant une gamme variée de recettes avec une approche indépendante, en mettant en avant le savoir-faire brassicole et une implantation locale à Sydney",
-    "panoramaImage": "/bresydne.png"
+    "panoramaImage": "/bresydne.png",
+    "country": "AU"
   },
   {
     "id": "fcf6a0f5-eb7e-4ac0-8472-e05d0471dba9",
@@ -9913,7 +9967,8 @@
       "Bar"
     ],
     "miniText": "Bar à vin mettant en avant de jeunes producteurs australiens de vins naturels. La carte propose des assiettes et collations élaborées à partir de produits issus de petits agriculteurs et producteurs locaux, privilégiant qualité et respect de la terre.",
-    "panoramaImage": "/lovesyd.png"
+    "panoramaImage": "/lovesyd.png",
+    "country": "AU"
   },
   {
     "id": "4e74fd43-4da5-445d-8c89-717722771b05",
@@ -9933,7 +9988,8 @@
       "Brunch"
     ],
     "miniText": "Café-brunch engagé dans une approche saisonnière et un approvisionnement local responsable. Pains au levain et pâtisseries sont fabriqués à la main chaque jour à partir de farines australiennes biologiques. Le lieu propose également un café torréfié localement.",
-    "panoramaImage": "/twochaps.png"
+    "panoramaImage": "/twochaps.png",
+    "country": "AU"
   },
   {
     "id": "6f1be367-59e5-47f1-916a-c68676351155",
@@ -9953,7 +10009,8 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie travaillant directement avec des agriculteurs et cultivant ses propres céréales, moulues sur place. Les pains, viennoiseries et pâtisseries sont élaborés à partir de farines fraîchement moulues. L’approche privilégie l’agriculture biologique, la réduction des transports et des emballages.",
-    "panoramaImage": "/downloads/apbak.png"
+    "panoramaImage": "/downloads/apbak.png",
+    "country": "AU"
   },
   {
     "id": "77136e2a-13f0-4a6d-9bb7-a0e97c2dd93c",
@@ -9973,7 +10030,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant installé sur une propriété rurale avec potager et vergers. L’établissement développe une cuisine australienne centrée sur la saisonnalité, en utilisant des ingrédients cultivés sur place et provenant de producteurs régionaux. L’expérience repose sur un menu dégustation évolutif mettant en avant le lien entre agriculture, territoire et gastronomie.",
-    "panoramaImage": "/downloads/brae.png"
+    "panoramaImage": "/downloads/brae.png",
+    "country": "AU"
   },
   {
     "id": "517cbe95-01d7-45b2-8831-4fad04a5a186",
@@ -9993,7 +10051,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant et potager développant une approche de la ferme à la table, centrée sur la culture saisonnière et la transformation sur place des produits du jardin. The Agrarian Kitchen met en avant les ingrédients locaux de Tasmanie et une cuisine ancrée dans l’agriculture et le territoire.",
-    "panoramaImage": "/downloads/agrarianki.webp"
+    "panoramaImage": "/downloads/agrarianki.webp",
+    "country": "AU"
   },
   {
     "id": "bffff765-d99b-44e3-94c6-c6f8e9d64d00",
@@ -10013,7 +10072,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant situé au sein du jardin botanique d’Adelaide, développant une cuisine contemporaine centrée sur les produits australiens et la saisonnalité. L’établissement accorde une attention particulière aux ingrédients australiens indigènes, valorisant leurs saveurs, leur histoire et leur lien avec la terre, dans une démarche fondée sur la recherche, la compréhension et le respect des produits.",
-    "panoramaImage": "/downloads/botanicaus.jpg"
+    "panoramaImage": "/downloads/botanicaus.jpg",
+    "country": "AU"
   },
   {
     "id": "b5a130cd-5947-4dd4-b25d-1b803046a6dd",
@@ -10033,7 +10093,8 @@
       "Ferme"
     ],
     "miniText": "Ferme développant une production agricole intégrée autour de l’élevage porcin, du maraîchage et de la transformation artisanale sur place. Fat Pig Farm valorise les produits issus de la propriété à travers des repas fermiers organisés sur réservation, mettant en avant la saisonnalité, l’autonomie alimentaire et le lien direct entre production et assiette.",
-    "panoramaImage": "/downloads/fatpigfarm.png"
+    "panoramaImage": "/downloads/fatpigfarm.png",
+    "country": "AU"
   },
   {
     "id": "3a5068d8-c9b5-4144-8212-e0e37f8626b0",
@@ -10053,7 +10114,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine d’inspiration africaine, mettant en avant des ingrédients sélectionnés auprès de producteurs locaux, avec une carte évolutive, axée sur la saisonnalité et le partage.",
-    "panoramaImage": "/downloads/africola.png"
+    "panoramaImage": "/downloads/africola.png",
+    "country": "AU"
   },
   {
     "id": "7f323f8e-7989-473c-b948-5fc4af5d68e7",
@@ -10073,7 +10135,8 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie artisanale spécialisée dans le pain au levain et les produits de boulangerie fabriqués à partir d’ingrédients sélectionnés avec soin. Développant une production en petite série et mettant en avant des farines et matières premières issues de producteurs locaux.",
-    "panoramaImage": "/downloads/thelostloaf.png"
+    "panoramaImage": "/downloads/thelostloaf.png",
+    "country": "AU"
   },
   {
     "id": "a7f8ee65-4261-4c23-94df-c02ae99592b3",
@@ -10093,7 +10156,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant asiatique mettant en avant une cuisine axée sur les produits de saison et les ingrédients issus de producteurs locaux. Développant également un potager et un jardin d’herbes aromatiques utilisés en cuisine, valorisant une approche ancrée dans le terroir.",
-    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 14_50_50.png"
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 14_50_50.png",
+    "country": "AU"
   },
   {
     "id": "aea856f0-8b30-4929-adde-a5b74137567a",
@@ -10113,7 +10177,8 @@
       "Marché"
     ],
     "miniText": "Marché de producteurs organisé chaque dimanche matin, réunissant des agriculteurs et artisans alimentaires locaux Le lieu met en avant des produits frais, de saison et achetés directement aux producteurs.",
-    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.png"
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.png",
+    "country": "AU"
   },
   {
     "id": "70d24e11-780c-4856-b19c-261babf91378",
@@ -10133,7 +10198,8 @@
     ],
     "createdAt": "2026-02-19T22:09:27.205Z",
     "updatedAt": "2026-02-19T22:10:14.344Z",
-    "panoramaImage": "/downloads/farmersme.jpg"
+    "panoramaImage": "/downloads/farmersme.jpg",
+    "country": "AU"
   },
   {
     "id": "79f38769-268c-4b90-9a98-fc74c04c33fe",
@@ -10153,7 +10219,8 @@
     ],
     "createdAt": "2026-02-19T22:15:00.783Z",
     "updatedAt": "2026-02-19T22:15:27.197Z",
-    "panoramaImage": "/downloads/commonmelb.jpg"
+    "panoramaImage": "/downloads/commonmelb.jpg",
+    "country": "AU"
   },
   {
     "id": "e2acf43d-57a0-453f-b025-c6398b287519",
@@ -10173,7 +10240,8 @@
     ],
     "createdAt": "2026-02-19T22:18:38.798Z",
     "updatedAt": "2026-02-19T22:19:09.227Z",
-    "panoramaImage": "/downloads/tedescame.jpg"
+    "panoramaImage": "/downloads/tedescame.jpg",
+    "country": "AU"
   },
   {
     "id": "1b8109c2-06b1-489d-9dfa-08364d9e3f4f",
@@ -10193,7 +10261,8 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-19T22:27:22.460Z",
-    "updatedAt": "2026-02-19T22:27:22.460Z"
+    "updatedAt": "2026-02-19T22:27:22.460Z",
+    "country": "AU"
   },
   {
     "id": "62ba3c4c-d186-4b3f-9484-40f3a1ba7794",
@@ -10213,7 +10282,8 @@
     ],
     "createdAt": "2026-02-19T22:32:32.600Z",
     "updatedAt": "2026-02-19T22:33:02.332Z",
-    "panoramaImage": "/downloads/greennmel.jpg"
+    "panoramaImage": "/downloads/greennmel.jpg",
+    "country": "AU"
   },
   {
     "id": "f83cb808-1af4-48f8-851e-09d32549e8b0",
@@ -10233,7 +10303,8 @@
     ],
     "createdAt": "2026-02-19T22:36:50.942Z",
     "updatedAt": "2026-02-19T22:40:18.123Z",
-    "panoramaImage": "/downloads/longchee.png"
+    "panoramaImage": "/downloads/longchee.png",
+    "country": "AU"
   },
   {
     "id": "93fc8d23-dd0e-49b9-a9e1-3be1b5c3ad18",
@@ -10253,7 +10324,8 @@
       "Ferme"
     ],
     "miniText": "Ferme communautaire et éducative dédiée à la durabilité environnementale. Le lieu propose des ateliers et actions concrètes autour des modes de vie sobres (réduction des déchets, pratiques durables), s’appuie sur une ferme urbaine évolutive, une pépinière, un potager de production et un espace de recyclage, et accueille un marché de producteurs le samedi.",
-    "panoramaImage": "/downloads/perthfar.jpg"
+    "panoramaImage": "/downloads/perthfar.jpg",
+    "country": "AU"
   },
   {
     "id": "17be949a-d396-4162-b8b9-6fb8baed29c1",
@@ -10273,7 +10345,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant développant une cuisine contemporaine guidée par l'éthique autochtone des six saisons. Les menus évoluent avec les saisons valorisant les ressources, les producteurs et les agriculteurs locaux",
-    "panoramaImage": "/downloads/wildflower.jpg"
+    "panoramaImage": "/downloads/wildflower.jpg",
+    "country": "AU"
   },
   {
     "id": "375664c7-0f6e-4a5b-ad38-0d917a583b67",
@@ -10293,7 +10366,8 @@
       "Brasserie"
     ],
     "miniText": "Brasserie artisanale brassant des bières reflétant l’esprit de Darwin. Privilégiant des ingrédients frais et locaux et une fabrication sans additifs ni conservateurs, pour proposer des bières inspirées du territoire.",
-    "panoramaImage": "/downloads/brasssdarw.png"
+    "panoramaImage": "/downloads/brasssdarw.png",
+    "country": "AU"
   },
   {
     "id": "559f1526-3914-4632-8d42-159a833d3ed9",
@@ -10313,7 +10387,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine contemporaine cuite au feu de bois et guidée par la saisonnalité. Valorisant des ingrédients issus de producteurs locaux et proposant une carte évolutive centrée sur les produits et le territoire.",
-    "panoramaImage": "/downloads/essabrisb.png"
+    "panoramaImage": "/downloads/essabrisb.png",
+    "country": "AU"
   },
   {
     "id": "b50aa1c7-b391-476a-a4d1-e21afe8cf89f",
@@ -10333,7 +10408,8 @@
       "Restaurant"
     ],
     "miniText": "Domaine viticole et ferme de lavande proposant un restaurant sur place mettant en valeur les produits de la propriété et des producteurs régionaux, avec une vue sur les vignobles et les cultures environnantes.",
-    "panoramaImage": "/downloads/koorombabri.jpg"
+    "panoramaImage": "/downloads/koorombabri.jpg",
+    "country": "AU"
   },
   {
     "id": "efbd9b44-af06-42dd-a066-1067bdcdf1c5",
@@ -10353,7 +10429,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant développant une cuisine fondée sur la saisonnalité et les écosystèmes locaux. Travaillant avec des producteurs, pêcheurs et agriculteurs japonais afin de valoriser les ingrédients issus de différentes régions du pays. L’approche met en avant la biodiversité et la traçabilité des produits.",
-    "panoramaImage": "/downloads/narisawato.png"
+    "panoramaImage": "/downloads/narisawato.png",
+    "country": "JP"
   },
   {
     "id": "fe5ed44b-9ae1-4288-ae95-594702c52205",
@@ -10373,7 +10450,8 @@
     ],
     "createdAt": "2026-02-20T13:46:44.764Z",
     "updatedAt": "2026-02-20T13:55:25.032Z",
-    "panoramaImage": "/downloads/daigotok.png"
+    "panoramaImage": "/downloads/daigotok.png",
+    "country": "JP"
   },
   {
     "id": "d52d0067-75ca-4c4f-8593-26a790b7c2a0",
@@ -10393,7 +10471,8 @@
     ],
     "createdAt": "2026-02-20T13:59:26.016Z",
     "updatedAt": "2026-02-20T14:03:04.201Z",
-    "panoramaImage": "/downloads/mominokijap.png"
+    "panoramaImage": "/downloads/mominokijap.png",
+    "country": "JP"
   },
   {
     "id": "55716d7f-60e9-4966-8e92-0924b81a694e",
@@ -10413,7 +10492,8 @@
     ],
     "createdAt": "2026-02-20T14:07:34.759Z",
     "updatedAt": "2026-02-20T14:09:33.410Z",
-    "panoramaImage": "/downloads/brownric.png"
+    "panoramaImage": "/downloads/brownric.png",
+    "country": "JP"
   },
   {
     "id": "52644b6a-bbde-4a36-b0df-815d7bc3edd3",
@@ -10433,7 +10513,8 @@
     ],
     "createdAt": "2026-02-20T14:13:04.712Z",
     "updatedAt": "2026-02-20T14:18:22.163Z",
-    "panoramaImage": "/downloads/kibitoky.png"
+    "panoramaImage": "/downloads/kibitoky.png",
+    "country": "JP"
   },
   {
     "id": "69322eea-70f6-4c09-ae2e-1fa1c9dc22a1",
@@ -10453,7 +10534,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
-    "panoramaImage": "/downloads/wearshib.png"
+    "panoramaImage": "/downloads/wearshib.png",
+    "country": "JP"
   },
   {
     "id": "23ed4acf-17f5-4d06-ac99-6a5c3b740db3",
@@ -10473,7 +10555,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
-    "panoramaImage": "/downloads/weratokyo.png"
+    "panoramaImage": "/downloads/weratokyo.png",
+    "country": "JP"
   },
   {
     "id": "e7796342-749e-4532-9190-d26e106cb8f3",
@@ -10493,7 +10576,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
-    "panoramaImage": "/downloads/veareska.jpg"
+    "panoramaImage": "/downloads/veareska.jpg",
+    "country": "JP"
   },
   {
     "id": "3c4329aa-464a-41e6-bb20-d0c0638e93e8",
@@ -10513,7 +10597,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif proposant une cuisine et des boissons préparées à partir de produits issus de la ferme et du territoire environnant. The Farm s’inscrit dans une expérience immersive mêlant agriculture, hébergement et activités rurales, valorisant un lien direct entre production locale et consommation sur place.",
-    "panoramaImage": "/downloads/thefarmchi.png"
+    "panoramaImage": "/downloads/thefarmchi.png",
+    "country": "JP"
   },
   {
     "id": "2aa7efb9-86d2-44fa-892c-6b8001b7d502",
@@ -10533,7 +10618,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant vegan proposant une cuisine 100% végétale et des boissons à base d’ingrédients d’origine végétale. Mettant en avant une offre centrée sur l’alimentation végétale dans un format accessible, sur place et à emporter.",
-    "panoramaImage": "/downloads/farmcafet.png"
+    "panoramaImage": "/downloads/farmcafet.png",
+    "country": "JP"
   },
   {
     "id": "bcaf48f9-a316-48ee-8f93-95481aec5587",
@@ -10553,7 +10639,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine japonaise et kaiseki inspirée du cœur du zen, mettant en valeur les ingrédients des quatre saisons. Utilisant des produits soigneusement sélectionnés selon la saison, dans une approche ancrée dans le territoire.",
-    "panoramaImage": "/downloads/hachinokij.jpg"
+    "panoramaImage": "/downloads/hachinokij.jpg",
+    "country": "JP"
   },
   {
     "id": "2d200e82-e130-4df9-a192-5457d8fe4206",
@@ -10573,7 +10660,8 @@
     "miniText": "Restaurant français développant une cuisine contemporaine intégrant des ingrédients japonais de saison issus de producteurs identifiés. Mettant en avant la traçabilité des produits, la durabilité et une approche respectueuse des cycles naturels à travers une cuisine franco-japonaise.",
     "createdAt": "2026-02-20T15:38:19.850Z",
     "updatedAt": "2026-02-20T15:40:06.266Z",
-    "panoramaImage": "/downloads/lefferv.jpg"
+    "panoramaImage": "/downloads/lefferv.jpg",
+    "country": "JP"
   },
   {
     "id": "b7a7f40e-f2e7-4a6d-a5dc-da38c5c96f8b",
@@ -10593,7 +10681,8 @@
     "miniText": "Café travaillant des produits de saison issus de producteurs japonais. Développant une approche centrée sur l’agriculture durable, les circuits courts et l’organisation d’événements culturels et écologiques au sein du lieu.",
     "createdAt": "2026-02-20T15:43:39.672Z",
     "updatedAt": "2026-02-20T15:49:50.486Z",
-    "panoramaImage": "/downloads/cafeslox.png"
+    "panoramaImage": "/downloads/cafeslox.png",
+    "country": "JP"
   },
   {
     "id": "75002e9d-fade-4db0-83ac-99c5fdce4b5f",
@@ -10613,7 +10702,8 @@
     "miniText": "Café mettant en avant des légumes biologiques issus de fermes japonaises partenaires. Développant une cuisine centrée sur les produits végétaux de saison, valorisant la provenance des ingrédients et une alimentation axée sur le respect des cycles agricoles.",
     "createdAt": "2026-02-20T15:53:21.212Z",
     "updatedAt": "2026-02-20T15:56:53.570Z",
-    "panoramaImage": "/downloads/mrfarmert.png"
+    "panoramaImage": "/downloads/mrfarmert.png",
+    "country": "JP"
   },
   {
     "id": "fa170f13-66d8-41d6-868d-1ba4c97aa02c",
@@ -10633,7 +10723,8 @@
       "Boutique"
     ],
     "miniText": "Boutique historique fondée en 1653 spécialisée dans le washi japonais traditionnel. Sélectionnant et proposant des papiers artisanaux issus d’ateliers régionaux, perpétuant des techniques ancestrales utilisées pour l’écriture, l’estampe et les arts décoratifs.",
-    "panoramaImage": "/downloads/ozuwashi.jpg"
+    "panoramaImage": "/downloads/ozuwashi.jpg",
+    "country": "JP"
   },
   {
     "id": "be785a45-9a74-4c95-b2df-101932251114",
@@ -10653,7 +10744,8 @@
       "Boutique"
     ],
     "miniText": "Boutique artisanale spécialisé dans la fabrication d’Edo furin, clochettes en verre soufflé peintes à la main selon une technique traditionnelle de l’époque Edo. Perpétuant un savoir-faire verrier, en produisant chaque pièce de manière artisanale dans le respect des méthodes historiques.",
-    "panoramaImage": "/downloads/verretoky.png"
+    "panoramaImage": "/downloads/verretoky.png",
+    "country": "JP"
   },
   {
     "id": "349e0df9-e518-49f5-8a8f-350b527a49af",
@@ -10673,7 +10765,8 @@
       "Brasserie"
     ],
     "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
-    "panoramaImage": "/downloads/hitachinobr.png"
+    "panoramaImage": "/downloads/hitachinobr.png",
+    "country": "JP"
   },
   {
     "id": "300e0ec1-f21c-4df1-88ba-936ea9b7302b",
@@ -10693,7 +10786,8 @@
       "Brasserie"
     ],
     "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
-    "panoramaImage": "/downloads/hitachotok.png"
+    "panoramaImage": "/downloads/hitachotok.png",
+    "country": "JP"
   },
   {
     "id": "408d99d4-2531-4854-b19c-5e80a3bdf5bc",
@@ -10713,7 +10807,8 @@
       "Bar"
     ],
     "miniText": "Bar-boutique spécialisé dans le saké japonais, proposant une sélection rigoureuse de producteurs issus de différentes régions du Japon ainsi que des bières brassées sur place. L’établissement met en avant la diversité des sakés et valorise la découverte des terroirs à travers dégustation et conseil.",
-    "panoramaImage": "/downloads/hasegawatok.png"
+    "panoramaImage": "/downloads/hasegawatok.png",
+    "country": "JP"
   },
   {
     "id": "509871a4-36d7-4920-bea3-5a8c949a0085",
@@ -10733,7 +10828,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif réunissant restaurants, cafés, librairie et petites boutiques indépendantes. Fonctionnant comme un micro-écosystème de quartier favorisant les commerces locaux, les initiatives culturelles et la vie communautaire dans un cadre à taille humaine.",
-    "panoramaImage": "/downloads/bonus-tok.png"
+    "panoramaImage": "/downloads/bonus-tok.png",
+    "country": "JP"
   },
   {
     "id": "8de0d98e-92a5-4041-b49f-e534d3d26874",
@@ -10753,7 +10849,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant ferme biologique, restaurants, charcuterie, boutique, boulangerie et hébergement au cœur de la campagne de Chiba. Kurkku Fields développe une agriculture durable et régénérative, valorise les produits cultivés sur place et propose une expérience mêlant alimentation locale, artisanat et engagement écologique.",
-    "panoramaImage": "/downloads/kurkkj.jpg"
+    "panoramaImage": "/downloads/kurkkj.jpg",
+    "country": "JP"
   },
   {
     "id": "2efbf49d-fffb-444a-89b1-b3399fe12d74",
@@ -10772,7 +10869,8 @@
       "Librairie"
     ],
     "createdAt": "2026-02-20T18:39:35.233Z",
-    "updatedAt": "2026-02-20T18:39:35.233Z"
+    "updatedAt": "2026-02-20T18:39:35.233Z",
+    "country": "JP"
   },
   {
     "id": "ffd83b35-3ab6-422c-b2f5-096dafe7d95f",
@@ -10792,7 +10890,8 @@
     ],
     "createdAt": "2026-02-20T18:44:38.587Z",
     "updatedAt": "2026-02-20T18:45:34.468Z",
-    "panoramaImage": "/downloads/ohyash.jpg"
+    "panoramaImage": "/downloads/ohyash.jpg",
+    "country": "JP"
   },
   {
     "id": "7ebe7f6f-c7c7-4860-8800-e5a157556896",
@@ -10812,7 +10911,8 @@
     ],
     "createdAt": "2026-02-20T18:49:39.381Z",
     "updatedAt": "2026-02-20T18:50:06.292Z",
-    "panoramaImage": "/downloads/rebuiljp.webp"
+    "panoramaImage": "/downloads/rebuiljp.webp",
+    "country": "JP"
   },
   {
     "id": "0d366431-2459-481f-be08-602a2350bafd",
@@ -10831,7 +10931,8 @@
       "Marché"
     ],
     "createdAt": "2026-02-20T19:00:43.749Z",
-    "updatedAt": "2026-02-20T19:00:43.749Z"
+    "updatedAt": "2026-02-20T19:00:43.749Z",
+    "country": "JP"
   },
   {
     "id": "62d35afe-11ab-46fa-a407-09b97d53d53e",
@@ -10851,7 +10952,8 @@
     ],
     "createdAt": "2026-02-20T19:11:28.932Z",
     "updatedAt": "2026-02-20T19:17:10.638Z",
-    "panoramaImage": "/panorama/mooreafr.png"
+    "panoramaImage": "/panorama/mooreafr.png",
+    "country": "PF"
   },
   {
     "id": "79c117a1-5222-480a-947d-6d176b92f104",
@@ -10871,7 +10973,8 @@
       "Ferme"
     ],
     "miniText": "Ferme proposant de se reconnecter à la terre à travers la location de parcelles cultivables et des expériences autour du jardinage. Le lieu met à disposition du matériel, un accompagnement pour démarrer et organise aussi des événements réguliers.",
-    "panoramaImage": "/downloads/farmkolk.png"
+    "panoramaImage": "/downloads/farmkolk.png",
+    "country": "JP"
   },
   {
     "id": "8deeacc5-6a8d-4cca-8070-229c0e40965e",
@@ -10891,7 +10994,8 @@
       "Café"
     ],
     "miniText": "Café engagé dans une alimentation biologique et végétarienne, mettant en avant des ingrédients naturels et des produits issus du Japon. Mumokuteki propose une cuisine de saison dans une démarche attentive à la qualité des matières premières.",
-    "panoramaImage": "/downloads/mumokyotoca.jpg"
+    "panoramaImage": "/downloads/mumokyotoca.jpg",
+    "country": "JP"
   },
   {
     "id": "9d2efd3f-d6a9-41b3-b280-9c3913bb257e",
@@ -10911,7 +11015,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant traditionnel de kaiseki fondé il y a plus de 400 ans, Hyotei propose une cuisine japonaise saisonnière ancrée dans les traditions de Kyoto. Le lieu met en valeur les produits de saison et l’esthétique culinaire propre à la culture locale.",
-    "panoramaImage": "/downloads/hyoteikyo.jpg"
+    "panoramaImage": "/downloads/hyoteikyo.jpg",
+    "country": "JP"
   },
   {
     "id": "8a73642c-de23-4fa4-90d9-8f40e27f7bbe",
@@ -10931,7 +11036,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant végétarien / vegan avec des options sans gluten. VOG Kyoto met en avant des plats nourrissants et des ingrédients de saison, et sert ses assiettes dans une sélection de poteries locales liées à l’artisanat de Kyoto.",
-    "panoramaImage": "/downloads/nakanochok.png"
+    "panoramaImage": "/downloads/nakanochok.png",
+    "country": "JP"
   },
   {
     "id": "96975938-ed30-408c-b172-68a34dba490f",
@@ -10951,7 +11057,8 @@
       "Boutique"
     ],
     "miniText": "Boutique spécialisée dans la création d'accessoires en denim intégrant des techniques textiles traditionnelles japonaises. Kyōto Denim développe des pièces fabriquées au Japon, mêlant savoir-faire artisanal et esthétique contemporaine.",
-    "panoramaImage": "/downloads/denimkyoto.png"
+    "panoramaImage": "/downloads/denimkyoto.png",
+    "country": "JP"
   },
   {
     "id": "e1f8baee-1684-493b-8ba6-0118a9688c61",
@@ -10971,7 +11078,8 @@
       "Café"
     ],
     "miniText": "Gelateria engagée dans l’utilisation d’ingrédients biologiques et naturels, sans additifs artificiels. Développant des recettes à base de matières premières sélectionnées avec attention, dans une démarche axée sur la qualité et la transparence.",
-    "panoramaImage": "/downloads/gelatokyo.png"
+    "panoramaImage": "/downloads/gelatokyo.png",
+    "country": "JP"
   },
   {
     "id": "7d8bdb5f-b5d1-4445-aa13-3cda1c524812",
@@ -10991,7 +11099,8 @@
       "Boutique"
     ],
     "miniText": "Boutique présentant des pièces façonnées selon des techniques transmises de génération en génération, avec une attention particulière portée aux émaux et à l’esthétique liée à la cérémonie du thé.",
-    "panoramaImage": "/downloads/cermkyot.png"
+    "panoramaImage": "/downloads/cermkyot.png",
+    "country": "JP"
   },
   {
     "id": "1140266d-2d00-4d51-b09d-99f4aa9304f1",
@@ -11011,7 +11120,8 @@
       "Bar"
     ],
     "miniText": "Bar collectif regroupant plusieurs brasseries locales de saké au sein d’un même espace. Le lieu permet de déguster une sélection variée de sakés produits dans la région de Kyoto, directement issus des kura environnantes, accompagnés de petits plats adaptés à la dégustation.",
-    "panoramaImage": "/downloads/fushisakekuy.png"
+    "panoramaImage": "/downloads/fushisakekuy.png",
+    "country": "JP"
   },
   {
     "id": "99b8a053-89cb-4181-ad0a-3a75acd8a81d",
@@ -11031,7 +11141,8 @@
       "Bar"
     ],
     "miniText": "Bar spécialisé dans le saké japonais proposant une sélection de producteurs artisanaux issus de différentes régions du Japon. Mettanr l’accent sur la dégustation, la découverte des styles et la mise en valeur du travail des brasseurs, dans un espace intimiste dédié au saké.",
-    "panoramaImage": "/downloads/sakekyouti.png"
+    "panoramaImage": "/downloads/sakekyouti.png",
+    "country": "JP"
   },
   {
     "id": "a0868b8d-a73b-46b2-81a3-e99ae44e9640",
@@ -11051,7 +11162,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant café, coworking et programmation culturelle au sein d’un bâtiment réhabilité. Le lieu accueille événements, expositions et rencontres, tout en proposant un environnement ouvert dédié aux échanges, à la créativité et aux initiatives locales.",
-    "panoramaImage": "/downloads/theterminalkyo.jpg"
+    "panoramaImage": "/downloads/theterminalkyo.jpg",
+    "country": "JP"
   },
   {
     "id": "d621f4ba-cfaf-47dd-a668-77c49b8017df",
@@ -11071,7 +11183,8 @@
       "restaurant"
     ],
     "miniText": "Restaurant développant une cuisine ancrée dans les produits japonais de saison. Travaillant des ingrédients issus du territoire et proposant une interprétation moderne de la tradition culinaire japonaise.",
-    "panoramaImage": "/downloads/fujiya1935.jpg"
+    "panoramaImage": "/downloads/fujiya1935.jpg",
+    "country": "JP"
   },
   {
     "id": "01fbc3ae-0c1f-4714-a3ea-e8b53bf82a23",
@@ -11091,7 +11204,8 @@
       "brasserie"
     ],
     "miniText": "Brasserie développant des recettes artisanales mettant en valeur des ingrédients japonais et proposant un espace sur place pour déguster ses bières accompagnées d’une cuisine simple.",
-    "panoramaImage": "/downloads/minobeerosk.png"
+    "panoramaImage": "/downloads/minobeerosk.png",
+    "country": "JP"
   },
   {
     "id": "af8d1765-b407-46f9-aebb-0042ded22844",
@@ -11111,7 +11225,8 @@
       "café"
     ],
     "miniText": "Café indépendant accueillant expositions, concerts et événements culturels. Salon de AManTo fonctionne comme un espace communautaire mêlant café, art et initiatives créatives locales.",
-    "panoramaImage": "/downloads/amantoos.jpg"
+    "panoramaImage": "/downloads/amantoos.jpg",
+    "country": "JP"
   },
   {
     "id": "7345e669-a93d-4b12-ba6f-499327950106",
@@ -11131,7 +11246,8 @@
       "marche"
     ],
     "miniText": "Marché regroupant de nombreux commerçants indépendants proposant produits frais, spécialités régionales et ingrédients japonais. Kuromon Ichiba joue un rôle central dans l’approvisionnement alimentaire local et met en valeur le travail d’artisans et de producteurs du territoire.",
-    "panoramaImage": "/downloads/kurommaroas.png"
+    "panoramaImage": "/downloads/kurommaroas.png",
+    "country": "JP"
   },
   {
     "id": "1a9dc5c6-60f1-46f4-b150-9d1fbd5e14e3",
@@ -11151,7 +11267,8 @@
       "restaurant"
     ],
     "miniText": "Restaurant et café axé sur une cuisine utilisant des ingrédients cultivés naturellement, dont légumes, riz et produits durables. Love Table met en avant l’origine des produits et propose une cuisine sensible à l’agriculture respectueuse de la terre.",
-    "panoramaImage": "/downloads/lovetableosa.png"
+    "panoramaImage": "/downloads/lovetableosa.png",
+    "country": "JP"
   },
   {
     "id": "3f71d742-a7bc-4d06-b961-701eff5c6569",
@@ -11171,7 +11288,8 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant restaurant, commerces, boulangerie et hébergement, mettant en avant les produits de la région et s’inscrivant dans une dynamique de revitalisation locale autour du port d’Onomichi.",
-    "panoramaImage": "/downloads/onomichihir.jpg"
+    "panoramaImage": "/downloads/onomichihir.jpg",
+    "country": "JP"
   },
   {
     "id": "a4a8134e-f0fb-49bc-be1a-b1777b0b6298",
@@ -11191,7 +11309,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant l okonomiyaki, une recette locale emblématique composée de chou, nouilles et ingrédients régionaux, dans une approche ancrée dans la tradition culinaire d’Hiroshima.",
-    "panoramaImage": "/downloads/nagatayahiros.png"
+    "panoramaImage": "/downloads/nagatayahiros.png",
+    "country": "JP"
   },
   {
     "id": "a462397d-101b-4b8c-8242-446dd1ac0175",
@@ -11211,7 +11330,8 @@
       "Restaurant"
     ],
     "miniText": "Restaurant spécialisé dans les huîtres d’Hiroshima, produit emblématique de la baie locale. L’établissement propose différentes préparations mettant en valeur les huîtres issues des élevages de la région, dans une approche centrée sur la tradition culinaire de Miyajima.",
-    "panoramaImage": "/downloads/kakiyamiy.png"
+    "panoramaImage": "/downloads/kakiyamiy.png",
+    "country": "JP"
   },
   {
     "id": "7103fe58-66da-48fd-85b7-3e1be48ab5de",
@@ -11231,7 +11351,8 @@
       "Boutique"
     ],
     "miniText": "Boutique mettant en avant des produits alimentaires et artisanaux issus de la préfecture d’Hiroshima. Yume Plaza rassemble des spécialités locales — agrumes, saké, produits transformés et souvenirs régionaux — dans un espace dédié à la valorisation du territoire.",
-    "panoramaImage": "/downloads/yunehirosh.png"
+    "panoramaImage": "/downloads/yunehirosh.png",
+    "country": "JP"
   },
   {
     "id": "6de60d40-28bc-44e1-9659-cb30631eac6a",
