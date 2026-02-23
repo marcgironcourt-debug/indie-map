@@ -1020,10 +1020,10 @@
     "lng": 2.36064903548,
     "category": "Restaurant",
     "createdAt": "2026-01-29T21:00:39.340Z",
-    "updatedAt": "2026-02-11T14:01:16.162Z",
+    "updatedAt": "2026-02-23T20:47:22.217Z",
     "timeZone": "Europe/Paris",
     "phone": "+33 1 77 32 77 61",
-    "panoramaImage": "/downloads/le.png",
+    "panoramaImage": "/downloads/les ressitant.png",
     "miniText": "Restaurant engagé mettant en avant une cuisine issue de l’agriculture paysanne et de circuits courts, en lien direct avec des producteurs respectant le vivant. Les Résistants défendent une alimentation juste, locale et de saison, où chaque ingrédient est choisi pour son origine, sa qualité et son impact écologique.",
     "tags": [],
     "translations": {
@@ -2277,9 +2277,9 @@
       "boulangerie"
     ],
     "miniText": "Boulangerie artisanale accordant une attention particulière à l’origine et à la qualité de ses ingrédients. Les farines utilisées sont 100 % suisses. Les produits laitiers, les œufs et les pommes de terre proviennent de fournisseurs locaux, tandis que le chocolat est sourcé auprès d’un artisan suisse engagé. L’ensemble de la production repose sur une sélection rigoureuse des matières premières et un ancrage fort dans le tissu agricole régional.",
-    "panoramaImage": "",
+    "panoramaImage": "/downloads/boulangeriesoudan.jpg",
     "createdAt": "2026-02-02T21:50:10.245Z",
-    "updatedAt": "2026-02-02T21:50:10.245Z",
+    "updatedAt": "2026-02-23T20:42:14.639Z",
     "translations": {
       "miniText": {}
     },
@@ -3053,12 +3053,12 @@
     "openingHours": "lundi\t11h30–15h00, 17h00–22h00\nmardi\t11h30–15h00, 17h00–22h00\nmercredi\t11h30–15h00, 17h00–22h00\njeudi\t11h30–15h00, 17h00–22h00\nvendredi\t11h30–15h00, 17h00–22h00\nsamedi\t10h00–15h00, 17h00–22h00\ndimanche\t10h00–15h00, 17h00–22h00",
     "timeZone": "America/Toronto",
     "createdAt": "2026-02-04T16:18:19.479Z",
-    "updatedAt": "2026-02-04T16:21:00.110Z",
+    "updatedAt": "2026-02-23T20:35:07.681Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de producteurs locaux de l’Ontario. Union construit sa carte autour des récoltes et des arrivages disponibles, avec une attention portée à la simplicité des plats, à la qualité des ingrédients et au lien direct avec le territoire.",
-    "panoramaImage": "/downloads/un.png",
+    "panoramaImage": "/downloads/union-square.png",
     "translations": {
       "miniText": {}
     },
@@ -3689,7 +3689,7 @@
     ],
     "miniText": "Restaurant proposant une cuisine entièrement construite autour des produits locaux et saisonniers de l’Oregon et du Nord-Ouest Pacifique. Le menu évolue en fonction des récoltes et des arrivages de fermes partenaires, avec une attention particulière portée à l’origine des ingrédients.",
     "createdAt": "2026-02-05T15:18:09.590Z",
-    "updatedAt": "2026-02-13T13:41:46.942Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "panoramaImage": "/downloads/arden.jpg",
     "translations": {
       "miniText": {}
@@ -3954,7 +3954,7 @@
     ],
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:46:35.342Z",
-    "updatedAt": "2026-02-13T13:56:29.718Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "translations": {
       "miniText": {}
     },
@@ -3978,7 +3978,7 @@
     ],
     "timeZone": "America/Los_Angeles",
     "createdAt": "2026-02-05T17:51:34.121Z",
-    "updatedAt": "2026-02-13T14:05:11.254Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "translations": {
       "miniText": {}
     },
@@ -4001,7 +4001,7 @@
     ],
     "miniText": "Brunch reconnu pour sa cuisine de saison élaborée à partir de produits locaux californiens. Plow travaille avec des fermes partenaires et met en avant des ingrédients frais et sourcés, préparés entièrement sur place.",
     "createdAt": "2026-02-05T18:10:54.570Z",
-    "updatedAt": "2026-02-12T19:53:50.849Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "panoramaImage": "/downloads/plow.png",
     "translations": {
       "miniText": {}
@@ -4213,7 +4213,7 @@
     "openingHours": "jeudi\t13h00–23h00\nvendredi\t13h00–23h00\nsamedi\t13h00–23h00\ndimanche\tFermé\nlundi\t13h00–23h00\nmardi\t13h00–23h00\nmercredi\t13h00–23h00",
     "timeZone": "America/Mexico_City",
     "createdAt": "2026-02-05T20:10:33.749Z",
-    "updatedAt": "2026-02-13T14:09:13.340Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "tags": [
       "Restaurant"
     ],
@@ -4261,7 +4261,7 @@
     "openingHours": "lundi\tFermé\nmardi\t17h30–22h30\nmercredi\t17h30–22h30\njeudi\t17h30–22h30\nvendredi\t17h30–22h30\nsamedi\t17h30–22h30\ndimanche\t17h30–22h30",
     "timeZone": "America/Cancun",
     "createdAt": "2026-02-05T20:37:54.431Z",
-    "updatedAt": "2026-02-12T14:13:58.574Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "tags": [
       "Restaurant"
     ],
@@ -4602,7 +4602,7 @@
     ],
     "miniText": "Restaurant développant une cuisine construite à partir des écosystèmes colombiens. Leo travaille en lien direct avec des producteurs, pêcheurs, cueilleurs et communautés rurales de différentes régions du pays afin de valoriser des ingrédients locaux, souvent endémiques, et des savoir-faire alimentaires traditionnels.",
     "createdAt": "2026-02-07T16:12:10.520Z",
-    "updatedAt": "2026-02-13T14:19:03.470Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "panoramaImage": "/downloads/Leo.jpg",
     "translations": {
       "miniText": {}
@@ -4650,7 +4650,7 @@
     ],
     "miniText": "Restaurant développant une cuisine ancrée dans les produits et les écosystèmes de la côte caraïbe colombienne. Celele travaille avec des producteurs, pêcheurs et fournisseurs locaux afin de valoriser des ingrédients régionaux, des pratiques artisanales et la biodiversité du territoire.",
     "createdAt": "2026-02-07T16:57:45.066Z",
-    "updatedAt": "2026-02-12T15:12:45.858Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "panoramaImage": "/downloads/Celele.png",
     "translations": {
       "miniText": {}
@@ -4746,7 +4746,7 @@
     ],
     "miniText": "Restaurant développant une approche centrée sur les produits brésiliens, les saisons et les circuits courts. Le lieu travaille avec des producteurs locaux et met en avant des ingrédients issus de l’agriculture régionale, valorisés à travers une cuisine ouverte et évolutive.",
     "createdAt": "2026-02-07T19:36:47.225Z",
-    "updatedAt": "2026-02-12T14:52:59.349Z",
+    "updatedAt": "2026-02-23T20:35:07.686Z",
     "panoramaImage": "/downloads/São Paulo | Corrutela.png",
     "translations": {
       "miniText": {}
@@ -4938,7 +4938,7 @@
     ],
     "miniText": "Producteur de crevettes à Teahupo’o, proposant des produits frais et surgelés. La ferme est active depuis 1981 et met en avant un élevage responsable, sans conservateurs, sans additifs.",
     "createdAt": "2026-02-07T21:31:39.543Z",
-    "updatedAt": "2026-02-12T19:39:43.865Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "panoramaImage": "/downloads/aquapac.jpg",
     "translations": {
       "miniText": {}
@@ -6065,12 +6065,13 @@
     "openingHours": "Lundi 12h00-14h00\nLundi 19h00-22h00\nMardi 12h00-14h00\nMardi 19h00-22h00\nMercredi 12h00-14h00\nMercredi 19h00-22h00\nJeudi 12h00-14h00\nJeudi 19h00-22h00\nVendredi 12h00-14h00\nVendredi 19h00-22h00\nSamedi 12h00-14h00\nSamedi 19h00-22h00\nDimanche 12h00-14h00\nDimanche 19h00-22h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-11T13:52:04.591Z",
-    "updatedAt": "2026-02-11T13:52:04.591Z",
+    "updatedAt": "2026-02-23T20:47:22.217Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant exclusivement avec des producteurs français identifiés, en privilégiant les circuits courts et les produits de saison. Les Résistants construit ses menus à partir d’ingrédients sourcés directement auprès de fermes et artisans, avec une attention portée à la traçabilité, au respect du territoire et à une cuisine ancrée dans l’agriculture paysanne.",
-    "country": "FR"
+    "country": "FR",
+    "panoramaImage": "/downloads/les ressitant.png"
   },
   {
     "id": "6ec87517-c97d-48cc-ab9f-0b4f5dc0a4a0",
@@ -6463,7 +6464,7 @@
     "openingHours": "Lundi 12h00–14h00, 19h30–22h00\nMardi Fermé\nMercredi Fermé\nJeudi 12h00–14h00, 19h30–22h00\nVendredi 12h00–14h00, 19h30–22h00\nSamedi 12h00–14h00, 19h30–22h00\nDimanche 12h00–14h00, 19h30–22h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-13T16:36:24.813Z",
-    "updatedAt": "2026-02-13T16:40:33.349Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "tags": [
       "Restaurant"
     ],
@@ -6505,12 +6506,13 @@
     "openingHours": "Lundi 19h00–00h00\nMardi Fermé\nMercredi Fermé\nJeudi 19h00–00h00\nVendredi 19h00–00h00\nSamedi 19h00–00h00\nDimanche 19h00–00h00",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-13T17:00:50.241Z",
-    "updatedAt": "2026-02-13T17:00:50.241Z",
+    "updatedAt": "2026-02-23T20:50:01.158Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison mettant en avant des produits frais et une sélection de vins naturels. L’établissement s’inscrit dans une approche conviviale et indépendante, avec une attention portée aux producteurs et aux matières premières.",
-    "country": "FR"
+    "country": "FR",
+    "panoramaImage": "/downloads/bibbia.jpg"
   },
   {
     "id": "66f8e0b2-d9aa-46c3-846c-270ea01798c4",
@@ -6550,7 +6552,7 @@
     ],
     "miniText": "Restaurant vegan proposant une cuisine de saison élaborée à partir de produits biologiques et locaux. Mettant en avant les circuits courts, une sélection de vins naturels et une approche engagée autour de l’alimentation durable et du respect des producteurs.",
     "createdAt": "2026-02-13T17:43:33.271Z",
-    "updatedAt": "2026-02-13T17:46:49.769Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "panoramaImage": "/downloads/rasoterra.png",
     "country": "ES"
   },
@@ -6597,27 +6599,6 @@
     "country": "ES"
   },
   {
-    "id": "1e8fe209-50db-494c-808f-93e4abb0644a",
-    "name": "Mercado de Productores",
-    "city": "Madrid",
-    "address": "Avenida del Planetario & C. Meneses, Arganzuela, 28045 Madrid, Espagne",
-    "website": "https://mercadoproductores.es",
-    "lat": 40.39545692234216,
-    "lng": -3.6823940693151576,
-    "category": "Marché",
-    "phone": "+34 622 25 58 51",
-    "openingHours": "Dimanche 10h00–16h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé",
-    "timeZone": "Europe/Madrid",
-    "tags": [
-      "Marché"
-    ],
-    "miniText": "",
-    "createdAt": "2026-02-13T18:03:38.489Z",
-    "updatedAt": "2026-02-13T18:08:13.481Z",
-    "panoramaImage": "/downloads/mercado.png",
-    "country": "ES"
-  },
-  {
     "id": "4b9d5c98-e9fc-4513-8a5b-dc231dcbf9fe",
     "name": "Nobelhart & Schmutzig",
     "city": "Berlin",
@@ -6651,7 +6632,7 @@
     "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche Fermé\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
     "timeZone": "Europe/Berlin",
     "createdAt": "2026-02-13T18:29:56.612Z",
-    "updatedAt": "2026-02-13T18:33:28.436Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "tags": [
       "restaurant"
     ],
@@ -6672,11 +6653,11 @@
     "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche 17h00-0h00\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
     "timeZone": "Europe/Berlin",
     "createdAt": "2026-02-13T18:36:06.345Z",
-    "updatedAt": "2026-02-13T18:38:53.382Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "tags": [
       "restaurant"
     ],
-    "miniText": "",
+    "miniText": "Restaurant et vinothèque autrichienne à Berlin. Proposant des spécialités traditionnelles autrichiennes. L’établissement met en avant des ingrédients régionaux frais et une sélection de vins d’Autriche, tout en offrant des espaces pour événements privés et dégustations.",
     "panoramaImage": "/downloads/jolesch.jpg",
     "country": "DE"
   },
@@ -6693,12 +6674,13 @@
     "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche 17h00-0h00\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
     "timeZone": "Europe/Berlin",
     "createdAt": "2026-02-13T18:37:53.389Z",
-    "updatedAt": "2026-02-13T18:37:53.389Z",
+    "updatedAt": "2026-02-23T20:35:07.687Z",
     "tags": [
       "restaurant"
     ],
-    "miniText": "Restaurant proposant une cuisine autrichienne traditionnelle, mettant à l’honneur des produits artisanaux et locaux. Jolesch valorise une approche authentique, centrée sur la qualité des ingrédients et le respect des recettes traditionnelles.",
-    "country": "DE"
+    "miniText": "Restaurant et vinothèque autrichienne à Berlin. Proposant des spécialités traditionnelles autrichiennes. L’établissement met en avant des ingrédients régionaux frais et une sélection de vins d’Autriche, tout en offrant des espaces pour événements privés et dégustations.",
+    "country": "DE",
+    "panoramaImage": "/downloads/jolesch.jpg"
   },
   {
     "id": "282567e9-02ca-4af7-a019-a7263d28ad9a",
@@ -6986,7 +6968,7 @@
     "openingHours": "Lundi 19h30–22h00\nMardi 19h30–22h00\nMercredi 19h30–22h00\nJeudi 19h30–22h00\nVendredi 19h30–22h00\nSamedi 19h30–22h00\nDimanche Fermé",
     "timeZone": "Europe/Rome",
     "createdAt": "2026-02-13T22:04:19.196Z",
-    "updatedAt": "2026-02-13T22:08:02.142Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Restaurant"
     ],
@@ -7136,10 +7118,10 @@
     "tags": [
       "Lieu alternatif"
     ],
-    "miniText": "",
+    "miniText": "Jardin botanique bio‑aromatique créé en 1998 comme premier jardin biologique de plantes aromatiques et médicinales du pays. Permettant aux visiteurs de découvrir plus d’une cinquantaine de plantes aromatiques et médicinales, d’explorer leurs usages traditionnels et de participer à des visites guidées, ateliers et dégustations.",
     "panoramaImage": "/downloads/jardinbiom.jpg",
     "createdAt": "2026-02-14T15:00:51.505Z",
-    "updatedAt": "2026-02-14T15:04:54.463Z"
+    "updatedAt": "2026-02-23T20:32:11.569Z"
   },
   {
     "id": "45cce060-01b6-4f60-9ecf-29c2cb49be1d",
@@ -7160,7 +7142,7 @@
     "miniText": "Restaurant installé dans un riad, proposant une cuisine marocaine contemporaine inspirée des recettes traditionnelles. Dar Moha met en avant des produits locaux et de saison, revisités avec une approche gastronomique, dans un cadre architectural typique valorisant le patrimoine marocain.",
     "panoramaImage": "/downloads/darmoha.png",
     "createdAt": "2026-02-14T15:07:08.839Z",
-    "updatedAt": "2026-02-14T15:13:15.225Z"
+    "updatedAt": "2026-02-23T20:35:07.688Z"
   },
   {
     "id": "0ad067c5-0a6f-42db-b410-3de5147be51a",
@@ -7302,7 +7284,7 @@
     "openingHours": "samedi 9h00–18h00\n\ndimanche Fermé\n\nlundi Fermé\n\nmardi 9h00–18h00\n\nmercredi 9h00–18h00\n\njeudi 9h00–18h00\n\nvendredi 9h00–18h00",
     "timeZone": "Africa/Accra",
     "createdAt": "2026-02-14T16:53:12.630Z",
-    "updatedAt": "2026-02-14T16:56:40.287Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Mode"
     ],
@@ -7323,7 +7305,7 @@
     "openingHours": "samedi 8h30–17h00\n\ndimanche Fermé\n\nlundi 8h30–20h00\n\nmardi 8h30–17h00\n\nmercredi 8h30–17h00\n\njeudi 8h30–17h00\n\nvendredi Fermé",
     "timeZone": "Africa/Addis_Ababa",
     "createdAt": "2026-02-14T17:01:05.682Z",
-    "updatedAt": "2026-02-14T17:03:20.519Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Mode"
     ],
@@ -7390,7 +7372,7 @@
     ],
     "miniText": "Restaurant travaillant exclusivement avec des producteurs locaux et des ingrédients issus du territoire national. Kane développe une cuisine contemporaine ancrée dans les saisons locales, mettant en avant des variétés traditionnelles et des matières premières provenant de fermes roumaines.",
     "createdAt": "2026-02-14T17:49:30.690Z",
-    "updatedAt": "2026-02-14T17:54:09.570Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/kanere.png"
   },
   {
@@ -7411,7 +7393,7 @@
     ],
     "miniText": "Restaurant mettant en avant des produits hongrois et des producteurs locaux, avec un travail approfondi sur les ingrédients traditionnels. Onyx développe une cuisine contemporaine ancrée dans le territoire hongrois, en valorisant les saisons et les matières premières nationales.",
     "createdAt": "2026-02-14T17:56:41.088Z",
-    "updatedAt": "2026-02-14T17:59:22.721Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/onyxresta.png"
   },
   {
@@ -7432,7 +7414,7 @@
     ],
     "miniText": "Restaurant familial situé dans un village ostréicole de la baie de Ston, travaillant principalement les huîtres et produits issus de la production locale. Ficović propose une cuisine dalmate ancrée dans le territoire, avec un approvisionnement direct en fruits de mer et ingrédients régionaux.",
     "createdAt": "2026-02-14T18:03:12.249Z",
-    "updatedAt": "2026-02-14T18:05:20.920Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/ficovic.png"
   },
   {
@@ -7642,7 +7624,7 @@
     ],
     "miniText": "Restaurant proposant une cuisine axée sur la saisonnalité et les producteurs locaux des Émirats arabes unis. LOWE travaille avec des fermes régionales, développe des techniques de fermentation et met l’accent sur la réduction du gaspillage alimentaire, avec une approche centrée sur la qualité des ingrédients et l’origine des produits.",
     "createdAt": "2026-02-15T15:05:10.298Z",
-    "updatedAt": "2026-02-15T15:05:36.605Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/lowed.jpg"
   },
   {
@@ -7705,7 +7687,7 @@
     ],
     "miniText": "Restaurant méditerranéen mettant en avant une cuisine axée sur la saisonnalité et les produits issus de fermes et producteurs locaux des Émirats arabes unis. BOCA travaille sur la transparence du sourcing, la valorisation des filières régionales et la réduction de l’empreinte environnementale, avec une approche centrée sur la qualité des ingrédients et leur origine.",
     "createdAt": "2026-02-15T15:24:59.960Z",
-    "updatedAt": "2026-02-15T15:25:38.239Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/bocadub.jpg"
   },
   {
@@ -7786,11 +7768,11 @@
     "timeZone": "Asia/Beirut",
     "miniText": "Maison de design fondée à Beyrouth, Bokja crée des pièces textiles brodés à la main, réalisés en collaboration avec des artisanes locales. L’atelier développe une production ancrée au Liban, mêlant savoir-faire traditionnel, travail manuel et création contemporaine, avec une attention portée à la transmission artisanale et à l’emploi local.",
     "createdAt": "2026-02-15T16:10:10.135Z",
-    "updatedAt": "2026-02-15T16:12:12.067Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Mode"
     ],
-    "panoramaImage": "/bokjab.jpg"
+    "panoramaImage": "/downloads/bokjab.jpg"
   },
   {
     "id": "16628643-589d-4497-9d99-a635847168a6",
@@ -8167,7 +8149,7 @@
     ],
     "miniText": "Lieu alternatif regroupant café-restaurant, boutique/épicerie et activités culturelles (concerts, théâtre, expos, ateliers…), avec une volonté affichée de valoriser la production locale et de créer du lien entre habitants et visiteurs.",
     "createdAt": "2026-02-17T15:20:39.023Z",
-    "updatedAt": "2026-02-17T15:35:17.621Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "panoramaImage": "/downloads/laruellecor.png"
   },
   {
@@ -8209,7 +8191,8 @@
     ],
     "miniText": "Coopérative artisanale travaillANT avec des artisanes népalaises pour produire des textiles et objets faits main à partir de matières naturelles locales. La fabrication est réalisée au Népal, avec une approche axée sur le commerce équitable, la transmission des savoir-faire traditionnels et le soutien économique des communautés rurales.",
     "createdAt": "2026-02-17T16:05:10.891Z",
-    "updatedAt": "2026-02-17T16:05:10.891Z"
+    "updatedAt": "2026-02-23T20:54:01.447Z",
+    "panoramaImage": "/downloads/asockatm.png"
   },
   {
     "id": "99bed9a9-27c8-4016-95e6-c1c877d1bf5b",
@@ -8456,7 +8439,7 @@
     "openingHours": "Mercredi 10h00–19h00\nJeudi 10h00–19h00\nVendredi 10h00–19h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00\nLundi 10h00–19h00\nMardi 10h00–19h00",
     "timeZone": "Asia/Vientiane",
     "createdAt": "2026-02-17T18:32:15.567Z",
-    "updatedAt": "2026-02-17T18:33:45.564Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Boutique"
     ],
@@ -8499,11 +8482,11 @@
     "timeZone": "Asia/Bangkok",
     "miniText": "Ferme biologique et centre de vie autonome près de Chiang Mai. Pun Pun pratique l’agriculture régénérative sans produits chimiques, conserve et multiplie des semences locales traditionnelles et organise des formations autour de la vie durable, de la construction naturelle et de la souveraineté alimentaire.",
     "createdAt": "2026-02-17T19:39:14.420Z",
-    "updatedAt": "2026-02-17T19:43:42.029Z",
+    "updatedAt": "2026-02-23T21:14:58.305Z",
     "tags": [
       "Lieu alternatif"
     ],
-    "panoramaImage": "/downloads/punpuntha.png"
+    "panoramaImage": "/downloads/punpunhk.png"
   },
   {
     "id": "393a099e-b10d-4f2f-baa3-f73c4dd9b0b9",
@@ -8520,10 +8503,11 @@
     "timeZone": "Asia/Bangkok",
     "miniText": "Ferme biologique et centre de vie autonome près de Chiang Mai. Pun Pun pratique l’agriculture régénérative sans produits chimiques, conserve et multiplie des semences locales traditionnelles et organise des formations autour de la vie durable, de la construction naturelle et de la souveraineté alimentaire.",
     "createdAt": "2026-02-17T19:41:46.003Z",
-    "updatedAt": "2026-02-17T19:41:46.004Z",
+    "updatedAt": "2026-02-23T21:14:58.305Z",
     "tags": [
       "Lieu alternatif"
-    ]
+    ],
+    "panoramaImage": "/downloads/punpunhk.png"
   },
   {
     "id": "565e029e-393d-4eb1-b308-4e17c0b83539",
@@ -8666,7 +8650,7 @@
     "timeZone": "Asia/Bangkok",
     "miniText": "Restaurant intégrant une micro-ferme urbaine et un potager sur place. Haoma développe une cuisine de saison centrée sur des ingrédients locaux, avec une approche durable combinant production intégrée, réduction des déchets et traçabilité des produits.",
     "createdAt": "2026-02-17T20:34:22.181Z",
-    "updatedAt": "2026-02-17T20:41:49.122Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Restaurant"
     ],
@@ -8686,7 +8670,7 @@
     "openingHours": "Lundi 18h00–22h00\nMardi 18h00–22h00\nMercredi 18h00–22h00\nJeudi 18h00–22h00\nVendredi 18h00–22h00\nSamedi Fermé\nDimanche 18h00–22h00",
     "timeZone": "Asia/Bangkok",
     "createdAt": "2026-02-17T20:43:58.542Z",
-    "updatedAt": "2026-02-17T20:47:48.680Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Restaurant"
     ],
@@ -8728,7 +8712,7 @@
     "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00",
     "timeZone": "Asia/Bangkok",
     "createdAt": "2026-02-17T21:01:52.003Z",
-    "updatedAt": "2026-02-17T21:04:24.585Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Ferme"
     ],
@@ -8749,7 +8733,7 @@
     "openingHours": "Lundi Fermé\nMardi 18h00–22h30\nMercredi 18h00–22h30\nJeudi 18h00–22h30\nVendredi 12h00–15h00, 18h00–22h30\nSamedi 12h00–15h00, 18h00–22h30\nDimanche Fermé",
     "timeZone": "Asia/Bangkok",
     "createdAt": "2026-02-17T21:08:07.634Z",
-    "updatedAt": "2026-02-17T21:12:24.884Z",
+    "updatedAt": "2026-02-23T20:35:07.688Z",
     "tags": [
       "Restaurant"
     ],
@@ -8855,10 +8839,11 @@
     "miniText": "Restaurant proposant une cuisine cambodgienne contemporaine travaillée à partir d’ingrédients locaux et de saison, tout en formant et employant des jeunes issus de milieux vulnérables. Le projet associe restauration de qualité et impact social au niveau local.",
     "timeZone": "Asia/Phnom_Penh",
     "createdAt": "2026-02-18T15:26:34.884Z",
-    "updatedAt": "2026-02-18T15:26:34.886Z",
+    "updatedAt": "2026-02-23T21:03:47.820Z",
     "tags": [
       "Restaurant"
-    ]
+    ],
+    "panoramaImage": "/downloads/jaancam.png"
   },
   {
     "id": "4b0f882a-7e59-4c1b-98ad-2acddca95cb1",
@@ -8875,10 +8860,11 @@
     "miniText": "Restaurant proposant une cuisine cambodgienne centrée sur les ingrédients locaux et de saison. Élaborant des menus évolutifs mettant en avant les produits du marché régional et les traditions culinaires khmères, avec une approche axée sur la fraîcheur et le terroir.",
     "timeZone": "Asia/Phnom_Penh",
     "createdAt": "2026-02-18T15:31:34.634Z",
-    "updatedAt": "2026-02-18T15:31:34.634Z",
+    "updatedAt": "2026-02-23T21:02:33.879Z",
     "tags": [
       "Restaurant"
-    ]
+    ],
+    "panoramaImage": "/downloads/watdamn.webp"
   },
   {
     "id": "899db484-dea9-43e0-83e0-c1f33a7c5a6c",
@@ -9041,7 +9027,7 @@
     "openingHours": "Lundi 9h30–18h30\nMardi 11h00–18h30\nMercredi 9h30–18h30\nJeudi 9h30–18h30\nVendredi 9h30–18h30\nSamedi 9h30–18h30\nDimanche 9h30–18h30",
     "timeZone": "Asia/Yangon",
     "createdAt": "2026-02-18T16:54:09.511Z",
-    "updatedAt": "2026-02-18T16:56:44.700Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Boutique"
     ],
@@ -9083,7 +9069,7 @@
     "openingHours": "Lundi Fermé\nMardi 11h00–18h00\nMercredi 11h00–18h00\nJeudi 11h00–18h00\nVendredi 11h00–18h00\nSamedi 11h00–18h00\nDimanche 11h00–18h00",
     "timeZone": "Asia/Phnom_Penh",
     "createdAt": "2026-02-18T17:09:14.042Z",
-    "updatedAt": "2026-02-18T17:11:21.966Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Mode"
     ],
@@ -9124,7 +9110,7 @@
     "openingHours": "Lundi 10h00–21h00\nMardi 10h00–21h00\nMercredi 10h00–21h00\nJeudi 10h00–21h00\nVendredi 10h00–21h00\nSamedi 10h00–21h00\nDimanche 10h00–21h00",
     "timeZone": "Asia/Ho_Chi_Minh",
     "createdAt": "2026-02-18T17:52:55.170Z",
-    "updatedAt": "2026-02-18T17:54:02.575Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -9208,12 +9194,13 @@
     "openingHours": "Lundi 8h00–17h30\nMardi 8h00–17h30\nMercredi 8h00–17h30\nJeudi 8h00–17h30\nVendredi 8h00–17h30\nSamedi 8h00–17h30\nDimanche Fermé",
     "timeZone": "Asia/Ho_Chi_Minh",
     "createdAt": "2026-02-18T18:18:50.417Z",
-    "updatedAt": "2026-02-18T18:18:50.417Z",
+    "updatedAt": "2026-02-23T21:05:47.828Z",
     "tags": [
       "Boutique"
     ],
     "miniText": "Boutique-atelier transformant des chutes de soie en créations artisanales (tableaux, objets et cadeaux faits main). Le projet fonctionne comme une démarche à impact social, mettant en avant le travail d’artisans en situation de handicap et la valorisation de matières textiles récupérées.",
-    "country": "VN"
+    "country": "VN",
+    "panoramaImage": "/downloads/vunartha.jpg"
   },
   {
     "id": "5c7d677d-b731-43e9-a8ce-c94a5ec37c5d",
@@ -9233,7 +9220,7 @@
     ],
     "miniText": "Restaurant proposant une cuisine traditionnelle revisitée dans un cadre inspiré des maisons anciennes de Hanoï. HOME met en avant des recettes emblématiques du Nord du Vietnam, préparées à partir d’ingrédients locaux et de saison.",
     "createdAt": "2026-02-18T18:39:27.395Z",
-    "updatedAt": "2026-02-18T18:40:37.711Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "panoramaImage": "/downloads/homehanoi.jpg"
   },
   {
@@ -9296,7 +9283,8 @@
     ],
     "miniText": "Café vietnamien mettant en avant le patrimoine et les terroirs du café local biologique et respectueux de lenvironnement. Valorisant des grains vietnamiens issus de différentes régions productrices, torréfiés et préparés avec une approche axée sur l origine et la traçabilité.",
     "createdAt": "2026-02-18T19:05:51.974Z",
-    "updatedAt": "2026-02-18T19:05:51.974Z"
+    "updatedAt": "2026-02-23T21:10:50.171Z",
+    "panoramaImage": "/downloads/shinhanko.png"
   },
   {
     "id": "3ab3be40-a14c-4def-a188-3717a8d32823",
@@ -9547,7 +9535,7 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-18T21:19:44.063Z",
-    "updatedAt": "2026-02-18T21:22:41.789Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "panoramaImage": "/downloads/baliasliin.png"
   },
   {
@@ -9589,7 +9577,7 @@
     "miniText": "Restaurant mettant en avant une cuisine centrée sur des produits australiens de qualité, sourcés auprès de pêcheurs, éleveurs et producteurs locaux. La carte évolue selon les saisons et valorise viandes, poissons et ingrédients frais travaillés dans une approche simple et axée sur le produit.",
     "panoramaImage": "/downloads/margaret.png",
     "createdAt": "2026-02-19T15:00:53.603Z",
-    "updatedAt": "2026-02-19T15:02:48.873Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "country": "AU"
   },
   {
@@ -9610,7 +9598,7 @@
     "miniText": "Restaurant végétarien proposant un menu dégustation de saison élaboré à partir de légumes et produits australiens sourcés auprès de producteurs locaux. Yellow met en avant une approche centrée sur l’ingrédient, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
     "panoramaImage": "/downloads/yellowsyd.webp",
     "createdAt": "2026-02-19T15:06:59.864Z",
-    "updatedAt": "2026-02-19T15:07:32.115Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "country": "AU"
   },
   {
@@ -9650,9 +9638,9 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant un menu dégustation de saison élaboré à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Arthur développe une cuisine centrée sur les ingrédients, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
-    "panoramaImage": "",
+    "panoramaImage": "/downloads/arthurrestaj.webp",
     "createdAt": "2026-02-19T15:13:53.346Z",
-    "updatedAt": "2026-02-19T15:13:53.346Z",
+    "updatedAt": "2026-02-23T21:11:34.807Z",
     "country": "AU"
   },
   {
@@ -9878,12 +9866,12 @@
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-13h00\nDimanche 10h00-16h00",
     "timeZone": "Australia/Sydney",
     "createdAt": "2026-02-19T16:31:56.453Z",
-    "updatedAt": "2026-02-19T16:43:57.226Z",
+    "updatedAt": "2026-02-23T21:19:15.599Z",
     "tags": [
       "Marché"
     ],
     "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": "/bondimar.png",
+    "panoramaImage": "/downloads/bondimaraus.png",
     "country": "AU"
   },
   {
@@ -9899,12 +9887,12 @@
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-13h00\nDimanche 10h00-16h00",
     "timeZone": "Australia/Sydney",
     "createdAt": "2026-02-19T16:34:37.466Z",
-    "updatedAt": "2026-02-19T16:34:37.466Z",
+    "updatedAt": "2026-02-23T21:19:15.600Z",
     "tags": [
       "Marché"
     ],
     "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": "",
+    "panoramaImage": "/downloads/bondimaraus.png",
     "country": "AU"
   },
   {
@@ -10088,7 +10076,7 @@
     "openingHours": "",
     "timeZone": "Australia/Hobart",
     "createdAt": "2026-02-19T19:09:23.412Z",
-    "updatedAt": "2026-02-19T19:12:45.288Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Ferme"
     ],
@@ -10109,7 +10097,7 @@
     "openingHours": "vendredi 18h00–23h00\nsamedi 18h00–23h00\ndimanche Fermé\nlundi 18h00–23h00\nmardi 18h00–23h00\nmercredi 18h00–23h00\njeudi 18h00–23h00",
     "timeZone": "Australia/Adelaide",
     "createdAt": "2026-02-19T19:29:00.537Z",
-    "updatedAt": "2026-02-19T19:31:20.379Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -10130,7 +10118,7 @@
     "openingHours": "vendredi 8h00–15h00\nsamedi 8h00–15h00\ndimanche 8h00–15h00\nlundi Fermé\nmardi Fermé\nmercredi 8h00–15h00\njeudi 8h00–15h00",
     "timeZone": "Australia/Adelaide",
     "createdAt": "2026-02-19T19:34:18.979Z",
-    "updatedAt": "2026-02-19T19:39:19.642Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Boulangerie"
     ],
@@ -10239,7 +10227,7 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-19T22:18:38.798Z",
-    "updatedAt": "2026-02-19T22:19:09.227Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "panoramaImage": "/downloads/tedescame.jpg",
     "country": "AU"
   },
@@ -10340,7 +10328,7 @@
     "openingHours": "vendredi 12h00–14h30, 17h30–22h00\nsamedi 17h30–22h00\ndimanche Fermé\nlundi Fermé\nmardi 17h30–22h00\nmercredi 12h00–14h30, 17h30–22h00\njeudi 12h00–14h30, 17h30–22h00",
     "timeZone": "Australia/Perth",
     "createdAt": "2026-02-19T23:04:29.312Z",
-    "updatedAt": "2026-02-19T23:05:47.159Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -10424,7 +10412,7 @@
     "openingHours": "vendredi 12h00–14h30, 17h30–20h00\nsamedi 12h00–14h30, 17h30–20h00\ndimanche Fermé\nlundi Fermé\nmardi 12h00–14h30, 17h30–20h00\nmercredi 12h00–14h30, 17h30–20h00\njeudi 12h00–14h30, 17h30–20h00",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-20T13:31:31.380Z",
-    "updatedAt": "2026-02-20T13:41:24.411Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -10449,7 +10437,7 @@
       "Restaurant"
     ],
     "createdAt": "2026-02-20T13:46:44.764Z",
-    "updatedAt": "2026-02-20T13:55:25.032Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "panoramaImage": "/downloads/daigotok.png",
     "country": "JP"
   },
@@ -10701,7 +10689,7 @@
     ],
     "miniText": "Café mettant en avant des légumes biologiques issus de fermes japonaises partenaires. Développant une cuisine centrée sur les produits végétaux de saison, valorisant la provenance des ingrédients et une alimentation axée sur le respect des cycles agricoles.",
     "createdAt": "2026-02-20T15:53:21.212Z",
-    "updatedAt": "2026-02-20T15:56:53.570Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "panoramaImage": "/downloads/mrfarmert.png",
     "country": "JP"
   },
@@ -10718,7 +10706,7 @@
     "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche Fermé",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-20T16:19:12.704Z",
-    "updatedAt": "2026-02-20T16:22:28.243Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Boutique"
     ],
@@ -10869,8 +10857,9 @@
       "Librairie"
     ],
     "createdAt": "2026-02-20T18:39:35.233Z",
-    "updatedAt": "2026-02-20T18:39:35.233Z",
-    "country": "JP"
+    "updatedAt": "2026-02-23T21:22:48.370Z",
+    "country": "JP",
+    "panoramaImage": "/downloads/kitazawal.png"
   },
   {
     "id": "ffd83b35-3ab6-422c-b2f5-096dafe7d95f",
@@ -10931,8 +10920,9 @@
       "Marché"
     ],
     "createdAt": "2026-02-20T19:00:43.749Z",
-    "updatedAt": "2026-02-20T19:00:43.749Z",
-    "country": "JP"
+    "updatedAt": "2026-02-23T21:26:44.364Z",
+    "country": "JP",
+    "panoramaImage": "/downloads/aoyamafar.png"
   },
   {
     "id": "62d35afe-11ab-46fa-a407-09b97d53d53e",
@@ -11010,7 +11000,7 @@
     "openingHours": "Lundi 8h00-11h00, 12h00-16h00, 17h00-21h30\nMardi 8h00-11h00, 12h00-16h00, 17h00-21h30\nMercredi 8h00-11h00, 12h00-16h00, 17h00-21h30\nJeudi 8h00-11h00, 12h00-16h00, 17h00-21h30\nVendredi 8h00-11h00, 12h00-16h00, 17h00-21h30\nSamedi 8h00-11h00, 12h00-16h00, 17h00-21h30\nDimanche 8h00-11h00, 12h00-16h00, 17h00-21h30",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-22T16:32:57.216Z",
-    "updatedAt": "2026-02-22T16:34:20.994Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -11178,7 +11168,7 @@
     "openingHours": "Lundi 12h00-13h00\nMardi 12h00-13h00\nMercredi 12h00-13h00\nJeudi 12h00-13h00\nVendredi 12h00-13h00\nSamedi 12h00-13h00\nDimanche Fermé",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-22T19:13:43.516Z",
-    "updatedAt": "2026-02-22T19:16:13.912Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "restaurant"
     ],
@@ -11262,7 +11252,7 @@
     "openingHours": "Lundi 11h00-22h00\nMardi 11h00-22h00\nMercredi 11h00-22h00\nJeudi 11h00-22h00\nVendredi 11h00-22h00\nSamedi 11h00-22h00\nDimanche 11h00-22h00",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-22T20:10:57.940Z",
-    "updatedAt": "2026-02-22T20:14:32.736Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "restaurant"
     ],
@@ -11304,7 +11294,7 @@
     "openingHours": "Lundi 11h00–20h00\nMardi Fermé\nMercredi 11h00–20h00\nJeudi 11h00–20h00\nVendredi 11h00–20h00\nSamedi 11h00–20h00\nDimanche 11h00–20h00",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-22T20:37:24.377Z",
-    "updatedAt": "2026-02-22T20:41:11.968Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
@@ -11325,7 +11315,7 @@
     "openingHours": "Lundi 10h00–18h00\nMardi 10h00–18h00\nMercredi 10h00–18h00\nJeudi 10h00–18h00\nVendredi 10h00–18h00\nSamedi 10h00–18h00\nDimanche 10h00–18h00",
     "timeZone": "Asia/Tokyo",
     "createdAt": "2026-02-22T20:45:28.287Z",
-    "updatedAt": "2026-02-22T20:49:10.827Z",
+    "updatedAt": "2026-02-23T20:35:07.689Z",
     "tags": [
       "Restaurant"
     ],
