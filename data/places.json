@@ -11337,5 +11337,152 @@
     "createdAt": "2026-02-22T23:06:54.511Z",
     "updatedAt": "2026-02-22T23:08:55.375Z",
     "panoramaImage": "/downloads/jardinvill.png"
+  },
+  {
+    "id": "aa9c243d-0680-462d-b4d3-6d14bc4285da",
+    "name": "Bouquinerie - Friperie",
+    "city": "Villeneuve-d'Ascq",
+    "country": "FR",
+    "address": "7 Bd Albert 1er, 59650 Villeneuve-d'Ascq, France",
+    "website": "https://www.bouquineriedusart.com",
+    "lat": 50.65944423182965,
+    "lng": 3.1364867662638916,
+    "category": "Boutique",
+    "phone": "",
+    "openingHours": "Lundi 10h00-18h00\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T13:38:15.989Z",
+    "updatedAt": "2026-02-23T13:39:16.960Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Librairie d’occasion et friperie réunies dans un même espace, proposant une sélection de livres de seconde main et de vêtements d’occasion. Le lieu valorise la réutilisation et le réemploi à travers une offre accessible mêlant culture et textile.",
+    "panoramaImage": "/downloads/bouqfrip.jpg"
+  },
+  {
+    "id": "4ba3aada-9a39-43bc-aeaa-d3dcd65eebe1",
+    "name": "Talents de Fermes",
+    "city": "Wambrechies",
+    "country": "FR",
+    "address": "601 Rue de Bondues, 59118 Wambrechies, France",
+    "website": "https://talentsdefermes.com",
+    "lat": 50.690563229986815,
+    "lng": 3.06480630859352,
+    "category": "Épicerie",
+    "phone": "+33 3 20 31 67 36",
+    "openingHours": "Lundi 9h00-19h00\nMardi 9h00-19h00\nMercredi 9h00-19h00\nJeudi 9h00-19h00\nVendredi 9h00-19h00\nSamedi 9h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T13:42:35.391Z",
+    "updatedAt": "2026-02-23T13:44:44.551Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie réunissant des producteurs fermiers locaux proposant fruits, légumes, produits laitiers, viandes et spécialités artisanales issues de fermes de la région. Le lieu favorise la vente directe et met en avant l’origine des produits ainsi que le travail des agriculteurs partenaires.",
+    "panoramaImage": "/downloads/talenli.jpg"
+  },
+  {
+    "id": "0ce75d99-7d9b-4161-aea7-cd2994aa4e5d",
+    "name": "SuperQuinquin - Lille Fives",
+    "city": "Lille",
+    "country": "FR",
+    "address": "53-55 Rue Pierre Legrand, 59800 Lille, France",
+    "website": "https://www.superquinquin.fr/lillefives",
+    "lat": 50.63244389943112,
+    "lng": 3.0873262085935202,
+    "category": "Épicerie",
+    "phone": "+33 9 72 60 18 06",
+    "openingHours": "Lundi 10h00-14h00\nLundi 15h30-20h00\nMardi 15h30-20h00\nMercredi 10h00-14h00\nMercredi 15h30-20h00\nJeudi 10h00-14h00\nJeudi 15h30-20h00\nVendredi 10h00-14h00\nVendredi 15h30-20h00\nSamedi 9h30-19h30\nDimanche 10h00-12h15",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T13:50:46.648Z",
+    "updatedAt": "2026-02-23T13:59:44.710Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Supermarché coopératif et participatif proposant des produits alimentaires issus de producteurs locaux et de circuits courts. Le magasin fonctionne sur un modèle d’implication des membres et met en avant une consommation responsable, des produits de saison et une transparence sur l’origine des produits.",
+    "panoramaImage": "/downloads/superqui.jpg"
+  },
+  {
+    "id": "deb977f2-6e77-40b6-aa7f-e3331188f720",
+    "name": "SuperQuinquin - Val de Marque",
+    "city": "Villeneuve-d'Ascq",
+    "country": "FR",
+    "address": "220 Rue Jean Jaurès, 59491 Villeneuve-d'Ascq, France",
+    "website": "https://www.superquinquin.fr/valdemarque",
+    "lat": 50.66894089915025,
+    "lng": 3.143490535582407,
+    "category": "Épicerie",
+    "phone": "+33 6 45 24 26 28",
+    "openingHours": "Lundi 11h00-19h30\nMardi 11h00-19h30\nMercredi 9h30-19h30\nJeudi 11h00-19h30\nVendredi 9h30-19h30\nSamedi 9h30-19h30\nDimanche 9h00-12h30",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T13:50:51.479Z",
+    "updatedAt": "2026-02-23T13:59:44.710Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Supermarché coopératif et participatif proposant des produits alimentaires issus de producteurs locaux et de circuits courts. Le magasin fonctionne sur un modèle d’implication des membres et met en avant une consommation responsable, des produits de saison et une transparence sur l’origine des produits.",
+    "panoramaImage": "/downloads/superqui.jpg"
+  },
+  {
+    "id": "e7084483-c29f-40b0-a56e-7612f23ff94d",
+    "name": "Oxfam - Lille",
+    "city": "Lille",
+    "country": "FR",
+    "address": "19 Rue de l'Hôpital Militaire, 59000 Lille, France",
+    "website": "https://www.oxfamfrance.org/magasins-oxfam/",
+    "lat": 50.63346302211548,
+    "lng": 3.0619152355824073,
+    "category": "Boutique",
+    "phone": "+33 3 20 54 40 31",
+    "openingHours": "Lundi Fermé\nMardi 12h00-19h00\nMercredi 12h00-19h00\nJeudi 12h00-19h00\nVendredi 12h00-19h00\nSamedi 11h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T14:02:22.840Z",
+    "updatedAt": "2026-02-23T14:10:40.662Z",
+    "tags": [
+      "Boutique"
+    ],
+    "miniText": "Boutique solidaire proposant vêtements, livres et objets de seconde main dont les ventes soutiennent les actions d’Oxfam contre les inégalités et la pauvreté. Le magasin fonctionne grâce à l’engagement de bénévoles et valorise le réemploi ainsi qu’une consommation plus responsable.",
+    "panoramaImage": "/downloads/oxliklle.png"
+  },
+  {
+    "id": "ce71b38c-5d21-40b3-9726-f7148495b892",
+    "name": "Moulins d'Ascq",
+    "city": "Villeneuve-d'Ascq",
+    "country": "FR",
+    "address": "47 Rue de la Distillerie, 59493 Villeneuve-d'Ascq, France",
+    "website": "https://www.moulinsdascq.fr",
+    "lat": 50.60620665350551,
+    "lng": 3.1650950220879635,
+    "category": "Brasserie bar",
+    "phone": "+33 3 20 41 58 48",
+    "openingHours": "Lundi 17h00-21h30\nMardi 17h00-23h30\nMercredi 17h00-23h30\nJeudi 17h00-0h00\nVendredi 17h00-0h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T14:13:00.911Z",
+    "updatedAt": "2026-02-23T14:14:55.583Z",
+    "tags": [
+      "Brasserie bar"
+    ],
+    "miniText": "Brasserie artisanale indépendante produisant des bières biologiques brassées sur place. Moulins d'Ascq met en avant des méthodes traditionnelles, une production locale et une démarche engagée autour de la bière bio et du savoir-faire brassicole.",
+    "panoramaImage": "/downloads/moulinlille.jpg"
+  },
+  {
+    "id": "23f1cead-9614-448a-9df5-745280ce8f0c",
+    "name": "Ferme De Le Motte",
+    "city": "Talcy",
+    "country": "FR",
+    "address": "52 Rue du Château, 41370 Talcy, France",
+    "website": "https://fermedelamotte.com/fr/boutique/",
+    "lat": 47.76680691646161,
+    "lng": 1.4383047644175924,
+    "category": "Épicerie",
+    "phone": "+33 2 54 81 44 22",
+    "openingHours": "Lundi 9h30-12h30\nLundi 13h00-17h30\nMardi 9h30-12h30\nMardi 13h00-17h30\nMercredi 9h30-12h00\nJeudi 9h30-12h30\nJeudi 13h00-17h30\nVendredi 9h30-12h30\nVendredi 13h00-17h30\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-02-23T14:17:04.064Z",
+    "updatedAt": "2026-02-23T14:22:36.746Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Épicerie proposant une boutique à la ferme avec des produits issus de l’exploitation et de producteurs locaux. La Ferme De Le Motte met en avant une agriculture ancrée dans le territoire et valorise la vente directe ainsi que les circuits courts.",
+    "panoramaImage": "/downloads/fermemotte.jpg"
   }
 ]
