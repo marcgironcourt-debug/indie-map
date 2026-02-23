@@ -9,10 +9,19 @@ export async function POST(req: Request) {
     const body = (() => { try { return JSON.parse(raw); } catch { return null; } })();
     if (!body || typeof body !== "object") return NextResponse.json({ ok: false }, { status: 400 });
 
-    const eventType = (body as any).eventType;
-    const placeId = (body as any).placeId;
-    const city = (body as any).city;
-    const category = (body as any).category;
+    const obj = body as Record<string, unknown>;
+
+
+    const eventType = obj["eventType"];
+
+
+    const placeId = obj["placeId"];
+
+
+    const city = obj["city"];
+
+
+    const category = obj["category"];
 
     if (typeof eventType !== "string" || !ALLOWED.has(eventType)) {
       return NextResponse.json({ ok: false }, { status: 400 });

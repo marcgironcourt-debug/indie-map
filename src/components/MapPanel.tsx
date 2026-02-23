@@ -20,14 +20,7 @@ type Biz = {
   miniText?: string | null;
 };
 
-export default function MapPanel({
-  items = [],
-  selectedId,
-  selectionVersion,
-  onSelect,
-  darkMap,
-  onToggleDarkMap,
-}: {
+export default function MapPanel(props: {
   items?: Biz[];
   selectedId?: string | null;
   selectionVersion?: number;
@@ -35,6 +28,8 @@ export default function MapPanel({
     darkMap?: boolean;
   onToggleDarkMap?: () => void;
 }) {
+  const { items = [], selectedId, onSelect, darkMap } = props;
+
   return (
     <section className="relative h-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
       <div className="h-full">

@@ -257,14 +257,15 @@ function FilterBar({
   return (
     <div
       className={rowClass}
-      style={{
-        WebkitOverflowScrolling: "touch",
-        scrollbarWidth: "none" as any,
-        msOverflowStyle: "none" as any,
-        scrollPaddingLeft: 24 as any,
-        scrollPaddingRight: 24 as any,
-      }}
-    >
+      style={(
+        {
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          scrollPaddingLeft: 24,
+          scrollPaddingRight: 24,
+        } as React.CSSProperties & { msOverflowStyle?: "none" | "auto" | "scrollbar" }
+      )}>
       <FilterPill
         label="Tous"
         active={activeCategory === "ALL"}
@@ -532,7 +533,11 @@ export default function IndieMapSplitView() {
   const [heroOpen, setHeroOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const fn = (e: Event) => { try { const ce = e as any; setHeroOpen(Boolean(ce?.detail?.open)); } catch {} };
+    type HeroDetail = { open?: boolean };
+    const fn = (e: Event) => {
+      const ce = e as CustomEvent<HeroDetail>;
+      setHeroOpen(Boolean(ce.detail?.open));
+    };
     try { window.addEventListener("im:hero", fn); } catch {}
     return () => { try { window.removeEventListener("im:hero", fn); } catch {} };
   }, []);

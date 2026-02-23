@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="h-[100dvh] w-full flex items-center justify-center">
@@ -5,9 +7,9 @@ export default function Page() {
         <p>Interface principale déplacée sur la page d’accueil.</p>
         <p>
           Rendez-vous sur{" "}
-          <a href="/" className="underline">
+          <Link href="/" className="underline">
             /
-          </a>{" "}
+          </Link>{" "}
           pour voir la carte Indie Map.
         </p>
       </div>

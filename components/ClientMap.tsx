@@ -287,9 +287,13 @@ export default function ClientMap({
       try {
         const raw = window.localStorage.getItem("indieMapView");
         if (raw) {
-          const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed.center) && typeof parsed.center[0] === "number" && typeof parsed.center[1] === "number") {
-            return [parsed.center[0], parsed.center[1]];
+          const parsed: unknown = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            const obj = parsed as Record<string, unknown>;
+            const c = obj["center"];
+            if (Array.isArray(c) && typeof c[0] === "number" && typeof c[1] === "number") {
+              return [c[0], c[1]];
+            }
           }
         }
       } catch {}
@@ -302,8 +306,12 @@ export default function ClientMap({
       try {
         const raw = window.localStorage.getItem("indieMapView");
         if (raw) {
-          const parsed = JSON.parse(raw);
-          if (typeof parsed.zoom === "number") return parsed.zoom;
+          const parsed: unknown = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            const obj = parsed as Record<string, unknown>;
+            const z = obj["zoom"];
+            if (typeof z === "number") return z;
+          }
         }
       } catch {}
     }
