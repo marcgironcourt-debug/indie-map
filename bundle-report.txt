@@ -1,0 +1,31 @@
+972K	.next/static/chunks/fa8039ab.127b14a0d1d9c32a.js
+196K	.next/static/chunks/345f9fa0-c2cb2aa002a09916.js
+184K	.next/static/chunks/76-b26bf8ea1a69b472.js
+180K	.next/static/chunks/framework-42119d36bbefb05a.js
+132K	.next/static/chunks/main-3d34e04e68782be5.js
+112K	.next/static/chunks/polyfills-42372ed130431b0a.js
+ 64K	.next/static/chunks/295.84bdaf6520603fb3.js
+ 20K	.next/static/chunks/454.fd10809ca5084282.js
+ 16K	.next/static/chunks/115.eefae88cf2e778c9.js
+ 12K	.next/static/chunks/375-8429e388a431686e.js
+8,0K	.next/static/chunks/webpack-4c4813b67cc169c2.js
+4,0K	.next/static/chunks/next/dist/client/components/builtin/unauthorized-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/next/dist/client/components/builtin/not-found-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/next/dist/client/components/builtin/global-error-acef610fba498074.js
+4,0K	.next/static/chunks/next/dist/client/components/builtin/forbidden-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/next/dist/client/components/builtin/app-error-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/main-app-71514bbf6491ba54.js
+4,0K	.next/static/chunks/app/ui/page-d96259782b4ea18b.js
+4,0K	.next/static/chunks/app/privacy/page-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/page-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/layout-3258f6c2a0641c38.js
+4,0K	.next/static/chunks/app/choose/page-d96259782b4ea18b.js
+4,0K	.next/static/chunks/app/api/v1/places/route-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/api/v1/places/[id]/route-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/api/v1/event/route-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/api/v1/businesses/route-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/[locale]/privacy/page-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/[locale]/page-cf9b6d17d1a2dbb1.js
+4,0K	.next/static/chunks/app/[locale]/layout-4cf39669d7bf120c.js
+4,0K	.next/static/chunks/app/_not-found/page-d476ab859b62690a.js
+4,0K	.next/static/chunks/app/_global-error/page-4cf39669d7bf120c.js
