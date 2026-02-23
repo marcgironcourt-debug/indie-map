@@ -14,7 +14,7 @@ export function useBusinesses() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch("/api/businesses", { cache: "no-store" });
+        const res = await fetch("/api/v1/businesses", { cache: "no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         const json = (await res.json()) as Business[];
         if (alive) setData(json);
