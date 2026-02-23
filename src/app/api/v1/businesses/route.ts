@@ -5,7 +5,3 @@ export async function GET() {
   const data = await prisma.place.findMany({ select: { id: true, name: true, lat: true, lng: true, address: true, city: true, category: true, description: true, openingHours: true, website: true, createdAt: true, updatedAt: true } });
   return NextResponse.json({ data });
 }
-
-export async function POST() {
-  return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
-}
