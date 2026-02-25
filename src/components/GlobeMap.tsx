@@ -3311,7 +3311,7 @@ const goBtn = mkBtn("Itinéraire →");
                             try { setDiscoverPanel(null); } catch {}
                             try {
                               const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
-                              map2.flyTo({ center: [lng2, lat2], zoom: maxZ, speed: 0.62, curve: 2.35, easing: (t) => t * t * (3 - 2 * t), essential: true });
+                              map2.flyTo({ center: [lng2, lat2], zoom: maxZ, duration: 1350, easing: (t) => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2), essential: true });
                               try {
                                 let hero2 = null as null | string;
                                 try { hero2 = String(((props2 as any)?.panoramaImage ?? (props2 as any)?.properties?.panoramaImage ?? "") || ""); } catch {}
