@@ -719,6 +719,12 @@ React.useEffect(() => {
   if (!categories.includes("Lieu alternatif")) categories.push("Lieu alternatif");
   categories = Array.from(new Set(categories));
 
+  const priority = ["Restaurant", "Lieu alternatif", "Ferme", "Marché", "Épicerie"]; 
+  categories = [
+    ...priority.filter((x) => categories.includes(x)),
+    ...categories.filter((x) => !priority.includes(x)),
+  ];
+
   const filtered = source.filter((b) => {
     const k = (b.type || "").toLowerCase();
 
