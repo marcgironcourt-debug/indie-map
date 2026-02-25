@@ -9,20 +9,21 @@ export default async function ContributionPage({ params }: Props) {
   return (
     <>
       <PrivacyClose locale={locale} />
-      <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", lineHeight: 1.6 }}>
-        <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>
+      <main className="min-h-screen bg-[#1f1f1f] text-white/90">
+      <div className="mx-auto max-w-[820px] px-4 py-6 leading-relaxed">
+        <h1 className="text-2xl font-semibold tracking-tight mb-4">
           {isFr ? "Contribution" : "Contribute"}
         </h1>
 
         {isFr ? (
           <>
-            <p style={{ margin: "0 0 16px" }}>
+            <p className="mb-4 text-white/80">
               Indie Map grandit grâce aux contributions. L’objectif : rendre visibles des lieux indépendants qui
               privilégient le local, la réparation, le réemploi, l’agriculture respectueuse et des pratiques cohérentes.
             </p>
 
-            <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>Ce que vous pouvez faire</h2>
-            <ul>
+            <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Ce que vous pouvez faire</h2>
+            <ul className="list-disc pl-5 space-y-1 text-white/80">
               <li>Proposer un lieu à ajouter (commerce, ferme, marché, atelier, coopérative, etc.).</li>
               <li>Signaler une erreur (adresse, horaires, site web, téléphone, catégorie).</li>
               <li>Partager une photo/panorama propre et utile (sans personnes identifiables, si possible).</li>
@@ -31,35 +32,27 @@ export default async function ContributionPage({ params }: Props) {
 
             
 
-            <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>Envoyer une contribution</h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 8 }}>
+            <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Envoyer une contribution</h2>
+            <div className="mt-2 flex flex-wrap gap-3">
               <a
                 href="https://indie-map.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  padding: "10px 18px",
-                  borderRadius: 16,
-                  backgroundColor: "hsl(var(--brand))",
-                  color: "#fff",
-                  textDecoration: "none",
-                  fontWeight: 500,
-                }}
+                className="inline-block px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
               >
                 Ouvrir indie-map.com
               </a>
-</div>
+            </div>
           </>
         ) : (
           <>
-            <p style={{ margin: "0 0 16px" }}>
+            <p className="mb-4 text-white/80">
               Indie Map grows through contributions. The goal: highlight independent places that prioritize local
               sourcing, repair, reuse, respectful farming, and consistent real-world practices.
             </p>
 
-            <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>How you can help</h2>
-            <ul>
+            <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">How you can help</h2>
+            <ul className="list-disc pl-5 space-y-1 text-white/80">
               <li>Suggest a place to add (shop, farm, market, workshop, cooperative, etc.).</li>
               <li>Report an error (address, opening hours, website, phone, category).</li>
               <li>Share a clean, useful photo/panorama (no identifiable people if possible).</li>
@@ -68,27 +61,20 @@ export default async function ContributionPage({ params }: Props) {
 
             
 
-            <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>Send a contribution</h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 8 }}>
+            <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Send a contribution</h2>
+            <div className="mt-2 flex flex-wrap gap-3">
               <a
                 href="https://indie-map.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  padding: "10px 18px",
-                  borderRadius: 16,
-                  backgroundColor: "hsl(var(--brand))",
-                  color: "#fff",
-                  textDecoration: "none",
-                  fontWeight: 500,
-                }}
+                className="inline-block px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
               >
                 Open indie-map.com
               </a>
-</div>
+            </div>
           </>
         )}
+            </div>
       </main>
     </>
   );
