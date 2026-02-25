@@ -70,7 +70,7 @@ main {
   --poi: 215 15% 45%;
   --cafe: 29 53% 36%;
   --restaurant: 0 70% 38%;
-  --micro: 50 70% 72%;
+  --micro: 283 45% 30%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -91,7 +91,7 @@ main {
     --poi: 215 15% 65%;
     --cafe: 29 55% 55%;
     --restaurant: 0 70% 55%;
-    --micro: 50 70% 60%;
+    --micro: 283 45% 40%;
   }
 }
 
