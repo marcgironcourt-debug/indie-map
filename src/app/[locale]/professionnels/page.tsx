@@ -49,7 +49,9 @@ export default async function ProsPage({ params }: Props) {
             </p>
 
             <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>Contact</h2>
-            <p>Contactez-nous via le site officiel Indie Map.</p>
+            <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 8, padding: "10px 18px", borderRadius: 16, backgroundColor: "hsl(var(--brand))", color: "#fff", textDecoration: "none", fontWeight: 500 }}>
+              Visiter indie-map.com
+            </a>
           </>
         ) : (
           <>
@@ -86,7 +88,9 @@ export default async function ProsPage({ params }: Props) {
             </p>
 
             <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>Contact</h2>
-            <p>Please contact us via the official Indie Map website.</p>
+            <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 8, padding: "10px 18px", borderRadius: 16, backgroundColor: "hsl(var(--brand))", color: "#fff", textDecoration: "none", fontWeight: 500 }}>
+              Visit indie-map.com
+            </a>
           </>
         )}
       </main>

@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 export default function MobileMenu({ locale }: { locale: string }) {
   const pathname = usePathname();
   const isPrivacy = (pathname || "").endsWith("/privacy");
+  const isPros = (pathname || "").endsWith("/professionnels");
   const [open, setOpen] = useState(false);
 
   const hrefs = useMemo(() => {
@@ -39,7 +40,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
   return (
     <>
-      {!isPrivacy ? (<button
+      {(!isPrivacy && !isPros) ? (<button
         type="button"
         aria-label="Menu"
         aria-expanded={open}
@@ -55,7 +56,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
       </button>
       ) : null}
 
-      {open && !isPrivacy ? (
+      {open && !isPrivacy && !isPros ? (
         <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
