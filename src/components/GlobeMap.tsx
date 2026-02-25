@@ -638,9 +638,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const wm = Number(walkMins);
   const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
   const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
-
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; border-radius:10px 4px 10px 4px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:18px; line-height:28px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
-
   return (
     "<div style=\"position:relative; max-width:320px; min-height:240px; padding:14px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:15px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
@@ -2811,22 +2809,21 @@ mapRef.current = map;
             aria-label="Fermer"
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: 0,
-              clipPath: "polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)" as any,
+              width: 28,
+              height: 28,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgba(245,245,232,0.90)",
-              border: "1px solid rgba(31,31,24,0.22)",
-              color: "rgba(31,31,24,0.92)",
-              boxShadow: "0 0 0 1px rgba(31,31,24,0.07), 0 12px 22px rgba(0,0,0,0.14)",
-              cursor: "pointer",
-              opacity: heroUiHide ? 0 : 1,
-              pointerEvents: (heroUiHide ? "none" : "auto") as any,
-              transition: "opacity 220ms ease"
+              background: "transparent",
+              border: "none",
+              color: "#000000",
+              filter: "drop-shadow(0 0 10px rgba(245,245,232,0.70)) drop-shadow(0 0 18px rgba(245,245,232,0.35))",
+              fontSize: "28px",
+              fontWeight: 600,
+              lineHeight: "28px",
+              padding: 0
             }}
+
             onClick={(e) => {
               try { e.preventDefault(); e.stopPropagation(); } catch {}
               let stClose = null;
@@ -3365,7 +3362,7 @@ const goBtn = mkBtn("Itinéraire →");
               } catch {}
             }}
           >
-            <span style={{ display: "inline-block", transform: "translateY(-1px)" }}>×</span>
+            <span style={{ display: "inline-block" }}>×</span>
           </button>
           <div
             className="absolute inset-0 pointer-events-none"
