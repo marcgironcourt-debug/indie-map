@@ -8,6 +8,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
   const pathname = usePathname();
   const isPrivacy = (pathname || "").endsWith("/privacy");
   const isPros = (pathname || "").endsWith("/professionnels");
+  const isContrib = (pathname || "").endsWith("/contribution");
+  const isAbout = (pathname || "").endsWith("/a-propos");
   const [open, setOpen] = useState(false);
 
   const hrefs = useMemo(() => {
@@ -38,9 +40,13 @@ export default function MobileMenu({ locale }: { locale: string }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  useEffect(() => {
+    if (open) setOpen(false);
+  }, [pathname]);
+
   return (
     <>
-      {(!isPrivacy && !isPros) ? (<button
+      {(!isPrivacy && !isPros && !isContrib && !isAbout) ? (<button
         type="button"
         aria-label="Menu"
         aria-expanded={open}
@@ -56,13 +62,11 @@ export default function MobileMenu({ locale }: { locale: string }) {
       </button>
       ) : null}
 
-      {open && !isPrivacy && !isPros ? (
+      {open && !isPrivacy && !isPros && !isContrib && !isAbout ? (
         <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
-            aria-label="Fermer"
-            onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/60"
+            aria-label="Fermer" className="absolute inset-0 bg-black/60"
           />
           <div className="absolute inset-2 rounded-3xl bg-[#1f1f1f] shadow-xl border border-[hsl(var(--brand))]/25 overflow-hidden flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
             <div className="flex items-center justify-between px-5 py-4">
@@ -72,28 +76,26 @@ export default function MobileMenu({ locale }: { locale: string }) {
 </div>
               <button
                 type="button"
-                aria-label="Fermer le menu"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10"
+                aria-label="Fermer le menu" className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10"
               >
                 <span className="text-xl leading-none">×</span>
               </button>
             </div>
 
             <nav className="px-2 pb-2 flex-1 overflow-y-auto">
-              <MenuLink href={hrefs.pros} onPick={() => setOpen(false)}>
+              <MenuLink href={hrefs.pros} >
                 Professionnels
               </MenuLink>
-              <MenuLink href={hrefs.contrib} onPick={() => setOpen(false)}>
+              <MenuLink href={hrefs.contrib} >
                 Contribution
               </MenuLink>
-              <MenuLink href={hrefs.about} onPick={() => setOpen(false)}>
+              <MenuLink href={hrefs.about} >
                 À propos
               </MenuLink>
             </nav>
 
             <div className="mt-auto px-5 pt-3 pb-6 text-[11px] text-white/60 bg-[#1f1f1f] ">
-  <Link href={hrefs.privacy} onClick={() => setOpen(false)} className="opacity-60 hover:opacity-100">
+  <Link href={hrefs.privacy} className="opacity-60 hover:opacity-100">
     Privacy / Confidentialité
   </Link>
 </div>
@@ -107,17 +109,14 @@ export default function MobileMenu({ locale }: { locale: string }) {
 function MenuLink({
   href,
   children,
-  onPick,
 }: {
   href: string;
   children: React.ReactNode;
-  onPick: () => void;
 }) {
   return (
     <Link
       href={href}
-      onClick={onPick}
-      className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] border-b border-white/10 hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
+            className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] border-b border-white/10 hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
     >
       {children}
     </Link>
