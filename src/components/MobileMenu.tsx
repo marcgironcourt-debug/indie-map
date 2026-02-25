@@ -42,23 +42,30 @@ export default function MobileMenu({ locale }: { locale: string }) {
         aria-label="Menu"
         aria-expanded={open}
         onClick={() => setOpen(true)}
-        className="fixed left-4 top-16 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/80 backdrop-blur border border-black/10 shadow-sm"
+        className="fixed left-4 top-16 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/18 backdrop-blur-xl border border-white/35 shadow-xl"
       >
-        <span className="block h-[2px] w-5 bg-black/80" />
+        <span className="flex flex-col gap-1">
+          <span className="block h-[2px] w-5 bg-[hsl(var(--brand))]" />
+          <span className="block h-[2px] w-5 bg-[hsl(var(--brand))]" />
+          <span className="block h-[2px] w-5 bg-[hsl(var(--brand))]" />
+        </span>
         <span className="sr-only">Menu</span>
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-[70]">
+        <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
             aria-label="Fermer"
             onClick={() => setOpen(false)}
             className="absolute inset-0 bg-black/60"
           />
-          <div className="absolute left-4 right-4 top-4 rounded-3xl bg-white shadow-xl border border-black/10 overflow-hidden">
+          <div className="absolute inset-2 rounded-3xl bg-[#1f1f1f] shadow-xl border border-[hsl(var(--brand))]/25 overflow-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
             <div className="flex items-center justify-between px-5 py-4">
-              <div className="text-lg font-semibold">Indie Map</div>
+              <div className="flex flex-col leading-none">
+  <span className="text-lg font-semibold text-white">Indie Map</span>
+  <span className="text-xs tracking-widest text-[#5C6E3B] italic -rotate-2 inline-block -mt-1">Back To Local</span>
+</div>
               <button
                 type="button"
                 aria-label="Fermer le menu"
@@ -87,8 +94,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               </MenuLink>
             </nav>
 
-            <div className="px-5 py-4 text-xs text-black/60 border-t border-black/10">
-              Indépendant. Sans publicité. Sans revente de données.
+            <div className="px-5 py-4 text-xs text-white  bg-[#1f1f1f]">
             </div>
           </div>
         </div>
@@ -110,7 +116,7 @@ function MenuLink({
     <Link
       href={href}
       onClick={onPick}
-      className="block rounded-2xl px-4 py-3 text-base hover:bg-black/5 active:bg-black/10"
+      className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
     >
       {children}
     </Link>
