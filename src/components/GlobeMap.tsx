@@ -2914,6 +2914,20 @@ mapRef.current = map;
 
                     try {
                       const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+                      const setPhoneActive = (on: boolean) => {
+                        try {
+                          if (!pb) return;
+                          if (on) {
+                            (pb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                            (pb as any).style.background = "rgba(114,138,74,.20)";
+                            (pb as any).style.borderColor = "rgba(114,138,74,.70)";
+                          } else {
+                            (pb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                            (pb as any).style.background = "rgba(0,0,0,0.14)";
+                            (pb as any).style.borderColor = "rgba(255,255,255,0.30)";
+                          }
+                        } catch {}
+                      };
                       if (pb) {
                         pb.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
@@ -2948,9 +2962,11 @@ mapRef.current = map;
                             const cur = String((panel as any).style.display || "");
                             const next = (cur === "none" || cur === "") ? "block" : "none";
                             (panel as any).style.display = next;
+                            try { setPhoneActive(next === "block"); } catch {}
                             if (next !== "block") return;
 
                             if (!dial) {
+                              try { setPhoneActive(true); } catch {}
                               panel.innerHTML =
                                 "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
                                 "<div style=\"margin-top:6px;opacity:.90;\" >Téléphone inconnu</div>";
