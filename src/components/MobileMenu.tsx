@@ -66,7 +66,9 @@ export default function MobileMenu({ locale }: { locale: string }) {
         <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
-            aria-label="Fermer" className="absolute inset-0 bg-black/60"
+            aria-label="Fermer"
+            onClick={() => setOpen(false)}
+            className="absolute inset-0 bg-black/60"
           />
           <div className="absolute inset-2 rounded-3xl bg-[#1f1f1f] shadow-xl border border-[hsl(var(--brand))]/25 overflow-hidden flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
             <div className="flex items-center justify-between px-5 py-4">
@@ -76,7 +78,9 @@ export default function MobileMenu({ locale }: { locale: string }) {
 </div>
               <button
                 type="button"
-                aria-label="Fermer le menu" className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10"
+                aria-label="Fermer le menu"
+                onClick={() => setOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10"
               >
                 <span className="text-xl leading-none">×</span>
               </button>
