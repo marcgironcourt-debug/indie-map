@@ -443,6 +443,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     restaurant: cssVar("--restaurant", "#ef4444"),
     boutique: "#000000",
     atelier: "#6B7280",
+    ferme: "#F6FF00",
     microbrasserie: cssVar("--micro", "#f59e0b"),
     other: "#8C5A3C",
   };
@@ -1189,7 +1190,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
       boutique: "#000000",
       atelier: "#6B7280",
       microbrasserie: cssHslVar("--micro", "#f59e0b"),
-      ferme: "#FFFFFF",
+      ferme: "#F6FF00",
       other: "#8C5A3C",
     } as Record<Kind, string>;
   }

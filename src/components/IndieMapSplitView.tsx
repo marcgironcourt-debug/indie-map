@@ -149,8 +149,8 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
   if (key.includes("ferme") || key.includes("farm")) {
     return active
-      ? "bg-white text-black"
-      : "bg-[#5C6E3B]/85 text-white border border-white/60";
+      ? "bg-[#F6FF00] text-black"
+      : "bg-[#5C6E3B]/85 text-[#F6FF00] border border-[#F6FF00]/60";
   }
 
   if (key.includes("boutique")) {
