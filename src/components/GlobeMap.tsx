@@ -3315,6 +3315,30 @@ const goBtn = mkBtn("Itinéraire →");
                             try {
                               const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
                               map2.flyTo({ center: [lng2, lat2], zoom: maxZ, speed: 0.62, curve: 2.35, easing: (t) => t * t * (3 - 2 * t), essential: true });
+                              try {
+                                let hero2 = null as null | string;
+                                try { hero2 = String(((props2 as any)?.panoramaImage ?? (props2 as any)?.properties?.panoramaImage ?? "") || ""); } catch {}
+                                try { setDiscoverHeroUrl(hero2 && hero2.trim() ? hero2 : null); } catch {}
+                                try { setDiscoverHeroOpen(false); } catch {}
+                                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+
+                                const onEnd2 = () => {
+                                  try { setDiscoverHeroZoom(false); } catch {}
+                                  try { setDiscoverDoorOpen(false); } catch {}
+                                  try { setHeroUiHide(false); } catch {}
+                                  try { heroPanRef.current = 0.5; } catch {}
+                                  try { setDiscoverHeroPan(0.5); } catch {}
+                                  try { tableauPrevPRef.current = 0.5; } catch {}
+                                  try { heroHadMoveRef.current = false; } catch {}
+                                  try { setHeroHintOff(false); } catch {}
+                                  try { setDiscoverHeroOpen(true); } catch {}
+                                  try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                                  try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
+                                  try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
+                                };
+                                try { map2.once("moveend", onEnd2); } catch {}
+                              } catch {}
+
                             } catch {}
                           } catch {}
                           popupRef.current = null;
