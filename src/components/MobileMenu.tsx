@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 export default function MobileMenu({ locale }: { locale: string }) {
+  const pathname = usePathname();
+  const isPrivacy = (pathname || "").endsWith("/privacy");
   const [open, setOpen] = useState(false);
 
   const hrefs = useMemo(() => {
     const base = `/${locale}`;
     return {
-      explorer: base,
       pros: `${base}/professionnels`,
       contrib: `${base}/contribution`,
       about: `${base}/a-propos`,
-      dons: `${base}/dons`,
-    };
+      privacy: `${base}/privacy`,
+};
   }, [locale]);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
   return (
     <>
-      <button
+      {!isPrivacy ? (<button
         type="button"
         aria-label="Menu"
         aria-expanded={open}
@@ -51,8 +53,9 @@ export default function MobileMenu({ locale }: { locale: string }) {
         </span>
         <span className="sr-only">Menu</span>
       </button>
+      ) : null}
 
-      {open ? (
+      {open && !isPrivacy ? (
         <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
@@ -60,7 +63,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
             onClick={() => setOpen(false)}
             className="absolute inset-0 bg-black/60"
           />
-          <div className="absolute inset-2 rounded-3xl bg-[#1f1f1f] shadow-xl border border-[hsl(var(--brand))]/25 overflow-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+          <div className="absolute inset-2 rounded-3xl bg-[#1f1f1f] shadow-xl border border-[hsl(var(--brand))]/25 overflow-hidden flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
             <div className="flex items-center justify-between px-5 py-4">
               <div className="flex flex-col leading-none">
   <span className="text-lg font-semibold text-white">Indie Map</span>
@@ -76,10 +79,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               </button>
             </div>
 
-            <nav className="px-2 pb-2">
-              <MenuLink href={hrefs.explorer} onPick={() => setOpen(false)}>
-                Explorer
-              </MenuLink>
+            <nav className="px-2 pb-2 flex-1 overflow-y-auto">
               <MenuLink href={hrefs.pros} onPick={() => setOpen(false)}>
                 Professionnels
               </MenuLink>
@@ -89,13 +89,13 @@ export default function MobileMenu({ locale }: { locale: string }) {
               <MenuLink href={hrefs.about} onPick={() => setOpen(false)}>
                 À propos
               </MenuLink>
-              <MenuLink href={hrefs.dons} onPick={() => setOpen(false)}>
-                Dons
-              </MenuLink>
             </nav>
 
-            <div className="px-5 py-4 text-xs text-white  bg-[#1f1f1f]">
-            </div>
+            <div className="mt-auto px-5 pt-3 pb-6 text-[11px] text-white/60 bg-[#1f1f1f] ">
+  <Link href={hrefs.privacy} onClick={() => setOpen(false)} className="opacity-60 hover:opacity-100">
+    Privacy / Confidentialité
+  </Link>
+</div>
           </div>
         </div>
       ) : null}
@@ -116,7 +116,7 @@ function MenuLink({
     <Link
       href={href}
       onClick={onPick}
-      className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
+      className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] border-b border-white/10 hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
     >
       {children}
     </Link>

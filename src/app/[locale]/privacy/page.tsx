@@ -1,3 +1,5 @@
+import PrivacyClose from "../../../components/PrivacyClose";
+
 type Props = { params: Promise<{ locale: string }> };
 
 export default async function PrivacyPage({ params }: Props) {
@@ -5,7 +7,9 @@ export default async function PrivacyPage({ params }: Props) {
   const isFr = locale === "fr";
 
   return (
-    <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", lineHeight: 1.6 }}>
+    <>
+      <PrivacyClose locale={locale} />
+      <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", lineHeight: 1.6 }}>
       <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>
         {isFr ? "Politique de confidentialité" : "Privacy Policy"}
       </h1>
@@ -114,5 +118,6 @@ export default async function PrivacyPage({ params }: Props) {
         </>
       )}
     </main>
+    </>
   );
 }

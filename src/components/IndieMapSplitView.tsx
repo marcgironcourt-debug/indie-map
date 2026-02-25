@@ -833,9 +833,7 @@ React.useEffect(() => {
       )}
 
       <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
-        <Link href="privacy" className="text-xs opacity-70 hover:opacity-100 underline">
-          Privacy / Confidentialité
-        </Link>
+        <Link href="privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>
       </div>
 
       <MobileBottomSheet business={selectedBusiness}
