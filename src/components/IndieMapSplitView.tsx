@@ -258,7 +258,7 @@ function FilterBar({
   onCategoryChange: (c: string | "ALL") => void;
 }) {
   const rowClass =
-    "flex items-center gap-2 px-6 py-2 overflow-x-auto whitespace-nowrap";
+    "flex items-center gap-2 px-0 py-2 overflow-x-auto overflow-y-visible whitespace-nowrap";
 
   return (
     <div
@@ -268,8 +268,8 @@ function FilterBar({
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          scrollPaddingLeft: 24,
-          scrollPaddingRight: 24,
+          scrollPaddingLeft: 0,
+          scrollPaddingRight: 0,
         } as React.CSSProperties & { msOverflowStyle?: "none" | "auto" | "scrollbar" }
       )}>
       <FilterPill
@@ -823,8 +823,8 @@ React.useEffect(() => {
       </div>
       {!heroOpen && (
 
-            <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none flex justify-center">
-        <div className="pointer-events-auto w-[calc(100%-2rem)] max-w-[520px] overflow-visible">
+            <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none">
+        <div className="pointer-events-auto w-screen overflow-visible">
           <FilterBar categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory} />

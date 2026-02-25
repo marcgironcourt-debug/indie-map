@@ -1,15 +1,16 @@
 import React from "react";
-import {setRequestLocale} from "next-intl/server";
-import {locales, defaultLocale} from "../../../i18n";
+import { setRequestLocale } from "next-intl/server";
+import { locales, defaultLocale } from "../../../i18n";
+import MobileMenu from "../../components/MobileMenu";
 
 export default async function LocaleLayout({
   children,
   params
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }) {
-  const {locale} = await params;
+  const { locale } = await params;
 
   const candidate = locale ?? defaultLocale;
   const finalLocale = (locales as readonly string[]).includes(candidate)
@@ -18,5 +19,10 @@ export default async function LocaleLayout({
 
   setRequestLocale(finalLocale);
 
-  return <>{children}</>;
+  return (
+    <div className="relative">
+      <MobileMenu locale={finalLocale} />
+      {children}
+    </div>
+  );
 }
