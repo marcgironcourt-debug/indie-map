@@ -32,6 +32,7 @@ type Kind =
   | "atelier"
   | "atelier"
   | "microbrasserie"
+  | "alternatif"
   | "ferme"
   | "marche"
   | "other";
@@ -79,6 +80,7 @@ function normalizeType(t?: string | null): Kind {
     v.includes("public market")
   ) return "marche";
   if (v.includes("ferme") || v.includes("farm")) return "ferme";
+  if (v.includes("alternatif") || v.includes("alternative")) return "alternatif";
   if (v.includes("boutique locale") || v.includes("boutique")) return "boutique";
   return "other";
 }
@@ -442,9 +444,10 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     librairie: "#3B82F6",
     restaurant: cssVar("--restaurant", "#ef4444"),
     boutique: "#000000",
-    atelier: "#6B7280",
+    atelier: "#1E3A8A",
     ferme: "#F6FF00",
     microbrasserie: cssVar("--micro", "#f59e0b"),
+    alternatif: "#00F5FF",
     other: "#8C5A3C",
   };
 
@@ -1188,8 +1191,9 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
       librairie: "#3B82F6",
       restaurant: cssHslVar("--restaurant", "#ef4444"),
       boutique: "#000000",
-      atelier: "#6B7280",
+      atelier: "#1E3A8A",
       microbrasserie: cssHslVar("--micro", "#f59e0b"),
+      alternatif: "#00F5FF",
       ferme: "#F6FF00",
       other: "#8C5A3C",
     } as Record<Kind, string>;
@@ -1198,7 +1202,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   async function ensureImages(map: maplibregl.Map) {
     const stroke = "#FDF7F2";
     const pal = palette();
-    const kinds: Kind[] = ["cafe","epicerie","marche","friperie","librairie","restaurant","boutique","atelier","ferme","microbrasserie","other"];
+    const kinds: Kind[] = ["cafe","epicerie","marche","friperie","librairie","restaurant","boutique","atelier","ferme","microbrasserie","alternatif","other"];
 
     const loadOne = (uri: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {

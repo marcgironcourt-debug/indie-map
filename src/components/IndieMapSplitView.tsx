@@ -131,8 +131,8 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
   if (key.includes("atelier")) {
     return active
-      ? "bg-[#6B7280] text-white"
-      : "bg-[#5C6E3B]/85 text-[#6B7280] border border-[#6B7280]/60";
+      ? "bg-[#1E3A8A] text-white"
+      : "bg-[#5C6E3B]/85 text-[#1E3A8A] border border-[#1E3A8A]/60";
   }
   if (key.includes("café") || key.includes("cafe")) {
     return active
@@ -206,6 +206,12 @@ function getCategoryStyle(cat: string, active: boolean): string {
       ? "bg-[hsl(var(--poi))] text-white"
       : "bg-[#5C6E3B]/85 text-[hsl(var(--poi))] border border-[hsl(var(--poi))]/60";
   }
+  if (key.includes("lieu alternatif") || key.includes("lieu de vie")) {
+    return active
+      ? "bg-[#00F5FF] text-black"
+      : "bg-[#5C6E3B]/85 text-[#00F5FF] border border-[#00F5FF]/60";
+  }
+
 
   if (key.includes("marché") || key.includes("marche") || key.includes("market")) {
     return active
@@ -710,6 +716,7 @@ React.useEffect(() => {
 
   if (!categories.includes("Ferme")) categories.push("Ferme");
   if (!categories.includes("Marché")) categories.push("Marché");
+  if (!categories.includes("Lieu alternatif")) categories.push("Lieu alternatif");
   categories = Array.from(new Set(categories));
 
   const filtered = source.filter((b) => {
@@ -752,6 +759,10 @@ React.useEffect(() => {
         k.includes("cuisine du marche") ||
         k.includes("restaurant")
       );
+    }
+
+    if (category === "Lieu alternatif") {
+      return k.includes("alternatif") || k.includes("alternative");
     }
 
     if (category === "Marché") {
