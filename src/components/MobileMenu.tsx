@@ -206,9 +206,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous via le site officiel.
                     </p>
 
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Contact</h2>
                     <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
-                      Visiter indie-map.com
+                      Contact
                     </a>
                   </>
                 ) : (
@@ -234,9 +233,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       Partnership is about building something durable: a useful, ethical, and long-term credible product. If you want to join Indie Map, please reach out via the official website.
                     </p>
 
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Contact</h2>
                     <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
-                      Visit indie-map.com
+                      Contact
                     </a>
                   </>
                 )
@@ -255,9 +253,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       <li>Suggérer une amélioration produit (UX, lisibilité, performance, accessibilité).</li>
                     </ul>
 
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Envoyer une contribution</h2>
                     <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
-                      Ouvrir indie-map.com
+                      Contribuer
                     </a>
                   </>
                 ) : (
@@ -276,7 +273,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
                     <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Send a contribution</h2>
                     <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
-                      Open indie-map.com
+                      Contribuer
                     </a>
                   </>
                 )
