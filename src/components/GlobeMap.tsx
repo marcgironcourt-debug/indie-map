@@ -644,11 +644,11 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; padding:0; border-radius:0; display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:rgba(245,245,232,.92); font-size:20px; line-height:28px; cursor:pointer; box-shadow:none;\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-4px);'>×</span></button>";
   return (
-    "<div style=\"position:relative; max-width:320px; min-height:240px; padding:14px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
+    "<div style=\"position:relative; width:min(420px, calc(100vw - 40px)); max-width:420px; padding:16px 16px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:15px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
         escapeHtml(name || "Lieu") +
       "</div>" +
-      "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:13px;line-height:1.45;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" +
+      "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:15px;line-height:1.6;max-height:38vh;overflow:auto;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" +
        badgesHtml +
        "<div style=\"margin-top:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:12.5px; line-height:1.35; color:" + textColor + ";\" >" +
          escapeHtml(sentence) +
@@ -1572,8 +1572,8 @@ map.on("mouseenter", LAYER_ID, () => {
                 if (r.top < margin) extra -= (margin - r.top);
                 if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
                 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-                const base = 160;
-                const oy = clamp(base + extra, 80, 280);
+                const base = 190;
+                const oy = clamp(base + extra, 90, 320);
                 try {
                   map.easeTo({ center: [Number(lng), Number(lat)], zoom: map.getZoom(), duration: 220, offset: [0, oy], essential: true });
                 } catch {}
@@ -2310,7 +2310,7 @@ class GeolocateControl_ML {
       <button type="button" aria-label="Me localiser"
         style="
           height:33px;width:33px;border-radius:16px;
-          background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+          background:#262626;border:1px solid #404040;
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12);
           cursor:pointer;
@@ -2920,8 +2920,8 @@ mapRef.current = map;
                         if (r.top < margin) extra -= (margin - r.top);
                         if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
                         const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-                        const base = 160;
-                        const oy = clamp(base + extra, 80, 280);
+                        const base = 190;
+                        const oy = clamp(base + extra, 90, 320);
                         const lng0 = Number((st as any).lng);
                         const lat0 = Number((st as any).lat);
                         try {

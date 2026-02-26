@@ -111,7 +111,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
     <>
       {canShowBar ? (
         <div id="im-bottom-bar" className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-2">
-          <div className={"w-full bg-white/16 backdrop-blur-xl border border-white/30 shadow-xl px-2 py-2 " + (panel ? "rounded-b-3xl rounded-t-[0px]" : "rounded-3xl")}>
+          <div className={"w-full bg-neutral-800 border border-neutral-700 shadow-xl px-2 py-2 " + (panel ? "rounded-b-3xl rounded-t-[0px]" : "rounded-3xl")}>
             <div className="grid grid-cols-3">
               <button
                 type="button"
@@ -163,7 +163,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
         <div className="fixed z-[2001] px-3 overflow-hidden" style={{ left: 0, right: 0, top: bounds.top, bottom: bounds.bottom }}>
           <div
             className={
-              "w-full h-full rounded-t-3xl rounded-b-[0px] bg-white/16 backdrop-blur-xl border border-white/30 border-t-0 overflow-hidden flex flex-col min-h-0 " +
+              "w-full h-full rounded-t-3xl rounded-b-[0px] bg-neutral-800 border border-neutral-700 border-t-0 overflow-hidden flex flex-col min-h-0 " +
               "transition-transform duration-200 ease-out " +
               (anim ? "translate-y-0" : "translate-y-full")
             }
