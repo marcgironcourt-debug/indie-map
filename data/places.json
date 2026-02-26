@@ -1,6 +1,6 @@
 [
   {
-    "id": "cmiae0q6p00009krf6p4g84dr",
+    "id": "26e34454-6165-401e-9763-c9f23afc605b",
     "name": "Épicerie LOCO Castelnau",
     "city": "Montréal",
     "address": "337 Rue Castelnau E, Montréal, QC H2R 1P8",
@@ -10,7 +10,7 @@
     "lng": -73.617971,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 386 9887",
     "panoramaImage": "/places/loco-verdun-panorama.jpg",
@@ -24,7 +24,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00019krf7u62iayb",
+    "id": "044b4878-9f8c-4c96-8adc-ab1b708753b1",
     "name": "Épicerie LOCO Verdun",
     "city": "Verdun",
     "address": "4437 Rue Wellington, Verdun, QC H4G 1P6",
@@ -34,7 +34,7 @@
     "lng": -73.5676139,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 (438) 476-4794",
     "panoramaImage": "/places/loco-verdun-panorama.jpg",
@@ -48,7 +48,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00029krffz2oa9rb",
+    "id": "937fa123-c7b1-49b0-bc8e-e05d6c2f8d73",
     "name": "Épicerie LOCO Plateau",
     "city": "Montréal",
     "address": "368 Av du Mont-Royal E, Montréal, QC H2T 1P9",
@@ -58,7 +58,7 @@
     "lng": -73.583052,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 375 4380",
     "panoramaImage": "/places/loco-verdun-panorama.jpg",
@@ -72,7 +72,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00039krfhpa5gugd",
+    "id": "805ff6f8-c236-4805-9299-fda0eec13c4f",
     "name": "Épicerie LOCO Villeray",
     "city": "Montréal",
     "address": "422 Rue Jarry E, Montréal, QC H2P 1V3",
@@ -82,7 +82,7 @@
     "lng": -73.628303,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 386 7345",
     "panoramaImage": "/places/loco-verdun-panorama.jpg",
@@ -96,7 +96,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00049krfr7fkeo9q",
+    "id": "984973db-f0b7-47c0-a8a7-b22dfb2121da",
     "name": "Méga Vrac – Mont-Royal",
     "city": "Montréal",
     "address": "1951 Avenue du Mont-Royal Est, Montréal, QC H2H 1J5",
@@ -106,7 +106,7 @@
     "lng": -73.573445,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 419 1220",
     "panoramaImage": "/places/megavrac-panorama.jpg",
@@ -120,7 +120,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00059krfrt785krc",
+    "id": "76d94f2a-6e68-483a-b1d8-5632ba763d9d",
     "name": "Méga Vrac – Masson",
     "city": "Montréal",
     "address": "3101 Rue Masson, Montréal, QC H1Y 1W1",
@@ -130,7 +130,7 @@
     "lng": -73.5743211,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 596 6999",
     "panoramaImage": "/places/megavrac-panorama.jpg",
@@ -144,7 +144,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00069krfchmxy0kl",
+    "id": "3f7270cc-1cd7-4c08-9f49-94a0b3c3238f",
     "name": "Méga Vrac – Beaubien",
     "city": "Montréal",
     "address": "2109 Rue Beaubien Est, Montréal, QC H2G 1M5",
@@ -154,7 +154,7 @@
     "lng": -73.594547,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 303 0393",
     "panoramaImage": "/places/megavrac-panorama.jpg",
@@ -168,7 +168,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00079krfbmfilyzg",
+    "id": "1b084561-e3e3-4f71-8b51-88593389ee97",
     "name": "Méga Vrac – Villeray",
     "city": "Montréal",
     "address": "421 Rue Villeray Est, Montréal, QC H2R 1H2",
@@ -178,7 +178,7 @@
     "lng": -73.622908,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 419 2223",
     "panoramaImage": "/places/megavrac-panorama.jpg",
@@ -192,7 +192,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00089krfpw5fwgqr",
+    "id": "7e201791-baa8-4163-beb8-daa78bd20796",
     "name": "Méga Vrac – Hochelaga",
     "city": "Montréal",
     "address": "3562 Rue Ontario Est, Montréal, QC H1W 1R5",
@@ -202,7 +202,7 @@
     "lng": -73.544892,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 524 1320",
     "panoramaImage": "/places/megavrac-panorama.jpg",
@@ -216,7 +216,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p00099krfky88gv7n",
+    "id": "f4cdbe2b-b690-4abc-aad9-bb51bfc9fc0d",
     "name": "Belle et Rebelle",
     "city": "Montréal",
     "address": "6583A Rue St-Hubert, Montréal, QC H2S 2M5",
@@ -226,7 +226,7 @@
     "lng": -73.604664,
     "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-02T15:14:25.435Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 315 4903",
     "panoramaImage": "/panorama/belle.png",
@@ -240,7 +240,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p000a9krf03yej077",
+    "id": "38f63c36-b036-4e84-8ce7-5c97704ea801",
     "name": "atelier b",
     "city": "Montréal",
     "address": "5758 Boulevard St-Laurent, Montréal, QC H2T 1S8",
@@ -250,7 +250,7 @@
     "lng": -73.6015982,
     "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-02T15:14:25.435Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 769 6094",
     "miniText": "Marque montréalaise fondée en 2009 par Anne-Marie et Catherine, atelier b crée des vêtements durables et minimalistes pour femme, homme et enfant, fabriqués localement à partir de fibres naturelles. Atelier b est la première marque au Canada à avoir mis en place une production manufacturière zéro déchet.",
@@ -264,7 +264,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6p000b9krfcp854yrv",
+    "id": "d1c3dfa9-38ad-4edc-a6ae-ac8cb1644ed9",
     "name": "Cokluch",
     "city": "Montréal",
     "address": "410 Rue Villeray, Montréal, QC H2R 1H3",
@@ -274,7 +274,7 @@
     "lng": -73.6226323,
     "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-02T15:14:25.435Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 273 5700",
     "panoramaImage": "/panorama/cokluch.png",
@@ -288,7 +288,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000e9krfypgs7l2p",
+    "id": "06347991-7ca2-4d5c-be90-73635c041eca",
     "name": "Café Dei Campi",
     "city": "Montréal",
     "address": "6201 Rue Chabot, Montréal, QC H2G 2T3",
@@ -298,7 +298,7 @@
     "lng": -73.5924071,
     "category": "Café / brunch",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 563 0649",
     "panoramaImage": "/panorama/cafedei.png",
@@ -312,7 +312,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000f9krfk8iso7te",
+    "id": "126f9a92-362b-410a-be29-9008b3b978c0",
     "name": "Espace FLO",
     "city": "Montréal",
     "address": "4306 Rue Sainte-Catherine E, Montréal, QC",
@@ -322,7 +322,7 @@
     "lng": -73.667559,
     "category": "Boutique",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 (514) 379-6160",
     "panoramaImage": "/places/espace-flo-panorama.jpg",
@@ -336,7 +336,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000h9krfv501b91o",
+    "id": "ade080f3-2fc1-4db9-a800-371863a24eb8",
     "name": "Boutique Boréale",
     "city": "Montréal",
     "address": "4 Rue Saint-Paul E, Montréal, QC H2Y 1G1",
@@ -346,7 +346,7 @@
     "lng": -73.553581,
     "category": "Boutique",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 903 1984",
     "panoramaImage": "/panorama/boreale.jpg",
@@ -360,7 +360,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000i9krf565vd7zb",
+    "id": "4649dcb9-e05e-43d7-a9d0-d6e522a51afb",
     "name": "Articho",
     "city": "Montréal",
     "address": "300 Rue Villeray, Montréal, QC H2R 1G7",
@@ -370,7 +370,7 @@
     "lng": -73.6235742,
     "category": "Boutique",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 508 5885",
     "panoramaImage": "/panorama/articho.png",
@@ -384,7 +384,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000k9krfiengxigy",
+    "id": "535b004f-220f-4487-b747-0f592f835b22",
     "name": "Arloca",
     "city": "Montréal",
     "address": "6572 rue St-Hubert, Montréal, QC H2S 2M3",
@@ -394,7 +394,7 @@
     "lng": -73.6044411,
     "category": "Boutique",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 379 6527",
     "panoramaImage": "/panorama/arloca.png",
@@ -408,7 +408,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000l9krfs1d5021v",
+    "id": "52b04a39-b041-4d86-9035-764a5fcebe42",
     "name": "L’Empire de l’échange – Mile End",
     "city": "Montréal",
     "address": "5225 Boulevard Saint-Laurent, Montréal, QC H2T 1S4",
@@ -418,7 +418,7 @@
     "lng": -73.5950112,
     "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-02T15:14:25.435Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 903 8385",
     "panoramaImage": "/panorama/empire-echange-mile-end.jpg",
@@ -432,7 +432,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000m9krfzplt8e84",
+    "id": "4cf315d1-2a14-4bd0-9a36-cf86e9849ec3",
     "name": "Racines boréales",
     "city": "Montréal",
     "address": "4317 Rue Ontario E, Montréal, QC H1V 1K5",
@@ -442,7 +442,7 @@
     "lng": -73.540015,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 944 6451",
     "panoramaImage": "/places/racines-boreales-panorama.png",
@@ -456,7 +456,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000n9krfhk6pasri",
+    "id": "a7b753af-e220-4e64-8363-2eb4450ce100",
     "name": "Librairie L'Échange",
     "city": "Montréal",
     "address": "713 Avenue du Mont-Royal E, Montréal, QC H2J 1W7",
@@ -466,7 +466,7 @@
     "lng": -73.581859,
     "category": "Librairie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 523 6389",
     "panoramaImage": "/panoramas/librairie.jpg",
@@ -480,7 +480,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000p9krf9p9vq1mm",
+    "id": "d7306494-6998-497b-8993-c73f7dd518d7",
     "name": "Jennifer Glasgow Design",
     "city": "Montréal",
     "address": "5145 Boulevard Saint-Laurent, Montréal, QC",
@@ -490,7 +490,7 @@
     "lng": -73.5936195,
     "category": "Mode",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-02T15:14:25.435Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 271 2129",
     "panoramaImage": "/panorama/jennifer-glasgow-design.jpg",
@@ -504,7 +504,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000q9krfj5s4bxpt",
+    "id": "88aa5e1b-9cd0-4aa4-b7ba-c63326979a01",
     "name": "Restaurant Toqué!",
     "city": "Montréal",
     "address": "900 Place Jean-Paul-Riopelle, Montréal, QC H2Z 2B2",
@@ -514,7 +514,7 @@
     "lng": -73.561123,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 499 2084",
     "miniText": "Table gastronomique montréalaise de référence, fondée en 1993 par le chef Normand Laprise et Christine Lamarche. Il met en valeur des produits locaux et saisonniers du terroir québécois dans une cuisine inventive et raffinée. Situé au cœur du Quartier international de Montréal, il offre une expérience culinaire de haute qualité.",
@@ -528,7 +528,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000r9krffi0dbbag",
+    "id": "57ce11b8-71c2-4724-8f66-22012a9729d7",
     "name": "Hélicoptère",
     "city": "Montréal",
     "address": "4255 Rue Ontario E, Montréal, QC H1V 1K4",
@@ -538,7 +538,7 @@
     "lng": -73.540218,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 543 4255",
     "panoramaImage": "/panoramas/helicoptere.webp",
@@ -552,7 +552,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000s9krfrx86qhm9",
+    "id": "ecd4b169-3af0-4a59-b26c-ace13dc30904",
     "name": "Panacée",
     "city": "Montréal",
     "address": "1701 Rue Atateken, Montréal, QC H2L 3L4",
@@ -562,7 +562,7 @@
     "lng": -73.5604881,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 379 1701",
     "panoramaImage": "/places/panacee-panorama.png",
@@ -576,7 +576,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000t9krfei1reig1",
+    "id": "a2ee0a8b-f581-421e-87b5-c40f423a1f6b",
     "name": "Les Mômes",
     "city": "Montréal",
     "address": "586 Rue Villeray, Montréal, QC H2R 1H6",
@@ -586,7 +586,7 @@
     "lng": -73.6219743,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514-276-4606",
     "panoramaImage": "/panoramas/momes.jpg",
@@ -600,7 +600,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000u9krfk5qkyp82",
+    "id": "3bb3e5d7-fe7f-4f43-ab5c-69c215670c22",
     "name": "O’Thym",
     "city": "Montréal",
     "address": "1257 Rue Atateken, Montréal, QC H2L 3K9",
@@ -610,7 +610,7 @@
     "lng": -73.5559925,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 525 3443",
     "panoramaImage": "/panorama/Othym.png",
@@ -624,7 +624,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000v9krfsr2obp3i",
+    "id": "77d339c7-93b3-454d-b06c-fb497f95bf7d",
     "name": "Caribou Gourmand",
     "city": "Montréal",
     "address": "5308 Boulevard Saint-Laurent, Montréal, QC H2T 1S1",
@@ -634,7 +634,7 @@
     "lng": -73.5963436,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 387 6677",
     "panoramaImage": "/panoramas/caribou.jpg",
@@ -648,7 +648,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000w9krfw3ot5wb6",
+    "id": "3886e618-cac0-435d-82a7-f86f946214bf",
     "name": "Rose Ross",
     "city": "Montréal",
     "address": "3017 Rue Masson, Montréal, QC H1Y 1X7",
@@ -658,7 +658,7 @@
     "lng": -73.5745686,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 379 1900",
     "panoramaImage": "/panoramas/rose.jpg",
@@ -672,7 +672,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000x9krf685qpmfx",
+    "id": "094c1e92-74f8-4724-8060-80a480fab414",
     "name": "Hof Kelsten",
     "city": "Montréal",
     "address": "4524 Boulevard Saint-Laurent, Montréal, QC H2T 1R4",
@@ -682,7 +682,7 @@
     "lng": -73.5870403,
     "category": "Boulangerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 649 7991",
     "panoramaImage": "/panoramas/hof.png",
@@ -696,7 +696,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q000y9krfwxzap6xl",
+    "id": "a8a54561-174d-47d9-8a6c-71f510587f5a",
     "name": "Le Pain dans les Voiles",
     "city": "Montréal",
     "address": "357 Rue de Castelnau E, Montréal, QC H2R 1R1",
@@ -706,7 +706,7 @@
     "lng": -73.617753,
     "category": "Boulangerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 270 8388",
     "panoramaImage": "/panoramas/pain.png",
@@ -720,7 +720,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q00129krfhghyvr7x",
+    "id": "355ff714-7a6a-470e-b223-98e22da67d07",
     "name": "Vices & Versa",
     "city": "Montréal",
     "address": "6631 Boulevard Saint-Laurent, Montréal, QC",
@@ -730,7 +730,7 @@
     "lng": -73.6105565,
     "category": "Brasserie / bar / pub",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 272 2498",
     "panoramaImage": "/panoramas/vices.jpg",
@@ -744,7 +744,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q00139krfnjy9vqko",
+    "id": "4e6acd55-18ad-4eee-8c8e-0105e653edd7",
     "name": "Romarin - épicerie zéro déchet",
     "city": "Montréal",
     "address": "5251 Boulevard Saint-Laurent, Montréal, QC H2T 1S4",
@@ -754,7 +754,7 @@
     "lng": -73.5953896,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 495 8204",
     "panoramaImage": "/places/romarin-panorama.png",
@@ -768,7 +768,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q00169krfgsew8ceg",
+    "id": "4ae033ca-472e-466a-aae6-68625798b222",
     "name": "La Réserve Naturelle",
     "city": "Montréal",
     "address": "5854 Rue Saint-Hubert, Montréal, QC H2S 2L7",
@@ -778,7 +778,7 @@
     "lng": -73.5973982,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514-543-0955",
     "panoramaImage": "/panorama/reserve.jpg",
@@ -792,7 +792,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q00189krfwwiht39i",
+    "id": "b1c62e1b-b775-4059-8b34-c99e0de09fa3",
     "name": "Café des Habitudes",
     "city": "Montréal",
     "address": "1104 Rue Saint-Zotique Est, Montréal, QC H2S 2H1",
@@ -802,7 +802,7 @@
     "lng": -73.603176,
     "category": "Café / brunch",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438-936-0959",
     "panoramaImage": "/panorama/cafe.jpg",
@@ -816,7 +816,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q001a9krf1ef176j0",
+    "id": "cdb17baf-8d6b-4b38-9a44-90ab8906b3cd",
     "name": "Super Condiments",
     "city": "Montréal",
     "address": "1311 Avenue Van Horne, Outremont, QC H2V 1K7",
@@ -826,7 +826,7 @@
     "lng": -73.6145031,
     "category": "Café / brunch",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 495 4454",
     "panoramaImage": "/panorama/super.png",
@@ -840,7 +840,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q001c9krfssksv65b",
+    "id": "5d5aa478-8770-4ff9-8037-2f43ab172a09",
     "name": "Café Bloom",
     "city": "Montréal",
     "address": "1940 Rue du Centre, Montréal, QC H3K 1J2",
@@ -850,7 +850,7 @@
     "lng": -73.5628779,
     "category": "Café / brunch",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 508 2313",
     "miniText": "Café-brunch convivial de Pointe-Saint-Charles, proposant cafés et plats dans une ambiance lumineuse et détendue. Les ingrédients sont saisonniers, locaux, biologiques ou issus de fermes et élevages attentionnés. Tout ce qui est servi est fait maison.",
@@ -864,7 +864,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q001d9krf7sb1exyi",
+    "id": "b69b6a12-92da-4a63-bf1c-1cfdefdd4fb0",
     "name": "Candide",
     "city": "Montréal",
     "address": "551 Rue Saint-Martin, Montréal, QC H3J 2L6",
@@ -875,7 +875,7 @@
     "miniText": "Candide propose une expérience gastronomique intime à Montréal, autour d’un menu dégustation saisonnier conçu avec des produits locaux. Une cuisine précise et élégante, dans une ambiance chaleureuse.",
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 (514) 447-2717",
     "panoramaImage": "/places/candide-panorama.png",
@@ -888,7 +888,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q001e9krfxnxxeb3h",
+    "id": "90557c74-7a5b-4f2c-9922-81b6ca6eba31",
     "name": "BreWskey Taproom",
     "city": "Montréal",
     "address": "385 Rue de la Commune Est, Montréal, QC H2Y 1H2",
@@ -898,7 +898,7 @@
     "lng": -73.551684,
     "category": "Brasserie / bar / pub",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 507 2739",
     "panoramaImage": "/panorama/brewskey.jpg",
@@ -912,7 +912,7 @@
     "country": "CA"
   },
   {
-    "id": "cmiae0q6q001g9krfglq8ad3s",
+    "id": "898c3a73-c3e8-465e-8e64-b56462a90090",
     "name": "Wolf & Workman",
     "city": "Montréal",
     "address": "139 Rue Saint-Paul Ouest, Montréal, QC H2Y 1Z3",
@@ -922,7 +922,7 @@
     "lng": -73.5549067,
     "category": "Brasserie / bar / pub",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-01-29T19:23:30.236Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 737 1787",
     "panoramaImage": "/panorama/wolf.jpg",
@@ -960,7 +960,7 @@
     "country": "FR"
   },
   {
-    "id": "cm9vzwwqwhznztzgjp",
+    "id": "fb068653-6982-4436-84c2-c5c36503f84c",
     "name": "Le Mousso",
     "city": "Montréal",
     "region": "QC",
@@ -977,7 +977,7 @@
     "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 18h00-22h00\nVendredi 18h00-22h00\nSamedi 18h00-22h00\nDimanche Fermé",
     "timeZone": "America/Toronto",
     "createdAt": "2026-01-29T19:12:16.260Z",
-    "updatedAt": "2026-01-29T19:58:15.306Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "tags": [
       "Restaurant"
     ],
@@ -986,7 +986,7 @@
     }
   },
   {
-    "id": "im_97d1ba5e93c993cfbc2815ca",
+    "id": "09bb1b6d-a7f3-4b40-8085-ead3c6061d50",
     "type": "business",
     "name": "Hoogan et Beaufort",
     "city": "Montréal",
@@ -997,7 +997,7 @@
     "lng": -73.563617902605,
     "category": "Restaurant",
     "createdAt": "2026-01-29T20:17:53.748Z",
-    "updatedAt": "2026-01-29T20:24:10.505Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 903-1233",
     "panoramaImage": "/places/hoogan-panorama.png",
@@ -1009,7 +1009,7 @@
     "country": "CA"
   },
   {
-    "id": "place-champ-libre-cantine-paris",
+    "id": "462b80ae-f32b-4c9f-9139-541481817b45",
     "name": "La cantine Champ Libre",
     "website": "https://www.champ-libre-cantine.fr",
     "lat": 48.869977020132,
@@ -1027,10 +1027,13 @@
     "city": "Paris",
     "timeZone": "Europe/Paris",
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Restaurant"
+    ]
   },
   {
-    "id": "place-frame-restaurant-bar-paris",
+    "id": "4a2c9194-13bc-414a-977a-9f44c388f5c6",
     "name": "Frame Brasserie",
     "website": "https://www.framebrasserie.fr",
     "lat": 48.855867008146,
@@ -1048,10 +1051,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Restaurant"
+    ]
   },
   {
-    "id": "place-la-recolte-batignolles-paris",
+    "id": "05c0dd83-1520-4924-9abc-b53f44298fc0",
     "name": "La Récolte – Batignolles",
     "website": "https://www.la-recolte.net",
     "lat": 48.8833476,
@@ -1069,10 +1075,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Épicerie"
+    ]
   },
   {
-    "id": "place-la-recolte-beaubourg-paris",
+    "id": "8a3b62c8-036b-45bf-90a4-4adaa1cb1947",
     "name": "La Récolte – Beaubourg",
     "website": "https://www.la-recolte.net",
     "lat": 48.8625183,
@@ -1090,10 +1099,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Épicerie"
+    ]
   },
   {
-    "id": "place-la-recolte-chemin-vert-paris",
+    "id": "1549383f-dea5-4344-b0fd-d07b0a9d4aab",
     "name": "La Récolte – Chemin Vert",
     "website": "https://www.la-recolte.net",
     "lat": 48.8613711,
@@ -1111,10 +1123,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Épicerie"
+    ]
   },
   {
-    "id": "place-la-recolte-faidherbe-paris",
+    "id": "c1fbdc88-a386-40e0-a449-400b981fd356",
     "name": "La Récolte – Faidherbe",
     "website": "https://www.la-recolte.net",
     "lat": 48.851533,
@@ -1132,10 +1147,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Épicerie"
+    ]
   },
   {
-    "id": "place-la-recolte-chardon-lagache-paris",
+    "id": "257aaa3a-51d1-40b8-9748-fd4623290148",
     "name": "La Récolte – Chardon Lagache",
     "website": "https://www.la-recolte.net",
     "lat": 48.83986,
@@ -1153,10 +1171,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Épicerie"
+    ]
   },
   {
-    "id": "la-recyclerie-paris",
+    "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
     "name": "La Recyclerie",
     "website": "https://www.larecyclerie.com/",
     "lat": 48.897611,
@@ -1174,10 +1195,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Lieu de vie"
+    ]
   },
   {
-    "id": "le-moulin-a-cafe-paris",
+    "id": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
     "name": "Le Moulin à Café",
     "website": "https://www.moulin-cafe.org/",
     "lat": 48.833473999441,
@@ -1195,10 +1219,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Lieu de vie"
+    ]
   },
   {
-    "id": "bistro-les-artizans-paris",
+    "id": "88410024-3379-4eac-9826-6fdc74879e3a",
     "name": "Bistro Les Artizans",
     "website": "https://www.lesartizans.fr",
     "lat": 48.863771981031,
@@ -1216,7 +1243,10 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Restaurant"
+    ]
   },
   {
     "name": "La Cale - pub zéro déchet",
@@ -1227,7 +1257,7 @@
     "phone": "+15143600634",
     "category": "Brasserie / bar / pub",
     "openingHours": "Lundi 11h30-23h00\nMardi 11h30-23h00\nMercredi 11h30-01h30\nJeudi 11h30-00h00\nVendredi 11h30-01h30\nSamedi 11h30-01h30\nDimanche 11h30-23h00",
-    "id": "im-7e922710f58fdfdb",
+    "id": "7f4a7074-e157-489d-8a77-1316107fe43a",
     "city": "Montréal",
     "country": "CA",
     "timeZone": "America/Toronto",
@@ -1237,10 +1267,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Brasserie / bar / pub"
+    ]
   },
   {
-    "id": "place-67c7511b0cfd64c4",
+    "id": "55cfb751-0a0b-4df1-807c-47efe2fad5ef",
     "name": "Ferme & Cuisine Bika",
     "city": "Saint-Blaise-sur-Richelieu",
     "country": "CA",
@@ -1258,10 +1291,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Restaurant"
+    ]
   },
   {
-    "id": "place-80cbddc626a1d010",
+    "id": "33a06bac-b752-4cfe-afa7-54a426252bfc",
     "name": "Parcelles",
     "city": "Austin",
     "country": "CA",
@@ -1279,10 +1315,13 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Restaurant"
+    ]
   },
   {
-    "id": "place-c74a394dbe8c57bd",
+    "id": "c438fc63-d988-4126-8833-ba802d947784",
     "name": "FabBRICK",
     "city": "Paris",
     "country": "FR",
@@ -1300,7 +1339,10 @@
       "miniText": {}
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-23T14:43:11.178Z"
+    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "tags": [
+      "Atelier"
+    ]
   },
   {
     "name": "Darwin Eco-système",
@@ -1321,7 +1363,10 @@
     "translations": {
       "miniText": {}
     },
-    "country": "FR"
+    "country": "FR",
+    "tags": [
+      "Lieu de vie"
+    ]
   },
   {
     "name": "Kilogramme",
@@ -2167,7 +2212,7 @@
     "country": "FR"
   },
   {
-    "id": "la-brouette-epicerie-durable-lausanne",
+    "id": "81f220fc-2a2e-4511-ab65-01df9be47f31",
     "name": "La Brouette, Épicerie Durable",
     "city": "Lausanne",
     "address": "Av. d'Echallens 79, 1004 Lausanne, Suisse",
@@ -2184,14 +2229,14 @@
     "miniText": "Épicerie proposant des produits alimentaires bio, locaux et majoritairement en vrac. Le lieu privilégie les circuits courts, la transparence sur l’origine des produits et la réduction des emballages. L’épicerie fonctionne sous forme associative et encourage une consommation responsable, accessible et ancrée dans le territoire.",
     "panoramaImage": "/downloads/brou.webp",
     "createdAt": "2026-02-02T21:02:50.279Z",
-    "updatedAt": "2026-02-02T21:07:27.808Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "translations": {
       "miniText": {}
     },
     "country": "CH"
   },
   {
-    "id": "la-ferme-vaudoise-lausanne",
+    "id": "6d93f5cc-2c79-47d4-887c-533d3d7f5133",
     "name": "La Ferme Vaudoise",
     "city": "Lausanne",
     "address": "Pl. de la Palud 5, 1003 Lausanne, Suisse",
@@ -2208,7 +2253,7 @@
     "miniText": "Épicerie dédiée aux produits du terroir vaudois, La Ferme Vaudoise propose une sélection de produits alimentaires issus de producteurs du canton de Vaud. Le lieu met en avant les filières locales et la valorisation du savoir-faire agricole régional à travers une offre accessible en centre-ville.",
     "panoramaImage": "/downloads/vaud.jpg",
     "createdAt": "2026-02-02T21:17:23.461Z",
-    "updatedAt": "2026-02-02T21:19:47.211Z",
+    "updatedAt": "2026-02-26T21:33:10.415Z",
     "translations": {
       "miniText": {}
     },
@@ -5521,12 +5566,13 @@
     ],
     "miniText": "Ferme agricole engagée dans des pratiques régénératives visant à restaurer la biodiversité et la qualité des sols. Fellows Farm développe une production de céréales, fruits et légumes issue d’une agriculture attentive aux écosystèmes. Ferme faisant partie de la boulangerie E5 Bakehouse.",
     "createdAt": "2026-02-10T18:11:10.727Z",
-    "updatedAt": "2026-02-10T18:17:38.067Z",
+    "updatedAt": "2026-02-26T21:35:57.244Z",
     "panoramaImage": "/downloads/fe.webp",
     "translations": {
       "miniText": {}
     },
-    "country": "GB"
+    "country": "GB",
+    "openingHours": ""
   },
   {
     "id": "3f6bf5a2-5544-4537-bd82-3f1cf4904306",

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { locales, defaultLocale } from "../../../../../i18n";
+import { locales } from "../../../../../i18n";
 import { prisma } from "@/lib/prisma";
 
 function normStr(v: unknown, max = 500): string | null {
