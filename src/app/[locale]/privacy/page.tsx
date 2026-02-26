@@ -60,7 +60,7 @@ export default async function PrivacyPage({ params }: Props) {
 
           <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>5. Conservation des données</h2>
           <p>
-            Les événements d&amp;apos;usage sont conservés pour une durée limitée afin de produire des statistiques agrégées et d&amp;apos;améliorer l&amp;apos;application. La durée de conservation peut évoluer, mais restera raisonnable et proportionnée à ces finalités.
+            Les événements d’usage sont conservés pour une durée limitée afin de produire des statistiques agrégées et d’améliorer l’application. La durée de conservation peut évoluer, mais restera raisonnable et proportionnée à ces finalités.
           </p>
 
           <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>6. Contact</h2>

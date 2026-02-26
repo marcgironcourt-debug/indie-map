@@ -239,7 +239,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={
-        "im-chip px-3 py-1 text-[11px] font-medium transition " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
+        "im-chip px-4 py-[6px] text-[13px] min-h-[32px] rounded-full font-medium transition md:px-3 md:py-1 md:text-[11px] md:min-h-0 " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
       }
     >
       {label}
@@ -315,6 +315,17 @@ function MobileBottomSheet({
   const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
   const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
 
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const onModal = (e: Event) => {
+      const ce = e as CustomEvent<{ open?: boolean }>;
+      setModalOpen(Boolean(ce.detail?.open));
+    };
+    window.addEventListener("im:modal", onModal);
+    return () => window.removeEventListener("im:modal", onModal);
+  }, []);
+
   React.useEffect(() => {
   if (mode === "closed") {
     setAnimationState("closed");
@@ -385,7 +396,7 @@ function MobileBottomSheet({
             </span>
           </button>
 
-          <div className="flex-1 overflow-y-auto px-4 pb-4">
+          <div className={"flex-1 " + (modalOpen ? "overflow-hidden" : "overflow-y-auto") + " px-4 pb-4"}>
             <div className="flex items-center justify-between gap-3 mb-1.5">
               <h3 className={titleClass}>
                 {renderedBusiness.name}
@@ -841,7 +852,7 @@ const filtered = source.filter((b) => {
       {!heroOpen && (
 
             <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none">
-        <div className="pointer-events-auto w-screen overflow-visible">
+        <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
           <FilterBar categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory} />

@@ -1009,29 +1009,6 @@
     "country": "CA"
   },
   {
-    "id": "im_54700451df29f",
-    "type": "business",
-    "name": "Les Résistants",
-    "city": "Paris",
-    "address": "16 Rue du Château d'Eau, 75010 Paris, France",
-    "website": "https://www.lesresistants.fr/accueil/",
-    "openingHours": "Jeudi 12h00-14h00, 19h00-22h00\nVendredi 12h00-14h00, 19h00-22h00\nSamedi 12h00-14h00, 19h00-22h00\nDimanche 12h00-14h00, 19h00-22h00\nLundi 12h00-14h00, 19h00-22h00\nMardi 12h00-14h00, 19h00-22h00\nMercredi 12h00-14h00, 19h00-22h00",
-    "lat": 48.869988000426,
-    "lng": 2.36064903548,
-    "category": "Restaurant",
-    "createdAt": "2026-01-29T21:00:39.340Z",
-    "updatedAt": "2026-02-23T20:47:22.217Z",
-    "timeZone": "Europe/Paris",
-    "phone": "+33 1 77 32 77 61",
-    "panoramaImage": "/downloads/les ressitant.png",
-    "miniText": "Restaurant engagé mettant en avant une cuisine issue de l’agriculture paysanne et de circuits courts, en lien direct avec des producteurs respectant le vivant. Les Résistants défendent une alimentation juste, locale et de saison, où chaque ingrédient est choisi pour son origine, sa qualité et son impact écologique.",
-    "tags": [],
-    "translations": {
-      "miniText": {}
-    },
-    "country": "FR"
-  },
-  {
     "id": "place-champ-libre-cantine-paris",
     "name": "La cantine Champ Libre",
     "website": "https://www.champ-libre-cantine.fr",
@@ -2375,30 +2352,6 @@
     ],
     "createdAt": "2026-02-03T16:18:41.728Z",
     "updatedAt": "2026-02-03T16:20:56.710Z",
-    "panoramaImage": "/downloads/friend.jpg",
-    "translations": {
-      "miniText": {}
-    },
-    "country": "US"
-  },
-  {
-    "id": "d6d698df-30d0-42ce-a79c-0200ef62a818",
-    "name": "Friend of a Farmer",
-    "city": "New York",
-    "address": "68 W 71st St, New York, NY 10023, États-Unis",
-    "website": "https://www.friendofafarmer.com",
-    "lat": 40.7764247,
-    "lng": -73.9790521,
-    "category": "Restaurant",
-    "phone": "+12124772188",
-    "openingHours": "Lundi 09h00–21h15\nMardi 09h00–21h15\nMercredi 09h00–21h15\nJeudi 09h00–21h15\nVendredi 09h00–21h15\nSamedi 09h00–21h15\nDimanche 09h00–21h15",
-    "timeZone": "America/New_York",
-    "miniText": "Restaurant défendant une cuisine américaine inspirée du terroir, fondée sur l’utilisation d’ingrédients frais, de saison et issus de producteurs locaux. Friend of a Farmer met en avant une approche simple et authentique de la ferme à la table, avec des plats faits maison valorisant le travail agricole et les circuits courts.",
-    "tags": [
-      "Restaurant"
-    ],
-    "createdAt": "2026-02-03T16:18:41.728Z",
-    "updatedAt": "2026-02-03T16:20:56.712Z",
     "panoramaImage": "/downloads/friend.jpg",
     "translations": {
       "miniText": {}
@@ -4170,30 +4123,6 @@
     ],
     "createdAt": "2026-02-05T19:35:26.699Z",
     "updatedAt": "2026-02-12T20:16:34.877Z",
-    "panoramaImage": "/downloads/verde-market.jpg",
-    "translations": {
-      "miniText": {}
-    },
-    "country": "US"
-  },
-  {
-    "id": "f824ef8c-4e22-46c6-a75b-ad409e81fee4",
-    "name": "Verde Market",
-    "city": "Miami",
-    "address": "7304 SW 57th Ave, South Miami, FL 33143, États-Unis",
-    "website": "https://www.verdemarket.co/",
-    "lat": 25.703533983651,
-    "lng": -80.285495966806,
-    "category": "Épicerie",
-    "phone": "+1 786-647-1951",
-    "openingHours": "jeudi\t10h30–19h00\nvendredi\t10h30–19h00\nsamedi\t10h30–19h00\ndimanche\t10h30–18h00\nlundi\t10h30–19h00\nmardi\t10h30–19h00\nmercredi\t10h30–19h00",
-    "miniText": "Épicerie zéro déchet proposant des produits alimentaires locaux en vrac, des articles du quotidien et des produits durables. Verde Market encourage l’utilisation de contenants réutilisables et met en avant une consommation responsable, locale et à faible impact environnemental.",
-    "timeZone": "America/New_York",
-    "tags": [
-      "Épicerie"
-    ],
-    "createdAt": "2026-02-05T19:39:54.463Z",
-    "updatedAt": "2026-02-12T20:16:34.878Z",
     "panoramaImage": "/downloads/verde-market.jpg",
     "translations": {
       "miniText": {}
@@ -6662,27 +6591,6 @@
     "country": "DE"
   },
   {
-    "id": "e8876c96-e5f8-4223-8976-cb5de3fee217",
-    "name": "Jolesch",
-    "city": "Berlin",
-    "address": "Muskauer Str. 1, 10997 Berlin, Allemagne",
-    "website": "https://jolesch.de",
-    "lat": 52.500836498958996,
-    "lng": 13.434017793253407,
-    "category": "restaurant",
-    "phone": "+49 30 6123581",
-    "openingHours": "Vendredi 17h00-0h00\nSamedi 17h00-0h00\nDimanche 17h00-0h00\nLundi 17h00-0h00\nMardi 17h00-0h00\nMercredi 17h00-0h00\nJeudi 17h00-0h00",
-    "timeZone": "Europe/Berlin",
-    "createdAt": "2026-02-13T18:37:53.389Z",
-    "updatedAt": "2026-02-23T20:35:07.687Z",
-    "tags": [
-      "restaurant"
-    ],
-    "miniText": "Restaurant et vinothèque autrichienne à Berlin. Proposant des spécialités traditionnelles autrichiennes. L’établissement met en avant des ingrédients régionaux frais et une sélection de vins d’Autriche, tout en offrant des espaces pour événements privés et dégustations.",
-    "country": "DE",
-    "panoramaImage": "/downloads/jolesch.jpg"
-  },
-  {
     "id": "282567e9-02ca-4af7-a019-a7263d28ad9a",
     "name": "Michelberger",
     "city": "Berlin",
@@ -8489,27 +8397,6 @@
     "panoramaImage": "/downloads/punpunhk.png"
   },
   {
-    "id": "393a099e-b10d-4f2f-baa3-f73c4dd9b0b9",
-    "name": "Pun Pun Organic Farm",
-    "city": "Chiang Mai",
-    "country": "TH",
-    "address": "80 1 Ban Pao, Mae Taeng District, Chiang Mai 50150, Thaïlande",
-    "website": "https://punpunthailand.org",
-    "lat": 19.215080817925358,
-    "lng": 99.01228285092462,
-    "category": "Lieu alternatif",
-    "phone": "+66 81 470 1461",
-    "openingHours": "Lundi 9h30–16h00\nMardi Fermé\nMercredi 9h30–16h00\nJeudi 9h30–16h00\nVendredi 9h30–16h00\nSamedi 9h30–16h00\nDimanche 9h30–16h00",
-    "timeZone": "Asia/Bangkok",
-    "miniText": "Ferme biologique et centre de vie autonome près de Chiang Mai. Pun Pun pratique l’agriculture régénérative sans produits chimiques, conserve et multiplie des semences locales traditionnelles et organise des formations autour de la vie durable, de la construction naturelle et de la souveraineté alimentaire.",
-    "createdAt": "2026-02-17T19:41:46.003Z",
-    "updatedAt": "2026-02-23T21:14:58.305Z",
-    "tags": [
-      "Lieu alternatif"
-    ],
-    "panoramaImage": "/downloads/punpunhk.png"
-  },
-  {
     "id": "565e029e-393d-4eb1-b308-4e17c0b83539",
     "name": "Rai Ruen Rom",
     "city": "Chiang Rai",
@@ -9770,90 +9657,6 @@
     "country": "AU"
   },
   {
-    "id": "18a55ba6-38a6-42df-9af5-2cd9dcb6e20c",
-    "name": "Maloney’s Grocer Coogee",
-    "city": "Sydney",
-    "address": "214 Coogee Bay Rd, Coogee NSW 2034, Australia",
-    "website": "https://maloneysgrocer.com.au/",
-    "lat": -33.920641,
-    "lng": 151.256944,
-    "category": "Épicerie",
-    "phone": "+61 2 9665 3957",
-    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
-    "timeZone": "Australia/Sydney",
-    "createdAt": "2026-02-19T16:26:14.680Z",
-    "updatedAt": "2026-02-19T16:26:14.680Z",
-    "tags": [
-      "Épicerie"
-    ],
-    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg",
-    "country": "AU"
-  },
-  {
-    "id": "3c6bb0be-594e-4785-8896-b11271837b2b",
-    "name": "Maloney’s Grocer Woollahra",
-    "city": "Sydney",
-    "address": "68 Moncur St, Woollahra NSW 2025, Australia",
-    "website": "https://maloneysgrocer.com.au/",
-    "lat": -33.889545,
-    "lng": 151.242031,
-    "category": "Épicerie",
-    "phone": "+61 2 9328 6900",
-    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
-    "timeZone": "Australia/Sydney",
-    "createdAt": "2026-02-19T16:26:14.680Z",
-    "updatedAt": "2026-02-19T16:26:14.680Z",
-    "tags": [
-      "Épicerie"
-    ],
-    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg",
-    "country": "AU"
-  },
-  {
-    "id": "d2726252-1cad-457a-9bb4-4c4b0850d8ef",
-    "name": "Maloney’s Grocer Surry Hills",
-    "city": "Sydney",
-    "address": "Shop 4, 490 Crown St, Surry Hills NSW 2010, Australia",
-    "website": "https://maloneysgrocer.com.au/",
-    "lat": -33.88496,
-    "lng": 151.21269,
-    "category": "Épicerie",
-    "phone": "+61 2 9698 8600",
-    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
-    "timeZone": "Australia/Sydney",
-    "createdAt": "2026-02-19T16:26:14.680Z",
-    "updatedAt": "2026-02-19T16:26:14.680Z",
-    "tags": [
-      "Épicerie"
-    ],
-    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg",
-    "country": "AU"
-  },
-  {
-    "id": "01f1215f-caa1-4685-a5d3-deb9b4868ff8",
-    "name": "Maloney’s Grocer Rozelle",
-    "city": "Sydney",
-    "address": "731 Darling St, Rozelle NSW 2039, Australia",
-    "website": "https://maloneysgrocer.com.au/",
-    "lat": -33.861998,
-    "lng": 151.170233,
-    "category": "Épicerie",
-    "phone": "+61 2 9810 4140",
-    "openingHours": "Lundi 7h00-19h00\nMardi 7h00-19h00\nMercredi 7h00-19h00\nJeudi 7h00-19h00\nVendredi 7h00-19h00\nSamedi 7h00-19h00\nDimanche 7h00-19h00",
-    "timeZone": "Australia/Sydney",
-    "createdAt": "2026-02-19T16:26:14.680Z",
-    "updatedAt": "2026-02-19T16:26:14.680Z",
-    "tags": [
-      "Épicerie"
-    ],
-    "miniText": "Épicerie mettant en avant des produits frais, biologiques et artisanaux. Maloney’s Grocer sélectionne fruits et légumes de saison, produits locaux, épicerie fine et articles du quotidien avec une attention portée à la qualité, à l’origine des produits et au soutien des producteurs régionaux.",
-    "panoramaImage": "/downloads/maloneysgr.jpeg",
-    "country": "AU"
-  },
-  {
     "id": "2989e1ee-efe5-449d-8942-38094fa83431",
     "name": "Bondi Markets",
     "city": "Sydney",
@@ -9867,27 +9670,6 @@
     "timeZone": "Australia/Sydney",
     "createdAt": "2026-02-19T16:31:56.453Z",
     "updatedAt": "2026-02-23T21:19:15.599Z",
-    "tags": [
-      "Marché"
-    ],
-    "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": "/downloads/bondimaraus.png",
-    "country": "AU"
-  },
-  {
-    "id": "a30d2b44-bdf3-4f24-a1f3-ca5b4eea956c",
-    "name": "Bondi Markets",
-    "city": "Sydney",
-    "address": "Campbell Parade, Bondi Beach NSW 2026, Australia",
-    "website": "https://bondimarkets.com.au",
-    "lat": -33.888334674511974,
-    "lng": 151.2770537729779,
-    "category": "Marché",
-    "phone": "+61 402 045 990",
-    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 9h00-13h00\nDimanche 10h00-16h00",
-    "timeZone": "Australia/Sydney",
-    "createdAt": "2026-02-19T16:34:37.466Z",
-    "updatedAt": "2026-02-23T21:19:15.600Z",
     "tags": [
       "Marché"
     ],
