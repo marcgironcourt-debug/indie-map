@@ -116,8 +116,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
             <div className="grid grid-cols-3">
               <button
                 type="button"
-                onClick={() => openPanel("pros")}
-                className="flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white"
+                onClick={() => (panel === "pros" ? closePanel() : openPanel("pros"))}
+                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "pros" ? " bg-white/12" : "")}
                 aria-label="Ouvrir l’espace professionnel"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -126,26 +126,26 @@ export default function MobileMenu({ locale }: { locale: string }) {
                   <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
                   <path d="M9 14h6" />
                 </svg>
-                <span className="text-[11px] text-white/85">Espace pro</span>
+                <span className={"text-[11px] " + (panel === "pros" ? "text-white" : "text-white/85")}>Espace pro</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => openPanel("contrib")}
-                className="flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white"
+                onClick={() => (panel === "contrib" ? closePanel() : openPanel("contrib"))}
+                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "contrib" ? " bg-white/12" : "")}
                 aria-label="Ouvrir contribution"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14" />
                   <path d="M5 12h14" />
                 </svg>
-                <span className="text-[11px] text-white/85">Contribution</span>
+                <span className={"text-[11px] " + (panel === "contrib" ? "text-white" : "text-white/85")}>Contribution</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => openPanel("about")}
-                className="flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white"
+                onClick={() => (panel === "about" ? closePanel() : openPanel("about"))}
+                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "about" ? " bg-white/12" : "")}
                 aria-label="Ouvrir infos"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -153,7 +153,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                   <path d="M12 8h.01" />
                   <circle cx="12" cy="12" r="9" />
                 </svg>
-                <span className="text-[11px] text-white/85">Infos</span>
+                <span className={"text-[11px] " + (panel === "about" ? "text-white" : "text-white/85")}>Infos</span>
               </button>
             </div>
           </div>

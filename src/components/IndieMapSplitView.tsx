@@ -239,7 +239,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={
-        "im-chip px-4 py-[6px] text-[13px] min-h-[32px] !rounded-2xl font-medium transition md:px-3 md:py-1 md:text-[11px] md:min-h-0 " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
+        "im-chip px-4 py-[4px] text-[13px] min-h-[28px] !rounded-2xl font-medium transition md:px-3 md:py-1 md:text-[11px] md:min-h-0 " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
       }
     >
       {label}
