@@ -11,6 +11,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
   const isContrib = (pathname || "").endsWith("/contribution");
   const isAbout = (pathname || "").endsWith("/a-propos");
   const [open, setOpen] = useState(false);
+  const [heroOpen, setHeroOpen] = useState(false);
 
   const hrefs = useMemo(() => {
     const base = `/${locale}`;
@@ -44,9 +45,19 @@ export default function MobileMenu({ locale }: { locale: string }) {
     if (open) setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const onHero = (e: any) => {
+      const v = Boolean(e?.detail?.open);
+      setHeroOpen(v);
+      if (v) setOpen(false);
+    };
+    window.addEventListener("im:hero", onHero);
+    return () => window.removeEventListener("im:hero", onHero);
+  }, []);
+
   return (
     <>
-      {(!isPrivacy && !isPros && !isContrib && !isAbout) ? (<button
+      {(!heroOpen && !isPrivacy && !isPros && !isContrib && !isAbout) ? (<button
         type="button"
         aria-label="Menu"
         aria-expanded={open}
@@ -62,7 +73,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
       </button>
       ) : null}
 
-      {open && !isPrivacy && !isPros && !isContrib && !isAbout ? (
+      {open && !heroOpen && !isPrivacy && !isPros && !isContrib && !isAbout ? (
         <div className="fixed inset-0 z-[2000]">
           <button
             type="button"
