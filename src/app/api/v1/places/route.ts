@@ -19,11 +19,19 @@ export async function GET(req: Request) {
 
   try {
     const url = new URL(req.url);
-    const requested = (url.searchParams.get("lang") || "").toLowerCase();
 
-    const lang = (locales as readonly string[]).includes(requested)
-      ? requested
-      : defaultLocale;
+    const qLocale = (url.searchParams.get("locale") || "").toLowerCase();
+    const qLang = (url.searchParams.get("lang") || "").toLowerCase();
+    const requested = qLocale || qLang;
+
+    if (requested && !(locales as readonly string[]).includes(requested)) {
+      return NextResponse.json(
+        { error: "Invalid locale" },
+        { status: 400, headers: CACHE_HEADERS }
+      );
+    }
+
+    const lang = requested || defaultLocale;
 
     const filePath = path.join(process.cwd(), "data", "places.json");
     const raw = await fs.promises.readFile(filePath, "utf8");
