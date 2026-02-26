@@ -605,9 +605,8 @@ React.useEffect(() => {
       cancelled = true;
     };
   }, []);
-
-  const source = businesses.length ? businesses : DEMO;
-
+  const hasData = businesses.length > 0;
+  const source = hasData ? businesses : DEMO;
   const rawCategories = Array.from(
     new Set(
       source
@@ -695,6 +694,21 @@ React.useEffect(() => {
   const hasAtelier = rawCategories.some(isAtelier);
   const hasMarket = rawCategories.some(isMarket);
 
+  const stableCategories = [
+    "Restaurant",
+    "Lieu alternatif",
+    "Ferme",
+    "Marché",
+    "Épicerie",
+    "Café / brunch",
+    "Boulangerie",
+    "Librairie",
+    "Mode",
+    "Brasserie / bar / pub",
+    "Atelier",
+    "Boutique",
+    "Monument",
+  ];
   let categories = [
     ...rawCategories.filter(
       (t) =>
@@ -725,7 +739,10 @@ React.useEffect(() => {
     ...categories.filter((x) => !priority.includes(x)),
   ];
 
-  const filtered = source.filter((b) => {
+  
+
+  if (!hasData) categories = stableCategories;
+const filtered = source.filter((b) => {
     const k = (b.type || "").toLowerCase();
 
     if (category == null || category === "ALL") return true;
@@ -831,6 +848,45 @@ React.useEffect(() => {
         </div>
       </div>
       )}
+
+      {!heroOpen && (
+        <button
+          type="button"
+          aria-label="Me localiser"
+          onClick={() => {
+            try { window.dispatchEvent(new Event("im:geolocate")); } catch {}
+          }}
+          className="absolute right-4 bottom-24 z-[1500] pointer-events-auto"
+          style={{
+            height: 33,
+            width: 33,
+            borderRadius: "10px 4px 10px 4px",
+            background: "#5C6E3B",
+            border: "1px solid rgba(245,245,232,.18)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12)",
+            cursor: "pointer",
+          }}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            style={{ transform: "translate(-1px, -0.5px)" }}
+            stroke="white"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M22 2L11 13" />
+            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+        </button>
+      )}
+
 
       <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
         <Link href="privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>

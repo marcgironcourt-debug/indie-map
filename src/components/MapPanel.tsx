@@ -3,7 +3,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const ClientMap = dynamic(() => import("./GlobeMap"), { ssr: false });
+const ClientMap = dynamic(() => import("./GlobeMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full bg-neutral-200/40 dark:bg-neutral-800/40" />
+  ),
+});
 
 type Biz = {
   id: string;
@@ -31,35 +36,8 @@ export default function MapPanel(props: {
   const { items = [], selectedId, onSelect, darkMap } = props;
 
   const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
+    React.useEffect(() => {
     setMounted(true);
-  }, []);
-
-  React.useEffect(() => {
-    type IdleDeadline = {
-      readonly didTimeout: boolean;
-      timeRemaining: () => number;
-    };
-
-    type RequestIdleCallback = (
-      cb: (deadline: IdleDeadline) => void,
-      opts?: { timeout?: number }
-    ) => number;
-
-    const run = () => {
-      try {
-        void import("./GlobeMap");
-      } catch {}
-    };
-
-    const ric = (globalThis as unknown as { requestIdleCallback?: RequestIdleCallback }).requestIdleCallback;
-
-    if (typeof ric === "function") {
-      ric(() => run(), { timeout: 1200 });
-    } else {
-      setTimeout(run, 600);
-    }
   }, []);
 
   return (

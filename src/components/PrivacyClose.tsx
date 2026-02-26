@@ -11,7 +11,7 @@ export default function PrivacyClose({ locale }: { locale: string }) {
       onClick={() => {
         try {
           r.back();
-        } catch (e) {
+        } catch {
           r.push(`/${locale}`);
         }
       }}

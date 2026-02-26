@@ -40,14 +40,10 @@ export default function MobileMenu({ locale }: { locale: string }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-
   useEffect(() => {
-    if (open) setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    const onHero = (e: any) => {
-      const v = Boolean(e?.detail?.open);
+    const onHero = (e: Event) => {
+      const ce = e as CustomEvent<{ open?: boolean }>;
+      const v = Boolean(ce.detail?.open);
       setHeroOpen(v);
       if (v) setOpen(false);
     };
@@ -98,19 +94,19 @@ export default function MobileMenu({ locale }: { locale: string }) {
             </div>
 
             <nav className="px-2 pb-2 flex-1 overflow-y-auto">
-              <MenuLink href={hrefs.pros} >
+               <MenuLink href={hrefs.pros} onClick={() => setOpen(false)} >
                 Professionnels
               </MenuLink>
-              <MenuLink href={hrefs.contrib} >
+               <MenuLink href={hrefs.contrib} onClick={() => setOpen(false)} >
                 Contribution
               </MenuLink>
-              <MenuLink href={hrefs.about} >
+               <MenuLink href={hrefs.about} onClick={() => setOpen(false)} >
                 À propos
               </MenuLink>
             </nav>
 
             <div className="mt-auto px-5 pt-3 pb-6 text-[11px] text-white/60 bg-[#1f1f1f] ">
-  <Link href={hrefs.privacy} className="opacity-60 hover:opacity-100">
+  <Link href={hrefs.privacy} onClick={() => setOpen(false)} className="opacity-60 hover:opacity-100">
     Privacy / Confidentialité
   </Link>
 </div>
@@ -124,14 +120,17 @@ export default function MobileMenu({ locale }: { locale: string }) {
 function MenuLink({
   href,
   children,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }) {
   return (
     <Link
       href={href}
-            className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] border-b border-white/10 hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
+      onClick={onClick}
+      className="block rounded-2xl px-4 py-3 text-base text-[hsl(var(--brand))] border-b border-white/10 hover:bg-[hsl(var(--brand))]/10 active:bg-[hsl(var(--brand))]/20"
     >
       {children}
     </Link>

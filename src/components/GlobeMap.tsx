@@ -804,6 +804,17 @@ export default function GlobeMap({
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
 
+  React.useEffect(() => {
+    const fn = () => {
+      try {
+        const btn = geolocateElRef.current?.querySelector("button") as HTMLButtonElement | null;
+        if (btn) btn.click();
+      } catch {}
+    };
+    try { window.addEventListener("im:geolocate", fn); } catch {}
+    return () => { try { window.removeEventListener("im:geolocate", fn); } catch {} };
+  }, []);
+
   const SOURCE_ID = "indie-places";
   const LAYER_ID = "indie-places-pin";
 const GLOW_LAYER_ID = "indie-places-pin-glow";
@@ -2290,6 +2301,8 @@ class GeolocateControl_ML {
       }
     } catch {}
     const c = document.createElement("div");
+    c.style.display = "none";
+    c.style.pointerEvents = "none";
     c.style.marginRight = "12px";
     c.style.marginBottom = "92px";
     c.style.pointerEvents = "auto";
