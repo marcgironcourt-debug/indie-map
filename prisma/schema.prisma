@@ -40,3 +40,20 @@ model Event {
   category  String
   createdAt DateTime @default(now())
 }
+
+
+model Submission {
+  id           String   @id @default(uuid())
+  locale       String
+  name         String
+  address      String
+  openingHours String?
+  phone        String?
+  photoMime    String?
+  photoBase64  String?
+  ip           String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+  status     String   @default("pending")
+  reviewedAt DateTime?
+}
