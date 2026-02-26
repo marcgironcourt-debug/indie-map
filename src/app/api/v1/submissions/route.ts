@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { locales, defaultLocale } from "../../../../../i18n";
 import { prisma } from "@/lib/prisma";
 
 function normStr(v: unknown, max = 500): string | null {
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
     const name = normStr(fd.get("name"), 200);
     const address = normStr(fd.get("address"), 300);
 
-    if (!locale || (locale !== "fr" && locale !== "en")) {
+    if (!locale || !(locales as readonly string[]).includes(locale)) {
       return NextResponse.json({ ok: false }, { status: 400 });
     }
     if (!name || name.length < 2) {
