@@ -32,9 +32,9 @@ export function normalizePlace(x: unknown): unknown {
   const address = str(x.address);
   const website = str(x.website);
   const category = str(x.category);
-  const phone = optStr(x.phone);
-  const openingHours = optStr(x.openingHours);
-  const timeZone = str(x.timeZone);
+  const phone = str(x.phone);
+const openingHours = str(x.openingHours);
+const timeZone = str(x.timeZone);
   const createdAt = str(x.createdAt);
   const updatedAt = str(x.updatedAt);
   const miniText = optStr(x.miniText);
@@ -62,9 +62,9 @@ export function normalizePlace(x: unknown): unknown {
     createdAt,
     updatedAt,
     tags,
-      ...(phone ? { phone } : {}),
-    ...(openingHours ? { openingHours } : {}),
-    ...(miniText ? { miniText } : {}),
+    phone,
+    openingHours,
+...(miniText ? { miniText } : {}),
     ...(panoramaImage ? { panoramaImage } : {})
   };
 }

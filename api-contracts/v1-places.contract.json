@@ -1,0 +1,117 @@
+{
+  "api": "/api/v1/places",
+  "version": 1,
+  "keyCount": 17,
+  "keys": [
+    "address",
+    "category",
+    "city",
+    "country",
+    "createdAt",
+    "id",
+    "lat",
+    "lng",
+    "miniText",
+    "name",
+    "openingHours",
+    "panoramaImage",
+    "phone",
+    "tags",
+    "timeZone",
+    "updatedAt",
+    "website"
+  ],
+  "observedTypes": {
+    "address": {
+      "types": [
+        "string"
+      ]
+    },
+    "category": {
+      "types": [
+        "string"
+      ]
+    },
+    "city": {
+      "types": [
+        "string"
+      ]
+    },
+    "country": {
+      "types": [
+        "string"
+      ]
+    },
+    "createdAt": {
+      "types": [
+        "string"
+      ]
+    },
+    "id": {
+      "types": [
+        "string"
+      ]
+    },
+    "lat": {
+      "types": [
+        "number"
+      ]
+    },
+    "lng": {
+      "types": [
+        "number"
+      ]
+    },
+    "miniText": {
+      "types": [
+        "string"
+      ]
+    },
+    "name": {
+      "types": [
+        "string"
+      ]
+    },
+    "openingHours": {
+      "types": [
+        "string"
+      ]
+    },
+    "panoramaImage": {
+      "types": [
+        "string"
+      ]
+    },
+    "phone": {
+      "types": [
+        "string"
+      ]
+    },
+    "tags": {
+      "types": [
+        "array"
+      ]
+    },
+    "timeZone": {
+      "types": [
+        "string"
+      ]
+    },
+    "updatedAt": {
+      "types": [
+        "string"
+      ]
+    },
+    "website": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  "notes": {
+    "phone": "string; may be empty when unknown",
+    "openingHours": "string; may be empty when unknown",
+    "tags": "array of strings; always present (falls back to [category] when empty)",
+    "miniText": "string; localized via ?lang=xx (stored translations overridden into miniText)"
+  }
+}
