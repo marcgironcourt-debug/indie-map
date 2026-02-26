@@ -10,6 +10,7 @@ export default function ContributeForm({ locale }: Props) {
   const [address, setAddress] = React.useState("");
   const [openingHours, setOpeningHours] = React.useState("");
   const [phone, setPhone] = React.useState("");
+  const [website, setWebsite] = React.useState("");
   const [photo, setPhoto] = React.useState<File | null>(null);
   const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "err" | "too_large">("idle");
 
@@ -27,6 +28,7 @@ export default function ContributeForm({ locale }: Props) {
       fd.set("address", address);
       if (openingHours.trim()) fd.set("openingHours", openingHours);
       if (phone.trim()) fd.set("phone", phone);
+      if (website.trim()) fd.set("website", website);
       if (photo) fd.set("photo", photo);
 
       const res = await fetch("/api/v1/submissions", { method: "POST", body: fd });
@@ -42,6 +44,7 @@ export default function ContributeForm({ locale }: Props) {
       setAddress("");
       setOpeningHours("");
       setPhone("");
+      setWebsite("");
       setPhoto(null);
     } catch {
       setStatus("err");
@@ -57,6 +60,7 @@ export default function ContributeForm({ locale }: Props) {
     address: isFr ? "Adresse du lieu *" : "Place address *",
     openingHours: isFr ? "Horaires (optionnel)" : "Opening hours (optional)",
     phone: isFr ? "Téléphone (optionnel)" : "Phone (optional)",
+    website: isFr ? "Site web (optionnel)" : "Website (optional)",
     photo: isFr ? "Photo (optionnel)" : "Photo (optional)",
     send: isFr ? "Envoyer" : "Send",
     sending: isFr ? "Envoi..." : "Sending...",
@@ -107,6 +111,15 @@ export default function ContributeForm({ locale }: Props) {
             className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
           />
         </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium text-white/80">{t.website}</label>
+          <input
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
+          />
+        </div>
+
 
         <div className="grid gap-2">
           <label className="text-sm font-medium text-white/80">{t.photo}</label>

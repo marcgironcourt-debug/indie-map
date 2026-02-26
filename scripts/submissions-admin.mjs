@@ -1,6 +1,13 @@
+import "dotenv/config";
 import http from "node:http";
 import { URL } from "node:url";
+import path from "node:path";
 import { PrismaClient } from "@prisma/client";
+
+if (process.env.DATABASE_URL && process.env.DATABASE_URL.startsWith("file:")) {
+  const p = process.env.DATABASE_URL.slice("file:".length);
+  if (p && !p.startsWith("/")) process.env.DATABASE_URL = "file:" + path.resolve(p);
+}
 
 const prisma = new PrismaClient();
 const PORT = 4546;
@@ -44,6 +51,7 @@ function htmlPage(rows) {
           <div class="grid">
             ${r.openingHours ? `<div><span class="k">Horaires</span><div class="v">${esc(r.openingHours)}</div></div>` : ""}
             ${r.phone ? `<div><span class="k">Téléphone</span><div class="v">${esc(r.phone)}</div></div>` : ""}
+            ${r.website ? `<div><span class="k">Site web</span><div class="v">${esc(r.website)}</div></div>` : ""}
           </div>
 
           <div class="actions">

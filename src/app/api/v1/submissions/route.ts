@@ -33,6 +33,7 @@ export async function POST(req: Request) {
 
     const openingHours = normStr(fd.get("openingHours"), 800);
     const phone = normStr(fd.get("phone"), 80);
+    const website = normStr(fd.get("website"), 300);
 
     let photoMime: string | null = null;
     let photoBase64: string | null = null;
@@ -64,6 +65,7 @@ export async function POST(req: Request) {
         address,
         openingHours,
         phone,
+        website,
         photoMime,
         photoBase64,
         ip,

@@ -49,6 +49,7 @@ model Submission {
   address      String
   openingHours String?
   phone        String?
+  website      String?
   photoMime    String?
   photoBase64  String?
   ip           String?
