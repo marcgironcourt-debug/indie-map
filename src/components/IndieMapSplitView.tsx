@@ -239,7 +239,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={
-        "im-chip px-4 py-[6px] text-[13px] min-h-[32px] rounded-full font-medium transition md:px-3 md:py-1 md:text-[11px] md:min-h-0 " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
+        "im-chip px-4 py-[6px] text-[13px] min-h-[32px] !rounded-2xl font-medium transition md:px-3 md:py-1 md:text-[11px] md:min-h-0 " + (active ? "im-chip-active " : "im-chip-idle ") + styleClasses
       }
     >
       {label}
@@ -871,13 +871,15 @@ const filtered = source.filter((b) => {
           style={{
             height: 33,
             width: 33,
-            borderRadius: "10px 4px 10px 4px",
-            background: "#5C6E3B",
-            border: "1px solid rgba(245,245,232,.18)",
+            borderRadius: 16,
+            background: "rgba(255,255,255,0.16)",
+            border: "1px solid rgba(255,255,255,0.30)",
             display: "flex",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12)",
+            boxShadow: "0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,0.22)",
             cursor: "pointer",
           }}
         >

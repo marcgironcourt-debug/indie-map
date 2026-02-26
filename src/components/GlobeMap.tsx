@@ -642,7 +642,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const wm = Number(walkMins);
   const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
   const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
-  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; border-radius:10px 4px 10px 4px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:18px; line-height:28px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
+  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.22); border:1px solid rgba(255,255,255,0.42); color:rgba(245,245,232,.92); font-size:18px; line-height:28px; cursor:pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow:0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,.22);\" onclick=\"try{event.preventDefault();event.stopPropagation();}catch(e){} return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-2px);'>×</span></button>";
   return (
     "<div style=\"position:relative; max-width:320px; min-height:240px; padding:14px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:15px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
@@ -2309,8 +2309,8 @@ class GeolocateControl_ML {
     c.innerHTML = `
       <button type="button" aria-label="Me localiser"
         style="
-          height:33px;width:33px;border-radius:10px 4px 10px 4px;
-          background:#5C6E3B;border:1px solid rgba(245,245,232,.18);
+          height:33px;width:33px;border-radius:16px;
+          background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12);
           cursor:pointer;
@@ -2538,7 +2538,7 @@ class GeolocateControl_ML {
   }
 }
 
-try { map.addControl(new GeolocateControl_ML(), "bottom-right"); } catch {}
+/* im: single geolocate button (React) */
 
 
 mapRef.current = map;
