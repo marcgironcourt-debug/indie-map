@@ -207,7 +207,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous via le site officiel.
                     </p>
 
-                    <a href={isFr ? "/fr/contribute" : "/en/contribute"} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
+                    <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
                       Contact
                     </a>
                   </>
@@ -234,7 +234,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       Partnership is about building something durable: a useful, ethical, and long-term credible product. If you want to join Indie Map, please reach out via the official website.
                     </p>
 
-                    <a href={isFr ? "/fr/contribute" : "/en/contribute"} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
+                    <a href="https://indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
                       Contact
                     </a>
                   </>
@@ -244,17 +244,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                   <>
                     <p className="mb-4 text-white/80">
                       Indie Map grandit grâce aux contributions. L’objectif : rendre visibles des lieux indépendants qui privilégient le local, la réparation, le réemploi, l’agriculture respectueuse et des pratiques cohérentes.
-                    </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Ce que vous pouvez faire</h2>
-                    <ul className="list-disc pl-5 space-y-1 text-white/80">
-                      <li>Proposer un lieu à ajouter (commerce, ferme, marché, atelier, coopérative, etc.).</li>
-                      <li>Signaler une erreur (adresse, horaires, site web, téléphone, catégorie).</li>
-                      <li>Partager une photo/panorama propre et utile (sans personnes identifiables, si possible).</li>
-                      <li>Suggérer une amélioration produit (UX, lisibilité, performance, accessibilité).</li>
-                    </ul>
-
-                    <div className="mt-4">
+                    </p><div className="mt-4">
                       <ContributeForm locale="fr" />
                     </div>
                   </>
@@ -287,19 +277,16 @@ export default function MobileMenu({ locale }: { locale: string }) {
                     <p className="mb-4 text-white/80">
                       En voyage comme dans sa propre ville, il devient compliqué d’identifier ce qui est fabriqué, cultivé ou pensé à l’échelle d’un territoire. Les informations existent, mais elles sont dispersées.
                     </p>
-                    <p className="mb-4 text-white/80">Indie Map rassemble ces lieux sur une carte claire.</p>
+                    <p className="mb-4 text-white/80"></p>
                     <p className="mb-4 text-white/80">
                       L’application référence des cafés, restaurants, ateliers, fermes, marchés, librairies ou boutiques qui ont un lien concret avec leur environnement : production locale, circuits courts, fabrication sur place, agriculture respectueuse, transformation artisanale.
                     </p>
-                    <p className="mb-4 text-white/80">
-                      L’objectif n’est pas de juger ni de classer. Il s’agit de rendre visible. Tout en permettant de consommer différemment.
-                    </p>
+                    <p className="mb-4 text-white/80"></p>
                     <p className="mb-4 text-white/80">
                       Chaque lieu est présenté avec des informations essentielles : où il se trouve, ce qu’il fait, comment il fonctionne.
                     </p>
                     <p className="text-white/80">
-                      Indie Map est conçu comme un outil simple : une carte pour repérer plus facilement ce qui se fait localement, où que l’on soit. Le projet évolue progressivement, ville après ville, en privilégiant la cohérence et la qualité des informations.
-                    </p>
+                      Indie Map est conçu comme un outil simple : une carte pour repérer plus facilement ce qui se fait localement, où que l’on soit.</p>
                   </>
                 ) : (
                   <>
@@ -326,11 +313,29 @@ export default function MobileMenu({ locale }: { locale: string }) {
                 )
               )}
 
-              <div className="mt-4 text-[11px] text-white/60">
-                <Link href={hrefs.privacy} onClick={closePanel} className="opacity-70 hover:opacity-100">
-                  {isFr ? "Confidentialité" : "Privacy"}
-                </Link>
-              </div>
+              {panel === "about" && (
+                <div className="mt-4">
+                  <p className="mb-2 text-sm text-white/80">
+                    Pour toutes questions ou suggestions :
+                  </p>
+                  <a
+                    href="https://indie-map.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
+                  >
+                    Contact
+                  </a>
+                </div>
+              )}
+
+              {panel === "about" && (
+                <div className="mt-4 text-[11px] text-white/60">
+                  <Link href={hrefs.privacy} onClick={closePanel} className="opacity-70 hover:opacity-100">
+                    {isFr ? "Confidentialité" : "Privacy"}
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
