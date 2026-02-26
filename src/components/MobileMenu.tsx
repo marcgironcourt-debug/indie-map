@@ -32,8 +32,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
   const canShowBar = !heroOpen && !isPrivacy && !isPros && !isContrib && !isAbout;
 
-  const title =
-    panel === "pros" ? "Espace professionnel" : panel === "contrib" ? "Contribution" : panel === "about" ? "À propos" : "";
+  const title = "Indie Map";
 
   const href =
     panel === "pros" ? hrefs.pros : panel === "contrib" ? hrefs.contrib : panel === "about" ? hrefs.about : hrefs.about;
