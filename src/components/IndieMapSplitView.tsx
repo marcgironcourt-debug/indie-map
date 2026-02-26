@@ -3,8 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MapPanel from "@/components/MapPanel";
-
-export type Business = {
+type Business = {
   id: string;
   name: string;
   type: string;
