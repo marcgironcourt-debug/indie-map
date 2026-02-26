@@ -8,6 +8,12 @@ function str(v: unknown): string {
   return typeof v === "string" ? v : "";
 }
 
+function optStr(v: unknown): string | undefined {
+  if (typeof v !== "string") return undefined;
+  const t = v.trim();
+  return t.length ? v : undefined;
+}
+
 function num(v: unknown): number | null {
   return typeof v === "number" && !Number.isNaN(v) ? v : null;
 }
@@ -26,16 +32,18 @@ export function normalizePlace(x: unknown): unknown {
   const address = str(x.address);
   const website = str(x.website);
   const category = str(x.category);
-  const phone = str(x.phone);
-  const openingHours = str(x.openingHours);
+  const phone = optStr(x.phone);
+  const openingHours = optStr(x.openingHours);
   const timeZone = str(x.timeZone);
   const createdAt = str(x.createdAt);
   const updatedAt = str(x.updatedAt);
-  const miniText = str(x.miniText);
-  const panoramaImage = str(x.panoramaImage);
+  const miniText = optStr(x.miniText);
+  const panoramaImage = optStr(x.panoramaImage);
 
   const lat = num(x.lat);
   const lng = num(x.lng);
+
+  if (lat === null || lng === null) return x;
 
   const tagsRaw = arrStr(x.tags);
   const tags = tagsRaw.length ? tagsRaw : (category ? [category] : []);
@@ -50,13 +58,13 @@ export function normalizePlace(x: unknown): unknown {
     lat,
     lng,
     category,
-    phone,
-    openingHours,
     timeZone,
     createdAt,
     updatedAt,
     tags,
-    miniText,
-    panoramaImage
+      ...(phone ? { phone } : {}),
+    ...(openingHours ? { openingHours } : {}),
+    ...(miniText ? { miniText } : {}),
+    ...(panoramaImage ? { panoramaImage } : {})
   };
 }
