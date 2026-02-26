@@ -35,9 +35,11 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
   const title = "Indie Map";
 
-  const href =
-    panel === "pros" ? hrefs.pros : panel === "contrib" ? hrefs.contrib : panel === "about" ? hrefs.about : hrefs.about;
 
+  const closePanel = React.useCallback(() => {
+    setAnim(false);
+    window.setTimeout(() => setPanel(null), 180);
+  }, []);
   React.useEffect(() => {
     const onHero = (e: Event) => {
       const ce = e as CustomEvent<{ open?: boolean }>;
@@ -47,7 +49,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
     };
     window.addEventListener("im:hero", onHero);
     return () => window.removeEventListener("im:hero", onHero);
-  }, []);
+  }, [closePanel]);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -56,7 +58,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [panel]);
+  }, [panel, closePanel]);
 
   const measure = React.useCallback(() => {
     if (typeof window === "undefined") return;
@@ -102,12 +104,6 @@ export default function MobileMenu({ locale }: { locale: string }) {
   function openPanel(next: Exclude<Panel, null>) {
     setPanel(next);
   }
-
-  function closePanel() {
-    setAnim(false);
-    window.setTimeout(() => setPanel(null), 180);
-  }
-
   return (
     <>
       {canShowBar ? (

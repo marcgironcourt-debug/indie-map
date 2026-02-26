@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server";
+
+const V1_HEADERS = {
+  "X-API-Version": "1",
+} as const;
 import { locales } from "../../../../../i18n";
 import { prisma } from "@/lib/prisma";
 
@@ -13,7 +17,7 @@ export async function POST(req: Request) {
   try {
     const ct = req.headers.get("content-type") || "";
     if (!ct.toLowerCase().includes("multipart/form-data")) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
     const fd = await req.formData();
@@ -23,13 +27,13 @@ export async function POST(req: Request) {
     const address = normStr(fd.get("address"), 300);
 
     if (!locale || !(locales as readonly string[]).includes(locale)) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (!name || name.length < 2) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (!address || address.length < 5) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
     const openingHours = normStr(fd.get("openingHours"), 800);
@@ -44,11 +48,11 @@ export async function POST(req: Request) {
       const f = file as File;
       if (f.size > 0) {
         if (!f.type || !f.type.startsWith("image/")) {
-          return NextResponse.json({ ok: false }, { status: 400 });
+          return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
         }
         const MAX = 2_000_000;
         if (f.size > MAX) {
-          return NextResponse.json({ ok: false, error: "photo_too_large" }, { status: 413 });
+          return NextResponse.json({ ok: false, error: "photo_too_large" }, { status: 413, headers: V1_HEADERS });
         }
         const buf = Buffer.from(await f.arrayBuffer());
         photoMime = f.type;
@@ -74,9 +78,9 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/submissions] error", err);
-    return NextResponse.json({ ok: false }, { status: 500 });
+    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
   }
 }

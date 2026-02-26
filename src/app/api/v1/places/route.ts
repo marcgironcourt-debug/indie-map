@@ -11,10 +11,12 @@ function isObj(v: unknown): v is Obj {
 }
 
 const CACHE_HEADERS = {
+  "X-API-Version": "1",
   "Cache-Control": "public, max-age=60, s-maxage=300",
 } as const;
 
 export async function GET(req: Request) {
+
   try {
     const url = new URL(req.url);
     const requested = (url.searchParams.get("lang") || "").toLowerCase();

@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server";
+
+const V1_HEADERS = {
+  "X-API-Version": "1",
+} as const;
 import { prisma } from "@/lib/prisma";
 
 const ALLOWED = new Set([
@@ -32,7 +36,7 @@ export async function POST(req: Request) {
     })();
 
     if (!isObject(bodyUnknown)) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
     const body = bodyUnknown as EventPayload;
@@ -43,25 +47,25 @@ export async function POST(req: Request) {
     const category = body.category;
 
     if (typeof eventType !== "string" || !ALLOWED.has(eventType)) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (typeof placeId !== "string" || placeId.length < 3) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (typeof city !== "string" || city.length < 2) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (typeof category !== "string" || category.length < 2) {
-      return NextResponse.json({ ok: false }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
     await prisma.event.create({
       data: { eventType, placeId, city, category },
     });
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/event] error", err);
-    return NextResponse.json({ ok: false }, { status: 500 });
+    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
   }
 }
