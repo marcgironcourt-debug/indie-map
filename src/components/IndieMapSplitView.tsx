@@ -850,7 +850,7 @@ const filtered = source.filter((b) => {
       </div>
       {!heroOpen && (
 
-            <div className="absolute top-3 left-0 right-0 z-[1400] pointer-events-none">
+            <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
         <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
           <FilterBar categories={categories}
           activeCategory={category}

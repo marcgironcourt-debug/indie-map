@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Kalam } from "next/font/google";
 import { cookies } from "next/headers";
 import { locales, defaultLocale } from "../../i18n";
@@ -19,6 +19,13 @@ const kalam = Kalam({ subsets: ["latin"], weight: ["300", "400", "700"] });
 export const metadata: Metadata = {
   title: "Indie Map",
   description: "Carte + liste des commerces indépendants",
+};
+
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({
