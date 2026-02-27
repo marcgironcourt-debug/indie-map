@@ -858,46 +858,6 @@ const filtered = source.filter((b) => {
         </div>
       </div>
       )}
-
-      {!heroOpen && (
-        <button
-          type="button"
-          aria-label="Me localiser"
-          onClick={() => {
-            try { window.dispatchEvent(new Event("im:geolocate")); } catch {}
-          }}
-          className="absolute right-4 bottom-24 z-[1500] pointer-events-auto"
-          style={{
-            height: 33,
-            width: 33,
-            borderRadius: 16,
-            background: "#262626",
-            border: "1px solid #404040",
-            display: "flex",
-                        alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 0 0 1px rgba(255,255,255,0.22), 0 10px 22px rgba(0,0,0,0.22)",
-            cursor: "pointer",
-          }}
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            style={{ transform: "translate(-1px, -0.5px)" }}
-            stroke="white"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M22 2L11 13" />
-            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-          </svg>
-        </button>
-      )}
-
-
       <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
         <Link href="privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>
       </div>

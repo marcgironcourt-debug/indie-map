@@ -2301,7 +2301,7 @@ class GeolocateControl_ML {
       }
     } catch {}
     const c = document.createElement("div");
-    c.style.display = "none";
+    c.style.display = "block";
     c.style.pointerEvents = "none";
     c.style.marginRight = "12px";
     c.style.marginBottom = "92px";
@@ -2516,7 +2516,20 @@ class GeolocateControl_ML {
                 if (fn && bearing != null) fn(Number(lng), Number(lat), Number(bearing));
               } catch {}
             },
-            () => {},
+            (err: any) => {
+            try {
+              const code = Number((err as any)?.code);
+              const name = String((err as any)?.name || "");
+              const msg = String((err as any)?.message || "");
+              console.log("[im:geolocate] error", { code, name, msg, raw: err });
+            } catch {}
+            try {
+              const code = Number((err as any)?.code);
+              const name = String((err as any)?.name || "");
+              const msg = String((err as any)?.message || "");
+              alert("GEOLOCATE ERROR code=" + String(code) + " name=" + name + " msg=" + msg);
+            } catch {}
+          },
             { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
           );
         } catch {}
@@ -2537,6 +2550,8 @@ class GeolocateControl_ML {
     this._map = null;
   }
 }
+
+try { map.addControl(new GeolocateControl_ML(), "bottom-right" as any); } catch {}
 
 /* im: single geolocate button (React) */
 
