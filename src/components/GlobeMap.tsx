@@ -5,8 +5,8 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
-const STYLE_URL = "https://api.maptiler.com/maps/019bb307-227a-7b33-99f5-b835d4f4f4c9/style.json?key=AKnU2o4y6uQ0PxzEyFaU";
-
+const MAPTILER_MAP_ID = "019bb307-227a-7b33-99f5-b835d4f4f4c9";
+const STYLE_URL = `https://api.maptiler.com/maps/${MAPTILER_MAP_ID}/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY ?? ""}`;
 type Biz = {
   id: string;
   name: string;
@@ -1164,7 +1164,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   React.useEffect(() => {
     try {
       if (geolocateElRef.current) {
-        geolocateElRef.current.style.display = (sheetOpen || !!discoverHeroUrl) ? "none" : "block";
+        geolocateElRef.current.style.display = (sheetOpen) ? "none" : "block";
       }
     } catch {}
   }, [sheetOpen, discoverHeroUrl]);
@@ -2736,8 +2736,8 @@ mapRef.current = map;
   }, [items, selectedId, darkMap]);
 
   return (
-    <div className="relative h-full w-full">
-      <div ref={ref} className="h-full w-full" style={{ opacity: 0, transition: "opacity 180ms ease", willChange: "opacity" }} />
+    <div className="relative h-full w-full bg-black">
+      <div ref={ref} className="h-full w-full" style={{ backgroundColor: "#000", opacity: 0, transition: "opacity 180ms ease", willChange: "opacity" }} />
       <style>{`\
         .maplibregl-canvas{transition:filter 220ms ease;}\
         .im-globe-dim .maplibregl-canvas{filter:brightness(.40) saturate(.90) contrast(.98);}\

@@ -302,6 +302,10 @@ main {
   pointer-events:auto !important;
 }
 
+.maplibregl-ctrl-bottom-right{
+  transform: translate(-16px, -42px);
+}
+
 
 /* indie-halo */
 .indie-halo{
