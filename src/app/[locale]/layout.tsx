@@ -20,7 +20,7 @@ export default async function LocaleLayout({
   setRequestLocale(finalLocale);
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen w-screen overflow-hidden">
       <MobileMenu locale={finalLocale} />
       {children}
     </div>

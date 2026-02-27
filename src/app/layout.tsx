@@ -41,7 +41,7 @@ export default async function RootLayout({
 
   return (
     <html lang={finalLocale} className={kalam.className}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen overflow-hidden fixed inset-0 bg-[hsl(var(--bg))]`}>
         {children}
       </body>
     </html>

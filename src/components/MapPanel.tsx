@@ -41,7 +41,7 @@ export default function MapPanel(props: {
   }, []);
 
   return (
-    <section className="relative h-full overflow-hidden rounded-2xl border border-neutral-200/60 bg-white shadow-sm dark:border-neutral-700/60 dark:bg-neutral-900">
+    <section className="relative h-full w-full overflow-hidden">
       <div className="h-full">
         {mounted ? (
           <ClientMap
