@@ -107,13 +107,13 @@ export default function MobileMenu({ locale }: { locale: string }) {
   return (
     <>
       {canShowBar ? (
-        <div id="im-bottom-bar" className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-2">
-          <div className={"w-full bg-neutral-800 border border-neutral-700 shadow-xl px-2 py-2 " + (panel ? "rounded-b-3xl rounded-t-[0px]" : "rounded-3xl")}>
+        <div id="im-bottom-bar" className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-[max(8px,env(safe-area-inset-bottom))] pt-1">
+          <div className={"w-[92%] max-w-md mx-auto bg-neutral-800 shadow-xl border border-neutral-700 " + (panel ? "border-t-0 " : "") + "px-4 py-1.5 " + (panel ? "rounded-b-3xl rounded-t-none" : "rounded-3xl")}>
             <div className="grid grid-cols-3">
               <button
                 type="button"
                 onClick={() => (panel === "pros" ? closePanel() : openPanel("pros"))}
-                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "pros" ? " bg-white/12" : "")}
+                className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "pros" ? " bg-white/12" : "")}
                 aria-label="Ouvrir l’espace professionnel"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -128,7 +128,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={() => (panel === "contrib" ? closePanel() : openPanel("contrib"))}
-                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "contrib" ? " bg-white/12" : "")}
+                className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "contrib" ? " bg-white/12" : "")}
                 aria-label="Ouvrir contribution"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -141,7 +141,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={() => (panel === "about" ? closePanel() : openPanel("about"))}
-                className={"flex flex-col items-center justify-center gap-1 py-2 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "about" ? " bg-white/12" : "")}
+                className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "about" ? " bg-white/12" : "")}
                 aria-label="Ouvrir infos"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -160,7 +160,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
         <div className="fixed z-[2001] px-3 overflow-hidden" style={{ left: 0, right: 0, top: bounds.top, bottom: bounds.bottom }}>
           <div
             className={
-              "w-full h-full rounded-t-3xl rounded-b-[0px] bg-neutral-800 border border-neutral-700 border-t-0 overflow-hidden flex flex-col min-h-0 " +
+              "w-[92%] max-w-md mx-auto h-full rounded-t-3xl rounded-b-[0px] bg-neutral-800 border border-neutral-700 border-t-0 overflow-hidden flex flex-col min-h-0 " +
               "transition-transform duration-200 ease-out " +
               (anim ? "translate-y-0" : "translate-y-full")
             }
