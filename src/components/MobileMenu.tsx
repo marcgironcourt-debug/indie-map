@@ -20,6 +20,14 @@ export default function MobileMenu({ locale }: { locale: string }) {
   const [panel, setPanel] = React.useState<Panel>(null);
   const [anim, setAnim] = React.useState(false);
   const [bounds, setBounds] = React.useState<{ top: number; bottom: number }>({ top: 0, bottom: 0 });
+  const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (!panel) return;
+    window.requestAnimationFrame(() => {
+      panelScrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
+    });
+  }, [panel]);
 
   const hrefs = React.useMemo(() => {
     const base = `/${locale}`;
@@ -178,7 +186,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               </button>
             </div>
 
-            <div className={"px-5 pb-6 flex-1 min-h-0 overflow-auto transition-opacity duration-150 " + (anim ? "opacity-100" : "opacity-0")}>
+            <div ref={panelScrollRef} className={"px-5 pb-6 flex-1 min-h-0 overflow-auto transition-opacity duration-150 " + (anim ? "opacity-100" : "opacity-0")}>
               {panel === "pros" ? (
                 isFr ? (
                   <>
