@@ -35,7 +35,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
       pros: `${base}/professionnels`,
       contrib: `${base}/contribution`,
       about: `${base}/a-propos`,
-      privacy: `${base}/privacy`,
+      privacy: "/privacy",
     };
   }, [locale]);
 

@@ -25,7 +25,7 @@ export default function Page() {
           <br />
           <Link className="underline" href="./support">Support</Link>
           <br />
-          <Link className="underline" href="./privacy">Confidentialité</Link>
+          <Link className="underline" href="/privacy">Confidentialité</Link>
         </div>
       </div>
     </main>
