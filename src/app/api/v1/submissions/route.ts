@@ -72,10 +72,7 @@ export async function POST(req: Request) {
         phone,
         website,
         photoMime,
-        photoBase64,
-        ip,
-        userAgent,
-      },
+        photoBase64,},
     });
 
     return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
