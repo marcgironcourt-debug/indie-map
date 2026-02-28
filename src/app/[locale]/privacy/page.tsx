@@ -10,9 +10,12 @@ export default async function PrivacyPage({ params }: Props) {
     <>
       <PrivacyClose locale={locale} />
       <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", lineHeight: 1.6 }}>
-      <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>
+      <div style={{ position: "relative" }}>
+  <a href="/" style={{ position: "absolute", top: 0, right: 0, fontSize: 24, textDecoration: "none" }} aria-label="Close">×</a>
+  <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>
         {isFr ? "Politique de confidentialité" : "Privacy Policy"}
       </h1>
+</div>
 
       {isFr ? (
         <>

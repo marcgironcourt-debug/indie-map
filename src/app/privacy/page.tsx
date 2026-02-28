@@ -1,7 +1,10 @@
 export default function PrivacyPage() {
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", lineHeight: 1.6 }}>
-      <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>Privacy Policy / Politique de confidentialité</h1>
+      <div style={{ position: "relative" }}>
+  <a href="/" style={{ position: "absolute", top: 0, right: 0, fontSize: 24, textDecoration: "none" }} aria-label="Close">×</a>
+  <h1 style={{ fontSize: 28, margin: "0 0 16px" }}>Privacy Policy / Politique de confidentialité</h1>
+</div>
 
       <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>1. Data Collected / Données collectées</h2>
       <p>

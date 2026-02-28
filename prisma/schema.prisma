@@ -52,8 +52,6 @@ model Submission {
   website      String?
   photoMime    String?
   photoBase64  String?
-  ip           String?
-  userAgent    String?
   createdAt    DateTime @default(now())
   status     String   @default("pending")
   reviewedAt DateTime?
