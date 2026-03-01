@@ -1359,7 +1359,7 @@
     "updatedAt": "2026-01-31T18:31:52.019Z",
     "timeZone": "Europe/Paris",
     "miniText": "Lieu de vie alternatif installé dans une ancienne caserne réhabilitée à Bordeaux, Darwin Eco-système rassemble coworking, entreprises engagées, espaces culturels, restauration responsable et initiatives liées à la transition écologique. Le site accueille également événements, pratiques sportives urbaines et projets d’économie sociale, dans une démarche de réemploi et de sobriété.",
-    "panoramaImage": "/downloads/Darwin.png",
+    "panoramaImage": "/downloads/Darwin.webp",
     "translations": {
       "miniText": {}
     },
@@ -1386,7 +1386,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie spécialisée dans la vente de produits alimentaires et du quotidien en vrac et sans emballage. Le lieu met en avant des produits locaux, bio ou issus de filières responsables, ainsi que des alternatives durables pour réduire les déchets au quotidien.",
-    "panoramaImage": "/downloads/kilo.png",
+    "panoramaImage": "/downloads/kilo.webp",
     "translations": {
       "miniText": {}
     },
@@ -1410,7 +1410,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu associatif dédié à la réduction des déchets et au zéro gaspillage. Créée en 2017 à l’initiative de Zero Waste France, elle propose une boutique zéro déchet, un café associatif, une librairie et des espaces de ressources. On y organise aussi des ateliers, conférences et événements pour découvrir et pratiquer des alternatives durables au quotidien.",
-    "panoramaImage": "/downloads/maison.png",
+    "panoramaImage": "/downloads/maison.webp",
     "translations": {
       "miniText": {}
     },
@@ -1434,7 +1434,7 @@
       "lieu alternatif"
     ],
     "miniText": "Lieu culturel rassemblant restaurants, bars, espaces culturels et événements autour de valeurs communes : engagement social, transition écologique et ouverture culturelle. Les restaurants du site sont labellisés Ecotable, garantissant un approvisionnement en circuits courts, des produits de saison, une cuisine maison, une part importante de produits bio ainsi que des actions de tri et de recyclage.",
-    "panoramaImage": "/downloads/ground.png",
+    "panoramaImage": "/downloads/ground.webp",
     "translations": {
       "miniText": {}
     },
@@ -1554,7 +1554,7 @@
       "Lieu de vie"
     ],
     "miniText": "Lieu proposant une cuisine faite maison à partir de produits de saison, avec une attention portée aux circuits courts et aux filières responsables. Labellisé Écotable, le lieu accueille également un brunch, des concerts, expositions et événements, dans une démarche mêlant création, convivialité et engagement écologique.",
-    "panoramaImage": "/downloads/has.png",
+    "panoramaImage": "/downloads/has.webp",
     "translations": {
       "miniText": {}
     },
@@ -1578,7 +1578,7 @@
       "Librairie"
     ],
     "miniText": "Librairie créé en 1845, spécialisée dans la vente de livres d’occasion, Boulinier s’inscrit dans une logique de réemploi culturel à grande échelle. Les ouvrages sont revendus à prix accessibles, favorisant la circulation des livres et l’accès à la lecture pour tous. Le modèle repose sur l’économie circulaire du livre, sans surproduction, en donnant une seconde vie aux ouvrages.",
-    "panoramaImage": "/downloads/lib.png",
+    "panoramaImage": "/downloads/lib.webp",
     "translations": {
       "miniText": {}
     },
@@ -1602,7 +1602,7 @@
       "Librairie"
     ],
     "miniText": "Librairie créé en 1845, spécialisée dans la vente de livres d’occasion, Boulinier s’inscrit dans une logique de réemploi culturel à grande échelle. Les ouvrages sont revendus à prix accessibles, favorisant la circulation des livres et l’accès à la lecture pour tous. Le modèle repose sur l’économie circulaire du livre, sans surproduction, en donnant une seconde vie aux ouvrages.",
-    "panoramaImage": "/downloads/lib.png",
+    "panoramaImage": "/downloads/lib.webp",
     "translations": {
       "miniText": {}
     },
@@ -1626,7 +1626,7 @@
       "Librairie"
     ],
     "miniText": "Librairie créé en 1845, spécialisée dans la vente de livres d’occasion, Boulinier s’inscrit dans une logique de réemploi culturel à grande échelle. Les ouvrages sont revendus à prix accessibles, favorisant la circulation des livres et l’accès à la lecture pour tous. Le modèle repose sur l’économie circulaire du livre, sans surproduction, en donnant une seconde vie aux ouvrages.",
-    "panoramaImage": "/downloads/lib.png",
+    "panoramaImage": "/downloads/lib.webp",
     "translations": {
       "miniText": {}
     },
@@ -1650,7 +1650,7 @@
       "Librairie"
     ],
     "miniText": "Librairie créé en 1845, spécialisée dans la vente de livres d’occasion, Boulinier s’inscrit dans une logique de réemploi culturel à grande échelle. Les ouvrages sont revendus à prix accessibles, favorisant la circulation des livres et l’accès à la lecture pour tous. Le modèle repose sur l’économie circulaire du livre, sans surproduction, en donnant une seconde vie aux ouvrages.",
-    "panoramaImage": "/downloads/lib.png",
+    "panoramaImage": "/downloads/lib.webp",
     "translations": {
       "miniText": {}
     },
@@ -1770,7 +1770,7 @@
       "Brasserie / bar / pub"
     ],
     "miniText": "Nouvelle Garde est un collectif de brasseries qui fait vivre la tradition française, avec une cuisine 100 % maison, des produits frais de saison et un engagement fort pour une restauration responsable et locale. Inspirées par l’art de vivre français, ses adresses défendent le patrimoine culinaire, valorisent les producteurs en circuit court et créent des lieux conviviaux où se croisent plaisir, qualité et authenticité.",
-    "panoramaImage": "/downloads/brasserie-martin.png",
+    "panoramaImage": "/downloads/brasserie-martin.webp",
     "translations": {
       "miniText": {}
     },
@@ -1818,7 +1818,7 @@
       "Brasserie / bar / pub"
     ],
     "miniText": "Nouvelle Garde est un collectif de brasseries qui fait vivre la tradition française, avec une cuisine 100 % maison, des produits frais de saison et un engagement fort pour une restauration responsable et locale. Inspirées par l’art de vivre français, ses adresses défendent le patrimoine culinaire, valorisent les producteurs en circuit court et créent des lieux conviviaux où se croisent plaisir, qualité et authenticité.",
-    "panoramaImage": "/downloads/char.png",
+    "panoramaImage": "/downloads/char.webp",
     "translations": {
       "miniText": {}
     },
@@ -1914,7 +1914,7 @@
     "miniText": "Restaurant bistronomique travaillant avec des produits issus de circuits courts, provenant de producteurs locaux et de leur propre ferme située à 30km de Bordeaux. La carte évolue au fil des récoltes, avec une attention particulière portée à la qualité des ingrédients, au respect du vivant et à la transparence des pratiques.",
     "createdAt": "2026-02-02T18:55:08.027Z",
     "updatedAt": "2026-02-02T18:58:40.227Z",
-    "panoramaImage": "/downloads/recol.png",
+    "panoramaImage": "/downloads/recol.webp",
     "translations": {
       "miniText": {}
     },
@@ -2010,7 +2010,7 @@
     "tags": [
       "restaurant"
     ],
-    "panoramaImage": "/downloads/racine.png",
+    "panoramaImage": "/downloads/racine.webp",
     "translations": {
       "miniText": {}
     },
@@ -2106,7 +2106,7 @@
     "miniText": "Association locale dédiée au réemploi et à la réduction des déchets, Le Carroussel collecte, trie et revend des objets de seconde main afin de leur donner une nouvelle vie. La ressourcerie agit en faveur de l’économie circulaire tout en portant un projet solidaire, en rendant accessibles des biens à prix modérés et en favorisant l’insertion et le lien social sur le territoire d’Ussel.",
     "createdAt": "2026-02-02T20:16:07.296Z",
     "updatedAt": "2026-02-02T20:21:13.606Z",
-    "panoramaImage": "/downloads/car.png",
+    "panoramaImage": "/downloads/car.webp",
     "translations": {
       "miniText": {}
     },
@@ -2515,7 +2515,7 @@
       "Mode"
     ],
     "miniText": "Friperie vintage proposant une large sélection de vêtements et accessoires de seconde main, avec des options pour acheter, vendre ou échanger. L’inventaire évolue constamment, offrant des trouvailles mode variées dans une démarche d’économie circulaire tout en étant ancré dans la scène créative new-yorkaise.",
-    "panoramaImage": "/downloads/bac.png",
+    "panoramaImage": "/downloads/bac.webp",
     "createdAt": "2026-02-03T18:13:42.577Z",
     "updatedAt": "2026-02-03T18:16:33.310Z",
     "translations": {
@@ -2541,7 +2541,7 @@
       "Atelier"
     ],
     "miniText": "Entreprise française qui développe, depuis son atelier d’Aubervilliers, des panneaux de matériaux durables fabriqués à partir de déchets plastiques auxquels une seconde vie est donnée, pour des usages d’agencement et de design.",
-    "panoramaImage": "/downloads/le-pave.png",
+    "panoramaImage": "/downloads/le-pave.webp",
     "translations": {
       "miniText": {}
     },
@@ -2614,7 +2614,7 @@
       "Marché"
     ],
     "miniText": "Marché fermier emblématique de New York réunissant 140 producteurs locaux qui vendent directement fruits, légumes, pains, fromages et autres produits alimentaires de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/union-square.png",
+    "panoramaImage": "/downloads/union-square.webp",
     "translations": {
       "miniText": {}
     },
@@ -2662,7 +2662,7 @@
       "Brasserie"
     ],
     "miniText": "Brasserie brassant exclusivement avec des ingrédients issus de l’État de New York. Le lieu s’inscrit dans une démarche de circuit court en reliant directement agriculture locale et production de bière, avec une transformation sur place et une consommation majoritairement locale.",
-    "panoramaImage": "/downloads/bras.png",
+    "panoramaImage": "/downloads/bras.webp",
     "translations": {
       "miniText": {}
     },
@@ -2710,7 +2710,7 @@
     "miniText": "Boulangerie spécialisée dans le pain au levain élaboré à partir de céréales anciennes cultivées exclusivement dans l’État de New York. Les farines sont moulues sur pierre sur place, permettant une maîtrise complète de la chaîne de production, du grain au pain.",
     "createdAt": "2026-02-03T21:29:34.867Z",
     "updatedAt": "2026-02-03T21:36:07.909Z",
-    "panoramaImage": "/downloads/bak.png",
+    "panoramaImage": "/downloads/bak.webp",
     "translations": {
       "miniText": {}
     },
@@ -2782,7 +2782,7 @@
     ],
     "createdAt": "2026-02-04T14:30:42.475Z",
     "updatedAt": "2026-02-04T14:44:53.712Z",
-    "panoramaImage": "/downloads/aiana.png",
+    "panoramaImage": "/downloads/aiana.webp",
     "translations": {
       "miniText": {}
     },
@@ -2858,7 +2858,7 @@
     ],
     "createdAt": "2026-02-04T15:02:45.768Z",
     "updatedAt": "2026-02-05T13:12:50.221Z",
-    "panoramaImage": "/downloads/marc.png",
+    "panoramaImage": "/downloads/marc.webp",
     "translations": {
       "miniText": {}
     },
@@ -2910,7 +2910,7 @@
     ],
     "createdAt": "2026-02-04T15:20:18.931Z",
     "updatedAt": "2026-02-13T13:20:32.301Z",
-    "panoramaImage": "/downloads/evergreen-brick.png",
+    "panoramaImage": "/downloads/evergreen-brick.webp",
     "translations": {
       "miniText": {}
     },
@@ -3056,7 +3056,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de producteurs locaux de l’Ontario. Union construit sa carte autour des récoltes et des arrivages disponibles, avec une attention portée à la simplicité des plats, à la qualité des ingrédients et au lien direct avec le territoire.",
-    "panoramaImage": "/downloads/union-square.png",
+    "panoramaImage": "/downloads/union-square.webp",
     "translations": {
       "miniText": {}
     },
@@ -3256,7 +3256,7 @@
     ],
     "miniText": "Restaurant axé sur une cuisine de saison élaborée exclusivement à partir de produits de fermes et de producteurs de Colombie-Britannique. Burdock & Co construit ses menus en fonction des récoltes et des micro-saisons du Pacifique Nord-Ouest, avec un fort accent sur la traçabilité, la relation directe avec les producteurs et le respect des cycles naturels.",
     "id": "e562fae6-166a-498c-bcbd-e3dd3044bec1",
-    "panoramaImage": "/downloads/bu.png",
+    "panoramaImage": "/downloads/bu.webp",
     "translations": {
       "miniText": {}
     },
@@ -3280,7 +3280,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de fermes et de producteurs de Colombie-Britannique. Fable Kitchen travaille en lien direct avec des fournisseurs locaux et adapte sa carte en fonction des récoltes et des arrivages, avec une attention particulière portée à la fraîcheur des ingrédients et au respect de la saisonnalité.",
-    "panoramaImage": "/downloads/fa.png",
+    "panoramaImage": "/downloads/fa.webp",
     "translations": {
       "miniText": {}
     },
@@ -3352,7 +3352,7 @@
     ],
     "createdAt": "2026-02-04T20:40:17.289Z",
     "updatedAt": "2026-02-04T20:51:53.278Z",
-    "panoramaImage": "/downloads/co.png",
+    "panoramaImage": "/downloads/co.webp",
     "translations": {
       "miniText": {}
     },
@@ -3446,7 +3446,7 @@
       "Marché"
     ],
     "miniText": "Marché public historique de Seattle réunissant des producteurs agricoles, artisans alimentaires et commerçants indépendants. Pike Place Market permet l’achat direct de produits frais, de spécialités locales et de produits artisanaux, favorisant les circuits courts, le soutien aux producteurs régionaux et un lien direct entre habitants et vendeurs.",
-    "panoramaImage": "/downloads/pike-place.png",
+    "panoramaImage": "/downloads/pike-place.webp",
     "createdAt": "2026-02-05T12:27:03.321Z",
     "updatedAt": "2026-02-13T13:36:52.145Z",
     "translations": {
@@ -3470,7 +3470,7 @@
       "Marché"
     ],
     "miniText": "Marché fermier hebdomadaire réunissant des producteurs agricoles et artisans alimentaires de l’État de Washington, permettant l’achat direct de produits frais, favorisant les circuits courts, la saisonnalité et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/Seattle | Ballard Farmers Market.png",
+    "panoramaImage": "/downloads/Seattle | Ballard Farmers Market.webp",
     "createdAt": "2026-02-05T12:51:27.215Z",
     "updatedAt": "2026-02-12T14:58:47.533Z",
     "translations": {
@@ -3496,7 +3496,7 @@
       "Marché"
     ],
     "miniText": "Marché de producteurs locaux réunissant fermes et artisans alimentaires de l’État de Washington. Les producteurs vendent directement fruits, légumes, pains, fromages, fleurs et produits transformés de saison, favorisant les circuits courts, l’agriculture régionale et un lien direct entre producteurs et habitants.",
-    "panoramaImage": "/downloads/Seattle | Capitol Hill Farmers Market .png",
+    "panoramaImage": "/downloads/Seattle | Capitol Hill Farmers Market .webp",
     "translations": {
       "miniText": {}
     },
@@ -3568,7 +3568,7 @@
     ],
     "createdAt": "2026-02-05T13:57:43.276Z",
     "updatedAt": "2026-02-05T14:06:12.826Z",
-    "panoramaImage": "/downloads/ma.png",
+    "panoramaImage": "/downloads/ma.webp",
     "translations": {
       "miniText": {}
     },
@@ -3664,7 +3664,7 @@
     "miniText": "Épicerie coopérative proposant une large sélection de produits alimentaires biologiques et locaux, privilégiant les circuits courts, les producteurs de l’Oregon et une gouvernance collective détenue par ses membres.",
     "createdAt": "2026-02-05T14:52:33.338Z",
     "updatedAt": "2026-02-12T13:57:29.040Z",
-    "panoramaImage": "/downloads/Portland People’s Food Co-op.png",
+    "panoramaImage": "/downloads/Portland People’s Food Co-op.webp",
     "translations": {
       "miniText": {}
     },
@@ -3712,7 +3712,7 @@
     "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison provenant de fermes de l’Oregon. Les plats évoluent selon les récoltes et les arrivages, avec une attention portée à l’origine des ingrédients et au respect du rythme agricole.",
     "createdAt": "2026-02-05T15:25:04.525Z",
     "updatedAt": "2026-02-05T15:30:05.105Z",
-    "panoramaImage": "/downloads/d.png",
+    "panoramaImage": "/downloads/d.webp",
     "translations": {
       "miniText": {}
     },
@@ -3760,7 +3760,7 @@
       "Atelier"
     ],
     "miniText": "Atelier de réemploi créatif récupérant des matériaux issus des déchets urbains pour leur donner une seconde vie. ReClaim It collecte, trie et remet en circulation bois, objets, outils et matériaux divers à destination des artisans, makers et habitants, dans une logique de réduction des déchets et d’économie circulaire locale.",
-    "panoramaImage": "/downloads/Portland | ReClaim It.png",
+    "panoramaImage": "/downloads/Portland | ReClaim It.webp",
     "translations": {
       "miniText": {}
     },
@@ -3807,7 +3807,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/Bi-Rite Market.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.webp",
     "translations": {
       "miniText": {}
     },
@@ -3832,7 +3832,7 @@
     "createdAt": "2026-02-05T16:25:07.427Z",
     "updatedAt": "2026-02-12T14:45:45.413Z",
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/Bi-Rite Market.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.webp",
     "translations": {
       "miniText": {}
     },
@@ -3854,7 +3854,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie proposant une large sélection de produits frais issus de producteurs californiens. Bi-Rite Market met en avant les circuits courts, la saisonnalité et une relation directe avec les fermes locales, complétée par une offre de produits préparés sur place et une forte implantation de quartier.",
-    "panoramaImage": "/downloads/Bi-Rite Market.png",
+    "panoramaImage": "/downloads/Bi-Rite Market.webp",
     "createdAt": "2026-02-05T16:29:07.336Z",
     "updatedAt": "2026-02-12T14:45:45.413Z",
     "translations": {
@@ -3880,7 +3880,7 @@
     ],
     "createdAt": "2026-02-05T16:43:43.819Z",
     "updatedAt": "2026-02-12T19:46:14.500Z",
-    "panoramaImage": "/downloads/ferry-plaza-farmers-market.png",
+    "panoramaImage": "/downloads/ferry-plaza-farmers-market.webp",
     "translations": {
       "miniText": {}
     },
@@ -3904,7 +3904,7 @@
     ],
     "createdAt": "2026-02-05T16:53:44.517Z",
     "updatedAt": "2026-02-05T16:56:48.333Z",
-    "panoramaImage": "/downloads/g.png",
+    "panoramaImage": "/downloads/g.webp",
     "translations": {
       "miniText": {}
     },
@@ -3928,7 +3928,7 @@
     ],
     "createdAt": "2026-02-05T17:05:20.197Z",
     "updatedAt": "2026-02-13T13:45:55.527Z",
-    "panoramaImage": "/downloads/the-progress.png",
+    "panoramaImage": "/downloads/the-progress.webp",
     "translations": {
       "miniText": {}
     },
@@ -3946,7 +3946,7 @@
     "phone": "",
     "openingHours": "Jeudi 17h00-21h00\nVendredi 17h00-21h30\nSamedi 9h30-14h00, 16h30-21h30\nDimanche 9h30-14h00, 16h30-21h00\nLundi 17h00-21h00\nMardi 17h00-21h00\nMercredi 17h00-21h00",
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir d’ingrédients issus de fermes locales de Californie. Outerlands met l’accent sur la simplicité, la transformation sur place et le respect des produits, avec un menu qui évolue selon les récoltes et les arrivages.",
-    "panoramaImage": "/downloads/Outerlands.png",
+    "panoramaImage": "/downloads/Outerlands.webp",
     "tags": [
       "Restaurant"
     ],
@@ -3970,7 +3970,7 @@
     "phone": "+1 415-864-8643",
     "openingHours": "Jeudi 17h30-22h00\nVendredi 17h30-23h00\nSamedi 17h30-23h00\nDimanche 17h00-21h30\nLundi 17h30-22h00\nMardi 17h30-22h00\nMercredi 17h30-22h00",
     "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux de Californie. Nopa travaille une carte qui évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à la qualité des produits et au respect des saisons.",
-    "panoramaImage": "/downloads/Nopa.png",
+    "panoramaImage": "/downloads/Nopa.webp",
     "tags": [
       "Restaurant"
     ],
@@ -4000,7 +4000,7 @@
     "miniText": "Brunch reconnu pour sa cuisine de saison élaborée à partir de produits locaux californiens. Plow travaille avec des fermes partenaires et met en avant des ingrédients frais et sourcés, préparés entièrement sur place.",
     "createdAt": "2026-02-05T18:10:54.570Z",
     "updatedAt": "2026-02-23T20:35:07.686Z",
-    "panoramaImage": "/downloads/plow.png",
+    "panoramaImage": "/downloads/plow.webp",
     "translations": {
       "miniText": {}
     },
@@ -4048,7 +4048,7 @@
     "miniText": "Restaurant mêlant cuisine de saison et programmation cinématographique. Foreign Cinema travaille avec des producteurs locaux et adapte ses menus en fonction des arrivages, dans une approche attentive à la qualité des ingrédients et à la saisonnalité. Le lieu combine restauration, culture et vie de quartier.",
     "createdAt": "2026-02-05T18:31:10.194Z",
     "updatedAt": "2026-02-05T18:36:12.630Z",
-    "panoramaImage": "/downloads/f.png",
+    "panoramaImage": "/downloads/f.webp",
     "translations": {
       "miniText": {}
     },
@@ -4072,7 +4072,7 @@
     "miniText": "Centre opérationnel dédié au recyclage textile, FABSCRAP collecte les déchets de tissu issus de marques, d’ateliers et d’entreprises new-yorkaises afin d’éviter leur enfouissement ou leur incinération. Le lieu constitue une infrastructure clé de l’économie circulaire textile locale, en traitant directement les flux de déchets de l’industrie de la mode.",
     "createdAt": "2026-02-05T18:52:14.146Z",
     "updatedAt": "2026-02-12T20:07:12.734Z",
-    "panoramaImage": "/downloads/fabscrap.png",
+    "panoramaImage": "/downloads/fabscrap.webp",
     "translations": {
       "miniText": {}
     },
@@ -4120,7 +4120,7 @@
     "miniText": "Centre de réemploi créatif dédié à l’économie circulaire. Le lieu fonctionne comme un atelier de transformation et de redistribution, mettant à disposition des matières réutilisées pour la création, l’artisanat et la fabrication locale. Il contribue à réduire les déchets envoyés en décharge tout en soutenant une production créative ancrée dans le territoire d’Austin.",
     "createdAt": "2026-02-05T19:12:57.475Z",
     "updatedAt": "2026-02-12T19:19:41.271Z",
-    "panoramaImage": "/downloads/austin-creative-reuse-center.png",
+    "panoramaImage": "/downloads/austin-creative-reuse-center.webp",
     "translations": {
       "miniText": {}
     },
@@ -4144,7 +4144,7 @@
     "miniText": "Restaurant proposant des plats préparés à partir d’ingrédients frais, de saison, issus de fermes locales de Floride. Naked Farmer met en avant une cuisine simple et transparente, avec une attention portée à l’origine des produits, aux circuits courts et à une alimentation accessible et responsable.",
     "createdAt": "2026-02-05T19:21:25.784Z",
     "updatedAt": "2026-02-05T19:26:30.891Z",
-    "panoramaImage": "/downloads/n.png",
+    "panoramaImage": "/downloads/n.webp",
     "translations": {
       "miniText": {}
     },
@@ -4192,7 +4192,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant à partir de produits issus de fermes et de producteurs mexicains, avec une attention forte portée à la saisonnalité et aux ingrédients endémiques. Quintonil met en valeur le maïs natif, les légumes, herbes et produits du territoire mexicain, en construisant ses menus selon les récoltes et les disponibilités locales.",
-    "panoramaImage": "/downloads/Quintonil.png",
+    "panoramaImage": "/downloads/Quintonil.webp",
     "translations": {
       "miniText": {}
     },
@@ -4240,7 +4240,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant travaillant avec des fermes, pêcheurs et producteurs locaux de la péninsule du Yucatán, en construisant ses menus exclusivement à partir d’ingrédients de saison.",
-    "panoramaImage": "/downloads/Hartwood.png",
+    "panoramaImage": "/downloads/Hartwood.webp",
     "translations": {
       "miniText": {}
     },
@@ -4312,7 +4312,7 @@
     ],
     "createdAt": "2026-02-06T18:11:58.324Z",
     "updatedAt": "2026-02-12T19:49:38.262Z",
-    "panoramaImage": "/downloads/mercado-la-ciudadela.png",
+    "panoramaImage": "/downloads/mercado-la-ciudadela.webp",
     "translations": {
       "miniText": {}
     },
@@ -4336,7 +4336,7 @@
     ],
     "createdAt": "2026-02-06T18:27:32.861Z",
     "updatedAt": "2026-02-12T14:49:49.181Z",
-    "panoramaImage": "/downloads/Mexico City | Mercado El 100.png",
+    "panoramaImage": "/downloads/Mexico City | Mercado El 100.webp",
     "translations": {
       "miniText": {}
     },
@@ -4385,7 +4385,7 @@
     "miniText": "Café de quartier situé à Barrio Escalante, proposant une offre de café de spécialité accompagnée d’une cuisine simple et soignée. Franco met en avant des produits travaillés sur place et s’inscrit dans la scène locale de San José, en lien avec la vie quotidienne du quartier.",
     "createdAt": "2026-02-06T18:54:37.593Z",
     "updatedAt": "2026-02-06T18:57:16.576Z",
-    "panoramaImage": "/downloads/sa.png",
+    "panoramaImage": "/downloads/sa.webp",
     "translations": {
       "miniText": {}
     },
@@ -4457,7 +4457,7 @@
     "miniText": "Restaurant proposant une cuisine construite autour des produits du territoire costaricien. Travaillant avec un réseau identifié de producteurs, d’agriculteurs et de pêcheurs locaux afin de valoriser les ingrédients, les saisons et les savoir-faire culinaires du Costa Rica à travers des menus évolutifs.",
     "createdAt": "2026-02-06T19:39:35.380Z",
     "updatedAt": "2026-02-12T14:23:26.805Z",
-    "panoramaImage": "/downloads/Restaurante Silvestre.png",
+    "panoramaImage": "/downloads/Restaurante Silvestre.webp",
     "translations": {
       "miniText": {}
     },
@@ -4601,7 +4601,7 @@
     "miniText": "Restaurant proposant une cuisine construite à partir de produits locaux colombiens. Travaillant avec des producteurs et fournisseurs à petite échelle afin de valoriser des ingrédients frais, des circuits courts et une approche culinaire attentive à l’origine des produits.",
     "createdAt": "2026-02-07T16:43:50.784Z",
     "updatedAt": "2026-02-07T16:51:03.631Z",
-    "panoramaImage": "/downloads/m.png",
+    "panoramaImage": "/downloads/m.webp",
     "translations": {
       "miniText": {}
     },
@@ -4625,7 +4625,7 @@
     "miniText": "Restaurant développant une cuisine ancrée dans les produits et les écosystèmes de la côte caraïbe colombienne. Celele travaille avec des producteurs, pêcheurs et fournisseurs locaux afin de valoriser des ingrédients régionaux, des pratiques artisanales et la biodiversité du territoire.",
     "createdAt": "2026-02-07T16:57:45.066Z",
     "updatedAt": "2026-02-23T20:35:07.686Z",
-    "panoramaImage": "/downloads/Celele.png",
+    "panoramaImage": "/downloads/Celele.webp",
     "translations": {
       "miniText": {}
     },
@@ -4649,7 +4649,7 @@
     "miniText": "Restaurant travaillant à partir de produits locaux colombiens, avec une attention portée à l’origine des ingrédients et aux circuits courts. Abasto collabore avec des producteurs et artisans alimentaires afin de proposer une cuisine de saison, des plats simples et une offre quotidienne ancrée dans le territoire.",
     "createdAt": "2026-02-07T17:05:38.646Z",
     "updatedAt": "2026-02-12T19:26:52.136Z",
-    "panoramaImage": "/downloads/abasto-usaquen.png",
+    "panoramaImage": "/downloads/abasto-usaquen.webp",
     "translations": {
       "miniText": {}
     },
@@ -4673,7 +4673,7 @@
     "miniText": "Oliveraie développant une production agricole locale adaptée au terroir andin, avec un travail centré sur la culture, la transformation et la valorisation de l’olive sur place. Le lieu est visitable et permet de découvrir le processus de production ainsi que les produits issus du verger.",
     "createdAt": "2026-02-07T18:03:56.398Z",
     "updatedAt": "2026-02-07T18:10:37.862Z",
-    "panoramaImage": "/downloads/o.png",
+    "panoramaImage": "/downloads/o.webp",
     "translations": {
       "miniText": {}
     },
@@ -4697,7 +4697,7 @@
     "miniText": "Restaurant consacré à la valorisation de la diversité alimentaire colombienne, à travers une cuisine construite en lien direct avec les territoires, les produits et les savoir-faire locaux. Mini Mal collabore avec des producteurs et communautés pour préserver et transmettre des ingrédients, pratiques et traditions culinaires du pays.",
     "createdAt": "2026-02-07T18:13:39.059Z",
     "updatedAt": "2026-02-12T19:34:48.268Z",
-    "panoramaImage": "/downloads/mini-mal.png",
+    "panoramaImage": "/downloads/mini-mal.webp",
     "translations": {
       "miniText": {}
     },
@@ -4721,7 +4721,7 @@
     "miniText": "Restaurant développant une approche centrée sur les produits brésiliens, les saisons et les circuits courts. Le lieu travaille avec des producteurs locaux et met en avant des ingrédients issus de l’agriculture régionale, valorisés à travers une cuisine ouverte et évolutive.",
     "createdAt": "2026-02-07T19:36:47.225Z",
     "updatedAt": "2026-02-23T20:35:07.686Z",
-    "panoramaImage": "/downloads/São Paulo | Corrutela.png",
+    "panoramaImage": "/downloads/São Paulo | Corrutela.webp",
     "translations": {
       "miniText": {}
     },
@@ -4769,7 +4769,7 @@
     "miniText": "Restaurant mettant en avant une cuisine ancrée dans les produits brésiliens et les savoir-faire culinaires locaux. Cuia travaille à partir d’ingrédients issus de producteurs régionaux et propose une carte qui évolue selon les saisons.",
     "createdAt": "2026-02-07T19:53:04.447Z",
     "updatedAt": "2026-02-12T15:17:11.260Z",
-    "panoramaImage": "/downloads/Cuia Café.png",
+    "panoramaImage": "/downloads/Cuia Café.webp",
     "translations": {
       "miniText": {}
     },
@@ -4793,7 +4793,7 @@
     "miniText": "Restaurant végétarien proposant une cuisine élaborée à partir d’ingrédients majoritairement biologiques et issus de producteurs locaux. Banana Verde met en avant les produits brésiliens, les légumes de saison et une approche attentive à l’origine des ingrédients.",
     "createdAt": "2026-02-07T20:02:51.234Z",
     "updatedAt": "2026-02-12T19:29:42.223Z",
-    "panoramaImage": "/downloads/banana-verde.png",
+    "panoramaImage": "/downloads/banana-verde.webp",
     "translations": {
       "miniText": {}
     },
@@ -4817,7 +4817,7 @@
     "miniText": "Café travaillant en lien direct avec des producteurs brésiliens et met en avant des cafés de terroir torréfiés sur place. Le lieu accorde une attention particulière à la traçabilité, aux méthodes d’extraction et à la valorisation du travail agricole, avec une approche pédagogique autour du café et de ses origines.",
     "createdAt": "2026-02-07T20:21:28.777Z",
     "updatedAt": "2026-02-12T15:34:36.831Z",
-    "panoramaImage": "/downloads/coffee-lab.png",
+    "panoramaImage": "/downloads/coffee-lab.webp",
     "translations": {
       "miniText": {}
     },
@@ -4889,7 +4889,7 @@
     "miniText": "Domaine viticole situé sur l’atoll de Rangiroa, produisant des vins à partir de raisins cultivés localement. Le lieu associe production agricole, vinification et vente directe, avec un ancrage fort dans le territoire et un savoir-faire unique en Polynésie française.",
     "createdAt": "2026-02-07T21:22:40.445Z",
     "updatedAt": "2026-02-07T21:26:54.001Z",
-    "panoramaImage": "/downloads/t.png",
+    "panoramaImage": "/downloads/t.webp",
     "translations": {
       "miniText": {}
     },
@@ -4963,7 +4963,7 @@
     "miniText": "Restaurant développant une cuisine construite autour des écosystèmes du Pérou. Central travaille en lien direct avec des producteurs, agriculteurs et communautés situés à différentes altitudes, afin de valoriser la biodiversité et les savoirs alimentaires du territoire.",
     "createdAt": "2026-02-08T16:18:56.875Z",
     "updatedAt": "2026-02-12T14:28:39.390Z",
-    "panoramaImage": "/downloads/Lima | Central Restaurante.png",
+    "panoramaImage": "/downloads/Lima | Central Restaurante.webp",
     "translations": {
       "miniText": {}
     },
@@ -5014,7 +5014,7 @@
     "miniText": "Lieu communautaire dédié à la préservation et à la transmission des savoir-faire textiles andins. Le centre rassemble des artisanes de la région de Chinchero qui travaillent le tissage traditionnel à partir de fibres locales et de teintures naturelles. Il fonctionne comme un espace de production, de formation et de partage, visant à maintenir vivantes les pratiques textiles ancestrales.",
     "createdAt": "2026-02-08T16:53:46.704Z",
     "updatedAt": "2026-02-12T19:56:19.845Z",
-    "panoramaImage": "/downloads/centro-textiles-tradicionales.png",
+    "panoramaImage": "/downloads/centro-textiles-tradicionales.webp",
     "translations": {
       "miniText": {}
     },
@@ -5038,7 +5038,7 @@
     "miniText": "Café travaillant avec des producteurs locaux et sélectionnant des lots identifiés issus de différentes régions du Pérou. Le lieu met l’accent sur la torréfaction, l’extraction et la compréhension du café, dans une approche pédagogique et artisanale.",
     "createdAt": "2026-02-08T17:07:55.794Z",
     "updatedAt": "2026-02-08T17:14:34.278Z",
-    "panoramaImage": "/downloads/c.png",
+    "panoramaImage": "/downloads/c.webp",
     "translations": {
       "miniText": {}
     },
@@ -5087,7 +5087,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie spécialisée dans la valorisation des produits du terroir guyanais, proposant une large gamme de spécialités locales, incluant confitures, épices, condiments, chocolats, rhums arrangés et produits transformés à partir de matières premières issues du territoire.",
-    "panoramaImage": "/downloads/u.png",
+    "panoramaImage": "/downloads/u.webp",
     "translations": {
       "miniText": {}
     },
@@ -5111,7 +5111,7 @@
     "miniText": "Ferme communautaire dédiée à l’agriculture régénérative et à la souveraineté alimentaire. Le lieu combine production agricole, formation et transmission de savoirs, avec un accent particulier sur l’accès à la terre, la justice alimentaire et le soutien aux communautés.",
     "createdAt": "2026-02-09T17:26:21.788Z",
     "updatedAt": "2026-02-09T17:33:10.688Z",
-    "panoramaImage": "/downloads/soul.png",
+    "panoramaImage": "/downloads/soul.webp",
     "translations": {
       "miniText": {}
     },
@@ -5135,7 +5135,7 @@
     "miniText": "Ferme urbaine et centre de jardinage communautaire à San Diego. Elle promeut l’agriculture écologique en transformant des jardins résidentiels et scolaires en espaces productifs de légumes et de fruits locaux, en offrant des programmes éducatifs, des abonnements CSA et en renforçant la sécurité alimentaire de la communauté.",
     "createdAt": "2026-02-09T17:39:07.596Z",
     "updatedAt": "2026-02-09T17:42:44.874Z",
-    "panoramaImage": "/downloads/good.png",
+    "panoramaImage": "/downloads/good.webp",
     "translations": {
       "miniText": {}
     },
@@ -5183,7 +5183,7 @@
     "miniText": "Restaurant travaillant à partir de produits locaux et biologiques provenant de fermes du Missouri et du Kansas. Les menus évoluent selon les saisons et les arrivages, avec une attention portée à la traçabilité des ingrédients, aux relations directes avec les producteurs et au respect du rythme agricole.",
     "createdAt": "2026-02-09T18:13:03.666Z",
     "updatedAt": "2026-02-12T21:00:27.512Z",
-    "panoramaImage": "/downloads/blue-bird-bistro.png",
+    "panoramaImage": "/downloads/blue-bird-bistro.webp",
     "translations": {
       "miniText": {}
     },
@@ -5207,7 +5207,7 @@
     "miniText": "Restaurant italien proposant une cuisine élaborée à partir de produits locaux et de saison, avec une attention portée à l’origine des ingrédients et aux relations directes avec les producteurs. Tous les ingrédients viennent de la région et la majorité des vins également.",
     "createdAt": "2026-02-09T18:25:45.393Z",
     "updatedAt": "2026-02-09T18:32:36.310Z",
-    "panoramaImage": "/downloads/far.png",
+    "panoramaImage": "/downloads/far.webp",
     "translations": {
       "miniText": {}
     },
@@ -5255,7 +5255,7 @@
     "miniText": "Centre de réemploi créatif dédié à la récupération et à la redistribution de matériaux issus d’entreprises, d’écoles et de particuliers. ScrapsKC met à disposition des matières réutilisées pour l’artisanat et la création, et propose des ateliers afin de transmettre des pratiques de réemploi et de réduction des déchets à l’échelle locale.",
     "createdAt": "2026-02-09T19:07:10.133Z",
     "updatedAt": "2026-02-09T19:16:58.106Z",
-    "panoramaImage": "/downloads/sc.png",
+    "panoramaImage": "/downloads/sc.webp",
     "translations": {
       "miniText": {}
     },
@@ -5277,7 +5277,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant explorant les écosystèmes du territoire à travers une cuisine fondée sur la saisonnalité, la cueillette et le travail avec des producteurs, pêcheurs et cueilleurs locaux. Boragó construit ses menus à partir d’ingrédients endémiques et de savoir-faire liés aux paysages du Chili, dans une démarche attentive aux cycles naturels et à l’origine des produits.",
-    "panoramaImage": "/downloads/chili.png",
+    "panoramaImage": "/downloads/chili.webp",
     "createdAt": "2026-02-09T19:30:46.454Z",
     "updatedAt": "2026-02-09T19:39:02.372Z",
     "translations": {
@@ -5352,7 +5352,7 @@
       "restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine nordique contemporaine fondée sur des produits locaux. Dill travaille avec des producteurs, pêcheurs et cueilleurs islandais, en intégrant fermentation, saisonnalité et savoir-faire traditionnels dans une approche culinaire ancrée dans le territoire.",
-    "panoramaImage": "/downloads/dill.png",
+    "panoramaImage": "/downloads/dill.webp",
     "translations": {
       "miniText": {}
     },
@@ -5376,7 +5376,7 @@
       "lieu-de-vie"
     ],
     "miniText": "Lieu de vie combinant ferme, hébergement et restaurant. Vogafjós Farm Resort valorise la production locale, notamment laitière, et propose une cuisine directement issue de la ferme, dans une approche ancrée dans le territoire et le quotidien rural islandais.",
-    "panoramaImage": "/downloads/vo.png",
+    "panoramaImage": "/downloads/vo.webp",
     "translations": {
       "miniText": {}
     },
@@ -5400,7 +5400,7 @@
       "lieu-de-vie"
     ],
     "miniText": "Lieu de vie combinant ferme, restaurant, hébergement et produits laitiers. Efsti-Dalur II valorise la production locale avec ses glaces maison, fromages et produits issus de sa ferme en Islande.",
-    "panoramaImage": "/downloads/ef.png",
+    "panoramaImage": "/downloads/ef.webp",
     "translations": {
       "miniText": {}
     },
@@ -5424,7 +5424,7 @@
       "Ferme"
     ],
     "miniText": "Ferme spécialisée dans la culture de tomates en serre géothermique. Friðheimar produit toute l’année grâce à l’énergie géothermique et valorise sa production sur place à travers un restaurant ouvert au public. Le lieu permet de découvrir les techniques agricoles locales, l’usage des ressources naturelles islandaises et une alimentation directement issue de la ferme.",
-    "panoramaImage": "/downloads/fr.png",
+    "panoramaImage": "/downloads/fr.webp",
     "translations": {
       "miniText": {}
     },
@@ -5472,7 +5472,7 @@
     "miniText": "Pub proposant une cuisine et des boissons élaborées à partir d’ingrédients certifiés bio. The Duke Organic met en avant des produits de saison, une carte de bières et de vins biologiques, ainsi qu’une approche attentive à l’origine des aliments et aux pratiques agricoles durables.",
     "createdAt": "2026-02-10T16:21:55.043Z",
     "updatedAt": "2026-02-10T16:25:45.731Z",
-    "panoramaImage": "/downloads/du.png",
+    "panoramaImage": "/downloads/du.webp",
     "translations": {
       "miniText": {}
     },
@@ -5496,7 +5496,7 @@
     "miniText": "Pub mettant au cœur de sa démarche le travail de la viande issue d’élevages britanniques responsables et l’utilisation d’ingrédients locaux. The Pig and Butcher privilégie des animaux élevés en plein air, des produits locaux et valorise l’ensemble à travers une cuisine saisonnière.",
     "createdAt": "2026-02-10T16:31:41.016Z",
     "updatedAt": "2026-02-10T16:42:06.423Z",
-    "panoramaImage": "/downloads/ph.png",
+    "panoramaImage": "/downloads/ph.webp",
     "translations": {
       "miniText": {}
     },
@@ -5544,7 +5544,7 @@
     "miniText": "Boulangerie artisanale travaillant à partir des produits cultives sur sa ferme située dans le Suffolk, engagée dans des pratiques agricoles régénératives favorisant la biodiversité. La ferme fournit chaque semaine céréales, légumes et fruits à la boulangerie, dans une démarche globale visant à améliorer l’impact social, économique et environnemental de l’activité.",
     "createdAt": "2026-02-10T16:57:51.947Z",
     "updatedAt": "2026-02-13T14:25:20.952Z",
-    "panoramaImage": "/downloads/Bakehouse.png",
+    "panoramaImage": "/downloads/Bakehouse.webp",
     "translations": {
       "miniText": {}
     },
@@ -5592,7 +5592,7 @@
     "miniText": "Ferme urbaine communautaire située au cœur de l’est de Londres, dédiée à l’agriculture urbaine, à l’éducation et au lien avec le vivant. Hackney City Farm accueille des animaux, développe des activités pédagogiques et promeut une relation directe entre les habitants, l’alimentation et les écosystèmes urbains.",
     "createdAt": "2026-02-10T18:20:43.301Z",
     "updatedAt": "2026-02-10T18:25:00.715Z",
-    "panoramaImage": "/downloads/lo.png",
+    "panoramaImage": "/downloads/lo.webp",
     "translations": {
       "miniText": {}
     },
@@ -5640,7 +5640,7 @@
     "miniText": "Restaurant proposant une cuisine construite autour de produits britanniques de saison, issus de fermes et de producteurs locaux. Le restaurant travaille notamment avec Cinderwood Market Garden, la ferme biologique, qui cultive légumes et herbes pour Higher Ground et d’autres restaurants de Manchester.",
     "createdAt": "2026-02-10T18:51:59.482Z",
     "updatedAt": "2026-02-10T19:06:16.939Z",
-    "panoramaImage": "/downloads/hi.png",
+    "panoramaImage": "/downloads/hi.webp",
     "translations": {
       "miniText": {}
     },
@@ -5712,7 +5712,7 @@
     "miniText": "Jardin communautaire et projet alimentaire développant une production locale de légumes et de plantes comestibles. Le lieu fonctionne comme un espace collectif dédié à la culture, à l’apprentissage et à la relation directe entre territoire, alimentation et communauté. Conçu par le restaurant \"Where The Light Gets In\".",
     "createdAt": "2026-02-10T19:32:55.926Z",
     "updatedAt": "2026-02-10T19:34:40.974Z",
-    "panoramaImage": "/downloads/ja.png",
+    "panoramaImage": "/downloads/ja.webp",
     "translations": {
       "miniText": {}
     },
@@ -5760,7 +5760,7 @@
     "miniText": "Café travaillant en lien avec des torréfacteurs et producteurs identifiés. The Fields Beneath met l’accent sur la qualité des grains, la saisonnalité des produits et une approche attentive à l’origine des ingrédients. Le lieu s’inscrit dans une démarche artisanale, centrée sur le goût et le savoir-faire.",
     "createdAt": "2026-02-10T20:41:48.178Z",
     "updatedAt": "2026-02-10T20:48:15.489Z",
-    "panoramaImage": "/downloads/caf.png",
+    "panoramaImage": "/downloads/caf.webp",
     "translations": {
       "miniText": {}
     },
@@ -5784,7 +5784,7 @@
     "miniText": "Ferme développant une agriculture régénérative, centrée sur la santé des sols, la biodiversité et la durabilité des écosystèmes agricoles. Flourish Produce cultive des fruits et légumes de saison et organise leur distribution locale afin de limiter les distances de transport et préserver la fraîcheur des produits.",
     "createdAt": "2026-02-10T20:50:35.076Z",
     "updatedAt": "2026-02-13T14:27:28.221Z",
-    "panoramaImage": "/downloads/Flourish Produce.png",
+    "panoramaImage": "/downloads/Flourish Produce.webp",
     "translations": {
       "miniText": {}
     },
@@ -5808,7 +5808,7 @@
     "miniText": "Marché rassemblant producteurs, artisans et commerçants indépendants. Borough Market met l’accent sur la qualité des produits, les savoir-faire artisanaux et les filières alimentaires responsables.",
     "createdAt": "2026-02-10T21:01:10.002Z",
     "updatedAt": "2026-02-10T21:09:26.358Z",
-    "panoramaImage": "/downloads/mar.png",
+    "panoramaImage": "/downloads/mar.webp",
     "translations": {
       "miniText": {}
     },
@@ -5832,7 +5832,7 @@
     "miniText": "Lieu alternatif associant café, boutique, ferme urbaine et pratiques artistiques, développant un modèle local reliant alimentation, culture et territoire. Le projet cultive des fruits et légumes dans sa ferme urbaine et collabore avec des producteurs de la région.",
     "createdAt": "2026-02-10T21:54:36.611Z",
     "updatedAt": "2026-02-10T22:05:16.443Z",
-    "panoramaImage": "/downloads/s.png",
+    "panoramaImage": "/downloads/s.webp",
     "translations": {
       "miniText": {}
     },
@@ -5880,7 +5880,7 @@
     "createdAt": "2026-02-10T22:31:53.379Z",
     "updatedAt": "2026-02-10T22:41:38.185Z",
     "miniText": "Lieu alternatif né d’un projet communautaire, mettant l’accent sur la cuisine maison, les produits locaux et de saison, et le lien social. Le lieu se veut accessible, inclusif et ancré dans son quartier, en favorisant des pratiques alimentaires durables, un espace ouvert aux rencontres, aux initiatives culturelles et à la vie collective.",
-    "panoramaImage": "/downloads/sr.png",
+    "panoramaImage": "/downloads/sr.webp",
     "translations": {
       "miniText": {}
     },
@@ -5904,7 +5904,7 @@
     "createdAt": "2026-02-10T22:44:03.226Z",
     "updatedAt": "2026-02-10T22:48:32.104Z",
     "miniText": "Restaurant mettant l’accent sur une cuisine saisonnière et locale, inspirée des produits irlandais, avec un menu changeant en fonction des arrivages et une forte identité culinaire.",
-    "panoramaImage": "/downloads/ki.png",
+    "panoramaImage": "/downloads/ki.webp",
     "translations": {
       "miniText": {}
     },
@@ -6024,7 +6024,7 @@
       "Ferme"
     ],
     "miniText": "Ferme combinant élevage laitier, laiterie, cueillette et marché fermier. Mettant en avant les circuits courts et les produits de saison, en travaillant avec des producteurs partenaires de la région.",
-    "panoramaImage": "/downloads/fe.png",
+    "panoramaImage": "/downloads/fe.webp",
     "country": "FR"
   },
   {
@@ -6046,7 +6046,7 @@
     ],
     "miniText": "Restaurant travaillant exclusivement avec des producteurs français identifiés, en privilégiant les circuits courts et les produits de saison. Les Résistants construit ses menus à partir d’ingrédients sourcés directement auprès de fermes et artisans, avec une attention portée à la traçabilité, au respect du territoire et à une cuisine ancrée dans l’agriculture paysanne.",
     "country": "FR",
-    "panoramaImage": "/downloads/les ressitant.png"
+    "panoramaImage": "/downloads/les ressitant.webp"
   },
   {
     "id": "6ec87517-c97d-48cc-ab9f-0b4f5dc0a4a0",
@@ -6108,7 +6108,7 @@
       "Restaurant"
     ],
     "miniText": "Café-restaurant proposant une cuisine maison axée sur la saisonnalité et le travail des producteurs locaux. L’établissement met en valeur des produits locaux et biologiques, en adoptant des pratiques respectueuses de l’environnement telles que la gestion des circuits courts et la réduction des déchets.",
-    "panoramaImage": "/downloads/Rennes | Les Récupérables .png",
+    "panoramaImage": "/downloads/Rennes | Les Récupérables .webp",
     "country": "FR"
   },
   {
@@ -6129,7 +6129,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine de saison élaborée à partir de produits locaux et sourcés auprès de producteurs identifiés. Prairial propose des menus courts et évolutifs, centrés sur le végétal et le rythme naturel des récoltes, avec une attention particulière portée à l’origine des ingrédients et au territoire.",
-    "panoramaImage": "/downloads/p.png",
+    "panoramaImage": "/downloads/p.webp",
     "country": "FR"
   },
   {
@@ -6150,7 +6150,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif proposant des ateliers et temps collectifs mêlant jardinage, cuisine participative et partage de savoir-faire, en lien avec des jardins et projets locaux à Lyon. Elle accueille aussi le public à la Maison des Fleurs, au Parc de Gerland.",
-    "panoramaImage": "/downloads/b.png",
+    "panoramaImage": "/downloads/b.webp",
     "country": "FR"
   },
   {
@@ -6171,7 +6171,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine du Nord fondée sur les produits régionaux et de saison. Travaillant en lien étroit avec des producteurs locaux et valorisant le terroir des Hauts-de-France dans une approche contemporaine, ancrée dans le territoire.",
-    "panoramaImage": "/downloads/bluempolil.png",
+    "panoramaImage": "/downloads/bluempolil.webp",
     "country": "FR"
   },
   {
@@ -6191,7 +6191,7 @@
     "tags": [
       "Lieu alternatif"
     ],
-    "panoramaImage": "/downloads/lil.png",
+    "panoramaImage": "/downloads/lil.webp",
     "miniText": "Ancienne gare de marchandises réhabilitée en espace culturel et lieu de vie. La Gare Saint Sauveur accueille expositions, concerts, projections, événements et espaces de restauration dans une dynamique ouverte et accessible, au cœur de Lille. Un site emblématique mêlant patrimoine industriel et création contemporaine.",
     "country": "FR"
   },
@@ -6213,7 +6213,7 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie cultivant et transformant des blés anciens issus de Seine-et-Marne pour produire son propre pain. Le projet s’inscrit dans une logique de maîtrise de la filière, du grain au pain, avec une attention particulière portée aux variétés anciennes et aux méthodes traditionnelles de panification.",
-    "panoramaImage": "/downloads/bo.png",
+    "panoramaImage": "/downloads/bo.webp",
     "country": "FR"
   },
   {
@@ -6234,7 +6234,7 @@
       "Ferme"
     ],
     "miniText": "Ferme en agriculture biologique produisant du lait, élevant des porcs et cultivant des fruits et légumes. La Ferme des 7 Chemins développe une activité de polyculture-élevage où les différentes productions coexistent sur une même exploitation. Les produits sont issus de la ferme et proposés en vente directe, dans une logique de circuit court et d’ancrage local.",
-    "panoramaImage": "/downloads/fer.png",
+    "panoramaImage": "/downloads/fer.webp",
     "country": "FR"
   },
   {
@@ -6255,7 +6255,7 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie fondée avec la volonté de proposer un pain sans gluten élaboré à partir de riz biologique. Transformant le riz en farine dans son propre moulin. Le projet repose sur la maîtrise de la filière, de la sélection du grain jusqu’à la panification, avec une production artisanale intégrée.",
-    "panoramaImage": "/downloads/bou.png",
+    "panoramaImage": "/downloads/bou.webp",
     "country": "FR"
   },
   {
@@ -6276,7 +6276,7 @@
       "Marché"
     ],
     "miniText": "Marché rassemblant des producteurs, artisans et commerçants majoritairement issus de Bretagne et des environs, proposant fruits et légumes de saison, produits laitiers, viandes, poissons, pains et spécialités régionales. Valorisant les productions locales et le lien direct avec les territoires agricoles bretons.",
-    "panoramaImage": "/downloads/rtr.png",
+    "panoramaImage": "/downloads/rtr.webp",
     "country": "FR"
   },
   {
@@ -6297,7 +6297,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif installé mêlant agriculture régénérative, inclusion sociale et restauration locale. Flourish développe des projets autour de la formation et du lien communautaire, tout en cultivant et valorisant des produits issus de la ferme et de producteurs locaux. Le lieu accueille un café et des espaces ouverts au public, ancrés dans une démarche sociale et territoriale.",
-    "panoramaImage": "/downloads/Flourish-at-Glenavon.png",
+    "panoramaImage": "/downloads/Flourish-at-Glenavon.webp",
     "country": "GB"
   },
   {
@@ -6318,7 +6318,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif développant une agriculture en plein cœur de Marseille. Le Paysan Urbain cultive des micro pousses destinés aux circuits courts, tout en portant un projet d’insertion et de formation autour des métiers agricoles urbains. Le lieu s’inscrit dans une démarche sociale, environnementale et territoriale.",
-    "panoramaImage": "/downloads/Le-Paysan-Urbain.png",
+    "panoramaImage": "/downloads/Le-Paysan-Urbain.webp",
     "country": "FR"
   },
   {
@@ -6339,7 +6339,7 @@
       "Ferme"
     ],
     "miniText": "Ferme développant une production agricole en lien avec le territoire et les habitants. La ferme propose des temps pédagogiques et une vente directe de produits issus de ses cultures, dans une démarche de proximité, de transmission et d’agriculture responsable.",
-    "panoramaImage": "/downloads/ferme-roy.png",
+    "panoramaImage": "/downloads/ferme-roy.webp",
     "country": "FR"
   },
   {
@@ -6381,7 +6381,7 @@
       "Brasserie / bar / pub"
     ],
     "miniText": "Microbrasserie engagée dans une production artisanale et biologique. Privilégiant les petits producteurs bio, locaux et artisanaux. La brasserie s’inscrit également dans une logique d’économie circulaire, notamment par la valorisation de ses drêches en alimentation animale.",
-    "panoramaImage": "/downloads/biere-de-plaine.png",
+    "panoramaImage": "/downloads/biere-de-plaine.webp",
     "country": "FR"
   },
   {
@@ -6423,7 +6423,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine basque maison élaborée à partir de produits frais et de saison. Le Chistera met à l’honneur les spécialités du territoire, ancrée dans la tradition culinaire locale.",
-    "panoramaImage": "/downloads/le-chis.png",
+    "panoramaImage": "/downloads/le-chis.webp",
     "country": "FR"
   },
   {
@@ -6444,7 +6444,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant s’appuyant sur des producteurs locaux, proposant une cuisine centrée sur les produits du Pays basque. L’établissement met en avant la qualité des matières premières, la saisonnalité et un lien étroit avec son environnement rural. Des chambres à la ferme sont également proposées.",
-    "panoramaImage": "/downloads/ostalapia.png",
+    "panoramaImage": "/downloads/ostalapia.webp",
     "country": "FR"
   },
   {
@@ -6465,7 +6465,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine maison mettant à l’honneur les produits du Pays basque et de saison. L’établissement s’inscrit dans une démarche ancrée dans le territoire, avec une attention portée à la qualité des matières premières et à son environnement.",
-    "panoramaImage": "/downloads/galupe.png",
+    "panoramaImage": "/downloads/galupe.webp",
     "country": "FR"
   },
   {
@@ -6507,7 +6507,7 @@
     "miniText": "Lieu alternatif combinant jardins collectifs, production maraîchère et activités culturelles. Le lieu fonctionne comme un espace autogéré mêlant agriculture urbaine, ateliers, événements et initiatives locales autour de l’écologie et de l’autonomie alimentaire.",
     "createdAt": "2026-02-13T17:35:43.702Z",
     "updatedAt": "2026-02-13T17:39:42.663Z",
-    "panoramaImage": "/downloads/masdeu.png",
+    "panoramaImage": "/downloads/masdeu.webp",
     "country": "ES"
   },
   {
@@ -6528,7 +6528,7 @@
     "miniText": "Restaurant vegan proposant une cuisine de saison élaborée à partir de produits biologiques et locaux. Mettant en avant les circuits courts, une sélection de vins naturels et une approche engagée autour de l’alimentation durable et du respect des producteurs.",
     "createdAt": "2026-02-13T17:43:33.271Z",
     "updatedAt": "2026-02-23T20:35:07.687Z",
-    "panoramaImage": "/downloads/rasoterra.png",
+    "panoramaImage": "/downloads/rasoterra.webp",
     "country": "ES"
   },
   {
@@ -6591,7 +6591,7 @@
       "restaurant"
     ],
     "miniText": "Restaurant travaillant exclusivement avec des producteurs de la région Berlin. Construisant ses menus autour des saisons et des ingrédients disponibles localement, avec une transparence sur l’origine des produits et une volonté de valoriser le terroir régional.",
-    "panoramaImage": "/downloads/nobelhart.png",
+    "panoramaImage": "/downloads/nobelhart.webp",
     "country": "DE"
   },
   {
@@ -6612,7 +6612,7 @@
       "restaurant"
     ],
     "miniText": "Restaurant mettant l’accent sur une cuisine allemande de saison, élaborée à partir de produits régionaux. Lokal travaille en lien avec des producteurs locaux et construit ses menus autour des disponibilités du moment, dans une approche centrée sur la qualité des ingrédients et le terroir.",
-    "panoramaImage": "/downloads/lokalb.png",
+    "panoramaImage": "/downloads/lokalb.webp",
     "country": "DE"
   },
   {
@@ -6654,7 +6654,7 @@
       "restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison axée sur des produits locaux. La carte évolue selon les récoltes et met en avant des ingrédients issus de fermes régionales, avec une approche centrée sur la qualité et le respect du produit.",
-    "panoramaImage": "/downloads/michelber.png",
+    "panoramaImage": "/downloads/michelber.webp",
     "country": "DE"
   },
   {
@@ -6675,7 +6675,7 @@
       "Ferme"
     ],
     "miniText": "Ferme développant une agriculture régénérative à grande échelle en Brandebourg. Travaillant sur la restauration des sols, la biodiversité et la résilience des écosystèmes agricoles, en combinant pratiques holistiques et expérimentation autour de nouveaux modèles ruraux durables.",
-    "panoramaImage": "/downloads/gut.png",
+    "panoramaImage": "/downloads/gut.webp",
     "country": "DE"
   },
   {
@@ -6717,7 +6717,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Village urbain alternatif rassemblant espaces culturels, artisanat, restauration et initiatives communautaires. Le projet fonctionne selon un modèle coopératif visant à préserver un lieu indépendant dédié à la création, à la culture et à des formes d’économie locale plus durables.",
-    "panoramaImage": "/downloads/holz.png",
+    "panoramaImage": "/downloads/holz.webp",
     "country": "DE"
   },
   {
@@ -6738,7 +6738,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif installé dans une ancienne gare, Utopiastadt réunit ateliers, coworking, initiatives citoyennes, événements culturels et un restaurant basé sur des produits locaux. Le lieu fonctionne comme plateforme collaborative dédiée à l’innovation sociale, à la culture indépendante et à des formes d’économie urbaine participative.",
-    "panoramaImage": "/downloads/utopiast.png",
+    "panoramaImage": "/downloads/utopiast.webp",
     "country": "DE"
   },
   {
@@ -6801,7 +6801,7 @@
       "Restaurant"
     ],
     "miniText": "Trattoria mettant à l’honneur les recettes traditionnelles et les produits issus de producteurs régionaux identifiés. SantoPalato valorise les abats, les légumes de saison et les matières premières locales, avec une carte courte évoluant selon les disponibilités agricoles et une approche ancrée dans le territoire.",
-    "panoramaImage": "/downloads/santopala.png",
+    "panoramaImage": "/downloads/santopala.webp",
     "country": "IT"
   },
   {
@@ -6822,7 +6822,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Centre dédié à la promotion de l’économie alternative et solidaire, situé dans l’ancien complexe industriel de Testaccio. Città dell'Altra Economia accueille initiatives liées à l’agriculture biologique, au commerce équitable, à la durabilité environnementale et à l’innovation sociale, ainsi que des événements culturels et associatifs.",
-    "panoramaImage": "/downloads/citta.png",
+    "panoramaImage": "/downloads/citta.webp",
     "country": "IT"
   },
   {
@@ -6843,7 +6843,7 @@
       "Marché"
     ],
     "miniText": "Marché de producteurs locaux vendant directement leurs fruits, légumes et produits fermiers. Le marché met en avant la saisonnalité, la traçabilité et le circuit court, avec une relation directe entre producteurs locaux et consommateurs.",
-    "panoramaImage": "/downloads/merccampa.png",
+    "panoramaImage": "/downloads/merccampa.webp",
     "country": "IT"
   },
   {
@@ -6864,7 +6864,7 @@
     ],
     "createdAt": "2026-02-13T21:34:20.339Z",
     "updatedAt": "2026-02-13T21:39:26.872Z",
-    "panoramaImage": "/downloads/erbab.png",
+    "panoramaImage": "/downloads/erbab.webp",
     "country": "IT"
   },
   {
@@ -6906,7 +6906,7 @@
     ],
     "createdAt": "2026-02-13T21:46:28.481Z",
     "updatedAt": "2026-02-13T21:48:14.209Z",
-    "panoramaImage": "/downloads/cascina.png",
+    "panoramaImage": "/downloads/cascina.webp",
     "country": "IT"
   },
   {
@@ -6927,7 +6927,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant développant une cuisine contemporaine ancrée dans le terroir. Construisant ses menus autour de produits locaux et saisonniers, en valorisant les matières premières régionales et un travail précis sur les saveurs, entre tradition méditerranéenne et interprétation moderne.",
-    "panoramaImage": "/downloads/veritas.png",
+    "panoramaImage": "/downloads/veritas.webp",
     "country": "IT"
   },
   {
@@ -6948,7 +6948,7 @@
       "Ferme"
     ],
     "miniText": "Ferme spécialisée dans l’élevage de bufflonnes et la production artisanale de mozzarella di bufala bio. Développant un modèle intégré où l’élevage, la transformation et la vente se font sur place, avec une attention portée au bien-être animal, à la traçabilité et à la production locale en circuit court. Dégustation de produit laitiers proposée sur place.",
-    "panoramaImage": "/downloads/tenuta.png",
+    "panoramaImage": "/downloads/tenuta.webp",
     "country": "IT"
   },
   {
@@ -6990,7 +6990,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant conçu comme un écosystème autonome, intégrant production agricole, élevage et transformation dans une logique de saisonnalité et de responsabilité environnementale. Fermier travaille en lien direct avec des producteurs partageant la même philosophie, utilisant des matériaux et savoir-faire locaux jusque dans la construction et l’artisanat du lieu.",
-    "panoramaImage": "/downloads/fermierrest.png",
+    "panoramaImage": "/downloads/fermierrest.webp",
     "country": "ZA"
   },
   {
@@ -7011,7 +7011,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant situé au cœur du domaine Babylonstoren, proposant une cuisine élaborée à partir des fruits, légumes et herbes cultivés sur place, centrée sur la saisonnalité, la récolte quotidienne du potager et la valorisation directe des produits du domaine.",
-    "panoramaImage": "/downloads/babylonr.png",
+    "panoramaImage": "/downloads/babylonr.webp",
     "country": "ZA"
   },
   {
@@ -7054,7 +7054,7 @@
     ],
     "miniText": "Ferme spécialisée dans la conservation et la production de semences anciennes. Livingseeds travaille à la préservation de variétés potagères traditionnelles, à la multiplication locale de semences et à la transmission de savoir-faire agricoles favorisant l’autonomie alimentaire.",
     "country": "ZA",
-    "panoramaImage": "/downloads/lseeds.png"
+    "panoramaImage": "/downloads/lseeds.webp"
   },
   {
     "id": "154ee7f9-8db1-4558-ba01-f94057180a35",
@@ -7094,7 +7094,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant installé dans un riad, proposant une cuisine marocaine contemporaine inspirée des recettes traditionnelles. Dar Moha met en avant des produits locaux et de saison, revisités avec une approche gastronomique, dans un cadre architectural typique valorisant le patrimoine marocain.",
-    "panoramaImage": "/downloads/darmoha.png",
+    "panoramaImage": "/downloads/darmoha.webp",
     "createdAt": "2026-02-14T15:07:08.839Z",
     "updatedAt": "2026-02-23T20:35:07.688Z"
   },
@@ -7138,7 +7138,7 @@
     "miniText": "Restaurant cultivant ses légumes, herbes et fleurs comestibles sur sa propre ferme attenante. Cultiva développe une cuisine de saison directement liée à sa production agricole, avec un approvisionnement local complémentaire et une approche axée sur la fraîcheur, la traçabilité et le respect des sols.",
     "createdAt": "2026-02-14T15:38:57.377Z",
     "updatedAt": "2026-02-14T15:40:41.510Z",
-    "panoramaImage": "/downloads/cultivafar.png"
+    "panoramaImage": "/downloads/cultivafar.webp"
   },
   {
     "id": "04a9c1c4-161a-4087-92e2-147c3bad0d12",
@@ -7159,7 +7159,7 @@
     "miniText": "Marché hebdomadaire réunissant des producteurs locaux vendant directement fruits, légumes, miel, produits laitiers et produits transformés artisanaux. L’Organic Farmers Market met en avant des pratiques agricoles durables et favorise un lien direct entre agriculteurs et consommateurs.",
     "createdAt": "2026-02-14T15:44:09.392Z",
     "updatedAt": "2026-02-14T15:48:11.974Z",
-    "panoramaImage": "/downloads/organicken.png"
+    "panoramaImage": "/downloads/organicken.webp"
   },
   {
     "id": "7e390eac-01a3-4272-997a-42c22e6b60ed",
@@ -7201,7 +7201,7 @@
       "Boutique"
     ],
     "miniText": "Boutique - galerie dédiée à l’art nigérian contemporain et traditionnel. Nike Art Gallery expose peintures, sculptures et textiles, notamment le textile Adire teint à l’indigo, et soutient la transmission des savoir-faire artisanaux à travers des initiatives culturelles et éducatives. Le lieu met en valeur la création locale et le patrimoine artistique nigérian.",
-    "panoramaImage": "/downloads/galeryneg.png"
+    "panoramaImage": "/downloads/galeryneg.webp"
   },
   {
     "id": "880d6cf2-dc20-4805-8e26-6280e209069e",
@@ -7222,7 +7222,7 @@
       "Ferme"
     ],
     "miniText": "Ferme spécialisée dans l’agriculture hors-sol produisant des légumes et herbes à destination du marché local. Soilless Farm Lab développe des systèmes hydroponiques et des solutions agricoles innovantes visant à améliorer la productivité, réduire l’usage des sols et renforcer la sécurité alimentaire au Nigeria. Le projet combine production, recherche et formation agricole.",
-    "panoramaImage": "/downloads/soilers.png"
+    "panoramaImage": "/downloads/soilers.webp"
   },
   {
     "id": "5f4e981c-7a9c-491b-841a-ef2289d4e1e6",
@@ -7264,7 +7264,7 @@
       "Mode"
     ],
     "miniText": "Marque de mode se présentant comme une entreprise sociale qui forme et emploie des artisan·es. La marque met en avant le tissage artisanal et la fabrication locale en Éthiopie, avec une attention portée à l’impact social et à la communauté de son atelier.",
-    "panoramaImage": "/downloads/mafimafi.png"
+    "panoramaImage": "/downloads/mafimafi.webp"
   },
   {
     "id": "d6b44fe6-d061-4471-bed3-137f00112365",
@@ -7285,7 +7285,7 @@
       "Atelier"
     ],
     "miniText": "Atelier collaborant avec des artisanes maasaï pour créer des bijoux et accessoires réalisés à la main. Le projet met en avant le savoir-faire traditionnel perlé, avec une production locale visant à soutenir l’autonomie économique des femmes et à valoriser l’artisanat tanzanien.",
-    "panoramaImage": "/downloads/sidaides.png"
+    "panoramaImage": "/downloads/sidaides.webp"
   },
   {
     "id": "3c2f9997-b052-443e-a611-efbc32f7d3f9",
@@ -7306,7 +7306,7 @@
     "miniText": "Restaurant travaillant avec des producteurs locaux des vallées environnantes et des ingrédients issus de la montagne. Hiša Franko développe une cuisine profondément liée au territoire slovène, avec une forte saisonnalité et un approvisionnement régional.",
     "createdAt": "2026-02-14T17:44:35.105Z",
     "updatedAt": "2026-02-14T17:46:34.656Z",
-    "panoramaImage": "/downloads/hisafr.png"
+    "panoramaImage": "/downloads/hisafr.webp"
   },
   {
     "id": "53dbff12-4e7c-44fd-bf18-b9c3fc16be9f",
@@ -7327,7 +7327,7 @@
     "miniText": "Restaurant travaillant exclusivement avec des producteurs locaux et des ingrédients issus du territoire national. Kane développe une cuisine contemporaine ancrée dans les saisons locales, mettant en avant des variétés traditionnelles et des matières premières provenant de fermes roumaines.",
     "createdAt": "2026-02-14T17:49:30.690Z",
     "updatedAt": "2026-02-23T20:35:07.688Z",
-    "panoramaImage": "/downloads/kanere.png"
+    "panoramaImage": "/downloads/kanere.webp"
   },
   {
     "id": "e42fc861-17fd-40a1-98a7-09d6f4174c92",
@@ -7348,7 +7348,7 @@
     "miniText": "Restaurant mettant en avant des produits hongrois et des producteurs locaux, avec un travail approfondi sur les ingrédients traditionnels. Onyx développe une cuisine contemporaine ancrée dans le territoire hongrois, en valorisant les saisons et les matières premières nationales.",
     "createdAt": "2026-02-14T17:56:41.088Z",
     "updatedAt": "2026-02-23T20:35:07.688Z",
-    "panoramaImage": "/downloads/onyxresta.png"
+    "panoramaImage": "/downloads/onyxresta.webp"
   },
   {
     "id": "f6152e12-fe9f-48c0-ae31-e1108ed29a88",
@@ -7369,7 +7369,7 @@
     "miniText": "Restaurant familial situé dans un village ostréicole de la baie de Ston, travaillant principalement les huîtres et produits issus de la production locale. Ficović propose une cuisine dalmate ancrée dans le territoire, avec un approvisionnement direct en fruits de mer et ingrédients régionaux.",
     "createdAt": "2026-02-14T18:03:12.249Z",
     "updatedAt": "2026-02-23T20:35:07.688Z",
-    "panoramaImage": "/downloads/ficovic.png"
+    "panoramaImage": "/downloads/ficovic.webp"
   },
   {
     "id": "6f16b48c-5b4e-47d0-980a-5b86022ac2d8",
@@ -7411,7 +7411,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie réunissant des producteurs biologiques et artisanaux polonais. BioBazar met en avant des produits issus de l’agriculture biologique certifiée, vendus directement par les producteurs ou distributeurs spécialisés, avec un accent sur la qualité, la saisonnalité et la traçabilité des filières locales.",
-    "panoramaImage": "/downloads/biobazr.png"
+    "panoramaImage": "/downloads/biobazr.webp"
   },
   {
     "id": "bf67d41f-7063-4c3a-a2d1-9733002756f4",
@@ -7432,7 +7432,7 @@
       "Épicerie"
     ],
     "miniText": "Épicerie réunissant des producteurs biologiques et artisanaux polonais. BioBazar met en avant des produits issus de l’agriculture biologique certifiée, vendus directement par les producteurs ou distributeurs spécialisés, avec un accent sur la qualité, la saisonnalité et la traçabilité des filières locales.",
-    "panoramaImage": "/downloads/biobazr.png"
+    "panoramaImage": "/downloads/biobazr.webp"
   },
   {
     "id": "ce43171e-1edc-4a14-8ffa-f67f16d40bee",
@@ -7474,7 +7474,7 @@
       "Marché"
     ],
     "miniText": "Marché historique regroupant des commerces traditionnels, artisans, épices, textiles et produits du quotidien. Fondé à la fin du XIXe siècle, le souk constitue l’un des centres commerciaux les plus anciens du pays, mêlant boutiques indépendantes, échoppes familiales et restauration locale dans un cadre patrimonial préservé.",
-    "panoramaImage": "/downloads/soukk.png"
+    "panoramaImage": "/downloads/soukk.webp"
   },
   {
     "id": "d7537fde-daf2-43e7-9231-fa82d92e578c",
@@ -7495,7 +7495,7 @@
       "Librairie"
     ],
     "miniText": "Librairie spécialisée dans les livres d’occasion en anglais, Better Books propose un large choix de romans, essais, ouvrages jeunesse et livres académiques. La boutique fonctionne sur un modèle d’achat et de revente, favorisant la circulation des livres et l’accès à des titres à prix abordables, tout en animant une communauté locale de lecteurs.",
-    "panoramaImage": "/downloads/bookku.png"
+    "panoramaImage": "/downloads/bookku.webp"
   },
   {
     "id": "390bb7df-5eb4-436f-9624-8dceafffe8c2",
@@ -7558,7 +7558,7 @@
     "miniText": "Restaurant proposant une cuisine inspirée des produits indigènes de la région. The Eucalyptus met en avant des herbes sauvages, légumes de saison et ingrédients locaux issus du terroir israélien, avec une approche ancrée dans l’histoire culinaire de Jérusalem et du Moyen-Orient.",
     "createdAt": "2026-02-15T14:56:44.896Z",
     "updatedAt": "2026-02-15T15:02:53.963Z",
-    "panoramaImage": "/downloads/eucp.png"
+    "panoramaImage": "/downloads/eucp.webp"
   },
   {
     "id": "daf4e5b7-9d04-453d-a427-82f72f838c8e",
@@ -7600,7 +7600,7 @@
     "miniText": "Restaurant proposant une expérience de cuisine et de repas, fondée par trois sœurs. Le lieu propose une immersion dans la cuisine arabe avec la préparation de plats de saison, puis un repas partagé dans une atmosphère familiale.",
     "createdAt": "2026-02-15T15:10:03.736Z",
     "updatedAt": "2026-02-15T15:13:28.446Z",
-    "panoramaImage": "/downloads/amamj.png"
+    "panoramaImage": "/downloads/amamj.webp"
   },
   {
     "id": "5de267a3-e644-4a8d-ad3e-3d5376eb7228",
@@ -7621,7 +7621,7 @@
     "miniText": "Restaurant proposant un menu dégustation unique évoluant selon la saison et les arrivages. OCD TLV travaille avec des producteurs et fermes locales israéliennes, mettant l’accent sur la précision technique, la qualité des ingrédients et une expérience culinaire centrée sur le produit et sa provenance.",
     "createdAt": "2026-02-15T15:16:45.101Z",
     "updatedAt": "2026-02-15T15:19:15.343Z",
-    "panoramaImage": "/downloads/ocdd.png"
+    "panoramaImage": "/downloads/ocdd.webp"
   },
   {
     "id": "dc944d84-c00d-44e3-8762-f33865133cad",
@@ -7705,7 +7705,7 @@
     "miniText": "Ferme agroécologique engagée dans la préservation des semences paysannes et de la biodiversité cultivée, développant une production biologique locale et transmettant des pratiques agricoles durables afin de renforcer l’autonomie et la souveraineté alimentaire au Liban.",
     "createdAt": "2026-02-15T15:47:09.190Z",
     "updatedAt": "2026-02-15T15:48:53.539Z",
-    "panoramaImage": "/downloads/buzuruna.png"
+    "panoramaImage": "/downloads/buzuruna.webp"
   },
   {
     "id": "4e7a44d9-2ca3-4586-9bca-be2e789f311f",
@@ -7873,7 +7873,7 @@
     "lat": 12.994425131171516,
     "lng": 77.6158088870735,
     "openingHours": "Lundi 8h30–23h00\nMardi 8h30–23h00\nMercredi 8h30–23h00\nJeudi 8h30–23h00\nVendredi 8h30–23h00\nSamedi 8h30–23h00\nDimanche 8h30–23h00",
-    "panoramaImage": "/downloads/mav1.png"
+    "panoramaImage": "/downloads/mav1.webp"
   },
   {
     "city": "Bengaluru",
@@ -7894,7 +7894,7 @@
     "lat": 12.96086578038005,
     "lng": 77.64145997204749,
     "openingHours": "Lundi 9h00–23h00\nMardi 9h00–23h00\nMercredi 9h00–23h00\nJeudi 9h00–23h00\nVendredi 9h00–23h00\nSamedi 9h00–22h30\nDimanche 9h00–23h00",
-    "panoramaImage": "/downloads/mav2.png"
+    "panoramaImage": "/downloads/mav2.webp"
   },
   {
     "city": "Bengaluru",
@@ -8020,7 +8020,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif développés autour de l’agriculture naturelle et de la permaculture. Le lieu met en avant une production locale diversifiée (fruits, légumes, céréales, millets, riz, plantes comestibles). Le restaurant propose une cuisine « farm to plate » à partir de récoltes quotidiennes et le site organise aussi des ateliers, formations et visites pédagogiques.",
-    "panoramaImage": "/downloads/solitudefer.png"
+    "panoramaImage": "/downloads/solitudefer.webp"
   },
   {
     "id": "2b8d89ef-44a3-4fba-9e0a-60c4c1f40b5f",
@@ -8041,7 +8041,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant situé au sein d’une ferme biologique à Chennai. The Farm développe une production agricole locale (légumes, produits laitiers, boulangerie, fromages, conserves) utilisée directement dans sa cuisine. L’établissement met en avant des ingrédients issus de sa propre ferme avec une approche centrée sur la saisonnalité et la transformation artisanale.",
-    "panoramaImage": "/downloads/thefarmin.png"
+    "panoramaImage": "/downloads/thefarmin.webp"
   },
   {
     "id": "3b4b1ee1-de49-4123-b80c-9fce22984461",
@@ -8062,7 +8062,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif conçu comme un village traditionnel fonctionnant selon des principes de durabilité. Le site met en avant une architecture écologique, l’autonomie énergétique, la conservation de l’eau, le recyclage et une gestion responsable des ressources. Restaurant proposant des plats issus en majorité d’aliments biologiques provenant du jardin.",
-    "panoramaImage": "/downloads/ournative.png"
+    "panoramaImage": "/downloads/ournative.webp"
   },
   {
     "id": "66e832b2-d1a8-4da2-8d01-a2395b06fa15",
@@ -8104,7 +8104,7 @@
     "miniText": "Lieu alternatif regroupant café-restaurant, boutique/épicerie et activités culturelles (concerts, théâtre, expos, ateliers…), avec une volonté affichée de valoriser la production locale et de créer du lien entre habitants et visiteurs.",
     "createdAt": "2026-02-17T15:20:39.023Z",
     "updatedAt": "2026-02-23T20:35:07.688Z",
-    "panoramaImage": "/downloads/laruellecor.png"
+    "panoramaImage": "/downloads/laruellecor.webp"
   },
   {
     "id": "7b582871-a3f1-4f36-a4c9-47d26b71baed",
@@ -8125,7 +8125,7 @@
     "miniText": "Grande boutique couverte réunissant des vendeurs indépendants proposant des articles variés : objets de seconde main, antiquités, vêtements, accessoires et produits divers. Le Marché aux Puces St-Michel fonctionne comme un espace permanent où particuliers et commerçants tiennent des kiosques.",
     "createdAt": "2026-02-17T15:39:32.478Z",
     "updatedAt": "2026-02-17T15:46:11.518Z",
-    "panoramaImage": "/downloads/pucessaint.png"
+    "panoramaImage": "/downloads/pucessaint.webp"
   },
   {
     "id": "c584921a-e8a0-44e3-9c67-8e0fa172f0f5",
@@ -8146,7 +8146,7 @@
     "miniText": "Coopérative artisanale travaillANT avec des artisanes népalaises pour produire des textiles et objets faits main à partir de matières naturelles locales. La fabrication est réalisée au Népal, avec une approche axée sur le commerce équitable, la transmission des savoir-faire traditionnels et le soutien économique des communautés rurales.",
     "createdAt": "2026-02-17T16:05:10.891Z",
     "updatedAt": "2026-02-23T20:54:01.447Z",
-    "panoramaImage": "/downloads/asockatm.png"
+    "panoramaImage": "/downloads/asockatm.webp"
   },
   {
     "id": "99bed9a9-27c8-4016-95e6-c1c877d1bf5b",
@@ -8251,7 +8251,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant une ferme urbaine biologique qui cultive des légumes en agriculture régénérative, gère un café fermier, une boulangerie et un magasin de produits frais. L’espace propose des ateliers, des visites de la ferme et met l’accent sur la santé du sol, la connexion à la nature et l’accès à des aliments cultivés localement.",
-    "panoramaImage": "/downloads/kokkoya.png"
+    "panoramaImage": "/downloads/kokkoya.webp"
   },
   {
     "id": "f73bc222-485a-471d-9a0e-3c81a2b7fa24",
@@ -8272,7 +8272,7 @@
       "Marché"
     ],
     "miniText": "Marché regroupant des centaines de stands d’artisanat, bijoux, textiles et produits locaux. Le Marché Bogyoke constitue un lieu central du commerce traditionnel birman, mêlant production artisanale, échanges locaux et vie quotidienne.",
-    "panoramaImage": "/downloads/bogyote.png"
+    "panoramaImage": "/downloads/bogyote.webp"
   },
   {
     "id": "a7360347-7d59-4df6-b6da-e3586f714d3a",
@@ -8293,7 +8293,7 @@
       "Ferme"
     ],
     "miniText": "Ferme laitière spécialisée dans l’élevage de bufflonnes et la transformation locale du lait en fromages, yaourts et glaces. Lao Buffalo Dairy développe une filière laitière au Laos en travaillant avec des éleveurs locaux et en produisant sur place, avec un objectif d’amélioration des revenus ruraux et de valorisation agricole.",
-    "panoramaImage": "/downloads/laosbuff.png"
+    "panoramaImage": "/downloads/laosbuff.webp"
   },
   {
     "id": "dc25c48b-5c3c-4e47-953f-c8c3cc8c27b7",
@@ -8377,7 +8377,7 @@
       "Café"
     ],
     "miniText": "Café et torréfacteur mettant en avant des grains cultivés au Laos, notamment sur le plateau des Bolovens. Saffron Coffee travaille directement avec des producteurs locaux et assure la torréfaction sur place afin de valoriser la filière café lao et proposer un café issu du territoire.",
-    "panoramaImage": "/downloads/saffronlao.png"
+    "panoramaImage": "/downloads/saffronlao.webp"
   },
   {
     "id": "f870362a-ec35-49eb-af9c-f70a4b3556eb",
@@ -8419,7 +8419,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant la cuisine traditionnelle lao et la découverte des ingrédients locaux. Tamarind valorise les produits du territoire à travers des recettes régionales et propose également des ateliers culinaires pour transmettre les bases de la gastronomie lao.",
-    "panoramaImage": "/downloads/tamarinlaos.png"
+    "panoramaImage": "/downloads/tamarinlaos.webp"
   },
   {
     "id": "4bc4fa4f-5cbf-44c5-95c5-1a4689ed7f54",
@@ -8440,7 +8440,7 @@
     "tags": [
       "Lieu alternatif"
     ],
-    "panoramaImage": "/downloads/punpunhk.png"
+    "panoramaImage": "/downloads/punpunhk.webp"
   },
   {
     "id": "565e029e-393d-4eb1-b308-4e17c0b83539",
@@ -8482,7 +8482,7 @@
     "tags": [
       "Marché"
     ],
-    "panoramaImage": "/downloads/nakhonthsi.png"
+    "panoramaImage": "/downloads/nakhonthsi.webp"
   },
   {
     "id": "ef5e0877-db5e-4784-bfcd-c20203cedd85",
@@ -8503,7 +8503,7 @@
     "tags": [
       "Lieu alternatif"
     ],
-    "panoramaImage": "/downloads/mindfulthail.png"
+    "panoramaImage": "/downloads/mindfulthail.webp"
   },
   {
     "id": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
@@ -8524,7 +8524,7 @@
     "tags": [
       "Marché"
     ],
-    "panoramaImage": "/downloads/jingjaith.png"
+    "panoramaImage": "/downloads/jingjaith.webp"
   },
   {
     "id": "354ffbff-dd57-41d6-aeea-05727e96a46d",
@@ -8545,7 +8545,7 @@
     "tags": [
       "Lieu alternatif"
     ],
-    "panoramaImage": "/downloads/phromthai.png"
+    "panoramaImage": "/downloads/phromthai.webp"
   },
   {
     "id": "10109f7e-4978-4349-9286-2917ace4408b",
@@ -8566,7 +8566,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/botahilo.png"
+    "panoramaImage": "/downloads/botahilo.webp"
   },
   {
     "id": "3ffa35e3-ac7e-4976-ad0c-254cf5e23303",
@@ -8587,7 +8587,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/haomathail.png"
+    "panoramaImage": "/downloads/haomathail.webp"
   },
   {
     "id": "e8341f96-495b-4a86-afc8-f2cd0a14950a",
@@ -8608,7 +8608,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant dédié à la cuisine du sud de la Thaïlande mettant en avant des ingrédients régionaux spécifiques et des produits issus de producteurs locaux. Sorn valorise le patrimoine culinaire du sud à travers une approche saisonnière et une recherche approfondie sur les savoir-faire traditionnels.",
-    "panoramaImage": "/downloads/sorn.png"
+    "panoramaImage": "/downloads/sorn.webp"
   },
   {
     "id": "5004b591-ceeb-4035-8008-1d164db23565",
@@ -8629,7 +8629,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine thaïlandaise élaborée à partir des produits de la ferme. L’établissement valorise des ingrédients locaux et développe une approche de la ferme à la table, centrée sur la saisonnalité, la traçabilité et la mise en avant du patrimoine culinaire du nord de la Thaïlande.",
-    "panoramaImage": "/downloads/gingerkit.png"
+    "panoramaImage": "/downloads/gingerkit.webp"
   },
   {
     "id": "371c1442-12da-4cde-bfd5-d4da60c83221",
@@ -8671,7 +8671,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant développant une approche durable visant à réduire l’usage des combustibles fossiles et privilégiant des pratiques responsables comme l’utilisation de bois et de charbon produits sur place. PRU soutient activement les producteurs, pêcheurs et artisans locaux, valorisant les ingrédients thaïlandais et les savoir-faire régionaux tout au long de l’expérience proposée.",
-    "panoramaImage": "/downloads/pruphu.png"
+    "panoramaImage": "/downloads/pruphu.webp"
   },
   {
     "id": "b7245dfb-e802-474c-8f7f-bff1f3994eff",
@@ -8776,7 +8776,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/jaancam.png"
+    "panoramaImage": "/downloads/jaancam.webp"
   },
   {
     "id": "4b0f882a-7e59-4c1b-98ad-2acddca95cb1",
@@ -8818,7 +8818,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/spooncafe.png"
+    "panoramaImage": "/downloads/spooncafe.webp"
   },
   {
     "id": "fce3fcbc-c780-47a5-bf5a-086be9aa4e35",
@@ -8839,7 +8839,7 @@
       "Café"
     ],
     "miniText": "Café travaillant en lien direct avec des fermes locales, développant une torréfaction sur place et valorisant le café cultivé en altitude selon une approche axée sur la traçabilité, la qualité et une rémunération plus équitable des producteurs.",
-    "panoramaImage": "/downloads/akha-ama-phrasingsh.png"
+    "panoramaImage": "/downloads/akha-ama-phrasingsh.webp"
   },
   {
     "id": "b83fc6b2-8506-4da3-b92c-d6cf4681a0ec",
@@ -8860,7 +8860,7 @@
       "Café"
     ],
     "miniText": "Café travaillant en lien direct avec des fermes locales, développant une torréfaction sur place et valorisant le café cultivé en altitude selon une approche axée sur la traçabilité, la qualité et une rémunération plus équitable des producteurs.",
-    "panoramaImage": "/downloads/akha-ama-coffee.png"
+    "panoramaImage": "/downloads/akha-ama-coffee.webp"
   },
   {
     "id": "afee9f57-d979-470f-a942-f147b982461e",
@@ -8881,7 +8881,7 @@
       "Café"
     ],
     "miniText": "Café travaillant des grains cultivés au Myanmar, notamment issus des régions montagneuses de l’État Shan. EASY Specialty Coffee développe une torréfaction locale et met en avant la traçabilité, la qualité des micro-lots et une collaboration directe avec les producteurs.",
-    "panoramaImage": "/downloads/easybirm.png"
+    "panoramaImage": "/downloads/easybirm.webp"
   },
   {
     "id": "2821b94b-04ec-449d-b735-f06c67c30344",
@@ -8965,7 +8965,7 @@
       "Boutique"
     ],
     "miniText": "Boutique artisanale soutenant des producteurs et artisans du Myanmar. Hla Day met en valeur des textiles et objets réalisés localement, en travaillant directement avec des communautés rurales et des ateliers indépendants afin de préserver les savoir-faire traditionnels et soutenir une production équitable.",
-    "panoramaImage": "/downloads/hladay.png"
+    "panoramaImage": "/downloads/hladay.webp"
   },
   {
     "id": "41f8515b-774a-45bd-a52a-6ea6b363ea4a",
@@ -8986,7 +8986,7 @@
       "Boutique"
     ],
     "miniText": "Sana Hastakala est une organisation de commerce équitable fondée pour promouvoir l’artisanat traditionnel népalais. Elle commercialise une large gamme d’objets artisanaux faits à la main — textiles, accessoires, céramiques, articles pour la maison, etc. — produits par un réseau de centaines d’artisans locaux et en soutenant leur développement socio-économique.",
-    "panoramaImage": "/downloads/sannepa.png"
+    "panoramaImage": "/downloads/sannepa.webp"
   },
   {
     "id": "4308cd1e-be97-4a41-8e18-49488d496d6b",
@@ -9007,7 +9007,7 @@
       "Mode"
     ],
     "miniText": "Marque de mode produisant localement au Cambodge. Dorsu développe des vêtements en petites séries en utilisant principalement des surplus de tissus issus de l’industrie textile locale, avec une fabrication transparente et une production ancrée dans le territoire.",
-    "panoramaImage": "/downloads/dorsucam.png"
+    "panoramaImage": "/downloads/dorsucam.webp"
   },
   {
     "id": "498935d2-88d7-4d05-ba42-c8943afe43de",
@@ -9048,7 +9048,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une approche du jardin à la table, avec un jardin cultivé sur place, des ingrédients locaux, et une démarche zéro déchet s’inscrivant dans une logique d’économie circulaire. L’expérience associe cuisine vietnamienne et cadre naturel rural.",
-    "panoramaImage": "/downloads/thefieldv.png",
+    "panoramaImage": "/downloads/thefieldv.webp",
     "country": "VN"
   },
   {
@@ -9090,7 +9090,7 @@
       "Artisanat"
     ],
     "miniText": "Boutique d’artisanat travaillant avec des artisans issus de minorités ethniques et de villages ruraux du Vietnam. Craft Link développe des filières locales de production textile, broderie, bambou et objets faits main, avec une démarche visant à soutenir les communautés artisanales et préserver les savoir-faire traditionnels.",
-    "panoramaImage": "/downloads/craftvieth.png",
+    "panoramaImage": "/downloads/craftvieth.webp",
     "country": "VN"
   },
   {
@@ -9111,7 +9111,7 @@
       "Boutique"
     ],
     "miniText": "Boutique d’artisanat développant des objets faits main en collaboration avec des artisans vietnamiens en situation de handicap, valorisant des savoir-faire traditionnels (bois, textile, laque, céramique) à travers une production locale visant l’inclusion et l’autonomie économique.",
-    "panoramaImage": "/downloads/reachvietn.png",
+    "panoramaImage": "/downloads/reachvietn.webp",
     "country": "VN"
   },
   {
@@ -9196,7 +9196,7 @@
     "miniText": "Restaurant végétarien proposant une cuisine vietnamienne contemporaine inspirée des produits végétaux locaux. Hum Signature met en avant des ingrédients de saison travaillés avec une approche gastronomique et artistique.",
     "createdAt": "2026-02-18T18:55:49.611Z",
     "updatedAt": "2026-02-18T18:59:05.189Z",
-    "panoramaImage": "/downloads/humvietn.png"
+    "panoramaImage": "/downloads/humvietn.webp"
   },
   {
     "id": "3e871801-4b3e-41b7-a17d-7c2ab1fcc93d",
@@ -9217,7 +9217,7 @@
     "miniText": "Café vietnamien mettant en avant le patrimoine et les terroirs du café local biologique et respectueux de lenvironnement. Valorisant des grains vietnamiens issus de différentes régions productrices, torréfiés et préparés avec une approche axée sur l origine et la traçabilité.",
     "createdAt": "2026-02-18T19:05:51.974Z",
     "updatedAt": "2026-02-23T21:10:50.171Z",
-    "panoramaImage": "/downloads/shinhanko.png"
+    "panoramaImage": "/downloads/shinhanko.webp"
   },
   {
     "id": "3ab3be40-a14c-4def-a188-3717a8d32823",
@@ -9280,7 +9280,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/shamballviet.png"
+    "panoramaImage": "/downloads/shamballviet.webp"
   },
   {
     "id": "ab68b5b4-50e3-4240-aafb-91d948d23472",
@@ -9301,7 +9301,7 @@
     "tags": [
       "Ferme"
     ],
-    "panoramaImage": "/downloads/deofraise.png"
+    "panoramaImage": "/downloads/deofraise.webp"
   },
   {
     "id": "b1481392-6038-4311-aff2-c6c8e108464b",
@@ -9343,7 +9343,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant situé au sein d’une ferme biologique, développant une production agricole naturelle (légumes, herbes, fleurs comestibles) cultivée sur place et proposant une cuisine saisonnière directement liée aux récoltes de la ferme. L’établissement met en avant une approche durable intégrant compostage, gestion écologique des sols et lien direct entre production et assiette.",
-    "panoramaImage": "/downloads/littlefarmma.png"
+    "panoramaImage": "/downloads/littlefarmma.webp"
   },
   {
     "id": "246c91ec-05d8-4fd3-932f-b62da3cf8abe",
@@ -9385,7 +9385,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant les ingrédients indigènes et régionaux de Malaisie. Développant une cuisine contemporaine fondée sur la recherche de produits locaux issus de forêts et de fermes, valorisant la biodiversité alimentaire malaisienne et les savoir-faire du territoire.",
-    "panoramaImage": "/downloads/restaumal.png"
+    "panoramaImage": "/downloads/restaumal.webp"
   },
   {
     "id": "27e3128e-eef7-45eb-9b2e-4b611a285a39",
@@ -9406,7 +9406,7 @@
     ],
     "createdAt": "2026-02-18T20:58:55.016Z",
     "updatedAt": "2026-02-18T21:05:39.328Z",
-    "panoramaImage": "/downloads/locavoreindio.png"
+    "panoramaImage": "/downloads/locavoreindio.webp"
   },
   {
     "id": "c1f5aa44-3c86-4ea7-bbcb-88b925c41ce2",
@@ -9448,7 +9448,7 @@
     ],
     "createdAt": "2026-02-18T21:15:13.696Z",
     "updatedAt": "2026-02-18T21:16:52.741Z",
-    "panoramaImage": "/downloads/ubudindon.png"
+    "panoramaImage": "/downloads/ubudindon.webp"
   },
   {
     "id": "b0ad8178-7a22-4b43-a2af-81b22b7d73da",
@@ -9469,7 +9469,7 @@
     ],
     "createdAt": "2026-02-18T21:19:44.063Z",
     "updatedAt": "2026-02-23T20:35:07.689Z",
-    "panoramaImage": "/downloads/baliasliin.png"
+    "panoramaImage": "/downloads/baliasliin.webp"
   },
   {
     "id": "da0649f5-cf44-47b2-a357-fea632e3eaa6",
@@ -9487,7 +9487,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant installé dans une ancienne maison entourée d’un jardin comestible, développant une cuisine de saison basée sur les récoltes du potager sur place et des produits sourcés auprès de producteurs locaux. La carte évolue selon les saisons et met en avant légumes, herbes et ingrédients frais cultivés ou sélectionnés en lien direct avec le territoire.",
-    "panoramaImage": "/downloads/botanica.png",
+    "panoramaImage": "/downloads/botanica.webp",
     "createdAt": "2026-02-19T14:54:17.636Z",
     "updatedAt": "2026-02-19T14:57:24.476Z",
     "country": "AU"
@@ -9508,7 +9508,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine centrée sur des produits australiens de qualité, sourcés auprès de pêcheurs, éleveurs et producteurs locaux. La carte évolue selon les saisons et valorise viandes, poissons et ingrédients frais travaillés dans une approche simple et axée sur le produit.",
-    "panoramaImage": "/downloads/margaret.png",
+    "panoramaImage": "/downloads/margaret.webp",
     "createdAt": "2026-02-19T15:00:53.603Z",
     "updatedAt": "2026-02-23T20:35:07.689Z",
     "country": "AU"
@@ -9613,7 +9613,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif accueillant expositions, performances, événements artistiques et un marché fermier mettant en avant des producteurs locaux. Le lieu fonctionne comme une plateforme dédiée à la création contemporaine et aux initiatives culturelles et alimentaires ancrées dans le territoire.",
-    "panoramaImage": "/downloads/workssyd.png",
+    "panoramaImage": "/downloads/workssyd.webp",
     "createdAt": "2026-02-19T15:28:40.143Z",
     "updatedAt": "2026-02-19T15:44:11.435Z",
     "country": "AU"
@@ -9720,7 +9720,7 @@
       "Marché"
     ],
     "miniText": "Marché avec deux rendez-vous distincts : le samedi dédié aux producteurs locaux (fruits, légumes et produits artisanaux), et le dimanche consacré aux créateurs, designers et artisans indépendants. L’événement met en avant l’économie locale et les initiatives issues du territoire.",
-    "panoramaImage": "/downloads/bondimaraus.png",
+    "panoramaImage": "/downloads/bondimaraus.webp",
     "country": "AU"
   },
   {
@@ -9825,7 +9825,7 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie travaillant directement avec des agriculteurs et cultivant ses propres céréales, moulues sur place. Les pains, viennoiseries et pâtisseries sont élaborés à partir de farines fraîchement moulues. L’approche privilégie l’agriculture biologique, la réduction des transports et des emballages.",
-    "panoramaImage": "/downloads/apbak.png",
+    "panoramaImage": "/downloads/apbak.webp",
     "country": "AU"
   },
   {
@@ -9909,7 +9909,7 @@
       "Ferme"
     ],
     "miniText": "Ferme développant une production agricole intégrée autour de l’élevage porcin, du maraîchage et de la transformation artisanale sur place. Fat Pig Farm valorise les produits issus de la propriété à travers des repas fermiers organisés sur réservation, mettant en avant la saisonnalité, l’autonomie alimentaire et le lien direct entre production et assiette.",
-    "panoramaImage": "/downloads/fatpigfarm.png",
+    "panoramaImage": "/downloads/fatpigfarm.webp",
     "country": "AU"
   },
   {
@@ -9930,7 +9930,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine d’inspiration africaine, mettant en avant des ingrédients sélectionnés auprès de producteurs locaux, avec une carte évolutive, axée sur la saisonnalité et le partage.",
-    "panoramaImage": "/downloads/africola.png",
+    "panoramaImage": "/downloads/africola.webp",
     "country": "AU"
   },
   {
@@ -9951,7 +9951,7 @@
       "Boulangerie"
     ],
     "miniText": "Boulangerie artisanale spécialisée dans le pain au levain et les produits de boulangerie fabriqués à partir d’ingrédients sélectionnés avec soin. Développant une production en petite série et mettant en avant des farines et matières premières issues de producteurs locaux.",
-    "panoramaImage": "/downloads/thelostloaf.png",
+    "panoramaImage": "/downloads/thelostloaf.webp",
     "country": "AU"
   },
   {
@@ -9972,7 +9972,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant asiatique mettant en avant une cuisine axée sur les produits de saison et les ingrédients issus de producteurs locaux. Développant également un potager et un jardin d’herbes aromatiques utilisés en cuisine, valorisant une approche ancrée dans le terroir.",
-    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 14_50_50.png",
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 14_50_50.webp",
     "country": "AU"
   },
   {
@@ -9993,7 +9993,7 @@
       "Marché"
     ],
     "miniText": "Marché de producteurs organisé chaque dimanche matin, réunissant des agriculteurs et artisans alimentaires locaux Le lieu met en avant des produits frais, de saison et achetés directement aux producteurs.",
-    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.png",
+    "panoramaImage": "/downloads/ChatGPT Image 19 févr. 2026 à 15_02_19.webp",
     "country": "AU"
   },
   {
@@ -10119,7 +10119,7 @@
     ],
     "createdAt": "2026-02-19T22:36:50.942Z",
     "updatedAt": "2026-02-19T22:40:18.123Z",
-    "panoramaImage": "/downloads/longchee.png",
+    "panoramaImage": "/downloads/longchee.webp",
     "country": "AU"
   },
   {
@@ -10182,7 +10182,7 @@
       "Brasserie"
     ],
     "miniText": "Brasserie artisanale brassant des bières reflétant l’esprit de Darwin. Privilégiant des ingrédients frais et locaux et une fabrication sans additifs ni conservateurs, pour proposer des bières inspirées du territoire.",
-    "panoramaImage": "/downloads/brasssdarw.png",
+    "panoramaImage": "/downloads/brasssdarw.webp",
     "country": "AU"
   },
   {
@@ -10203,7 +10203,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine contemporaine cuite au feu de bois et guidée par la saisonnalité. Valorisant des ingrédients issus de producteurs locaux et proposant une carte évolutive centrée sur les produits et le territoire.",
-    "panoramaImage": "/downloads/essabrisb.png",
+    "panoramaImage": "/downloads/essabrisb.webp",
     "country": "AU"
   },
   {
@@ -10245,7 +10245,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant développant une cuisine fondée sur la saisonnalité et les écosystèmes locaux. Travaillant avec des producteurs, pêcheurs et agriculteurs japonais afin de valoriser les ingrédients issus de différentes régions du pays. L’approche met en avant la biodiversité et la traçabilité des produits.",
-    "panoramaImage": "/downloads/narisawato.png",
+    "panoramaImage": "/downloads/narisawato.webp",
     "country": "JP"
   },
   {
@@ -10266,7 +10266,7 @@
     ],
     "createdAt": "2026-02-20T13:46:44.764Z",
     "updatedAt": "2026-02-23T20:35:07.689Z",
-    "panoramaImage": "/downloads/daigotok.png",
+    "panoramaImage": "/downloads/daigotok.webp",
     "country": "JP"
   },
   {
@@ -10287,7 +10287,7 @@
     ],
     "createdAt": "2026-02-20T13:59:26.016Z",
     "updatedAt": "2026-02-20T14:03:04.201Z",
-    "panoramaImage": "/downloads/mominokijap.png",
+    "panoramaImage": "/downloads/mominokijap.webp",
     "country": "JP"
   },
   {
@@ -10308,7 +10308,7 @@
     ],
     "createdAt": "2026-02-20T14:07:34.759Z",
     "updatedAt": "2026-02-20T14:09:33.410Z",
-    "panoramaImage": "/downloads/brownric.png",
+    "panoramaImage": "/downloads/brownric.webp",
     "country": "JP"
   },
   {
@@ -10329,7 +10329,7 @@
     ],
     "createdAt": "2026-02-20T14:13:04.712Z",
     "updatedAt": "2026-02-20T14:18:22.163Z",
-    "panoramaImage": "/downloads/kibitoky.png",
+    "panoramaImage": "/downloads/kibitoky.webp",
     "country": "JP"
   },
   {
@@ -10350,7 +10350,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
-    "panoramaImage": "/downloads/wearshib.png",
+    "panoramaImage": "/downloads/wearshib.webp",
     "country": "JP"
   },
   {
@@ -10371,7 +10371,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant des légumes biologiques cultivés dans ses propres fermes. Développant une approche de la ferme à la table fondée sur la traçabilité, la saisonnalité et la valorisation de variétés anciennes.",
-    "panoramaImage": "/downloads/weratokyo.png",
+    "panoramaImage": "/downloads/weratokyo.webp",
     "country": "JP"
   },
   {
@@ -10413,7 +10413,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif proposant une cuisine et des boissons préparées à partir de produits issus de la ferme et du territoire environnant. The Farm s’inscrit dans une expérience immersive mêlant agriculture, hébergement et activités rurales, valorisant un lien direct entre production locale et consommation sur place.",
-    "panoramaImage": "/downloads/thefarmchi.png",
+    "panoramaImage": "/downloads/thefarmchi.webp",
     "country": "JP"
   },
   {
@@ -10434,7 +10434,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant vegan proposant une cuisine 100% végétale et des boissons à base d’ingrédients d’origine végétale. Mettant en avant une offre centrée sur l’alimentation végétale dans un format accessible, sur place et à emporter.",
-    "panoramaImage": "/downloads/farmcafet.png",
+    "panoramaImage": "/downloads/farmcafet.webp",
     "country": "JP"
   },
   {
@@ -10497,7 +10497,7 @@
     "miniText": "Café travaillant des produits de saison issus de producteurs japonais. Développant une approche centrée sur l’agriculture durable, les circuits courts et l’organisation d’événements culturels et écologiques au sein du lieu.",
     "createdAt": "2026-02-20T15:43:39.672Z",
     "updatedAt": "2026-02-20T15:49:50.486Z",
-    "panoramaImage": "/downloads/cafeslox.png",
+    "panoramaImage": "/downloads/cafeslox.webp",
     "country": "JP"
   },
   {
@@ -10518,7 +10518,7 @@
     "miniText": "Café mettant en avant des légumes biologiques issus de fermes japonaises partenaires. Développant une cuisine centrée sur les produits végétaux de saison, valorisant la provenance des ingrédients et une alimentation axée sur le respect des cycles agricoles.",
     "createdAt": "2026-02-20T15:53:21.212Z",
     "updatedAt": "2026-02-23T20:35:07.689Z",
-    "panoramaImage": "/downloads/mrfarmert.png",
+    "panoramaImage": "/downloads/mrfarmert.webp",
     "country": "JP"
   },
   {
@@ -10560,7 +10560,7 @@
       "Boutique"
     ],
     "miniText": "Boutique artisanale spécialisé dans la fabrication d’Edo furin, clochettes en verre soufflé peintes à la main selon une technique traditionnelle de l’époque Edo. Perpétuant un savoir-faire verrier, en produisant chaque pièce de manière artisanale dans le respect des méthodes historiques.",
-    "panoramaImage": "/downloads/verretoky.png",
+    "panoramaImage": "/downloads/verretoky.webp",
     "country": "JP"
   },
   {
@@ -10581,7 +10581,7 @@
       "Brasserie"
     ],
     "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
-    "panoramaImage": "/downloads/hitachinobr.png",
+    "panoramaImage": "/downloads/hitachinobr.webp",
     "country": "JP"
   },
   {
@@ -10602,7 +10602,7 @@
       "Brasserie"
     ],
     "miniText": "Brasserie proposant les bières artisanales brassées par la maison ainsi que des collaborations saisonnières, mettant en avant une production japonaise indépendante et ancrée dans le territoire.",
-    "panoramaImage": "/downloads/hitachotok.png",
+    "panoramaImage": "/downloads/hitachotok.webp",
     "country": "JP"
   },
   {
@@ -10623,7 +10623,7 @@
       "Bar"
     ],
     "miniText": "Bar-boutique spécialisé dans le saké japonais, proposant une sélection rigoureuse de producteurs issus de différentes régions du Japon ainsi que des bières brassées sur place. L’établissement met en avant la diversité des sakés et valorise la découverte des terroirs à travers dégustation et conseil.",
-    "panoramaImage": "/downloads/hasegawatok.png",
+    "panoramaImage": "/downloads/hasegawatok.webp",
     "country": "JP"
   },
   {
@@ -10644,7 +10644,7 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif réunissant restaurants, cafés, librairie et petites boutiques indépendantes. Fonctionnant comme un micro-écosystème de quartier favorisant les commerces locaux, les initiatives culturelles et la vie communautaire dans un cadre à taille humaine.",
-    "panoramaImage": "/downloads/bonus-tok.png",
+    "panoramaImage": "/downloads/bonus-tok.webp",
     "country": "JP"
   },
   {
@@ -10687,7 +10687,7 @@
     "createdAt": "2026-02-20T18:39:35.233Z",
     "updatedAt": "2026-02-23T21:22:48.370Z",
     "country": "JP",
-    "panoramaImage": "/downloads/kitazawal.png"
+    "panoramaImage": "/downloads/kitazawal.webp"
   },
   {
     "id": "ffd83b35-3ab6-422c-b2f5-096dafe7d95f",
@@ -10750,7 +10750,7 @@
     "createdAt": "2026-02-20T19:00:43.749Z",
     "updatedAt": "2026-02-23T21:26:44.364Z",
     "country": "JP",
-    "panoramaImage": "/downloads/aoyamafar.png"
+    "panoramaImage": "/downloads/aoyamafar.webp"
   },
   {
     "id": "62d35afe-11ab-46fa-a407-09b97d53d53e",
@@ -10791,7 +10791,7 @@
       "Ferme"
     ],
     "miniText": "Ferme proposant de se reconnecter à la terre à travers la location de parcelles cultivables et des expériences autour du jardinage. Le lieu met à disposition du matériel, un accompagnement pour démarrer et organise aussi des événements réguliers.",
-    "panoramaImage": "/downloads/farmkolk.png",
+    "panoramaImage": "/downloads/farmkolk.webp",
     "country": "JP"
   },
   {
@@ -10854,7 +10854,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant végétarien / vegan avec des options sans gluten. VOG Kyoto met en avant des plats nourrissants et des ingrédients de saison, et sert ses assiettes dans une sélection de poteries locales liées à l’artisanat de Kyoto.",
-    "panoramaImage": "/downloads/nakanochok.png",
+    "panoramaImage": "/downloads/nakanochok.webp",
     "country": "JP"
   },
   {
@@ -10875,7 +10875,7 @@
       "Boutique"
     ],
     "miniText": "Boutique spécialisée dans la création d'accessoires en denim intégrant des techniques textiles traditionnelles japonaises. Kyōto Denim développe des pièces fabriquées au Japon, mêlant savoir-faire artisanal et esthétique contemporaine.",
-    "panoramaImage": "/downloads/denimkyoto.png",
+    "panoramaImage": "/downloads/denimkyoto.webp",
     "country": "JP"
   },
   {
@@ -10896,7 +10896,7 @@
       "Café"
     ],
     "miniText": "Gelateria engagée dans l’utilisation d’ingrédients biologiques et naturels, sans additifs artificiels. Développant des recettes à base de matières premières sélectionnées avec attention, dans une démarche axée sur la qualité et la transparence.",
-    "panoramaImage": "/downloads/gelatokyo.png",
+    "panoramaImage": "/downloads/gelatokyo.webp",
     "country": "JP"
   },
   {
@@ -10917,7 +10917,7 @@
       "Boutique"
     ],
     "miniText": "Boutique présentant des pièces façonnées selon des techniques transmises de génération en génération, avec une attention particulière portée aux émaux et à l’esthétique liée à la cérémonie du thé.",
-    "panoramaImage": "/downloads/cermkyot.png",
+    "panoramaImage": "/downloads/cermkyot.webp",
     "country": "JP"
   },
   {
@@ -10938,7 +10938,7 @@
       "Bar"
     ],
     "miniText": "Bar collectif regroupant plusieurs brasseries locales de saké au sein d’un même espace. Le lieu permet de déguster une sélection variée de sakés produits dans la région de Kyoto, directement issus des kura environnantes, accompagnés de petits plats adaptés à la dégustation.",
-    "panoramaImage": "/downloads/fushisakekuy.png",
+    "panoramaImage": "/downloads/fushisakekuy.webp",
     "country": "JP"
   },
   {
@@ -10959,7 +10959,7 @@
       "Bar"
     ],
     "miniText": "Bar spécialisé dans le saké japonais proposant une sélection de producteurs artisanaux issus de différentes régions du Japon. Mettanr l’accent sur la dégustation, la découverte des styles et la mise en valeur du travail des brasseurs, dans un espace intimiste dédié au saké.",
-    "panoramaImage": "/downloads/sakekyouti.png",
+    "panoramaImage": "/downloads/sakekyouti.webp",
     "country": "JP"
   },
   {
@@ -11022,7 +11022,7 @@
       "brasserie"
     ],
     "miniText": "Brasserie développant des recettes artisanales mettant en valeur des ingrédients japonais et proposant un espace sur place pour déguster ses bières accompagnées d’une cuisine simple.",
-    "panoramaImage": "/downloads/minobeerosk.png",
+    "panoramaImage": "/downloads/minobeerosk.webp",
     "country": "JP"
   },
   {
@@ -11064,7 +11064,7 @@
       "marche"
     ],
     "miniText": "Marché regroupant de nombreux commerçants indépendants proposant produits frais, spécialités régionales et ingrédients japonais. Kuromon Ichiba joue un rôle central dans l’approvisionnement alimentaire local et met en valeur le travail d’artisans et de producteurs du territoire.",
-    "panoramaImage": "/downloads/kurommaroas.png",
+    "panoramaImage": "/downloads/kurommaroas.webp",
     "country": "JP"
   },
   {
@@ -11085,7 +11085,7 @@
       "restaurant"
     ],
     "miniText": "Restaurant et café axé sur une cuisine utilisant des ingrédients cultivés naturellement, dont légumes, riz et produits durables. Love Table met en avant l’origine des produits et propose une cuisine sensible à l’agriculture respectueuse de la terre.",
-    "panoramaImage": "/downloads/lovetableosa.png",
+    "panoramaImage": "/downloads/lovetableosa.webp",
     "country": "JP"
   },
   {
@@ -11127,7 +11127,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant l okonomiyaki, une recette locale emblématique composée de chou, nouilles et ingrédients régionaux, dans une approche ancrée dans la tradition culinaire d’Hiroshima.",
-    "panoramaImage": "/downloads/nagatayahiros.png",
+    "panoramaImage": "/downloads/nagatayahiros.webp",
     "country": "JP"
   },
   {
@@ -11148,7 +11148,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant spécialisé dans les huîtres d’Hiroshima, produit emblématique de la baie locale. L’établissement propose différentes préparations mettant en valeur les huîtres issues des élevages de la région, dans une approche centrée sur la tradition culinaire de Miyajima.",
-    "panoramaImage": "/downloads/kakiyamiy.png",
+    "panoramaImage": "/downloads/kakiyamiy.webp",
     "country": "JP"
   },
   {
@@ -11169,7 +11169,7 @@
       "Boutique"
     ],
     "miniText": "Boutique mettant en avant des produits alimentaires et artisanaux issus de la préfecture d’Hiroshima. Yume Plaza rassemble des spécialités locales — agrumes, saké, produits transformés et souvenirs régionaux — dans un espace dédié à la valorisation du territoire.",
-    "panoramaImage": "/downloads/yunehirosh.png",
+    "panoramaImage": "/downloads/yunehirosh.webp",
     "country": "JP"
   },
   {
@@ -11191,7 +11191,7 @@
     ],
     "createdAt": "2026-02-22T22:16:36.043Z",
     "updatedAt": "2026-02-22T22:19:34.752Z",
-    "panoramaImage": "/downloads/clairlil.png"
+    "panoramaImage": "/downloads/clairlil.webp"
   },
   {
     "id": "66fc44be-eee7-432b-b646-5ad945e90770",
@@ -11233,7 +11233,7 @@
     ],
     "createdAt": "2026-02-22T22:29:41.759Z",
     "updatedAt": "2026-02-22T22:35:20.774Z",
-    "panoramaImage": "/downloads/bekltlille.png"
+    "panoramaImage": "/downloads/bekltlille.webp"
   },
   {
     "id": "f7a7feb0-e4ce-4ea8-9fa4-ac42540c40eb",
@@ -11254,7 +11254,7 @@
     ],
     "createdAt": "2026-02-22T22:48:01.108Z",
     "updatedAt": "2026-02-22T22:55:06.536Z",
-    "panoramaImage": "/downloads/conditiorou.png"
+    "panoramaImage": "/downloads/conditiorou.webp"
   },
   {
     "id": "4b2dc8a2-54b6-43de-afdd-1b3ce79257d6",
@@ -11275,7 +11275,7 @@
     ],
     "createdAt": "2026-02-22T23:06:54.511Z",
     "updatedAt": "2026-02-22T23:08:55.375Z",
-    "panoramaImage": "/downloads/jardinvill.png"
+    "panoramaImage": "/downloads/jardinvill.webp"
   },
   {
     "id": "aa9c243d-0680-462d-b4d3-6d14bc4285da",
@@ -11380,7 +11380,7 @@
       "Boutique"
     ],
     "miniText": "Boutique solidaire proposant vêtements, livres et objets de seconde main dont les ventes soutiennent les actions d’Oxfam contre les inégalités et la pauvreté. Le magasin fonctionne grâce à l’engagement de bénévoles et valorise le réemploi ainsi qu’une consommation plus responsable.",
-    "panoramaImage": "/downloads/oxliklle.png"
+    "panoramaImage": "/downloads/oxliklle.webp"
   },
   {
     "id": "ce71b38c-5d21-40b3-9726-f7148495b892",
