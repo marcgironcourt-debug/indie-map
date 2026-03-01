@@ -845,8 +845,7 @@ const filtered = source.filter((b) => {
             if (typeof window !== "undefined" && window.innerWidth < 768) {
               setSheetMode("peek");
             }
-          }}          darkMap={darkMap}
-          />
+          }}          />
       </div>
       {!heroOpen && (
 

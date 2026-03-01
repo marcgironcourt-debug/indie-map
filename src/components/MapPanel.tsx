@@ -1,14 +1,7 @@
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
-
-const ClientMap = dynamic(() => import("./GlobeMap"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full w-full bg-neutral-200/40 dark:bg-neutral-800/40" />
-  ),
-});
+import GlobeMap from "./GlobeMap";
 
 type Biz = {
   id: string;
@@ -30,29 +23,13 @@ export default function MapPanel(props: {
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
-  darkMap?: boolean;
-  onToggleDarkMap?: () => void;
 }) {
-  const { items = [], selectedId, onSelect, darkMap } = props;
-
-  const [mounted, setMounted] = React.useState(false);
-    React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { items = [], selectedId, onSelect } = props;
 
   return (
-    <section className="relative h-full w-full overflow-hidden">
+    <section className="relative h-full w-full overflow-hidden bg-[#0B0F0C]">
       <div className="h-full">
-        {mounted ? (
-          <ClientMap
-            items={items}
-            selectedId={selectedId}
-            onSelect={onSelect}
-            darkMap={darkMap}
-          />
-        ) : (
-          <div className="h-full w-full" />
-        )}
+        <GlobeMap items={items} selectedId={selectedId} onSelect={onSelect} />
       </div>
     </section>
   );
