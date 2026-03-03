@@ -2138,13 +2138,30 @@ return;
     const map = new maplibregl.Map({
       container: el,
       style: STYLE_URL,
+      transformRequest: (url: string) => {
+        try {
+          const k = String(process.env.NEXT_PUBLIC_MAPTILER_KEY ?? "");
+          if (!k) return { url } as any;
+          if (url.includes("api.maptiler.com") && url.includes("key=")) {
+            return { url: url.replace(/key=[^&]*/g, "key=" + encodeURIComponent(k)) } as any;
+          }
+        } catch {}
+        return { url } as any;
+      },
       center: [0, 0],
       zoom: isMobile ? 1.4 : 2.4,
       minZoom: isMobile ? 1.4 : 2.4,
       pitch: 0,
       bearing: 0,
       attributionControl: false,
+      fadeDuration: 0,
     });
+    try {
+      map.once("load", () => {
+        try { (map as any).setTerrain?.(null); } catch {}
+      });
+    } catch {}
+
 
     try { (window as any).__IM_MAP__ = map; } catch {}
 
