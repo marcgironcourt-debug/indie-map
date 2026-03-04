@@ -1620,6 +1620,10 @@ popupRef.current = null;
               if (pb) {
                 pb.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-addr-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                   try {
                     const dial = String((pb as any).getAttribute("data-tel") || "").trim();
                     let panel = el.querySelector("[data-phone-panel=\"1\"]") as HTMLDivElement | null;
@@ -1736,6 +1740,10 @@ popupRef.current = null;
               if (ab) {
                 ab.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                   try {
                     const addr = String(((props as any)?.address ?? "")).trim();
                     let panel = el.querySelector("[data-addr-panel=\"1\"]") as HTMLDivElement | null;
@@ -1954,6 +1962,9 @@ popupRef.current = null;
               if (hb) {
                 hb.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-addr-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
                   try {
                     let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                     if (!opening) {
@@ -2964,6 +2975,10 @@ mapRef.current = map;
                       if (pb) {
                         pb.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-addr-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                           try {
                             const dial = String((pb as any).getAttribute("data-tel") || "").trim();
                             let panel = el.querySelector("[data-phone-panel=\"1\"]") as HTMLDivElement | null;
@@ -3073,6 +3088,10 @@ mapRef.current = map;
                       if (ab) {
                         ab.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                           try {
                             const addr = String(((st as any)?.props?.address ?? "")).trim();
                             let panel = el.querySelector("[data-addr-panel=\"1\"]") as HTMLDivElement | null;
@@ -3247,6 +3266,9 @@ const goBtn = mkBtn("Itinéraire →");
                       if (hb) {
                         hb.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+                  try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+                  try { const n2 = el.querySelector("[data-addr-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
                           try {
                             let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                             if (!opening) {
