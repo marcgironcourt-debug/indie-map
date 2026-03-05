@@ -1916,8 +1916,8 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                       const onEnd = () => {
                          try { setDiscoverHeroZoom(false); } catch {}
                          try { setDiscoverDoorOpen(false); } catch {}
-                         try { setHeroUiHide(false); } catch {}
-                  try { if (geolocateElRef.current) geolocateElRef.current.style.display = (sheetOpen || heroUiHide) ? "none" : "block"; } catch {}
+                         try { setHeroUiHide(true); } catch {}
+                  try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
                          try { heroPanRef.current = 0.5; } catch {}
                          try { setDiscoverHeroPan(0.5); } catch {}
                          try { tableauPrevPRef.current = 0.5; } catch {}
