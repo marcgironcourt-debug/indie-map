@@ -1168,10 +1168,10 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   React.useEffect(() => {
     try {
       if (geolocateElRef.current) {
-        geolocateElRef.current.style.display = (sheetOpen) ? "none" : "block";
+        geolocateElRef.current.style.display = (sheetOpen || heroUiHide) ? "none" : "block";
       }
     } catch {}
-  }, [sheetOpen, discoverHeroUrl]);
+  }, [sheetOpen, discoverHeroUrl, heroUiHide]);
 
   React.useEffect(() => {
     sheetHeightRef.current = sheetHeightVh;
@@ -1882,9 +1882,11 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
                   try { setSheetOpen(false); } catch (e) {}
                   try { setSheetHtml(""); } catch (e) {}
+                  try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch (e) {}
                   try { setDiscoverMeta({ id: String(props?.id ?? fid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch (e) {}
                   try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: fid ? String(fid) : null }; } catch (e) {}
                   try { setDiscoverPanel(null); } catch (e) {}
+                  try { setHeroUiHide(true); } catch (e) {}
                   try { heroPanRef.current = 0.5; } catch (e) {}
                   try { setDiscoverHeroPan(0.5); } catch (e) {}
                   try { tableauPrevPRef.current = 0.5; } catch (e) {}
@@ -1915,6 +1917,7 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                          try { setDiscoverHeroZoom(false); } catch {}
                          try { setDiscoverDoorOpen(false); } catch {}
                          try { setHeroUiHide(false); } catch {}
+                  try { if (geolocateElRef.current) geolocateElRef.current.style.display = (sheetOpen || heroUiHide) ? "none" : "block"; } catch {}
                          try { heroPanRef.current = 0.5; } catch {}
                          try { setDiscoverHeroPan(0.5); } catch {}
                          try { tableauPrevPRef.current = 0.5; } catch {}
@@ -3384,6 +3387,7 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                             try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch {}
                             try { heroReturnPopupRef.current = { lng: Number(lng2), lat: Number(lat2), props: props2, fid: fid2 }; } catch {}
                             try { setDiscoverPanel(null); } catch {}
+                            try { setHeroUiHide(true); } catch {}
                             try {
                               const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
                               map2.flyTo({ center: [lng2, lat2], zoom: maxZ, duration: 1350, easing: (t) => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2), essential: true });

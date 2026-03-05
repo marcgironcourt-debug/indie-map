@@ -37,7 +37,7 @@ export default async function ProsPage({ params }: Props) {
             <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Devenir partenaire</h2>
             <p>
               Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme.
-              Si vous souhaitez rejoindre Indie Map, contactez-nous via le site officiel.
+              Si vous souhaitez rejoindre Indie Map, contactez-nous .
             </p>
 
             <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Contact</h2>
@@ -67,7 +67,7 @@ export default async function ProsPage({ params }: Props) {
             <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Become a partner</h2>
             <p>
               Partnership is about building something durable: a useful, ethical, and long-term credible product.
-              If you want to join Indie Map, please reach out via the official website.
+              If you want to join Indie Map, please reach out .
             </p>
 
             <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Contact</h2>

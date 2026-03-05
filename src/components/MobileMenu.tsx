@@ -208,7 +208,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
                     <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Devenir partenaire</h2>
                     <p className="text-white/80">
-                      Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous via le site officiel.
+                      Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous .
                     </p>
 
                     <a href="mailto:pro@indie-map.com?subject=Partenariat%20%E2%80%94%20Indie%20Map&body=Nom%20de%20la%20soci%C3%A9t%C3%A9%20:%0A%0ASite%20web%20:%0A%0APr%C3%A9cisions%20:" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
@@ -235,7 +235,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
                     <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Become a partner</h2>
                     <p className="text-white/80">
-                      Partnership is about building something durable: a useful, ethical, and long-term credible product. If you want to join Indie Map, please reach out via the official website.
+                      Partnership is about building something durable: a useful, ethical, and long-term credible product. If you want to join Indie Map, please reach out .
                     </p>
 
                     <a href="mailto:pro@indie-map.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
