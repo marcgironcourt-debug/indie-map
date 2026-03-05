@@ -3,6 +3,32 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MapPanel from "@/components/MapPanel";
+
+type UILocale = "fr" | "en";
+const ui = (locale: UILocale, fr: string, en: string) => (locale === "en" ? en : fr);
+const displayCategory = (locale: UILocale, cat: string) => {
+  const c = String(cat || "").trim();
+  if (locale !== "en") return c;
+  const k = c.toLowerCase();
+  if (k.includes("lieu alternatif") || k.includes("lieu de vie")) return "Alternative place";
+  if (k.includes("ferme")) return "Farm";
+  if (k.includes("marché") || k.includes("marche")) return "Market";
+  if (k.includes("épicerie") || k.includes("epicerie")) return "Grocery";
+  if (k.includes("café") || k.includes("cafe") || k.includes("coffee") || k.includes("brunch")) return "Coffee / brunch";
+  if (k.includes("boulangerie")) return "Bakery";
+  if (k.includes("librairie") || k.includes("bouquinerie")) return "Bookshop";
+  if (k.includes("mode") || k.includes("friperie")) return "Fashion";
+  if (k.includes("brasserie") || k.includes("microbrasserie") || k.includes("bar") || k.includes("pub")) return "Brewery / bar / pub";
+  if (k.includes("atelier")) return "Workshop";
+  if (k.includes("monument") || k.includes("poi")) return "Monument";
+  if (k.includes("boutique")) return "Shop";
+  if (k.includes("restaurant")) return "Restaurant";
+  if (k.includes("lieu local")) return "Local place";
+  return c;
+};
+
+
+
 type Business = {
   id: string;
   name: string;
@@ -86,43 +112,6 @@ if (key.includes("boutique")) {
   return "Boutique";
 }
 
-function getCategoryEmotion(type: string): string {
-  const key = (type || "").toLowerCase();
-
-  if (key.includes("café") || key.includes("cafe") || key.includes("brunch")) {
-    return "Un endroit où l’on vient pour le café, et où l’on reste pour l’atmosphère.";
-  }
-
-  if (key.includes("épicerie") || key.includes("epicerie")) {
-    return "Une façon plus humaine de remplir son panier — plus proche des gens et du territoire.";
-  }
-
-  if (key.includes("boulangerie")) {
-    return "Le genre d’adresse qu’on garde pour soi… puis qu’on finit par partager.";
-  }
-
-  if (key.includes("librairie") || key.includes("bouquinerie")) {
-    return "Un espace pour ralentir, feuilleter, et laisser une idée nous attraper.";
-  }
-
-  if (key.includes("restaurant") || key.includes("bistro") || key.includes("cuisine")) {
-    return "Une table sincère, où l’on sent qu’ici, on fait les choses avec attention.";
-  }
-
-  if (key.includes("brasserie") || key.includes("bar") || key.includes("pub")) {
-    return "Une adresse vivante, parfaite pour s’arrêter… et prolonger la soirée.";
-  }
-
-  if (key.includes("vêtement") || key.includes("vetement") || key.includes("friperie") || key.includes("mode")) {
-    return "Un lieu qui prouve qu’on peut s’habiller avec du sens, sans renoncer au style.";
-  }
-
-  if (key.includes("boutique")) {
-    return "Des trouvailles choisies avec goût — on ressort rarement les mains vides.";
-  }
-
-  return "Un lieu indépendant sélectionné pour ce qu’il apporte au tissu local.";
-}
 
 function getCategoryStyle(cat: string, active: boolean): string {
   const key = cat.toLowerCase();
@@ -225,14 +214,17 @@ function getCategoryStyle(cat: string, active: boolean): string {
 
 function FilterPill({
   label,
+  kind,
   active,
   onClick,
 }: {
   label: string;
-  active: boolean;
+  
+  kind?: string;
+active: boolean;
   onClick: () => void;
 }) {
-  const styleClasses = getCategoryStyle(label, active);
+  const styleClasses = getCategoryStyle((kind || label), active);
   return (
     <button
       type="button"
@@ -248,10 +240,12 @@ function FilterPill({
 
 
 function FilterBar({
+  locale,
   categories,
   activeCategory,
   onCategoryChange,
 }: {
+  locale: UILocale;
   categories: string[];
   activeCategory: string | "ALL";
   onCategoryChange: (c: string | "ALL") => void;
@@ -271,8 +265,8 @@ function FilterBar({
           scrollPaddingRight: 0,
         } as React.CSSProperties & { msOverflowStyle?: "none" | "auto" | "scrollbar" }
       )}>
-      <FilterPill
-        label="Tous"
+      <FilterPill kind="ALL"
+        label={ui(locale,"Tous","All")}
         active={activeCategory === "ALL"}
         onClick={() => onCategoryChange("ALL")}
         
@@ -281,9 +275,9 @@ function FilterBar({
       {categories.map((c) => {
         const active = activeCategory === c;
         return (
-          <FilterPill
+          <FilterPill kind={c}
             key={c}
-            label={c}
+            label={displayCategory(locale, c)}
             active={active}
             onClick={() => onCategoryChange(c)}
             
@@ -297,6 +291,7 @@ function FilterBar({
 
 
 function MobileBottomSheet({
+  locale,
   business,
   mode,
   dark,
@@ -304,6 +299,7 @@ function MobileBottomSheet({
   onExpand,
   onPeek,
 }: {
+  locale: UILocale;
   business: Business | null;
   mode: "closed" | "peek" | "full";
   dark: boolean;
@@ -421,7 +417,7 @@ function MobileBottomSheet({
                       : "inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800 transition"
                   }
                 >
-                  Site web
+                  {ui(locale,"Site web","Website")}
                 </a>
               </div>
             )}
@@ -430,7 +426,7 @@ function MobileBottomSheet({
               <div className="mb-1">
                 {!isPremium && (
                   <p className={typeTextClass}>
-                    {renderedBusiness.type}
+                    {displayCategory(locale, renderedBusiness.type)}
                   </p>
                 )}
                 {isPremium && (
@@ -446,7 +442,7 @@ function MobileBottomSheet({
             {renderedBusiness.openingHours && (
               <details className={hoursTextClass}>
                 <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
-                  Horaires
+                  {ui(locale,"Horaires","Hours")}
                   <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
                     ➤
                   </span>
@@ -473,7 +469,7 @@ function MobileBottomSheet({
 
             {!isPremium && (
               <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-      {getCategoryEmotion(renderedBusiness.type)}
+      
     </p>
             )}
 
@@ -539,7 +535,7 @@ function MobileBottomSheet({
     </div>
   );
 }
-export default function IndieMapSplitView() {
+export default function IndieMapSplitView({ locale }: { locale: UILocale }) {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
@@ -562,8 +558,8 @@ React.useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const r = await fetch("/api/v1/places");
-        if (!r.ok) throw new Error("Erreur de chargement");
+        const r = await fetch("/api/v1/places?locale=" + encodeURIComponent(locale));
+        if (!r.ok) throw new Error(ui(locale,"Erreur de chargement","Loading error"));
         const j = await r.json();
         const arr = Array.isArray(j) ? j : j?.data || [];
         const list: Business[] = arr.map((p: {
@@ -851,7 +847,7 @@ const filtered = source.filter((b) => {
 
             <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
         <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
-          <FilterBar categories={categories}
+          <FilterBar locale={locale} categories={categories}
           activeCategory={category}
           onCategoryChange={setCategory} />
         </div>
@@ -861,7 +857,7 @@ const filtered = source.filter((b) => {
         <Link href="/privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>
       </div>
 
-      <MobileBottomSheet business={selectedBusiness}
+      <MobileBottomSheet locale={locale} business={selectedBusiness}
         mode={sheetMode}
         onClose={() => {
           setSheetMode("closed");

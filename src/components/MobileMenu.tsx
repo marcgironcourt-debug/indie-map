@@ -122,7 +122,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                 type="button"
                 onClick={() => (panel === "pros" ? closePanel() : openPanel("pros"))}
                 className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "pros" ? " bg-white/12" : "")}
-                aria-label="Ouvrir l’espace professionnel"
+                aria-label={isFr ? "Ouvrir l’espace professionnel" : "Open professional space"}
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M10 6h4" />
@@ -130,34 +130,34 @@ export default function MobileMenu({ locale }: { locale: string }) {
                   <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
                   <path d="M9 14h6" />
                 </svg>
-                <span className={"text-[11px] " + (panel === "pros" ? "text-white" : "text-white/85")}>Espace pro</span>
+                <span className={"text-[11px] " + (panel === "pros" ? "text-white" : "text-white/85")}>{isFr ? "Espace pro" : "Pros"}</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => (panel === "contrib" ? closePanel() : openPanel("contrib"))}
                 className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "contrib" ? " bg-white/12" : "")}
-                aria-label="Ouvrir contribution"
+                aria-label={isFr ? "Ouvrir contribution" : "Open contribution"}
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14" />
                   <path d="M5 12h14" />
                 </svg>
-                <span className={"text-[11px] " + (panel === "contrib" ? "text-white" : "text-white/85")}>Contribution</span>
+                <span className={"text-[11px] " + (panel === "contrib" ? "text-white" : "text-white/85")}>{isFr ? "Contribution" : "Contribute"}</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => (panel === "about" ? closePanel() : openPanel("about"))}
                 className={"flex flex-col items-center justify-center gap-0.5 py-1.5 rounded-2xl hover:bg-white/10 active:bg-white/15 text-white" + (panel === "about" ? " bg-white/12" : "")}
-                aria-label="Ouvrir infos"
+                aria-label={isFr ? "Ouvrir infos" : "Open info"}
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 16v-5" />
                   <path d="M12 8h.01" />
                   <circle cx="12" cy="12" r="9" />
                 </svg>
-                <span className={"text-[11px] " + (panel === "about" ? "text-white" : "text-white/85")}>Infos</span>
+                <span className={"text-[11px] " + (panel === "about" ? "text-white" : "text-white/85")}>{isFr ? "Infos" : "Info"}</span>
               </button>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                 <span className="text-lg font-semibold text-white">{title}</span>
                 <span className="text-xs tracking-widest text-[#5C6E3B] italic -rotate-2 inline-block -mt-1">Back To Local</span>
               </div>
-              <button type="button" aria-label="Fermer" onClick={closePanel} className="inline-flex h-10 w-10 items-center justify-center rounded-2xl">
+              <button type="button" aria-label={isFr ? "Fermer" : "Close"} onClick={closePanel} className="inline-flex h-10 w-10 items-center justify-center rounded-2xl">
                 <span className="text-2xl leading-none text-white">×</span>
               </button>
             </div>
@@ -249,7 +249,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                     <p className="mb-4 text-white/80">
                       Indie Map grandit grâce aux contributions. L’objectif : rendre visibles des lieux indépendants qui privilégient le local, la réparation, le réemploi, l’agriculture respectueuse et des pratiques cohérentes.
                     </p><div className="mt-4">
-                      <ContributeForm locale="fr" />
+                      <ContributeForm locale={isFr ? "fr" : "en"} />
                     </div>
                   </>
                 ) : (
@@ -268,7 +268,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
                     <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Send a contribution</h2>
                     <div className="mt-4">
-                      <ContributeForm locale="fr" />
+                      <ContributeForm locale={isFr ? "fr" : "en"} />
                     </div>
                   </>
                 )
@@ -320,7 +320,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
               {panel === "about" && (
                 <div className="mt-4">
                   <p className="mb-2 text-sm text-white/80">
-                    Pour toutes questions ou suggestions :
+                    {isFr ? "Pour toutes questions ou suggestions :" : "For any questions or suggestions:"}
                   </p>
                   <a
                     href="mailto:contact@indie-map.com"

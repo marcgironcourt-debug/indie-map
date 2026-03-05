@@ -4,6 +4,10 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
+const isEnUI = typeof window !== "undefined" ? /^\/en(\/|$)/.test(window.location.pathname) : false;
+const ui = (fr: string, en: string) => (isEnUI ? en : fr);
+
+
 const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
 const MAPTILER_MAP_ID = "019bb307-227a-7b33-99f5-b835d4f4f4c9";
 const STYLE_URL = `https://api.maptiler.com/maps/${MAPTILER_MAP_ID}/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY ?? ""}`;
@@ -353,13 +357,13 @@ function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
 
       if (open) {
         for (const [a,b] of todayRanges) {
-          if (now.mins >= a && now.mins < b) return "Ouvert — jusqu’à " + fmt(b);
+          if (now.mins >= a && now.mins < b) return ui("Ouvert — jusqu’à ","Open — until ") + fmt(b);
         }
-        return "Ouvert";
+        return ui("Ouvert","Open");
       }
 
       for (const [a,b] of todayRanges) {
-        if (now.mins < a) return "Fermé — ouvre à " + fmt(a);
+        if (now.mins < a) return ui("Fermé — ouvre à ","Closed — opens at ") + fmt(a);
       }
 
       for (let d=1; d<=7; d++) {
@@ -370,20 +374,20 @@ function computeOpenInfo(openingHoursRaw: string, cityRaw: string) {
         if (nn.includes("ferme")) continue;
         const rr = parseRangesForLine(ln);
         if (!rr.length) continue;
-        return "Fermé — ouvre " + (d === 1 ? "demain" : "bientôt") + " à " + fmt(rr[0][0]);
+        return ui("Fermé — ouvre ","Closed — opens ") + (d === 1 ? ui("demain","tomorrow") : ui("bientôt","soon")) + ui(" à "," at ") + fmt(rr[0][0]);
       }
 
-      return "Fermé";
+      return ui("Fermé","Closed");
     } catch {
-      return open ? "Ouvert" : "Fermé";
+      return open ? ui("Ouvert","Open") : ui("Fermé","Closed");
     }
   };
 
   if (!known) {
-    return { known: false, open: false, text: "Horaires inconnus", color: "rgba(245,245,232,.55)", dot: "rgba(245,245,232,.35)" };
+    return { known: false, open: false, text: ui("Horaires inconnus","Hours unknown"), color: "rgba(245,245,232,.55)", dot: "rgba(245,245,232,.35)" };
   }
 
-  const text = nextInfoText() || (open ? "Ouvert" : "Fermé");
+  const text = nextInfoText() || (open ? ui("Ouvert","Open") : ui("Fermé","Closed"));
 
   return open
     ? { known: true, open: true, text, color: kaki, dot: kaki }
@@ -625,28 +629,28 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
     }
 
     if (open) {
-      return { label: closesAt ? "Ouvert · ferme à " + closesAt : "Ouvert", color: OPEN_COLOR };
+      return { label: closesAt ? ui("Ouvert · ferme à ","Open · closes at ") + closesAt : ui("Ouvert","Open"), color: OPEN_COLOR };
     }
     if (nextOpenAt) {
       return nextOpenOffset > 0
-        ? { label: "Fermé · ouvre " + nextOpenDay + " à " + nextOpenAt, color: CLOSED_COLOR }
-        : { label: "Fermé · ouvre à " + nextOpenAt, color: CLOSED_COLOR };
+        ? { label: ui("Fermé · ouvre ","Closed · opens ") + nextOpenDay + ui(" à "," at ") + nextOpenAt, color: CLOSED_COLOR }
+        : { label: ui("Fermé · ouvre à ","Closed · opens at ") + nextOpenAt, color: CLOSED_COLOR };
     }
-    return { label: "Fermé", color: CLOSED_COLOR };
+    return { label: ui("Fermé","Closed"), color: CLOSED_COLOR };
   })();
 
   const statusHtml = status
     ? "<span style=\"font-weight:800; color:" + status.color + ";\">" + status.label + "</span>"
-    : "<span style=\"font-weight:700; color:" + metaColor + ";\">Horaires inconnus</span>";
+    : "<span style=\"font-weight:700; color:" + metaColor + ";\">" + ui("Horaires inconnus","Hours unknown") + "</span>";
 
   const wm = Number(walkMins);
-  const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + " min à pied") : "— min à pied";
+  const walkTxt = Number.isFinite(wm) ? (String(Math.max(1, Math.round(wm))) + ui(" min à pied"," min walk")) : ui("— min à pied","— min walk");
   const walkHtml = "<span style=\"margin-left:14px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:11.5px; letter-spacing:.02em; color:rgba(245,245,232,.88); font-weight:650;\" >" + "<span style=\"font-weight:800; margin:0 6px;\">·</span>" + walkTxt + "<span style=\"font-weight:800; margin-left:6px;\">·</span></span>";
-  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; padding:0; border-radius:0; display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:rgba(245,245,232,.92); font-size:20px; line-height:28px; cursor:pointer; box-shadow:none;\" onclick=\"return false;\" aria-label=\"Fermer\" ><span style='display:inline-block; transform: translateY(-4px);'>×</span></button>";
+  const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; padding:0; border-radius:0; display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:rgba(245,245,232,.92); font-size:20px; line-height:28px; cursor:pointer; box-shadow:none;\" onclick=\"return false;\" aria-label=\"" + ui("Fermer","Close") + "\" ><span style='display:inline-block; transform: translateY(-4px);'>×</span></button>";
   return (
     "<div style=\"position:relative; width:min(420px, calc(100vw - 40px)); max-width:420px; padding:16px 16px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:15px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px;\" >" +
-        escapeHtml(name || "Lieu") +
+        escapeHtml(name || ui("Lieu","Place")) +
       "</div>" +
       "<div style=\"margin-top:4px;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;font-size:15px;line-height:1.6;max-height:38vh;overflow:auto;color:" + textColor + ";opacity:.92;\" >" + escapeHtml(miniTextFinal) + "</div>" +
        badgesHtml +
@@ -655,7 +659,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
       "</div>" +
       "<div style=\"margin-top:10px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size:10.5px; letter-spacing:.02em; color:" + metaColor + ";\" >" +
         statusHtml + walkHtml +
-      "</div>" + "<div style=\"margin-top:10px; display:flex; align-items:center; gap:8px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:5px 12px;border-radius:10px 4px 10px 4px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:13px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:650;\" onclick=\"return false;\" >Immersion →</button>" + "<button data-hours=\"1\" aria-label=\"Horaires\" title=\"Horaires\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\"\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.4a7.6 7.6 0 1 1 0 15.2a7.6 7.6 0 1 1 0-15.2'/><path d='M12.2 6.8v5.1'/><path d='M12.2 11.9l3.3 1.6'/></svg></button><button data-phone=\"1\" data-tel=\"" + (phoneDial || "") + "\" aria-label=\"Téléphone\" title=\"Téléphone\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M8.2 4.8c.9-.7 2.1-.4 2.9.6l.6.8c.7.9.7 2-.1 2.8l-1 1c-.4.4-.5 1-.2 1.5l2.7 4.1c.3.5.9.7 1.4.4l1.2-.7c1-.6 2.2-.3 2.9.6l.6.8c.7.9.5 2.2-.4 2.9l-.8.6c-1.2.9-2.8 1-4.1.2c-2.1-1.2-4.1-3.3-5.8-5.8c-1.7-2.6-2.6-5-2.7-7.4c0-1.5.7-2.9 1.9-3.8z'/><path d='M8.7 5.2c.7-.5 1.6-.2 2.2.6l.5.7c.5.7.5 1.6-.1 2.2l-1 1c-.6.6-.7 1.5-.2 2.2l2.7 4.1c.5.7 1.4 1 2.2.5l1.2-.7c.8-.5 1.7-.3 2.2.5l.5.7c.5.7.4 1.7-.3 2.2'/></svg></button><button data-addr=\"1\" aria-label=\"Adresse\" title=\"Adresse\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.5v15'/><path d='M12 6.5h6l-2.4-2.2'/><path d='M18 6.5l-2.4 2.2'/><path d='M12 10.5h-6l2.4-2.2'/><path d='M6 10.5l2.4 2.2'/></svg></button><button data-site=\"1\" aria-label=\"Site web\" title=\"Site web\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M3.2 12l8.8-8.8l8.8 8.8'/><path d='M6 11v8h12v-8'/><path d='M10 19v-4h4v4'/></svg></button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
+      "</div>" + "<div style=\"margin-top:10px; display:flex; align-items:center; gap:8px;\" >" + "<button data-discover=\"1\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;padding:5px 12px;border-radius:10px 4px 10px 4px;background:transparent;border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:13px;letter-spacing:.02em;cursor:pointer;box-shadow:none;text-align:center;font-weight:650;\" onclick=\"return false;\" >" + ui("Immersion →","Immerse →") + "</button>" + "<button data-hours=\"1\" aria-label=\"Horaires\" title=\"Horaires\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\"\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.4a7.6 7.6 0 1 1 0 15.2a7.6 7.6 0 1 1 0-15.2'/><path d='M12.2 6.8v5.1'/><path d='M12.2 11.9l3.3 1.6'/></svg></button><button data-phone=\"1\" data-tel=\"" + (phoneDial || "") + "\" aria-label=\"Téléphone\" title=\"Téléphone\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M8.2 4.8c.9-.7 2.1-.4 2.9.6l.6.8c.7.9.7 2-.1 2.8l-1 1c-.4.4-.5 1-.2 1.5l2.7 4.1c.3.5.9.7 1.4.4l1.2-.7c1-.6 2.2-.3 2.9.6l.6.8c.7.9.5 2.2-.4 2.9l-.8.6c-1.2.9-2.8 1-4.1.2c-2.1-1.2-4.1-3.3-5.8-5.8c-1.7-2.6-2.6-5-2.7-7.4c0-1.5.7-2.9 1.9-3.8z'/><path d='M8.7 5.2c.7-.5 1.6-.2 2.2.6l.5.7c.5.7.5 1.6-.1 2.2l-1 1c-.6.6-.7 1.5-.2 2.2l2.7 4.1c.5.7 1.4 1 2.2.5l1.2-.7c.8-.5 1.7-.3 2.2.5l.5.7c.5.7.4 1.7-.3 2.2'/></svg></button><button data-addr=\"1\" aria-label=\"Adresse\" title=\"Adresse\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 4.5v15'/><path d='M12 6.5h6l-2.4-2.2'/><path d='M18 6.5l-2.4 2.2'/><path d='M12 10.5h-6l2.4-2.2'/><path d='M6 10.5l2.4 2.2'/></svg></button><button data-site=\"1\" aria-label=\"Site web\" title=\"Site web\" style=\"display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:32px;height:32px;padding:0;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.30);color:rgba(245,245,232,.92);font-size:14px;line-height:26px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M3.2 12l8.8-8.8l8.8 8.8'/><path d='M6 11v8h12v-8'/><path d='M10 19v-4h4v4'/></svg></button>" + "</div>" + "<div style=\"position:absolute; left:50%; bottom:-10px; width:16px; height:10px; background:" + bg + "; clip-path: polygon(50% 100%, 0 0, 100% 0); transform: translateX(-50%); filter: drop-shadow(0 1px 0 " + border + ");\" ></div>" +
     "</div>"
   );
 }
@@ -709,7 +713,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const _lowerName = String((_popupProps as any)?.name ?? (_popupProps as any)?.title ?? "").trim().toLowerCase();
   const isTextilerie = _lowerName.includes("textilerie");
   const nameRaw = String(p?.name ?? "");
-  const name = escapeHtml(nameRaw || "Lieu");
+  const name = escapeHtml(nameRaw || ui("Lieu","Place"));
   const typeRaw = String(p?.type ?? "");
   const addressRaw = String(p?.address ?? "");
   const websiteRaw = String(p?.website ?? "");
@@ -732,18 +736,18 @@ function buildPopupHtml(p: any, darkMap: boolean) {
   const hoursBlock = openingHoursRaw
     ? "<details class=\"mt-2 text-[12px] leading-snug group\">" +
       "<summary class=\"cursor-pointer select-none font-semibold flex items-center gap-2\">" +
-      "Horaires" +
+      ui("Horaires","Hours") +
       "<span class=\"text-red-600 inline-block transition-transform duration-200 group-open:rotate-90\">➤</span>" +
       "</summary>" +
       "<pre class=\"mt-1 whitespace-pre-wrap font-sans text-[12px]\">" +
       escapeHtml(openingHoursRaw) +
       "</pre>" +
       "</details>"
-    : "<p class=\"mt-2 text-[12px]\">Horaires : voir le site</p>";
+    : "<p class=\"mt-2 text-[12px]\">" + ui("Horaires : voir le site","Hours: see website") + "</p>";
 
   const routeBlock = Number.isFinite(latRaw) && Number.isFinite(lngRaw)
     ? "<div class=\"mt-2\">" +
-        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-[2px] text-[11px] font-semibold text-neutral-800 hover:opacity-90\">Itinéraire</a>" +
+        "<a href=\"#\" data-route=\"1\" class=\"inline-flex items-center rounded-full bg-[#E4D4C2] px-3 py-[2px] text-[11px] font-semibold text-neutral-800 hover:opacity-90\">" + ui("Itinéraire","Directions") + "</a>" +
       "</div>"
     : "";
 
@@ -757,7 +761,7 @@ function buildPopupHtml(p: any, darkMap: boolean) {
       escapeHtml(websiteRaw) +
       "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[12px] font-semibold\" style=\"" +
       (darkMap ? "color:#ffd27a" : "color:#ffd27a") +
-      "\">Site web</a></div>"
+      "\">" + ui("Site web","Website") + "</a></div>"
     : "";
 
   if (isTextilerie) {
@@ -1661,8 +1665,8 @@ popupRef.current = null;
 
                     if (!dial) {
                       panel.innerHTML =
-                        "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
-                        "<div style=\"margin-top:6px;opacity:.90;\" >Téléphone inconnu</div>";
+                        "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
+                        "<div style=\"margin-top:6px;opacity:.90;\" >" + ui("Téléphone inconnu","Phone unknown") + "</div>";
                       el.appendChild(panel);
                       try { setPhoneActive(true); } catch {}
                       try { setTimeout(recenterMini, 0); } catch {}
@@ -1670,10 +1674,10 @@ popupRef.current = null;
                     }
 
                     panel.innerHTML =
-                      "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
+                      "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
                       "<div style=\"margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px;\" >" +
                         "<span style=\"opacity:.92;font-weight:700;\" >" + escapeHtml(dial) + "</span>" +
-                        "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(245,245,232,.18);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" >Appeler</button>" +
+                        "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(245,245,232,.18);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" >" + ui("Appeler","Call") + "</button>" +
                       "</div>";
 
                     el.appendChild(panel);
@@ -1814,20 +1818,20 @@ popupRef.current = null;
                       return b;
                     };
 
-                    const copyBtn = mkBtn("Copier");
+                    const copyBtn = mkBtn(ui("Copier","Copy"));
                     copyBtn.addEventListener("click", async (e2: any) => {
                       try { e2.preventDefault(); e2.stopPropagation(); } catch {}
-                      const prev = String((copyBtn as any)?.textContent ?? "Copier");
+                      const prev = String((copyBtn as any)?.textContent ?? ui("Copier","Copy"));
                       const flash = (t: string) => {
                         try { (copyBtn as any).textContent = t; } catch {}
                         try { setTimeout(() => { try { (copyBtn as any).textContent = prev; } catch {} }, 1200); } catch {}
                       };
                       try {
                         const txt = String(addr || "");
-                        if (!txt.trim()) { flash("Erreur"); return; }
+                        if (!txt.trim()) { flash(ui("Erreur","Error")); return; }
                         const clip = (navigator as any)?.clipboard?.writeText;
                         if (clip) {
-                          try { await (navigator as any).clipboard.writeText(txt); flash("Copié ✓"); return; } catch {}
+                          try { await (navigator as any).clipboard.writeText(txt); flash(ui("Copié ✓","Copied ✓")); return; } catch {}
                         }
                         const ta = document.createElement("textarea");
                         ta.value = txt;
@@ -1839,12 +1843,12 @@ popupRef.current = null;
                         let ok = false;
                         try { ok = !!document.execCommand("copy"); } catch {}
                         try { document.body.removeChild(ta); } catch {}
-                        flash(ok ? "Copié ✓" : "Erreur");
+                        flash(ok ? ui("Copié ✓","Copied ✓") : ui("Erreur","Error"));
                       } catch {
-                        flash("Erreur");
+                        flash(ui("Erreur","Error"));
                       }
                     });
-const goBtn = mkBtn("Itinéraire →");
+const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                     goBtn.addEventListener("click", (e2: any) => {
                       try { e2.preventDefault(); e2.stopPropagation(); } catch {}
                       try {
@@ -2015,14 +2019,14 @@ popupRef.current = null;
                         row.style.gap = "10px";
 
                         const day = document.createElement("span");
-                        day.textContent = m[1];
+                        day.textContent = (function(){const fr=String(m[1]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k.startsWith("lun")) return ui("Lundi","Monday");if(k.startsWith("mar")) return ui("Mardi","Tuesday");if(k.startsWith("mer")) return ui("Mercredi","Wednesday");if(k.startsWith("jeu")) return ui("Jeudi","Thursday");if(k.startsWith("ven")) return ui("Vendredi","Friday");if(k.startsWith("sam")) return ui("Samedi","Saturday");if(k.startsWith("dim")) return ui("Dimanche","Sunday");return fr;})();
                         day.style.fontWeight = "750";
                         day.style.color = "rgba(245,245,232,.78)";
                         day.style.whiteSpace = "nowrap";
                         day.style.flex = "0 0 92px";
 
                         const hours = document.createElement("span");
-                        hours.textContent = m[2];
+                        hours.textContent = (function(){const fr=String(m[2]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k==="ferme"||k.startsWith("ferme")) return ui("Fermé","Closed");return fr;})();
                         hours.style.fontWeight = "650";
                         hours.style.color = "rgba(245,245,232,.92)";
                         hours.style.textAlign = "right";
@@ -2318,7 +2322,7 @@ class GeolocateControl_ML {
     c.style.marginBottom = "92px";
     c.style.pointerEvents = "auto";
     c.innerHTML = `
-      <button type="button" aria-label="Me localiser"
+      <button type="button" aria-label={ui("Me localiser","Locate me")}
         style="
           height:33px;width:33px;border-radius:16px;
           background:#262626;border:1px solid #404040;
@@ -2850,7 +2854,7 @@ mapRef.current = map;
           />
                         <button
             type="button"
-            aria-label="Fermer"
+            aria-label={ui("Fermer","Close")}
             className="absolute top-4 right-4 z-[80] pointer-events-auto"
             style={{
               width: 28,
@@ -3016,16 +3020,16 @@ mapRef.current = map;
                             if (!dial) {
                               try { setPhoneActive(true); } catch {}
                               panel.innerHTML =
-                                "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
-                                "<div style=\"margin-top:6px;opacity:.90;\" >Téléphone inconnu</div>";
+                                "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
+                                "<div style=\"margin-top:6px;opacity:.90;\" >" + ui("Téléphone inconnu","Phone unknown") + "</div>";
                               return;
                             }
 
                             panel.innerHTML =
-                              "<div style=\"font-weight:800;letter-spacing:.02em;\" >Téléphone</div>" +
+                              "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
                               "<div style=\"margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px;\" >" +
                                 "<span style=\"opacity:.92;font-weight:700;\" >" + escapeHtml(dial) + "</span>" +
-                                "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.26);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;\" onclick=\"return false;\" >Appeler</button>" +
+                                "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.26);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;\" onclick=\"return false;\" >" + ui("Appeler","Call") + "</button>" +
                               "</div>";
 
                             const cb = panel.querySelector("[data-phone-call=\"1\"]") as HTMLElement | null;
@@ -3162,20 +3166,20 @@ mapRef.current = map;
                               return b;
                             };
 
-                            const copyBtn = mkBtn("Copier");
+                            const copyBtn = mkBtn(ui("Copier","Copy"));
                             copyBtn.addEventListener("click", async (e2: any) => {
                               try { e2.preventDefault(); e2.stopPropagation(); } catch {}
-                              const prev = String((copyBtn as any)?.textContent ?? "Copier");
+                              const prev = String((copyBtn as any)?.textContent ?? ui("Copier","Copy"));
                               const flash = (t: string) => {
                                 try { (copyBtn as any).textContent = t; } catch {}
                                 try { setTimeout(() => { try { (copyBtn as any).textContent = prev; } catch {} }, 1200); } catch {}
                               };
                               try {
                                 const txt = String(addr || "");
-                                if (!txt.trim()) { flash("Erreur"); return; }
+                                if (!txt.trim()) { flash(ui("Erreur","Error")); return; }
                                 const clip = (navigator as any)?.clipboard?.writeText;
                                 if (clip) {
-                                  try { await (navigator as any).clipboard.writeText(txt); flash("Copié ✓"); return; } catch {}
+                                  try { await (navigator as any).clipboard.writeText(txt); flash(ui("Copié ✓","Copied ✓")); return; } catch {}
                                 }
                                 const ta = document.createElement("textarea");
                                 ta.value = txt;
@@ -3187,12 +3191,12 @@ mapRef.current = map;
                                 let ok = false;
                                 try { ok = !!document.execCommand("copy"); } catch {}
                                 try { document.body.removeChild(ta); } catch {}
-                                flash(ok ? "Copié ✓" : "Erreur");
+                                flash(ok ? ui("Copié ✓","Copied ✓") : ui("Erreur","Error"));
                               } catch {
-                                flash("Erreur");
+                                flash(ui("Erreur","Error"));
                               }
                             });
-const goBtn = mkBtn("Itinéraire →");
+const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                             goBtn.addEventListener("click", (e2: any) => {
                               try { e2.preventDefault(); e2.stopPropagation(); } catch {}
                               try {
@@ -3317,14 +3321,14 @@ const goBtn = mkBtn("Itinéraire →");
                                 row.style.gap = "10px";
 
                                 const day = document.createElement("span");
-                                day.textContent = m[1];
+                                day.textContent = (function(){const fr=String(m[1]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k.startsWith("lun")) return ui("Lundi","Monday");if(k.startsWith("mar")) return ui("Mardi","Tuesday");if(k.startsWith("mer")) return ui("Mercredi","Wednesday");if(k.startsWith("jeu")) return ui("Jeudi","Thursday");if(k.startsWith("ven")) return ui("Vendredi","Friday");if(k.startsWith("sam")) return ui("Samedi","Saturday");if(k.startsWith("dim")) return ui("Dimanche","Sunday");return fr;})();
                                 day.style.fontWeight = "750";
                                 day.style.color = "rgba(245,245,232,.78)";
                                 day.style.whiteSpace = "nowrap";
                                 day.style.flex = "0 0 92px";
 
                                 const hours = document.createElement("span");
-                                hours.textContent = m[2];
+                                hours.textContent = (function(){const fr=String(m[2]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k==="ferme"||k.startsWith("ferme")) return ui("Fermé","Closed");return fr;})();
                                 hours.style.fontWeight = "650";
                                 hours.style.color = "rgba(245,245,232,.92)";
                                 hours.style.textAlign = "right";

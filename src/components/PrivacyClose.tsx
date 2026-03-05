@@ -7,7 +7,7 @@ export default function PrivacyClose({ locale }: { locale: string }) {
   return (
     <button
       type="button"
-      aria-label="Fermer"
+      aria-label={locale === "fr" ? "Fermer" : "Close"}
       onClick={() => {
         try {
           r.back();

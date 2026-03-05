@@ -124,11 +124,18 @@ export default function ContributeForm({ locale }: Props) {
         <div className="grid gap-2">
           <label className="text-sm font-medium text-white/80">{t.photo}</label>
           <input
+            id="im-photo"
             type="file"
             accept="image/*"
             onChange={(e) => setPhoto(e.target.files?.[0] || null)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white outline-none ring-1 ring-white/10"
+            className="sr-only"
           />
+          <label
+            htmlFor="im-photo"
+            className="inline-flex items-center justify-center rounded-2xl bg-white/10 px-4 py-3 text-white hover:bg-white/15 cursor-pointer ring-1 ring-white/10"
+          >
+            {isFr ? "Choisir une photo" : "Choose a photo"}
+          </label>
         </div>
 
         <button

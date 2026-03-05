@@ -55,12 +55,21 @@ export async function GET(req: Request) {
       const tr = x.translations;
       if (!isObj(tr)) return x;
 
-      const mt = tr.miniText;
-      if (!isObj(mt)) return x;
+            
+      const tObj = tr[lang];
+      if (isObj(tObj)) {
+        const t = tObj.miniText;
+        if (typeof t === "string" && t.trim().length > 0) {
+          return { ...x, miniText: t };
+        }
+      }
 
-      const t = mt[lang];
-      if (typeof t === "string" && t.trim().length > 0) {
-        return { ...x, miniText: t };
+      const mt = tr.miniText;
+      if (isObj(mt)) {
+        const t2 = mt[lang];
+        if (typeof t2 === "string" && t2.trim().length > 0) {
+          return { ...x, miniText: t2 };
+        }
       }
 
       return x;
