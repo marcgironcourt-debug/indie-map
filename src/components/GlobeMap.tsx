@@ -2343,6 +2343,13 @@ class GeolocateControl_ML {
     const btn = c.querySelector("button");
     if (btn) {
       btn.addEventListener("click", () => {
+        try { if (popupRef.current) popupRef.current.remove(); } catch {}
+        try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+        try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+        try { for (const feat of fcRef.current.features) { try { feat.properties.selected = false; } catch {} } } catch {}
+        try { const src = getSource((this as any)._map); if (src) src.setData(fcRef.current); } catch {}
+        popupRef.current = null;
+        selectedPinMarkerRef.current = null;
         try {
           if (!navigator.geolocation) return;
 
