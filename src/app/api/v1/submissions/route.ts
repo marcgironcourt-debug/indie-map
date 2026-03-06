@@ -1,16 +1,25 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { locales } from "../../../../../i18n";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
 } as const;
-import { locales } from "../../../../../i18n";
-import { prisma } from "@/lib/prisma";
 
 function normStr(v: unknown, max = 500): string | null {
   if (typeof v !== "string") return null;
   const t = v.trim();
   if (!t) return null;
   return t.length > max ? t.slice(0, max) : t;
+}
+
+function esc(s: string): string {
+  return s
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 export async function POST(req: Request) {
@@ -20,60 +29,68 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
+    const locale = req.headers.get("accept-language")?.toLowerCase().startsWith("fr") ? "fr" : "en";
     const fd = await req.formData();
 
-    const locale = normStr(fd.get("locale"), 10);
+    const formLocale = normStr(fd.get("locale"), 10) || locale;
     const name = normStr(fd.get("name"), 200);
     const address = normStr(fd.get("address"), 300);
+    const openingHours = normStr(fd.get("openingHours"), 800);
+    const phone = normStr(fd.get("phone"), 80);
+    const website = normStr(fd.get("website"), 300);
 
-    if (!locale || !(locales as readonly string[]).includes(locale)) {
+    if (!(locales as readonly string[]).includes(formLocale)) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
     if (!name || name.length < 2) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
-    if (!address || address.length < 5) {
+    if (!website || website.length < 5) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
-    const openingHours = normStr(fd.get("openingHours"), 800);
-    const phone = normStr(fd.get("phone"), 80);
-    const website = normStr(fd.get("website"), 300);
+    const apiKey = process.env.RESEND_API_KEY || "";
+    const from = process.env.RESEND_FROM || "";
+    const to = process.env.RESEND_TO || "";
 
-    let photoMime: string | null = null;
-    let photoBase64: string | null = null;
-
-    const file = fd.get("photo");
-    if (file && typeof file === "object" && "arrayBuffer" in file) {
-      const f = file as File;
-      if (f.size > 0) {
-        if (!f.type || !f.type.startsWith("image/")) {
-          return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
-        }
-        const MAX = 2_000_000;
-        if (f.size > MAX) {
-          return NextResponse.json({ ok: false, error: "photo_too_large" }, { status: 413, headers: V1_HEADERS });
-        }
-        const buf = Buffer.from(await f.arrayBuffer());
-        photoMime = f.type;
-        photoBase64 = buf.toString("base64");
-      }
+    if (!apiKey || !from || !to) {
+      console.error("[/api/v1/submissions] missing env", {
+        hasApiKey: Boolean(apiKey),
+        hasFrom: Boolean(from),
+        hasTo: Boolean(to),
+      });
+      return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
     }
 
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
-    const userAgent = req.headers.get("user-agent") || null;
+    const resend = new Resend(apiKey);
 
-    await prisma.submission.create({
-      data: {
-        locale,
-        name,
-        address,
-        openingHours,
-        phone,
-        website,
-        photoMime,
-        photoBase64,},
+    const subject =
+      formLocale === "fr"
+        ? `Nouvelle contribution Indie Map — ${name}`
+        : `New Indie Map contribution — ${name}`;
+
+    const html =
+      "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#111\">" +
+      "<h2 style=\"margin:0 0 16px 0;\">" + esc(subject) + "</h2>" +
+      "<p><strong>Langue :</strong> " + esc(formLocale) + "</p>" +
+      "<p><strong>Nom :</strong> " + esc(name) + "</p>" +
+      "<p><strong>Site web :</strong> <a href=\"" + esc(website) + "\">" + esc(website) + "</a></p>" +
+      "<p><strong>Adresse :</strong> " + esc(address || "—") + "</p>" +
+      "<p><strong>Téléphone :</strong> " + esc(phone || "—") + "</p>" +
+      "<p><strong>Horaires :</strong><br>" + esc(openingHours || "—").replaceAll("\n", "<br>") + "</p>" +
+      "</div>";
+
+    const { error } = await resend.emails.send({
+      from,
+      to: [to],
+      subject,
+      html,
     });
+
+    if (error) {
+      console.error("[/api/v1/submissions] resend error", error);
+      return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+    }
 
     return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {

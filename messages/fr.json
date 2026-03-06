@@ -8,5 +8,7 @@
   },
   "business": {
     "unverified": "Non vérifié"
-  }
+  },
+  "contributionSuccessTitle": "Merci !",
+  "contributionSuccessText": "Ta suggestion a bien été envoyée. Nous l’examinerons avant de l’ajouter à Indie Map."
 }

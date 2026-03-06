@@ -11,10 +11,9 @@ export default function ContributeForm({ locale }: Props) {
   const [openingHours, setOpeningHours] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [website, setWebsite] = React.useState("");
-  const [photo, setPhoto] = React.useState<File | null>(null);
-  const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "err" | "too_large">("idle");
+  const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "err">("idle");
 
-  const canSend = name.trim().length >= 2 && address.trim().length >= 5 && status !== "sending";
+  const canSend = name.trim().length >= 2 && website.trim().length >= 5 && status !== "sending";
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -29,13 +28,8 @@ export default function ContributeForm({ locale }: Props) {
       if (openingHours.trim()) fd.set("openingHours", openingHours);
       if (phone.trim()) fd.set("phone", phone);
       if (website.trim()) fd.set("website", website);
-      if (photo) fd.set("photo", photo);
 
       const res = await fetch("/api/v1/submissions", { method: "POST", body: fd });
-      if (res.status === 413) {
-        setStatus("too_large");
-        return;
-      }
       const json = (await res.json().catch(() => null)) as { ok?: boolean } | null;
       if (!res.ok || !json?.ok) throw new Error("not_ok");
 
@@ -45,7 +39,6 @@ export default function ContributeForm({ locale }: Props) {
       setOpeningHours("");
       setPhone("");
       setWebsite("");
-      setPhoto(null);
     } catch {
       setStatus("err");
     }
@@ -54,19 +47,18 @@ export default function ContributeForm({ locale }: Props) {
   const t = {
     title: isFr ? "Contribuer" : "Contribute",
     intro: isFr
-      ? "Propose un lieu à ajouter. Les infos sont relues manuellement."
-      : "Suggest a place to add. Submissions are reviewed manually.",
+      ? "Propose un lieu à ajouter. Les infos sont relues manuellement. Nom et site web uniquement."
+      : "Suggest a place to add. Submissions are reviewed manually. Only name and website are required.",
     name: isFr ? "Nom du lieu *" : "Place name *",
-    address: isFr ? "Adresse du lieu *" : "Place address *",
+    address: isFr ? "Adresse du lieu (optionnel)" : "Place address (optional)",
     openingHours: isFr ? "Horaires (optionnel)" : "Opening hours (optional)",
     phone: isFr ? "Téléphone (optionnel)" : "Phone (optional)",
-    website: isFr ? "Site web (optionnel)" : "Website (optional)",
-    photo: isFr ? "Photo (optionnel)" : "Photo (optional)",
+    website: isFr ? "Site web *" : "Website *",
     send: isFr ? "Envoyer" : "Send",
     sending: isFr ? "Envoi..." : "Sending...",
-    ok: isFr ? "Merci. Reçu." : "Thanks. Received.",
+    okTitle: isFr ? "Merci !" : "Thank you!",
+    okText: isFr ? "Ta suggestion a bien été envoyée. Nous l’examinerons avant de l’ajouter à Indie Map." : "Your suggestion has been sent. We will review it before adding it to Indie Map.",
     err: isFr ? "Erreur. Réessaie." : "Error. Try again.",
-    tooLarge: isFr ? "Photo trop lourde (max 2 Mo)." : "Photo too large (max 2 MB).",
     required: isFr ? "* obligatoire" : "* required",
   } as const;
 
@@ -121,23 +113,6 @@ export default function ContributeForm({ locale }: Props) {
         </div>
 
 
-        <div className="grid gap-2">
-          <label className="text-sm font-medium text-white/80">{t.photo}</label>
-          <input
-            id="im-photo"
-            type="file"
-            accept="image/*"
-            onChange={(e) => setPhoto(e.target.files?.[0] || null)}
-            className="sr-only"
-          />
-          <label
-            htmlFor="im-photo"
-            className="inline-flex items-center justify-center rounded-2xl bg-white/10 px-4 py-3 text-white hover:bg-white/15 cursor-pointer ring-1 ring-white/10"
-          >
-            {isFr ? "Choisir une photo" : "Choose a photo"}
-          </label>
-        </div>
-
         <button
           type="submit"
           disabled={!canSend}
@@ -147,9 +122,8 @@ export default function ContributeForm({ locale }: Props) {
         </button>
 
         <p className="text-xs text-white/60">{t.required}</p>
-        {status === "ok" ? <p className="text-sm text-white/80">{t.ok}</p> : null}
+        {status === "ok" ? <div className="text-sm text-white/80"><p className="font-semibold">{t.okTitle}</p><p className="mt-1">{t.okText}</p></div> : null}
         {status === "err" ? <p className="text-sm text-white/80">{t.err}</p> : null}
-        {status === "too_large" ? <p className="text-sm text-white/80">{t.tooLarge}</p> : null}
       </form>
     </div>
   );

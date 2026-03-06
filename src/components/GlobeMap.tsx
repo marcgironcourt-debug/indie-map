@@ -3048,6 +3048,7 @@ mapRef.current = map;
                             const next = (cur === "none" || cur === "") ? "block" : "none";
                             (panel as any).style.display = next;
                             try { setPhoneActive(next === "block"); } catch {}
+                            try { setTimeout(recenterMini, 0); } catch {}
                             if (next !== "block") return;
 
                             if (!dial) {
@@ -3055,6 +3056,7 @@ mapRef.current = map;
                               panel.innerHTML =
                                 "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
                                 "<div style=\"margin-top:6px;opacity:.90;\" >" + ui("Téléphone inconnu","Phone unknown") + "</div>";
+                              try { setTimeout(recenterMini, 0); } catch {}
                               return;
                             }
 
@@ -3064,6 +3066,7 @@ mapRef.current = map;
                                 "<span style=\"opacity:.92;font-weight:700;\" >" + escapeHtml(dial) + "</span>" +
                                 "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.26);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;\" onclick=\"return false;\" >" + ui("Appeler","Call") + "</button>" +
                               "</div>";
+                            try { setTimeout(recenterMini, 0); } catch {}
 
                             const cb = panel.querySelector("[data-phone-call=\"1\"]") as HTMLElement | null;
                             if (cb) {
