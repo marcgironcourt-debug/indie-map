@@ -2678,7 +2678,7 @@ mapRef.current = map;
       try {
         pos = await getPos();
       } catch {
-        try { alert("Localisation bloquée. Sur iPhone, ouvre Indie Map en HTTPS (pas http://192.168...). Autorise aussi la localisation dans Safari."); } catch {}
+        try { alert("Localisation bloquée. Vérifie que tu utilises Indie Map en HTTPS et que la localisation est autorisée sur iPhone."); } catch {}
         return;
       }
 
