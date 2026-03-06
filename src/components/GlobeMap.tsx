@@ -1533,7 +1533,7 @@ map.on("mouseenter", LAYER_ID, () => {
         const props = f?.properties || {};
 
         const openPopup = () => {
-           try { (ref.current as any)?.classList?.add("im-globe-dim"); } catch {}
+
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { if (popupRef.current) popupRef.current.remove(); } catch {}
@@ -2073,8 +2073,8 @@ return;
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
           try { onSelectRef.current?.(String((props as any).id)); } catch {}
-          try { heroReturnCamRef.current = { center: [lng, lat], zoom: 8.8, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
-          map.flyTo({ center: [lng, lat], zoom: 8.8, speed: 0.9, curve: 1.2, essential: true });
+          openPopup();
+          try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
           return;
         }
         openPopup();
@@ -2914,7 +2914,7 @@ mapRef.current = map;
                     const st = (stClose as any) || heroReturnPopupRef.current;
                     if (!map || !st) return;
 
-                    try { (ref.current as any)?.classList?.add("im-globe-dim"); } catch {}
+
 
                     try {
                       const sid = String((st as any)?.props?.id ?? (st as any)?.fid ?? "");
@@ -3440,13 +3440,9 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                 }, 260);
               } catch {}
 
-              try {
-                setTimeout(() => {
-                  try { setDiscoverHeroOpen(false); } catch {}
-                  try { setDiscoverHeroUrl(null); } catch {}
-                  try { setHeroUiHide(false); } catch {}
-                }, 920);
-              } catch {}
+              try { setDiscoverHeroOpen(false); } catch {}
+              try { setDiscoverHeroUrl(null); } catch {}
+              try { setHeroUiHide(false); } catch {}
             }}
           >
             <span style={{ display: "inline-block" }}>×</span>
