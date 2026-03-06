@@ -36,6 +36,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
       contrib: `${base}/contribution`,
       about: `${base}/a-propos`,
       privacy: `${base}/privacy`,
+      support: `${base}/support`,
     };
   }, [locale]);
 
@@ -337,6 +338,10 @@ export default function MobileMenu({ locale }: { locale: string }) {
                 <div className="mt-4 text-[11px] text-white/60">
                   <Link href={hrefs.privacy} onClick={closePanel} className="opacity-70 hover:opacity-100">
                     {isFr ? "Confidentialité" : "Privacy"}
+                  </Link>
+                  <br />
+                  <Link href={hrefs.support} onClick={closePanel} className="opacity-70 hover:opacity-100">
+                    {isFr ? "Support" : "Support"}
                   </Link>
                 </div>
               )}
