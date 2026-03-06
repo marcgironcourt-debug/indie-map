@@ -807,6 +807,7 @@ export default function GlobeMap({
   const mapRef = React.useRef<maplibregl.Map | null>(null);
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
+  const pendingNativeLocationRef = React.useRef<{ lat: number; lng: number } | null>(null);
 
   React.useEffect(() => {
     const fn = () => {
@@ -827,7 +828,10 @@ export default function GlobeMap({
         const lng = Number(e?.detail?.lng);
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
         const m = mapRef.current;
-        if (!m) return;
+        if (!m) {
+          try { pendingNativeLocationRef.current = { lat: Number(lat), lng: Number(lng) }; } catch {}
+          return;
+        }
 
         const SRC = "indie-user-location";
         const HALO = "indie-user-location-halo";
@@ -900,7 +904,7 @@ export default function GlobeMap({
 
           try {
             const targetCenter: [number, number] = [Number(lng), Number(lat)];
-            const targetZoom = 13.5;
+            const targetZoom = 12.4;
             m.jumpTo({ center: targetCenter, zoom: targetZoom });
             window.setTimeout(() => {
               try {
@@ -926,6 +930,14 @@ export default function GlobeMap({
       } catch {}
     };
     try { window.addEventListener("im:native-location", fn as EventListener); } catch {}
+    try {
+      const cached = (window as any).__IM_NATIVE_LOCATION__;
+      const lat = Number(cached?.lat);
+      const lng = Number(cached?.lng);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        fn(new CustomEvent("im:native-location", { detail: { lat, lng } }) as unknown as Event);
+      }
+    } catch {}
     return () => { try { window.removeEventListener("im:native-location", fn as EventListener); } catch {} };
   }, []);
 
@@ -2675,7 +2687,7 @@ class GeolocateControl_ML {
                 const m = this._map;
                 if (m) {
                   const targetCenter: [number, number] = [Number(lng), Number(lat)];
-                  const targetZoom = 13.5;
+                  const targetZoom = 12.4;
                   m.jumpTo({ center: targetCenter, zoom: targetZoom });
                   window.setTimeout(() => {
                     try {
@@ -2885,6 +2897,16 @@ mapRef.current = map;
       try { map.touchZoomRotate.enable({ around: "center" } as any); } catch {}
 
       attach();
+
+      try {
+        const pending = pendingNativeLocationRef.current ?? ((window as any).__IM_NATIVE_LOCATION__ || null);
+        const lat = Number((pending as any)?.lat);
+        const lng = Number((pending as any)?.lng);
+        if (Number.isFinite(lat) && Number.isFinite(lng)) {
+          pendingNativeLocationRef.current = null;
+          window.dispatchEvent(new CustomEvent("im:native-location", { detail: { lat, lng } }));
+        }
+      } catch {}
     });
 
     map.on("style.load", attach);
