@@ -2162,7 +2162,27 @@ return;
       pitch: 0,
       bearing: 0,
       attributionControl: false,
+      transformRequest: (url: string, resourceType: any) => {
+        try {
+          const u = String(url || "");
+          const t = String(resourceType || "");
+          const hit = /\.webp(\?|$)/i.test(u) || /\bwebp\b/i.test(u) || /sprite|glyph|tile|tiles/i.test(t) || /sprite|glyph|tile|tiles/i.test(u);
+          if (hit) console.log("[IM_ML_REQ]", t, u);
+        } catch {}
+        return { url };
+      },
     });
+
+    try {
+      map.on("error" as any, (e: any) => {
+        try {
+          const msg = String(e?.error?.message ?? e?.error ?? "");
+          const src = String(e?.sourceId ?? "");
+          const tid = (() => { try { return String(e?.tile?.tileID ?? e?.tile?.uid ?? ""); } catch { return ""; } })();
+          console.log("[IM_ML_ERR]", msg, "source=", src, "tile=", tid);
+        } catch {}
+      });
+    } catch {}
 
     try { (window as any).__IM_MAP__ = map; } catch {}
 
