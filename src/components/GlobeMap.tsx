@@ -1566,35 +1566,21 @@ map.on("mouseenter", LAYER_ID, () => {
             el.innerHTML = html;
 
             const recenterMini = () => {
-              try {
-                const mapEl = map.getContainer();
-                const mr = mapEl.getBoundingClientRect();
-                const pr = el.getBoundingClientRect();
-                const pt = map.project([Number(lng), Number(lat)] as any);
-                const pinX = mr.left + Number(pt.x || 0);
-                const pinY = mr.top + Number(pt.y || 0);
-                const left = Math.min(pr.left, pinX);
-                const right = Math.max(pr.right, pinX);
-                const top = Math.min(pr.top, pinY);
-                const bottom = Math.max(pr.bottom, pinY);
-                const cx = (left + right) / 2;
-                const cy = (top + bottom) / 2;
-                const targetX = mr.left + mr.width / 2;
-                const targetY = mr.top + mr.height / 2;
-                const dx = cx - targetX;
-                const dy = cy - targetY;
-                if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
-                const cur = map.getCenter();
-                const curPt = map.project([Number(cur.lng), Number(cur.lat)] as any);
-                const next = map.unproject([Number(curPt.x) + dx, Number(curPt.y) + dy] as any);
-                map.easeTo({
-                  center: [Number((next as any).lng), Number((next as any).lat)],
-                  zoom: map.getZoom(),
-                  duration: 420,
-                  essential: true
-                });
-              } catch {}
-            };
+                      try {
+                        const pr = el.getBoundingClientRect();
+                        const vh = Math.max(1, Number(window.innerHeight || 0));
+                        const marginTop = 16;
+                        const marginBottom = 16;
+                        let dy = 0;
+                        if (pr.top < marginTop) dy = pr.top - marginTop;
+                        else if (pr.bottom > vh - marginBottom) dy = pr.bottom - (vh - marginBottom);
+                        if (Math.abs(dy) < 1) return;
+                        map.panBy([0, dy] as any, {
+                          duration: 220,
+                          essential: true
+                        } as any);
+                      } catch {}
+                    };
             try {
               const btn = el.querySelector("[data-mini-close=\"1\"]");
               if (btn) {
@@ -2088,10 +2074,28 @@ return;
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
           try { onSelectRef.current?.(String((props as any).id)); } catch {}
-          openPopup();
+          try {
+            map.once("moveend", openPopup);
+            map.easeTo({
+              center: [Number(lng), Number(lat)],
+              zoom: map.getZoom(),
+              duration: 420,
+              offset: [0, 60],
+              essential: true
+            });
+          } catch { openPopup(); }
           return;
         }
-        openPopup();
+        try {
+          map.once("moveend", openPopup);
+          map.easeTo({
+            center: [Number(lng), Number(lat)],
+            zoom: map.getZoom(),
+            duration: 420,
+            offset: [0, 60],
+            essential: true
+          });
+        } catch { openPopup(); }
 });
     }
   }
@@ -2971,20 +2975,18 @@ mapRef.current = map;
 
                     const recenterMini = () => {
                       try {
-                        const r = el.getBoundingClientRect();
+                        const pr = el.getBoundingClientRect();
                         const vh = Math.max(1, Number(window.innerHeight || 0));
-                        const margin = 12;
-                        let extra = 0;
-                        if (r.top < margin) extra -= (margin - r.top);
-                        if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
-                        const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-                        const base = 190;
-                        const oy = clamp(base + extra, 90, 320);
-                        const lng0 = Number((st as any).lng);
-                        const lat0 = Number((st as any).lat);
-                        try {
-                          try {} catch {}
-                        } catch {}
+                        const marginTop = 16;
+                        const marginBottom = 16;
+                        let dy = 0;
+                        if (pr.top < marginTop) dy = pr.top - marginTop;
+                        else if (pr.bottom > vh - marginBottom) dy = pr.bottom - (vh - marginBottom);
+                        if (Math.abs(dy) < 1) return;
+                        map.panBy([0, dy] as any, {
+                          duration: 220,
+                          essential: true
+                        } as any);
                       } catch {}
                     };
 
@@ -3446,6 +3448,8 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                       popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
                         .setLngLat([Number((st as any).lng), Number((st as any).lat)])
                         .addTo(map);
+                      try { setTimeout(recenterMini, 0); } catch {}
+                      try { setTimeout(recenterMini, 80); } catch {}
                       
                     } catch {}
                   } catch {}
