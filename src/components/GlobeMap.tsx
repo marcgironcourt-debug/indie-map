@@ -1524,12 +1524,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
         type: "symbol",
         source: SOURCE_ID,
         layout: {
-          "icon-image": [
-            "case",
-            ["boolean", ["get", "selected"], false],
-            ["concat", "pin-", ["get", "kind"], "-sel"],
-            ["concat", "pin-", ["get", "kind"]],
-          ],
+          "icon-image": ["concat", "pin-", ["get", "kind"]],
           "icon-size": [
             "interpolate",
             ["linear"],
@@ -1547,34 +1542,6 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
         },
       });
 
-      
-              if (!map.getLayer(SELECT_LAYER_ID)) {
-          try {
-            map.addLayer({
-              id: SELECT_LAYER_ID,
-              type: "symbol",
-              source: SOURCE_ID,
-              filter: ["==", ["get", "selected"], true] as any,
-              layout: {
-                "icon-image": ["concat", "pin-", ["get", "kind"], "-sel"] as any,
-                "icon-size": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  1, 0.72,
-                  3, 0.90,
-                  5, 1.05,
-                  8, 1.22,
-                  11, 1.42,
-                  14, 1.62
-                ] as any,
-                "icon-anchor": "bottom",
-                "icon-allow-overlap": true,
-                "icon-ignore-placement": true
-              }
-            } as any);
-          } catch {}
-        }
 
        // __INDIEMAP_CLOSE_POPUP_ON_BG_CLICK__
       map.on("click", (ev: any) => {

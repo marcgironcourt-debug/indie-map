@@ -211,7 +211,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
                       Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous .
                     </p>
 
-                    <a href="mailto:pro@indie-map.com?subject=Partenariat%20%E2%80%94%20Indie%20Map&body=Nom%20de%20la%20soci%C3%A9t%C3%A9%20:%0A%0ASite%20web%20:%0A%0APr%C3%A9cisions%20:" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
+                    <a href="mailto:pro@indie-map.com?subject=Partenariat%20%E2%80%94%20Indie%20Map" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]">
                       Contact
                     </a>
                   </>
