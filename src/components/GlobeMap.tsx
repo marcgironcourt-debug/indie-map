@@ -819,6 +819,116 @@ export default function GlobeMap({
     return () => { try { window.removeEventListener("im:geolocate", fn); } catch {} };
   }, []);
 
+  React.useEffect(() => {
+    const fn = (ev: Event) => {
+      try {
+        const e = ev as CustomEvent<{ lat?: number; lng?: number }>;
+        const lat = Number(e?.detail?.lat);
+        const lng = Number(e?.detail?.lng);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        const m = mapRef.current;
+        if (!m) return;
+
+        const SRC = "indie-user-location";
+        const HALO = "indie-user-location-halo";
+        const DOT = "indie-user-location-dot";
+
+        const apply = () => {
+          try {
+            if (!m.getSource(SRC)) {
+              m.addSource(SRC, {
+                type: "geojson",
+                data: {
+                  type: "FeatureCollection",
+                  features: [{
+                    type: "Feature",
+                    properties: {},
+                    geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
+                  }]
+                }
+              } as any);
+            }
+          } catch {}
+
+          try {
+            if (!m.getLayer(HALO)) {
+              m.addLayer({
+                id: HALO,
+                type: "circle",
+                source: SRC,
+                paint: {
+                  "circle-radius": 12,
+                  "circle-color": "#F97316",
+                  "circle-opacity": 0.25
+                }
+              } as any);
+            }
+          } catch {}
+
+          try {
+            if (!m.getLayer(DOT)) {
+              m.addLayer({
+                id: DOT,
+                type: "circle",
+                source: SRC,
+                paint: {
+                  "circle-radius": 6,
+                  "circle-color": "#F97316",
+                  "circle-stroke-width": 2,
+                  "circle-stroke-color": "#FFFFFF",
+                  "circle-opacity": 1
+                }
+              } as any);
+            }
+          } catch {}
+
+          try {
+            const src = m.getSource(SRC) as any;
+            if (src && src.setData) {
+              src.setData({
+                type: "FeatureCollection",
+                features: [{
+                  type: "Feature",
+                  properties: {},
+                  geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
+                }]
+              });
+            }
+          } catch {}
+
+          try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
+
+          try {
+            const targetCenter: [number, number] = [Number(lng), Number(lat)];
+            const targetZoom = 13.5;
+            m.jumpTo({ center: targetCenter, zoom: targetZoom });
+            window.setTimeout(() => {
+              try {
+                const m2 = mapRef.current;
+                if (!m2) return;
+                m2.easeTo({
+                  center: targetCenter,
+                  zoom: targetZoom,
+                  duration: 900
+                });
+              } catch {}
+            }, 450);
+          } catch {}
+        };
+
+        try {
+          if (typeof m.isStyleLoaded === "function" && !m.isStyleLoaded()) {
+            m.once("load", apply);
+          } else {
+            apply();
+          }
+        } catch { try { apply(); } catch {} }
+      } catch {}
+    };
+    try { window.addEventListener("im:native-location", fn as EventListener); } catch {}
+    return () => { try { window.removeEventListener("im:native-location", fn as EventListener); } catch {} };
+  }, []);
+
   const SOURCE_ID = "indie-places";
   const LAYER_ID = "indie-places-pin";
 const GLOW_LAYER_ID = "indie-places-pin-glow";
@@ -2561,6 +2671,25 @@ class GeolocateControl_ML {
                 }
               } catch {}
               try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
+              try {
+                const m = this._map;
+                if (m) {
+                  const targetCenter: [number, number] = [Number(lng), Number(lat)];
+                  const targetZoom = 13.5;
+                  m.jumpTo({ center: targetCenter, zoom: targetZoom });
+                  window.setTimeout(() => {
+                    try {
+                      const m2 = this._map;
+                      if (!m2) return;
+                      m2.easeTo({
+                        center: targetCenter,
+                        zoom: targetZoom,
+                        duration: 900
+                      });
+                    } catch {}
+                  }, 450);
+                }
+              } catch {}
               try {
                 const fn = (this as any)._updateConeFn;
                 if (fn && bearing != null) fn(Number(lng), Number(lat), Number(bearing));
