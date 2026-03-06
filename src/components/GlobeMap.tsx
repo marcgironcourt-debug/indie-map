@@ -1710,6 +1710,7 @@ popupRef.current = null;
               if (rb) {
                 rb.addEventListener("click", (ev: any) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { (rb as any)?.blur?.(); } catch {}
                   try {
                     const dlat = Number(lat);
                     const dlng = Number(lng);
@@ -1958,6 +1959,7 @@ popupRef.current = null;
                   try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
                   try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                   try { const n2 = el.querySelector("[data-addr-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                   try {
                     let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                     if (!opening) {
@@ -2165,6 +2167,7 @@ return;
       pitch: 0,
       bearing: 0,
       attributionControl: false,
+      fadeDuration: 0,
       transformRequest: (url: string, resourceType: any) => {
         try {
           const u = String(url || "");
@@ -3090,6 +3093,7 @@ mapRef.current = map;
                       if (rb) {
                         rb.addEventListener("click", (ev: any) => {
                           try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                          try { (rb as any)?.blur?.(); } catch {}
                           try {
                             const dlat = Number((st as any).lat);
                             const dlng = Number((st as any).lng);
@@ -3303,6 +3307,7 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                   try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
                   try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                   try { const n2 = el.querySelector("[data-addr-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+                  try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
                           try {
                             let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
                             if (!opening) {

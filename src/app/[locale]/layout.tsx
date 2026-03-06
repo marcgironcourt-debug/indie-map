@@ -3,6 +3,10 @@ import { setRequestLocale } from "next-intl/server";
 import { locales, defaultLocale } from "../../../i18n";
 import MobileMenu from "../../components/MobileMenu";
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function LocaleLayout({
   children,
   params
