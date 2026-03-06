@@ -290,257 +290,10 @@ function FilterBar({
 
 
 
-function MobileBottomSheet({
-  locale,
-  business,
-  mode,
-  dark,
-  onClose,
-  onExpand,
-  onPeek,
-}: {
-  locale: UILocale;
-  business: Business | null;
-  mode: "closed" | "peek" | "full";
-  dark: boolean;
-  onClose: () => void;
-  onExpand: () => void;
-  onPeek: () => void;
-}) {
-  const [renderedBusiness, setRenderedBusiness] = React.useState<Business | null>(business);
-  const [animationState, setAnimationState] = React.useState<"closed" | "peek" | "full" | "closing">("closed");
-
-  const [modalOpen, setModalOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    const onModal = (e: Event) => {
-      const ce = e as CustomEvent<{ open?: boolean }>;
-      setModalOpen(Boolean(ce.detail?.open));
-    };
-    window.addEventListener("im:modal", onModal);
-    return () => window.removeEventListener("im:modal", onModal);
-  }, []);
-
-  React.useEffect(() => {
-  if (mode === "closed") {
-    setAnimationState("closed");
-    setRenderedBusiness(null);
-    return;
-  }
-
-  if (business) {
-    setRenderedBusiness(business);
-  }
-  setAnimationState(mode);
-}, [business, mode]);
-
-  if (!renderedBusiness) return null;
-
-  const heightClass =
-    animationState === "full"
-      ? "h-[70vh] max-h-[72vh]"
-      : "h-[32vh] max-h-[36vh]";
-
-  const isFlo = renderedBusiness.name.trim().toLowerCase() === "espace flo";
-  const isSuper = renderedBusiness.name.trim().toLowerCase() === "super condiments";
-  const isRacines = renderedBusiness.name.trim().toLowerCase() === "racines boréales";
-  const isPremium = isFlo || isSuper || isRacines;
-
-  const sheetOuterClass = dark
-    ? "mx-3 rounded-2xl bg-neutral-900 border border-neutral-700 shadow-lg overflow-visible"
-    : "mx-3 rounded-2xl bg-[#5C6E3B]/85 border border-neutral-200 shadow-lg overflow-visible";
-
-  const titleClass = "text-[15px] font-semibold text-neutral-900 truncate";
-
-    const closeButtonClass = "inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-[14px] text-neutral-600";
-
-  const typeTextClass = "text-[11px] text-neutral-700 mb-1";
-
-  const hoursTextClass = "mt-1 text-[11px] leading-snug text-neutral-800 group";
-
-  const addressLinkClass = "block text-[11px] text-neutral-700 underline mt-2 mb-3";
-
-  const floParagraphClass = "text-[11px] leading-snug text-neutral-800";
-
-  const floImageWrapperClass = "h-[140px] w-full rounded-md overflow-hidden border border-neutral-300 bg-neutral-200";
-
-  const translateClass =
-    animationState === "closed"
-      ? "translate-y-full"
-      : animationState === "closing"
-      ? "translate-y-full"
-      : "translate-y-0";
-
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-[1400] md:hidden pointer-events-none pb-3">
-      <div className={sheetOuterClass + " bottom-sheet-transition " + translateClass + " pointer-events-auto"}>
-        <div className={"flex flex-col " + heightClass}>
-          <button
-            type="button"
-            onClick={() => {
-              if (animationState === "full") {
-                onPeek();
-              } else {
-                onExpand();
-              }
-            }}
-            className="flex flex-col items-center justify-center pt-2 pb-1 gap-1"
-          >
-            <span className="text-neutral-500 text-lg">
-              {animationState === "full" ? "▼" : "▲"}
-            </span>
-          </button>
-
-          <div className={"flex-1 " + (modalOpen ? "overflow-hidden" : "overflow-y-auto") + " px-4 pb-4"}>
-            <div className="flex items-center justify-between gap-3 mb-1.5">
-              <h3 className={titleClass}>
-                {renderedBusiness.name}
-              </h3>
-              <button
-                type="button"
-                onClick={onClose}
-                className={closeButtonClass}
-              >
-                ✕
-              </button>
-            </div>
-
-            {renderedBusiness.website && (
-              <div className="mb-2">
-                <a
-                  href={renderedBusiness.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={
-                    isPremium
-                      ? "inline-flex items-center rounded-full bg-[#FF8FC7] px-3 py-1 text-[11px] font-semibold text-black hover:bg-[#FF6FB6] transition"
-                      : "inline-flex items-center rounded-full bg-black px-3 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800 transition"
-                  }
-                >
-                  {ui(locale,"Site web","Website")}
-                </a>
-              </div>
-            )}
-
-            {renderedBusiness.type && (
-              <div className="mb-1">
-                {!isPremium && (
-                  <p className={typeTextClass}>
-                    {displayCategory(locale, renderedBusiness.type)}
-                  </p>
-                )}
-                {isPremium && (
-                  <div className="mt-1">
-                    <span className="inline-flex items-center rounded-full bg-[#E4D4C2] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-800">
-                      {isFlo ? "mode, art, déco" : isSuper ? "épicerie, café, brunch et buvette" : "épicerie nordique"}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {renderedBusiness.openingHours && (
-              <details className={hoursTextClass}>
-                <summary className="cursor-pointer select-none font-medium flex items-center gap-1">
-                  {ui(locale,"Horaires","Hours")}
-                  <span className="text-red-600 inline-block transition-transform duration-200 group-open:rotate-90">
-                    ➤
-                  </span>
-                </summary>
-                <pre className="mt-1 whitespace-pre-wrap font-sans">
-                  {renderedBusiness.openingHours}
-                </pre>
-              </details>
-            )}
-
-            {renderedBusiness.address && (
-              <a
-                href={
-                  "https://www.google.com/maps/search/?api=1&query=" +
-                  encodeURIComponent(renderedBusiness.address)
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={addressLinkClass}
-              >
-                {renderedBusiness.address}
-              </a>
-            )}
-
-            {!isPremium && (
-              <p className="mt-1 text-[11px] leading-snug text-[hsl(var(--leaf))]">
-      
-    </p>
-            )}
-
-            {isFlo && (
-              <div className="mb-3 space-y-2">
-                <p className={floParagraphClass}>
-                  La mission d’ESPACE FLO : faire rayonner le talent d’ici et
-                  valoriser l’achat local avec des produits éthiques et
-                  écoresponsables. À l’opposé du fast fashion et de la
-                  production de masse, ESPACE FLO propose une sélection de
-                  produits entièrement conçus et fabriqués au Québec par des
-                  designers sélectionnés, avec des pièces durables,
-                  indémodables et exclusives.
-                </p>
-                <div className={floImageWrapperClass}>
-                  <Image
-                    src="/images/espace-flo-inside.jpg"
-                    alt="Intérieur Espace FLO"
-                    width={800}
-                    height={400}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            )}
-
-            {isSuper && (
-              <div className="mb-3 space-y-2">
-                <p className={floParagraphClass}>
-                  Super Condiments, c’est une épicerie-café-buvette qui rassemble des produits locaux : fromages, farines, tartinades, pains, condiments et autres beaux produits du Québec. On y boit un café de microtorréfaction ou un jus frais, on mange des plats et sandwichs de saison, avec brunch le week-end et 5 à 7 autour de vins nature, bières de micro et autres breuvages d’ici.
-                </p>
-                <div className={floImageWrapperClass}>
-                  <Image
-                    src="/images/super-condiments.jpg"
-                    alt="Super Condiments à Montréal"
-                    width={800}
-                    height={400}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            )}
-
-            {isRacines && (
-              <div className="mb-3 space-y-2">
-                <p className={floParagraphClass}>
-                  Racines Boréales remet le Nord au centre de l’assiette avec des produits forestiers et nordiques du Québec, transformés en condiments et ingrédients d’inspiration boréale. Qualité restaurant accessible à tout le monde, en circuit court, pour une cuisine locale, écologique et enracinée.
-                </p>
-                <div className={floImageWrapperClass}>
-                  <Image
-                    src="/images/racines-boreales.jpg"
-                    alt="Racines Boréales à Montréal"
-                    width={800}
-                    height={400}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 export default function IndieMapSplitView({ locale }: { locale: UILocale }) {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
-  const [selectedBusiness, setSelectedBusiness] = React.useState<Business | null>(null);
-  const [sheetMode, setSheetMode] = React.useState<"closed" | "peek" | "full">("closed");
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
   const [heroOpen, setHeroOpen] = React.useState(false);
 
@@ -827,20 +580,10 @@ const filtered = source.filter((b) => {
           onSelect={(id) => {
             if (!id) {
               setSelectedId(null);
-              setSelectedBusiness(null);
-              setSheetMode("closed");
               return;
             }
             setSelectedId(id);
             setSelectionVersion((v) => v + 1);
-            const biz =
-              filtered.find((b) => b.id === id) ||
-              source.find((b) => b.id === id) ||
-              null;
-            setSelectedBusiness(biz);
-            if (typeof window !== "undefined" && window.innerWidth < 768) {
-              setSheetMode("peek");
-            }
           }}          />
       </div>
       {!heroOpen && (
@@ -857,16 +600,7 @@ const filtered = source.filter((b) => {
         <Link href="/privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>
       </div>
 
-      <MobileBottomSheet locale={locale} business={selectedBusiness}
-        mode={sheetMode}
-        onClose={() => {
-          setSheetMode("closed");
-          setSelectedBusiness(null);
-          setSelectedId(null);
-        }}
-        onExpand={() => setSheetMode("full")}
-        onPeek={() => setSheetMode("peek")}
-        dark={darkMap} />
+
     </div>
   );
 }

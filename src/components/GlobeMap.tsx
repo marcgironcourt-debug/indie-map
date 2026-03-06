@@ -9,7 +9,7 @@ const ui = (fr: string, en: string) => (isEnUI ? en : fr);
 
 
 const TEXTILERIE_PANORAMA_IMAGE = "/places/la-textilerie-panorama.png";
-const MAPTILER_MAP_ID = "019bb307-227a-7b33-99f5-b835d4f4f4c9";
+const MAPTILER_MAP_ID = "019bed44-2daf-78d1-abfb-c41cf8eecbd9";
 const STYLE_URL = `https://api.maptiler.com/maps/${MAPTILER_MAP_ID}/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY ?? ""}`;
 type Biz = {
   id: string;
@@ -1518,11 +1518,9 @@ map.on("mouseenter", LAYER_ID, () => {
 
         if (isGlobe || z < 7.2) {
           try { heroReturnCamRef.current = { center: [lng, lat], zoom: 9.9, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
-          map.flyTo({ center: [lng, lat], zoom: 9.9, speed: 2.6, curve: 1.05, easing: (t) => t, essential: true });
-          return;
         }
 
-        if (fid && onSelectRef.current) onSelectRef.current(fid);
+        try {} catch {}
 
         try {
           for (const feat of fcRef.current.features) {
@@ -1893,15 +1891,6 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                   try { heroHadMoveRef.current = false; } catch (e) {}
                   try { setHeroHintOff(false); } catch (e) {}
                   try {
-                    const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
-                    map.flyTo({
-                      center: [lng, lat],
-                      zoom: maxZ,
-                      speed: 1.15,
-                      curve: 2.35,
-                      easing: (t) => t * t * (3 - 2 * t),
-                      essential: true
-                    });
                     try {
                       const pid = String(props?.id ?? fid ?? "");
                       const pname = String(props?.name ?? props?.title ?? "");
@@ -1911,25 +1900,22 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                       } catch {}
                       try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
                       try { setDiscoverHeroOpen(false); } catch {}
-                   try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
-
-                      const onEnd = () => {
-                         try { setDiscoverHeroZoom(false); } catch {}
-                         try { setDiscoverDoorOpen(false); } catch {}
-                         try { setHeroUiHide(true); } catch {}
-                  try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
-                         try { heroPanRef.current = 0.5; } catch {}
-                         try { setDiscoverHeroPan(0.5); } catch {}
-                         try { tableauPrevPRef.current = 0.5; } catch {}
-                         try { heroHadMoveRef.current = false; } catch {}
-                         try { setHeroHintOff(false); } catch {}
-                         try { setDiscoverHeroOpen(true); } catch {}
                       try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
 
-                         try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
-                         try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
-                       };
-                       try { map.once("moveend", onEnd); } catch {}
+                      try { setDiscoverHeroZoom(false); } catch {}
+                      try { setDiscoverDoorOpen(false); } catch {}
+                      try { setHeroUiHide(true); } catch {}
+                      try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
+                      try { heroPanRef.current = 0.5; } catch {}
+                      try { setDiscoverHeroPan(0.5); } catch {}
+                      try { tableauPrevPRef.current = 0.5; } catch {}
+                      try { heroHadMoveRef.current = false; } catch {}
+                      try { setHeroHintOff(false); } catch {}
+                      try { setDiscoverHeroOpen(true); } catch {}
+                      try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+
+                      try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
+                      try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
                     } catch {}
                   } catch (e) {}
                                     try { popupRef.current?.remove(); } catch (e) {}
@@ -2917,7 +2903,7 @@ mapRef.current = map;
                 const map = mapRef.current;
                 const cam = heroReturnCamRef.current;
                 if (map && cam) {
-                  try { const st = (stClose as any) || heroReturnPopupRef.current; if (st) { map.easeTo({ center: [Number((st as any).lng), Number((st as any).lat)], zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1900, offset: [0, 160], essential: true } as any); } else { map.easeTo({ center: cam.center as any, zoom: cam.zoom, bearing: cam.bearing, pitch: cam.pitch, duration: 1900, offset: [0, 160], essential: true } as any); } } catch {}
+                  try {} catch {}
                 }
               } catch {}
 
@@ -2985,7 +2971,7 @@ mapRef.current = map;
                         const lng0 = Number((st as any).lng);
                         const lat0 = Number((st as any).lat);
                         try {
-                          map.easeTo({ center: [lng0, lat0], zoom: map.getZoom(), duration: 220, offset: [0, oy], essential: true });
+                          try {} catch {}
                         } catch {}
                       } catch {}
                     };
@@ -3416,8 +3402,6 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                             try { setDiscoverPanel(null); } catch {}
                             try { setHeroUiHide(true); } catch {}
                             try {
-                              const maxZ = (typeof window !== "undefined" && window.innerWidth < 768) ? 18 : 17;
-                              map2.flyTo({ center: [lng2, lat2], zoom: maxZ, duration: 1350, easing: (t) => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2), essential: true });
                               try {
                                 let hero2 = null as null | string;
                                 try { hero2 = String(((props2 as any)?.panoramaImage ?? (props2 as any)?.properties?.panoramaImage ?? "") || ""); } catch {}
@@ -3425,21 +3409,18 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                                 try { setDiscoverHeroOpen(false); } catch {}
                                 try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
 
-                                const onEnd2 = () => {
-                                  try { setDiscoverHeroZoom(false); } catch {}
-                                  try { setDiscoverDoorOpen(false); } catch {}
-                                  try { setHeroUiHide(false); } catch {}
-                                  try { heroPanRef.current = 0.5; } catch {}
-                                  try { setDiscoverHeroPan(0.5); } catch {}
-                                  try { tableauPrevPRef.current = 0.5; } catch {}
-                                  try { heroHadMoveRef.current = false; } catch {}
-                                  try { setHeroHintOff(false); } catch {}
-                                  try { setDiscoverHeroOpen(true); } catch {}
-                                  try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
-                                  try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
-                                  try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
-                                };
-                                try { map2.once("moveend", onEnd2); } catch {}
+                                try { setDiscoverHeroZoom(false); } catch {}
+                                try { setDiscoverDoorOpen(false); } catch {}
+                                try { setHeroUiHide(false); } catch {}
+                                try { heroPanRef.current = 0.5; } catch {}
+                                try { setDiscoverHeroPan(0.5); } catch {}
+                                try { tableauPrevPRef.current = 0.5; } catch {}
+                                try { heroHadMoveRef.current = false; } catch {}
+                                try { setHeroHintOff(false); } catch {}
+                                try { setDiscoverHeroOpen(true); } catch {}
+                                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                                try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
+                                try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
                               } catch {}
 
                             } catch {}
