@@ -1567,18 +1567,32 @@ map.on("mouseenter", LAYER_ID, () => {
 
             const recenterMini = () => {
               try {
-                const r = el.getBoundingClientRect();
-                const vh = Math.max(1, Number(window.innerHeight || 0));
-                const margin = 12;
-                let extra = 0;
-                if (r.top < margin) extra -= (margin - r.top);
-                if (r.bottom > vh - margin) extra += (r.bottom - (vh - margin));
-                const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-                const base = 190;
-                const oy = clamp(base + extra, 90, 320);
-                try {
-                  map.easeTo({ center: [Number(lng), Number(lat)], zoom: map.getZoom(), duration: 220, offset: [0, oy], essential: true });
-                } catch {}
+                const mapEl = map.getContainer();
+                const mr = mapEl.getBoundingClientRect();
+                const pr = el.getBoundingClientRect();
+                const pt = map.project([Number(lng), Number(lat)] as any);
+                const pinX = mr.left + Number(pt.x || 0);
+                const pinY = mr.top + Number(pt.y || 0);
+                const left = Math.min(pr.left, pinX);
+                const right = Math.max(pr.right, pinX);
+                const top = Math.min(pr.top, pinY);
+                const bottom = Math.max(pr.bottom, pinY);
+                const cx = (left + right) / 2;
+                const cy = (top + bottom) / 2;
+                const targetX = mr.left + mr.width / 2;
+                const targetY = mr.top + mr.height / 2;
+                const dx = cx - targetX;
+                const dy = cy - targetY;
+                if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+                const cur = map.getCenter();
+                const curPt = map.project([Number(cur.lng), Number(cur.lat)] as any);
+                const next = map.unproject([Number(curPt.x) + dx, Number(curPt.y) + dy] as any);
+                map.easeTo({
+                  center: [Number((next as any).lng), Number((next as any).lat)],
+                  zoom: map.getZoom(),
+                  duration: 420,
+                  essential: true
+                });
               } catch {}
             };
             try {
@@ -2054,6 +2068,8 @@ popupRef.current = null;
 popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
               .setLngLat([lng, lat])
               .addTo(map);
+            try { setTimeout(recenterMini, 0); } catch {}
+            try { setTimeout(recenterMini, 80); } catch {}
           } catch {}
         };
 
@@ -2063,7 +2079,6 @@ popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset
 
         if (isTextilerie) {
           openPopup();
-          try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
 return;
         }
 
@@ -2074,11 +2089,9 @@ return;
           try { setSheetHeightNow(25); } catch {}
           try { onSelectRef.current?.(String((props as any).id)); } catch {}
           openPopup();
-          try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
           return;
         }
         openPopup();
-        try { map.easeTo({ center: [lng, lat], zoom: map.getZoom(), duration: 450, offset: [0, 160], essential: true }); } catch {}
 });
     }
   }
@@ -2541,7 +2554,6 @@ class GeolocateControl_ML {
                 }
               } catch {}
               try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
-              try { this._map.flyTo({ center: [lng, lat], zoom: Math.max(this._map.getZoom(), 14), essential: true }); } catch {}
               try {
                 const fn = (this as any)._updateConeFn;
                 if (fn && bearing != null) fn(Number(lng), Number(lat), Number(bearing));
