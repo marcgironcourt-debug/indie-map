@@ -3598,8 +3598,8 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
               backgroundPosition: (discoverHeroPan * 100).toFixed(1) + "% 50%",
               filter: discoverHeroZoom ? "saturate(1.05) contrast(1.05)" : "saturate(1.05) contrast(1.05) blur(10px)",
               transform: discoverHeroZoom ? "scale(1) translateY(0px)" : "scale(1.05) translateY(10px)",
-              opacity: discoverHeroUrl ? (discoverHeroZoom ? 1 : 0) : 0,
-              transition: "opacity 450ms ease, transform 450ms cubic-bezier(0.16, 1, 0.3, 1), filter 450ms ease",
+              opacity: discoverHeroUrl ? 1 : 0,
+              transition: "transform 450ms cubic-bezier(0.16, 1, 0.3, 1), filter 450ms ease",
               willChange: "transform, opacity"
             }}
           />
