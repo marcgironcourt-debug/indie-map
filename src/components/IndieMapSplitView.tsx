@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import MapPanel from "@/components/MapPanel";
 
@@ -305,8 +304,7 @@ export default function IndieMapSplitView({ locale }: { locale: UILocale }) {
     };
     try { window.addEventListener("im:hero", fn); } catch {}
     return () => { try { window.removeEventListener("im:hero", fn); } catch {} };
-  }, []);
-      const darkMap = false;
+  }, [locale]);
 React.useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -363,7 +361,7 @@ React.useEffect(() => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [locale]);
   const hasData = businesses.length > 0;
   const source = hasData ? businesses : DEMO;
   const rawCategories = Array.from(
