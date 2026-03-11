@@ -10,10 +10,10 @@
     "lng": -73.617971,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:37:24.297Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 386 9887",
-    "panoramaImage": "/loco.webp",
+    "panoramaImage": "/downloads/epicerieloco.png",
     "miniText": "Commerce local qui propose des aliments frais, locaux et biologiques, en mettant l’accent sur le zéro déchet et la durabilité. On y trouve fruits, légumes, produits en vrac, épicerie fine et articles écoresponsables. Un lieu pour consommer différemment, soutenir les producteurs locaux et réduire son impact environnemental.",
     "tags": [
       "Épicerie zéro déchet"
@@ -37,10 +37,10 @@
     "lng": -73.5676139,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:37:24.298Z",
     "timeZone": "America/Toronto",
     "phone": "+1 (438) 476-4794",
-    "panoramaImage": "/loco.webp",
+    "panoramaImage": "/downloads/epicerieloco.png",
     "miniText": "Commerce local qui propose des aliments frais, locaux et biologiques, en mettant l’accent sur le zéro déchet et la durabilité. On y trouve fruits, légumes, produits en vrac, épicerie fine et articles écoresponsables. Un lieu pour consommer différemment, soutenir les producteurs locaux et réduire son impact environnemental.",
     "tags": [
       "Épicerie zéro déchet"
@@ -64,10 +64,10 @@
     "lng": -73.583052,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:37:24.298Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 375 4380",
-    "panoramaImage": "/loco.webp",
+    "panoramaImage": "/downloads/epicerieloco.png",
     "miniText": "Commerce local qui propose des aliments frais, locaux et biologiques, en mettant l’accent sur le zéro déchet et la durabilité. On y trouve fruits, légumes, produits en vrac, épicerie fine et articles écoresponsables. Un lieu pour consommer différemment, soutenir les producteurs locaux et réduire son impact environnemental.",
     "tags": [
       "Épicerie zéro déchet"
@@ -91,10 +91,10 @@
     "lng": -73.628303,
     "category": "Épicerie",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:37:24.298Z",
     "timeZone": "America/Toronto",
     "phone": "+1 438 386 7345",
-    "panoramaImage": "/loco.webp",
+    "panoramaImage": "/downloads/epicerieloco.png",
     "miniText": "Commerce local qui propose des aliments frais, locaux et biologiques, en mettant l’accent sur le zéro déchet et la durabilité. On y trouve fruits, légumes, produits en vrac, épicerie fine et articles écoresponsables. Un lieu pour consommer différemment, soutenir les producteurs locaux et réduire son impact environnemental.",
     "tags": [
       "Épicerie zéro déchet"
@@ -577,11 +577,11 @@
     "lng": -73.561123,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T10:37:53.394Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514 499 2084",
     "miniText": "Table gastronomique montréalaise de référence, fondée en 1993 par le chef Normand Laprise et Christine Lamarche. Il met en valeur des produits locaux et saisonniers du terroir québécois dans une cuisine inventive et raffinée. Situé au cœur du Quartier international de Montréal, il offre une expérience culinaire de haute qualité.",
-    "panoramaImage": "/images/Toque.webp",
+    "panoramaImage": "/downloads/toquerestaurant.png",
     "tags": [
       "Restaurant locavore"
     ],
@@ -658,10 +658,10 @@
     "lng": -73.6219743,
     "category": "Restaurant",
     "createdAt": "2025-11-22T14:31:42.481Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T10:47:41.947Z",
     "timeZone": "America/Toronto",
     "phone": "+1 514-276-4606",
-    "panoramaImage": "/panoramas/momes.webp",
+    "panoramaImage": "/downloads/lesmomes.png",
     "miniText": "Cuisine moderne d’inspiration française, généreuse et raffinée. Le lieu met de l'avant des plats préparés avec des produits de qualité et de saison. Chaque plat est pensé pour offrir une expérience de dégustation conviviale, sincère et soignée.",
     "tags": [
       "Restaurant locavore"
@@ -1445,7 +1445,7 @@
     "openingHours": "",
     "phone": "",
     "miniText": "Ferme-table champêtre gourmande où la chef propose une expérience culinaire saisonnière à partir des aliments cultivés sur la ferme et d'autres fermes locales. Ouvert de juin à octobre.",
-    "panoramaImage": "/panoramas/bika.webp",
+    "panoramaImage": "/downloads/bikaferme.jpg",
     "translations": {
       "miniText": {},
       "en": {
@@ -1453,7 +1453,7 @@
       }
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:30:36.086Z",
     "tags": [
       "Restaurant"
     ]
@@ -1472,7 +1472,7 @@
     "openingHours": "",
     "phone": "",
     "miniText": "Table champêtre située sur une ferme maraîchère. Le restaurant propose des menus saisonniers en plein air ou dans la maison de ferme, composés principalement de légumes et produits cultivés sur place ainsi que d’ingrédients locaux. Ouverture saisonnière, consulter le site web.",
-    "panoramaImage": "/panoramas/parcelles.webp",
+    "panoramaImage": "/downloads/parcelles.png",
     "translations": {
       "miniText": {},
       "en": {
@@ -1480,7 +1480,7 @@
       }
     },
     "createdAt": "2026-02-23T00:00:00.000Z",
-    "updatedAt": "2026-02-26T21:33:10.415Z",
+    "updatedAt": "2026-03-11T09:28:13.889Z",
     "tags": [
       "Restaurant"
     ]
@@ -3375,12 +3375,12 @@
     "openingHours": "mercredi\tFermé\njeudi\t18h30–23h30\nvendredi\t18h00–23h30\nsamedi\t18h00–23h30\ndimanche\t12h00–16h00\nlundi\tFermé\nmardi\tFermé",
     "timeZone": "America/Toronto",
     "createdAt": "2026-02-04T16:07:12.293Z",
-    "updatedAt": "2026-02-04T16:10:19.645Z",
+    "updatedAt": "2026-03-11T11:04:06.586Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant élaborant ses menus à partir de produits locaux de saison, issus de fermes partenaires et de cueillette sauvage. La cuisine évolue en fonction des récoltes et des arrivages, avec une attention particulière portée à l’origine des ingrédients et au respect des cycles naturels.",
-    "panoramaImage": "/downloads/edu.webp",
+    "panoramaImage": "/downloads/edulis.jpg",
     "translations": {
       "miniText": {},
       "en": {
@@ -3429,12 +3429,12 @@
     "openingHours": "lundi\t11h30–15h00, 17h00–22h00\nmardi\t11h30–15h00, 17h00–22h00\nmercredi\t11h30–15h00, 17h00–22h00\njeudi\t11h30–15h00, 17h00–22h00\nvendredi\t11h30–15h00, 17h00–22h00\nsamedi\t10h00–15h00, 17h00–22h00\ndimanche\t10h00–15h00, 17h00–22h00",
     "timeZone": "America/Toronto",
     "createdAt": "2026-02-04T16:18:19.479Z",
-    "updatedAt": "2026-02-23T20:35:07.681Z",
+    "updatedAt": "2026-03-11T10:58:53.897Z",
     "tags": [
       "Restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits de producteurs locaux de l’Ontario. Union construit sa carte autour des récoltes et des arrivages disponibles, avec une attention portée à la simplicité des plats, à la qualité des ingrédients et au lien direct avec le territoire.",
-    "panoramaImage": "/downloads/union-square.webp",
+    "panoramaImage": "/downloads/uniontoronto.png",
     "translations": {
       "miniText": {},
       "en": {
@@ -3461,9 +3461,9 @@
       "local"
     ],
     "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
-    "panoramaImage": "/downloads/art.webp",
+    "panoramaImage": "/downloads/artsmarket.png",
     "createdAt": "2026-02-04T16:43:38.149Z",
-    "updatedAt": "2026-02-04T16:47:04.517Z",
+    "updatedAt": "2026-03-11T10:54:36.515Z",
     "translations": {
       "miniText": {},
       "en": {
@@ -3490,9 +3490,9 @@
       "local"
     ],
     "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
-    "panoramaImage": "/downloads/art.webp",
+    "panoramaImage": "/downloads/artsmarket.png",
     "createdAt": "2026-02-04T16:43:38.149Z",
-    "updatedAt": "2026-02-04T16:47:04.517Z",
+    "updatedAt": "2026-03-11T10:54:36.516Z",
     "translations": {
       "miniText": {},
       "en": {
@@ -3519,9 +3519,9 @@
       "local"
     ],
     "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
-    "panoramaImage": "/downloads/art.webp",
+    "panoramaImage": "/downloads/artsmarket.png",
     "createdAt": "2026-02-04T16:43:38.149Z",
-    "updatedAt": "2026-02-04T16:47:04.517Z",
+    "updatedAt": "2026-03-11T10:54:36.516Z",
     "translations": {
       "miniText": {},
       "en": {
@@ -3548,9 +3548,9 @@
       "local"
     ],
     "miniText": "Boutique collective dédiée aux créateurs locaux de Toronto, Arts Market réunit des designers, illustrateurs et artisans indépendants produisant localement en petites séries. Le lieu met en avant une économie créative ancrée dans la ville, favorisant la fabrication locale, la diffusion directe des œuvres et le soutien aux talents indépendants.",
-    "panoramaImage": "/downloads/art.webp",
+    "panoramaImage": "/downloads/artsmarket.png",
     "createdAt": "2026-02-04T16:43:38.149Z",
-    "updatedAt": "2026-02-04T16:47:04.517Z",
+    "updatedAt": "2026-03-11T10:54:36.516Z",
     "translations": {
       "miniText": {},
       "en": {
@@ -3560,7 +3560,7 @@
     "country": "CA"
   },
   {
-    "name": "Restaurant Alentours",
+    "name": "Alentours",
     "city": "Quebec City",
     "address": "715 Rue Saint-Bernard, Québec, QC G1N 3G4, Canada",
     "website": "https://restaurantalentours.com",
@@ -3575,9 +3575,9 @@
     ],
     "miniText": "Restaurant offrant une cuisine locavore très rigoureuse, s’approvisionnant exclusivement dans un rayon d’environ 150 km autour de Québec. Menu surprise élaboré en fonction des produits locaux de saison.",
     "createdAt": "2026-02-04T16:52:52.779Z",
-    "updatedAt": "2026-02-04T16:56:47.339Z",
+    "updatedAt": "2026-03-11T09:25:08.735Z",
     "id": "d77fe348-e20e-4638-a301-6d6f487e94f9",
-    "panoramaImage": "/downloads/res.webp",
+    "panoramaImage": "/downloads/alentours.png",
     "translations": {
       "miniText": {},
       "en": {
@@ -3787,12 +3787,12 @@
     "openingHours": "Mercredi 13h00-17h30\nJeudi 13h00-17h30\nVendredi 13h00-17h30\nSamedi 13h00-17h30\nDimanche Fermé\nLundi Fermé\nMardi Fermé",
     "timeZone": "America/Toronto",
     "createdAt": "2026-02-04T20:54:25.581Z",
-    "updatedAt": "2026-02-04T21:08:15.954Z",
+    "updatedAt": "2026-03-11T09:20:47.687Z",
     "tags": [
       "Ferme"
     ],
     "miniText": "Ferme maraîchère proposant une vente directe de légumes de saison cultivés localement. Le lieu met en avant une production à petite échelle, un lien direct avec les habitants et une agriculture ancrée dans le territoire de la Haute-Gaspésie.",
-    "panoramaImage": "/downloads/ja.webp",
+    "panoramaImage": "/downloads/jardindesbois.jpg",
     "id": "fd7d374e-8962-4db2-af89-8950d0c928bc",
     "translations": {
       "miniText": {},
@@ -3845,9 +3845,9 @@
       "Ferme"
     ],
     "createdAt": "2026-02-04T21:23:14.738Z",
-    "updatedAt": "2026-02-04T21:25:04.101Z",
+    "updatedAt": "2026-03-11T09:14:47.224Z",
     "miniText": "Ferme de maraîchage biologique, produisant une grande diversité de légumes. Les cultures sont menées sans produits chimiques de synthèse, et les légumes sont certifiés biologiques par Écocert Canada.",
-    "panoramaImage": "/downloads/ch.webp",
+    "panoramaImage": "/downloads/leschampsmarins.jpg.webp",
     "translations": {
       "miniText": {},
       "en": {
