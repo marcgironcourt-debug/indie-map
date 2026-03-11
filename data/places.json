@@ -8042,7 +8042,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant installé dans un riad, proposant une cuisine marocaine contemporaine inspirée des recettes traditionnelles. Dar Moha met en avant des produits locaux et de saison, revisités avec une approche gastronomique, dans un cadre architectural typique valorisant le patrimoine marocain.",
-    "panoramaImage": "/downloads/darmoha.webp",
+    "panoramaImage": "/downloads/darmoha.png",
     "createdAt": "2026-02-14T15:07:08.839Z",
     "updatedAt": "2026-02-23T20:35:07.688Z",
     "translations": {
@@ -8226,7 +8226,7 @@
       "Mode"
     ],
     "miniText": "Marque de mode développant des collections conçues et fabriquées localement. L’atelier met en avant des savoir-faire artisanaux, notamment le tissage et la teinture naturelle, avec une production réalisée à la main et une attention portée à l’impact social, à l’autonomisation des artisans et à la valorisation des matières locales.",
-    "panoramaImage": "/downloads/studio189.webp",
+    "panoramaImage": "/downloads/studio189.jpg",
     "translations": {
       "en": {
         "miniText": "Fashion brand developing locally designed and manufactured collections. The atelier showcases artisanal skills, notably weaving and natural dyeing, with handmade production and a focus on social impact, empowering artisans and valorizing local materials."
@@ -9396,7 +9396,7 @@
     "miniText": "Lieu alternatif combinant ferme biologique, hébergement rural et volontariat. Mountain View Eco Farm développe une production agricole locale durable et accueille visiteurs et volontaires pour une immersion dans la vie agricole, avec des repas préparés à partir des produits cultivés sur place.",
     "createdAt": "2026-02-17T16:31:06.468Z",
     "updatedAt": "2026-02-17T16:35:42.135Z",
-    "panoramaImage": "/downloads/mountaineco.webp",
+    "panoramaImage": "/downloads/mountainvieweco.png",
     "translations": {
       "en": {
         "miniText": "Alternative place combining organic farm, rural accommodation and volunteering. Mountain View Eco Farm develops sustainable local agricultural production and welcomes visitors and volunteers for an immersion in farming life, with meals prepared from produce grown on site."
@@ -9942,7 +9942,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant mettant en avant une cuisine thaïlandaise élaborée à partir des produits de la ferme. L’établissement valorise des ingrédients locaux et développe une approche de la ferme à la table, centrée sur la saisonnalité, la traçabilité et la mise en avant du patrimoine culinaire du nord de la Thaïlande.",
-    "panoramaImage": "/downloads/gingerkit.webp",
+    "panoramaImage": "/downloads/gingerfarm.png",
     "translations": {
       "en": {
         "miniText": "Restaurant featuring Thai cuisine made from farm produce. The restaurant uses local ingredients and develops a farm-to-table approach, focusing on seasonality, traceability and the culinary heritage of northern Thailand."
@@ -10046,7 +10046,7 @@
     "tags": [
       "Ferme"
     ],
-    "panoramaImage": "/downloads/lotusfarcm.webp",
+    "panoramaImage": "/downloads/silkfarm.png",
     "translations": {
       "en": {
         "miniText": "A farm specializing in lotus cultivation and the artisanal production of lotus silk. Lotus Silk Farm grows its own flowers, hand-extracts the fibers from the stems and carries out the spinning and weaving on site. The site combines local agriculture with artisanal textile processing, showcasing rare Cambodian know-how in the field of lotus fiber."
@@ -10644,7 +10644,7 @@
     "miniText": "Restaurant végétarien proposant une cuisine vietnamienne contemporaine inspirée des produits végétaux locaux. Hum Signature met en avant des ingrédients de saison travaillés avec une approche gastronomique et artistique.",
     "createdAt": "2026-02-18T18:55:49.611Z",
     "updatedAt": "2026-02-18T18:59:05.189Z",
-    "panoramaImage": "/downloads/humvietn.webp",
+    "panoramaImage": "/downloads/humrestaurant.png",
     "translations": {
       "en": {
         "miniText": "Vegetarian restaurant offering contemporary Vietnamese cuisine inspired by local plant products. Hum Signature showcases seasonal ingredients worked with a gastronomic and artistic approach."
@@ -10748,7 +10748,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads/shamballviet.webp",
+    "panoramaImage": "/downloads/shamballa.png",
     "translations": {
       "en": {
         "miniText": "Vegetarian restaurant serving dishes based on vegetables, tofu and herbs. Vegetables and herbs are grown on site, using local produce. The restaurant features a culinary approach centered on plants, in a setting designed around tea and a soothing atmosphere."
@@ -12749,7 +12749,7 @@
       "Café"
     ],
     "miniText": "Gelateria engagée dans l’utilisation d’ingrédients biologiques et naturels, sans additifs artificiels. Développant des recettes à base de matières premières sélectionnées avec attention, dans une démarche axée sur la qualité et la transparence.",
-    "panoramaImage": "/downloads/gelatokyo.webp",
+    "panoramaImage": "/downloads/premarchegelateria.jpg.webp",
     "country": "JP",
     "translations": {
       "en": {
