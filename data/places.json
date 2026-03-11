@@ -2367,7 +2367,7 @@
     "miniText": "Association locale dédiée au réemploi et à la réduction des déchets, Le Carroussel collecte, trie et revend des objets de seconde main afin de leur donner une nouvelle vie. La ressourcerie agit en faveur de l’économie circulaire tout en portant un projet solidaire, en rendant accessibles des biens à prix modérés et en favorisant l’insertion et le lien social sur le territoire d’Ussel.",
     "createdAt": "2026-02-02T20:16:07.296Z",
     "updatedAt": "2026-02-02T20:21:13.606Z",
-    "panoramaImage": "/downloads/car.webp",
+    "panoramaImage": "/downloads/caroussel.png",
     "translations": {
       "miniText": {},
       "en": {
@@ -2422,7 +2422,7 @@
     "miniText": "La ferme de Pellachal propose une production agricole locale en vente directe. Le lieu met en avant un lien direct entre producteurs et consommateurs, avec une attention portée à la qualité des produits et à une agriculture ancrée dans son territoire. Légumes et viandes certifiés Bio.",
     "createdAt": "2026-02-02T20:31:50.954Z",
     "updatedAt": "2026-02-03T16:34:53.468Z",
-    "panoramaImage": "/downloads/fer.webp",
+    "panoramaImage": "/downloads/fermedepellachal.jpg",
     "translations": {
       "miniText": {},
       "en": {
@@ -6717,7 +6717,7 @@
       "Ferme"
     ],
     "miniText": "Ferme combinant élevage laitier, laiterie, cueillette et marché fermier. Mettant en avant les circuits courts et les produits de saison, en travaillant avec des producteurs partenaires de la région.",
-    "panoramaImage": "/downloads/fe.webp",
+    "panoramaImage": "/downloads/fermedeviltain.jpg",
     "country": "FR",
     "translations": {
       "en": {
