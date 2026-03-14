@@ -47,8 +47,8 @@ export default function ContributeForm({ locale }: Props) {
   const t = {
     title: isFr ? "Contribuer" : "Contribute",
     intro: isFr
-      ? "Propose un lieu à ajouter. Les infos sont relues manuellement. Nom et site web uniquement."
-      : "Suggest a place to add. Submissions are reviewed manually. Only name and website are required.",
+      ? "Propose un lieu à ajouter. Les infos sont relues manuellement."
+      : "Suggest a place to add. Submissions are reviewed manually.",
     name: isFr ? "Nom du lieu *" : "Place name *",
     address: isFr ? "Adresse du lieu (optionnel)" : "Place address (optional)",
     openingHours: isFr ? "Horaires (optionnel)" : "Opening hours (optional)",

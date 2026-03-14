@@ -44,6 +44,14 @@ export default function MobileMenu({ locale }: { locale: string }) {
 
   const title = "Indie Map";
 
+  const switchLocale = React.useCallback((nextLocale: "fr" | "en") => {
+    if (nextLocale === locale) return;
+    document.cookie = `NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    const parts = (pathname || "/").split("/").filter(Boolean);
+    if (parts[0] === "fr" || parts[0] === "en") parts[0] = nextLocale;
+    else parts.unshift(nextLocale);
+    window.location.href = "/" + parts.join("/");
+  }, [locale, pathname]);
 
   const closePanel = React.useCallback(() => {
     setAnim(false);
@@ -316,6 +324,30 @@ export default function MobileMenu({ locale }: { locale: string }) {
                     </p>
                   </>
                 )
+              )}
+
+              {panel === "about" && (
+                <div className="mt-6">
+                  <p className="mb-2 text-sm font-semibold tracking-wide text-white/80">
+                    {isFr ? "Langue" : "Language"}
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => switchLocale("fr")}
+                      className={"px-4 py-2 rounded-2xl border text-sm text-white " + (isFr ? "bg-white/12 border-white/20" : "bg-white/5 border-white/10 hover:bg-white/10")}
+                    >
+                      Français
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => switchLocale("en")}
+                      className={"px-4 py-2 rounded-2xl border text-sm text-white " + (!isFr ? "bg-white/12 border-white/20" : "bg-white/5 border-white/10 hover:bg-white/10")}
+                    >
+                      English
+                    </button>
+                  </div>
+                </div>
               )}
 
               {panel === "about" && (
