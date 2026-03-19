@@ -13406,5 +13406,85 @@
         "miniText": "Grocery offering a farm store with products from the farm and local producers. La Ferme De Le Motte promotes local agriculture and encourages direct sales and short distribution channels."
       }
     }
+  },
+  {
+    "id": "ac1d2187-f7f4-4184-9f3b-0a8dd50e6172",
+    "name": "Ardelaine",
+    "city": "Saint-Pierreville",
+    "address": "Quartier Puausson, 07190 Saint-Pierreville, France",
+    "website": "https://www.ardelaine.fr",
+    "lat": 44.81448346446304,
+    "lng": 4.485934593253392,
+    "category": "Lieu alternatif",
+    "phone": "+33 4 75 66 63 08",
+    "openingHours": "Jeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-18h00\nDimanche 10h00-18h00\nLundi Fermé\nMardi Fermé\nMercredi Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-19T11:01:48.703Z",
+    "updatedAt": "2026-03-19T11:20:36.709Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif relançant toute la filière de la laine locale, de la collecte à la fabrication. Le lieu regroupe ateliers de transformation, musée, boutique et restaurant utilisant des produits locaux, et met en valeur un savoir-faire artisanal ancré dans le territoire, avec une production réalisée sur place et en circuit court.",
+    "panoramaImage": "/downloads/ardelaine.webp"
+  },
+  {
+    "id": "b224e80d-601b-4645-a85b-bc6e8335aa42",
+    "name": "Domaine de Lorient",
+    "city": "Saint-Péray",
+    "address": "07130 Saint-Péray, France",
+    "website": "https://www.domainelorient.com",
+    "lat": 44.95443037203278,
+    "lng": 4.804416706746591,
+    "category": "Lieu alternatif",
+    "phone": "+33 6 12 97 00 84",
+    "openingHours": "Inconnu",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-19T11:18:20.236Z",
+    "updatedAt": "2026-03-19T11:36:13.540Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant domaine viticole respectant le sol, hébergement, potager, fruitier et apiculture. Fonctionne comme une ferme vigneronne, associant culture de la vigne, élevage et polyculture dans une approche agricole globale. Le lieu développe une production en lien direct avec son environnement et propose une expérience ancrée dans le territoire.",
+    "panoramaImage": "/downloads/domainedelorient.webp"
+  },
+  {
+    "id": "a8a306e6-368b-41c8-beee-59ae6f697c50",
+    "name": "LA BÒRIA",
+    "city": "Veyras",
+    "address": "105 Av. du Ruissol, 07000 Veyras, France",
+    "website": "https://www.la-boria.com",
+    "lat": 44.72933241055325,
+    "lng": 4.575022937431434,
+    "category": "restaurant",
+    "phone": "+33 4 75 66 84 04",
+    "openingHours": "Jeudi 12h00-13h30, 19h30-21h00\nVendredi 12h00-13h30, 19h30-21h00\nSamedi 12h00-13h30, 19h30-21h00\nDimanche Fermé\nLundi Fermé\nMardi Fermé\nMercredi 12h00-13h30, 19h30-21h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-19T11:38:45.948Z",
+    "updatedAt": "2026-03-19T11:47:24.488Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison, sourcés uniquement dans le département ou issus du jardin. Le lieu privilégie également des matériaux locaux et le travail d’artisans régionaux, tout en intégrant des pratiques concrètes comme le compostage, la récupération d’eau de pluie et la production d’électricité solaire.",
+    "panoramaImage": "/downloads/laboria.webp"
+  },
+  {
+    "id": "6e7493cd-f498-44f4-accb-3d5e50e063db",
+    "name": "La Petite Grange",
+    "city": "Tournemire",
+    "address": "Le Bourg, 17 rue Edouard Marty, 15310 Tournemire, France",
+    "website": "https://www.lapetitegrange.fr/fr/",
+    "lat": 45.053993885800544,
+    "lng": 2.483436022089013,
+    "category": "restaurant",
+    "phone": "+33 4 71 43 39 26",
+    "openingHours": "Jeudi Fermé\nVendredi Fermé\nSamedi 12h15-23h00\nDimanche 12h15-17h30\nLundi 12h15-23h00\nMardi 12h15-23h00\nMercredi 12h15-23h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-19T11:51:05.610Z",
+    "updatedAt": "2026-03-19T11:53:48.565Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits locaux. La Petite Grange met en avant une approche centrée sur le terroir, avec des plats préparés en lien avec les producteurs du territoire et une attention portée à la qualité des ingrédients.",
+    "panoramaImage": "/downloads/lapetitegrange.webp"
   }
 ]
