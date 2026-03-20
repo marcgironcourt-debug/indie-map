@@ -1638,7 +1638,7 @@
       "Mode"
     ],
     "miniText": "Boutique dédiée à la mode et aux accessoires fabriqués en France, mettant en avant des marques engagées dans une production locale et responsable. L’Appartement Français sélectionne des vêtements, pièces intemporelles et créations contemporaines conçues dans des ateliers français, avec une attention particulière portée à la qualité des matières, au savoir-faire et à la durabilité.",
-    "panoramaImage": "/downloads_webp/apt.webp",
+    "panoramaImage": "/downloads/apt.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -1665,7 +1665,7 @@
       "Mode"
     ],
     "miniText": "Boutique spécialisée dans les baskets et accessoires fabriqués en France. L’Appartement Français y propose des sneakers conçues localement, associant design, confort et production responsable. Le lieu valorise des marques françaises engagées dans une fabrication maîtrisée, privilégiant les circuits courts et le savoir-faire artisanal.",
-    "panoramaImage": "/downloads_webp/basket.webp",
+    "panoramaImage": "/downloads/basket.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -2178,7 +2178,7 @@
     "miniText": "Restaurant né de la volonté de proposer une cuisine respectueuse du vivant, fondée sur des produits majoritairement bio, locaux et de saison. Le projet s’appuie sur des relations directes avec des producteurs et artisans partageant les mêmes valeurs, en privilégiant les circuits courts et une agriculture responsable.",
     "createdAt": "2026-02-02T19:04:19.072Z",
     "updatedAt": "2026-02-02T19:05:37.747Z",
-    "panoramaImage": "/downloads_webp/casa.webp",
+    "panoramaImage": "/downloads/casa.avif",
     "translations": {
       "miniText": {},
       "en": {
@@ -2476,7 +2476,7 @@
       "Ferme"
     ],
     "miniText": "Micro-ferme maraîchère produisant des légumes biologiques sur un hectare. Le projet s’inspire de la permaculture et des pratiques de maraîchage sur sol vivant, adaptées au terrain. La ferme propose également un accueil à la ferme dans deux tiny chalets pour deux personnes, permettant de séjourner au contact de la nature et de la forêt.",
-    "panoramaImage": "/downloads_webp/pap.webp",
+    "panoramaImage": "/downloads/pap.avif",
     "createdAt": "2026-02-02T20:51:04.498Z",
     "updatedAt": "2026-02-03T16:34:53.469Z",
     "translations": {
@@ -2503,7 +2503,7 @@
       "epicerie"
     ],
     "miniText": "Épicerie proposant des produits alimentaires bio, locaux et majoritairement en vrac. Le lieu privilégie les circuits courts, la transparence sur l’origine des produits et la réduction des emballages. L’épicerie fonctionne sous forme associative et encourage une consommation responsable, accessible et ancrée dans le territoire.",
-    "panoramaImage": "/downloads_webp/brou.webp",
+    "panoramaImage": "/downloads/brou.webp",
     "createdAt": "2026-02-02T21:02:50.279Z",
     "updatedAt": "2026-02-26T21:33:10.415Z",
     "translations": {
@@ -2775,7 +2775,7 @@
     ],
     "createdAt": "2026-02-03T17:46:56.407Z",
     "updatedAt": "2026-02-03T17:47:56.615Z",
-    "panoramaImage": "/downloads_webp/pick.webp",
+    "panoramaImage": "/downloads/pick.avif",
     "translations": {
       "miniText": {},
       "en": {
@@ -3847,7 +3847,7 @@
     "createdAt": "2026-02-04T21:23:14.738Z",
     "updatedAt": "2026-03-11T09:14:47.224Z",
     "miniText": "Ferme de maraîchage biologique, produisant une grande diversité de légumes. Les cultures sont menées sans produits chimiques de synthèse, et les légumes sont certifiés biologiques par Écocert Canada.",
-    "panoramaImage": "/downloads_webp/leschampsmarins.jpg.webp",
+    "panoramaImage": "/downloads/leschampsmarins.jpg.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -4252,7 +4252,7 @@
       "Atelier"
     ],
     "miniText": "Atelier travaillant avec des marques et des organisations à travers les États-Unis pour gérer et valoriser de grandes quantités de matériaux excédentaires. L’atelier collabore avec des marques de mode, des municipalités, des fabricants textiles et fournit également des fibres circulaires destinées à être réintégrées dans de nouveaux matériaux.",
-    "panoramaImage": "/downloads_webp/l.webp",
+    "panoramaImage": "/downloads/looptworks.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -5495,7 +5495,7 @@
     "miniText": "Domaine viticole situé sur l’atoll de Rangiroa, produisant des vins à partir de raisins cultivés localement. Le lieu associe production agricole, vinification et vente directe, avec un ancrage fort dans le territoire et un savoir-faire unique en Polynésie française.",
     "createdAt": "2026-02-07T21:22:40.445Z",
     "updatedAt": "2026-02-07T21:26:54.001Z",
-    "panoramaImage": "/downloads_webp/t.webp",
+    "panoramaImage": "/downloads/t.png",
     "translations": {
       "miniText": {},
       "en": {
@@ -5879,7 +5879,7 @@
     "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison. The Westside Local travaille avec des fermes et producteurs du Missouri et du Kansas.",
     "createdAt": "2026-02-09T18:39:51.947Z",
     "updatedAt": "2026-02-09T18:44:37.137Z",
-    "panoramaImage": "/downloads_webp/west.webp",
+    "panoramaImage": "/downloads/west.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -5986,7 +5986,7 @@
       "Boutique"
     ],
     "miniText": "Boutique basée sur le recyclage de vêtements et de matières existantes. Ecocitex développe une production locale fondée sur la revalorisation, la réduction des déchets textiles et la fabrication à partir de fibres récupérées, dans une démarche d’économie circulaire et sociale.",
-    "panoramaImage": "/downloads_webp/ecocitex.jpg.webp",
+    "panoramaImage": "/downloads/ecocitex.jpg.webp",
     "createdAt": "2026-02-09T20:05:37.170Z",
     "updatedAt": "2026-02-09T20:19:01.455Z",
     "translations": {
@@ -6257,7 +6257,7 @@
     "miniText": "Ferme agricole engagée dans des pratiques régénératives visant à restaurer la biodiversité et la qualité des sols. Fellows Farm développe une production de céréales, fruits et légumes issue d’une agriculture attentive aux écosystèmes. Ferme faisant partie de la boulangerie E5 Bakehouse.",
     "createdAt": "2026-02-10T18:11:10.727Z",
     "updatedAt": "2026-02-26T21:35:57.244Z",
-    "panoramaImage": "/downloads_webp/fellowsfarm.JPG.webp",
+    "panoramaImage": "/downloads/fellowsfarm.JPG.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -6366,7 +6366,7 @@
     "miniText": "Ferme biologique et régénérative , cultivant des légumes et des herbes destinés à des restaurants et acteurs locaux. Le site fonctionne comme un market garden à échelle humaine, avec une production orientée vers des circuits courts, réservé aux restaurateurs.",
     "createdAt": "2026-02-10T19:15:01.975Z",
     "updatedAt": "2026-02-10T19:16:07.309Z",
-    "panoramaImage": "/downloads_webp/ci.webp",
+    "panoramaImage": "/downloads/ci.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -6663,7 +6663,7 @@
     "createdAt": "2026-02-10T23:32:28.144Z",
     "updatedAt": "2026-02-10T23:33:43.344Z",
     "miniText": "Ferme engagée dans une agriculture régénérative visant à restaurer les sols, la biodiversité et les écosystèmes locaux. Développant des pratiques agricoles durables fondées sur la santé des terres, l’élevage extensif et la production responsable, avec une boutique à la ferme favorisant la vente directe et le lien au territoire.",
-    "panoramaImage": "/downloads_webp/dr.webp",
+    "panoramaImage": "/downloads/dr.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -6690,7 +6690,7 @@
     "createdAt": "2026-02-10T23:46:58.129Z",
     "updatedAt": "2026-02-10T23:49:39.801Z",
     "miniText": "Épicerie artisanale spécialisée dans la fabrication et la vente de pâtes fraîches, préparées sur place à partir d’ingrédients locaux et de qualité. Mettant en avant un savoir-faire culinaire inspiré des traditions italiennes, avec une production locale, fraîche et accessible au cœur de Sligo.",
-    "panoramaImage": "/downloads_webp/pas.webp",
+    "panoramaImage": "/downloads/pas.webp",
     "translations": {
       "miniText": {},
       "en": {
@@ -8148,7 +8148,7 @@
       "Mode"
     ],
     "miniText": "Marque produisant des vêtements à partir de coton cultivé et transformé localement. This Is Us World développe une chaîne textile ancrée sur le territoire, en valorisant la fibre nationale et une fabrication en atelier à Lagos. L’approche met l’accent sur la qualité des matières, la production locale et une mode pensée pour soutenir l’économie textile nigériane.",
-    "panoramaImage": "/downloads_webp/thisisusne.webp",
+    "panoramaImage": "/downloads/thisisusne.avif",
     "translations": {
       "en": {
         "miniText": "Brand producing clothing from locally grown and processed cotton. This Is Us World is developing a textile chain rooted in the region, promoting national fiber and workshop production in Lagos. The approach emphasizes the quality of materials, local production and fashion designed to support the Nigerian textile economy."
@@ -9656,7 +9656,7 @@
       "Boutique"
     ],
     "miniText": "Boutique d’artisanat travaillant avec des artisans locaux et des communautés rurales pour valoriser des objets faits main issus du territoire. Ma Te Sai met en avant des pièces textiles et artisanales fabriquées au Laos, dans une démarche de préservation des savoir-faire et de production locale.",
-    "panoramaImage": "/downloads_webp/matesailao.webp",
+    "panoramaImage": "/downloads/matesailao.webp",
     "translations": {
       "en": {
         "miniText": "Handicraft store working with local artisans and rural communities to promote handmade objects from the region. Ma Te Sai showcases textiles and handicrafts made in Laos, with a view to preserving local know-how and production."
@@ -10150,7 +10150,7 @@
     "tags": [
       "Restaurant"
     ],
-    "panoramaImage": "/downloads_webp/watdamn.webp",
+    "panoramaImage": "/downloads/watdamn.webp",
     "translations": {
       "en": {
         "miniText": "Restaurant offering Cambodian cuisine focused on local, seasonal ingredients. Evolving menus highlight regional market produce and Khmer culinary traditions, with a focus on freshness and terroir."
@@ -10800,7 +10800,7 @@
     "tags": [
       "Ferme"
     ],
-    "panoramaImage": "/downloads_webp/somofarmviet.webp",
+    "panoramaImage": "/downloads/somofarmviet.webp",
     "translations": {
       "en": {
         "miniText": "Ecological farm combining organic agricultural production, farm-to-table restaurant and immersive activities. Somo Farm Cửu Long promotes farm-grown produce and highlights local rural culture through an experience rooted in the land."
@@ -11057,7 +11057,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant végétarien proposant un menu dégustation de saison élaboré à partir de légumes et produits australiens sourcés auprès de producteurs locaux. Yellow met en avant une approche centrée sur l’ingrédient, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
-    "panoramaImage": "/downloads_webp/yellowsyd.webp",
+    "panoramaImage": "/downloads/yellowsyd.webp",
     "createdAt": "2026-02-19T15:06:59.864Z",
     "updatedAt": "2026-02-23T20:35:07.689Z",
     "country": "AU",
@@ -11109,7 +11109,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant proposant un menu dégustation de saison élaboré à partir de produits australiens sourcés auprès de fermes et producteurs locaux. Arthur développe une cuisine centrée sur les ingrédients, avec une carte évoluant selon les récoltes et la disponibilité des produits.",
-    "panoramaImage": "/downloads_webp/arthurrestaj.webp",
+    "panoramaImage": "/downloads/arthurrestaj.webp",
     "createdAt": "2026-02-19T15:13:53.346Z",
     "updatedAt": "2026-02-23T21:11:34.807Z",
     "country": "AU",
@@ -11475,7 +11475,7 @@
       "Restaurant"
     ],
     "miniText": "Restaurant et potager développant une approche de la ferme à la table, centrée sur la culture saisonnière et la transformation sur place des produits du jardin. The Agrarian Kitchen met en avant les ingrédients locaux de Tasmanie et une cuisine ancrée dans l’agriculture et le territoire.",
-    "panoramaImage": "/downloads_webp/agrarianki.webp",
+    "panoramaImage": "/downloads/agrarianki.webp",
     "country": "AU",
     "translations": {
       "en": {
@@ -12541,7 +12541,7 @@
     ],
     "createdAt": "2026-02-20T18:49:39.381Z",
     "updatedAt": "2026-02-20T18:50:06.292Z",
-    "panoramaImage": "/downloads_webp/rebuiljp.webp",
+    "panoramaImage": "/downloads/rebuiljp.webp",
     "country": "JP",
     "translations": {
       "en": {
@@ -12749,7 +12749,7 @@
       "Café"
     ],
     "miniText": "Gelateria engagée dans l’utilisation d’ingrédients biologiques et naturels, sans additifs artificiels. Développant des recettes à base de matières premières sélectionnées avec attention, dans une démarche axée sur la qualité et la transparence.",
-    "panoramaImage": "/downloads_webp/premarchegelateria.jpg.webp",
+    "panoramaImage": "/downloads/premarchegelateria.jpg.webp",
     "country": "JP",
     "translations": {
       "en": {
