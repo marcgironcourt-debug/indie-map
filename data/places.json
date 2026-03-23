@@ -13486,5 +13486,107 @@
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits locaux. La Petite Grange met en avant une approche centrée sur le terroir, avec des plats préparés en lien avec les producteurs du territoire et une attention portée à la qualité des ingrédients.",
     "panoramaImage": "/downloads/lapetitegrange.webp"
+  },
+  {
+    "id": "beab75d3-bd24-4999-a797-b199ce44173a",
+    "name": "Lacàph Coffee Experiences",
+    "city": "Ho Chi Minh City",
+    "address": "Upstairs, 220 Nguyễn Công Trứ, Phường Nguyễn Thái Bình, Quận 1, Hồ Chí Minh",
+    "website": "https://www.lacaph.com/",
+    "lat": 10.768090239105803,
+    "lng": 106.70045109325343,
+    "category": "cafe",
+    "phone": "+84866721202",
+    "openingHours": "Lundi 07h30-19h30\nMardi 07h30-19h30\nMercredi 07h30-19h30\nJeudi 07h30-19h30\nVendredi 07h30-19h30\nSamedi 07h30-19h30\nDimanche 07h30-19h30",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-03-21T09:56:56Z",
+    "updatedAt": "2026-03-21T09:56:56Z",
+    "tags": [
+      "cafe"
+    ],
+    "miniText": "Espace proposant des dégustations et des expériences autour des différentes variétés de café du Vietnam, avec une approche pédagogique et accessible. On y découvre les méthodes d’extraction locales, les profils aromatiques et l’histoire du café vietnamien. Les expériences proposées sont interactives et guidées, permettant de découvrir l’origine des grains jusqu’à la tasse.",
+    "panoramaImage": "/downloads/lacaph.webp"
+  },
+  {
+    "id": "fc3f7457-8ac2-417b-895b-1e25e0e51750",
+    "name": "Bosgaurus Coffee Roasters",
+    "city": "Ho Chi Minh City",
+    "address": "D5/92 Nguyễn Hữu Cảnh, Saigon Pearl, Bình Thạnh, Hồ Chí Minh 700000",
+    "website": "https://bosgauruscoffee.com",
+    "lat": 10.791442376834299,
+    "lng": 106.71787389577248,
+    "category": "cafe",
+    "phone": "+84901426877",
+    "openingHours": "Lundi 07h00-19h00\nMardi 07h00-19h00\nMercredi 07h00-19h00\nJeudi 07h00-19h00\nVendredi 07h00-19h00\nSamedi 07h00-19h00\nDimanche 07h00-19h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-03-21T10:21:56Z",
+    "updatedAt": "2026-03-21T10:21:56Z",
+    "tags": [
+      "cafe"
+    ],
+    "miniText": "Lieu proposant des cafés sourcés au Vietnam et travaillés avec précision. Le café met en avant les profils aromatiques et les méthodes d’extraction, avec une approche centrée sur la qualité du grain et du travail de torréfaction.",
+    "panoramaImage": "/downloads/bosgauruscoffee.webp"
+  },
+  {
+    "id": "e5476b79-22df-4bbf-ba9c-0d38cf68eed2",
+    "name": "CieL Dining",
+    "city": "Ho Chi Minh City",
+    "address": "6/3 Đ. Số 50, Thảo Điền, Thủ Đức, Hồ Chí Minh",
+    "website": "https://cieldining.com/",
+    "lat": 10.804998195278532,
+    "lng": 106.73345050674659,
+    "category": "restaurant",
+    "phone": "+84903600505",
+    "openingHours": "Lundi Fermé\nMardi 17h30-23h00\nMercredi 17h30-23h00\nJeudi 17h30-23h00\nVendredi 17h30-23h00\nSamedi 17h30-23h00\nDimanche 17h30-23h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-03-21T10:37:53Z",
+    "updatedAt": "2026-03-21T10:37:53Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une expérience culinaire contemporaine mettant en valeur des produits sourcés au Vietnam. Le lieu s’appuie sur le terroir local, les herbes, les épices et les ingrédients saisonniers, travaillés avec précision pour en révéler les saveurs sans les dénaturer. Une cuisine maîtrisée et sensible, centrée sur l’équilibre, la justesse et le respect du produit.",
+    "panoramaImage": "/downloads/cielrestauranthochi.webp"
+  },
+  {
+    "id": "83961dc5-70c2-49eb-a8cb-0f12a8648f07",
+    "name": "Green box Coffee",
+    "city": "Da Lat",
+    "country": "VN",
+    "address": "85 Xô Viết Nghệ Tĩnh, Phường 7, Thành phố Đà Lạt, Lâm Đồng",
+    "website": "https://www.facebook.com/greenboxdlvn",
+    "lat": 11.96419923248096,
+    "lng": 108.43117865092461,
+    "category": "Lieu alternatif",
+    "phone": "+84 866 267 641",
+    "openingHours": "Lundi 07h30-17h00\nMardi 07h30-17h00\nMercredi 07h30-17h00\nJeudi 07h30-17h00\nVendredi 07h30-17h00\nSamedi 07h00-17h00\nDimanche 07h30-17h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-03-23T02:01:19Z",
+    "updatedAt": "2026-03-23T02:21:24.289Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif combinant café, ferme urbaine et vente directe. Le site développe une production agricole sur place (fruits, légumes, cultures en hydroponie). Les produits cultivés sont également vendus directement aux visiteurs, dans une logique de circuit court. Le lieu comprend des serres et espaces de culture accessibles, permettant de découvrir des pratiques agricoles locales et une approche reliant production et consommation.",
+    "panoramaImage": "/downloads/greenboxcoffee.webp"
+  },
+  {
+    "id": "57d56c76-6fd1-4da2-9d97-e1ff57735ec2",
+    "name": "Rừng Thông Mơ",
+    "city": "Da Lat",
+    "address": "Đ. Hoa Hồng, Phường 4, Đà Lạt, Lâm Đồng",
+    "website": "https://rungthongmo.com",
+    "lat": 11.890402975454172,
+    "lng": 108.41041517976022,
+    "category": "Lieu alternatif",
+    "phone": "+84 263 8889 986",
+    "openingHours": "Lundi 10h00-16h00, 18h00-20h00\nMardi 10h00-16h00, 18h00-20h00\nMercredi 10h00-16h00, 18h00-20h00\nJeudi 10h00-16h00, 18h00-20h00\nVendredi 10h00-14h00\nSamedi 10h00-16h00, 18h00-20h00\nDimanche 10h00-16h00, 18h00-20h00",
+    "timeZone": "Asia/Ho_Chi_Minh",
+    "createdAt": "2026-03-23T02:26:42Z",
+    "updatedAt": "2026-03-23T02:35:04.171Z",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "Lieu alternatif installé au cœur d’une forêt de pins à Đà Lạt, combinant espace de restauration, production agricole et hébergement. Le site cultive une partie de ses produits sur place, utilisés directement dans les plats proposés, dans une logique de circuit court, développant une approche centrée sur le lien à la nature, l’autonomie et la vie collective.",
+    "country": "VN",
+    "panoramaImage": "/downloads/rungthongfarm.webp"
   }
 ]
