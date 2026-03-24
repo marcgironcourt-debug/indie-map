@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "build": "prisma generate && next build --webpack",
     "preview": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "@vercel/functions": "^3.4.3",
     "maplibre-gl": "^5.16.0",
     "next": "16.1.6",
     "next-intl": "^4.5.0",

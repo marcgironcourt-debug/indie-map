@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-
 import path from "node:path";
 
 const globalForPrisma = global as unknown as { prisma?: PrismaClient };
@@ -10,10 +9,11 @@ function normalizeDbUrl(u: string | undefined): string | undefined {
   const p = u.slice("file:".length);
   if (!p) return u;
   if (p.startsWith("/")) return u;
-  return "file:" + path.resolve(p);
+  return "file:" + path.resolve(process.cwd(), "prisma", p);
 }
 
 process.env.DATABASE_URL = normalizeDbUrl(process.env.DATABASE_URL);
+
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
