@@ -13425,7 +13425,12 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif relançant toute la filière de la laine locale, de la collecte à la fabrication. Le lieu regroupe ateliers de transformation, musée, boutique et restaurant utilisant des produits locaux, et met en valeur un savoir-faire artisanal ancré dans le territoire, avec une production réalisée sur place et en circuit court.",
-    "panoramaImage": "/downloads/ardelaine.webp"
+    "panoramaImage": "/downloads/ardelaine.webp",
+    "translations": {
+      "en": {
+        "miniText": "An alternative place reviving the entire local wool chain, from collection to production. The site brings together processing workshops, a museum, a shop, and a restaurant using local products, highlighting craft know-how rooted in the region, with on-site production and short supply chains."
+      }
+    }
   },
   {
     "id": "b224e80d-601b-4645-a85b-bc6e8335aa42",
@@ -13445,7 +13450,12 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant domaine viticole respectant le sol, hébergement, potager, fruitier et apiculture. Fonctionne comme une ferme vigneronne, associant culture de la vigne, élevage et polyculture dans une approche agricole globale. Le lieu développe une production en lien direct avec son environnement et propose une expérience ancrée dans le territoire.",
-    "panoramaImage": "/downloads/domainedelorient.webp"
+    "panoramaImage": "/downloads/domainedelorient.webp",
+    "translations": {
+      "en": {
+        "miniText": "An alternative place combining a vineyard that respects the soil, accommodation, a vegetable garden, an orchard, and beekeeping. It operates as a wine-growing farm, combining vine cultivation, livestock, and polyculture within a broader agricultural approach. The site develops production in direct connection with its environment and offers an experience deeply rooted in the region."
+      }
+    }
   },
   {
     "id": "a8a306e6-368b-41c8-beee-59ae6f697c50",
@@ -13465,7 +13475,12 @@
       "restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine élaborée à partir de produits locaux et de saison, sourcés uniquement dans le département ou issus du jardin. Le lieu privilégie également des matériaux locaux et le travail d’artisans régionaux, tout en intégrant des pratiques concrètes comme le compostage, la récupération d’eau de pluie et la production d’électricité solaire.",
-    "panoramaImage": "/downloads/laboria.webp"
+    "panoramaImage": "/downloads/laboria.webp",
+    "translations": {
+      "en": {
+        "miniText": "A restaurant offering cuisine made from local and seasonal products, sourced exclusively within the département or from the garden. The place also prioritizes local materials and the work of regional craftspeople, while integrating practical measures such as composting, rainwater harvesting, and solar power generation."
+      }
+    }
   },
   {
     "id": "6e7493cd-f498-44f4-accb-3d5e50e063db",
@@ -13485,7 +13500,12 @@
       "restaurant"
     ],
     "miniText": "Restaurant proposant une cuisine de saison élaborée à partir de produits locaux. La Petite Grange met en avant une approche centrée sur le terroir, avec des plats préparés en lien avec les producteurs du territoire et une attention portée à la qualité des ingrédients.",
-    "panoramaImage": "/downloads/lapetitegrange.webp"
+    "panoramaImage": "/downloads/lapetitegrange.webp",
+    "translations": {
+      "en": {
+        "miniText": "A restaurant offering seasonal cuisine made from local products. La Petite Grange highlights an approach rooted in the local terroir, with dishes prepared in connection with regional producers and careful attention to ingredient quality."
+      }
+    }
   },
   {
     "id": "beab75d3-bd24-4999-a797-b199ce44173a",
@@ -13505,7 +13525,12 @@
       "cafe"
     ],
     "miniText": "Espace proposant des dégustations et des expériences autour des différentes variétés de café du Vietnam, avec une approche pédagogique et accessible. On y découvre les méthodes d’extraction locales, les profils aromatiques et l’histoire du café vietnamien. Les expériences proposées sont interactives et guidées, permettant de découvrir l’origine des grains jusqu’à la tasse.",
-    "panoramaImage": "/downloads/lacaph.webp"
+    "panoramaImage": "/downloads/lacaph.webp",
+    "translations": {
+      "en": {
+        "miniText": "A space offering tastings and experiences centered on the different varieties of Vietnamese coffee, with an educational and accessible approach. Visitors discover local brewing methods, flavor profiles, and the history of Vietnamese coffee. The experiences are interactive and guided, making it possible to explore the journey from bean origin to cup."
+      }
+    }
   },
   {
     "id": "fc3f7457-8ac2-417b-895b-1e25e0e51750",
@@ -13525,7 +13550,12 @@
       "cafe"
     ],
     "miniText": "Lieu proposant des cafés sourcés au Vietnam et travaillés avec précision. Le café met en avant les profils aromatiques et les méthodes d’extraction, avec une approche centrée sur la qualité du grain et du travail de torréfaction.",
-    "panoramaImage": "/downloads/bosgauruscoffee.webp"
+    "panoramaImage": "/downloads/bosgauruscoffee.webp",
+    "translations": {
+      "en": {
+        "miniText": "A place serving coffees sourced in Vietnam and handled with precision. The café highlights flavor profiles and brewing methods, with an approach centered on bean quality and roasting craft."
+      }
+    }
   },
   {
     "id": "e5476b79-22df-4bbf-ba9c-0d38cf68eed2",
@@ -13545,7 +13575,12 @@
       "restaurant"
     ],
     "miniText": "Restaurant proposant une expérience culinaire contemporaine mettant en valeur des produits sourcés au Vietnam. Le lieu s’appuie sur le terroir local, les herbes, les épices et les ingrédients saisonniers, travaillés avec précision pour en révéler les saveurs sans les dénaturer. Une cuisine maîtrisée et sensible, centrée sur l’équilibre, la justesse et le respect du produit.",
-    "panoramaImage": "/downloads/cielrestauranthochi.webp"
+    "panoramaImage": "/downloads/cielrestauranthochi.webp",
+    "translations": {
+      "en": {
+        "miniText": "A restaurant offering a contemporary culinary experience built around products sourced in Vietnam. The place draws on local terroir, herbs, spices, and seasonal ingredients, handled with precision to reveal their flavors without distorting them. A refined and sensitive cuisine centered on balance, accuracy, and respect for the product."
+      }
+    }
   },
   {
     "id": "83961dc5-70c2-49eb-a8cb-0f12a8648f07",
@@ -13566,7 +13601,12 @@
       "Lieu alternatif"
     ],
     "miniText": "Lieu alternatif combinant café, ferme urbaine et vente directe. Le site développe une production agricole sur place (fruits, légumes, cultures en hydroponie). Les produits cultivés sont également vendus directement aux visiteurs, dans une logique de circuit court. Le lieu comprend des serres et espaces de culture accessibles, permettant de découvrir des pratiques agricoles locales et une approche reliant production et consommation.",
-    "panoramaImage": "/downloads/greenboxcoffee.webp"
+    "panoramaImage": "/downloads/greenboxcoffee.webp",
+    "translations": {
+      "en": {
+        "miniText": "An alternative place combining a café, an urban farm, and direct sales. The site develops on-site agricultural production, including fruit, vegetables, and hydroponic crops. The products grown there are also sold directly to visitors, in a short supply chain approach. The place includes greenhouses and accessible growing spaces, allowing visitors to discover local farming practices and a model that links production and consumption."
+      }
+    }
   },
   {
     "id": "57d56c76-6fd1-4da2-9d97-e1ff57735ec2",
@@ -13587,6 +13627,11 @@
     ],
     "miniText": "Lieu alternatif installé au cœur d’une forêt de pins à Đà Lạt, combinant espace de restauration, production agricole et hébergement. Le site cultive une partie de ses produits sur place, utilisés directement dans les plats proposés, dans une logique de circuit court, développant une approche centrée sur le lien à la nature, l’autonomie et la vie collective.",
     "country": "VN",
-    "panoramaImage": "/downloads/rungthongfarm.webp"
+    "panoramaImage": "/downloads/rungthongfarm.webp",
+    "translations": {
+      "en": {
+        "miniText": "An alternative place set in the heart of a pine forest in Đà Lạt, combining dining, agricultural production, and accommodation. The site grows part of its produce on-site and uses it directly in the dishes served, within a short supply chain approach focused on connection to nature, self-reliance, and communal life."
+      }
+    }
   }
 ]
