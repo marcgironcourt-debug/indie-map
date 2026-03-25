@@ -47,8 +47,8 @@ export default async function ContributionPage({ params }: Props) {
         ) : (
           <>
             <p className="mb-4 text-white/80">
-              Indie Map grows through contributions. The goal: highlight independent places that prioritize local
-              sourcing, repair, reuse, respectful farming, and consistent real-world practices.
+              Indie Map grows through contributions. The goal: make visible independent places that prioritize local
+              sourcing, repair, reuse, respectful agriculture, and coherent practices.
             </p>
 
             <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">How you can help</h2>

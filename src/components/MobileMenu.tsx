@@ -264,18 +264,8 @@ export default function MobileMenu({ locale }: { locale: string }) {
                 ) : (
                   <>
                     <p className="mb-4 text-white/80">
-                      Indie Map grows through contributions. The goal: highlight independent places that prioritize local sourcing, repair, reuse, respectful farming, and consistent real-world practices.
+                      Indie Map grows through contributions. The goal: make visible independent places that prioritize local sourcing, repair, reuse, respectful agriculture, and coherent practices.
                     </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">How you can help</h2>
-                    <ul className="list-disc pl-5 space-y-1 text-white/80">
-                      <li>Suggest a place to add (shop, farm, market, workshop, cooperative, etc.).</li>
-                      <li>Report an error (address, opening hours, website, phone, category).</li>
-                      <li>Share a clean, useful photo/panorama (no identifiable people if possible).</li>
-                      <li>Suggest a product improvement (UX, clarity, performance, accessibility).</li>
-                    </ul>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Send a contribution</h2>
                     <div className="mt-4">
                       <ContributeForm locale={isFr ? "fr" : "en"} />
                     </div>
