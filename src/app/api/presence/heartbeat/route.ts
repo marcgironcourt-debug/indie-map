@@ -19,10 +19,6 @@ export async function POST(req: Request) {
     const platform =
       req.headers.get("user-agent")?.includes("Mobile") ? "mobile" : "desktop";
 
-    if (process.env.VERCEL) {
-      return Response.json({ ok: true, disabled: true, sessionId, city, country, platform });
-    }
-
     await prisma.activeSession.upsert({
       where: { sessionId },
       update: {
