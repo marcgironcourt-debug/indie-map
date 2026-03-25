@@ -11,7 +11,7 @@ export default async function PrivacyPage({ params }: Props) {
       <PrivacyClose locale={locale} />
       <main style={{ maxWidth: 820, margin: "0 auto", padding: "calc(24px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))", lineHeight: 1.6, height: "100vh", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
       <h1 style={{ fontSize: 28, margin: "0 0 8px" }}>{isFr ? "Politique de confidentialité" : "Privacy Policy"}</h1>
-<p style={{ margin: "0 0 18px", fontSize: 13, opacity: 0.75 }}>{isFr ? "Dernière mise à jour : 28 février 2026" : "Last updated: February 28, 2026"}</p>
+<p style={{ margin: "0 0 18px", fontSize: 13, opacity: 0.75 }}>{isFr ? "Dernière mise à jour : 25 mars 2026" : "Last updated: March 25, 2026"}</p>
 {isFr ? (<>
 <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>1. Responsable du traitement</h2>
 <p><strong>Indie Map</strong><br/>Siège social : Montréal, Québec, Canada<br/>Contact : contact@indie-map.com</p>
@@ -27,6 +27,8 @@ export default async function PrivacyPage({ params }: Props) {
 <li>Ville</li>
 <li>Catégorie</li>
 <li>Date et heure</li>
+<li>Localisation approximative (ville, pays) déduite de l’adresse IP sur le web</li>
+<li>Localisation précise sur mobile uniquement si l’utilisateur l’autorise, afin d’afficher les lieux proches</li>
 </ul>
 
 <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>4. Données non collectées</h2>
@@ -74,6 +76,8 @@ export default async function PrivacyPage({ params }: Props) {
 <li>City</li>
 <li>Category</li>
 <li>Date and time</li>
+<li>Approximate location (city, country) inferred from the IP address on the web</li>
+<li>Precise location on mobile only if the user allows it, in order to show nearby places</li>
 </ul>
 
 <h2 style={{ fontSize: 18, margin: "24px 0 8px" }}>4. Data Not Collected</h2>
