@@ -13633,5 +13633,57 @@
         "miniText": "An alternative place set in the heart of a pine forest in Đà Lạt, combining dining, agricultural production, and accommodation. The site grows part of its produce on-site and uses it directly in the dishes served, within a short supply chain approach focused on connection to nature, self-reliance, and communal life."
       }
     }
+  },
+  {
+    "id": "b3164f58-dac9-4d89-acd2-2820f3c77bf0",
+    "name": "The Blue Door",
+    "city": "Sydney",
+    "country": "Australia",
+    "address": "Shop 8, 38 Waterloo St, Surry Hills NSW 2010, Australia",
+    "website": "https://www.thebluedoorsurryhills.com.au",
+    "lat": -33.88659728377893,
+    "lng": 151.2103680644178,
+    "category": "restaurant",
+    "phone": "+61 417 909 635",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi 17h30-23h00\nVendredi 17h30-23h00\nSamedi 17h30-23h00\nDimanche Fermé",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-03-26T10:39:16.980Z",
+    "updatedAt": "2026-03-26T10:49:04.456Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant centré sur une cuisine de dégustation construite à partir de produits issus de fermes régénératives de Nouvelle-Galles du Sud. Mettant en avant une approche transparente et durable, avec des menus qui évoluent selon les récoltes des producteurs.",
+    "translations": {
+      "en": {
+        "miniText": "Restaurant built around a tasting menu crafted from produce sourced from regenerative farms in New South Wales. It highlights a transparent and sustainable approach, with menus evolving according to the harvests of local producers."
+      }
+    },
+    "panoramaImage": "/downloads/thebluedoorsyd.webp"
+  },
+  {
+    "id": "83a8b5a1-fa1f-42cd-82c6-43c69fedf470",
+    "name": "Margan",
+    "city": "Broke",
+    "country": "Australia",
+    "address": "1238 Milbrodale Rd, Broke NSW 2330, Australia",
+    "website": "https://www.margan.com.au",
+    "lat": -32.75267891514079,
+    "lng": 151.09411376256853,
+    "category": "restaurant",
+    "phone": "+61 2 6579 1372",
+    "openingHours": "Lundi 10h00-17h00\nMardi 10h00-17h00\nMercredi 10h00-17h00\nJeudi 10h00-17h00\nVendredi 10h00-17h00\nSamedi 10h00-17h00\nDimanche 10h00-17h00",
+    "timeZone": "Australia/Sydney",
+    "createdAt": "2026-03-26T11:02:14.942Z",
+    "updatedAt": "2026-03-26T11:18:33.572Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Domaine familial réunissant vignobles, cave et restaurant autour d’une approche de la ferme à la table. Mettant en avant des vins cultivés et produits sur place, une agriculture durable, et une cuisine construite à partir des récoltes du domaine et du potager.",
+    "translations": {
+      "en": {
+        "miniText": "Family-run estate bringing together vineyards, cellar door and restaurant around a farm-to-table approach. It highlights wines grown and produced on site, sustainable agriculture, and a cuisine built from harvests of the estate and its kitchen garden."
+      }
+    },
+    "panoramaImage": "/downloads/marganrestaurant.webp"
   }
 ]
