@@ -66,4 +66,31 @@ model ActiveSession {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+model DailyActiveUser {
+  id        String   @id @default(uuid())
+  day       String
+  sessionId String
+  city      String?
+  country   String?
+  platform  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  @@unique([day, sessionId])
+  @@index([day])
+}
+
+model DailySession {
+  id        String   @id @default(uuid())
+  day       String
+  launchId  String
+  sessionId String
+  city      String?
+  country   String?
+  platform  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([day, launchId])
+  @@index([day])
+}

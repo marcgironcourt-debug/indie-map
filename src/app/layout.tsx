@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Kalam } from "next/font/google";
 import { cookies } from "next/headers";
 import { locales, defaultLocale } from "../../i18n";
 import "./globals.css";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default async function RootLayout({
   return (
     <html lang={finalLocale} className={kalam.className}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen overflow-hidden fixed inset-0 bg-[hsl(var(--bg))]`}>
+        <ServiceWorkerRegister />
         {children}
       </body>
     </html>

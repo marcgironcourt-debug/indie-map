@@ -13685,5 +13685,57 @@
       }
     },
     "panoramaImage": "/downloads/marganrestaurant.webp"
+  },
+  {
+    "id": "a1c83069-05ef-4fc3-865c-bdc3fed675b3",
+    "name": "Tot de casa",
+    "city": "Oloron-Sainte-Marie",
+    "country": "France",
+    "address": "59 Rue Carrerot, 64400 Oloron-Sainte-Marie, France",
+    "website": "https://totdecasa.fr/",
+    "lat": 43.19209558419616,
+    "lng": -0.6131612337329605,
+    "category": "grocery",
+    "phone": "+33 5 59 39 06 02",
+    "openingHours": "Lundi Fermé\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-27T11:45:19.001Z",
+    "updatedAt": "2026-03-27T11:50:59.473Z",
+    "tags": [
+      "grocery"
+    ],
+    "miniText": "Épicerie collective rassemblant des producteurs locaux qui proposent directement leurs produits en circuit court. Fruits, légumes, viandes, produits fermiers et artisanaux sont issus du territoire, avec une volonté de valoriser une agriculture locale, transparente et accessible.",
+    "translations": {
+      "en": {
+        "miniText": "A collective grocery store bringing together local producers who sell their products directly through short supply chains. Fruits, vegetables, meat, and artisanal farm products come from the surrounding region, with a focus on supporting local, transparent, and accessible agriculture."
+      }
+    },
+    "panoramaImage": "/downloads/totdecasa.webp"
+  },
+  {
+    "id": "00c2d682-e2e1-45b1-bf58-9b2fd5928417",
+    "name": "Le Vrac Magasin Écogénéral",
+    "city": "Cap-aux-Meules",
+    "country": "Canada",
+    "address": "397-A Chem. Principal, Cap-aux-Meules, QC G4T 1E3, Canada",
+    "website": "https://vracdesiles.ca/fr/",
+    "lat": 47.37696238326425,
+    "lng": -61.867187506746596,
+    "category": "grocery",
+    "phone": "+1 418-553-8722",
+    "openingHours": "Lundi 10h00-17h00\nMardi 10h00-17h00\nMercredi 10h00-17h00\nJeudi 10h00-17h00\nVendredi 10h00-17h00\nSamedi 10h00-17h00\nDimanche 12h00-17h00",
+    "timeZone": "America/Toronto",
+    "createdAt": "2026-03-27T11:55:42.458Z",
+    "updatedAt": "2026-03-27T11:58:39.790Z",
+    "tags": [
+      "grocery"
+    ],
+    "miniText": "Épicerie écologique en vrac proposant des produits du quotidien sans emballage, favorisant la réduction des déchets. L’offre inclut des aliments, produits ménagers et articles durables, avec une attention portée aux circuits courts, aux producteurs locaux et à une consommation plus responsable.",
+    "translations": {
+      "en": {
+        "miniText": "A zero-waste grocery store offering everyday products without packaging, promoting waste reduction. The selection includes food, household items, and sustainable goods, with a focus on local producers, short supply chains, and more responsible consumption."
+      }
+    },
+    "panoramaImage": "/downloads/levracmagasinecogeneral.webp"
   }
 ]
