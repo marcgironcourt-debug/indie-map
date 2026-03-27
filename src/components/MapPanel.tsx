@@ -27,9 +27,10 @@ export default function MapPanel(props: {
   const { items = [], selectedId, onSelect } = props;
 
   useEffect(() => {
-    const key = "im_session_id";
+    const sessionKey = "im_session_id";
+    const launchKey = "im_launch_id";
 
-    const makeSessionId = () => {
+    const makeId = () => {
       try {
         if (typeof globalThis.crypto !== "undefined" && typeof globalThis.crypto.randomUUID === "function") {
           return globalThis.crypto.randomUUID();
@@ -40,14 +41,19 @@ export default function MapPanel(props: {
 
     let sessionId = "";
     try {
-      sessionId = window.localStorage.getItem(key) || "";
+      sessionId = window.localStorage.getItem(sessionKey) || "";
       if (!sessionId) {
-        sessionId = makeSessionId();
-        window.localStorage.setItem(key, sessionId);
+        sessionId = makeId();
+        window.localStorage.setItem(sessionKey, sessionId);
       }
     } catch {
-      sessionId = makeSessionId();
+      sessionId = makeId();
     }
+
+    const launchId = makeId();
+    try {
+      window.sessionStorage.setItem(launchKey, launchId);
+    } catch {}
 
     const send = () => {
       try {
@@ -55,6 +61,7 @@ export default function MapPanel(props: {
           method: "POST",
           headers: {
             "x-session-id": sessionId,
+            "x-launch-id": launchId,
           },
           keepalive: true,
           cache: "no-store",
