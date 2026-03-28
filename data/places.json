@@ -13430,7 +13430,8 @@
       "en": {
         "miniText": "An alternative place reviving the entire local wool chain, from collection to production. The site brings together processing workshops, a museum, a shop, and a restaurant using local products, highlighting craft know-how rooted in the region, with on-site production and short supply chains."
       }
-    }
+    },
+    "country": "FR"
   },
   {
     "id": "b224e80d-601b-4645-a85b-bc6e8335aa42",
@@ -13455,7 +13456,8 @@
       "en": {
         "miniText": "An alternative place combining a vineyard that respects the soil, accommodation, a vegetable garden, an orchard, and beekeeping. It operates as a wine-growing farm, combining vine cultivation, livestock, and polyculture within a broader agricultural approach. The site develops production in direct connection with its environment and offers an experience deeply rooted in the region."
       }
-    }
+    },
+    "country": "FR"
   },
   {
     "id": "a8a306e6-368b-41c8-beee-59ae6f697c50",
@@ -13480,7 +13482,8 @@
       "en": {
         "miniText": "A restaurant offering cuisine made from local and seasonal products, sourced exclusively within the département or from the garden. The place also prioritizes local materials and the work of regional craftspeople, while integrating practical measures such as composting, rainwater harvesting, and solar power generation."
       }
-    }
+    },
+    "country": "FR"
   },
   {
     "id": "6e7493cd-f498-44f4-accb-3d5e50e063db",
@@ -13505,7 +13508,8 @@
       "en": {
         "miniText": "A restaurant offering seasonal cuisine made from local products. La Petite Grange highlights an approach rooted in the local terroir, with dishes prepared in connection with regional producers and careful attention to ingredient quality."
       }
-    }
+    },
+    "country": "FR"
   },
   {
     "id": "beab75d3-bd24-4999-a797-b199ce44173a",
@@ -13530,7 +13534,8 @@
       "en": {
         "miniText": "A space offering tastings and experiences centered on the different varieties of Vietnamese coffee, with an educational and accessible approach. Visitors discover local brewing methods, flavor profiles, and the history of Vietnamese coffee. The experiences are interactive and guided, making it possible to explore the journey from bean origin to cup."
       }
-    }
+    },
+    "country": "VN"
   },
   {
     "id": "fc3f7457-8ac2-417b-895b-1e25e0e51750",
@@ -13555,7 +13560,8 @@
       "en": {
         "miniText": "A place serving coffees sourced in Vietnam and handled with precision. The café highlights flavor profiles and brewing methods, with an approach centered on bean quality and roasting craft."
       }
-    }
+    },
+    "country": "VN"
   },
   {
     "id": "e5476b79-22df-4bbf-ba9c-0d38cf68eed2",
@@ -13580,7 +13586,8 @@
       "en": {
         "miniText": "A restaurant offering a contemporary culinary experience built around products sourced in Vietnam. The place draws on local terroir, herbs, spices, and seasonal ingredients, handled with precision to reveal their flavors without distorting them. A refined and sensitive cuisine centered on balance, accuracy, and respect for the product."
       }
-    }
+    },
+    "country": "VN"
   },
   {
     "id": "83961dc5-70c2-49eb-a8cb-0f12a8648f07",
@@ -13638,7 +13645,7 @@
     "id": "b3164f58-dac9-4d89-acd2-2820f3c77bf0",
     "name": "The Blue Door",
     "city": "Sydney",
-    "country": "Australia",
+    "country": "AU",
     "address": "Shop 8, 38 Waterloo St, Surry Hills NSW 2010, Australia",
     "website": "https://www.thebluedoorsurryhills.com.au",
     "lat": -33.88659728377893,
@@ -13664,7 +13671,7 @@
     "id": "83a8b5a1-fa1f-42cd-82c6-43c69fedf470",
     "name": "Margan",
     "city": "Broke",
-    "country": "Australia",
+    "country": "AU",
     "address": "1238 Milbrodale Rd, Broke NSW 2330, Australia",
     "website": "https://www.margan.com.au",
     "lat": -32.75267891514079,
@@ -13690,7 +13697,7 @@
     "id": "a1c83069-05ef-4fc3-865c-bdc3fed675b3",
     "name": "Tot de casa",
     "city": "Oloron-Sainte-Marie",
-    "country": "France",
+    "country": "FR",
     "address": "59 Rue Carrerot, 64400 Oloron-Sainte-Marie, France",
     "website": "https://totdecasa.fr/",
     "lat": 43.19209558419616,
@@ -13716,7 +13723,7 @@
     "id": "00c2d682-e2e1-45b1-bf58-9b2fd5928417",
     "name": "Le Vrac Magasin Écogénéral",
     "city": "Cap-aux-Meules",
-    "country": "Canada",
+    "country": "CA",
     "address": "397-A Chem. Principal, Cap-aux-Meules, QC G4T 1E3, Canada",
     "website": "https://vracdesiles.ca/fr/",
     "lat": 47.37696238326425,
@@ -13737,5 +13744,57 @@
       }
     },
     "panoramaImage": "/downloads/levracmagasinecogeneral.webp"
+  },
+  {
+    "id": "3b0b153c-7033-42ee-b8db-fb0483600535",
+    "name": "Farmily & Co",
+    "city": "Bayonne",
+    "country": "France",
+    "address": "6 Rue Arnaud Détroyat, 64100 Bayonne, France",
+    "website": "https://www.farmily.fr/",
+    "lat": 43.49009926373537,
+    "lng": -1.4918323711641668,
+    "category": "épicerie",
+    "phone": "+33 5 64 11 53 60",
+    "openingHours": "Lundi Fermé\nMardi 09h00-13h00, 15h00-19h00\nMercredi 09h00-13h00, 15h00-19h00\nJeudi 09h00-13h00, 15h00-19h00\nVendredi 09h00-19h00\nSamedi 09h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-28T12:07:22.210Z",
+    "updatedAt": "2026-03-28T12:14:13.291Z",
+    "tags": [
+      "épicerie"
+    ],
+    "miniText": "Épicerie indépendante à Bayonne engagée dans une alimentation plus responsable, sélectionnant des produits issus de producteurs locaux et de filières transparentes. Le lieu met en avant les circuits courts, une juste rémunération des producteurs et des pratiques agricoles respectueuses de l’environnement.",
+    "translations": {
+      "en": {
+        "miniText": "Independent grocery store in Bayonne committed to more responsible food, selecting products sourced from local producers and transparent supply chains. The place promotes short supply chains, fair compensation for producers, and environmentally respectful farming practices."
+      }
+    },
+    "panoramaImage": "/downloads/farmilybayonne.webp"
+  },
+  {
+    "id": "5933857a-56ed-4320-956e-24983ab70c4b",
+    "name": "L'abeille gourmande",
+    "city": "Bordeaux",
+    "country": "France",
+    "address": "30 Pl. de la Frm Richemont, 33000 Bordeaux, France",
+    "website": "https://labeille-gourmande-bordeaux.eatbu.com/?lang=fr",
+    "lat": 44.836214774125686,
+    "lng": -0.5729918846566677,
+    "category": "restaurant",
+    "phone": "+33 6 15 71 37 64",
+    "openingHours": "Lundi 12h00-15h00\nMardi 12h00-15h00\nMercredi 12h00-15h00\nJeudi 12h00-15h00\nVendredi 12h00-15h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-03-28T12:36:34.872Z",
+    "updatedAt": "2026-03-28T12:44:11.632Z",
+    "tags": [
+      "restaurant"
+    ],
+    "miniText": "Restaurant proposant une cuisine végétarienne 100 % faite maison, élaborée à partir de produits frais, locaux et bio. Le lieu défend une approche éco-responsable fondée sur les circuits courts et le zéro déchet.",
+    "translations": {
+      "en": {
+        "miniText": "Restaurant offering 100% homemade vegetarian cuisine made with fresh, local and organic ingredients. The place promotes an eco-responsible approach based on short supply chains and zero waste."
+      }
+    },
+    "panoramaImage": "/downloads/labeillegourmande.webp"
   }
 ]
