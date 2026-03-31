@@ -289,7 +289,7 @@ function FilterBar({
 
 
 
-export default function IndieMapSplitView({ locale }: { locale: UILocale }) {
+export default function IndieMapSplitView({ locale, discoverId }: { locale: UILocale; discoverId?: string | null }) {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
@@ -305,6 +305,13 @@ export default function IndieMapSplitView({ locale }: { locale: UILocale }) {
     try { window.addEventListener("im:hero", fn); } catch {}
     return () => { try { window.removeEventListener("im:hero", fn); } catch {} };
   }, [locale]);
+  React.useEffect(() => {
+    if (!discoverId) return;
+    if (!businesses.some((b) => String(b.id) === String(discoverId))) return;
+    setSelectedId(String(discoverId));
+    setSelectionVersion((v) => v + 1);
+  }, [discoverId, businesses]);
+
 React.useEffect(() => {
     let cancelled = false;
     (async () => {

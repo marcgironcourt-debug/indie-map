@@ -808,6 +808,7 @@ export default function GlobeMap({
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
   const pendingNativeLocationRef = React.useRef<{ lat: number; lng: number } | null>(null);
+  const [mapReadyTick, setMapReadyTick] = React.useState(0);
 
   React.useEffect(() => {
     const fn = () => {
@@ -1309,6 +1310,122 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
     onSelectRef.current = onSelect;
   }, [onSelect]);
 
+  const autoOpenedIdRef = React.useRef<string | null>(null);
+
+  React.useEffect(() => {
+    const sid = String(selectedId ?? "").trim();
+    const map = mapRef.current;
+    if (!sid || !map || !readyRef.current) return;
+    if (autoOpenedIdRef.current === sid) return;
+
+    const found = (items ?? []).find((b) => String(b?.id ?? "") === sid);
+    const lat = Number(found?.lat);
+    const lng = Number(found?.lng);
+    if (!found || !Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+    autoOpenedIdRef.current = sid;
+
+    try {
+      for (const feat of fcRef.current.features) {
+        const id = String(feat.id ?? feat?.properties?.id ?? "");
+        try { feat.properties.selected = id === sid; } catch {}
+      }
+      const src = getSource(map);
+      if (src) src.setData(fcRef.current);
+    } catch {}
+
+    const props = {
+      id: String(found.id ?? ""),
+      name: String(found.name ?? ""),
+      title: String(found.name ?? ""),
+      type: String(found.type ?? ""),
+      address: String(found.address ?? ""),
+      website: String(found.website ?? ""),
+      openingHours: String(found.openingHours ?? ""),
+      phone: String(found.phone ?? ""),
+      panoramaImage: String(found.panoramaImage ?? ""),
+      lat: Number(lat),
+      lng: Number(lng),
+      kind: normalizeType(String(found.type ?? "")),
+      miniText: String((found as any).miniText ?? ""),
+      timeZone: String((found as any).timeZone ?? "")
+    };
+
+    const openAutoPopup = () => {
+      try { setSheetOpen(false); } catch {}
+      try { setSheetHtml(""); } catch {}
+      try { popupRef.current?.remove(); } catch {}
+      try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+      selectedPinMarkerRef.current = null;
+
+      try {
+        const selEl = document.createElement("div");
+        selEl.style.pointerEvents = "none";
+        selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
+        const palSel = palette();
+        const selColor = String((palSel as any)[String(props.kind)] || (palSel as any).other || "#8C5A3C");
+        selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
+        selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
+          .setLngLat([lng, lat])
+          .addTo(map);
+      } catch {}
+
+      try {
+        let walkMins = null;
+        try {
+          const up = lastUserPosRef.current;
+          if (up && Number.isFinite(up.lng) && Number.isFinite(up.lat)) {
+            const meters = haversineMeters(Number(up.lat), Number(up.lng), Number(lat), Number(lng));
+            if (Number.isFinite(meters)) walkMins = meters / 83.3333333333;
+          }
+        } catch {}
+        const html = buildMiniPinPopupHtml(props, Boolean(darkMapRef.current), walkMins);
+        const el = document.createElement("div");
+        el.style.pointerEvents = "auto";
+        el.innerHTML = html;
+
+        const recenterMini = () => {
+          try {
+            const pr = el.getBoundingClientRect();
+            const vh = Math.max(1, Number(window.innerHeight || 0));
+            const filtersBottom = 112;
+            const bottomSafe = 110;
+            const targetCenterY = filtersBottom + Math.max(190, ((vh - filtersBottom - bottomSafe) * 0.52));
+            const popupCenterY = pr.top + (pr.height / 2);
+            const dy = popupCenterY - targetCenterY;
+            if (Math.abs(dy) < 6) return;
+            map.panBy([0, dy] as any, {
+              duration: 260,
+              essential: true
+            } as any);
+          } catch {}
+        };
+
+        popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
+          .setLngLat([lng, lat])
+          .addTo(map);
+
+        try { setTimeout(recenterMini, 0); } catch {}
+        try { setTimeout(recenterMini, 80); } catch {}
+      } catch {}
+
+      try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: sid }; } catch {}
+    };
+
+    try {
+      map.once("moveend", openAutoPopup);
+      map.easeTo({
+        center: [Number(lng), Number(lat)],
+        zoom: Math.max(Number(map.getZoom() || 0), 9.9),
+        duration: 420,
+        offset: [0, 220],
+        essential: true
+      });
+    } catch {
+      try { openAutoPopup(); } catch {}
+    }
+  }, [items, selectedId, mapReadyTick]);
+
   function cssHslVar(varName: string, fallback: string) {
     try {
       const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -1609,16 +1726,6 @@ map.on("mouseenter", LAYER_ID, () => {
           try { heroReturnCamRef.current = { center: [lng, lat], zoom: 9.9, bearing: map.getBearing(), pitch: map.getPitch() }; } catch {}
         }
 
-        try {} catch {}
-
-        try {
-          for (const feat of fcRef.current.features) {
-            const id = String(feat.id ?? feat?.properties?.id ?? "");
-            feat.properties.selected = fid && id === fid;
-          }
-          const src = getSource(map);
-          if (src) src.setData(fcRef.current);
-        } catch {}
         const props = f?.properties || {};
 
         const openPopup = () => {
@@ -1656,16 +1763,21 @@ map.on("mouseenter", LAYER_ID, () => {
 
             const recenterMini = () => {
                       try {
+                        const proj = (map as any).getProjection?.();
+                        const projName = typeof proj === "string" ? proj : String(proj?.name ?? "");
+                        const isGlobeNow = projName.toLowerCase().includes("globe");
+                        if (isGlobeNow || map.getZoom() < 7.2) return;
+
                         const pr = el.getBoundingClientRect();
                         const vh = Math.max(1, Number(window.innerHeight || 0));
-                        const marginTop = 16;
-                        const marginBottom = 16;
-                        let dy = 0;
-                        if (pr.top < marginTop) dy = pr.top - marginTop;
-                        else if (pr.bottom > vh - marginBottom) dy = pr.bottom - (vh - marginBottom);
-                        if (Math.abs(dy) < 1) return;
+                        const filtersBottom = 112;
+                        const bottomSafe = 110;
+                        const targetCenterY = filtersBottom + Math.max(190, ((vh - filtersBottom - bottomSafe) * 0.52));
+                        const popupCenterY = pr.top + (pr.height / 2);
+                        const dy = popupCenterY - targetCenterY;
+                        if (Math.abs(dy) < 6) return;
                         map.panBy([0, dy] as any, {
-                          duration: 220,
+                          duration: 700,
                           essential: true
                         } as any);
                       } catch {}
@@ -2145,8 +2257,6 @@ popupRef.current = null;
 popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
               .setLngLat([lng, lat])
               .addTo(map);
-            try { setTimeout(recenterMini, 0); } catch {}
-            try { setTimeout(recenterMini, 80); } catch {}
           } catch {}
         };
 
@@ -2164,17 +2274,7 @@ return;
           try { setSheetOpen(false); } catch {}
           try { setSheetHtml(""); } catch {}
           try { setSheetHeightNow(25); } catch {}
-          try { onSelectRef.current?.(String((props as any).id)); } catch {}
-          try {
-            map.once("moveend", openPopup);
-            map.easeTo({
-              center: [Number(lng), Number(lat)],
-              zoom: map.getZoom(),
-              duration: 420,
-              offset: [0, 60],
-              essential: true
-            });
-          } catch { openPopup(); }
+          openPopup();
           return;
         }
         try {
@@ -2182,8 +2282,8 @@ return;
           map.easeTo({
             center: [Number(lng), Number(lat)],
             zoom: map.getZoom(),
-            duration: 420,
-            offset: [0, 60],
+            duration: 320,
+            offset: [0, 220],
             essential: true
           });
         } catch { openPopup(); }
@@ -2850,6 +2950,7 @@ mapRef.current = map;
 
     map.on("load", () => {
       readyRef.current = true;
+      try { setMapReadyTick((v) => v + 1); } catch {}
 
       map.setProjection({ type: "globe" } as any);
 

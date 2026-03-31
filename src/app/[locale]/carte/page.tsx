@@ -1,14 +1,22 @@
 import IndieMapSplitView from "../../../components/IndieMapSplitView";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ discover?: string }>;
+};
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const { locale } = await params;
+  const sp = searchParams ? await searchParams : undefined;
   const l = locale === "en" ? "en" : "fr";
+  const discoverId =
+    typeof sp?.discover === "string" && sp.discover.trim()
+      ? sp.discover.trim()
+      : null;
 
   return (
     <main className="h-[100dvh] w-full overflow-hidden">
-      <IndieMapSplitView locale={l} />
+      <IndieMapSplitView locale={l} discoverId={discoverId} />
     </main>
   );
 }

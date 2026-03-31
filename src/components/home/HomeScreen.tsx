@@ -7,11 +7,45 @@ import ContributeForm from "@/components/ContributeForm";
 
 type Panel = null | "pros" | "contrib" | "about";
 
+type DiscoverPlace = {
+  id: string;
+  name: string;
+  lat?: number;
+  lng?: number;
+  panoramaImage?: string;
+  city?: string;
+  address?: string;
+};
+
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
+  const toRad = (v: number) => (v * Math.PI) / 180;
+  const R = 6371;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
+  const sorted = [...list].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  let hash = 0;
+  const seed = dayKey + "|" + sorted.length;
+  for (let i = 0; i < seed.length; i += 1) {
+    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  return sorted[hash % sorted.length] ?? null;
+}
+
 export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   const router = useRouter();
   const isFr = locale === "fr";
   const [panel, setPanel] = React.useState<Panel>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
+  const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(null);
+  const [discoverReady, setDiscoverReady] = React.useState(false);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -28,6 +62,93 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [panel]);
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const r = await fetch("/api/v1/places?locale=" + encodeURIComponent(locale), { cache: "no-store" });
+        if (!r.ok) throw new Error("load failed");
+        const j = await r.json();
+        const arr = Array.isArray(j) ? j : j?.data || [];
+        const all: DiscoverPlace[] = arr
+          .map((item: any) => ({
+            id: String(item?.id ?? ""),
+            name: String(item?.name ?? "").trim(),
+            lat: typeof item?.lat === "number" ? item.lat : undefined,
+            lng: typeof item?.lng === "number" ? item.lng : undefined,
+            panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
+            city: String(item?.city ?? "").trim() || undefined,
+            address: String(item?.address ?? "").trim() || undefined
+          }))
+          .filter((item: DiscoverPlace) =>
+            !!item.id &&
+            !!item.name &&
+            Number.isFinite(item.lat) &&
+            Number.isFinite(item.lng)
+          );
+
+        const dayKey = new Date().toISOString().slice(0, 10);
+
+        const finish = (pool: DiscoverPlace[]) => {
+          if (cancelled) return;
+          setDiscoverPlace(pool.length > 0 ? pickDailyPlace(pool, dayKey) : null);
+          setDiscoverReady(true);
+        };
+
+        if (all.length === 0) {
+          finish([]);
+          return;
+        }
+
+        const pos = await new Promise<{ lat: number; lng: number } | null>((resolve) => {
+          try {
+            if (!navigator.geolocation) {
+              resolve(null);
+              return;
+            }
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                resolve({
+                  lat: Number(position.coords.latitude),
+                  lng: Number(position.coords.longitude)
+                });
+              },
+              () => resolve(null),
+              {
+                enableHighAccuracy: false,
+                timeout: 4500,
+                maximumAge: 21600000
+              }
+            );
+          } catch {
+            resolve(null);
+          }
+        });
+
+        if (pos && Number.isFinite(pos.lat) && Number.isFinite(pos.lng)) {
+          const nearby = all.filter((item) => {
+            const lat = Number(item.lat);
+            const lng = Number(item.lng);
+            return Number.isFinite(lat) && Number.isFinite(lng) && haversineKm(pos.lat, pos.lng, lat, lng) <= 50;
+          });
+          finish(nearby.length > 0 ? nearby : all);
+          return;
+        }
+
+        finish(all);
+      } catch {
+        if (cancelled) return;
+        setDiscoverPlace(null);
+        setDiscoverReady(true);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [locale]);
 
   function switchLocale(nextLocale: "fr" | "en") {
     if (nextLocale === locale) return;
@@ -91,11 +212,55 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             </button>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative rounded-2xl bg-white/10 p-4 h-[110px]">
-                <p className="text-base font-medium">{isFr ? "Découverte" : "Discovery"}</p>
-                <p className="text-sm opacity-70">{isFr ? "Un lieu à découvrir" : "A place to discover"}</p>
-                <span className="absolute bottom-3 right-3 text-2xl">🧭</span>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (discoverPlace?.id) {
+                    router.push(`/${locale}/carte?discover=${encodeURIComponent(discoverPlace.id)}`);
+                    return;
+                  }
+                  router.push(`/${locale}/carte`);
+                }}
+                className="relative overflow-hidden rounded-2xl bg-white/10 p-4 h-[110px] text-left hover:bg-white/14 active:bg-white/18"
+              >
+                <img
+                  src={discoverPlace?.panoramaImage || "/explorer-bg.png"}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                  }}
+                ></div>
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div>
+                    <p className="text-base font-medium">{isFr ? "Découverte" : "Discovery"}</p>
+                    <p className="text-[12px] opacity-80">
+                      {discoverReady
+                        ? discoverPlace
+                          ? isFr
+                            ? "Le lieu du jour"
+                            : "Today’s place"
+                          : isFr
+                          ? "Aucun lieu disponible"
+                          : "No place available"
+                        : isFr
+                        ? "Recherche en cours"
+                        : "Looking up a place"}
+                    </p>
+                  </div>
+                  <div className="pr-7">
+                    <p className="text-sm font-semibold leading-tight">
+                      {discoverPlace?.name || (isFr ? "Lieu surprise" : "Surprise place")}
+                    </p>
+                    <p className="text-[11px] opacity-80 truncate">
+                      {discoverPlace?.city || discoverPlace?.address || (isFr ? "Indie Map" : "Indie Map")}
+                    </p>
+                  </div>
+                </div>
+              </button>
 
               <div className="relative rounded-2xl bg-white/10 p-4 h-[110px]">
                 <p className="text-base font-medium">{isFr ? "Nouveaux lieux" : "New places"}</p>
