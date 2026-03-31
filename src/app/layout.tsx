@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Kalam } from "next/font/google";
 import { cookies } from "next/headers";
 import { locales, defaultLocale } from "../../i18n";
 import "./globals.css";
+import { Sora } from "next/font/google";
+
+const sora = Sora({ subsets: ["latin"] });
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const geistSans = Geist({
