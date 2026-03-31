@@ -1,7 +1,6 @@
 import React from "react";
 import { setRequestLocale } from "next-intl/server";
 import { locales, defaultLocale } from "../../../i18n";
-import MobileMenu from "../../components/MobileMenu";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -25,7 +24,6 @@ export default async function LocaleLayout({
 
   return (
     <div className="relative min-h-screen w-screen overflow-hidden">
-      <MobileMenu locale={finalLocale} />
       {children}
     </div>
   );
