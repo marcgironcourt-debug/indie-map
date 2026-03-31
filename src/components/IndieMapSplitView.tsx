@@ -585,14 +585,29 @@ const filtered = source.filter((b) => {
           }}          />
       </div>
       {!heroOpen && (
-
-            <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
-        <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
-          <FilterBar locale={locale} categories={categories}
-          activeCategory={category}
-          onCategoryChange={setCategory} />
-        </div>
-      </div>
+        <>
+          <div
+            className="absolute left-4 z-[1450] pointer-events-auto"
+            style={{ top: "calc(env(safe-area-inset-top) + 64px)" }}
+          >
+            <Link
+              href={`/${locale}`}
+              aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
+              className="flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 text-white shadow-lg backdrop-blur-md border border-white/20"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
+              </svg>
+            </Link>
+          </div>
+          <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
+            <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
+              <FilterBar locale={locale} categories={categories}
+              activeCategory={category}
+              onCategoryChange={setCategory} />
+            </div>
+          </div>
+        </>
       )}
       <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
         <Link href="/privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>

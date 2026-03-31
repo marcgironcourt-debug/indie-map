@@ -9,6 +9,7 @@ type Panel = null | "pros" | "contrib" | "about";
 
 export default function MobileMenu({ locale }: { locale: string }) {
   const pathname = usePathname();
+  const isHome = pathname === `/${locale}`;
   const isPrivacy = (pathname || "").endsWith("/privacy");
   const isPros = (pathname || "").endsWith("/professionnels");
   const isContrib = (pathname || "").endsWith("/contribution");
@@ -40,7 +41,7 @@ export default function MobileMenu({ locale }: { locale: string }) {
     };
   }, [locale]);
 
-  const canShowBar = !heroOpen && !isPrivacy && !isPros && !isContrib && !isAbout;
+  const canShowBar = !heroOpen && !isHome && !isPrivacy && !isPros && !isContrib && !isAbout;
 
   const title = "Indie Map";
 

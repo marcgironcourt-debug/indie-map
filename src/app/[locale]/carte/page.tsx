@@ -1,6 +1,14 @@
-import { redirect } from "next/navigation";
+import IndieMapSplitView from "../../../components/IndieMapSplitView";
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function Page({ params }: Props) {
   const { locale } = await params;
-  redirect(`/${locale === "en" ? "en" : "fr"}`);
+  const l = locale === "en" ? "en" : "fr";
+
+  return (
+    <main className="h-[100dvh] w-full overflow-hidden">
+      <IndieMapSplitView locale={l} />
+    </main>
+  );
 }
