@@ -285,11 +285,13 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 }}
                 className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18"
               >
-                <img
-                  src={discoverPlace?.panoramaImage || "/explorer-bg.png"}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {discoverPlace?.panoramaImage ? (
+                  <img
+                    src={discoverPlace.panoramaImage}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : null}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -331,11 +333,13 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 onTouchEnd={onNewPlacesTouchEnd}
                 className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
               >
-                <img
-                  src={currentNewPlace?.panoramaImage || "/explorer-bg.png"}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {currentNewPlace?.panoramaImage ? (
+                  <img
+                    src={currentNewPlace.panoramaImage}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : null}
                 <div
                   className="absolute inset-0"
                   style={{

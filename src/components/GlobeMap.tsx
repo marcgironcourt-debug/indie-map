@@ -1354,22 +1354,21 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
     const openAutoPopup = () => {
       try { setSheetOpen(false); } catch {}
       try { setSheetHtml(""); } catch {}
-      try { popupRef.current?.remove(); } catch {}
+      try { if (popupRef.current) popupRef.current.remove(); } catch {}
       try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
       selectedPinMarkerRef.current = null;
-
       try {
         const selEl = document.createElement("div");
         selEl.style.pointerEvents = "none";
         selEl.style.filter = "drop-shadow(0 0 10px rgba(245,245,232,.28)) drop-shadow(0 0 18px rgba(114,138,74,.55))";
+        const kindSel = normalizeType(String((props as any)?.kind ?? (props as any)?.properties?.kind ?? (props as any)?.feature?.properties?.kind ?? (props as any)?.category ?? (props as any)?.type ?? ""));
         const palSel = palette();
-        const selColor = String((palSel as any)[String(props.kind)] || (palSel as any).other || "#8C5A3C");
+        const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
         selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
         selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
           .setLngLat([lng, lat])
           .addTo(map);
       } catch {}
-
       try {
         let walkMins = null;
         try {
@@ -1401,6 +1400,471 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
           } catch {}
         };
 
+        try {
+          const btn = el.querySelector("[data-mini-close=\"1\"]");
+          if (btn) {
+            btn.addEventListener("click", (ev) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { popupRef.current?.remove(); } catch {}
+              try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+              selectedPinMarkerRef.current = null;
+              try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+              try {
+                for (const feat of fcRef.current.features) {
+                  try { feat.properties.selected = false; } catch {}
+                }
+                const src = getSource(map);
+                if (src) src.setData(fcRef.current);
+              } catch {}
+              popupRef.current = null;
+            });
+          }
+        } catch {}
+
+        try {
+          const db = el.querySelector("[data-discover=\"1\"]");
+          const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;
+          const setPhoneActive = (on: boolean) => {
+            try {
+              if (!pb) return;
+              if (on) {
+                (pb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                (pb as any).style.background = "rgba(114,138,74,.20)";
+                (pb as any).style.borderColor = "rgba(114,138,74,.70)";
+              } else {
+                (pb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                (pb as any).style.background = "rgba(0,0,0,0.14)";
+                (pb as any).style.borderColor = "rgba(255,255,255,0.30)";
+              }
+            } catch {}
+          };
+          if (pb) {
+            pb.addEventListener("click", (ev: any) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { const n1 = el.querySelector("[data-addr-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+              try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+              try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try {
+                const dial = String((pb as any).getAttribute("data-tel") || "").trim();
+                let panel = el.querySelector("[data-phone-panel=\"1\"]") as HTMLDivElement | null;
+
+                if (panel) {
+                  const cur = String((panel as HTMLElement).style.display || "");
+                  const showing = (cur === "none");
+                  (panel as HTMLElement).style.display = showing ? "block" : "none";
+                  try { setPhoneActive(showing); } catch {}
+                  try { setTimeout(recenterMini, 0); } catch {}
+                  return;
+                }
+
+                panel = document.createElement("div");
+                panel.setAttribute("data-phone-panel","1");
+                panel.style.position = "absolute";
+                panel.style.left = "50%";
+                panel.style.top = "100%";
+                panel.style.width = "260px";
+                panel.style.maxWidth = "260px";
+                panel.style.transform = "translateX(-50%) translateY(8px)";
+                panel.style.zIndex = "3";
+                panel.style.padding = "10px 10px";
+                panel.style.background = "rgba(31,31,24,0.78)";
+                panel.style.border = "1px solid rgba(245,245,232,.14)";
+                panel.style.borderRadius = "16px 6px 16px 6px";
+                panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                panel.style.backdropFilter = "blur(10px)";
+                (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                panel.style.color = "rgba(245,245,232,.92)";
+                panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                panel.style.fontSize = "12px";
+                panel.style.lineHeight = "18px";
+                panel.style.letterSpacing = ".02em";
+
+                if (!dial) {
+                  panel.innerHTML =
+                    "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
+                    "<div style=\"margin-top:6px;opacity:.90;\" >" + ui("Téléphone inconnu","Phone unknown") + "</div>";
+                  el.appendChild(panel);
+                  try { setPhoneActive(true); } catch {}
+                  try { setTimeout(recenterMini, 0); } catch {}
+                  return;
+                }
+
+                panel.innerHTML =
+                  "<div style=\"font-weight:800;letter-spacing:.02em;\" >" + ui("Téléphone","Phone") + "</div>" +
+                  "<div style=\"margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:10px;\" >" +
+                    "<span style=\"opacity:.92;font-weight:700;\" >" + escapeHtml(dial) + "</span>" +
+                    "<button data-phone-call=\"1\" style=\"flex:0 0 auto;padding:6px 10px;border-radius:10px 4px 10px 4px;background:rgba(0,0,0,0.18);border:1px solid rgba(245,245,232,.18);color:rgba(245,245,232,.92);font-size:12px;font-weight:750;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,0.18);\" onclick=\"return false;\" >" + ui("Appeler","Call") + "</button>" +
+                  "</div>";
+
+                el.appendChild(panel);
+                try { setPhoneActive(true); } catch {}
+                try { setTimeout(recenterMini, 0); } catch {}
+
+                const cb = panel.querySelector("[data-phone-call=\"1\"]") as HTMLElement | null;
+                if (cb) {
+                  cb.addEventListener("click", (ev2: any) => {
+                    try { ev2.preventDefault(); ev2.stopPropagation(); } catch {}
+                    try { window.location.href = "tel:" + dial; } catch {}
+                  });
+                }
+              } catch {}
+            });
+          }
+
+          const sb = el.querySelector("[data-site=\"1\"]") as HTMLElement | null;
+          if (sb) {
+            sb.addEventListener("click", (ev: any) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try {
+                let url = String((props as any)?.website ?? "").trim();
+                if (!url) return;
+                if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+                try { window.open(url, "_blank", "noopener,noreferrer"); }
+                catch { window.location.href = url; }
+              } catch {}
+            });
+          }
+
+          const rb = el.querySelector("[data-route=\"1\"]") as HTMLElement | null;
+          if (rb) {
+            rb.addEventListener("click", (ev: any) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { (rb as any)?.blur?.(); } catch {}
+              try {
+                const dlat = Number(lat);
+                const dlng = Number(lng);
+                if (!Number.isFinite(dlat) || !Number.isFinite(dlng)) return;
+                const ua = String((navigator as any)?.userAgent ?? "");
+                if (/iPhone|iPad|iPod/i.test(ua)) {
+                  window.location.href = "http://maps.apple.com/?daddr=" + dlat + "," + dlng;
+                } else {
+                  window.location.href = "geo:" + dlat + "," + dlng + "?q=" + dlat + "," + dlng;
+                }
+              } catch {}
+            });
+          }
+
+          const ab = el.querySelector("[data-addr=\"1\"]") as HTMLElement | null;
+          const setAddrActive = (on: boolean) => {
+            try {
+              if (!ab) return;
+              if (on) {
+                (ab as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                (ab as any).style.background = "rgba(114,138,74,.20)";
+                (ab as any).style.borderColor = "rgba(114,138,74,.70)";
+              } else {
+                (ab as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                (ab as any).style.background = "rgba(0,0,0,0.14)";
+                (ab as any).style.borderColor = "rgba(255,255,255,0.30)";
+              }
+            } catch {}
+          };
+          if (ab) {
+            ab.addEventListener("click", (ev: any) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+              try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try { const n2 = el.querySelector("[data-hours-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+              try { const hb0 = el.querySelector("[data-hours=\"1\"]"); if (hb0) { (hb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (hb0 as any).style.background = "rgba(0,0,0,0.14)"; (hb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try {
+                const addr = String(((props as any)?.address ?? "")).trim();
+                let panel = el.querySelector("[data-addr-panel=\"1\"]") as HTMLDivElement | null;
+                if (!addr) {
+                  if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                  try { setAddrActive(false); } catch {}
+                  return;
+                }
+                if (panel) {
+                  const cur = String((panel as HTMLElement).style.display || "");
+                  const showing = (cur === "none");
+                  (panel as HTMLElement).style.display = showing ? "block" : "none";
+                  try { setAddrActive(showing); } catch {}
+                  try { setTimeout(recenterMini, 0); } catch {}
+                  return;
+                }
+
+                panel = document.createElement("div");
+                panel.setAttribute("data-addr-panel","1");
+                panel.style.position = "absolute";
+                panel.style.left = "50%";
+                panel.style.top = "100%";
+                panel.style.width = "260px";
+                panel.style.maxWidth = "260px";
+                panel.style.transform = "translateX(-50%) translateY(8px)";
+                panel.style.zIndex = "3";
+                panel.style.padding = "10px 10px";
+                panel.style.background = "rgba(31,31,24,0.78)";
+                panel.style.border = "1px solid rgba(245,245,232,.14)";
+                panel.style.borderRadius = "16px 6px 16px 6px";
+                panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                panel.style.backdropFilter = "blur(10px)";
+                (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                panel.style.color = "rgba(245,245,232,.92)";
+                panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                panel.style.fontSize = "12px";
+                panel.style.lineHeight = "18px";
+                panel.style.letterSpacing = ".02em";
+
+                const text = document.createElement("div");
+                text.textContent = addr;
+                text.style.whiteSpace = "pre-wrap";
+                (text.style as any).userSelect = "text";
+                (text.style as any).webkitUserSelect = "text";
+                panel.appendChild(text);
+
+                const row = document.createElement("div");
+                row.style.marginTop = "10px";
+                row.style.display = "flex";
+                row.style.alignItems = "center";
+                row.style.justifyContent = "space-between";
+                row.style.gap = "8px";
+
+                const mkBtn = (label: string) => {
+                  const b = document.createElement("button");
+                  b.textContent = label;
+                  b.style.flex = "1";
+                  b.style.padding = "7px 8px";
+                  b.style.borderRadius = "12px 5px 12px 5px";
+                  b.style.border = "1px solid rgba(245,245,232,.18)";
+                  b.style.background = "rgba(0,0,0,0.14)";
+                  b.style.color = "rgba(245,245,232,.92)";
+                  b.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                  b.style.fontSize = "12px";
+                  b.style.letterSpacing = ".02em";
+                  b.style.cursor = "pointer";
+                  b.style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                  return b;
+                };
+
+                const copyBtn = mkBtn(ui("Copier","Copy"));
+                copyBtn.addEventListener("click", async (e2: any) => {
+                  try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                  const prev = String((copyBtn as any)?.textContent ?? ui("Copier","Copy"));
+                  const flash = (t: string) => {
+                    try { (copyBtn as any).textContent = t; } catch {}
+                    try { setTimeout(() => { try { (copyBtn as any).textContent = prev; } catch {} }, 1200); } catch {}
+                  };
+                  try {
+                    const txt = String(addr || "");
+                    if (!txt.trim()) { flash(ui("Erreur","Error")); return; }
+                    const clip = (navigator as any)?.clipboard?.writeText;
+                    if (clip) {
+                      try { await (navigator as any).clipboard.writeText(txt); flash(ui("Copié ✓","Copied ✓")); return; } catch {}
+                    }
+                    const ta = document.createElement("textarea");
+                    ta.value = txt;
+                    ta.setAttribute("readonly", "true");
+                    ta.style.position = "fixed";
+                    ta.style.left = "-9999px";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    let ok = false;
+                    try { ok = !!document.execCommand("copy"); } catch {}
+                    try { document.body.removeChild(ta); } catch {}
+                    flash(ok ? ui("Copié ✓","Copied ✓") : ui("Erreur","Error"));
+                  } catch {
+                    flash(ui("Erreur","Error"));
+                  }
+                });
+                const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
+                goBtn.addEventListener("click", (e2: any) => {
+                  try { e2.preventDefault(); e2.stopPropagation(); } catch {}
+                  try {
+                    const isIOS = /iPad|iPhone|iPod/.test(String((navigator as any)?.userAgent || ""));
+                    const latN = Number(lat);
+                    const lngN = Number(lng);
+                    let url = "";
+                    if (isIOS) {
+                      url = "http://maps.apple.com/?q=" + encodeURIComponent(addr);
+                    } else if (Number.isFinite(latN) && Number.isFinite(lngN)) {
+                      const dest = encodeURIComponent(String(latN) + "," + String(lngN));
+                      url = "https://www.google.com/maps/dir/?api=1&destination=" + dest;
+                    } else {
+                      url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addr);
+                    }
+                    window.location.href = url;
+                  } catch {}
+                });
+
+                row.appendChild(copyBtn);
+                row.appendChild(goBtn);
+                panel.appendChild(row);
+
+                el.appendChild(panel);
+                try { setAddrActive(true); } catch {}
+              } catch {}
+            });
+          }
+
+          if (db) {
+            db.addEventListener("click", (ev) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { setSheetOpen(false); } catch {}
+              try { setSheetHtml(""); } catch {}
+              try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
+              try { setDiscoverMeta({ id: String(props?.id ?? sid ?? ""), name: String(props?.name ?? props?.title ?? "") }); } catch {}
+              try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: sid ? String(sid) : null }; } catch {}
+              try { setDiscoverPanel(null); } catch {}
+              try { setHeroUiHide(true); } catch {}
+              try { heroPanRef.current = 0.5; } catch {}
+              try { setDiscoverHeroPan(0.5); } catch {}
+              try { tableauPrevPRef.current = 0.5; } catch {}
+              try { heroHadMoveRef.current = false; } catch {}
+              try { setHeroHintOff(false); } catch {}
+              try {
+                let hero = null as null | string;
+                try { hero = String(((props as any)?.panoramaImage ?? (props as any)?.properties?.panoramaImage ?? "") || ""); } catch {}
+                try { setDiscoverHeroUrl(hero && hero.trim() ? hero : null); } catch {}
+                try { setDiscoverHeroOpen(false); } catch {}
+                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                try { setDiscoverHeroZoom(false); } catch {}
+                try { setDiscoverDoorOpen(false); } catch {}
+                try { setHeroUiHide(true); } catch {}
+                try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
+                try { heroPanRef.current = 0.5; } catch {}
+                try { setDiscoverHeroPan(0.5); } catch {}
+                try { tableauPrevPRef.current = 0.5; } catch {}
+                try { heroHadMoveRef.current = false; } catch {}
+                try { setHeroHintOff(false); } catch {}
+                try { setDiscoverHeroOpen(true); } catch {}
+                try { window.dispatchEvent(new CustomEvent("im:hero", { detail: { open: true } })); } catch {}
+                try { setTimeout(() => { try { setDiscoverHeroZoom(true); } catch {} }, 30); } catch {}
+                try { setTimeout(() => { try { setDiscoverDoorOpen(true); } catch {} }, 220); } catch {}
+              } catch {}
+              try { popupRef.current?.remove(); } catch {}
+              try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
+              selectedPinMarkerRef.current = null;
+              try { document.querySelectorAll(".im-globe-dim").forEach((n) => { try { (n as any)?.classList?.remove("im-globe-dim"); } catch {} }); } catch {}
+              try {
+                for (const feat of fcRef.current.features) {
+                  try { feat.properties.selected = false; } catch {}
+                }
+                const src = getSource(map);
+                if (src) src.setData(fcRef.current);
+              } catch {}
+              popupRef.current = null;
+            });
+          }
+        } catch {}
+
+        try {
+          const hb = el.querySelector("[data-hours=\"1\"]") as HTMLElement | null;
+          const opening = String(((props as any)?.openingHours ?? "")).trim();
+          const setHoursActive = (on: boolean) => {
+            try {
+              if (on) {
+                (hb as any).style.boxShadow = "0 0 0 1px rgba(114,138,74,.65), 0 10px 22px rgba(0,0,0,0.26), 0 0 18px rgba(114,138,74,.50)";
+                (hb as any).style.background = "rgba(114,138,74,.20)";
+                (hb as any).style.borderColor = "rgba(114,138,74,.70)";
+              } else {
+                (hb as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)";
+                (hb as any).style.background = "rgba(0,0,0,0.14)";
+                (hb as any).style.borderColor = "rgba(255,255,255,0.30)";
+              }
+            } catch {}
+          };
+
+          if (hb) {
+            hb.addEventListener("click", (ev: any) => {
+              try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try { const n1 = el.querySelector("[data-phone-panel=\"1\"]"); if (n1 && n1.parentNode) n1.parentNode.removeChild(n1); } catch {}
+              try { const pb0 = el.querySelector("[data-phone=\"1\"]"); if (pb0) { (pb0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (pb0 as any).style.background = "rgba(0,0,0,0.14)"; (pb0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try { const n2 = el.querySelector("[data-addr-panel=\"1\"]"); if (n2 && n2.parentNode) n2.parentNode.removeChild(n2); } catch {}
+              try { const ab0 = el.querySelector("[data-addr=\"1\"]"); if (ab0) { (ab0 as any).style.boxShadow = "0 6px 14px rgba(0,0,0,0.18)"; (ab0 as any).style.background = "rgba(0,0,0,0.14)"; (ab0 as any).style.borderColor = "rgba(255,255,255,0.30)"; } } catch {}
+              try {
+                let panel = el.querySelector("[data-hours-panel=\"1\"]") as HTMLDivElement | null;
+                if (!opening) {
+                  if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+                  try { setHoursActive(false); } catch {}
+                  return;
+                }
+                if (panel) {
+                  const cur = String((panel as HTMLElement).style.display || "");
+                  const showing = (cur === "none");
+                  (panel as HTMLElement).style.display = showing ? "block" : "none";
+                  try { setHoursActive(showing); } catch {}
+                  try { setTimeout(recenterMini, 0); } catch {}
+                  try { setTimeout(recenterMini, 0); } catch {}
+                  return;
+                }
+                panel = document.createElement("div");
+                panel.setAttribute("data-hours-panel","1");
+                panel.style.position = "absolute";
+                panel.style.left = "50%";
+                panel.style.top = "100%";
+                panel.style.width = "260px";
+                panel.style.maxWidth = "260px";
+                panel.style.transform = "translateX(-50%) translateY(8px)";
+                panel.style.zIndex = "3";
+                panel.style.padding = "10px 10px";
+                panel.style.background = "rgba(31,31,24,0.78)";
+                panel.style.border = "1px solid rgba(245,245,232,.14)";
+                panel.style.borderRadius = "16px 6px 16px 6px";
+                panel.style.boxShadow = "0 10px 22px rgba(0,0,0,0.26)";
+                panel.style.backdropFilter = "blur(10px)";
+                (panel.style as any).webkitBackdropFilter = "blur(10px)";
+                panel.style.color = "rgba(245,245,232,.92)";
+                panel.style.fontFamily = "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial";
+                panel.style.fontSize = "12px";
+                panel.style.lineHeight = "18px";
+                panel.style.letterSpacing = ".02em";
+                const parts = opening.split("\n").map(x => String(x||"").trim()).filter(Boolean);
+                panel.style.display = "flex";
+                panel.style.flexDirection = "column";
+                panel.style.gap = "6px";
+                for (const l of parts) {
+                  const m = String(l || "").match(/^([A-Za-zÀ-ÿ]+)\s+(.*)$/);
+                  if (m && m[1] && m[2]) {
+                    const row = document.createElement("div");
+                    row.style.display = "flex";
+                    row.style.alignItems = "baseline";
+                    row.style.gap = "10px";
+
+                    const day = document.createElement("span");
+                    day.textContent = (function(){const fr=String(m[1]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k.startsWith("lun")) return ui("Lundi","Monday");if(k.startsWith("mar")) return ui("Mardi","Tuesday");if(k.startsWith("mer")) return ui("Mercredi","Wednesday");if(k.startsWith("jeu")) return ui("Jeudi","Thursday");if(k.startsWith("ven")) return ui("Vendredi","Friday");if(k.startsWith("sam")) return ui("Samedi","Saturday");if(k.startsWith("dim")) return ui("Dimanche","Sunday");return fr;})();
+                    day.style.fontWeight = "750";
+                    day.style.color = "rgba(245,245,232,.78)";
+                    day.style.whiteSpace = "nowrap";
+                    day.style.flex = "0 0 92px";
+
+                    const hours = document.createElement("span");
+                    hours.textContent = (function(){const fr=String(m[2]||"").trim();const k=fr.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();if(k==="ferme"||k.startsWith("ferme")) return ui("Fermé","Closed");return fr;})();
+                    hours.style.fontWeight = "650";
+                    hours.style.color = "rgba(245,245,232,.92)";
+                    hours.style.textAlign = "right";
+                    hours.style.whiteSpace = "normal";
+                    (hours.style as any).overflowWrap = "anywhere";
+                    (hours.style as any).wordBreak = "break-word";
+                    hours.style.maxWidth = "150px";
+                    hours.style.flex = "0 1 150px";
+
+                    const leader = document.createElement("span");
+                    leader.style.flex = "1";
+                    leader.style.minWidth = "24px";
+                    leader.style.borderBottom = "1px dotted rgba(245,245,232,.26)";
+                    leader.style.transform = "translateY(-2px)";
+                    leader.style.opacity = "0.9";
+
+                    row.appendChild(day);
+                    row.appendChild(leader);
+                    row.appendChild(hours);
+                    panel.appendChild(row);
+                  } else {
+                    const d = document.createElement("div");
+                    d.textContent = l;
+                    panel.appendChild(d);
+                  }
+                }
+                el.appendChild(panel);
+                try { setHoursActive(true); } catch {}
+                try { setTimeout(recenterMini, 0); } catch {}
+                try { setTimeout(recenterMini, 0); } catch {}
+              } catch {}
+            });
+          }
+        } catch {}
+
         popupRef.current = new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -48] } as any)
           .setLngLat([lng, lat])
           .addTo(map);
@@ -1411,7 +1875,6 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
 
       try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: sid }; } catch {}
     };
-
     try {
       map.once("moveend", openAutoPopup);
       map.easeTo({
