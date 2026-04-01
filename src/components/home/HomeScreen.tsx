@@ -268,9 +268,9 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
   return (
     <>
-      <div className="h-[100dvh] w-full bg-[#2a2a24] text-white px-6">
-        <div className="mx-auto flex h-full w-full max-w-md flex-col items-center pt-5">
-          <div className="mb-3 flex w-full justify-center pt-2 pb-1">
+      <div className="flex h-[100dvh] w-full flex-col bg-[#2a2a24] text-white">
+        <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5">
+          <div className="mb-2 flex w-full justify-center pt-2 pb-1">
             <div className="inline-flex flex-col items-start justify-center gap-1">
               <h1 className="text-[22px] font-semibold tracking-tight text-white">
                 Indie Map
@@ -282,10 +282,14 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             </div>
           </div>
 
-          <div className="mt-6 w-full space-y-3 pb-[104px]">
-            <button
-              onClick={() => router.push(`/${locale}/carte`)}
-              className="relative w-full h-[220px] overflow-hidden rounded-2xl"
+        </div>
+
+        <div className="flex flex-1 flex-col w-full pb-[78px]">
+          
+
+          <button
+            onClick={() => router.push(`/${locale}/carte`)}
+            className="relative w-full min-h-[220px] flex-[1.2] overflow-hidden rounded-xl mb-2"
               style={{
                 background: "linear-gradient(180deg, rgba(125,116,49,0.96) 0%, rgba(86,78,30,0.96) 100%)",
                 boxShadow: "inset 0 2px 0 rgba(255,255,255,0.28), inset 0 -8px 18px rgba(0,0,0,0.18), 0 20px 40px rgba(0,0,0,0.22), 0 60px 120px rgba(0,0,0,0.16)"
@@ -323,8 +327,10 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               </div>
             </button>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <button
+          
+
+          <div className="grid w-full flex-1 grid-cols-2 gap-2 mb-2">
+            <button
                 type="button"
                 onClick={() => {
                   if (discoverPlace?.id) {
@@ -333,7 +339,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   }
                   router.push(`/${locale}/carte`);
                 }}
-                className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18"
+                className="relative h-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18"
                 style={{
                   boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                 }}
@@ -384,7 +390,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 onTouchStart={onNewPlacesTouchStart}
                 onTouchMove={onNewPlacesTouchMove}
                 onTouchEnd={onNewPlacesTouchEnd}
-                className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                className="relative h-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
                 style={{
                   boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                 }}
@@ -431,10 +437,8 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                     ))}
                   </div>
                 ) : null}
-              </button>
+            </button>
 
-
-            </div>
           </div>
         </div>
       </div>
@@ -541,7 +545,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                       href="mailto:pro@indie-map.com?subject=Partenariat%20%E2%80%94%20Indie%20Map"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
+                      className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
                     >
                       Contact
                     </a>
@@ -573,7 +577,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                       href="mailto:pro@indie-map.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
+                      className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
                     >
                       Contact
                     </a>
@@ -676,7 +680,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                     href="mailto:contact@indie-map.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-2 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
+                    className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
                   >
                     Contact
                   </a>
