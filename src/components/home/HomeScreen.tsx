@@ -21,6 +21,38 @@ type DiscoverPlace = {
 
 type NewPlace = DiscoverPlace;
 
+const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
+
+function readHomeCache(locale: "fr" | "en") {
+  try {
+    if (typeof window === "undefined") return null;
+    const raw = window.sessionStorage.getItem("im-home-cache:" + locale);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    const discover = parsed?.discover && typeof parsed.discover === "object" ? parsed.discover : null;
+    const newest = Array.isArray(parsed?.newPlaces) ? parsed.newPlaces : [];
+    return {
+      discoverPlace: discover as DiscoverPlace | null,
+      newPlaces: newest as NewPlace[]
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null, newPlaces: NewPlace[]) {
+  try {
+    if (typeof window === "undefined") return;
+    window.sessionStorage.setItem(
+      "im-home-cache:" + locale,
+      JSON.stringify({
+        discover: discoverPlace ?? null,
+        newPlaces: Array.isArray(newPlaces) ? newPlaces : []
+      })
+    );
+  } catch {}
+}
+
 function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   const toRad = (v: number) => (v * Math.PI) / 180;
   const R = 6371;
@@ -48,9 +80,12 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   const isFr = locale === "fr";
   const [panel, setPanel] = React.useState<Panel>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
-  const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(null);
-  const [discoverReady, setDiscoverReady] = React.useState(false);
-  const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>([]);
+  const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => homeMemoryCache[locale]?.discoverPlace ?? null);
+  const [discoverReady, setDiscoverReady] = React.useState(() => {
+    const cached = homeMemoryCache[locale];
+    return Boolean(cached?.discoverPlace || (cached?.newPlaces?.length ?? 0) > 0);
+  });
+  const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? []);
   const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
   const newPlacesTouchStartXRef = React.useRef<number | null>(null);
   const newPlacesTouchDeltaXRef = React.useRef(0);
@@ -61,6 +96,19 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
       panelScrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
     });
   }, [panel]);
+
+  React.useEffect(() => {
+    const cached = readHomeCache(locale);
+    if (!cached) return;
+    if (cached.discoverPlace) setDiscoverPlace(cached.discoverPlace);
+    if (Array.isArray(cached.newPlaces) && cached.newPlaces.length > 0) {
+      setNewPlaces(cached.newPlaces);
+      setNewPlaceIndex(0);
+    }
+    if (cached.discoverPlace || (cached.newPlaces?.length ?? 0) > 0) {
+      setDiscoverReady(true);
+    }
+  }, [locale]);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -151,10 +199,13 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               return bTime - aTime;
             })
             .slice(0, 5);
+          const nextDiscover = pool.length > 0 ? pickDailyPlace(pool, dayKey) : null;
+          homeMemoryCache[locale] = { discoverPlace: nextDiscover, newPlaces: latest };
           setNewPlaces(latest);
           setNewPlaceIndex(0);
-          setDiscoverPlace(pool.length > 0 ? pickDailyPlace(pool, dayKey) : null);
+          setDiscoverPlace(nextDiscover);
           setDiscoverReady(true);
+          writeHomeCache(locale, nextDiscover, latest);
         };
 
         if (all.length === 0) {
@@ -200,7 +251,6 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
         finish(all);
       } catch {
         if (cancelled) return;
-        setDiscoverPlace(null);
         setDiscoverReady(true);
       }
     })();
