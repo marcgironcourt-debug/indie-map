@@ -221,7 +221,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   }
                   router.push(`/${locale}/carte`);
                 }}
-                className="relative overflow-hidden rounded-2xl bg-white/10 p-4 h-[110px] text-left hover:bg-white/14 active:bg-white/18"
+                className="relative overflow-hidden rounded-2xl bg-white/10 h-[110px] text-left hover:bg-white/14 active:bg-white/18"
               >
                 <img
                   src={discoverPlace?.panoramaImage || "/explorer-bg.png"}
@@ -234,30 +234,23 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                     background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
                   }}
                 ></div>
-                <div className="relative z-10 flex h-full flex-col justify-between">
+                <div className="absolute inset-0 z-10 flex flex-col justify-between">
                   <div>
-                    <p className="text-base font-medium">{isFr ? "Découverte" : "Discovery"}</p>
-                    <p className="text-[12px] opacity-80">
-                      {discoverReady
-                        ? discoverPlace
-                          ? isFr
-                            ? "Le lieu du jour"
-                            : "Today’s place"
-                          : isFr
-                          ? "Aucun lieu disponible"
-                          : "No place available"
-                        : isFr
-                        ? "Recherche en cours"
-                        : "Looking up a place"}
-                    </p>
+                    <div className="w-full px-3 py-1">
+                      <p className="text-sm font-medium whitespace-nowrap">
+                        {isFr ? "Découverte du jour" : "Discovery of the day"}
+                      </p>
+                    </div>
                   </div>
                   <div className="pr-7">
-                    <p className="text-sm font-semibold leading-tight">
-                      {discoverPlace?.name || (isFr ? "Lieu surprise" : "Surprise place")}
-                    </p>
-                    <p className="text-[11px] opacity-80 truncate">
-                      {discoverPlace?.city || discoverPlace?.address || (isFr ? "Indie Map" : "Indie Map")}
-                    </p>
+                    <div className="w-full px-3 py-1">
+                      <p className="text-sm font-semibold leading-tight">
+                        {discoverPlace?.name || (isFr ? "Lieu surprise" : "Surprise place")}
+                      </p>
+                      <p className="text-[11px] opacity-90 truncate">
+                        {discoverPlace?.city || discoverPlace?.address || "Indie Map"}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </button>
