@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+
 import ContributeForm from "@/components/ContributeForm";
 
 type Panel = null | "pros" | "contrib" | "about";
@@ -22,6 +23,14 @@ type DiscoverPlace = {
 type NewPlace = DiscoverPlace;
 
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
+
+const explorerPulseCss = `
+@keyframes explorerPulse {
+  0% { transform: scale(1.00); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1.00); }
+}
+`;
 
 function readHomeCache(locale: "fr" | "en") {
   try {
@@ -268,7 +277,8 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
   return (
     <>
-      <div className="flex h-[100dvh] w-full flex-col bg-[#2a2a24] text-white">
+      <style jsx global>{explorerPulseCss}</style>
+      <div className="flex h-[100dvh] w-full flex-col bg-black text-white">
         <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5">
           <div className="mb-2 flex w-full justify-center pt-2 pb-1">
             <div className="inline-flex flex-col items-start justify-center gap-1">
@@ -289,40 +299,19 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
           <button
             onClick={() => router.push(`/${locale}/carte`)}
-            className="relative w-full min-h-[220px] flex-[1.2] overflow-hidden rounded-xl mb-2"
+            className="relative w-full min-h-[220px] flex-[1.2] overflow-hidden rounded-b-xl mb-2"
               style={{
-                background: "linear-gradient(180deg, rgba(125,116,49,0.96) 0%, rgba(86,78,30,0.96) 100%)",
-                boxShadow: "inset 0 2px 0 rgba(255,255,255,0.28), inset 0 -8px 18px rgba(0,0,0,0.18), 0 20px 40px rgba(0,0,0,0.22), 0 60px 120px rgba(0,0,0,0.16)"
+                background: "#181914"
               }}
             >
-              <div
-                className="absolute inset-[1px] rounded-[999px]"
-                style={{
-                  boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.20)"
-                }}
-              ></div>
               <img
                 src="/explorer-bg.png"
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover scale-105 opacity-88"
-                style={{ filter: "blur(2px)" }}
+                className="absolute inset-0 h-full w-full object-cover" style={{ animation: "explorerPulse 5s ease-in-out infinite", transformOrigin: "center center" }}
               />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(111,101,40,0.10) 28%, rgba(111,101,40,0.32) 100%)"
-                }}
-              ></div>
-              <div
-                className="absolute inset-0"
-                style={{
-                  boxShadow: "inset 0 20px 26px rgba(255,255,255,0.06), inset 0 -24px 28px rgba(0,0,0,0.26)"
-                }}
-              ></div>
-              <div className="relative z-10 flex h-full flex-col justify-center items-center px-8 text-white">
-                <p className="text-xl font-semibold">Explorer</p>
-                <p className="text-sm opacity-80">
-                  {isFr ? "Trouver des lieux autour de vous" : "Find places around you"}
+              <div className="relative z-10 flex h-full flex-col justify-end items-start px-6 pb-6 text-white">
+                <p className="font-serif text-[24px] font-medium tracking-[0.01em]">
+                  {isFr ? "Explorer le monde" : "Explore the world"}
                 </p>
               </div>
             </button>
@@ -360,14 +349,14 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 <div className="absolute inset-0 z-10 flex flex-col justify-between">
                   <div>
                     <div className="w-full px-3 py-1">
-                      <p className="text-sm font-medium whitespace-nowrap">
+                      <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
                         {isFr ? "Découverte du jour" : "Discovery of the day"}
                       </p>
                     </div>
                   </div>
                   <div className="pr-7">
                     <div className="w-full px-3 py-1">
-                      <p className="text-sm font-semibold leading-tight">
+                      <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
                         {discoverPlace?.name || (isFr ? "Lieu surprise" : "Surprise place")}
                       </p>
                       <p className="text-[11px] opacity-90 truncate">
@@ -411,14 +400,14 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 <div className="absolute inset-0 z-10 flex flex-col justify-between">
                   <div>
                     <div className="w-full px-3 py-1">
-                      <p className="text-sm font-medium whitespace-nowrap">
+                      <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
                         {isFr ? "Nouveaux lieux" : "New places"}
                       </p>
                     </div>
                   </div>
                   <div className="pr-7">
                     <div className="w-full px-3 py-1">
-                      <p className="text-sm font-semibold leading-tight">
+                      <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
                         {currentNewPlace?.name || (isFr ? "Ajoutés récemment" : "Recently added")}
                       </p>
                       <p className="text-[11px] opacity-90 truncate">
@@ -705,3 +694,8 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     </>
   );
 }
+
+
+
+
+
