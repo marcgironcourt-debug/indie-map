@@ -220,20 +220,22 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     <>
       <div className="h-[100dvh] w-full bg-[#2a2a24] text-white px-6">
         <div className="mx-auto flex h-full w-full max-w-md flex-col items-center pt-5">
-          <div className="mb-5 flex flex-col items-center flex flex-col items-center justify-center gap-2 w-full py-3">
-            <h1 className="text-[26px] font-semibold tracking-tight text-white">
-              Indie Map
-            </h1>
+          <div className="mb-3 flex w-full justify-center pt-2 pb-1">
+            <div className="inline-flex flex-col items-start justify-center gap-1">
+              <h1 className="text-[22px] font-semibold tracking-tight text-white">
+                Indie Map
+              </h1>
 
-            <span className="-mt-1 inline-block -rotate-2 text-[14px] italic tracking-[0.13em] text-[#5C6E3B]">
-              Back To Local
-            </span>
+              <span className="-mt-3 inline-block -rotate-2 text-[13px] italic tracking-[0.13em] text-[#5C6E3B]">
+                Back To Local
+              </span>
+            </div>
           </div>
 
-          <div className="mt-3 w-full space-y-4">
+          <div className="mt-6 w-full space-y-3 pb-[104px]">
             <button
               onClick={() => router.push(`/${locale}/carte`)}
-              className="relative w-full h-[118px] overflow-hidden rounded-[999px]"
+              className="relative w-full h-[220px] overflow-hidden rounded-2xl"
               style={{
                 background: "linear-gradient(180deg, rgba(125,116,49,0.96) 0%, rgba(86,78,30,0.96) 100%)",
                 boxShadow: "inset 0 2px 0 rgba(255,255,255,0.16), inset 0 -10px 18px rgba(0,0,0,0.28), 0 14px 24px rgba(0,0,0,0.18)"
@@ -271,7 +273,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               </div>
             </button>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="mt-5 grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => {
@@ -281,7 +283,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   }
                   router.push(`/${locale}/carte`);
                 }}
-                className="relative overflow-hidden rounded-2xl bg-white/10 h-[110px] text-left hover:bg-white/14 active:bg-white/18"
+                className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18"
               >
                 <img
                   src={discoverPlace?.panoramaImage || "/explorer-bg.png"}
@@ -327,7 +329,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 onTouchStart={onNewPlacesTouchStart}
                 onTouchMove={onNewPlacesTouchMove}
                 onTouchEnd={onNewPlacesTouchEnd}
-                className="relative overflow-hidden rounded-2xl bg-white/10 h-[110px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
               >
                 <img
                   src={currentNewPlace?.panoramaImage || "/explorer-bg.png"}
@@ -371,64 +373,64 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 ) : null}
               </button>
 
-              <button
-                type="button"
-                onClick={() => setPanel("contrib")}
-                className="relative rounded-2xl bg-white/10 p-4 h-[110px] col-span-2 text-left hover:bg-white/14 active:bg-white/18"
-              >
-                <p className="text-base font-medium">{isFr ? "Contribution" : "Contribute"}</p>
-                <p className="text-sm opacity-70"></p>
-                <span className="absolute bottom-3 right-3 text-2xl">🔖</span>
-              </button>
-            </div>
 
-            <div className="grid grid-cols-3 gap-3 pt-2 items-stretch">
-              <button
-                type="button"
-                onClick={() => setPanel("pros")}
-                className="flex flex-col items-center justify-center gap-2 w-full py-3"
-              >
-                <div className="mx-auto mb-2 flex h-12 w-16 items-center justify-center rounded-2xl bg-white/10">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10 6h4" />
-                    <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
-                    <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
-                    <path d="M9 14h6" />
-                  </svg>
-                </div>
-                <p className="text-[14px] font-medium">{isFr ? "Espace pro" : "Pros"}</p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {}}
-                className="flex flex-col items-center justify-center gap-2 w-full py-3"
-              >
-                <div className="mx-auto mb-2 flex h-12 w-16 items-center justify-center rounded-2xl bg-white/10">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 5v14" />
-                    <path d="M5 12h14" />
-                  </svg>
-                </div>
-                <p className="text-[14px] font-medium">{isFr ? "Mes lieux" : "My places"}</p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPanel("about")}
-                className="flex flex-col items-center justify-center gap-2 w-full py-3"
-              >
-                <div className="mx-auto mb-2 flex h-12 w-16 items-center justify-center rounded-2xl bg-white/10">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 16v-5" />
-                    <path d="M12 8h.01" />
-                    <circle cx="12" cy="12" r="9" />
-                  </svg>
-                </div>
-                <p className="text-[14px] font-medium">{isFr ? "Infos" : "Info"}</p>
-              </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-[1200]">
+        <div
+          className="grid w-full grid-cols-4 border-t border-white/10 bg-[#34342f]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        >
+          <button
+            type="button"
+            onClick={() => {}}
+            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+          >
+            <span className="text-[24px] leading-none">♡</span>
+            <span className="text-[11px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setPanel("contrib")}
+            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+          >
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14" />
+              <path d="M5 12h14" />
+            </svg>
+            <span className="text-[11px] font-medium leading-tight">{isFr ? "Proposer" : "Suggest"}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setPanel("about")}
+            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+          >
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 16v-5" />
+              <path d="M12 8h.01" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            <span className="text-[11px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setPanel("pros")}
+            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+          >
+            <svg viewBox="0 0 24 24" className="h-6 w-6 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10 6h4" />
+              <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
+              <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
+              <path d="M9 14h6" />
+            </svg>
+            <span className="text-[11px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
+          </button>
         </div>
       </div>
 
