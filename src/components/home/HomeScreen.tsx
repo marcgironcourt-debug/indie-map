@@ -15,7 +15,11 @@ type DiscoverPlace = {
   panoramaImage?: string;
   city?: string;
   address?: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
+
+type NewPlace = DiscoverPlace;
 
 function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   const toRad = (v: number) => (v * Math.PI) / 180;
@@ -46,6 +50,10 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(null);
   const [discoverReady, setDiscoverReady] = React.useState(false);
+  const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>([]);
+  const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
+  const newPlacesTouchStartXRef = React.useRef<number | null>(null);
+  const newPlacesTouchDeltaXRef = React.useRef(0);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -64,6 +72,47 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   }, [panel]);
 
   React.useEffect(() => {
+    if (newPlaces.length <= 1) return;
+    const id = window.setInterval(() => {
+      setNewPlaceIndex((prev) => (prev + 1) % newPlaces.length);
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [newPlaces]);
+
+  const currentNewPlace = newPlaces[newPlaceIndex] ?? null;
+
+  function goToNewPlace(delta: number) {
+    setNewPlaceIndex((prev) => {
+      if (newPlaces.length === 0) return 0;
+      return (prev + delta + newPlaces.length) % newPlaces.length;
+    });
+  }
+
+  function onNewPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
+    newPlacesTouchStartXRef.current = e.touches[0]?.clientX ?? null;
+    newPlacesTouchDeltaXRef.current = 0;
+  }
+
+  function onNewPlacesTouchMove(e: React.TouchEvent<HTMLButtonElement>) {
+    const startX = newPlacesTouchStartXRef.current;
+    if (startX == null) return;
+    const currentX = e.touches[0]?.clientX ?? startX;
+    newPlacesTouchDeltaXRef.current = currentX - startX;
+  }
+
+  function onNewPlacesTouchEnd() {
+    const dx = newPlacesTouchDeltaXRef.current;
+    newPlacesTouchStartXRef.current = null;
+    newPlacesTouchDeltaXRef.current = 0;
+    if (Math.abs(dx) < 35) return;
+    if (dx < 0) {
+      goToNewPlace(1);
+      return;
+    }
+    goToNewPlace(-1);
+  }
+
+  React.useEffect(() => {
     let cancelled = false;
 
     (async () => {
@@ -80,7 +129,9 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             lng: typeof item?.lng === "number" ? item.lng : undefined,
             panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
             city: String(item?.city ?? "").trim() || undefined,
-            address: String(item?.address ?? "").trim() || undefined
+            address: String(item?.address ?? "").trim() || undefined,
+            createdAt: String(item?.createdAt ?? "").trim() || undefined,
+            updatedAt: String(item?.updatedAt ?? "").trim() || undefined
           }))
           .filter((item: DiscoverPlace) =>
             !!item.id &&
@@ -93,6 +144,15 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
         const finish = (pool: DiscoverPlace[]) => {
           if (cancelled) return;
+          const latest = [...all]
+            .sort((a, b) => {
+              const aTime = Date.parse(a.updatedAt || a.createdAt || "") || 0;
+              const bTime = Date.parse(b.updatedAt || b.createdAt || "") || 0;
+              return bTime - aTime;
+            })
+            .slice(0, 5);
+          setNewPlaces(latest);
+          setNewPlaceIndex(0);
           setDiscoverPlace(pool.length > 0 ? pickDailyPlace(pool, dayKey) : null);
           setDiscoverReady(true);
         };
@@ -255,11 +315,61 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 </div>
               </button>
 
-              <div className="relative rounded-2xl bg-white/10 p-4 h-[110px]">
-                <p className="text-base font-medium">{isFr ? "Nouveaux lieux" : "New places"}</p>
-                <p className="text-sm opacity-70">{isFr ? "Ajoutés récemment" : "Added recently"}</p>
-                <span className="absolute bottom-3 right-3 text-2xl">➕</span>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (currentNewPlace?.id) {
+                    router.push(`/${locale}/carte?discover=${encodeURIComponent(currentNewPlace.id)}`);
+                    return;
+                  }
+                  router.push(`/${locale}/carte`);
+                }}
+                onTouchStart={onNewPlacesTouchStart}
+                onTouchMove={onNewPlacesTouchMove}
+                onTouchEnd={onNewPlacesTouchEnd}
+                className="relative overflow-hidden rounded-2xl bg-white/10 h-[110px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+              >
+                <img
+                  src={currentNewPlace?.panoramaImage || "/explorer-bg.png"}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                  }}
+                ></div>
+                <div className="absolute inset-0 z-10 flex flex-col justify-between">
+                  <div>
+                    <div className="w-full px-3 py-1">
+                      <p className="text-sm font-medium whitespace-nowrap">
+                        {isFr ? "Nouveaux lieux" : "New places"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pr-7">
+                    <div className="w-full px-3 py-1">
+                      <p className="text-sm font-semibold leading-tight">
+                        {currentNewPlace?.name || (isFr ? "Ajoutés récemment" : "Recently added")}
+                      </p>
+                      <p className="text-[11px] opacity-90 truncate">
+                        {currentNewPlace?.city || currentNewPlace?.address || "Indie Map"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {newPlaces.length > 1 ? (
+                  <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
+                    {newPlaces.map((item, index) => (
+                      <span
+                        key={item.id}
+                        className={index === newPlaceIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </button>
 
               <button
                 type="button"
