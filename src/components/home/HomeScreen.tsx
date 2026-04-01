@@ -305,7 +305,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               }}
             >
               <img
-                src="/explorer-bg.png"
+                src="/explorer-bg.png?v=3"
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover" style={{ animation: "explorerPulse 5s ease-in-out infinite", transformOrigin: "center center" }}
               />
