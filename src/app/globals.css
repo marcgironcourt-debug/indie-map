@@ -303,7 +303,7 @@ main {
 }
 
 .maplibregl-ctrl-bottom-right{
-  transform: translate(-16px, -42px);
+  transform: none;
 }
 
 

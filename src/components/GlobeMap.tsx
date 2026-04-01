@@ -3000,18 +3000,18 @@ class GeolocateControl_ML {
     c.style.display = "block";
     c.style.pointerEvents = "none";
     c.style.marginRight = "12px";
-    c.style.marginBottom = "92px";
+    c.style.marginBottom = "12px";
     c.style.pointerEvents = "auto";
     c.innerHTML = `
       <button type="button" aria-label={ui("Me localiser","Locate me")}
         style="
-          height:33px;width:33px;border-radius:16px;
-          background:#262626;border:1px solid #404040;
+          height:44px;width:44px;border-radius:0 0 12px 12px;
+          background:#262626;border:1px solid #404040;border-top:1px solid rgba(255,255,255,0.15);
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12);
           cursor:pointer;
         ">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="transform: translate(-1px, -0.5px);"
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="transform: translate(-1px, -0.5px);"
           stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2L11 13" />
           <path d="M22 2l-7 20-4-9-9-4 20-7z" />
@@ -3257,6 +3257,21 @@ class GeolocateControl_ML {
       });
     }
     this._container = c;
+    try {
+      requestAnimationFrame(() => {
+        try {
+          const wrap = c.parentElement as HTMLElement | null;
+          if (wrap) {
+            wrap.style.marginRight = "0";
+            wrap.style.marginBottom = "0";
+            wrap.style.marginLeft = "0";
+            wrap.style.marginTop = "0";
+            wrap.style.float = "none";
+            wrap.style.clear = "none";
+          }
+        } catch {}
+      });
+    } catch {}
     try { geolocateElRef.current = c; } catch {}
     return c;
   }
