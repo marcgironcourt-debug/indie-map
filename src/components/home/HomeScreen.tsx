@@ -288,13 +288,13 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               className="relative w-full h-[220px] overflow-hidden rounded-2xl"
               style={{
                 background: "linear-gradient(180deg, rgba(125,116,49,0.96) 0%, rgba(86,78,30,0.96) 100%)",
-                boxShadow: "inset 0 2px 0 rgba(255,255,255,0.16), inset 0 -10px 18px rgba(0,0,0,0.28), 0 14px 24px rgba(0,0,0,0.18)"
+                boxShadow: "inset 0 2px 0 rgba(255,255,255,0.28), inset 0 -8px 18px rgba(0,0,0,0.18), 0 20px 40px rgba(0,0,0,0.22), 0 60px 120px rgba(0,0,0,0.16)"
               }}
             >
               <div
                 className="absolute inset-[1px] rounded-[999px]"
                 style={{
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.20)"
+                  boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.20)"
                 }}
               ></div>
               <img
@@ -334,6 +334,9 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   router.push(`/${locale}/carte`);
                 }}
                 className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18"
+                style={{
+                  boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                }}
               >
                 {discoverPlace?.panoramaImage ? (
                   <img
@@ -382,6 +385,9 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                 onTouchMove={onNewPlacesTouchMove}
                 onTouchEnd={onNewPlacesTouchEnd}
                 className="relative overflow-hidden rounded-2xl bg-white/10 h-[168px] text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                style={{
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                }}
               >
                 {currentNewPlace?.panoramaImage ? (
                   <img
