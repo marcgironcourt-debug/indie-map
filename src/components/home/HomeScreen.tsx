@@ -24,6 +24,15 @@ type DiscoverPlace = {
 type NewPlace = DiscoverPlace;
 type SavedPlace = DiscoverPlace;
 
+declare global {
+  interface Window {
+    __IM_NATIVE_LOCATION__?: { lat?: number; lng?: number; ts?: number };
+  }
+  interface WindowEventMap {
+    "im:native-location": CustomEvent<{ lat: number; lng: number }>;
+  }
+}
+
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 const SAVED_PLACES_KEY = "im-saved-places";
 
@@ -130,11 +139,21 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>([]);
+  const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const newPlacesTouchStartXRef = React.useRef<number | null>(null);
   const newPlacesTouchDeltaXRef = React.useRef(0);
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onNativeLocation = () => setNativeLocationTick((v) => v + 1);
+    window.addEventListener("im:native-location", onNativeLocation);
+    return () => {
+      window.removeEventListener("im:native-location", onNativeLocation);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -154,7 +173,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     if (cached.discoverPlace || (cached.newPlaces?.length ?? 0) > 0) {
       setDiscoverReady(true);
     }
-  }, [locale]);
+  }, [locale, nativeLocationTick]);
 
   React.useEffect(() => {
     const syncSavedPlaces = () => {
@@ -312,24 +331,97 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
         const pos = await new Promise<{ lat: number; lng: number } | null>((resolve) => {
           try {
-            if (!navigator.geolocation) {
-              resolve(null);
+            const nativeNow =
+              typeof window !== "undefined" &&
+              window.__IM_NATIVE_LOCATION__ &&
+              Number.isFinite(Number(window.__IM_NATIVE_LOCATION__.lat)) &&
+              Number.isFinite(Number(window.__IM_NATIVE_LOCATION__.lng))
+                ? {
+                    lat: Number(window.__IM_NATIVE_LOCATION__.lat),
+                    lng: Number(window.__IM_NATIVE_LOCATION__.lng)
+                  }
+                : null;
+
+            if (nativeNow) {
+              resolve(nativeNow);
               return;
             }
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                resolve({
-                  lat: Number(position.coords.latitude),
-                  lng: Number(position.coords.longitude)
-                });
-              },
-              () => resolve(null),
-              {
-                enableHighAccuracy: false,
-                timeout: 4500,
-                maximumAge: 21600000
+
+            let settled = false;
+
+            const done = (value: { lat: number; lng: number } | null) => {
+              if (settled) return;
+              settled = true;
+              if (typeof window !== "undefined") {
+                window.removeEventListener("im:native-location", onNativeLocation);
               }
-            );
+              clearTimeout(waitNativeTimer);
+              clearTimeout(geoFallbackTimer);
+              resolve(value);
+            };
+
+            const onNativeLocation = (event: CustomEvent<{ lat: number; lng: number }>) => {
+              const lat = Number(event.detail?.lat);
+              const lng = Number(event.detail?.lng);
+              if (Number.isFinite(lat) && Number.isFinite(lng)) {
+                done({ lat, lng });
+              }
+            };
+
+            if (typeof window !== "undefined") {
+              window.addEventListener("im:native-location", onNativeLocation as EventListener, { once: true });
+            }
+
+            const readNativeAgain = () => {
+              const nativeLater =
+                typeof window !== "undefined" &&
+                window.__IM_NATIVE_LOCATION__ &&
+                Number.isFinite(Number(window.__IM_NATIVE_LOCATION__.lat)) &&
+                Number.isFinite(Number(window.__IM_NATIVE_LOCATION__.lng))
+                  ? {
+                      lat: Number(window.__IM_NATIVE_LOCATION__.lat),
+                      lng: Number(window.__IM_NATIVE_LOCATION__.lng)
+                    }
+                  : null;
+
+              if (nativeLater) {
+                done(nativeLater);
+                return true;
+              }
+              return false;
+            };
+
+            const geoFallbackTimer = setTimeout(() => {
+              if (readNativeAgain()) return;
+
+              try {
+                if (!navigator.geolocation) {
+                  done(null);
+                  return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                  (position) => {
+                    done({
+                      lat: Number(position.coords.latitude),
+                      lng: Number(position.coords.longitude)
+                    });
+                  },
+                  () => done(null),
+                  {
+                    enableHighAccuracy: false,
+                    timeout: 4500,
+                    maximumAge: 21600000
+                  }
+                );
+              } catch {
+                done(null);
+              }
+            }, 1200);
+
+            const waitNativeTimer = setTimeout(() => {
+              readNativeAgain();
+            }, 150);
           } catch {
             resolve(null);
           }
@@ -355,7 +447,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     return () => {
       cancelled = true;
     };
-  }, [locale]);
+  }, [locale, nativeLocationTick]);
 
   const savedPlacesByCity = React.useMemo(() => {
     const byId = new Map(allPlaces.map((place) => [place.id, place] as const));

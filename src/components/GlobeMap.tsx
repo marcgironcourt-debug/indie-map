@@ -916,7 +916,7 @@ export default function GlobeMap({
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
   const pendingNativeLocationRef = React.useRef<{ lat: number; lng: number } | null>(null);
-  const suppressInitialNativeLocationRef = React.useRef<boolean>(typeof window !== "undefined" && new URLSearchParams(window.location.search).has("discover"));
+  const suppressInitialNativeLocationRef = React.useRef<boolean>(false);
   const [mapReadyTick, setMapReadyTick] = React.useState(0);
 
   React.useEffect(() => {
