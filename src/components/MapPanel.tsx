@@ -23,8 +23,11 @@ export default function MapPanel(props: {
   selectedId?: string | null;
   selectionVersion?: number;
   onSelect?: (id: string) => void;
+  overlaysReady?: boolean;
+  homeOverlay?: React.ReactNode;
+  topOverlay?: React.ReactNode;
 }) {
-  const { items = [], selectedId, onSelect } = props;
+  const { items = [], selectedId, onSelect, overlaysReady = true, homeOverlay, topOverlay } = props;
 
   useEffect(() => {
     const sessionKey = "im_session_id";
@@ -75,10 +78,19 @@ export default function MapPanel(props: {
   }, []);
 
   return (
-    <section className="relative h-full w-full overflow-hidden bg-[#0B0F0C]">
+    <section
+      className="relative h-full w-full overflow-hidden bg-[#0B0F0C]"
+      style={{
+        opacity: overlaysReady ? 1 : 0,
+        transition: "opacity 120ms ease",
+        willChange: "opacity"
+      }}
+    >
       <div className="h-full">
-        <GlobeMap items={items} selectedId={selectedId} onSelect={onSelect} />
+        <GlobeMap items={items} selectedId={selectedId} onSelect={onSelect} overlaysReady={overlaysReady} />
       </div>
+      {homeOverlay}
+      {topOverlay}
     </section>
   );
 }

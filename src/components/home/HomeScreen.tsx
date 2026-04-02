@@ -90,6 +90,10 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   const [panel, setPanel] = React.useState<Panel>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => homeMemoryCache[locale]?.discoverPlace ?? null);
+
+  React.useEffect(() => {
+    try { router.prefetch(`/${locale}/carte`); } catch {}
+  }, [router, locale]);
   const [discoverReady, setDiscoverReady] = React.useState(() => {
     const cached = homeMemoryCache[locale];
     return Boolean(cached?.discoverPlace || (cached?.newPlaces?.length ?? 0) > 0);
@@ -298,7 +302,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           
 
           <button
-            onClick={() => router.push(`/${locale}/carte`)}
+            onClick={() => router.push(`/${locale}/carte?entry=explore`)}
             className="relative w-full min-h-[220px] flex-[1.2] overflow-hidden rounded-b-xl mb-2"
               style={{
                 background: "#181914"

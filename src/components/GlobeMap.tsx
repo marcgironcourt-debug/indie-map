@@ -797,11 +797,13 @@ export default function GlobeMap({
   selectedId,
   onSelect,
   darkMap = false,
+  overlaysReady = true,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   onSelect?: (id: string) => void;
   darkMap?: boolean;
+  overlaysReady?: boolean;
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const mapRef = React.useRef<maplibregl.Map | null>(null);
@@ -1291,10 +1293,10 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   React.useEffect(() => {
     try {
       if (geolocateElRef.current) {
-        geolocateElRef.current.style.display = (sheetOpen || heroUiHide) ? "none" : "block";
+        geolocateElRef.current.style.display = (sheetOpen || heroUiHide || !overlaysReady) ? "none" : "block";
       }
     } catch {}
-  }, [sheetOpen, discoverHeroUrl, heroUiHide]);
+  }, [sheetOpen, discoverHeroUrl, heroUiHide, overlaysReady]);
 
   React.useEffect(() => {
     sheetHeightRef.current = sheetHeightVh;
@@ -1871,6 +1873,35 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
 
         try { setTimeout(recenterMini, 0); } catch {}
         try { setTimeout(recenterMini, 80); } catch {}
+        try {
+          let tries = 0;
+          const emitWhenGeolocVisible = () => {
+            try {
+              const geoBtn = geolocateElRef.current?.querySelector("button") as HTMLButtonElement | null;
+              const visible =
+                !!geoBtn &&
+                geoBtn.isConnected &&
+                geoBtn.offsetParent !== null &&
+                window.getComputedStyle(geoBtn).display !== "none" &&
+                window.getComputedStyle(geoBtn).visibility !== "hidden" &&
+                window.getComputedStyle(geoBtn).opacity !== "0";
+              if (visible || tries >= 24) {
+                window.dispatchEvent(new CustomEvent("im:discover-ui-ready", { detail: { id: sid } }));
+                return;
+              }
+            } catch {
+              if (tries >= 24) {
+                try { window.dispatchEvent(new CustomEvent("im:discover-ui-ready", { detail: { id: sid } })); } catch {}
+                return;
+              }
+            }
+            tries += 1;
+            try { window.requestAnimationFrame(emitWhenGeolocVisible); } catch {
+              try { setTimeout(emitWhenGeolocVisible, 16); } catch {}
+            }
+          };
+          emitWhenGeolocVisible();
+        } catch {}
       } catch {}
 
       try { heroReturnPopupRef.current = { lng: Number(lng), lat: Number(lat), props, fid: sid }; } catch {}
@@ -2803,9 +2834,9 @@ return;
 
     const el = ref.current as any;
     try {
-      el.style.opacity = "0";
-      el.style.transition = "opacity 180ms ease";
-      el.style.willChange = "opacity";
+      el.style.opacity = "1";
+      el.style.transition = "none";
+      el.style.willChange = "auto";
     } catch {}
 
 
@@ -2843,43 +2874,6 @@ return;
     } catch {}
 
     try { (window as any).__IM_MAP__ = map; } catch {}
-
-    /* __IM_REVEAL_READY__ */
-    try {
-      const reveal = () => {
-        try {
-          requestAnimationFrame(() => requestAnimationFrame(() => { try { el.style.opacity = "1"; } catch {} }));
-        } catch {
-          try { el.style.opacity = "1"; } catch {}
-        }
-      };
-
-      let done = false;
-      const finish = () => { if (done) return; done = true; reveal(); };
-
-      let tries = 0;
-      const t = setInterval(() => {
-        tries++;
-        try {
-          const okStyle = (map as any).isStyleLoaded?.() === true;
-          const okTiles = (map as any).areTilesLoaded?.() === true;
-          const okPins = (() => { try { return !!map.getLayer(LAYER_ID); } catch { return false; } })();
-          if (okStyle && okTiles && okPins) {
-            clearInterval(t);
-            finish();
-          } else if (tries >= 60) {
-            clearInterval(t);
-            finish();
-          }
-        } catch {
-          if (tries >= 60) {
-            clearInterval(t);
-            finish();
-          }
-        }
-      }, 100);
-    } catch {}
-/* __IM_REVEAL_READY__ */
 
 
 
@@ -3429,6 +3423,36 @@ mapRef.current = map;
     map.on("load", () => {
       readyRef.current = true;
       try { setMapReadyTick((v) => v + 1); } catch {}
+      try {
+        let tries = 0;
+        const emitMapReady = () => {
+          try {
+            const geoBtn = geolocateElRef.current?.querySelector("button") as HTMLButtonElement | null;
+            const visible =
+              !!geoBtn &&
+              geoBtn.isConnected &&
+              geoBtn.offsetParent !== null &&
+              window.getComputedStyle(geoBtn).display !== "none" &&
+              window.getComputedStyle(geoBtn).visibility !== "hidden";
+            const canvas = ref.current?.querySelector(".maplibregl-canvas") as HTMLCanvasElement | null;
+            const canvasReady = !!canvas;
+            if ((visible && canvasReady) || tries >= 24) {
+              window.dispatchEvent(new CustomEvent("im:map-ui-ready"));
+              return;
+            }
+          } catch {
+            if (tries >= 24) {
+              try { window.dispatchEvent(new CustomEvent("im:map-ui-ready")); } catch {}
+              return;
+            }
+          }
+          tries += 1;
+          try { window.requestAnimationFrame(emitMapReady); } catch {
+            try { setTimeout(emitMapReady, 16); } catch {}
+          }
+        };
+        emitMapReady();
+      } catch {}
 
       map.setProjection({ type: "globe" } as any);
 
@@ -3484,7 +3508,7 @@ mapRef.current = map;
 
   return (
     <div className="relative h-full w-full bg-black">
-      <div ref={ref} className="h-full w-full" style={{ backgroundColor: "#000", opacity: 0, transition: "opacity 180ms ease", willChange: "opacity" }} />
+      <div ref={ref} className="h-full w-full" style={{ backgroundColor: "#000", opacity: 1, transition: "none", willChange: "auto" }} />
       <style>{`\
         .maplibregl-canvas{transition:filter 220ms ease;}\
         .im-globe-dim .maplibregl-canvas{filter:brightness(.40) saturate(.90) contrast(.98);}\

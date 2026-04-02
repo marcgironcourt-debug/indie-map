@@ -289,12 +289,14 @@ function FilterBar({
 
 
 
-export default function IndieMapSplitView({ locale, discoverId }: { locale: UILocale; discoverId?: string | null }) {
+export default function IndieMapSplitView({ locale, discoverId, entry }: { locale: UILocale; discoverId?: string | null; entry?: string | null }) {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
   const [heroOpen, setHeroOpen] = React.useState(false);
+  const needsAtomicReveal = Boolean(discoverId) || entry === "explore";
+  const [discoverUiReady, setDiscoverUiReady] = React.useState<boolean>(!needsAtomicReveal);
 
   React.useEffect(() => {
     type HeroDetail = { open?: boolean };
@@ -311,6 +313,40 @@ export default function IndieMapSplitView({ locale, discoverId }: { locale: UILo
     setSelectedId(String(discoverId));
     setSelectionVersion((v) => v + 1);
   }, [discoverId, businesses]);
+
+  React.useEffect(() => {
+    setDiscoverUiReady(!needsAtomicReveal);
+  }, [needsAtomicReveal]);
+
+  React.useEffect(() => {
+    if (!needsAtomicReveal) return;
+    let revealTimer: number | null = null;
+    const reveal = () => {
+      try {
+        if (revealTimer) window.clearTimeout(revealTimer);
+      } catch {}
+      revealTimer = window.setTimeout(() => setDiscoverUiReady(true), 60);
+    };
+    const onDiscoverReady = (e: Event) => {
+      try {
+        const ce = e as CustomEvent<{ id?: string }>;
+        if (discoverId && String(ce.detail?.id ?? "") !== String(discoverId)) return;
+        reveal();
+      } catch {}
+    };
+    const onMapReady = () => reveal();
+    try { window.addEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+    try { window.addEventListener("im:map-ui-ready", onMapReady as EventListener); } catch {}
+    const t = window.setTimeout(reveal, 1800);
+    return () => {
+      try {
+        window.clearTimeout(t);
+        if (revealTimer) window.clearTimeout(revealTimer);
+      } catch {}
+      try { window.removeEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+      try { window.removeEventListener("im:map-ui-ready", onMapReady as EventListener); } catch {}
+    };
+  }, [discoverId, needsAtomicReveal]);
 
 React.useEffect(() => {
     let cancelled = false;
@@ -582,6 +618,32 @@ const filtered = source.filter((b) => {
           items={filtered}
           selectedId={selectedId}
           selectionVersion={selectionVersion}
+          overlaysReady={discoverUiReady}
+          homeOverlay={!heroOpen ? (
+            <div
+              className="absolute z-[1450] pointer-events-auto"
+              style={{ right: "12px", bottom: "calc(env(safe-area-inset-bottom) + 56px)" }}
+            >
+              <Link
+                href={`/${locale}`}
+                aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
+                className="flex items-center justify-center w-11 h-11 rounded-t-xl rounded-b-none bg-[#262626] text-white shadow-lg backdrop-blur-md border border-[#404040] border-b border-b-transparent"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
+                </svg>
+              </Link>
+            </div>
+          ) : null}
+          topOverlay={!heroOpen ? (
+            <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
+              <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
+                <FilterBar locale={locale} categories={categories}
+                activeCategory={category}
+                onCategoryChange={setCategory} />
+              </div>
+            </div>
+          ) : null}
           onSelect={(id) => {
             if (!id) {
               setSelectedId(null);
@@ -591,31 +653,6 @@ const filtered = source.filter((b) => {
             setSelectionVersion((v) => v + 1);
           }}          />
       </div>
-      {!heroOpen && (
-        <>
-          <div
-            className="absolute z-[1450] pointer-events-auto"
-            style={{ right: "12px", bottom: "calc(env(safe-area-inset-bottom) + 56px)" }}
-          >
-            <Link
-              href={`/${locale}`}
-              aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
-              className="flex items-center justify-center w-11 h-11 rounded-t-xl rounded-b-none bg-[#262626] text-white shadow-lg backdrop-blur-md border border-[#404040] border-b border-b-transparent"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
-              </svg>
-            </Link>
-          </div>
-          <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
-            <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
-              <FilterBar locale={locale} categories={categories}
-              activeCategory={category}
-              onCategoryChange={setCategory} />
-            </div>
-          </div>
-        </>
-      )}
       <div className="absolute bottom-3 left-0 right-0 z-[1340] flex justify-center">
         <Link href="/privacy" className="text-xs opacity-70 hover:opacity-100 underline"></Link>
       </div>
