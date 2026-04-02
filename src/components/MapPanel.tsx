@@ -81,7 +81,7 @@ export default function MapPanel(props: {
     <section
       className="relative h-full w-full overflow-hidden bg-[#0B0F0C]"
       style={{
-        opacity: overlaysReady ? 1 : 0,
+        opacity: 1,
         transition: "opacity 120ms ease",
         willChange: "opacity"
       }}

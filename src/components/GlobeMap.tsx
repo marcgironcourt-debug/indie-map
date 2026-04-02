@@ -2983,11 +2983,25 @@ return;
 
 
     /* __IM_FADEIN_MAP__ */
+    if (mapRef.current) { return; }
+    const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const isExploreEntry = params?.get("entry") === "explore";
+    const initialNative = (() => {
+      try {
+        const cached = (window as any).__IM_NATIVE_LOCATION__;
+        const lat = Number(cached?.lat);
+        const lng = Number(cached?.lng);
+        if (isExploreEntry && Number.isFinite(lat) && Number.isFinite(lng)) {
+          return { lat, lng };
+        }
+      } catch {}
+      return null;
+    })();
     const map = new maplibregl.Map({
       container: el,
       style: STYLE_URL,
-      center: [0, 0],
-      zoom: isMobile ? 1.4 : 2.4,
+      center: initialNative ? [Number(initialNative.lng), Number(initialNative.lat)] : [0, 0],
+      zoom: initialNative ? 12.4 : (isMobile ? 1.4 : 2.4),
       minZoom: isMobile ? 1.4 : 2.4,
       pitch: 0,
       bearing: 0,
