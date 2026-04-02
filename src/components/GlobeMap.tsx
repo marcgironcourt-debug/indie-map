@@ -1911,7 +1911,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
       map.easeTo({
         center: [Number(lng), Number(lat)],
         zoom: Math.max(Number(map.getZoom() || 0), 9.9),
-        duration: 420,
+        duration: 0,
         offset: [0, 220],
         essential: true
       });
