@@ -105,6 +105,99 @@ function escapeHtml(s: string) {
     .replace(/>/g, "&gt;");
 }
 
+const SAVED_PLACES_KEY = "im-saved-places";
+
+function readSavedPlaces() {
+  try {
+    if (typeof window === "undefined") return [];
+    const raw = window.localStorage.getItem(SAVED_PLACES_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function isSavedPlace(id: string) {
+  return readSavedPlaces().some((item: any) => String(item?.id ?? "") === String(id ?? ""));
+}
+
+function toggleSavedPlace(place: any) {
+  try {
+    if (typeof window === "undefined") return false;
+    const current = readSavedPlaces();
+    const id = String(place?.id ?? "").trim();
+    if (!id) return false;
+
+    const exists = current.some((item: any) => String(item?.id ?? "") === id);
+    const next = exists
+      ? current.filter((item: any) => String(item?.id ?? "") !== id)
+      : [
+          {
+            id,
+            name: String(place?.name ?? "").trim(),
+            city: String(place?.city ?? "").trim() || undefined,
+            address: String(place?.address ?? "").trim() || undefined,
+            panoramaImage: String(place?.panoramaImage ?? "").trim() || undefined,
+            lat: Number.isFinite(Number(place?.lat)) ? Number(place.lat) : undefined,
+            lng: Number.isFinite(Number(place?.lng)) ? Number(place.lng) : undefined
+          },
+          ...current
+        ];
+
+    window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+    window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
+    return !exists;
+  } catch {
+    return false;
+  }
+}
+
+function heartButtonHtml(place: any) {
+  const active = isSavedPlace(String(place?.id ?? ""));
+  const stroke = "rgba(245,245,232,0.95)";
+  const fill = active ? "#6F6528" : "none";
+  const glow = "none";
+  return "<button data-fav=\"1\" data-place-id=\"" + escapeHtml(String(place?.id ?? "")) + "\" data-place-name=\"" + escapeHtml(String(place?.name ?? "")) + "\" data-place-city=\"" + escapeHtml(String(place?.city ?? "")) + "\" data-place-address=\"" + escapeHtml(String(place?.address ?? "")) + "\" data-place-panorama=\"" + escapeHtml(String(place?.panoramaImage ?? "")) + "\" data-place-lat=\"" + escapeHtml(String(place?.lat ?? "")) + "\" data-place-lng=\"" + escapeHtml(String(place?.lng ?? "")) + "\" aria-label=\"" + ui("Mes lieux","My places") + "\" title=\"" + ui("Mes lieux","My places") + "\" style=\"position:absolute; left:-7px; top:-7px; margin:0; padding:0; background:transparent; border:none; color:" + stroke + "; font-size:22px; line-height:1; cursor:pointer; box-shadow:" + glow + "; z-index:3;\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='21' height='21' fill='" + fill + "' stroke='" + stroke + "' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z'/></svg></button>";
+}
+
+function bindFavButton(root: HTMLElement) {
+  try {
+    const fav = root.querySelector("[data-fav=\"1\"]") as HTMLElement | null;
+    if (!fav) return;
+
+    const paint = (active: boolean) => {
+      try {
+        const svg = fav.querySelector("svg");
+        if (!svg) return;
+        const stroke = "rgba(245,245,232,0.95)";
+        const fill = active ? "#6F6528" : "none";
+        (fav as any).style.color = stroke;
+        (fav as any).style.boxShadow = "none";
+        svg.setAttribute("stroke", stroke);
+        svg.setAttribute("fill", fill);
+      } catch {}
+    };
+
+    paint(isSavedPlace(String(fav.getAttribute("data-place-id") || "")));
+
+    fav.addEventListener("click", (ev: any) => {
+      try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+      const next = toggleSavedPlace({
+        id: fav.getAttribute("data-place-id") || "",
+        name: fav.getAttribute("data-place-name") || "",
+        city: fav.getAttribute("data-place-city") || "",
+        address: fav.getAttribute("data-place-address") || "",
+        panoramaImage: fav.getAttribute("data-place-panorama") || "",
+        lat: Number(fav.getAttribute("data-place-lat") || ""),
+        lng: Number(fav.getAttribute("data-place-lng") || "")
+      });
+      paint(next);
+    });
+  } catch {}
+}
+
 
 
 /* __INDIEMAP_OPENING_HOURS_FR__ */
@@ -649,7 +742,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const closeHtml = "<button data-mini-close=\"1\" style=\"position:absolute; top:12px; right:12px; width:28px; height:28px; padding:0; border-radius:0; display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:rgba(245,245,232,.92); font-size:20px; line-height:28px; cursor:pointer; box-shadow:none;\" onclick=\"return false;\" aria-label=\"" + ui("Fermer","Close") + "\" ><span style='display:inline-block; transform: translateY(-4px);'>×</span></button>";
   return (
     "<div style=\"position:relative; width:min(420px, calc(100vw - 40px)); max-width:420px; padding:16px 16px 14px; background:" + bgCss + "; border:1px solid rgba(245,245,232,.14); border-radius:16px 6px 16px 6px; box-shadow:" + shadow + "; overflow:visible; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);\" >" + closeHtml +
-      "<button data-fav=\"1\" aria-label=\"" + ui("Mes lieux","My places") + "\" title=\"" + ui("Mes lieux","My places") + "\" style=\"position:absolute; left:-7px; top:-7px; margin:0; padding:0; background:transparent; border:none; color:rgba(245,245,232,.96); font-size:22px; line-height:1; cursor:pointer; box-shadow:none; z-index:3;\" onclick=\"return false;\" ><svg viewBox='0 0 24 24' width='21' height='21' fill='none' stroke='rgba(245,245,232,0.95)' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' style='display:block;'><path d='M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z'/></svg></button>" +
+      heartButtonHtml(props) +
       "<div style=\"font-family: ui-serif, Georgia, Cambria, 'Times New Roman', serif; font-size:15px; font-weight:700; line-height:1.2; color:" + titleColor + "; letter-spacing:.02em; margin-bottom:12px; padding-left:0; padding-right:34px;\" >" +
         escapeHtml(name || ui("Lieu","Place")) +
       "</div>" +
@@ -1423,6 +1516,8 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
             });
           }
         } catch {}
+
+        try { bindFavButton(el); } catch {}
 
         try {
           const db = el.querySelector("[data-discover=\"1\"]");
@@ -2255,6 +2350,8 @@ map.on("mouseenter", LAYER_ID, () => {
             const el = document.createElement("div");
             el.style.pointerEvents = "auto";
             el.innerHTML = html;
+
+            try { bindFavButton(el); } catch {}
 
             const recenterMini = () => {
                       try {
@@ -3714,6 +3811,8 @@ mapRef.current = map;
                         } as any);
                       } catch {}
                     };
+
+                    try { bindFavButton(el); } catch {}
 
                     try {
                       const pb = el.querySelector("[data-phone=\"1\"]") as HTMLElement | null;

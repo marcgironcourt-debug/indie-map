@@ -21,8 +21,35 @@ type DiscoverPlace = {
 };
 
 type NewPlace = DiscoverPlace;
+type SavedPlace = DiscoverPlace;
 
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
+const SAVED_PLACES_KEY = "im-saved-places";
+
+function readSavedPlaces(): SavedPlace[] {
+  try {
+    if (typeof window === "undefined") return [];
+    const raw = window.localStorage.getItem(SAVED_PLACES_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((item: any) => ({
+        id: String(item?.id ?? "").trim(),
+        name: String(item?.name ?? "").trim(),
+        panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
+        city: String(item?.city ?? "").trim() || undefined,
+        address: String(item?.address ?? "").trim() || undefined,
+        lat: typeof item?.lat === "number" ? item.lat : undefined,
+        lng: typeof item?.lng === "number" ? item.lng : undefined,
+        createdAt: String(item?.createdAt ?? "").trim() || undefined,
+        updatedAt: String(item?.updatedAt ?? "").trim() || undefined
+      }))
+      .filter((item: SavedPlace) => !!item.id && !!item.name);
+  } catch {
+    return [];
+  }
+}
 
 const explorerPulseCss = `
 @keyframes explorerPulse {
@@ -100,8 +127,13 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? []);
   const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
+  const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
+  const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>([]);
+  const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const newPlacesTouchStartXRef = React.useRef<number | null>(null);
   const newPlacesTouchDeltaXRef = React.useRef(0);
+  const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
+  const savedPlacesTouchDeltaXRef = React.useRef(0);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -122,6 +154,20 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
       setDiscoverReady(true);
     }
   }, [locale]);
+
+  React.useEffect(() => {
+    const syncSavedPlaces = () => {
+      setSavedPlaces(readSavedPlaces());
+    };
+
+    syncSavedPlaces();
+    window.addEventListener("storage", syncSavedPlaces);
+    window.addEventListener("im:saved-places-updated", syncSavedPlaces as EventListener);
+    return () => {
+      window.removeEventListener("storage", syncSavedPlaces);
+      window.removeEventListener("im:saved-places-updated", syncSavedPlaces as EventListener);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -173,6 +219,41 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     goToNewPlace(-1);
   }
 
+  function goToSavedPlace(city: string, delta: number, length: number) {
+    setSavedPlaceIndexes((prev) => {
+      const current = prev[city] ?? 0;
+      if (length <= 0) return prev;
+      return {
+        ...prev,
+        [city]: (current + delta + length) % length
+      };
+    });
+  }
+
+  function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
+    savedPlacesTouchStartXRef.current = e.touches[0]?.clientX ?? null;
+    savedPlacesTouchDeltaXRef.current = 0;
+  }
+
+  function onSavedPlacesTouchMove(e: React.TouchEvent<HTMLButtonElement>) {
+    const startX = savedPlacesTouchStartXRef.current;
+    if (startX == null) return;
+    const currentX = e.touches[0]?.clientX ?? startX;
+    savedPlacesTouchDeltaXRef.current = currentX - startX;
+  }
+
+  function onSavedPlacesTouchEnd(city: string, length: number) {
+    const dx = savedPlacesTouchDeltaXRef.current;
+    savedPlacesTouchStartXRef.current = null;
+    savedPlacesTouchDeltaXRef.current = 0;
+    if (Math.abs(dx) < 35) return;
+    if (dx < 0) {
+      goToSavedPlace(city, 1, length);
+      return;
+    }
+    goToSavedPlace(city, -1, length);
+  }
+
   React.useEffect(() => {
     let cancelled = false;
 
@@ -200,6 +281,8 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             Number.isFinite(item.lat) &&
             Number.isFinite(item.lng)
           );
+
+        setAllPlaces(all);
 
         const dayKey = new Date().toISOString().slice(0, 10);
 
@@ -272,6 +355,51 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
       cancelled = true;
     };
   }, [locale]);
+
+  const savedPlacesByCity = React.useMemo(() => {
+    const byId = new Map(allPlaces.map((place) => [place.id, place] as const));
+    const groups = new Map<string, SavedPlace[]>();
+
+    for (const place of savedPlaces) {
+      const full = byId.get(place.id);
+      const merged: SavedPlace = {
+        ...place,
+        city: place.city || full?.city || undefined,
+        address: place.address || full?.address || undefined,
+        panoramaImage: place.panoramaImage || full?.panoramaImage || undefined,
+        lat: place.lat ?? full?.lat,
+        lng: place.lng ?? full?.lng
+      };
+
+      const key = merged.city || (isFr ? "Autres lieux" : "Other places");
+      const current = groups.get(key) ?? [];
+      current.push(merged);
+      groups.set(key, current);
+    }
+
+    return Array.from(groups.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([city, places]) => ({
+        city,
+        places: [...places].sort((a, b) => a.name.localeCompare(b.name))
+      }));
+  }, [savedPlaces, allPlaces, isFr]);
+
+  React.useEffect(() => {
+    if (savedPlacesByCity.length === 0) return;
+    const id = window.setInterval(() => {
+      setSavedPlaceIndexes((prev) => {
+        const next = { ...prev };
+        for (const group of savedPlacesByCity) {
+          if (group.places.length <= 1) continue;
+          const current = next[group.city] ?? 0;
+          next[group.city] = (current + 1) % group.places.length;
+        }
+        return next;
+      });
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [savedPlacesByCity]);
 
   function switchLocale(nextLocale: "fr" | "en") {
     if (nextLocale === locale) return;
@@ -597,7 +725,73 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   </>
                 )
               ) : panel === "myPlaces" ? (
-                <></>
+                savedPlacesByCity.length > 0 ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    {savedPlacesByCity.map((group) => {
+                      const currentIndex = savedPlaceIndexes[group.city] ?? 0;
+                      const currentPlace = group.places[currentIndex] ?? group.places[0] ?? null;
+                      if (!currentPlace) return null;
+
+                      return (
+                        <div key={group.city}>
+                          <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              router.push(`/${locale}/carte?discover=${encodeURIComponent(currentPlace.id)}`);
+                            }}
+                            onTouchStart={onSavedPlacesTouchStart}
+                            onTouchMove={onSavedPlacesTouchMove}
+                            onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
+                            className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                            style={{
+                              minHeight: "148px",
+                              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                            }}
+                          >
+                            {currentPlace.panoramaImage ? (
+                              <img
+                                src={currentPlace.panoramaImage}
+                                alt=""
+                                className="absolute inset-0 h-full w-full object-cover"
+                              />
+                            ) : null}
+                            <div
+                              className="absolute inset-0"
+                              style={{
+                                background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                              }}
+                            ></div>
+                            <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                              <div>
+                                <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                                  {currentPlace.name}
+                                </p>
+                                <p className="mt-1 text-[11px] opacity-90 truncate text-white/90">
+                                  {currentPlace.address || "Indie Map"}
+                                </p>
+                              </div>
+                            </div>
+                            {group.places.length > 1 ? (
+                              <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
+                                {group.places.map((item, index) => (
+                                  <span
+                                    key={item.id}
+                                    className={index === currentIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
+                                  />
+                                ))}
+                              </div>
+                            ) : null}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="text-white/80">
+                    {isFr ? "Aucun lieu enregistré pour le moment." : "No saved places yet."}
+                  </p>
+                )
               ) : isFr ? (
                 <>
                   <p className="mb-4 text-white/80">
