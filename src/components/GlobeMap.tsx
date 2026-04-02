@@ -916,6 +916,7 @@ export default function GlobeMap({
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
   const pendingNativeLocationRef = React.useRef<{ lat: number; lng: number } | null>(null);
+  const suppressInitialNativeLocationRef = React.useRef<boolean>(typeof window !== "undefined" && new URLSearchParams(window.location.search).has("discover"));
   const [mapReadyTick, setMapReadyTick] = React.useState(0);
 
   React.useEffect(() => {
@@ -936,6 +937,13 @@ export default function GlobeMap({
         const lat = Number(e?.detail?.lat);
         const lng = Number(e?.detail?.lng);
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        if (suppressInitialNativeLocationRef.current) {
+          suppressInitialNativeLocationRef.current = false;
+          try { pendingNativeLocationRef.current = null; } catch {}
+          try { (window as any).__IM_NATIVE_LOCATION__ = null; } catch {}
+          try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
+          return;
+        }
         const m = mapRef.current;
         if (!m) {
           try { pendingNativeLocationRef.current = { lat: Number(lat), lng: Number(lng) }; } catch {}
@@ -3607,8 +3615,14 @@ mapRef.current = map;
         const lat = Number((pending as any)?.lat);
         const lng = Number((pending as any)?.lng);
         if (Number.isFinite(lat) && Number.isFinite(lng)) {
-          pendingNativeLocationRef.current = null;
-          window.dispatchEvent(new CustomEvent("im:native-location", { detail: { lat, lng } }));
+          if (suppressInitialNativeLocationRef.current) {
+            suppressInitialNativeLocationRef.current = false;
+            pendingNativeLocationRef.current = null;
+            try { (window as any).__IM_NATIVE_LOCATION__ = null; } catch {}
+          } else {
+            pendingNativeLocationRef.current = null;
+            window.dispatchEvent(new CustomEvent("im:native-location", { detail: { lat, lng } }));
+          }
         }
       } catch {}
     });
