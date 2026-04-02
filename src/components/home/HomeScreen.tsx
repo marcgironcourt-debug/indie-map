@@ -6,7 +6,7 @@ import React from "react";
 
 import ContributeForm from "@/components/ContributeForm";
 
-type Panel = null | "pros" | "contrib" | "about";
+type Panel = null | "pros" | "contrib" | "about" | "myPlaces";
 
 type DiscoverPlace = {
   id: string;
@@ -443,7 +443,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
         >
           <button
             type="button"
-            onClick={() => {}}
+            onClick={() => setPanel("myPlaces")}
             className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <span className="text-[24px] leading-none">♡</span>
@@ -596,6 +596,8 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                     </div>
                   </>
                 )
+              ) : panel === "myPlaces" ? (
+                <></>
               ) : isFr ? (
                 <>
                   <p className="mb-4 text-white/80">
