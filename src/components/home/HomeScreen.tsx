@@ -405,7 +405,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                   <div>
                     <div className="w-full px-3 py-1">
                       <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
-                        {isFr ? "Nouveaux lieux" : "New places"}
+                        {isFr ? "Ajouts récents" : "Recent additions"}
                       </p>
                     </div>
                   </div>
@@ -438,47 +438,47 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
       <div className="fixed inset-x-0 bottom-0 z-[1200]">
         <div
-          className="grid w-full grid-cols-4 border-t border-white/10 bg-[#34342f]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+          className="grid w-full grid-cols-4 border-t border-white/10 bg-[#2a2a25]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
           style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         >
           <button
             type="button"
             onClick={() => {}}
-            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <span className="text-[24px] leading-none">♡</span>
-            <span className="text-[11px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
+            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("contrib")}
-            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className="whitespace-nowrap h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 5v14" />
               <path d="M5 12h14" />
             </svg>
-            <span className="text-[11px] font-medium leading-tight">{isFr ? "Proposer" : "Suggest"}</span>
+            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("about")}
-            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 16v-5" />
               <path d="M12 8h.01" />
               <circle cx="12" cy="12" r="9" />
             </svg>
-            <span className="text-[11px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
+            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("pros")}
-            className="flex min-h-[78px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M10 6h4" />
@@ -486,7 +486,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
               <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
               <path d="M9 14h6" />
             </svg>
-            <span className="text-[11px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
+            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
           </button>
         </div>
       </div>
@@ -698,7 +698,6 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     </>
   );
 }
-
 
 
 
