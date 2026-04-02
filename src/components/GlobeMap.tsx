@@ -2975,17 +2975,25 @@ return;
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     const el = ref.current as any;
+    const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const isExploreEntry = params?.get("entry") === "explore";
+    const discoverParam = String(params?.get("discover") ?? "").trim();
     try {
-      el.style.opacity = "1";
-      el.style.transition = "none";
-      el.style.willChange = "auto";
+      el.style.opacity = discoverParam ? "0" : "1";
+      el.style.transition = discoverParam ? "opacity 120ms ease" : "none";
+      el.style.willChange = discoverParam ? "opacity" : "auto";
     } catch {}
 
 
     /* __IM_FADEIN_MAP__ */
     if (mapRef.current) { return; }
-    const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
-    const isExploreEntry = params?.get("entry") === "explore";
+    const discoverTarget = discoverParam
+      ? (items ?? []).find((item) =>
+          String(item?.id ?? "").trim() === discoverParam &&
+          Number.isFinite(Number(item?.lat)) &&
+          Number.isFinite(Number(item?.lng))
+        ) ?? null
+      : null;
     const initialNative = (() => {
       try {
         const cached = (window as any).__IM_NATIVE_LOCATION__;
@@ -2997,11 +3005,23 @@ return;
       } catch {}
       return null;
     })();
+    const initialCenter =
+      discoverTarget
+        ? [Number(discoverTarget.lng), Number(discoverTarget.lat)]
+        : initialNative
+          ? [Number(initialNative.lng), Number(initialNative.lat)]
+          : [0, 0];
+    const initialZoom =
+      discoverTarget
+        ? 9.9
+        : initialNative
+          ? 12.4
+          : (isMobile ? 1.4 : 2.4);
     const map = new maplibregl.Map({
       container: el,
       style: STYLE_URL,
-      center: initialNative ? [Number(initialNative.lng), Number(initialNative.lat)] : [0, 0],
-      zoom: initialNative ? 12.4 : (isMobile ? 1.4 : 2.4),
+      center: initialCenter as [number, number],
+      zoom: initialZoom,
       minZoom: isMobile ? 1.4 : 2.4,
       pitch: 0,
       bearing: 0,
@@ -3030,6 +3050,37 @@ return;
     } catch {}
 
     try { (window as any).__IM_MAP__ = map; } catch {}
+    try {
+      if (discoverParam) {
+        let done = false;
+        const reveal = () => {
+          try {
+            if (done) return;
+            done = true;
+            el.style.opacity = "1";
+            el.style.transition = "none";
+            el.style.willChange = "auto";
+          } catch {}
+        };
+        const onDiscoverReady = (ev: Event) => {
+          try {
+            const ce = ev as CustomEvent<{ id?: string }>;
+            if (String(ce?.detail?.id ?? "").trim() !== discoverParam) return;
+          } catch {
+            return;
+          }
+          try { window.removeEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+          reveal();
+        };
+        try { window.addEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+        try {
+          window.setTimeout(() => {
+            try { window.removeEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+            reveal();
+          }, 1800);
+        } catch {}
+      }
+    } catch {}
 
 
 
