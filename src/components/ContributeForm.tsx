@@ -7,9 +7,6 @@ type Props = { locale: "fr" | "en" };
 export default function ContributeForm({ locale }: Props) {
   const isFr = locale === "fr";
   const [name, setName] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [openingHours, setOpeningHours] = React.useState("");
-  const [phone, setPhone] = React.useState("");
   const [website, setWebsite] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "err">("idle");
 
@@ -24,9 +21,6 @@ export default function ContributeForm({ locale }: Props) {
       const fd = new FormData();
       fd.set("locale", locale);
       fd.set("name", name);
-      fd.set("address", address);
-      if (openingHours.trim()) fd.set("openingHours", openingHours);
-      if (phone.trim()) fd.set("phone", phone);
       if (website.trim()) fd.set("website", website);
 
       const res = await fetch("/api/v1/submissions", { method: "POST", body: fd });
@@ -35,9 +29,6 @@ export default function ContributeForm({ locale }: Props) {
 
       setStatus("ok");
       setName("");
-      setAddress("");
-      setOpeningHours("");
-      setPhone("");
       setWebsite("");
     } catch {
       setStatus("err");
@@ -50,9 +41,6 @@ export default function ContributeForm({ locale }: Props) {
       ? "Propose un lieu à ajouter. Les infos sont relues manuellement."
       : "Suggest a place to add. Submissions are reviewed manually.",
     name: isFr ? "Nom du lieu *" : "Place name *",
-    address: isFr ? "Adresse du lieu (optionnel)" : "Place address (optional)",
-    openingHours: isFr ? "Horaires (optionnel)" : "Opening hours (optional)",
-    phone: isFr ? "Téléphone (optionnel)" : "Phone (optional)",
     website: isFr ? "Site web *" : "Website *",
     send: isFr ? "Envoyer" : "Send",
     sending: isFr ? "Envoi..." : "Sending...",
@@ -77,32 +65,8 @@ export default function ContributeForm({ locale }: Props) {
           />
         </div>
 
-        <div className="grid gap-2">
-          <label className="text-sm font-medium text-white/80">{t.address}</label>
-          <input
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
-          />
-        </div>
 
-        <div className="grid gap-2">
-          <label className="text-sm font-medium text-white/80">{t.openingHours}</label>
-          <input
-            value={openingHours}
-            onChange={(e) => setOpeningHours(e.target.value)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
-          />
-        </div>
 
-        <div className="grid gap-2">
-          <label className="text-sm font-medium text-white/80">{t.phone}</label>
-          <input
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
-          />
-        </div>
         <div className="grid gap-2">
           <label className="text-sm font-medium text-white/80">{t.website}</label>
           <input
