@@ -758,7 +758,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   );
 }
 
-function svgPin(color: string, stroke: string, selected: boolean) {
+function svgPin(color: string, stroke: string, selected: boolean, favorite: boolean = false) {
   const size = selected ? 26 : 24;
   const height = selected ? 38 : 36;
   const shadow = selected
@@ -766,6 +766,9 @@ function svgPin(color: string, stroke: string, selected: boolean) {
     : "";
   const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
   const groupClose = selected ? "</g>" : "";
+  const favHeart = favorite
+    ? "<g transform=\"translate(14.2 1.6)\"><path d=\"M4.8 8.7c-.15 0-.3-.05-.42-.15C2.8 7.3 0 5.05 0 2.3C0 .85 1.15 0 2.6 0c.9 0 1.7.4 2.2 1.12C5.3.4 6.1 0 7 0c1.45 0 2.6.85 2.6 2.3c0 2.75-2.8 5-4.38 6.25c-.12.1-.27.15-.42.15z\" fill=\"#6F6528\" stroke=\"rgba(245,245,232,0.98)\" stroke-width=\"0.9\" stroke-linejoin=\"round\"/></g>"
+    : "";
   const html =
     "<svg width=\"" +
     size +
@@ -780,6 +783,7 @@ function svgPin(color: string, stroke: string, selected: boolean) {
     stroke +
     "\" stroke-width=\"1.2\"/>" +
     "<path d=\"M8.8 7.2C9.6 6.1 10.7 5.4 12 5.2C13.4 5 14.9 5.4 16.1 6.2\" fill=\"none\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"1.1\" stroke-linecap=\"round\"/>" +
+    favHeart +
     groupClose +
     "</svg>";
   return html;
@@ -787,6 +791,14 @@ function svgPin(color: string, stroke: string, selected: boolean) {
 
 function svgToDataUri(svg: string) {
   return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+function readSavedPlaceIds() {
+  try {
+    return new Set(readSavedPlaces().map((item: any) => String(item?.id ?? "").trim()).filter(Boolean));
+  } catch {
+    return new Set<string>();
+  }
 }
 
 function haversineMeters(lat1: number, lon1: number, lat2: number, lon2: number) {
@@ -1460,7 +1472,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
         const kindSel = normalizeType(String((props as any)?.kind ?? (props as any)?.properties?.kind ?? (props as any)?.feature?.properties?.kind ?? (props as any)?.category ?? (props as any)?.type ?? ""));
         const palSel = palette();
         const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
-        selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
+        selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true, isSavedPlace(String((props as any)?.id ?? "")));
         selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
           .setLngLat([lng, lat])
           .addTo(map);
@@ -2058,18 +2070,32 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
 
     for (const k of kinds) {
       const baseId = "pin-" + k;
+      const favId = "pin-" + k + "-fav";
       const selId = "pin-" + k + "-sel";
+      const selFavId = "pin-" + k + "-sel-fav";
 
       if (!map.hasImage(baseId)) {
-        const svg = svgPin(pal[k], stroke, false);
+        const svg = svgPin(pal[k], stroke, false, false);
         const img = await loadOne(svgToDataUri(svg));
         map.addImage(baseId, img, { pixelRatio: 2 });
       }
 
+      if (!map.hasImage(favId)) {
+        const svg = svgPin(pal[k], stroke, false, true);
+        const img = await loadOne(svgToDataUri(svg));
+        map.addImage(favId, img, { pixelRatio: 2 });
+      }
+
       if (!map.hasImage(selId)) {
-        const svg = svgPin(pal[k], stroke, true);
+        const svg = svgPin(pal[k], stroke, true, false);
         const img = await loadOne(svgToDataUri(svg));
         map.addImage(selId, img, { pixelRatio: 2 });
+      }
+
+      if (!map.hasImage(selFavId)) {
+        const svg = svgPin(pal[k], stroke, true, true);
+        const img = await loadOne(svgToDataUri(svg));
+        map.addImage(selFavId, img, { pixelRatio: 2 });
       }
     }
   }
@@ -2231,7 +2257,16 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
         type: "symbol",
         source: SOURCE_ID,
         layout: {
-          "icon-image": ["concat", "pin-", ["get", "kind"]],
+          "icon-image": [
+            "case",
+            ["all", ["boolean", ["get", "selected"], false], ["boolean", ["get", "favorite"], false]],
+            ["concat", "pin-", ["get", "kind"], "-sel-fav"],
+            ["boolean", ["get", "selected"], false],
+            ["concat", "pin-", ["get", "kind"], "-sel"],
+            ["boolean", ["get", "favorite"], false],
+            ["concat", "pin-", ["get", "kind"], "-fav"],
+            ["concat", "pin-", ["get", "kind"]]
+          ],
           "icon-size": [
             "interpolate",
             ["linear"],
@@ -2332,7 +2367,7 @@ map.on("mouseenter", LAYER_ID, () => {
             const kindSel = normalizeType(String((props as any)?.kind ?? (props as any)?.properties?.kind ?? (props as any)?.feature?.properties?.kind ?? (props as any)?.category ?? (props as any)?.type ?? ""));
             const palSel = palette();
             const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
-            selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
+            selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true, isSavedPlace(String((props as any)?.id ?? "")));
             selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
               .setLngLat([lng, lat])
               .addTo(map);
@@ -2915,6 +2950,7 @@ return;
           lat: Number(b.lat),
           lng: Number(b.lng),
           kind,
+          favorite: readSavedPlaceIds().has(id),
           miniText: (b as any).miniText ?? (b as any).blurb ?? (b as any).description ?? "",
           timeZone: (b as any).timeZone ?? "",
           selected: activeId != null && id === activeId,
@@ -3604,6 +3640,29 @@ mapRef.current = map;
     } catch {}
   }, [items, selectedId, darkMap]);
 
+  React.useEffect(() => {
+    const applyFavorites = () => {
+      try {
+        const ids = readSavedPlaceIds();
+        for (const feat of fcRef.current.features) {
+          const id = String(feat?.id ?? feat?.properties?.id ?? "");
+          try { feat.properties.favorite = ids.has(id); } catch {}
+        }
+        const map = mapRef.current;
+        const src = map ? getSource(map) : null;
+        if (src) src.setData(fcRef.current);
+      } catch {}
+    };
+
+    applyFavorites();
+    window.addEventListener("storage", applyFavorites);
+    window.addEventListener("im:saved-places-updated", applyFavorites as EventListener);
+    return () => {
+      window.removeEventListener("storage", applyFavorites);
+      window.removeEventListener("im:saved-places-updated", applyFavorites as EventListener);
+    };
+  }, []);
+
   return (
     <div className="relative h-full w-full bg-black">
       <div ref={ref} className="h-full w-full" style={{ backgroundColor: "#000", opacity: 1, transition: "none", willChange: "auto" }} />
@@ -3773,7 +3832,7 @@ mapRef.current = map;
                       const kindSel = normalizeType(String((propsSel as any)?.kind ?? (propsSel as any)?.properties?.kind ?? (propsSel as any)?.feature?.properties?.kind ?? (propsSel as any)?.category ?? (propsSel as any)?.type ?? ""));
                       const palSel = palette();
                       const selColor = String((palSel as any)[kindSel] || (palSel as any).other || "#8C5A3C");
-                      selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true);
+                      selEl.innerHTML = svgPin(selColor, "rgba(245,245,232,0.92)", true, isSavedPlace(String((st as any)?.props?.id ?? "")));
                       try { if (selectedPinMarkerRef.current) selectedPinMarkerRef.current.remove(); } catch {}
                       selectedPinMarkerRef.current = new maplibregl.Marker({ element: selEl, anchor: "bottom" } as any)
                         .setLngLat([Number((st as any).lng), Number((st as any).lat)])
