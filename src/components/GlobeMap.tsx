@@ -1021,7 +1021,7 @@ export default function GlobeMap({
 
           try {
             const targetCenter: [number, number] = [Number(lng), Number(lat)];
-            const targetZoom = 12.4;
+            const targetZoom = 11.0;
             m.jumpTo({ center: targetCenter, zoom: targetZoom });
             window.setTimeout(() => {
               try {
@@ -3266,11 +3266,160 @@ class GeolocateControl_ML {
             }
           } catch {}
 
+          const applyUserLocation = (lngRaw: number, latRaw: number, bearingRaw: number | null = null) => {
+            const lng = Number(lngRaw);
+            const lat = Number(latRaw);
+            if (!Number.isFinite(lng) || !Number.isFinite(lat)) return;
+            try { this._lastLng = lng; this._lastLat = lat; } catch {}
+            try { lastUserPosRef.current = { lng, lat, ts: Date.now() }; } catch {}
+
+            try {
+              const m = this._map;
+              if (m) {
+                const SRC = "indie-user-location";
+                const HALO = "indie-user-location-halo";
+                const DOT = "indie-user-location-dot";
+
+                const apply = () => {
+                  try {
+                    if (!m.getSource(SRC)) {
+                      m.addSource(SRC, {
+                        type: "geojson",
+                        data: {
+                          type: "FeatureCollection",
+                          features: [{
+                            type: "Feature",
+                            properties: {},
+                            geometry: { type: "Point", coordinates: [lng, lat] }
+                          }]
+                        }
+                      } as any);
+                    }
+                  } catch {}
+
+                  try {
+                    if (!m.getLayer(HALO)) {
+                      m.addLayer({
+                        id: HALO,
+                        type: "circle",
+                        source: SRC,
+                        paint: {
+                          "circle-radius": 12,
+                          "circle-color": "#F97316",
+                          "circle-opacity": 0.25
+                        }
+                      } as any);
+                    }
+                  } catch {}
+
+                  try {
+                    if (!m.getLayer(DOT)) {
+                      m.addLayer({
+                        id: DOT,
+                        type: "circle",
+                        source: SRC,
+                        paint: {
+                          "circle-radius": 6,
+                          "circle-color": "#F97316",
+                          "circle-stroke-width": 2,
+                          "circle-stroke-color": "#FFFFFF",
+                          "circle-opacity": 1
+                        }
+                      } as any);
+                    }
+                  } catch {}
+
+                  try {
+                    const src = m.getSource(SRC) as any;
+                    if (src && src.setData) {
+                      src.setData({
+                        type: "FeatureCollection",
+                        features: [{
+                          type: "Feature",
+                          properties: {},
+                          geometry: { type: "Point", coordinates: [lng, lat] }
+                        }]
+                      });
+                    }
+                  } catch {}
+                };
+
+                try {
+                  if (typeof m.isStyleLoaded === "function" && !m.isStyleLoaded()) {
+                    m.once("load", apply);
+                  } else {
+                    apply();
+                  }
+                } catch { try { apply(); } catch {} }
+              }
+            } catch {}
+
+            try {
+              const m = this._map;
+              if (m) {
+                const targetCenter: [number, number] = [lng, lat];
+                const targetZoom = 11.0;
+                m.jumpTo({ center: targetCenter, zoom: targetZoom });
+                window.setTimeout(() => {
+                  try {
+                    const m2 = this._map;
+                    if (!m2) return;
+                    m2.easeTo({
+                      center: targetCenter,
+                      zoom: targetZoom,
+                      duration: 900
+                    });
+                  } catch {}
+                }, 450);
+              }
+            } catch {}
+
+            try {
+              const fn = (this as any)._updateConeFn;
+              if (fn && bearingRaw != null && Number.isFinite(bearingRaw)) fn(lng, lat, Number(bearingRaw));
+            } catch {}
+          };
+
+          try {
+            const cached = (window as any).__IM_NATIVE_LOCATION__;
+            const lat = Number(cached?.lat);
+            const lng = Number(cached?.lng);
+            if (Number.isFinite(lat) && Number.isFinite(lng)) {
+              let bearing: number | null = null;
+              try {
+                const dh = this._deviceHeading;
+                if (typeof dh === "number" && Number.isFinite(dh)) bearing = dh;
+              } catch {}
+              applyUserLocation(lng, lat, bearing);
+              return;
+            }
+          } catch {}
+
+          try {
+            const last = lastUserPosRef.current;
+            const lat = Number(last?.lat);
+            const lng = Number(last?.lng);
+            if (Number.isFinite(lat) && Number.isFinite(lng)) {
+              let bearing: number | null = null;
+              try {
+                const dh = this._deviceHeading;
+                if (typeof dh === "number" && Number.isFinite(dh)) bearing = dh;
+              } catch {}
+              applyUserLocation(lng, lat, bearing);
+              return;
+            }
+          } catch {}
+
+          try {
+            const bridge = (window as any)?.webkit?.messageHandlers?.imGeolocate;
+            if (bridge && typeof bridge.postMessage === "function") {
+              bridge.postMessage({});
+              return;
+            }
+          } catch {}
+
           navigator.geolocation.getCurrentPosition(
             (pos) => {
-              const lng = pos.coords.longitude;
-              const lat = pos.coords.latitude;
-              try { this._lastLng = Number(lng); this._lastLat = Number(lat); } catch {}
               let bearing: number | null = null;
               try {
                 const h = (pos.coords as any).heading;
@@ -3282,125 +3431,22 @@ class GeolocateControl_ML {
                   if (typeof dh === "number" && Number.isFinite(dh)) bearing = dh;
                 } catch {}
               }
-              try {
-                const m = this._map;
-                if (m) {
-                  const SRC = "indie-user-location";
-                  const HALO = "indie-user-location-halo";
-                  const DOT = "indie-user-location-dot";
-
-                  const apply = () => {
-                    try {
-                      if (!m.getSource(SRC)) {
-                        m.addSource(SRC, {
-                          type: "geojson",
-                          data: {
-                            type: "FeatureCollection",
-                            features: [{
-                              type: "Feature",
-                              properties: {},
-                              geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
-                            }]
-                          }
-                        } as any);
-                      }
-                    } catch {}
-
-                    try {
-                      if (!m.getLayer(HALO)) {
-                        m.addLayer({
-                          id: HALO,
-                          type: "circle",
-                          source: SRC,
-                          paint: {
-                            "circle-radius": 12,
-                            "circle-color": "#F97316",
-                            "circle-opacity": 0.25
-                          }
-                        } as any);
-                      }
-                    } catch {}
-
-                    try {
-                      if (!m.getLayer(DOT)) {
-                        m.addLayer({
-                          id: DOT,
-                          type: "circle",
-                          source: SRC,
-                          paint: {
-                            "circle-radius": 6,
-                            "circle-color": "#F97316",
-                            "circle-stroke-width": 2,
-                            "circle-stroke-color": "#FFFFFF",
-                            "circle-opacity": 1
-                          }
-                        } as any);
-                      }
-                    } catch {}
-
-                    try {
-                      const src = m.getSource(SRC);
-                      if (src && src.setData) {
-                        src.setData({
-                          type: "FeatureCollection",
-                          features: [{
-                            type: "Feature",
-                            properties: {},
-                            geometry: { type: "Point", coordinates: [Number(lng), Number(lat)] }
-                          }]
-                        });
-                      }
-                    } catch {}
-                  };
-
-                  try {
-                    if (typeof m.isStyleLoaded === "function" && !m.isStyleLoaded()) {
-                      m.once("load", apply);
-                    } else {
-                      apply();
-                    }
-                  } catch { try { apply(); } catch {} }
-                }
-              } catch {}
-              try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
-              try {
-                const m = this._map;
-                if (m) {
-                  const targetCenter: [number, number] = [Number(lng), Number(lat)];
-                  const targetZoom = 12.4;
-                  m.jumpTo({ center: targetCenter, zoom: targetZoom });
-                  window.setTimeout(() => {
-                    try {
-                      const m2 = this._map;
-                      if (!m2) return;
-                      m2.easeTo({
-                        center: targetCenter,
-                        zoom: targetZoom,
-                        duration: 900
-                      });
-                    } catch {}
-                  }, 450);
-                }
-              } catch {}
-              try {
-                const fn = (this as any)._updateConeFn;
-                if (fn && bearing != null) fn(Number(lng), Number(lat), Number(bearing));
-              } catch {}
+              applyUserLocation(Number(pos.coords.longitude), Number(pos.coords.latitude), bearing);
             },
             (err: any) => {
-            try {
-              const code = Number((err as any)?.code);
-              const name = String((err as any)?.name || "");
-              const msg = String((err as any)?.message || "");
-              console.log("[im:geolocate] error", { code, name, msg, raw: err });
-            } catch {}
-            try {
-              const code = Number((err as any)?.code);
-              const name = String((err as any)?.name || "");
-              const msg = String((err as any)?.message || "");
-              alert("GEOLOCATE ERROR code=" + String(code) + " name=" + name + " msg=" + msg);
-            } catch {}
-          },
+              try {
+                const code = Number((err as any)?.code);
+                const name = String((err as any)?.name || "");
+                const msg = String((err as any)?.message || "");
+                console.log("[im:geolocate] error", { code, name, msg, raw: err });
+              } catch {}
+              try {
+                const code = Number((err as any)?.code);
+                const name = String((err as any)?.name || "");
+                const msg = String((err as any)?.message || "");
+                alert("GEOLOCATE ERROR code=" + String(code) + " name=" + name + " msg=" + msg);
+              } catch {}
+            },
             { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
           );
         } catch {}
