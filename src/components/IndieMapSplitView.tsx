@@ -325,7 +325,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry }: { local
       try {
         if (revealTimer) window.clearTimeout(revealTimer);
       } catch {}
-      revealTimer = window.setTimeout(() => setDiscoverUiReady(true), 60);
+      setDiscoverUiReady(true);
     };
     const onDiscoverReady = (e: Event) => {
       try {
@@ -624,15 +624,15 @@ const filtered = source.filter((b) => {
               className="absolute z-[1450] pointer-events-auto"
               style={{ right: "12px", bottom: "calc(env(safe-area-inset-bottom) + 56px)" }}
             >
-              <Link
+              <a
                 href={`/${locale}`}
                 aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
-                className="flex items-center justify-center w-11 h-11 rounded-t-xl rounded-b-none bg-[#262626] text-white shadow-lg backdrop-blur-md border border-[#404040] border-b border-b-transparent"
+                className="flex items-center justify-center w-11 h-11 rounded-t-xl rounded-b-none bg-[#262626] text-white shadow-lg border border-[#404040] border-b border-b-transparent"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
                 </svg>
-              </Link>
+              </a>
             </div>
           ) : null}
           topOverlay={!heroOpen ? (

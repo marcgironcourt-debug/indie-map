@@ -89,8 +89,8 @@ export default function MapPanel(props: {
       <div className="h-full">
         <GlobeMap items={items} selectedId={selectedId} onSelect={onSelect} overlaysReady={overlaysReady} />
       </div>
-      {homeOverlay}
-      {topOverlay}
+      {overlaysReady ? homeOverlay : null}
+      {overlaysReady ? topOverlay : null}
     </section>
   );
 }
