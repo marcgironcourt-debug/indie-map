@@ -1023,17 +1023,6 @@ export default function GlobeMap({
             const targetCenter: [number, number] = [Number(lng), Number(lat)];
             const targetZoom = 11.0;
             m.jumpTo({ center: targetCenter, zoom: targetZoom });
-            window.setTimeout(() => {
-              try {
-                const m2 = mapRef.current;
-                if (!m2) return;
-                m2.easeTo({
-                  center: targetCenter,
-                  zoom: targetZoom,
-                  duration: 900
-                });
-              } catch {}
-            }, 450);
           } catch {}
         };
 
@@ -2979,9 +2968,10 @@ return;
     const isExploreEntry = params?.get("entry") === "explore";
     const discoverParam = String(params?.get("discover") ?? "").trim();
     try {
-      el.style.opacity = discoverParam ? "0" : "1";
-      el.style.transition = discoverParam ? "opacity 120ms ease" : "none";
-      el.style.willChange = discoverParam ? "opacity" : "auto";
+      const hideUntilReady = !!discoverParam || isExploreEntry;
+      el.style.opacity = hideUntilReady ? "0" : "1";
+      el.style.transition = hideUntilReady ? "opacity 120ms ease" : "none";
+      el.style.willChange = hideUntilReady ? "opacity" : "auto";
     } catch {}
 
 
@@ -2996,9 +2986,9 @@ return;
       : null;
     const initialNative = (() => {
       try {
-        const cached = (window as any).__IM_NATIVE_LOCATION__;
-        const lat = Number(cached?.lat);
-        const lng = Number(cached?.lng);
+        const cached = pendingNativeLocationRef.current ?? (window as any).__IM_NATIVE_LOCATION__;
+        const lat = Number((cached as any)?.lat);
+        const lng = Number((cached as any)?.lng);
         if (isExploreEntry && Number.isFinite(lat) && Number.isFinite(lng)) {
           return { lat, lng };
         }
@@ -3051,7 +3041,7 @@ return;
 
     try { (window as any).__IM_MAP__ = map; } catch {}
     try {
-      if (discoverParam) {
+      if (discoverParam || isExploreEntry) {
         let done = false;
         const reveal = () => {
           try {
@@ -3062,6 +3052,13 @@ return;
             el.style.willChange = "auto";
           } catch {}
         };
+        if (isExploreEntry && !discoverParam) {
+          const onMapReady = () => {
+            try { window.removeEventListener("im:map-ui-ready", onMapReady as EventListener); } catch {}
+            reveal();
+          };
+          try { window.addEventListener("im:map-ui-ready", onMapReady as EventListener); } catch {}
+        }
         const onDiscoverReady = (ev: Event) => {
           try {
             const ce = ev as CustomEvent<{ id?: string }>;
@@ -3072,7 +3069,7 @@ return;
           try { window.removeEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
           reveal();
         };
-        try { window.addEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
+        try { if (discoverParam) window.addEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}
         try {
           window.setTimeout(() => {
             try { window.removeEventListener("im:discover-ui-ready", onDiscoverReady as EventListener); } catch {}

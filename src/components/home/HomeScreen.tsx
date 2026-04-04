@@ -503,9 +503,6 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
   return (
     <>
       <style jsx global>{explorerPulseCss}</style>
-      <div className="pointer-events-none fixed inset-0 opacity-0" aria-hidden="true">
-        <MapPanel items={allPlaces} overlaysReady={true} />
-      </div>
       <div className="flex h-[100dvh] w-full flex-col bg-black text-white">
         <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5">
           <div className="mb-2 flex w-full justify-center pt-2 pb-1">
