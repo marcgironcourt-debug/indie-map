@@ -3532,12 +3532,20 @@ class GeolocateControl_ML {
 }
 
 
-try { map.addControl(new GeolocateControl_ML(), "bottom-right" as any); } catch {}
+try { map.addControl(new GeolocateControl_ML(), "top-right" as any); } catch {}
 try {
   requestAnimationFrame(() => {
     try {
       const wrap = geolocateElRef.current?.parentElement as HTMLElement | null;
-      if (wrap) wrap.style.display = "block";
+      if (wrap) {
+        wrap.style.display = "block";
+        wrap.style.position = "absolute";
+        wrap.style.top = "calc(env(safe-area-inset-top) + 64px)";
+        wrap.style.left = "12px";
+        wrap.style.right = "auto";
+        wrap.style.bottom = "auto";
+        wrap.style.margin = "0";
+      }
     } catch {}
   });
 } catch {}

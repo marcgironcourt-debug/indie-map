@@ -665,7 +665,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           <button
             type="button"
             onClick={() => setPanel("myPlaces")}
-            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <span className="text-[24px] leading-none">♡</span>
             <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
@@ -674,7 +674,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           <button
             type="button"
             onClick={() => setPanel("contrib")}
-            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <svg viewBox="0 0 24 24" className="whitespace-nowrap h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 5v14" />
@@ -686,7 +686,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           <button
             type="button"
             onClick={() => setPanel("about")}
-            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 16v-5" />
@@ -699,7 +699,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           <button
             type="button"
             onClick={() => setPanel("pros")}
-            className="flex min-h-[64px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M10 6h4" />
@@ -838,7 +838,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                             onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
                             className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
                             style={{
-                              minHeight: "148px",
+                              minHeight: "130px",
                               boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                             }}
                           >
