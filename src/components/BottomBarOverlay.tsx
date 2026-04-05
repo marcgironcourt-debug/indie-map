@@ -221,7 +221,7 @@ export default function BottomBarOverlay({
                           <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
                           <button
                             type="button"
-                            onClick={() => onOpenSavedPlace(currentPlace.id)}
+                            onClick={() => { setPanel(null); onOpenSavedPlace(currentPlace.id); }}
                             onTouchStart={onSavedPlacesTouchStart}
                             onTouchMove={onSavedPlacesTouchMove}
                             onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}

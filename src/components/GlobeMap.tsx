@@ -767,7 +767,7 @@ function svgPin(color: string, stroke: string, selected: boolean, favorite: bool
   const groupOpen = selected ? "<g filter=\"url(#shadow)\">" : "";
   const groupClose = selected ? "</g>" : "";
   const favHeart = favorite
-    ? "<g transform=\"translate(13.4 1.1) scale(1.18)\"><path d=\"M4.8 8.7c-.15 0-.3-.05-.42-.15C2.8 7.3 0 5.05 0 2.3C0 .85 1.15 0 2.6 0c.9 0 1.7.4 2.2 1.12C5.3.4 6.1 0 7 0c1.45 0 2.6.85 2.6 2.3c0 2.75-2.8 5-4.38 6.25c-.12.1-.27.15-.42.15z\" fill=\"#6F6528\" stroke=\"rgba(245,245,232,0.98)\" stroke-width=\"0.9\" stroke-linejoin=\"round\"/></g>"
+    ? "<g transform=\"translate(12.45 0.95) scale(1.22)\"><path d=\"M4.8 8.7c-.15 0-.3-.05-.42-.15C2.8 7.3 0 5.05 0 2.3C0 .85 1.15 0 2.6 0c.9 0 1.7.4 2.2 1.12C5.3.4 6.1 0 7 0c1.45 0 2.6.85 2.6 2.3c0 2.75-2.8 5-4.38 6.25c-.12.1-.27.15-.42.15z\" fill=\"#6F6528\" stroke=\"rgba(245,245,232,0.98)\" stroke-width=\"1.15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" vector-effect=\"non-scaling-stroke\"/></g>"
     : "";
   const html =
     "<svg width=\"" +

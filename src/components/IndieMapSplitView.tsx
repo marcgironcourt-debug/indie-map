@@ -1003,7 +1003,9 @@ const filtered = source.filter((b) => {
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    router.push(`/${locale}/carte?discover=${encodeURIComponent(currentPlace.id)}`);
+                                    setPanel(null);
+                                    setSelectedId(String(currentPlace.id));
+                                    setSelectionVersion((v) => v + 1);
                                   }}
                                   onTouchStart={onSavedPlacesTouchStart}
                                   onTouchMove={onSavedPlacesTouchMove}
