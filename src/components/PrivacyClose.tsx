@@ -15,7 +15,7 @@ export default function PrivacyClose({ locale }: { locale: string }) {
           r.push(`/${locale}`);
         }
       }}
-      className="fixed right-4 top-4 z-[80] text-white text-2xl"
+      className="fixed right-4 z-[80] text-white text-2xl" style={{ top: "calc(env(safe-area-inset-top) + 12px)" }}
     >
       ×
     </button>
