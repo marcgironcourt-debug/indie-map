@@ -1396,10 +1396,10 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   React.useEffect(() => {
     try {
       if (geolocateElRef.current) {
-        geolocateElRef.current.style.display = (sheetOpen || heroUiHide || !overlaysReady) ? "none" : "block";
+        geolocateElRef.current.style.display = (sheetOpen || heroUiHide || discoverHeroOpen || !overlaysReady) ? "none" : "block";
       }
     } catch {}
-  }, [sheetOpen, discoverHeroUrl, heroUiHide, overlaysReady]);
+  }, [sheetOpen, discoverHeroUrl, discoverHeroOpen, heroUiHide, overlaysReady]);
 
   React.useEffect(() => {
     sheetHeightRef.current = sheetHeightVh;
@@ -3197,13 +3197,13 @@ class GeolocateControl_ML {
     const c = document.createElement("div");
     c.style.display = "block";
     c.style.pointerEvents = "none";
-    c.style.marginRight = "12px";
-    c.style.marginBottom = "12px";
+    c.style.marginRight = "0";
+    c.style.marginBottom = "0";
     c.style.pointerEvents = "auto";
     c.innerHTML = `
       <button type="button" aria-label={ui("Me localiser","Locate me")}
         style="
-          height:44px;width:44px;border-radius:0 0 12px 12px;
+          height:44px;width:44px;border-radius:9999px;
           background:#262626;border:1px solid #404040;border-top:1px solid rgba(255,255,255,0.15);
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 1px 0 rgba(0,0,0,.28),0 10px 18px rgba(0,0,0,.12);
@@ -3531,10 +3531,27 @@ class GeolocateControl_ML {
   }
 }
 
+
 try { map.addControl(new GeolocateControl_ML(), "bottom-right" as any); } catch {}
+try {
+  requestAnimationFrame(() => {
+    try {
+      const wrap = geolocateElRef.current?.parentElement as HTMLElement | null;
+      if (wrap) wrap.style.display = "block";
+    } catch {}
+  });
+} catch {}
+
+try {
+  (window as any).__IM_TRIGGER_GEOLOCATE__ = () => {
+    try {
+      const btn = geolocateElRef.current?.querySelector("button") as HTMLButtonElement | null;
+      if (btn) btn.click();
+    } catch {}
+  };
+} catch {}
 
 /* im: single geolocate button (React) */
-
 
 mapRef.current = map;
 
@@ -3890,8 +3907,9 @@ mapRef.current = map;
                         <button
             type="button"
             aria-label={ui("Fermer","Close")}
-            className="absolute top-4 right-4 z-[80] pointer-events-auto"
+            className="absolute right-4 z-[80] pointer-events-auto"
             style={{
+              top: "calc(env(safe-area-inset-top) + 16px)",
               width: 28,
               height: 28,
               display: "flex",

@@ -1,7 +1,50 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import MapPanel from "@/components/MapPanel";
+import ContributeForm from "@/components/ContributeForm";
+
+type Panel = null | "pros" | "contrib" | "about" | "myPlaces";
+
+type SavedPlace = {
+  id: string;
+  name: string;
+  city?: string;
+  address?: string;
+  panoramaImage?: string;
+  lat?: number;
+  lng?: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+const SAVED_PLACES_KEY = "im-saved-places";
+
+function readSavedPlaces(): SavedPlace[] {
+  try {
+    if (typeof window === "undefined") return [];
+    const raw = window.localStorage.getItem(SAVED_PLACES_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((item: any) => ({
+        id: String(item?.id ?? "").trim(),
+        name: String(item?.name ?? "").trim(),
+        panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
+        city: String(item?.city ?? "").trim() || undefined,
+        address: String(item?.address ?? "").trim() || undefined,
+        lat: typeof item?.lat === "number" ? item.lat : undefined,
+        lng: typeof item?.lng === "number" ? item.lng : undefined,
+        createdAt: String(item?.createdAt ?? "").trim() || undefined,
+        updatedAt: String(item?.updatedAt ?? "").trim() || undefined
+      }))
+      .filter((item: SavedPlace) => !!item.id && !!item.name);
+  } catch {
+    return [];
+  }
+}
 
 type UILocale = "fr" | "en";
 const ui = (locale: UILocale, fr: string, en: string) => (locale === "en" ? en : fr);
@@ -290,6 +333,11 @@ function FilterBar({
 
 
 export default function IndieMapSplitView({ locale, discoverId, entry }: { locale: UILocale; discoverId?: string | null; entry?: string | null }) {
+  const router = useRouter();
+  const isFr = locale === "fr";
+  const [panel, setPanel] = React.useState<Panel>(null);
+  const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
+  const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
@@ -297,6 +345,42 @@ export default function IndieMapSplitView({ locale, discoverId, entry }: { local
   const [heroOpen, setHeroOpen] = React.useState(false);
   const needsAtomicReveal = Boolean(discoverId) || entry === "explore";
   const [discoverUiReady, setDiscoverUiReady] = React.useState<boolean>(!needsAtomicReveal);
+
+  React.useEffect(() => {
+    const syncSavedPlaces = () => {
+      setSavedPlaces(readSavedPlaces());
+    };
+
+    syncSavedPlaces();
+    window.addEventListener("storage", syncSavedPlaces);
+    window.addEventListener("im:saved-places-updated", syncSavedPlaces as EventListener);
+    return () => {
+      window.removeEventListener("storage", syncSavedPlaces);
+      window.removeEventListener("im:saved-places-updated", syncSavedPlaces as EventListener);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!panel) return;
+    window.requestAnimationFrame(() => {
+      panelScrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
+    });
+  }, [panel]);
+
+  React.useEffect(() => {
+    if (!panel) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPanel(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [panel]);
+
+  function switchLocale(nextLocale: "fr" | "en") {
+    if (nextLocale === locale) return;
+    document.cookie = `NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    window.location.href = `/${nextLocale}`;
+  }
 
   React.useEffect(() => {
     type HeroDetail = { open?: boolean };
@@ -622,17 +706,19 @@ const filtered = source.filter((b) => {
           homeOverlay={!heroOpen ? (
             <div
               className="absolute z-[1450] pointer-events-auto"
-              style={{ right: "12px", bottom: "calc(env(safe-area-inset-bottom) + 56px)" }}
+              style={{ right: "12px", top: "calc(env(safe-area-inset-top) + 64px)" }}
             >
-              <a
-                href={`/${locale}`}
-                aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
-                className="flex items-center justify-center w-11 h-11 rounded-t-xl rounded-b-none bg-[#262626] text-white shadow-lg border border-[#404040] border-b border-b-transparent"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
-                </svg>
-              </a>
+              <div className="flex flex-col items-center">
+                <a
+                  href={`/${locale}`}
+                  aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
+                  className="flex items-center justify-center w-11 h-11 rounded-xl bg-[#262626] text-white shadow-lg border border-[#404040]"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5L12 4l9 6.5M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" />
+                  </svg>
+                </a>
+              </div>
             </div>
           ) : null}
           topOverlay={!heroOpen ? (
