@@ -50,7 +50,7 @@ export default function BottomBarOverlay({
     <>
       <div className="fixed inset-x-0 bottom-0 z-[1200]">
         <div
-          className="grid w-full grid-cols-4 border-t border-white/10 bg-[#2a2a25]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+          className="grid w-full grid-cols-4 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
           style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         >
           <button
@@ -104,8 +104,8 @@ export default function BottomBarOverlay({
       </div>
 
       {panel ? (
-        <div className="fixed inset-0 z-[2001] bg-black/45 px-0 pt-6 pb-0">
-          <div className="mx-auto flex h-full w-full max-w-none flex-col overflow-hidden rounded-t-3xl rounded-b-none border border-neutral-700 bg-[#262626] shadow-2xl">
+        <div className="fixed inset-0 z-[2001] bg-black/45 px-0 pt-[30vh] pb-0">
+          <div className="mx-auto flex h-[70vh] w-full max-w-none flex-col overflow-hidden rounded-t-3xl rounded-b-none border border-neutral-700 bg-[#262626] shadow-2xl">
             <div className="flex items-center justify-between px-5 py-4">
               <div className="flex flex-col leading-none">
                 <span className="text-lg font-semibold text-white">Indie Map</span>
