@@ -519,12 +519,12 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
         </div>
 
-        <div className="flex flex-1 flex-col w-full pb-[78px]">
+        <div className="flex flex-1 flex-col w-full pb-[68px]">
           
 
           <button
             onClick={() => router.push(`/${locale}/carte?entry=explore`)}
-            className="relative w-full min-h-[220px] flex-[1.2] overflow-hidden rounded-b-xl mb-2"
+            className="relative w-full shrink-0 h-[340px] overflow-hidden rounded-b-xl mb-2"
               style={{
                 background: "#181914"
               }}
@@ -543,7 +543,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
           
 
-          <div className="grid w-full flex-1 grid-cols-2 gap-2 mb-2">
+          <div className="grid w-full shrink-0 h-[300px] grid-cols-2 gap-2 mb-3">
             <button
                 type="button"
                 onClick={() => {
@@ -665,49 +665,49 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
           <button
             type="button"
             onClick={() => setPanel("myPlaces")}
-            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <span className="text-[24px] leading-none">♡</span>
-            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
+            <span className="text-[22px] leading-none">♡</span>
+            <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("contrib")}
-            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="whitespace-nowrap h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className="whitespace-nowrap h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 5v14" />
               <path d="M5 12h14" />
             </svg>
-            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
+            <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("about")}
-            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 16v-5" />
               <path d="M12 8h.01" />
               <circle cx="12" cy="12" r="9" />
             </svg>
-            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
+            <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPanel("pros")}
-            className="flex min-h-[58px] flex-col items-center justify-center gap-1 px-2 text-center hover:bg-white/6 active:bg-white/10"
+            className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-6 w-6 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M10 6h4" />
               <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
               <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
               <path d="M9 14h6" />
             </svg>
-            <span className="whitespace-nowrap text-[10px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
+            <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
           </button>
         </div>
       </div>
