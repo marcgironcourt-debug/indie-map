@@ -504,7 +504,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     <>
       <style jsx global>{explorerPulseCss}</style>
       <div className="flex h-[100dvh] w-full flex-col bg-black text-white">
-        <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5">
+        <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5" style={{ paddingTop: "calc(env(safe-area-inset-top) + 10px)" }}>
           <div className="mb-2 flex w-full justify-center pt-2 pb-1">
             <div className="inline-flex flex-col items-start justify-center gap-1">
               <h1 className="text-[22px] font-semibold tracking-tight text-white">
