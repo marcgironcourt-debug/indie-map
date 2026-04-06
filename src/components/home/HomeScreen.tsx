@@ -519,12 +519,12 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
         </div>
 
-        <div className="flex flex-1 flex-col w-full pb-[68px]">
+        <div className="flex flex-1 w-full min-h-0 flex-col" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 74px)" }}>
           
 
           <button
             onClick={() => router.push(`/${locale}/carte?entry=explore`)}
-            className="relative w-full shrink-0 h-[340px] overflow-hidden rounded-b-xl mb-2"
+            className="relative mb-2 w-full min-h-0 flex-[1.18] overflow-hidden rounded-b-xl"
               style={{
                 background: "#181914"
               }}
@@ -543,7 +543,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
           
 
-          <div className="grid w-full shrink-0 h-[300px] grid-cols-2 gap-2 mb-3">
+          <div className="mb-3 grid w-full min-h-0 flex-1 grid-cols-2 gap-2">
             <button
                 type="button"
                 onClick={() => {
