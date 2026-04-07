@@ -543,6 +543,23 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
           
 
+          <button
+            type="button"
+            onClick={() => router.push(`/${locale}/carte`)}
+            className="mb-2 flex w-full items-center gap-2.5 px-1 text-left"
+          >
+            <img
+              src="/panorama/arloca.webp"
+              alt=""
+              className="h-8 w-8 shrink-0 rounded-md object-cover"
+            />
+            <p className="text-[12.5px] leading-[1.3] text-white/88">
+              {isFr
+                ? "En ville aujourd’hui ? Passe chez Arloca avant que ça ferme, tu trouveras sûrement un objet fait ici à offrir."
+                : "If you’re in town today, stop by Arloca before it closes — it’s exactly the kind of place where you’ll find something made here that you’ll want to give."}
+            </p>
+          </button>
+
           <div className="mb-3 grid w-full min-h-0 flex-1 grid-cols-2 gap-2">
             <button
                 type="button"
@@ -584,7 +601,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
                       <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
                         {discoverPlace?.name || (isFr ? "Lieu surprise" : "Surprise place")}
                       </p>
-                      <p className="text-[11px] opacity-90 truncate">
+                      <p className="mt-1 text-[11px] opacity-90 truncate">
                         {discoverPlace?.city || discoverPlace?.address || "Indie Map"}
                       </p>
                     </div>
