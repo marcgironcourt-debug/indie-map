@@ -16,6 +16,10 @@ type Place = {
   category?: string;
   createdAt?: string;
   updatedAt?: string;
+  homeTextNear?: string;
+  homeTextFar?: string;
+  homeTextNearEn?: string;
+  homeTextFarEn?: string;
 };
 
 function getLocalDayKey(now: Date) {
@@ -114,7 +118,11 @@ function readPlaces(): Place[] {
       address: String(item?.address ?? "").trim() || undefined,
       category: String(item?.category ?? "").trim() || undefined,
       createdAt: String(item?.createdAt ?? "").trim() || undefined,
-      updatedAt: String(item?.updatedAt ?? "").trim() || undefined
+      updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
+      homeTextNear: String(item?.homeTextNear ?? "").trim() || undefined,
+      homeTextFar: String(item?.homeTextFar ?? "").trim() || undefined,
+      homeTextNearEn: String(item?.translations?.en?.homeTextNear ?? "").trim() || undefined,
+      homeTextFarEn: String(item?.translations?.en?.homeTextFar ?? "").trim() || undefined
     }))
     .filter((item: Place) =>
       !!item.id &&

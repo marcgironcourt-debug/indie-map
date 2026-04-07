@@ -38,6 +38,8 @@ const timeZone = str(x.timeZone);
   const createdAt = str(x.createdAt);
   const updatedAt = str(x.updatedAt);
   const miniText = optStr(x.miniText);
+  const homeTextNear = optStr(x.homeTextNear);
+  const homeTextFar = optStr(x.homeTextFar);
   const panoramaImage = optStr(x.panoramaImage);
 
   const lat = num(x.lat);
@@ -64,7 +66,9 @@ const timeZone = str(x.timeZone);
     tags,
     phone,
     openingHours,
-...(miniText ? { miniText } : {}),
+    ...(miniText ? { miniText } : {}),
+    ...(homeTextNear ? { homeTextNear } : {}),
+    ...(homeTextFar ? { homeTextFar } : {}),
     ...(panoramaImage ? { panoramaImage } : {})
   };
 }

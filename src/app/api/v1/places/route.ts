@@ -56,11 +56,29 @@ export async function GET(req: Request) {
       if (!isObj(tr)) return x;
 
             
+      let next = x;
+
       const tObj = tr[lang];
       if (isObj(tObj)) {
-        const t = tObj.miniText;
-        if (typeof t === "string" && t.trim().length > 0) {
-          return { ...x, miniText: t };
+        const patch: Record<string, unknown> = {};
+
+        const miniText = tObj.miniText;
+        if (typeof miniText === "string" && miniText.trim().length > 0) {
+          patch.miniText = miniText;
+        }
+
+        const homeTextNear = tObj.homeTextNear;
+        if (typeof homeTextNear === "string" && homeTextNear.trim().length > 0) {
+          patch.homeTextNear = homeTextNear;
+        }
+
+        const homeTextFar = tObj.homeTextFar;
+        if (typeof homeTextFar === "string" && homeTextFar.trim().length > 0) {
+          patch.homeTextFar = homeTextFar;
+        }
+
+        if (Object.keys(patch).length > 0) {
+          next = { ...next, ...patch };
         }
       }
 
@@ -68,11 +86,11 @@ export async function GET(req: Request) {
       if (isObj(mt)) {
         const t2 = mt[lang];
         if (typeof t2 === "string" && t2.trim().length > 0) {
-          return { ...x, miniText: t2 };
+          next = { ...next, miniText: t2 };
         }
       }
 
-      return x;
+      return next;
     });
 
     return NextResponse.json(out.map(normalizePlace), { headers: CACHE_HEADERS });

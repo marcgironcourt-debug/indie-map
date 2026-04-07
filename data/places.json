@@ -21,10 +21,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact."
+        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
+        "homeTextNear": "If you want to cook with local products tonight, LOCO Castelnau is a simple and reliable option.",
+        "homeTextFar": "In Montreal, LOCO Castelnau is a committed grocery store where you can find local products and consume differently."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Si tu veux cuisiner avec des produits locaux ce soir, LOCO Castelnau est une option simple et fiable.",
+    "homeTextFar": "À Montréal, LOCO Castelnau est une épicerie engagée où tu peux trouver des produits locaux et consommer autrement."
   },
   {
     "id": "044b4878-9f8c-4c96-8adc-ab1b708753b1",
@@ -48,10 +52,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact."
+        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
+        "homeTextNear": "For easy local groceries, LOCO Verdun gets the job done without effort.",
+        "homeTextFar": "In Montreal, LOCO Verdun is a local grocery store offering bulk products and more sustainable alternatives."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Pour faire des courses locales sans détour, LOCO Verdun fait le travail simplement.",
+    "homeTextFar": "À Montréal, LOCO Verdun est une épicerie locale qui propose des produits en vrac et des alternatives plus durables."
   },
   {
     "id": "937fa123-c7b1-49b0-bc8e-e05d6c2f8d73",
@@ -75,10 +83,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact."
+        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
+        "homeTextNear": "If you want to shop local today, LOCO Plateau is a safe bet.",
+        "homeTextFar": "In Montreal, LOCO Plateau is a grocery store focused on local products and zero waste."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Si tu veux faire des courses locales aujourd’hui, LOCO Plateau est une valeur sûre.",
+    "homeTextFar": "À Montréal, LOCO Plateau est une épicerie qui met en avant les produits locaux et le zéro déchet."
   },
   {
     "id": "805ff6f8-c236-4805-9299-fda0eec13c4f",
@@ -102,10 +114,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact."
+        "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
+        "homeTextNear": "To fill your basket with local products, LOCO Villeray is an easy nearby option.",
+        "homeTextFar": "In Montreal, LOCO Villeray is a neighborhood grocery store focused on local and responsible consumption."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Pour remplir ton panier avec du local, LOCO Villeray est une option simple à côté de toi.",
+    "homeTextFar": "À Montréal, LOCO Villeray est une épicerie de quartier tournée vers le local et la consommation responsable."
   },
   {
     "id": "984973db-f0b7-47c0-a8a7-b22dfb2121da",
@@ -129,10 +145,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis."
+        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
+        "homeTextNear": "If you want to shop in bulk and avoid waste, Méga Vrac is a practical option today.",
+        "homeTextFar": "In Montreal, Méga Vrac is a bulk grocery store that helps reduce packaging and simplify consumption."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Si tu veux acheter en vrac et éviter le superflu, Méga Vrac est une option pratique aujourd’hui.",
+    "homeTextFar": "À Montréal, Méga Vrac est une épicerie en vrac qui permet de consommer sans emballage et plus simplement."
   },
   {
     "id": "76d94f2a-6e68-483a-b1d8-5632ba763d9d",
@@ -13766,10 +13786,14 @@
     "miniText": "Épicerie indépendante à Bayonne engagée dans une alimentation plus responsable, sélectionnant des produits issus de producteurs locaux et de filières transparentes. Le lieu met en avant les circuits courts, une juste rémunération des producteurs et des pratiques agricoles respectueuses de l’environnement.",
     "translations": {
       "en": {
-        "miniText": "Independent grocery store in Bayonne committed to more responsible food, selecting products sourced from local producers and transparent supply chains. The place promotes short supply chains, fair compensation for producers, and environmentally respectful farming practices."
+        "miniText": "Independent grocery store in Bayonne committed to more responsible food, selecting products sourced from local producers and transparent supply chains. The place promotes short supply chains, fair compensation for producers, and environmentally respectful farming practices.",
+        "homeTextNear": "If you want to buy directly from local producers around Bayonne, Farmily & Co is a simple place to do it today.",
+        "homeTextFar": "In Bayonne, Farmily & Co works directly with local producers and offers a different way to shop for food."
       }
     },
-    "panoramaImage": "/downloads/farmilybayonne.webp"
+    "panoramaImage": "/downloads/farmilybayonne.webp",
+    "homeTextNear": "Si tu veux acheter directement des produits de producteurs autour de Bayonne, Farmily & Co est un endroit simple pour le faire aujourd’hui.",
+    "homeTextFar": "À Bayonne, Farmily & Co travaille en lien direct avec des producteurs locaux et propose une autre manière de faire ses courses."
   },
   {
     "id": "5933857a-56ed-4320-956e-24983ab70c4b",
