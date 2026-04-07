@@ -17,6 +17,7 @@ type DiscoverPlace = {
   panoramaImage?: string;
   city?: string;
   address?: string;
+  category?: string;
   createdAt?: string;
   updatedAt?: string;
 };
@@ -33,7 +34,7 @@ declare global {
   }
 }
 
-const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
+const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; contextPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 const SAVED_PLACES_KEY = "im-saved-places";
 
 function readSavedPlaces(): SavedPlace[] {
@@ -77,8 +78,10 @@ function readHomeCache(locale: "fr" | "en") {
     const parsed = JSON.parse(raw);
     const discover = parsed?.discover && typeof parsed.discover === "object" ? parsed.discover : null;
     const newest = Array.isArray(parsed?.newPlaces) ? parsed.newPlaces : [];
+    const context = parsed?.context && typeof parsed.context === "object" ? parsed.context : null;
     return {
       discoverPlace: discover as DiscoverPlace | null,
+      contextPlace: context as DiscoverPlace | null,
       newPlaces: newest as NewPlace[]
     };
   } catch {
@@ -86,13 +89,14 @@ function readHomeCache(locale: "fr" | "en") {
   }
 }
 
-function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null, newPlaces: NewPlace[]) {
+function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null, contextPlace: DiscoverPlace | null, newPlaces: NewPlace[]) {
   try {
     if (typeof window === "undefined") return;
     window.sessionStorage.setItem(
       "im-home-cache:" + locale,
       JSON.stringify({
         discover: discoverPlace ?? null,
+        context: contextPlace ?? null,
         newPlaces: Array.isArray(newPlaces) ? newPlaces : []
       })
     );
@@ -111,6 +115,13 @@ function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
+function getLocalDayKey(now: Date) {
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, "0");
+  const d = String(now.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
 function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
   const sorted = [...list].sort((a, b) => String(a.id).localeCompare(String(b.id)));
   let hash = 0;
@@ -121,30 +132,237 @@ function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
   return sorted[hash % sorted.length] ?? null;
 }
 
-export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
+function normalizeCategory(value: string | undefined) {
+  const v = String(value ?? "").trim().toLowerCase();
+  if (!v) return "";
+  if (v === "café" || v === "cafe" || v === "café / brunch") return "cafe";
+  if (v === "boulangerie") return "boulangerie";
+  if (v === "restaurant") return "restaurant";
+  if (v === "brunch") return "brunch";
+  if (
+    v === "bar" ||
+    v === "pub" ||
+    v === "brasserie" ||
+    v === "brasserie / bar" ||
+    v === "brasserie / bar / pub" ||
+    v === "brasserie bar"
+  ) return "bar";
+  if (v === "épicerie" || v === "epicerie" || v === "grocery") return "epicerie";
+  if (v === "ferme") return "ferme";
+  if (v === "librairie") return "librairie";
+  if (v === "boutique" || v === "mode" || v === "artisanat" || v === "artisanat / créateurs locaux") return "boutique";
+  if (v === "atelier") return "atelier";
+  if (v === "lieu alternatif" || v === "lieu de vie") return "alternatif";
+  if (v === "marché" || v === "marche") return "marche";
+  return v.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function getContextCategoryTargets(now: Date) {
+  const hour = now.getHours();
+  const day = now.getDay();
+  const isWeekend = day === 0 || day === 6;
+  const targets: string[] = [];
+
+  if (hour >= 6 && hour < 11) {
+    targets.push("cafe", "boulangerie");
+  }
+
+  if (hour >= 11 && hour < 14) {
+    targets.push("restaurant", "brunch");
+  }
+
+  if (hour >= 14 && hour < 17) {
+    targets.push("boutique", "librairie", "atelier");
+  }
+
+  if (hour >= 16 && hour < 20) {
+    targets.push("epicerie", "ferme", "restaurant");
+  }
+
+  if (hour >= 17 || hour < 1) {
+    targets.push("bar", "restaurant", "alternatif");
+  }
+
+  if (isWeekend) {
+    targets.push("marche", "ferme", "brunch", "librairie", "alternatif", "cafe");
+  }
+
+  if (targets.length === 0) {
+    targets.push("cafe", "restaurant", "boutique");
+  }
+
+  return [...new Set(targets)];
+}
+
+function pickContextPlace(list: DiscoverPlace[], now: Date) {
+  const targets = getContextCategoryTargets(now);
+  const scored = list
+    .map((item) => {
+      const normalized = normalizeCategory(item.category);
+      const index = targets.indexOf(normalized);
+      return {
+        item,
+        index,
+        updatedAt: Date.parse(item.updatedAt || item.createdAt || "") || 0
+      };
+    })
+    .filter((entry) => entry.index >= 0)
+    .sort((a, b) => {
+      if (a.index !== b.index) return a.index - b.index;
+      return b.updatedAt - a.updatedAt;
+    });
+
+  return scored[0]?.item ?? null;
+}
+
+function buildContextCopy(place: DiscoverPlace | null, locale: "fr" | "en", now: Date, isNearby: boolean, hasLocation: boolean) {
+  const name = place?.name || (locale === "fr" ? "ce lieu" : "this place");
+  const category = normalizeCategory(place?.category);
+  const hour = now.getHours();
+  const isFr = locale === "fr";
+
+  if (isFr) {
+    if (!hasLocation || !isNearby) {
+      if (category === "cafe" || category === "boulangerie") {
+        return `Ce matin, garde ${name} en tête si tu as envie de commencer la journée dans un lieu local.`;
+      }
+      if (category === "restaurant" || category === "brunch") {
+        return `À cette heure-ci, ${name} est une bonne idée à garder pour un prochain repas local.`;
+      }
+      if (category === "boutique" || category === "librairie" || category === "atelier") {
+        return `Cet après-midi, ${name} est une belle idée à garder si tu as envie de découvrir un lieu indépendant.`;
+      }
+      if (category === "epicerie" || category === "ferme") {
+        return `En fin de journée, garde ${name} en tête si tu veux trouver quelque chose de local.`;
+      }
+      if (category === "bar" || category === "alternatif") {
+        return hour < 20
+          ? `Pour plus tard, ${name} peut être une bonne idée si tu veux sortir dans un lieu indépendant.`
+          : `Pour ce soir ou un autre jour, ${name} peut être un bon choix si tu veux sortir.`;
+      }
+      if (category === "marche") {
+        return `Garde ${name} en tête si tu veux découvrir un lieu vivant et local.`;
+      }
+      return `Garde ${name} en tête si tu veux découvrir un lieu local.`;
+    }
+
+    if (category === "cafe" || category === "boulangerie") {
+      return `Ce matin, passe chez ${name} pour commencer la journée dans un lieu local.`;
+    }
+    if (category === "restaurant" || category === "brunch") {
+      return `À cette heure-ci, ${name} est une bonne option si tu veux manger local sans trop réfléchir.`;
+    }
+    if (category === "boutique" || category === "librairie" || category === "atelier") {
+      return `Cet après-midi, ${name} vaut le détour si tu as envie de flâner et découvrir un lieu indépendant.`;
+    }
+    if (category === "epicerie" || category === "ferme") {
+      return `En fin de journée, passe chez ${name} si tu veux prendre quelque chose de local avant de rentrer.`;
+    }
+    if (category === "bar" || category === "alternatif") {
+      return hour < 20
+        ? `En sortant du travail, ${name} peut être un bon point de chute pour ce soir.`
+        : `Pour ce soir, ${name} est un bon choix si tu veux sortir dans un lieu indépendant.`;
+    }
+    if (category === "marche") {
+      return `Aujourd’hui, ${name} est une belle option si tu veux prendre le temps de découvrir un lieu vivant et local.`;
+    }
+    return `Aujourd’hui, ${name} peut être une bonne idée si tu veux découvrir un lieu local autour de toi.`;
+  }
+
+  if (!hasLocation || !isNearby) {
+    if (category === "cafe" || category === "boulangerie") {
+      return `This morning, keep ${name} in mind if you want to start the day in a local place.`;
+    }
+    if (category === "restaurant" || category === "brunch") {
+      return `Right now, ${name} is a good idea to keep in mind for a future local meal.`;
+    }
+    if (category === "boutique" || category === "librairie" || category === "atelier") {
+      return `This afternoon, ${name} is worth keeping in mind if you feel like discovering an independent place.`;
+    }
+    if (category === "epicerie" || category === "ferme") {
+      return `Later today, keep ${name} in mind if you want to find something local.`;
+    }
+    if (category === "bar" || category === "alternatif") {
+      return hour < 20
+        ? `For later, ${name} could be a good idea if you want to go out somewhere independent.`
+        : `For tonight or another day, ${name} could be a good place to go out.`;
+    }
+    if (category === "marche") {
+      return `Keep ${name} in mind if you want to discover a lively local place.`;
+    }
+    return `Keep ${name} in mind if you want to discover a local place.`;
+  }
+
+  if (category === "cafe" || category === "boulangerie") {
+    return `This morning, stop by ${name} to start the day in a local place.`;
+  }
+  if (category === "restaurant" || category === "brunch") {
+    return `Right now, ${name} is a good option if you want to eat local without overthinking it.`;
+  }
+  if (category === "boutique" || category === "librairie" || category === "atelier") {
+    return `This afternoon, ${name} is worth a stop if you feel like browsing and discovering an independent place.`;
+  }
+  if (category === "epicerie" || category === "ferme") {
+    return `At the end of the day, stop by ${name} if you want to pick up something local before heading home.`;
+  }
+  if (category === "bar" || category === "alternatif") {
+    return hour < 20
+      ? `After work, ${name} could be a good place to head for tonight.`
+      : `For tonight, ${name} is a good choice if you want to go out somewhere independent.`;
+  }
+  if (category === "marche") {
+    return `Today, ${name} is a great option if you want to take your time and discover a lively local place.`;
+  }
+  return `Today, ${name} could be a good pick if you want to discover a local place around you.`;
+}
+
+export default function HomeScreen({
+  locale,
+  initialDiscoverPlace = null,
+  initialContextPlace = null,
+  initialNewPlaces = [],
+  initialAllPlaces = []
+}: {
+  locale: "fr" | "en";
+  initialDiscoverPlace?: DiscoverPlace | null;
+  initialContextPlace?: DiscoverPlace | null;
+  initialNewPlaces?: NewPlace[];
+  initialAllPlaces?: DiscoverPlace[];
+}) {
   const router = useRouter();
   const isFr = locale === "fr";
   const [panel, setPanel] = React.useState<Panel>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
-  const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => homeMemoryCache[locale]?.discoverPlace ?? null);
+  const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => homeMemoryCache[locale]?.discoverPlace ?? initialDiscoverPlace ?? null);
+  const [contextPlace, setContextPlace] = React.useState<DiscoverPlace | null>(() => homeMemoryCache[locale]?.contextPlace ?? initialContextPlace ?? null);
+  const [contextPlaceNearby, setContextPlaceNearby] = React.useState(false);
+  const [contextHasLocation, setContextHasLocation] = React.useState(false);
 
   React.useEffect(() => {
     try { router.prefetch(`/${locale}/carte`); } catch {}
   }, [router, locale]);
   const [discoverReady, setDiscoverReady] = React.useState(() => {
     const cached = homeMemoryCache[locale];
-    return Boolean(cached?.discoverPlace || (cached?.newPlaces?.length ?? 0) > 0);
+    return Boolean(cached?.discoverPlace || cached?.contextPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialContextPlace || initialNewPlaces.length > 0);
   });
-  const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? []);
+  const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
-  const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>([]);
+  const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const newPlacesTouchStartXRef = React.useRef<number | null>(null);
   const newPlacesTouchDeltaXRef = React.useRef(0);
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
+
+  React.useEffect(() => {
+    homeMemoryCache[locale] = {
+      discoverPlace: homeMemoryCache[locale]?.discoverPlace ?? initialDiscoverPlace ?? null,
+      contextPlace: homeMemoryCache[locale]?.contextPlace ?? initialContextPlace ?? null,
+      newPlaces: (homeMemoryCache[locale]?.newPlaces?.length ?? 0) > 0 ? homeMemoryCache[locale]!.newPlaces : (initialNewPlaces ?? [])
+    };
+  }, [locale, initialDiscoverPlace, initialContextPlace, initialNewPlaces]);
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -166,11 +384,12 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
     const cached = readHomeCache(locale);
     if (!cached) return;
     if (cached.discoverPlace) setDiscoverPlace(cached.discoverPlace);
+    if (cached.contextPlace) setContextPlace(cached.contextPlace);
     if (Array.isArray(cached.newPlaces) && cached.newPlaces.length > 0) {
       setNewPlaces(cached.newPlaces);
       setNewPlaceIndex(0);
     }
-    if (cached.discoverPlace || (cached.newPlaces?.length ?? 0) > 0) {
+    if (cached.discoverPlace || cached.contextPlace || (cached.newPlaces?.length ?? 0) > 0) {
       setDiscoverReady(true);
     }
   }, [locale, nativeLocationTick]);
@@ -292,6 +511,7 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
             city: String(item?.city ?? "").trim() || undefined,
             address: String(item?.address ?? "").trim() || undefined,
+            category: String(item?.category ?? "").trim() || undefined,
             createdAt: String(item?.createdAt ?? "").trim() || undefined,
             updatedAt: String(item?.updatedAt ?? "").trim() || undefined
           }))
@@ -304,28 +524,46 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
         setAllPlaces(all);
 
-        const dayKey = new Date().toISOString().slice(0, 10);
-
-        const finish = (pool: DiscoverPlace[]) => {
+        const finish = (pool: DiscoverPlace[], hasLocation: boolean) => {
           if (cancelled) return;
+
+          const now = new Date();
+          const dayKey = getLocalDayKey(now);
+          const nextDiscover = all.length > 0 ? pickDailyPlace(all, dayKey) : null;
+
+          const contextBasePool = (pool.length > 0 ? pool : all).filter((item) => item.id !== nextDiscover?.id);
+          const contextFallbackPool = all.filter((item) => item.id !== nextDiscover?.id);
+          const nextContextPlace =
+            pickContextPlace(contextBasePool, now) ??
+            pickContextPlace(contextFallbackPool, now);
+
           const latest = [...all]
+            .filter((item) => item.id !== nextDiscover?.id && item.id !== nextContextPlace?.id)
             .sort((a, b) => {
               const aTime = Date.parse(a.updatedAt || a.createdAt || "") || 0;
               const bTime = Date.parse(b.updatedAt || b.createdAt || "") || 0;
               return bTime - aTime;
             })
             .slice(0, 5);
-          const nextDiscover = pool.length > 0 ? pickDailyPlace(pool, dayKey) : null;
-          homeMemoryCache[locale] = { discoverPlace: nextDiscover, newPlaces: latest };
+
+          homeMemoryCache[locale] = { discoverPlace: nextDiscover, contextPlace: nextContextPlace, newPlaces: latest };
           setNewPlaces(latest);
           setNewPlaceIndex(0);
           setDiscoverPlace(nextDiscover);
+          setContextPlace(nextContextPlace);
+          setContextPlaceNearby(
+            hasLocation &&
+            pool.length > 0 &&
+            !!nextContextPlace &&
+            pool.some((item) => item.id === nextContextPlace.id)
+          );
+          setContextHasLocation(hasLocation);
           setDiscoverReady(true);
-          writeHomeCache(locale, nextDiscover, latest);
+          writeHomeCache(locale, nextDiscover, nextContextPlace, latest);
         };
 
         if (all.length === 0) {
-          finish([]);
+          finish([], false);
           return;
         }
 
@@ -433,11 +671,11 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
             const lng = Number(item.lng);
             return Number.isFinite(lat) && Number.isFinite(lng) && haversineKm(pos.lat, pos.lng, lat, lng) <= 50;
           });
-          finish(nearby.length > 0 ? nearby : all);
+          finish(nearby, true);
           return;
         }
 
-        finish(all);
+        finish([], false);
       } catch {
         if (cancelled) return;
         setDiscoverReady(true);
@@ -543,22 +781,31 @@ export default function HomeScreen({ locale }: { locale: "fr" | "en" }) {
 
           
 
-          <button
-            type="button"
-            onClick={() => router.push(`/${locale}/carte`)}
-            className="mb-2 flex w-full items-center gap-2.5 px-1 text-left"
-          >
-            <img
-              src="/panorama/arloca.webp"
-              alt=""
-              className="h-8 w-8 shrink-0 rounded-md object-cover"
-            />
-            <p className="text-[12.5px] leading-[1.3] text-white/88">
-              {isFr
-                ? "En ville aujourd’hui ? Passe chez Arloca avant que ça ferme, tu trouveras sûrement un objet fait ici à offrir."
-                : "If you’re in town today, stop by Arloca before it closes — it’s exactly the kind of place where you’ll find something made here that you’ll want to give."}
-            </p>
-          </button>
+          <div className="mb-2 w-full px-1">
+            {contextPlace ? (
+              <button
+                type="button"
+                onClick={() => {
+                  router.push(`/${locale}/carte?discover=${encodeURIComponent(contextPlace.id)}`);
+                }}
+                className="flex w-full items-center gap-2.5 text-left"
+              >
+                <img
+                  src={contextPlace.panoramaImage || "/explorer-bg.png?v=3"}
+                  alt=""
+                  className="h-8 w-8 shrink-0 rounded-md object-cover"
+                />
+                <p className="text-[12.5px] leading-[1.3] text-white/88">
+                  {buildContextCopy(contextPlace, locale, new Date(), contextPlaceNearby, contextHasLocation)}
+                </p>
+              </button>
+            ) : (
+              <div className="flex w-full items-center gap-2.5">
+                <div className="h-8 w-8 shrink-0 rounded-md bg-white/10"></div>
+                <div className="h-8 flex-1 rounded-md bg-white/10"></div>
+              </div>
+            )}
+          </div>
 
           <div className="mb-3 grid w-full min-h-0 flex-1 grid-cols-2 gap-2">
             <button
