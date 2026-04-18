@@ -10614,9 +10614,13 @@
     "panoramaImage": "/downloads_webp/vunartha.webp",
     "translations": {
       "en": {
-        "miniText": "Boutique-workshop transforming silk scraps into handmade creations (paintings, objects and gifts). The project operates as a social impact initiative, highlighting the work of artisans with disabilities and the valorization of recycled textile materials."
+        "miniText": "Boutique-workshop transforming silk scraps into handmade creations (paintings, objects and gifts). The project operates as a social impact initiative, highlighting the work of artisans with disabilities and the valorization of recycled textile materials.",
+        "homeTextNear": "Buying handmade creations made from silk scraps is possible at the Vụn Art shop near you.",
+        "homeTextFar": "In Hanoi, the Vụn Art shop turns silk scraps into handmade creations."
       }
-    }
+    },
+    "homeTextNear": "Acheter des créations artisanales faites à partir de chutes de soie, c’est possible à la boutique Vụn Art près de toi.",
+    "homeTextFar": "À Hanoï, la boutique Vụn Art transforme des chutes de soie en créations artisanales."
   },
   {
     "id": "5c7d677d-b731-43e9-a8ce-c94a5ec37c5d",

@@ -677,6 +677,15 @@ export default function HomeScreen({
   return (
     <>
       <style jsx global>{explorerPulseCss}</style>
+      <style jsx global>{`
+        .im-home-scroll {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .im-home-scroll::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       <div className="flex h-[100dvh] w-full flex-col bg-black text-white">
         <div className="mx-auto flex w-full max-w-md flex-col items-center px-6 pt-5" style={{ paddingTop: "calc(env(safe-area-inset-top) + 10px)" }}>
           <div className="mb-2 flex w-full justify-center pt-2 pb-1">
@@ -693,12 +702,12 @@ export default function HomeScreen({
 
         </div>
 
-        <div className="flex flex-1 w-full min-h-0 flex-col" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 74px)" }}>
+        <div className="im-home-scroll flex flex-1 w-full min-h-0 flex-col overflow-y-auto overscroll-y-contain" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)" }}>
           
 
           <button
             onClick={() => router.push(`/${locale}/carte?entry=explore`)}
-            className="relative mb-2 w-full min-h-0 flex-[1.18] overflow-hidden rounded-b-xl"
+            className="relative mb-2 h-[290px] w-full shrink-0 overflow-hidden rounded-b-xl"
               style={{
                 background: "#181914"
               }}
@@ -717,33 +726,36 @@ export default function HomeScreen({
 
           
 
-          <div className="mb-2 w-full px-1">
+          <div className="-mt-2 mb-3 w-full px-3">
             {contextPlace ? (
               <button
                 type="button"
                 onClick={() => {
                   router.push(`/${locale}/carte?discover=${encodeURIComponent(contextPlace.id)}`);
                 }}
-                className="flex w-full items-center gap-2.5 text-left"
+                className="flex w-full items-center gap-4 px-3 py-4 text-left"
+                style={{
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 24px rgba(0,0,0,0.18)"
+                }}
               >
                 <img
                   src={contextPlace.panoramaImage || "/explorer-bg.png?v=3"}
                   alt=""
-                  className="h-8 w-8 shrink-0 rounded-md object-cover"
+                  className="h-20 w-20 shrink-0 rounded-xl object-cover"
                 />
-                <p className="text-[12.5px] leading-[1.3] text-white/88">
+                <p className="text-[17px] leading-[1.35] text-white/95">
                   {getSuggestionCopy(contextPlace, locale, contextPlaceNearby)}
                 </p>
               </button>
             ) : (
-              <div className="flex w-full items-center gap-2.5">
-                <div className="h-8 w-8 shrink-0 rounded-md bg-white/10"></div>
-                <div className="h-8 flex-1 rounded-md bg-white/10"></div>
+              <div className="flex w-full items-center gap-3 px-1 py-2">
+                <div className="h-20 w-20 shrink-0 rounded-xl bg-white/10"></div>
+                <div className="h-16 flex-1 rounded-xl bg-white/10"></div>
               </div>
             )}
           </div>
 
-          <div className="mb-3 grid w-full min-h-0 flex-1 grid-cols-2 gap-2">
+          <div className="mb-0 grid w-full shrink-0 grid-cols-2 gap-2 pb-6">
             <button
                 type="button"
                 onClick={() => {
@@ -753,7 +765,7 @@ export default function HomeScreen({
                   }
                   router.push(`/${locale}/carte`);
                 }}
-                className="relative h-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18"
+                className="relative min-h-[290px] overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18"
                 style={{
                   boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                 }}
@@ -804,7 +816,7 @@ export default function HomeScreen({
                 onTouchStart={onNewPlacesTouchStart}
                 onTouchMove={onNewPlacesTouchMove}
                 onTouchEnd={onNewPlacesTouchEnd}
-                className="relative h-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                className="relative min-h-[290px] overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
                 style={{
                   boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                 }}
@@ -854,6 +866,8 @@ export default function HomeScreen({
             </button>
 
           </div>
+
+          
         </div>
       </div>
 
