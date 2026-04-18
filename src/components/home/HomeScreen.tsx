@@ -6,6 +6,7 @@ import React from "react";
 
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
+import { isOpenNowFR } from "@/lib/openingHours";
 
 type Panel = null | "pros" | "contrib" | "about" | "myPlaces";
 
@@ -18,6 +19,8 @@ type DiscoverPlace = {
   city?: string;
   address?: string;
   category?: string;
+  openingHours?: string;
+  timeZone?: string;
   createdAt?: string;
   updatedAt?: string;
   homeTextNear?: string;
@@ -234,6 +237,13 @@ function getSuggestionCopy(place: DiscoverPlace | null, locale: "fr" | "en", isN
   return (isNearby ? place.homeTextNearEn : place.homeTextFarEn) || "";
 }
 
+function isSuggestionCandidateOpen(place: DiscoverPlace) {
+  const opening = String(place.openingHours ?? "").trim();
+  const timeZone = String(place.timeZone ?? "").trim();
+  if (!opening || !timeZone) return true;
+  return isOpenNowFR(opening, timeZone) !== false;
+}
+
 export default function HomeScreen({
   locale,
   initialDiscoverPlace = null,
@@ -429,6 +439,8 @@ export default function HomeScreen({
             city: String(item?.city ?? "").trim() || undefined,
             address: String(item?.address ?? "").trim() || undefined,
             category: String(item?.category ?? "").trim() || undefined,
+            openingHours: String(item?.openingHours ?? "").trim() || undefined,
+            timeZone: String(item?.timeZone ?? "").trim() || undefined,
             createdAt: String(item?.createdAt ?? "").trim() || undefined,
             updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
             homeTextNear: String(item?.homeTextNear ?? "").trim() || undefined,
@@ -454,7 +466,11 @@ export default function HomeScreen({
 
           const contextBasePool = (pool.length > 0 ? pool : all).filter((item) => item.id !== nextDiscover?.id);
           const contextFallbackPool = all.filter((item) => item.id !== nextDiscover?.id);
+          const openContextBasePool = contextBasePool.filter(isSuggestionCandidateOpen);
+          const openContextFallbackPool = contextFallbackPool.filter(isSuggestionCandidateOpen);
           const nextContextPlace =
+            pickContextPlace(openContextBasePool, now) ??
+            pickContextPlace(openContextFallbackPool, now) ??
             pickContextPlace(contextBasePool, now) ??
             pickContextPlace(contextFallbackPool, now);
 
