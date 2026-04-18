@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { normalizePlace } from "./_normalize";
+import { applyPrivateHomeSuggestionPatches } from "@/lib/privateHomeSuggestions";
 import fs from "node:fs";
 import path from "node:path";
 import { locales, defaultLocale } from "../../../../../i18n";
@@ -46,7 +47,7 @@ export async function GET(req: Request) {
     }
 
     if (lang === defaultLocale) {
-      return NextResponse.json(parsed.map(normalizePlace), { headers: CACHE_HEADERS });
+      return NextResponse.json(applyPrivateHomeSuggestionPatches(parsed.map(normalizePlace)), { headers: CACHE_HEADERS });
     }
 
     const out = parsed.map((x: unknown) => {
@@ -93,7 +94,7 @@ export async function GET(req: Request) {
       return next;
     });
 
-    return NextResponse.json(out.map(normalizePlace), { headers: CACHE_HEADERS });
+    return NextResponse.json(applyPrivateHomeSuggestionPatches(out.map(normalizePlace)), { headers: CACHE_HEADERS });
   } catch (err) {
     console.error("[/api/v1/places] Erreur de lecture places.json", err);
     return NextResponse.json(
