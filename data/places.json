@@ -22,13 +22,13 @@
       "miniText": {},
       "en": {
         "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
-        "homeTextNear": "If you want to cook with local products tonight, LOCO Castelnau is a simple and reliable option.",
-        "homeTextFar": "In Montreal, LOCO Castelnau is a committed grocery store where you can find local products and consume differently."
+        "homeTextNear": "Cooking with good ingredients changes your meal, and LOCO grocery stores are there to pick up what you need, without going far.",
+        "homeTextFar": "In Montreal, LOCO grocery stores offer a different way to shop for food, with local products and more transparency."
       }
     },
     "country": "CA",
-    "homeTextNear": "Si tu veux cuisiner avec des produits locaux ce soir, LOCO Castelnau est une option simple et fiable.",
-    "homeTextFar": "À Montréal, LOCO Castelnau est une épicerie engagée où tu peux trouver des produits locaux et consommer autrement."
+    "homeTextNear": "Cuisiner avec de bons produits change ton repas, et l’épicerie LOCO est là pour faire tes courses, sans aller loin.",
+    "homeTextFar": "À Montréal, les épiceries LOCO proposent une autre manière de faire ses courses, avec des produits locaux et plus de transparence."
   },
   {
     "id": "044b4878-9f8c-4c96-8adc-ab1b708753b1",
@@ -53,13 +53,13 @@
       "miniText": {},
       "en": {
         "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
-        "homeTextNear": "For easy local groceries, LOCO Verdun gets the job done without effort.",
-        "homeTextFar": "In Montreal, LOCO Verdun is a local grocery store offering bulk products and more sustainable alternatives."
+        "homeTextNear": "Cooking with good ingredients changes your meal, and LOCO grocery stores are there to pick up what you need, without going far.",
+        "homeTextFar": "In Montreal, LOCO grocery stores offer a different way to shop for food, with local products and more transparency."
       }
     },
     "country": "CA",
-    "homeTextNear": "Pour faire des courses locales sans détour, LOCO Verdun fait le travail simplement.",
-    "homeTextFar": "À Montréal, LOCO Verdun est une épicerie locale qui propose des produits en vrac et des alternatives plus durables."
+    "homeTextNear": "Cuisiner avec de bons produits change ton repas, et l’épicerie LOCO est là pour faire tes courses, sans aller loin.",
+    "homeTextFar": "À Montréal, les épiceries LOCO proposent une autre manière de faire ses courses, avec des produits locaux et plus de transparence."
   },
   {
     "id": "937fa123-c7b1-49b0-bc8e-e05d6c2f8d73",
@@ -84,13 +84,13 @@
       "miniText": {},
       "en": {
         "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk products, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
-        "homeTextNear": "If you want to shop local today, LOCO Plateau is a safe bet.",
-        "homeTextFar": "In Montreal, LOCO Plateau is a grocery store focused on local products and zero waste."
+        "homeTextNear": "Cooking with good ingredients changes your meal, and LOCO grocery stores are there to pick up what you need, without going far.",
+        "homeTextFar": "In Montreal, LOCO grocery stores offer a different way to shop for food, with local products and more transparency."
       }
     },
     "country": "CA",
-    "homeTextNear": "Si tu veux faire des courses locales aujourd’hui, LOCO Plateau est une valeur sûre.",
-    "homeTextFar": "À Montréal, LOCO Plateau est une épicerie qui met en avant les produits locaux et le zéro déchet."
+    "homeTextNear": "Cuisiner avec de bons produits change ton repas, et l’épicerie LOCO est là pour faire tes courses, sans aller loin.",
+    "homeTextFar": "À Montréal, les épiceries LOCO proposent une autre manière de faire ses courses, avec des produits locaux et plus de transparence."
   },
   {
     "id": "805ff6f8-c236-4805-9299-fda0eec13c4f",
@@ -115,13 +115,13 @@
       "miniText": {},
       "en": {
         "miniText": "Local shop offering fresh, local and organic food, with a focus on zero waste and sustainability. You'll find fruit, vegetables, bulk produce, delicatessen and eco-friendly items. A place to consume differently, support local producers and reduce your environmental impact.",
-        "homeTextNear": "To fill your basket with local products, LOCO Villeray is an easy nearby option.",
-        "homeTextFar": "In Montreal, LOCO Villeray is a neighborhood grocery store focused on local and responsible consumption."
+        "homeTextNear": "Cooking with good ingredients changes your meal, and LOCO grocery stores are there to pick up what you need, without going far.",
+        "homeTextFar": "In Montreal, LOCO grocery stores offer a different way to shop for food, with local products and more transparency."
       }
     },
     "country": "CA",
-    "homeTextNear": "Pour remplir ton panier avec du local, LOCO Villeray est une option simple à côté de toi.",
-    "homeTextFar": "À Montréal, LOCO Villeray est une épicerie de quartier tournée vers le local et la consommation responsable."
+    "homeTextNear": "Cuisiner avec de bons produits change ton repas, et l’épicerie LOCO est là pour faire tes courses, sans aller loin.",
+    "homeTextFar": "À Montréal, les épiceries LOCO proposent une autre manière de faire ses courses, avec des produits locaux et plus de transparence."
   },
   {
     "id": "984973db-f0b7-47c0-a8a7-b22dfb2121da",
@@ -146,13 +146,13 @@
       "miniText": {},
       "en": {
         "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
-        "homeTextNear": "If you want to shop in bulk and avoid waste, Méga Vrac is a practical option today.",
-        "homeTextFar": "In Montreal, Méga Vrac is a bulk grocery store that helps reduce packaging and simplify consumption."
+        "homeTextNear": "Shopping in bulk changes the way you consume, and Méga Vrac grocery stores are close by for that.",
+        "homeTextFar": "In Montreal, Méga Vrac grocery stores offer a different way to shop for food by reducing packaging."
       }
     },
     "country": "CA",
-    "homeTextNear": "Si tu veux acheter en vrac et éviter le superflu, Méga Vrac est une option pratique aujourd’hui.",
-    "homeTextFar": "À Montréal, Méga Vrac est une épicerie en vrac qui permet de consommer sans emballage et plus simplement."
+    "homeTextNear": "Acheter en vrac change la manière de consommer, et l’épicerie Méga Vrac est à proximité pour ça.",
+    "homeTextFar": "À Montréal, les épiceries Méga Vrac proposent une autre manière de faire ses courses, en réduisant les emballages."
   },
   {
     "id": "76d94f2a-6e68-483a-b1d8-5632ba763d9d",
@@ -176,10 +176,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis."
+        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
+        "homeTextNear": "Shopping in bulk changes the way you consume, and Méga Vrac grocery stores are close by for that.",
+        "homeTextFar": "In Montreal, Méga Vrac grocery stores offer a different way to shop for food by reducing packaging."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Acheter en vrac change la manière de consommer, et l’épicerie Méga Vrac est à proximité pour ça.",
+    "homeTextFar": "À Montréal, les épiceries Méga Vrac proposent une autre manière de faire ses courses, en réduisant les emballages."
   },
   {
     "id": "3f7270cc-1cd7-4c08-9f49-94a0b3c3238f",
@@ -203,10 +207,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis."
+        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
+        "homeTextNear": "Shopping in bulk changes the way you consume, and Méga Vrac grocery stores are close by for that.",
+        "homeTextFar": "In Montreal, Méga Vrac grocery stores offer a different way to shop for food by reducing packaging."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Acheter en vrac change la manière de consommer, et l’épicerie Méga Vrac est à proximité pour ça.",
+    "homeTextFar": "À Montréal, les épiceries Méga Vrac proposent une autre manière de faire ses courses, en réduisant les emballages."
   },
   {
     "id": "1b084561-e3e3-4f71-8b51-88593389ee97",
@@ -230,10 +238,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis."
+        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
+        "homeTextNear": "Shopping in bulk changes the way you consume, and Méga Vrac grocery stores are close by for that.",
+        "homeTextFar": "In Montreal, Méga Vrac grocery stores offer a different way to shop for food by reducing packaging."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Acheter en vrac change la manière de consommer, et l’épicerie Méga Vrac est à proximité pour ça.",
+    "homeTextFar": "À Montréal, les épiceries Méga Vrac proposent une autre manière de faire ses courses, en réduisant les emballages."
   },
   {
     "id": "7e201791-baa8-4163-beb8-daa78bd20796",
@@ -257,10 +269,14 @@
     "translations": {
       "miniText": {},
       "en": {
-        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis."
+        "miniText": "With over 1,000 packaging-free products, it's a zero-waste grocery store specializing in bulk sales of food and household products. Méga Vrac encourages the reduction of single-use packaging and offers a selection of products based on responsible, accessible and sustainable choices, promoting more conscious consumption on a daily basis.",
+        "homeTextNear": "Shopping in bulk changes the way you consume, and Méga Vrac grocery stores are close by for that.",
+        "homeTextFar": "In Montreal, Méga Vrac grocery stores offer a different way to shop for food by reducing packaging."
       }
     },
-    "country": "CA"
+    "country": "CA",
+    "homeTextNear": "Acheter en vrac change la manière de consommer, et l’épicerie Méga Vrac est à proximité pour ça.",
+    "homeTextFar": "À Montréal, les épiceries Méga Vrac proposent une autre manière de faire ses courses, en réduisant les emballages."
   },
   {
     "id": "f4cdbe2b-b690-4abc-aad9-bb51bfc9fc0d",
@@ -13787,13 +13803,13 @@
     "translations": {
       "en": {
         "miniText": "Independent grocery store in Bayonne committed to more responsible food, selecting products sourced from local producers and transparent supply chains. The place promotes short supply chains, fair compensation for producers, and environmentally respectful farming practices.",
-        "homeTextNear": "If you want to buy directly from local producers around Bayonne, Farmily & Co is a simple place to do it today.",
-        "homeTextFar": "In Bayonne, Farmily & Co works directly with local producers and offers a different way to shop for food."
+        "homeTextNear": "Shopping in direct connection with producers changes what ends up in your basket, and Farmily & Co grocery store is close to you for that.",
+        "homeTextFar": "In Bayonne, Farmily & Co grocery store works directly with local producers and offers a different way to shop for food."
       }
     },
     "panoramaImage": "/downloads/farmilybayonne.webp",
-    "homeTextNear": "Si tu veux acheter directement des produits de producteurs autour de Bayonne, Farmily & Co est un endroit simple pour le faire aujourd’hui.",
-    "homeTextFar": "À Bayonne, Farmily & Co travaille en lien direct avec des producteurs locaux et propose une autre manière de faire ses courses."
+    "homeTextNear": "Faire ses courses en lien direct avec des producteurs change ce qu’on met dans son panier, et l’épicerie Farmily & Co est près de toi pour ça.",
+    "homeTextFar": "À Bayonne, l’épicerie Farmily & Co travaille en lien direct avec des producteurs locaux et propose une autre manière de faire ses courses."
   },
   {
     "id": "5933857a-56ed-4320-956e-24983ab70c4b",
@@ -13816,9 +13832,13 @@
     "miniText": "Restaurant proposant une cuisine végétarienne 100 % faite maison, élaborée à partir de produits frais, locaux et bio. Le lieu défend une approche éco-responsable fondée sur les circuits courts et le zéro déchet.",
     "translations": {
       "en": {
-        "miniText": "Restaurant offering 100% homemade vegetarian cuisine made with fresh, local and organic ingredients. The place promotes an eco-responsible approach based on short supply chains and zero waste."
+        "miniText": "Restaurant offering 100% homemade vegetarian cuisine made with fresh, local and organic ingredients. The place promotes an eco-responsible approach based on short supply chains and zero waste.",
+        "homeTextNear": "Eating a homemade vegetarian dish changes your lunch break, and L’abeille gourmande restaurant is close to you for that.",
+        "homeTextFar": "In Bordeaux, L’abeille gourmande restaurant offers homemade vegetarian cuisine made with fresh, local and organic ingredients."
       }
     },
-    "panoramaImage": "/downloads/labeillegourmande.webp"
+    "panoramaImage": "/downloads/labeillegourmande.webp",
+    "homeTextNear": "Manger un plat végétarien fait maison change la pause du midi, et le restaurant L’abeille gourmande est près de toi pour ça.",
+    "homeTextFar": "À Bordeaux, le restaurant L’abeille gourmande propose une cuisine végétarienne faite maison, à partir de produits frais, locaux et bio."
   }
 ]
