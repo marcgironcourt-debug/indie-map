@@ -273,13 +273,10 @@ export default function HomeScreen({
     return Boolean(cached?.discoverPlace || cached?.contextPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialContextPlace || initialNewPlaces.length > 0);
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
-  const [newPlaceIndex, setNewPlaceIndex] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
-  const newPlacesTouchStartXRef = React.useRef<number | null>(null);
-  const newPlacesTouchDeltaXRef = React.useRef(0);
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
 
@@ -308,13 +305,20 @@ export default function HomeScreen({
   }, [panel]);
 
   React.useEffect(() => {
+    try {
+      if (typeof window !== "undefined") {
+        window.sessionStorage.removeItem("im-home-cache:" + locale);
+      }
+    } catch {}
+  }, [locale]);
+
+  React.useEffect(() => {
     const cached = readHomeCache(locale);
     if (!cached) return;
     if (cached.discoverPlace) setDiscoverPlace(mergePlace(cached.discoverPlace, initialDiscoverPlace ?? null));
     if (cached.contextPlace) setContextPlace(mergePlace(cached.contextPlace, initialContextPlace ?? null));
     if (Array.isArray(cached.newPlaces) && cached.newPlaces.length > 0) {
       setNewPlaces(cached.newPlaces);
-      setNewPlaceIndex(0);
     }
     if (cached.discoverPlace || cached.contextPlace || (cached.newPlaces?.length ?? 0) > 0) {
       setDiscoverReady(true);
@@ -343,47 +347,6 @@ export default function HomeScreen({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [panel]);
-
-  React.useEffect(() => {
-    if (newPlaces.length <= 1) return;
-    const id = window.setInterval(() => {
-      setNewPlaceIndex((prev) => (prev + 1) % newPlaces.length);
-    }, 4500);
-    return () => window.clearInterval(id);
-  }, [newPlaces]);
-
-  const currentNewPlace = newPlaces[newPlaceIndex] ?? null;
-
-  function goToNewPlace(delta: number) {
-    setNewPlaceIndex((prev) => {
-      if (newPlaces.length === 0) return 0;
-      return (prev + delta + newPlaces.length) % newPlaces.length;
-    });
-  }
-
-  function onNewPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
-    newPlacesTouchStartXRef.current = e.touches[0]?.clientX ?? null;
-    newPlacesTouchDeltaXRef.current = 0;
-  }
-
-  function onNewPlacesTouchMove(e: React.TouchEvent<HTMLButtonElement>) {
-    const startX = newPlacesTouchStartXRef.current;
-    if (startX == null) return;
-    const currentX = e.touches[0]?.clientX ?? startX;
-    newPlacesTouchDeltaXRef.current = currentX - startX;
-  }
-
-  function onNewPlacesTouchEnd() {
-    const dx = newPlacesTouchDeltaXRef.current;
-    newPlacesTouchStartXRef.current = null;
-    newPlacesTouchDeltaXRef.current = 0;
-    if (Math.abs(dx) < 35) return;
-    if (dx < 0) {
-      goToNewPlace(1);
-      return;
-    }
-    goToNewPlace(-1);
-  }
 
   function goToSavedPlace(city: string, delta: number, length: number) {
     setSavedPlaceIndexes((prev) => {
@@ -485,7 +448,6 @@ export default function HomeScreen({
 
           homeMemoryCache[locale] = { discoverPlace: nextDiscover, contextPlace: nextContextPlace, newPlaces: latest };
           setNewPlaces(latest);
-          setNewPlaceIndex(0);
           setDiscoverPlace(nextDiscover);
           setContextPlace(nextContextPlace);
           setContextPlaceNearby(
@@ -702,8 +664,38 @@ export default function HomeScreen({
 
         </div>
 
-        <div className="im-home-scroll flex flex-1 w-full min-h-0 flex-col overflow-y-auto overscroll-y-contain" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)" }}>
+        <div className="im-home-scroll flex flex-1 w-full min-h-0 flex-col overflow-y-auto overscroll-y-contain" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)" }}>
           
+
+          <div className="-mt-2 mb-3 w-full px-3">
+            {contextPlace ? (
+              <button
+                type="button"
+                onClick={() => {
+                  router.push(`/${locale}/carte?discover=${encodeURIComponent(contextPlace.id)}`);
+                }}
+                className="flex w-full items-center gap-2 px-3 py-1.5 text-left"
+                style={{
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 24px rgba(0,0,0,0.18)"
+                }}
+              >
+                <img
+                  src={contextPlace.panoramaImage || "/explorer-bg.png?v=3"}
+                  alt=""
+                  className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                />
+                <p className="text-[14px] leading-[1.35] text-white/80">
+                  {getSuggestionCopy(contextPlace, locale, contextPlaceNearby)}
+                </p>
+              </button>
+            ) : (
+              <div className="flex w-full items-center gap-3 px-1 py-2">
+                <div className="h-20 w-20 shrink-0 rounded-xl bg-white/10"></div>
+                <div className="h-16 flex-1 rounded-xl bg-white/10"></div>
+              </div>
+            )}
+          </div>
+
 
           <button
             onClick={() => router.push(`/${locale}/carte?entry=explore`)}
@@ -718,44 +710,68 @@ export default function HomeScreen({
                 className="absolute inset-0 h-full w-full object-cover" style={{ animation: "explorerPulse 5s ease-in-out infinite", transformOrigin: "center center" }}
               />
               <div className="relative z-10 flex h-full flex-col justify-end items-start px-6 pb-6 text-white">
-                <p className="font-serif text-[24px] font-medium tracking-[0.01em]">
-                  {isFr ? "Explorer le monde" : "Explore the world"}
-                </p>
+                <div className="flex items-center gap-3">
+                  <p className="font-serif text-[24px] font-medium tracking-[0.01em]">
+                    {isFr ? "Explorer le monde" : "Explore the world"}
+                  </p>
+                  <span aria-hidden="true" className="text-[24px] leading-none">→</span>
+                </div>
               </div>
             </button>
 
-          
 
-          <div className="-mt-2 mb-3 w-full px-3">
-            {contextPlace ? (
-              <button
-                type="button"
-                onClick={() => {
-                  router.push(`/${locale}/carte?discover=${encodeURIComponent(contextPlace.id)}`);
-                }}
-                className="flex w-full items-center gap-4 px-3 py-4 text-left"
-                style={{
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 24px rgba(0,0,0,0.18)"
-                }}
-              >
-                <img
-                  src={contextPlace.panoramaImage || "/explorer-bg.png?v=3"}
-                  alt=""
-                  className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                />
-                <p className="text-[17px] leading-[1.35] text-white/95">
-                  {getSuggestionCopy(contextPlace, locale, contextPlaceNearby)}
-                </p>
-              </button>
-            ) : (
-              <div className="flex w-full items-center gap-3 px-1 py-2">
-                <div className="h-20 w-20 shrink-0 rounded-xl bg-white/10"></div>
-                <div className="h-16 flex-1 rounded-xl bg-white/10"></div>
+          <div className="mb-0 w-full shrink-0 pb-6">
+              <div className="w-full relative z-10">
+                <div className="flex items-center justify-between px-3 pt-2">
+                  <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
+                    {isFr ? "Ajouts récents" : "Recent additions"}
+                  </p>
+                </div>
+                <div className="im-home-scroll mt-3 flex gap-4 overflow-x-auto px-3 pb-2">
+                  {newPlaces.length > 0 ? newPlaces.slice(0, 5).map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        router.push(`/${locale}/carte?discover=${encodeURIComponent(item.id)}`);
+                      }}
+                      className="relative h-[190px] w-[170px] shrink-0 overflow-hidden rounded-xl bg-white/10 text-left"
+                    >
+                      {item.panoramaImage ? (
+                        <img
+                          src={item.panoramaImage}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover"
+                        />
+                      ) : null}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                        }}
+                      ></div>
+                      <div className="absolute inset-x-0 bottom-0 z-10 p-3">
+                        <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
+                          {item.name}
+                        </p>
+                        <p className="mt-1 text-[11px] opacity-90 truncate">
+                          {item.city || item.address || "Indie Map"}
+                        </p>
+                      </div>
+                    </button>
+                  )) : (
+                    <div className="flex h-[240px] w-[170px] shrink-0 items-end rounded-xl bg-white/10 p-3">
+                      <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
+                        {isFr ? "Ajoutés récemment" : "Recently added"}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
+
           </div>
 
-          <div className="mb-0 grid w-full shrink-0 grid-cols-2 gap-2 pb-6">
+          <div className="mt-2 w-full shrink-0 relative z-0 px-3">
             <button
                 type="button"
                 onClick={() => {
@@ -765,9 +781,9 @@ export default function HomeScreen({
                   }
                   router.push(`/${locale}/carte`);
                 }}
-                className="relative min-h-[290px] overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18"
+                className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
                 style={{
-                  boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                  boxShadow: "inset 0 0 0 2px rgba(255,0,0,0.9), inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
                 }}
               >
                 {discoverPlace?.panoramaImage ? (
@@ -804,70 +820,21 @@ export default function HomeScreen({
                 </div>
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  if (currentNewPlace?.id) {
-                    router.push(`/${locale}/carte?discover=${encodeURIComponent(currentNewPlace.id)}`);
-                    return;
-                  }
-                  router.push(`/${locale}/carte`);
-                }}
-                onTouchStart={onNewPlacesTouchStart}
-                onTouchMove={onNewPlacesTouchMove}
-                onTouchEnd={onNewPlacesTouchEnd}
-                className="relative min-h-[290px] overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
-                style={{
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
-                }}
-              >
-                {currentNewPlace?.panoramaImage ? (
-                  <img
-                    src={currentNewPlace.panoramaImage}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                ) : null}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
-                  }}
-                ></div>
-                <div className="absolute inset-0 z-10 flex flex-col justify-between">
-                  <div>
-                    <div className="w-full px-3 py-1">
-                      <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
-                        {isFr ? "Ajouts récents" : "Recent additions"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pr-7">
-                    <div className="w-full px-3 py-1">
-                      <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
-                        {currentNewPlace?.name || (isFr ? "Ajoutés récemment" : "Recently added")}
-                      </p>
-                      <p className="text-[11px] opacity-90 truncate">
-                        {currentNewPlace?.city || currentNewPlace?.address || "Indie Map"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {newPlaces.length > 1 ? (
-                  <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
-                    {newPlaces.map((item, index) => (
-                      <span
-                        key={item.id}
-                        className={index === newPlaceIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
-                      />
-                    ))}
-                  </div>
-                ) : null}
-            </button>
-
           </div>
 
-          
+          <div className="mt-3 mb-2 w-full shrink-0 px-3">
+            <button
+              type="button"
+              className="flex h-14 w-full items-center justify-between rounded-full border border-white/10 bg-white/10 px-5 text-left text-white/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_24px_rgba(0,0,0,0.18)]"
+            >
+              <span className="text-[16px]">{isFr ? "Rechercher un lieu, une ville..." : "Search for a place, a city..."}</span>
+              <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+            </button>
+          </div>
+
         </div>
       </div>
 
