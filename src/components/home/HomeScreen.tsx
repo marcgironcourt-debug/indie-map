@@ -1147,7 +1147,21 @@ export default function HomeScreen({
           <button
             type="button"
             onClick={() => setSelectedHomePlace(null)}
-            className="absolute right-4 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-2xl leading-none text-white"
+            className="absolute right-4 z-[80] flex items-center justify-center"
+            style={{
+              top: "calc(env(safe-area-inset-top) + 16px)",
+              width: 40,
+              height: 40,
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(8px)",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              color: "#ffffff",
+              fontSize: "22px",
+              fontWeight: 500,
+              lineHeight: "22px",
+              padding: 0
+            }}
             aria-label={isFr ? "Fermer" : "Close"}
           >
             ×

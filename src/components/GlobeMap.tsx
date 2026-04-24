@@ -3841,18 +3841,19 @@ mapRef.current = map;
             className="absolute right-4 z-[80] pointer-events-auto"
             style={{
               top: "calc(env(safe-area-inset-top) + 16px)",
-              width: 28,
-              height: 28,
+              width: 40,
+              height: 40,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "transparent",
-              border: "none",
-              color: "#000000",
-              filter: "drop-shadow(0 0 10px rgba(245,245,232,0.70)) drop-shadow(0 0 18px rgba(245,245,232,0.35))",
-              fontSize: "28px",
-              fontWeight: 600,
-              lineHeight: "28px",
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(8px)",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              color: "#ffffff",
+              fontSize: "22px",
+              fontWeight: 500,
+              lineHeight: "22px",
               padding: 0
             }}
 
