@@ -33,6 +33,109 @@ type DiscoverPlace = {
 type NewPlace = DiscoverPlace;
 type SavedPlace = DiscoverPlace;
 
+
+function renderOpeningHours(openingHours: string | undefined, timeZone: string | undefined) {
+  if (!openingHours) return null;
+
+  const zone = timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const now = new Date();
+
+  const today = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    timeZone: zone,
+  }).format(now).toLowerCase();
+
+  const timeParts = new Intl.DateTimeFormat("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: zone,
+  }).formatToParts(now);
+
+  const currentMinutes =
+    Number(timeParts.find((part) => part.type === "hour")?.value ?? 0) * 60 +
+    Number(timeParts.find((part) => part.type === "minute")?.value ?? 0);
+
+  const days: Record<string, string[]> = {
+    monday: ["lundi", "monday"],
+    tuesday: ["mardi", "tuesday"],
+    wednesday: ["mercredi", "wednesday"],
+    thursday: ["jeudi", "thursday"],
+    friday: ["vendredi", "friday"],
+    saturday: ["samedi", "saturday"],
+    sunday: ["dimanche", "sunday"],
+  };
+
+  const todayLabels = days[today] ?? [];
+
+  function parseHour(value: string) {
+    const match = value.match(/(\d{1,2})\s*[h:]\s*(\d{2})?/i);
+    if (!match) return null;
+    return Number(match[1]) * 60 + Number(match[2] ?? 0);
+  }
+
+  function isLineOpenNow(line: string) {
+    const normalized = line.trim().toLowerCase();
+    if (normalized.includes("fermé") || normalized.includes("ferme") || normalized.includes("closed")) return false;
+
+    const ranges = [...normalized.matchAll(/(\d{1,2}\s*[h:]\s*\d{0,2})\s*[-–—]\s*(\d{1,2}\s*[h:]\s*\d{0,2})/g)];
+
+    return ranges.some((range) => {
+      const startMinutes = parseHour(range[1]);
+      const endMinutes = parseHour(range[2]);
+      if (startMinutes === null || endMinutes === null) return false;
+      return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+    });
+  }
+
+  return openingHours.split(/\r?\n/).map((line, index) => {
+    const normalized = line.trim().toLowerCase();
+    const isToday = todayLabels.some((day) => normalized.startsWith(day));
+
+    const color = isToday
+      ? isLineOpenNow(line)
+        ? "text-green-400"
+        : "text-red-400"
+      : "text-white/80";
+
+    return (
+      <div key={`${line}-${index}`} className={`text-[16px] font-serif leading-relaxed ${color}`}>
+        {line}
+      </div>
+    );
+  });
+}
+
+function getLocalizedCategory(category: string | undefined, isFr: boolean) {
+  const key = String(category ?? "").trim().toLowerCase();
+
+  const categories: Record<string, { fr: string; en: string }> = {
+    "grocery": { fr: "Épicerie", en: "Grocery" },
+    "épicerie": { fr: "Épicerie", en: "Grocery" },
+    "epicerie": { fr: "Épicerie", en: "Grocery" },
+    "café": { fr: "Café", en: "Cafe" },
+    "cafe": { fr: "Café", en: "Cafe" },
+    "restaurant": { fr: "Restaurant", en: "Restaurant" },
+    "marché": { fr: "Marché", en: "Market" },
+    "market": { fr: "Marché", en: "Market" },
+    "boutique": { fr: "Boutique", en: "Shop" },
+    "shop": { fr: "Boutique", en: "Shop" },
+    "librairie": { fr: "Librairie", en: "Bookstore" },
+    "bookstore": { fr: "Librairie", en: "Bookstore" },
+    "boulangerie": { fr: "Boulangerie", en: "Bakery" },
+    "bakery": { fr: "Boulangerie", en: "Bakery" },
+    "ferme": { fr: "Ferme", en: "Farm" },
+    "farm": { fr: "Ferme", en: "Farm" },
+    "atelier": { fr: "Atelier", en: "Workshop" },
+    "workshop": { fr: "Atelier", en: "Workshop" },
+    "lieu alternatif": { fr: "Lieu alternatif", en: "Alternative place" },
+    "alternative place": { fr: "Lieu alternatif", en: "Alternative place" },
+  };
+
+  return categories[key]?.[isFr ? "fr" : "en"] ?? String(category ?? "").trim();
+}
+
+
 declare global {
   interface Window {
     __IM_NATIVE_LOCATION__?: { lat?: number; lng?: number; ts?: number };
@@ -936,8 +1039,20 @@ export default function HomeScreen({
           {selectedHomePlace?.miniText ? (
             <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-5 pt-2 pb-6 h-[45vh] overflow-y-auto">
               <div>
-                <div className="mb-4 text-[28px] font-bold leading-tight text-white">
-                  {selectedHomePlace.name}
+                <div className="mb-4">
+                  <div className="text-[28px] font-bold leading-tight text-white">
+                    {selectedHomePlace.name}
+                  </div>
+                  {selectedHomePlace.category ? (
+                    <div className="mt-1 text-[14px] text-white/70">
+                      {getLocalizedCategory(selectedHomePlace.category, isFr)}
+                    </div>
+                  ) : null}
+                  {selectedHomePlace.openingHours ? (
+                    <div className="mt-3">
+                      {renderOpeningHours(selectedHomePlace.openingHours, selectedHomePlace.timeZone)}
+                    </div>
+                  ) : null}
                 </div>
                 <p className="font-serif text-[18px] leading-relaxed text-white">
                   {selectedHomePlace.miniText}
