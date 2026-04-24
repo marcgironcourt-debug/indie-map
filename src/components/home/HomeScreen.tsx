@@ -19,6 +19,7 @@ type DiscoverPlace = {
   city?: string;
   address?: string;
   category?: string;
+  miniText?: string;
   openingHours?: string;
   timeZone?: string;
   createdAt?: string;
@@ -437,6 +438,7 @@ export default function HomeScreen({
             city: String(item?.city ?? "").trim() || undefined,
             address: String(item?.address ?? "").trim() || undefined,
             category: String(item?.category ?? "").trim() || undefined,
+            miniText: String(item?.miniText ?? "").trim() || undefined,
             openingHours: String(item?.openingHours ?? "").trim() || undefined,
             timeZone: String(item?.timeZone ?? "").trim() || undefined,
             createdAt: String(item?.createdAt ?? "").trim() || undefined,
@@ -930,6 +932,14 @@ export default function HomeScreen({
           ) : (
             <div className="absolute inset-0 bg-white/10" />
           )}
+
+          {selectedHomePlace?.miniText ? (
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-5 py-6">
+              <p className="font-serif text-[18px] leading-relaxed text-white">
+                {selectedHomePlace.miniText}
+              </p>
+            </div>
+          ) : null}
 
           <button
             type="button"

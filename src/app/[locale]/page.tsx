@@ -14,6 +14,7 @@ type Place = {
   city?: string;
   address?: string;
   category?: string;
+  miniText?: string;
   createdAt?: string;
   updatedAt?: string;
   homeTextNear?: string;
@@ -102,7 +103,7 @@ function pickContextPlace(list: Place[], now: Date) {
   return scored[0]?.item ?? null;
 }
 
-function readPlaces(): Place[] {
+function readPlaces(locale: string): Place[] {
   const filePath = path.join(process.cwd(), "data", "places.json");
   const raw = fs.readFileSync(filePath, "utf8");
   const parsed = JSON.parse(raw);
@@ -117,6 +118,7 @@ function readPlaces(): Place[] {
       city: String(item?.city ?? "").trim() || undefined,
       address: String(item?.address ?? "").trim() || undefined,
       category: String(item?.category ?? "").trim() || undefined,
+      miniText: String((locale === "en" ? item?.translations?.en?.miniText : item?.miniText) ?? item?.miniText ?? "").trim() || undefined,
       createdAt: String(item?.createdAt ?? "").trim() || undefined,
       updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
       homeTextNear: String(item?.homeTextNear ?? "").trim() || undefined,
@@ -136,7 +138,7 @@ export default async function Page({ params }: Props) {
   const { locale } = await params;
   const l = locale === "en" ? "en" : "fr";
 
-  const allPlaces = readPlaces();
+  const allPlaces = readPlaces(l);
   const now = new Date();
   const dayKey = getLocalDayKey(now);
 
