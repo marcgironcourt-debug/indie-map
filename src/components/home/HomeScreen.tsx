@@ -920,7 +920,7 @@ export default function HomeScreen({
                     {isFr ? "Ajouts récents" : "Recent additions"}
                   </p>
                 </div>
-                <div className="im-home-scroll mt-3 flex gap-4 overflow-x-auto px-3 pb-2">
+                <div className="im-home-scroll mt-3 flex gap-5 overflow-x-auto px-3 pb-2">
                   {newPlaces.length > 0 ? newPlaces.slice(0, 5).map((item) => (
                     <button
                       key={item.id}
@@ -1040,9 +1040,9 @@ export default function HomeScreen({
           )}
 
           {selectedHomePlace?.miniText ? (
-            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-5 pt-2 pb-6 h-[45vh] overflow-y-auto">
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-6 pt-6 pb-8 h-[45vh] overflow-y-auto rounded-t-3xl">
               <div>
-                <div className="mb-4">
+                <div className="mb-6">
                   <div className="text-[28px] font-bold leading-tight text-white">
                     {selectedHomePlace.name}
                   </div>
@@ -1052,11 +1052,11 @@ export default function HomeScreen({
                     </div>
                   ) : null}
                   {selectedHomePlace.address ? (
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
                       <div className="text-[16px] font-serif leading-relaxed text-[#F97316]">
                         {selectedHomePlace.address}
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-3">
                         <button
                           type="button"
                           onClick={() => {
@@ -1129,14 +1129,17 @@ export default function HomeScreen({
                     </div>
                   ) : null}
                   {selectedHomePlace.openingHours ? (
-                    <div className="mt-3">
+                    <div className="mt-5">
                       {renderOpeningHours(selectedHomePlace.openingHours, selectedHomePlace.timeZone)}
                     </div>
                   ) : null}
                 </div>
-                <p className="font-serif text-[18px] leading-relaxed text-white">
-                  {selectedHomePlace.miniText}
-                </p>
+                <div className="mt-2">
+                  <div className="mb-2 text-[12px] uppercase tracking-wide text-white/40">À propos</div>
+                  <p className="text-[17px] leading-[1.7] text-white/90">
+                    {selectedHomePlace.miniText}
+                  </p>
+                </div>
               </div>
             </div>
           ) : null}
@@ -1144,7 +1147,7 @@ export default function HomeScreen({
           <button
             type="button"
             onClick={() => setSelectedHomePlace(null)}
-            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-2xl leading-none text-white"
+            className="absolute right-4 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-2xl leading-none text-white"
             aria-label={isFr ? "Fermer" : "Close"}
           >
             ×
@@ -1314,7 +1317,7 @@ export default function HomeScreen({
                 )
               ) : panel === "myPlaces" ? (
                 savedPlacesByCity.length > 0 ? (
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-5">
                     {savedPlacesByCity.map((group) => {
                       const currentIndex = savedPlaceIndexes[group.city] ?? 0;
                       const currentPlace = group.places[currentIndex] ?? group.places[0] ?? null;
@@ -1429,7 +1432,7 @@ export default function HomeScreen({
                   <p className="mb-2 text-sm font-semibold tracking-wide text-white/80">
                     {isFr ? "Langue" : "Language"}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={() => switchLocale("fr")}
