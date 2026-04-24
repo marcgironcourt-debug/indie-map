@@ -399,6 +399,7 @@ export default function HomeScreen({
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
+  const [addressCopied, setAddressCopied] = React.useState(false);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
@@ -1075,12 +1076,39 @@ export default function HomeScreen({
                         </button>
                         <button
                           type="button"
-                          onClick={() => {
-                            navigator.clipboard.writeText(selectedHomePlace.address ?? "");
+                          onClick={async () => {
+                            const text = selectedHomePlace.address ?? "";
+                            let ok = false;
+                            try {
+                              await navigator.clipboard.writeText(text);
+                              ok = true;
+                            } catch {
+                              try {
+                                const area = document.createElement("textarea");
+                                area.value = text;
+                                area.setAttribute("readonly", "");
+                                area.style.position = "fixed";
+                                area.style.top = "0";
+                                area.style.left = "0";
+                                area.style.opacity = "0";
+                                document.body.appendChild(area);
+                                area.focus();
+                                area.select();
+                                area.setSelectionRange(0, area.value.length);
+                                ok = document.execCommand("copy");
+                                document.body.removeChild(area);
+                              } catch {
+                                ok = false;
+                              }
+                            }
+                            if (ok) {
+                              setAddressCopied(true);
+                              window.setTimeout(() => setAddressCopied(false), 1500);
+                            }
                           }}
                           className="px-3 py-1.5 rounded-full bg-white/10 text-white text-[12px]"
                         >
-                          {isFr ? "Copier" : "Copy"}
+                          {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier" : "Copy")}
                         </button>
                       </div>
                     </div>
