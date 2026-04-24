@@ -294,6 +294,7 @@ export default function HomeScreen({
     return Boolean(cached?.discoverPlace || cached?.contextPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialContextPlace || initialNewPlaces.length > 0);
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
+  const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
@@ -733,7 +734,7 @@ export default function HomeScreen({
                         <button
                           type="button"
                           onClick={() => {
-                            router.push(`/${locale}/carte?discover=${encodeURIComponent(item.id)}`);
+                            setSelectedHomePlace(item);
                           }}
                           className="flex w-full items-center gap-2 px-3 py-1.5 text-left"
                           style={{
@@ -817,7 +818,7 @@ export default function HomeScreen({
                       key={item.id}
                       type="button"
                       onClick={() => {
-                        router.push(`/${locale}/carte?discover=${encodeURIComponent(item.id)}`);
+                        setSelectedHomePlace(item);
                       }}
                       className="relative h-[190px] w-[170px] shrink-0 overflow-hidden rounded-xl bg-white/10 text-left"
                     >
@@ -859,11 +860,7 @@ export default function HomeScreen({
             <button
                 type="button"
                 onClick={() => {
-                  if (discoverPlace?.id) {
-                    router.push(`/${locale}/carte?discover=${encodeURIComponent(discoverPlace.id)}`);
-                    return;
-                  }
-                  router.push(`/${locale}/carte`);
+                  setSelectedHomePlace(discoverPlace || ({ id: "__discovery__", name: "Discovery" } as DiscoverPlace));
                 }}
                 className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
                 style={{
@@ -921,6 +918,19 @@ export default function HomeScreen({
 
         </div>
       </div>
+
+      {selectedHomePlace ? (
+        <div className="fixed inset-0 z-[1300] bg-[#2f2f2f] text-white">
+          <button
+            type="button"
+            onClick={() => setSelectedHomePlace(null)}
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-2xl leading-none text-white"
+            aria-label={isFr ? "Fermer" : "Close"}
+          >
+            ×
+          </button>
+        </div>
+      ) : null}
 
       <div className="fixed inset-x-0 bottom-0 z-[1200]">
         <div
