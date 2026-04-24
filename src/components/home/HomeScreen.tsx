@@ -921,6 +921,16 @@ export default function HomeScreen({
 
       {selectedHomePlace ? (
         <div className="fixed inset-0 z-[1300] bg-[#2f2f2f] text-white">
+          {selectedHomePlace.panoramaImage ? (
+            <img
+              src={selectedHomePlace.panoramaImage}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-white/10" />
+          )}
+
           <button
             type="button"
             onClick={() => setSelectedHomePlace(null)}
