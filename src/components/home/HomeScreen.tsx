@@ -922,7 +922,7 @@ export default function HomeScreen({
       </div>
 
       {selectedHomePlace ? (
-        <div className="fixed inset-0 z-[1300] bg-[#2f2f2f] text-white">
+        <div className="fixed inset-0 z-[1300] bg-[#2f2f2f] text-white overflow-y-auto">
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
@@ -934,10 +934,15 @@ export default function HomeScreen({
           )}
 
           {selectedHomePlace?.miniText ? (
-            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-5 py-6">
-              <p className="font-serif text-[18px] leading-relaxed text-white">
-                {selectedHomePlace.miniText}
-              </p>
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-5 pt-2 pb-6 h-[45vh] overflow-y-auto">
+              <div>
+                <div className="mb-4 text-[28px] font-bold leading-tight text-white">
+                  {selectedHomePlace.name}
+                </div>
+                <p className="font-serif text-[18px] leading-relaxed text-white">
+                  {selectedHomePlace.miniText}
+                </p>
+              </div>
             </div>
           ) : null}
 
