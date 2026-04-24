@@ -19,7 +19,8 @@ type DiscoverPlace = {
   city?: string;
   address?: string;
   category?: string;
-  miniText?: string;
+  phone?: string;
+    miniText?: string;
   openingHours?: string;
   timeZone?: string;
   createdAt?: string;
@@ -542,7 +543,8 @@ export default function HomeScreen({
             city: String(item?.city ?? "").trim() || undefined,
             address: String(item?.address ?? "").trim() || undefined,
             category: String(item?.category ?? "").trim() || undefined,
-            miniText: String(item?.miniText ?? "").trim() || undefined,
+            phone: String(item?.phone ?? "").trim() || undefined,
+                        miniText: String(item?.miniText ?? "").trim() || undefined,
             openingHours: String(item?.openingHours ?? "").trim() || undefined,
             timeZone: String(item?.timeZone ?? "").trim() || undefined,
             createdAt: String(item?.createdAt ?? "").trim() || undefined,
@@ -1050,11 +1052,11 @@ export default function HomeScreen({
                     </div>
                   ) : null}
                   {selectedHomePlace.address ? (
-                    <div className="mt-2 flex items-start justify-between gap-3">
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
                       <div className="text-[16px] font-serif leading-relaxed text-[#F97316]">
                         {selectedHomePlace.address}
                       </div>
-                      <div className="flex gap-2 shrink-0">
+                      <div className="flex gap-2">
                         <button
                           type="button"
                           onClick={() => {
@@ -1070,9 +1072,9 @@ export default function HomeScreen({
                               window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, "_blank");
                             }
                           }}
-                          className="px-3 py-1.5 rounded-full bg-white/10 text-white text-[12px]"
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
                         >
-                          {isFr ? "Y aller" : "Go"}
+                          {isFr ? "Itinéraire" : "Directions"}
                         </button>
                         <button
                           type="button"
@@ -1106,10 +1108,23 @@ export default function HomeScreen({
                               window.setTimeout(() => setAddressCopied(false), 1500);
                             }
                           }}
-                          className="px-3 py-1.5 rounded-full bg-white/10 text-white text-[12px]"
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
                         >
-                          {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier" : "Copy")}
+                          {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier l'adresse" : "Copy address")}
                         </button>
+                        {selectedHomePlace?.phone ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              window.location.href = `tel:${selectedHomePlace.phone}`;
+                            }}
+                            className="rounded-[9px] border border-white/10 bg-white/8 p-1.5 text-white/75"
+                          >
+                            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.37 1.78.73 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.25a2 2 0 0 1 2.11-.45c.82.36 1.7.61 2.6.73A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   ) : null}
