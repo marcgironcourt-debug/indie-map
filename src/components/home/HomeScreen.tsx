@@ -1048,6 +1048,43 @@ export default function HomeScreen({
                       {getLocalizedCategory(selectedHomePlace.category, isFr)}
                     </div>
                   ) : null}
+                  {selectedHomePlace.address ? (
+                    <div className="mt-2 flex items-start justify-between gap-3">
+                      <div className="text-[16px] font-serif leading-relaxed text-[#F97316]">
+                        {selectedHomePlace.address}
+                      </div>
+                      <div className="flex gap-2 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const address = encodeURIComponent(selectedHomePlace.address ?? "");
+                            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                            const isAndroid = /Android/.test(navigator.userAgent);
+
+                            if (isIOS) {
+                              window.location.href = `http://maps.apple.com/?q=${address}`;
+                            } else if (isAndroid) {
+                              window.location.href = `geo:0,0?q=${address}`;
+                            } else {
+                              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, "_blank");
+                            }
+                          }}
+                          className="px-3 py-1.5 rounded-full bg-white/10 text-white text-[12px]"
+                        >
+                          {isFr ? "Y aller" : "Go"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(selectedHomePlace.address ?? "");
+                          }}
+                          className="px-3 py-1.5 rounded-full bg-white/10 text-white text-[12px]"
+                        >
+                          {isFr ? "Copier" : "Copy"}
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
                   {selectedHomePlace.openingHours ? (
                     <div className="mt-3">
                       {renderOpeningHours(selectedHomePlace.openingHours, selectedHomePlace.timeZone)}
