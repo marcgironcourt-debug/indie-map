@@ -406,6 +406,7 @@ export default function HomeScreen({
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
+  const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
 
@@ -766,6 +767,42 @@ export default function HomeScreen({
   }, [savedPlaces, allPlaces, isFr]);
 
   const suggestionTimerRef = React.useRef<number | null>(null);
+
+  const savedPlacesTimerRefs = React.useRef<Record<string, number>>({});
+
+  function restartSavedPlacesTimer(city: string, length: number) {
+    const existing = savedPlacesTimerRefs.current[city];
+
+    if (existing) {
+      window.clearTimeout(existing);
+    }
+
+    if (length <= 1) return;
+
+    savedPlacesTimerRefs.current[city] = window.setTimeout(() => {
+      const currentIndex = savedPlaceIndexes[city] ?? 0;
+      const nextIndex = (currentIndex + 1) % length;
+
+      setSavedPlaceIndexes((prev) => ({
+        ...prev,
+        [city]: nextIndex
+      }));
+
+      const el = savedPlacesScrollRefs.current[city];
+
+      if (el) {
+        const width = el.clientWidth;
+
+        el.scrollTo({
+          left: width * nextIndex,
+          behavior: "smooth"
+        });
+      }
+
+      restartSavedPlacesTimer(city, length);
+    }, 7000);
+  }
+
 
   function restartSuggestionTimer() {
     if (suggestionTimerRef.current) {
@@ -1218,6 +1255,39 @@ export default function HomeScreen({
                           <div className="text-[20px] font-serif">
                             {isFr ? "Voir sur la carte" : "View on map"}
                           </div>
+
+                          {group.places.length > 1 ? (
+                            <div className="pointer-events-none absolute inset-x-0 bottom-1 z-30 flex justify-center">
+                              <div className="pointer-events-auto flex items-center gap-1.5">
+                                {group.places.map((item, index) => (
+                                  <button
+                                    key={item.id + "-dot"}
+                                    type="button"
+                                    aria-label={`${group.city} ${index + 1}`}
+                                    onClick={() => {
+                                      setSavedPlaceIndexes((prev) => ({
+                                        ...prev,
+                                        [group.city]: index
+                                      }));
+
+                                      const el = savedPlacesScrollRefs.current[group.city];
+
+                                      if (el) {
+                                        const width = el.clientWidth;
+
+                                        el.scrollTo({
+                                          left: width * index,
+                                          behavior: "smooth"
+                                        });
+                                      }
+                                    }}
+                                    className={index === (savedPlaceIndexes[group.city] ?? 0) ? "h-1.5 w-4 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
+
                         </div>
 
                         <div className="text-[24px] leading-none">→</div>
@@ -1419,61 +1489,108 @@ export default function HomeScreen({
                 savedPlacesByCity.length > 0 ? (
                   <div className="grid grid-cols-2 gap-5">
                     {savedPlacesByCity.map((group) => {
-                      const currentIndex = savedPlaceIndexes[group.city] ?? 0;
-                      const currentPlace = group.places[currentIndex] ?? group.places[0] ?? null;
-                      if (!currentPlace) return null;
-
                       return (
-                        <div key={group.city}>
+                        <div key={group.city} className="relative">
                           <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              router.push(`/${locale}/carte?discover=${encodeURIComponent(currentPlace.id)}`);
+
+                          <div
+                            ref={(el) => {
+                              savedPlacesScrollRefs.current[group.city] = el;
                             }}
-                            onTouchStart={onSavedPlacesTouchStart}
-                            onTouchMove={onSavedPlacesTouchMove}
-                            onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
-                            className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
-                            style={{
-                              minHeight: "130px",
-                              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                            onScroll={(e) => {
+                              const el = e.currentTarget;
+                              const width = el.clientWidth;
+                              if (!width) return;
+
+                              const index = Math.round(el.scrollLeft / width);
+
+                              setSavedPlaceIndexes((prev) => {
+                                if (prev[group.city] === index) return prev;
+                                return {
+                                  ...prev,
+                                  [group.city]: index
+                                };
+                              });
                             }}
+                            className="im-home-scroll flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth"
                           >
-                            {currentPlace.panoramaImage ? (
-                              <img
-                                src={currentPlace.panoramaImage}
-                                alt=""
-                                className="absolute inset-0 h-full w-full object-cover"
-                              />
-                            ) : null}
-                            <div
-                              className="absolute inset-0"
-                              style={{
-                                background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
-                              }}
-                            ></div>
-                            <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
-                              <div>
-                                <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
-                                  {currentPlace.name}
-                                </p>
-                                <p className="mt-1 text-[11px] opacity-90 truncate text-white/90">
-                                  {currentPlace.address || "Indie Map"}
-                                </p>
-                              </div>
-                            </div>
-                            {group.places.length > 1 ? (
-                              <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
+                            {group.places.map((place) => (
+                              <button
+                                key={place.id}
+                                type="button"
+                                onClick={() => {
+                                  router.push(`/${locale}/carte?discover=${encodeURIComponent(place.id)}`);
+                                }}
+                                className="relative min-w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 snap-center"
+                                style={{
+                                  minHeight: "130px",
+                                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                                }}
+                              >
+                                {place.panoramaImage ? (
+                                  <img
+                                    src={place.panoramaImage}
+                                    alt=""
+                                    className="absolute inset-0 h-full w-full object-cover"
+                                  />
+                                ) : null}
+
+                                <div
+                                  className="absolute inset-0"
+                                  style={{
+                                    background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                                  }}
+                                ></div>
+
+                                <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                                  <div>
+                                    <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                                      {place.name}
+                                    </p>
+
+                                    <p className="mt-1 text-[11px] opacity-90 truncate text-white/90">
+                                      {place.address || "Indie Map"}
+                                    </p>
+
+
+                                  </div>
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+
+                          {group.places.length > 1 ? (
+                            <div className="pointer-events-none absolute inset-x-0 bottom-1 z-30 flex justify-center">
+                              <div className="pointer-events-auto flex items-center gap-1.5">
                                 {group.places.map((item, index) => (
-                                  <span
-                                    key={item.id}
-                                    className={index === currentIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
+                                  <button
+                                    key={item.id + "-dot"}
+                                    type="button"
+                                    aria-label={`${group.city} ${index + 1}`}
+                                    onClick={() => {
+                                      setSavedPlaceIndexes((prev) => ({
+                                        ...prev,
+                                        [group.city]: index
+                                      }));
+
+                                      const el = savedPlacesScrollRefs.current[group.city];
+
+                                      if (el) {
+                                        const width = el.clientWidth;
+
+                                        el.scrollTo({
+                                          left: width * index,
+                                          behavior: "smooth"
+                                        });
+                                      }
+                                    }}
+                                    className={index === (savedPlaceIndexes[group.city] ?? 0) ? "h-1.5 w-4 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
                                   />
                                 ))}
                               </div>
-                            ) : null}
-                          </button>
+                            </div>
+                          ) : null}
+
                         </div>
                       );
                     })}
