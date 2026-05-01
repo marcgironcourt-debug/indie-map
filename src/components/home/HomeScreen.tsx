@@ -774,7 +774,18 @@ export default function HomeScreen({
     if (suggestionPlaces.length <= 1 || contextPlaceNearby) return;
 
     suggestionTimerRef.current = window.setTimeout(() => {
-      setSuggestionIndex((prev) => (prev + 1) % suggestionPlaces.length);
+      const nextIndex = (suggestionIndex + 1) % suggestionPlaces.length;
+
+      setSuggestionIndex(nextIndex);
+
+      const el = suggestionScrollRef.current;
+      if (el) {
+        const width = el.clientWidth;
+        el.scrollTo({
+          left: width * nextIndex,
+          behavior: "smooth"
+        });
+      }
     }, 7000);
   }
 
@@ -827,42 +838,47 @@ export default function HomeScreen({
           <div className="-mt-2 mb-3 w-full px-3">
             {suggestionPlaces.length > 0 ? (
               <>
-                <div className="overflow-hidden">
-                  <div
-                    ref={suggestionScrollRef}
-                    className="flex will-change-transform"
-                    style={{
-                      transform: `translateX(-${suggestionIndex * 100}%)`,
-                      transition: "transform 450ms ease"
-                    }}
-                  >
-                    {suggestionPlaces.map((item) => (
-                      <div
-                        key={item.id}
-                        className="min-w-full"
+                <div
+                  ref={suggestionScrollRef}
+                  onScroll={(e) => {
+                    const el = e.currentTarget;
+                    const width = el.clientWidth;
+                    if (!width) return;
+
+                    const index = Math.round(el.scrollLeft / width);
+
+                    if (index !== suggestionIndex) {
+                      setSuggestionIndex(index);
+                    }
+                  }}
+                  className="im-home-scroll flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+                >
+                  {suggestionPlaces.map((item) => (
+                    <div
+                      key={item.id}
+                      className="min-w-full snap-center"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedHomePlace(item);
+                        }}
+                        className="flex w-full items-center gap-2 px-3 py-1.5 text-left"
+                        style={{
+                          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 24px rgba(0,0,0,0.18)"
+                        }}
                       >
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedHomePlace(item);
-                          }}
-                          className="flex w-full items-center gap-2 px-3 py-1.5 text-left"
-                          style={{
-                            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 24px rgba(0,0,0,0.18)"
-                          }}
-                        >
-                          <img
-                            src={item.panoramaImage || "/explorer-bg.png?v=3"}
-                            alt=""
-                            className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                          />
-                          <p className="text-[14px] leading-[1.35] text-white/80">
-                            {getSuggestionCopy(item, locale, contextPlaceNearby)}
-                          </p>
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                        <img
+                          src={item.panoramaImage || "/explorer-bg.png?v=3"}
+                          alt=""
+                          className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                        />
+                        <p className="text-[14px] leading-[1.35] text-white/80">
+                          {getSuggestionCopy(item, locale, contextPlaceNearby)}
+                        </p>
+                      </button>
+                    </div>
+                  ))}
                 </div>
 
                 {suggestionPlaces.length > 1 ? (
@@ -874,8 +890,17 @@ export default function HomeScreen({
                         aria-label={`Suggestion ${index + 1}`}
                         onClick={() => {
                           setSuggestionIndex(index);
+
+                          const el = suggestionScrollRef.current;
+                          if (el) {
+                            const width = el.clientWidth;
+                            el.scrollTo({
+                              left: width * index,
+                              behavior: "smooth"
+                            });
+                          }
+
                           restartSuggestionTimer();
-                          setSuggestionIndex(index);
                         }}
                         className={index === suggestionIndex ? "h-1.5 w-4 rounded-full bg-white/90" : "h-1.5 w-1.5 rounded-full bg-white/35"}
                       />
