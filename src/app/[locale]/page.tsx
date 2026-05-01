@@ -14,6 +14,7 @@ type Place = {
   city?: string;
   address?: string;
   category?: string;
+  website?: string;
   miniText?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -118,6 +119,7 @@ function readPlaces(locale: string): Place[] {
       city: String(item?.city ?? "").trim() || undefined,
       address: String(item?.address ?? "").trim() || undefined,
       category: String(item?.category ?? "").trim() || undefined,
+      website: String(item?.website ?? "").trim() || undefined,
       miniText: String((locale === "en" ? item?.translations?.en?.miniText : item?.miniText) ?? item?.miniText ?? "").trim() || undefined,
       createdAt: String(item?.createdAt ?? "").trim() || undefined,
       updatedAt: String(item?.updatedAt ?? "").trim() || undefined,

@@ -19,6 +19,7 @@ type DiscoverPlace = {
   city?: string;
   address?: string;
   category?: string;
+  website?: string;
   phone?: string;
     miniText?: string;
   openingHours?: string;
@@ -543,6 +544,7 @@ export default function HomeScreen({
             city: String(item?.city ?? "").trim() || undefined,
             address: String(item?.address ?? "").trim() || undefined,
             category: String(item?.category ?? "").trim() || undefined,
+            website: String(item?.website ?? "").trim() || undefined,
             phone: String(item?.phone ?? "").trim() || undefined,
                         miniText: String(item?.miniText ?? "").trim() || undefined,
             openingHours: String(item?.openingHours ?? "").trim() || undefined,
@@ -1046,9 +1048,32 @@ export default function HomeScreen({
                   <div className="text-[28px] font-bold leading-tight text-white">
                     {selectedHomePlace.name}
                   </div>
-                  {selectedHomePlace.category ? (
-                    <div className="mt-1 text-[14px] text-white/70">
-                      {getLocalizedCategory(selectedHomePlace.category, isFr)}
+                  {(selectedHomePlace.category || selectedHomePlace.website) ? (
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      {selectedHomePlace.category ? (
+                        <div className="text-[14px] text-white/70">
+                          {getLocalizedCategory(selectedHomePlace.category, isFr)}
+                        </div>
+                      ) : null}
+
+                      {selectedHomePlace.website ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const website = selectedHomePlace.website ?? "";
+                            const url =
+                              website.startsWith("http://") ||
+                              website.startsWith("https://")
+                                ? website
+                                : `https://${website}`;
+
+                            window.open(url, "_blank");
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-white/75"
+                        >
+                          {isFr ? "Site web" : "Website"}
+                        </button>
+                      ) : null}
                     </div>
                   ) : null}
                   {selectedHomePlace.address ? (
