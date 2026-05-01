@@ -1030,7 +1030,7 @@ export default function HomeScreen({
       </div>
 
       {selectedHomePlace ? (
-        <div className="fixed inset-0 z-[1300] bg-[#2f2f2f] text-white overflow-y-auto">
+        <div className="fixed inset-0 z-[1300] overflow-hidden bg-[#2f2f2f] text-white">
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
@@ -1041,8 +1041,9 @@ export default function HomeScreen({
             <div className="absolute inset-0 bg-white/10" />
           )}
 
+          <div className="absolute inset-0 z-10 overflow-y-auto">
           {selectedHomePlace?.miniText ? (
-            <div className="absolute inset-x-0 bottom-0 z-10 bg-black/80 px-6 pt-6 pb-8 h-[45vh] overflow-y-auto rounded-t-3xl">
+            <div className="relative mt-[55vh] min-h-[45vh] rounded-t-3xl bg-black/80 px-6 pt-6 pb-8">
               <div>
                 <div className="mb-6">
                   <div className="text-[28px] font-bold leading-tight text-white">
@@ -1168,11 +1169,12 @@ export default function HomeScreen({
               </div>
             </div>
           ) : null}
+          </div>
 
           <button
             type="button"
             onClick={() => setSelectedHomePlace(null)}
-            className="absolute right-4 z-[80] flex items-center justify-center"
+            className="absolute right-4 z-[80] grid place-items-center"
             style={{
               top: "calc(env(safe-area-inset-top) + 16px)",
               width: 40,
@@ -1184,12 +1186,12 @@ export default function HomeScreen({
               color: "#ffffff",
               fontSize: "22px",
               fontWeight: 500,
-              lineHeight: "22px",
+              lineHeight: 1,
               padding: 0
             }}
             aria-label={isFr ? "Fermer" : "Close"}
           >
-            ×
+            <span className="block -translate-y-px leading-none">×</span>
           </button>
         </div>
       ) : null}
