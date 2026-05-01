@@ -1256,37 +1256,6 @@ export default function HomeScreen({
                             {isFr ? "Voir sur la carte" : "View on map"}
                           </div>
 
-                          {group.places.length > 1 ? (
-                            <div className="pointer-events-none absolute inset-x-0 bottom-1 z-30 flex justify-center">
-                              <div className="pointer-events-auto flex items-center gap-1.5">
-                                {group.places.map((item, index) => (
-                                  <button
-                                    key={item.id + "-dot"}
-                                    type="button"
-                                    aria-label={`${group.city} ${index + 1}`}
-                                    onClick={() => {
-                                      setSavedPlaceIndexes((prev) => ({
-                                        ...prev,
-                                        [group.city]: index
-                                      }));
-
-                                      const el = savedPlacesScrollRefs.current[group.city];
-
-                                      if (el) {
-                                        const width = el.clientWidth;
-
-                                        el.scrollTo({
-                                          left: width * index,
-                                          behavior: "smooth"
-                                        });
-                                      }
-                                    }}
-                                    className={index === (savedPlaceIndexes[group.city] ?? 0) ? "h-1.5 w-4 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                          ) : null}
 
                         </div>
 
