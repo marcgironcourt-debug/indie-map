@@ -1165,6 +1165,40 @@ export default function HomeScreen({
                   <p className="text-[17px] leading-[1.7] text-white/90">
                     {selectedHomePlace.miniText}
                   </p>
+
+                  {Number.isFinite(Number(selectedHomePlace.lat)) && Number.isFinite(Number(selectedHomePlace.lng)) ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        router.push(`/${locale}/carte?discover=${selectedHomePlace.id}`);
+                      }}
+                      className="relative mt-6 block h-[190px] w-full overflow-hidden rounded-2xl bg-[#101510]"
+                    >
+                      <div className="absolute inset-0 pointer-events-none">
+                        <MapPanel
+                          items={[{
+                            ...selectedHomePlace,
+                            type: selectedHomePlace.category
+                          }]}
+                          selectedId={selectedHomePlace.id}
+                          overlaysReady={true}
+                          hideGeolocate={true}
+                        />
+                      </div>
+
+                      <div className="absolute inset-0 bg-black/10" />
+
+                      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-white">
+                        <div className="text-left">
+                          <div className="text-[20px] font-serif">
+                            {isFr ? "Voir sur la carte" : "View on map"}
+                          </div>
+                        </div>
+
+                        <div className="text-[24px] leading-none">→</div>
+                      </div>
+                    </button>
+                  ) : null}
                 </div>
               </div>
             </div>

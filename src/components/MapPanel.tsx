@@ -26,8 +26,17 @@ export default function MapPanel(props: {
   overlaysReady?: boolean;
   homeOverlay?: React.ReactNode;
   topOverlay?: React.ReactNode;
+  hideGeolocate?: boolean;
 }) {
-  const { items = [], selectedId, onSelect, overlaysReady = true, homeOverlay, topOverlay } = props;
+  const {
+    items = [],
+    selectedId,
+    onSelect,
+    overlaysReady = true,
+    homeOverlay,
+    topOverlay,
+    hideGeolocate = false
+  } = props;
 
   useEffect(() => {
     const sessionKey = "im_session_id";
@@ -87,7 +96,13 @@ export default function MapPanel(props: {
       }}
     >
       <div className="h-full">
-        <GlobeMap items={items} selectedId={selectedId} onSelect={onSelect} overlaysReady={overlaysReady} />
+        <GlobeMap
+          items={items}
+          selectedId={selectedId}
+          onSelect={onSelect}
+          overlaysReady={overlaysReady}
+          hideGeolocate={hideGeolocate}
+        />
       </div>
       {overlaysReady ? homeOverlay : null}
       {overlaysReady ? topOverlay : null}

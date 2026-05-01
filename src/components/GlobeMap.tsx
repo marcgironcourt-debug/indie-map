@@ -827,12 +827,14 @@ export default function GlobeMap({
   onSelect,
   darkMap = false,
   overlaysReady = true,
+  hideGeolocate = false,
 }: {
   items?: Biz[];
   selectedId?: string | null;
   onSelect?: (id: string) => void;
   darkMap?: boolean;
   overlaysReady?: boolean;
+  hideGeolocate?: boolean;
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const mapRef = React.useRef<maplibregl.Map | null>(null);
@@ -3455,7 +3457,9 @@ class GeolocateControl_ML {
 }
 
 
-try { map.addControl(new GeolocateControl_ML(), "top-right" as any); } catch {}
+if (!hideGeolocate) {
+  try { map.addControl(new GeolocateControl_ML(), "top-right" as any); } catch {}
+}
 try {
   requestAnimationFrame(() => {
     try {
