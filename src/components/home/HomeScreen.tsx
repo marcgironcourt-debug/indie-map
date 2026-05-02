@@ -2012,11 +2012,12 @@ export default function HomeScreen({
                                       e.preventDefault();
                                       e.stopPropagation();
 
+                                      const isVisited = Boolean(placeNotes[place.id]?.visited);
                                       const nextNotes: Record<string, PlaceNote> = {
                                         ...placeNotes,
                                         [place.id]: {
                                           ...(placeNotes[place.id] ?? {}),
-                                          visited: true,
+                                          visited: !isVisited,
                                           updatedAt: new Date().toISOString()
                                         }
                                       };
@@ -2029,11 +2030,12 @@ export default function HomeScreen({
                                       e.preventDefault();
                                       e.stopPropagation();
 
+                                      const isVisited = Boolean(placeNotes[place.id]?.visited);
                                       const nextNotes: Record<string, PlaceNote> = {
                                         ...placeNotes,
                                         [place.id]: {
                                           ...(placeNotes[place.id] ?? {}),
-                                          visited: true,
+                                          visited: !isVisited,
                                           updatedAt: new Date().toISOString()
                                         }
                                       };
