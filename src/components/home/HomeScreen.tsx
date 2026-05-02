@@ -1441,15 +1441,16 @@ export default function HomeScreen({
                 </div>
               </div>
             ) : (
-              <div className="min-h-0 flex-1 overflow-y-auto">
-                <div className="pr-12">
-                  <div className="font-serif text-[24px] leading-tight">
-                    {isFr ? "Résultats" : "Results"}
+              <>
+                <div className="min-h-0 flex-1 overflow-y-auto pb-24">
+                  <div className="pr-12">
+                    <div className="font-serif text-[24px] leading-tight">
+                      {isFr ? "Résultats" : "Results"}
+                    </div>
+                    <div className="mt-2 text-[14px] leading-relaxed text-white/60">
+                      “{searchQuery.trim()}”
+                    </div>
                   </div>
-                  <div className="mt-2 text-[14px] leading-relaxed text-white/60">
-                    “{searchQuery.trim()}”
-                  </div>
-                </div>
 
                 <div className="mt-7 space-y-3">
                   {(searchResults ?? []).length > 0 ? (
@@ -1498,7 +1499,23 @@ export default function HomeScreen({
                     </div>
                   )}
                 </div>
-              </div>
+                </div>
+
+                {(searchResults ?? []).length > 0 ? (
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center pb-[calc(env(safe-area-inset-bottom)+18px)]">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const ids = (searchResults ?? []).map((item) => item.id).filter(Boolean).join(",");
+                        router.push(`/${locale}/carte?searchIds=${encodeURIComponent(ids)}`);
+                      }}
+                      className="pointer-events-auto rounded-full border border-white/15 bg-black/55 px-7 py-2.5 text-center text-[14px] font-semibold text-white shadow-[0_10px_35px_rgba(0,0,0,0.45)] backdrop-blur-md active:bg-black/70"
+                    >
+                      {isFr ? "Voir sur la carte" : "View on map"}
+                    </button>
+                  </div>
+                ) : null}
+              </>
             )}
           </div>
         </div>
