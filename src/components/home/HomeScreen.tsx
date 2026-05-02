@@ -1032,25 +1032,16 @@ export default function HomeScreen({
           </div>
 
           <div className="mt-2 w-full shrink-0 relative z-0 px-3">
-            <div className="mt-3 w-full px-3">
-  <p className="mb-2 font-serif text-[15px] font-medium tracking-[0.01em]">
-  </p>
-
-  <button
-    type="button"
-    onClick={() => {
-      setSelectedHomePlace(discoverPlace || ({ id: "__discovery__", name: "Discovery" } as DiscoverPlace));
-    }}
-          <div className="mt-3 w-full px-3">
-            <p className="mb-2 font-serif text-[15px] font-medium tracking-[0.01em]">
-              {isFr ? "Découverte du jour" : "Discovery of the day"}
-            </p>
-          </div>
-    className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
-    style={{
-      boxShadow: "inset 0 0 0 2px rgba(255,0,0,0.9), inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
-    }}
-  >
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedHomePlace(discoverPlace || ({ id: "__discovery__", name: "Discovery" } as DiscoverPlace));
+              }}
+              className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
+              style={{
+                boxShadow: "inset 0 0 0 2px rgba(255,0,0,0.9), inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+              }}
+            >
     {discoverPlace?.panoramaImage ? (
       <img
         src={discoverPlace.panoramaImage}
@@ -1067,6 +1058,14 @@ export default function HomeScreen({
     ></div>
 
     <div className="absolute inset-0 z-10 flex flex-col justify-between">
+      <div>
+        <div className="w-full px-3 py-1">
+          <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
+            {isFr ? "Découverte du jour" : "Discovery of the day"}
+          </p>
+        </div>
+      </div>
+
       <div className="pr-7">
         <div className="w-full px-3 py-1">
           <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
@@ -1080,8 +1079,6 @@ export default function HomeScreen({
     </div>
   </button>
 </div>
-
-          </div>
 
           <div className="mt-3 mb-2 w-full shrink-0 px-3">
             <form
