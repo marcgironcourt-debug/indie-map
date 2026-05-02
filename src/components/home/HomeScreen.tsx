@@ -401,6 +401,9 @@ export default function HomeScreen({
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchLoading, setSearchLoading] = React.useState(false);
+  const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
@@ -1076,23 +1079,118 @@ export default function HomeScreen({
           </div>
 
           <div className="mt-3 mb-2 w-full shrink-0 px-3">
-            <button
-              type="button"
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                const query = searchQuery.trim();
+                if (!query) return;
+
+                setSearchResults(null);
+                setSearchLoading(true);
+
+                window.setTimeout(() => {
+                  const normalize = (value: string) =>
+                    value
+                      .toLowerCase()
+                      .normalize("NFD")
+                      .replace(/[\u0300-\u036f]/g, "");
+
+                  const normalizedQuery = normalize(query);
+
+                  const knownCities = [...new Set(allPlaces.map((place) => place.city).filter(Boolean) as string[])]
+                    .sort((a, b) => b.length - a.length);
+
+                  const detectedCity = knownCities.find((city) => normalizedQuery.includes(normalize(city))) || null;
+
+                  const categoryAliases: Record<string, string[]> = {
+                    epicerie: ["epicerie", "epiceries", "grocery", "groceries", "magasin bio", "courses"],
+                    restaurant: ["restaurant", "restaurants", "resto", "restos", "manger", "dejeuner", "diner"],
+                    cafe: ["cafe", "cafes", "coffee", "coffees"],
+                    bar: ["bar", "bars", "pub", "pubs", "brasserie", "brasseries"],
+                    boutique: ["boutique", "boutiques", "mode", "shopping", "cadeau", "cadeaux"],
+                    librairie: ["librairie", "librairies", "livre", "livres"],
+                    boulangerie: ["boulangerie", "boulangeries", "pain", "viennoiserie", "viennoiseries"],
+                    ferme: ["ferme", "fermes", "producteur", "producteurs"],
+                    marche: ["marche", "marches", "market", "markets"],
+                    atelier: ["atelier", "ateliers", "artisan", "artisans"],
+                    alternatif: ["alternatif", "alternative", "culture", "art", "expo", "exposition", "expositions"]
+                  };
+
+                  const detectedCategory = Object.entries(categoryAliases).find(([, aliases]) =>
+                    aliases.some((alias) => normalizedQuery.includes(alias))
+                  )?.[0] || null;
+
+                  const stopWords = new Set([
+                    "je", "j", "me", "moi", "tu", "te", "le", "la", "les", "un", "une", "des", "de", "du", "d", "a", "au", "aux",
+                    "en", "sur", "pour", "dans", "avec", "trouve", "trouver", "montre", "montrez", "voir", "veux", "voudrais",
+                    "bientot", "quelques", "jours", "place", "lieu", "lieux", "city", "near", "nearby", "show", "find", "for"
+                  ]);
+
+                  const tokens = normalizedQuery
+                    .split(/\s+/)
+                    .map((token) => token.trim())
+                    .filter((token) => token.length > 2 && !stopWords.has(token));
+
+                  const filtered = allPlaces.filter((place) => {
+                    const cityOk = detectedCity ? normalize(place.city || "") === normalize(detectedCity) : true;
+                    const categoryOk = detectedCategory ? normalizeCategory(place.category) === detectedCategory : true;
+                    return cityOk && categoryOk;
+                  });
+
+                  const base = filtered.length > 0 ? filtered : allPlaces;
+
+                  const results = base
+                    .map((place) => {
+                      const haystack = normalize([
+                        place.name,
+                        place.city,
+                        place.address,
+                        place.category,
+                        place.miniText
+                      ].filter(Boolean).join(" "));
+
+                      const score = tokens.reduce((total, token) => total + (haystack.includes(token) ? 1 : 0), 0);
+                      const cityBonus = detectedCity && normalize(place.city || "") === normalize(detectedCity) ? 10 : 0;
+                      const categoryBonus = detectedCategory && normalizeCategory(place.category) === detectedCategory ? 10 : 0;
+
+                      return { place, score: score + cityBonus + categoryBonus };
+                    })
+                    .filter((entry) => entry.score > 0 || Boolean(detectedCity) || Boolean(detectedCategory))
+                    .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
+                    .slice(0, 8)
+                    .map((entry) => entry.place);
+
+                  setSearchResults(results);
+                  setSearchLoading(false);
+                }, 800);
+              }}
               className="flex h-14 w-full items-center justify-between rounded-full border border-white/10 bg-white/10 px-5 text-left text-white/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_24px_rgba(0,0,0,0.18)]"
             >
-              <span className="text-[16px]">{isFr ? "Rechercher un lieu, une ville..." : "Search for a place, a city..."}</span>
-              <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="7" />
-                <path d="M20 20l-3.5-3.5" />
-              </svg>
-            </button>
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder={isFr ? "Rechercher un lieu, une ville..." : "Search for a place, a city..."}
+                className="min-w-0 flex-1 bg-transparent text-[16px] text-white placeholder:text-white/55 outline-none"
+                type="search"
+              />
+              <button
+                type="submit"
+                aria-label={isFr ? "Rechercher" : "Search"}
+                className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center text-white/75"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+              </button>
+            </form>
           </div>
 
         </div>
       </div>
 
       {selectedHomePlace ? (
-        <div className="fixed inset-0 z-[1300] overflow-hidden bg-[#2f2f2f] text-white">
+        <div className="fixed inset-0 z-[1500] overflow-hidden bg-[#2f2f2f] text-white">
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
@@ -1291,6 +1389,116 @@ export default function HomeScreen({
           >
             <span className="block -translate-y-px leading-none">×</span>
           </button>
+        </div>
+      ) : null}
+
+      {(searchLoading || searchResults) ? (
+        <div className="fixed inset-0 z-[1400] bg-black/92 px-5 text-white">
+          <button
+            type="button"
+            onClick={() => {
+              setSearchLoading(false);
+              setSearchResults(null);
+            }}
+            className="absolute right-4 z-20 grid place-items-center"
+            style={{
+              top: "calc(env(safe-area-inset-top) + 16px)",
+              width: 40,
+              height: 40,
+              background: "rgba(255,255,255,0.10)",
+              backdropFilter: "blur(8px)",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              color: "#ffffff",
+              fontSize: "22px",
+              fontWeight: 500,
+              lineHeight: 1,
+              padding: 0
+            }}
+            aria-label={isFr ? "Fermer" : "Close"}
+          >
+            <span className="block -translate-y-px leading-none">×</span>
+          </button>
+
+          <div className="mx-auto flex h-full w-full max-w-md flex-col pt-[calc(env(safe-area-inset-top)+78px)] pb-[calc(env(safe-area-inset-bottom)+24px)]">
+            {searchLoading ? (
+              <div className="flex flex-1 flex-col items-center justify-center text-center">
+                <div className="mb-5 flex items-center justify-center gap-2">
+                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "0ms" }} />
+                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "120ms" }} />
+                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "240ms" }} />
+                </div>
+
+                <div className="max-w-[280px]">
+                  <div className="font-serif text-[22px] leading-tight">
+                    {isFr ? "Indie Map cherche pour toi" : "Indie Map is searching for you"}
+                  </div>
+                  <div className="mt-3 text-[14px] leading-relaxed text-white/65">
+                    “{searchQuery.trim()}”
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="min-h-0 flex-1 overflow-y-auto">
+                <div className="pr-12">
+                  <div className="font-serif text-[24px] leading-tight">
+                    {isFr ? "Résultats" : "Results"}
+                  </div>
+                  <div className="mt-2 text-[14px] leading-relaxed text-white/60">
+                    “{searchQuery.trim()}”
+                  </div>
+                </div>
+
+                <div className="mt-7 space-y-3">
+                  {(searchResults ?? []).length > 0 ? (
+                    (searchResults ?? []).map((item) => (
+                      <div
+                        key={item.id}
+                        className="overflow-hidden rounded-2xl border border-white/10 bg-white/8"
+                      >
+                        <div className="flex w-full gap-3 p-3 text-left">
+                          <img
+                            src={item.panoramaImage || "/explorer-bg.png?v=3"}
+                            alt=""
+                            className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                          />
+                          <div className="min-w-0 flex-1">
+                            <div className="truncate font-serif text-[17px] leading-tight text-white">
+                              {item.name}
+                            </div>
+                            <div className="mt-1 text-[12px] text-white/55">
+                              {[getLocalizedCategory(item.category, isFr), item.city].filter(Boolean).join(" · ")}
+                            </div>
+                            {item.miniText ? (
+                              <div className="mt-2 line-clamp-2 text-[13px] leading-snug text-white/70">
+                                {item.miniText}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+
+                        <div className="border-t border-white/10">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedHomePlace(item);
+                            }}
+                            className="flex w-full items-center justify-center px-4 py-3 text-center text-[14px] font-semibold text-white/85"
+                          >
+                            {isFr ? "Voir la fiche" : "View details"}
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="rounded-2xl border border-white/10 bg-white/8 p-5 text-[15px] leading-relaxed text-white/70">
+                      {isFr ? "Aucun lieu trouvé pour cette recherche pour le moment." : "No places found for this search yet."}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       ) : null}
 
