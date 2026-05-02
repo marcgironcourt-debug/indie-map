@@ -976,6 +976,8 @@ export default function GlobeMap({
 
   const SOURCE_ID = "indie-places";
   const LAYER_ID = "indie-places-pin";
+  const LABEL_LAYER_ID = "indie-places-label";
+  const PRIORITY_LABEL_LAYER_ID = "indie-places-label-priority";
 const GLOW_LAYER_ID = "indie-places-pin-glow";
   const SELECT_LAYER_ID = "indie-places-pin-selected";
   const ROUTE_SOURCE_ID = "indie-route";
@@ -2256,6 +2258,71 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
           "icon-allow-overlap": true,
           "icon-ignore-placement": true,
         },
+      });
+    }
+
+    if (!map.getLayer(PRIORITY_LABEL_LAYER_ID)) {
+      map.addLayer({
+        id: PRIORITY_LABEL_LAYER_ID,
+        type: "symbol",
+        source: SOURCE_ID,
+        minzoom: 13,
+        filter: ["any", ["boolean", ["get", "selected"], false], ["boolean", ["get", "favorite"], false]],
+        layout: {
+          "text-field": ["get", "name"],
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          "text-size": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            13, 11,
+            15, 13,
+            17, 15
+          ],
+          "text-anchor": "bottom",
+          "text-offset": [0, -2.7],
+          "text-max-width": 12,
+          "text-allow-overlap": false,
+          "text-ignore-placement": false
+        },
+        paint: {
+          "text-color": "#F97316",
+          "text-halo-color": "rgba(0,0,0,0.82)",
+          "text-halo-width": 1.6,
+          "text-halo-blur": 0.6
+        }
+      });
+    }
+
+    if (!map.getLayer(LABEL_LAYER_ID)) {
+      map.addLayer({
+        id: LABEL_LAYER_ID,
+        type: "symbol",
+        source: SOURCE_ID,
+        minzoom: 15,
+        filter: ["all", ["!", ["boolean", ["get", "selected"], false]], ["!", ["boolean", ["get", "favorite"], false]]],
+        layout: {
+          "text-field": ["get", "name"],
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          "text-size": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            15, 12,
+            17, 15
+          ],
+          "text-anchor": "bottom",
+          "text-offset": [0, -2.7],
+          "text-max-width": 12,
+          "text-allow-overlap": false,
+          "text-ignore-placement": false
+        },
+        paint: {
+          "text-color": "#F97316",
+          "text-halo-color": "rgba(0,0,0,0.82)",
+          "text-halo-width": 1.6,
+          "text-halo-blur": 0.6
+        }
       });
 
 
