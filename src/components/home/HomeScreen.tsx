@@ -149,6 +149,34 @@ declare global {
 
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; contextPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 const SAVED_PLACES_KEY = "im-saved-places";
+const PLACE_NOTES_KEY = "im:place-notes";
+
+type PlaceNote = {
+  visited?: boolean;
+  comment?: string;
+  updatedAt?: string;
+};
+
+function readPlaceNotes(): Record<string, PlaceNote> {
+  try {
+    if (typeof window === "undefined") return {};
+    const raw = window.localStorage.getItem(PLACE_NOTES_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+    return parsed as Record<string, PlaceNote>;
+  } catch {
+    return {};
+  }
+}
+
+function writePlaceNotes(notes: Record<string, PlaceNote>) {
+  try {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem(PLACE_NOTES_KEY, JSON.stringify(notes));
+    window.dispatchEvent(new Event("im:place-notes-updated"));
+  } catch {}
+}
 
 function readSavedPlaces(): SavedPlace[] {
   try {
@@ -407,6 +435,9 @@ export default function HomeScreen({
   const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
+  const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>(() => readPlaceNotes());
+  const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
+  const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
@@ -487,6 +518,21 @@ export default function HomeScreen({
   }, []);
 
   React.useEffect(() => {
+    const syncPlaceNotes = () => {
+      setPlaceNotes(readPlaceNotes());
+    };
+
+    syncPlaceNotes();
+    window.addEventListener("storage", syncPlaceNotes);
+    window.addEventListener("im:place-notes-updated", syncPlaceNotes as EventListener);
+
+    return () => {
+      window.removeEventListener("storage", syncPlaceNotes);
+      window.removeEventListener("im:place-notes-updated", syncPlaceNotes as EventListener);
+    };
+  }, []);
+
+  React.useEffect(() => {
     if (!panel) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setPanel(null);
@@ -504,6 +550,30 @@ export default function HomeScreen({
         [city]: (current + delta + length) % length
       };
     });
+  }
+
+  function openPlaceNoteEditor(place: SavedPlace) {
+    const note = placeNotes[place.id];
+    setEditingPlaceNote(place);
+    setEditingPlaceComment(note?.comment ?? "");
+  }
+
+  function savePlaceNote() {
+    if (!editingPlaceNote) return;
+
+    const nextNotes: Record<string, PlaceNote> = {
+      ...placeNotes,
+      [editingPlaceNote.id]: {
+        visited: true,
+        comment: editingPlaceComment.trim(),
+        updatedAt: new Date().toISOString()
+      }
+    };
+
+    setPlaceNotes(nextNotes);
+    writePlaceNotes(nextNotes);
+    setEditingPlaceNote(null);
+    setEditingPlaceComment("");
   }
 
   function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
@@ -1297,7 +1367,7 @@ export default function HomeScreen({
       </div>
 
       {selectedHomePlace ? (
-        <div className="fixed inset-0 z-[1500] overflow-hidden bg-[#2f2f2f] text-white">
+        <div className="fixed inset-0 z-[2200] overflow-hidden bg-[#2f2f2f] text-white">
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
@@ -1866,22 +1936,6 @@ export default function HomeScreen({
                         {isFr ? "Impact local" : "Local impact"}
                       </span>
                     </button>
-
-                    <button
-                      type="button"
-                      disabled
-                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
-                    >
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
-                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 5v14" />
-                          <path d="M5 12h14" />
-                        </svg>
-                      </span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                        {isFr ? "Contributions" : "Contributions"}
-                      </span>
-                    </button>
                   </div>
                 </>
               ) : panel === "myPlacesList" ? (
@@ -1927,7 +1981,8 @@ export default function HomeScreen({
                                   key={place.id}
                                   type="button"
                                   onClick={() => {
-                                    router.push(`/${locale}/carte?discover=${encodeURIComponent(place.id)}`);
+                                    const fullPlace = allPlaces.find((item) => item.id === place.id);
+                                    setSelectedHomePlace(fullPlace ?? place);
                                   }}
                                   className="relative min-w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 snap-center"
                                   style={{
@@ -1949,6 +2004,10 @@ export default function HomeScreen({
                                       background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
                                     }}
                                   ></div>
+
+                                  <div className={placeNotes[place.id]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}>
+                                    {placeNotes[place.id]?.visited ? (isFr ? "Visité" : "Visited") : (isFr ? "À visiter" : "To visit")}
+                                  </div>
 
                                   <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
                                     <div>

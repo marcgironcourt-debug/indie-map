@@ -288,22 +288,6 @@ export default function BottomBarOverlay({
                         {isFr ? "Impact local" : "Local impact"}
                       </span>
                     </button>
-
-                    <button
-                      type="button"
-                      disabled
-                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
-                    >
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
-                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 5v14" />
-                          <path d="M5 12h14" />
-                        </svg>
-                      </span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                        {isFr ? "Contributions" : "Contributions"}
-                      </span>
-                    </button>
                   </div>
                 </>
               ) : panel === "myPlacesList" ? (
