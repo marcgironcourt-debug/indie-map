@@ -27,6 +27,7 @@ export default function MapPanel(props: {
   homeOverlay?: React.ReactNode;
   topOverlay?: React.ReactNode;
   hideGeolocate?: boolean;
+  searchMode?: boolean;
 }) {
   const {
     items = [],
@@ -35,7 +36,8 @@ export default function MapPanel(props: {
     overlaysReady = true,
     homeOverlay,
     topOverlay,
-    hideGeolocate = false
+    hideGeolocate = false,
+    searchMode = false
   } = props;
 
   useEffect(() => {
@@ -102,6 +104,7 @@ export default function MapPanel(props: {
           onSelect={onSelect}
           overlaysReady={overlaysReady}
           hideGeolocate={hideGeolocate}
+          searchMode={searchMode}
         />
       </div>
       {overlaysReady ? homeOverlay : null}

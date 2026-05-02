@@ -332,7 +332,7 @@ function FilterBar({
 
 
 
-export default function IndieMapSplitView({ locale, discoverId, entry }: { locale: UILocale; discoverId?: string | null; entry?: string | null }) {
+export default function IndieMapSplitView({ locale, discoverId, entry, searchIds }: { locale: UILocale; discoverId?: string | null; entry?: string | null; searchIds?: string | null }) {
   const router = useRouter();
   const isFr = locale === "fr";
   const [panel, setPanel] = React.useState<Panel>(null);
@@ -712,7 +712,18 @@ React.useEffect(() => {
   
 
   if (!hasData) categories = stableCategories;
+
+  const searchIdSet = React.useMemo(() => {
+    if (!searchIds) return null;
+    const ids = searchIds
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
+    return ids.length > 0 ? new Set(ids) : null;
+  }, [searchIds]);
+
 const filtered = source.filter((b) => {
+    if (searchIdSet && !searchIdSet.has(String(b.id))) return false;
     const k = (b.type || "").toLowerCase();
 
     if (category == null || category === "ALL") return true;
@@ -789,6 +800,7 @@ const filtered = source.filter((b) => {
           selectedId={selectedId}
           selectionVersion={selectionVersion}
           overlaysReady={discoverUiReady}
+          searchMode={Boolean(searchIdSet)}
           homeOverlay={!heroOpen ? (
             <div
               className="absolute z-[1450] pointer-events-auto"

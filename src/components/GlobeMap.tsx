@@ -828,6 +828,7 @@ export default function GlobeMap({
   darkMap = false,
   overlaysReady = true,
   hideGeolocate = false,
+  searchMode = false,
 }: {
   items?: Biz[];
   selectedId?: string | null;
@@ -835,6 +836,7 @@ export default function GlobeMap({
   darkMap?: boolean;
   overlaysReady?: boolean;
   hideGeolocate?: boolean;
+  searchMode?: boolean;
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const mapRef = React.useRef<maplibregl.Map | null>(null);
@@ -1950,6 +1952,56 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
     }
   }, [items, selectedId, mapReadyTick]);
 
+  React.useEffect(() => {
+    if (!searchMode) return;
+    const map = mapRef.current;
+    if (!map) return;
+
+    const coords = (items ?? [])
+      .map((item) => ({
+        lat: Number(item?.lat),
+        lng: Number(item?.lng)
+      }))
+      .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+
+    if (coords.length === 0) return;
+
+    try {
+      if (coords.length === 1) {
+        map.easeTo({
+          center: [coords[0].lng, coords[0].lat],
+          zoom: 13,
+          duration: 500,
+          essential: true
+        });
+        return;
+      }
+
+      let minLng = Infinity;
+      let minLat = Infinity;
+      let maxLng = -Infinity;
+      let maxLat = -Infinity;
+
+      for (const coord of coords) {
+        if (coord.lng < minLng) minLng = coord.lng;
+        if (coord.lat < minLat) minLat = coord.lat;
+        if (coord.lng > maxLng) maxLng = coord.lng;
+        if (coord.lat > maxLat) maxLat = coord.lat;
+      }
+
+      if (!Number.isFinite(minLng) || !Number.isFinite(minLat) || !Number.isFinite(maxLng) || !Number.isFinite(maxLat)) return;
+
+      map.fitBounds(
+        [[minLng, minLat], [maxLng, maxLat]] as any,
+        {
+          padding: { top: 90, right: 60, bottom: 90, left: 60 },
+          maxZoom: 11.8,
+          duration: 500
+        } as any
+      );
+    } catch {}
+  }, [searchMode, items, mapReadyTick]);
+
   function cssHslVar(varName: string, fallback: string) {
     try {
       const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -2909,6 +2961,23 @@ return;
           Number.isFinite(Number(item?.lng))
         ) ?? null
       : null;
+    const searchTargets = searchMode
+      ? (items ?? [])
+          .map((item) => ({
+            lat: Number(item?.lat),
+            lng: Number(item?.lng)
+          }))
+          .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng))
+      : [];
+
+    const searchCenter =
+      searchTargets.length > 0
+        ? [
+            searchTargets.reduce((sum, item) => sum + item.lng, 0) / searchTargets.length,
+            searchTargets.reduce((sum, item) => sum + item.lat, 0) / searchTargets.length
+          ]
+        : null;
+
     const initialNative = (() => {
       try {
         const cached = pendingNativeLocationRef.current ?? (window as any).__IM_NATIVE_LOCATION__;
@@ -2923,15 +2992,19 @@ return;
     const initialCenter =
       discoverTarget
         ? [Number(discoverTarget.lng), Number(discoverTarget.lat)]
-        : initialNative
-          ? [Number(initialNative.lng), Number(initialNative.lat)]
-          : [0, 0];
+        : searchCenter
+          ? searchCenter
+          : initialNative
+            ? [Number(initialNative.lng), Number(initialNative.lat)]
+            : [0, 0];
     const initialZoom =
       discoverTarget
         ? 9.9
-        : initialNative
-          ? 12.4
-          : (isMobile ? 1.4 : 2.4);
+        : searchCenter
+          ? 11.4
+          : initialNative
+            ? 12.4
+            : (isMobile ? 1.4 : 2.4);
     const map = new maplibregl.Map({
       container: el,
       style: STYLE_URL,
