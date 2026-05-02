@@ -1084,7 +1084,7 @@ export default function HomeScreen({
                   onBlur={() => setSearchFocused(false)}
                   placeholder={
                     searchFocused
-                      ? (isFr ? "J’ai besoin de faire un bon repas ce soir à Paris..." : "I need a good meal tonight in Paris...")
+                      ? (isFr ? "Je veux boire un verre à Paris..." : "I want to have a drink in Paris...")
                       : (isFr ? "Un café, une épicerie, un lieu à Paris..." : "A café, a grocery store, a place in Paris...")
                   }
                   className="w-full min-w-0 bg-transparent text-[15px] leading-none text-white placeholder:text-white/42 outline-none"
