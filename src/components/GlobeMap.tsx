@@ -840,6 +840,7 @@ export default function GlobeMap({
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const mapRef = React.useRef<maplibregl.Map | null>(null);
+  const searchFitKeyRef = React.useRef<string>("");
   const geolocateElRef = React.useRef<HTMLDivElement | null>(null);
   const readyRef = React.useRef(false);
   const pendingNativeLocationRef = React.useRef<{ lat: number; lng: number } | null>(null);
@@ -1955,9 +1956,22 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   }, [items, selectedId, mapReadyTick]);
 
   React.useEffect(() => {
-    if (!searchMode) return;
+    if (!searchMode) {
+      searchFitKeyRef.current = "";
+      return;
+    }
+
     const map = mapRef.current;
     if (!map) return;
+
+    const searchFitKey = (items ?? [])
+      .map((item) => String(item?.id ?? ""))
+      .filter(Boolean)
+      .sort()
+      .join("|");
+
+    if (!searchFitKey || searchFitKeyRef.current === searchFitKey) return;
+    searchFitKeyRef.current = searchFitKey;
 
     const coords = (items ?? [])
       .map((item) => ({

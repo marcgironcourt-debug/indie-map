@@ -925,7 +925,10 @@ export default function HomeScreen({
                     value
                       .toLowerCase()
                       .normalize("NFD")
-                      .replace(/[\u0300-\u036f]/g, "");
+                      .replace(/[\u0300-\u036f]/g, "")
+                      .replace(/[^a-z0-9\s]/g, " ")
+                      .replace(/\s+/g, " ")
+                      .trim();
 
                   const normalizedQuery = normalize(query);
 
@@ -933,63 +936,127 @@ export default function HomeScreen({
                     .sort((a, b) => b.length - a.length);
 
                   const detectedCity = knownCities.find((city) => normalizedQuery.includes(normalize(city))) || null;
+                  const normalizedDetectedCity = detectedCity ? normalize(detectedCity) : "";
 
-                  const categoryAliases: Record<string, string[]> = {
-                    epicerie: ["epicerie", "epiceries", "grocery", "groceries", "magasin bio", "courses", "faire les courses", "cuisiner", "produits", "ingredients", "repas maison"],
-                    restaurant: ["restaurant", "restaurants", "resto", "restos", "manger", "dejeuner", "diner", "souper", "repas", "bon repas", "ce soir", "midi", "brunch", "cuisine"],
-                    cafe: ["cafe", "cafes", "coffee", "coffees", "boire un cafe", "travailler", "pause", "gouter"],
+                  const includesAny = (values: string[]) => values.some((value) => normalizedQuery.includes(normalize(value)));
+
+                  const explicitCategoryAliases: Record<string, string[]> = {
+                    epicerie: ["epicerie", "epiceries", "grocery", "groceries", "magasin bio"],
+                    restaurant: ["restaurant", "restaurants", "resto", "restos"],
+                    brunch: ["brunch", "brunchs"],
+                    cafe: ["cafe", "cafes", "coffee", "coffees"],
                     bar: ["bar", "bars", "pub", "pubs", "brasserie", "brasseries"],
-                    boutique: ["boutique", "boutiques", "mode", "shopping", "cadeau", "cadeaux"],
-                    librairie: ["librairie", "librairies", "livre", "livres"],
-                    boulangerie: ["boulangerie", "boulangeries", "pain", "viennoiserie", "viennoiseries"],
-                    ferme: ["ferme", "fermes", "producteur", "producteurs"],
+                    boutique: ["boutique", "boutiques", "mode", "shopping"],
+                    librairie: ["librairie", "librairies", "bookstore"],
+                    boulangerie: ["boulangerie", "boulangeries", "bakery"],
+                    ferme: ["ferme", "fermes", "producteur", "producteurs", "farm", "farms"],
                     marche: ["marche", "marches", "market", "markets"],
                     atelier: ["atelier", "ateliers", "artisan", "artisans"],
-                    alternatif: ["alternatif", "alternative", "culture", "art", "expo", "exposition", "expositions"]
+                    alternatif: ["alternatif", "alternative", "lieu alternatif"]
                   };
 
-                  const detectedCategory = Object.entries(categoryAliases).find(([, aliases]) =>
-                    aliases.some((alias) => normalizedQuery.includes(alias))
+                  const explicitCategory = Object.entries(explicitCategoryAliases).find(([, aliases]) =>
+                    aliases.some((alias) => normalizedQuery.includes(normalize(alias)))
                   )?.[0] || null;
+
+                  let targetCategories = explicitCategory ? [explicitCategory] : [];
+
+                  if (targetCategories.length === 0) {
+                    if (includesAny(["boire un verre", "prendre un verre", "sortir boire", "aller boire", "un verre", "biere", "beer", "drink", "cocktail", "aperitif", "apero"])) {
+                      targetCategories = ["bar"];
+                    } else if (includesAny(["faire les courses", "faire mes courses", "acheter a manger", "ingredients", "ingredient", "repas maison", "cuisiner", "produits locaux", "local food", "organic food", "grocery"])) {
+                      targetCategories = ["epicerie", "marche", "ferme"];
+                    } else if (includesAny(["manger", "dejeuner", "diner", "souper", "bon repas", "lunch", "dinner", "eat", "food"])) {
+                      targetCategories = ["restaurant"];
+                    } else if (includesAny(["boire un cafe", "prendre un cafe", "travailler", "lire", "pause cafe", "gouter", "coffee", "work", "read"])) {
+                      targetCategories = ["cafe"];
+                    } else if (includesAny(["cadeau", "cadeaux", "gift", "gifts", "pour ma niece", "pour mon neveu", "pour un enfant", "objet", "objets", "souvenir", "decoration", "deco"])) {
+                      targetCategories = ["boutique", "atelier", "librairie", "alternatif"];
+                    } else if (includesAny(["pain", "viennoiserie", "croissant", "baguette", "bread"])) {
+                      targetCategories = ["boulangerie"];
+                    } else if (includesAny(["expo", "exposition", "art", "culture", "galerie", "gallery"])) {
+                      targetCategories = ["alternatif", "atelier"];
+                    }
+                  }
 
                   const stopWords = new Set([
                     "je", "j", "me", "moi", "tu", "te", "le", "la", "les", "un", "une", "des", "de", "du", "d", "a", "au", "aux",
                     "en", "sur", "pour", "dans", "avec", "trouve", "trouver", "montre", "montrez", "voir", "veux", "voudrais",
-                    "bientot", "quelques", "jours", "place", "lieu", "lieux", "city", "near", "nearby", "show", "find", "for"
+                    "besoin", "cherche", "chercher", "peux", "peut", "aller", "faire", "bientot", "quelques", "jours", "place",
+                    "lieu", "lieux", "ville", "city", "near", "nearby", "show", "find", "for", "where", "need", "want", "ce", "soir"
                   ]);
 
                   const tokens = normalizedQuery
                     .split(/\s+/)
                     .map((token) => token.trim())
-                    .filter((token) => token.length > 2 && !stopWords.has(token));
+                    .filter((token) => token.length > 2 && !stopWords.has(token) && token !== normalizedDetectedCity);
 
-                  const filtered = allPlaces.filter((place) => {
-                    const cityOk = detectedCity ? normalize(place.city || "") === normalize(detectedCity) : true;
-                    const categoryOk = detectedCategory ? normalizeCategory(place.category) === detectedCategory : true;
-                    return cityOk && categoryOk;
-                  });
+                  const ignoredSearchTokens = new Set([
+                    ...Object.values(explicitCategoryAliases)
+                      .flatMap((aliases) => aliases)
+                      .flatMap((alias) => normalize(alias).split(/\s+/)),
+                    "boire", "prendre", "verre", "sortir", "biere", "beer", "drink", "cocktail", "aperitif", "apero",
+                    "manger", "dejeuner", "diner", "souper", "repas", "lunch", "dinner", "eat", "food",
+                    "cafe", "coffee", "travailler", "lire", "pause", "gouter", "work", "read",
+                    "courses", "acheter", "ingredients", "ingredient", "cuisiner", "produits", "locaux", "local", "organic",
+                    "cadeau", "cadeaux", "gift", "gifts", "niece", "neveu", "enfant", "objet", "objets", "souvenir",
+                    "pain", "viennoiserie", "croissant", "baguette", "bread",
+                    "expo", "exposition", "art", "culture", "galerie", "gallery"
+                  ].filter((token) => token.length > 2));
 
-                  const results = (detectedCity || detectedCategory)
-                    ? filtered
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .slice(0, 50)
-                    : allPlaces
+                  const meaningfulTokens = tokens.filter((token) => !ignoredSearchTokens.has(token));
+
+                  const cityPool = detectedCity
+                    ? allPlaces.filter((place) => normalize(place.city || "") === normalizedDetectedCity)
+                    : allPlaces;
+
+                  const categoryPool = targetCategories.length > 0
+                    ? cityPool.filter((place) => {
+                        const rawCategory = normalize(place.category || "");
+                        const miniText = normalize(place.miniText || "");
+                        const miniTextEn = normalize((place as any).translations?.en?.miniText || "");
+                        const searchCategory = rawCategory.includes("brunch") ? "brunch" : normalizeCategory(place.category);
+
+                        if (targetCategories.includes(searchCategory)) return true;
+                        if (targetCategories.includes("brunch") && (miniText.includes("brunch") || miniTextEn.includes("brunch"))) return true;
+
+                        return false;
+                      })
+                    : cityPool;
+
+                  const shouldReturnFullPool = Boolean(detectedCity) && (targetCategories.length > 0 || tokens.length === 0) && meaningfulTokens.length === 0;
+
+                  const results = shouldReturnFullPool
+                    ? categoryPool.sort((a, b) => a.name.localeCompare(b.name))
+                    : categoryPool
                         .map((place) => {
-                          const haystack = normalize([
-                            place.name,
-                            place.city,
-                            place.address,
-                            place.category,
-                            place.miniText
-                          ].filter(Boolean).join(" "));
+                          const placeCity = normalize(place.city || "");
+                          const rawCategory = normalize(place.category || "");
+                          const placeCategory = rawCategory.includes("brunch") ? "brunch" : normalizeCategory(place.category);
+                          const name = normalize(place.name || "");
+                          const address = normalize(place.address || "");
+                          const category = normalize(place.category || "");
+                          const miniText = normalize(place.miniText || "");
+                          const haystack = [name, placeCity, address, category, miniText].filter(Boolean).join(" ");
 
-                          const score = tokens.reduce((total, token) => total + (haystack.includes(token) ? 1 : 0), 0);
+                          let score = 0;
+
+                          if (detectedCity && placeCity === normalizedDetectedCity) score += 80;
+                          if (targetCategories.includes(placeCategory)) score += 70;
+
+                          for (const token of meaningfulTokens) {
+                            if (name.includes(token)) score += 18;
+                            if (category.includes(token)) score += 14;
+                            if (placeCity.includes(token)) score += 12;
+                            if (address.includes(token)) score += 8;
+                            if (miniText.includes(token)) score += 10;
+                            if (haystack.includes(token)) score += 3;
+                          }
 
                           return { place, score };
                         })
                         .filter((entry) => entry.score > 0)
                         .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
-                        .slice(0, 8)
                         .map((entry) => entry.place);
 
                   setSearchResults(results);
