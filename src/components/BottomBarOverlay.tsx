@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import ContributeForm from "@/components/ContributeForm";
 
-type Panel = null | "pros" | "contrib" | "about" | "myPlaces";
+type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList";
 
 type SavedPlace = {
   id: string;
@@ -212,71 +212,176 @@ export default function BottomBarOverlay({
                   </>
                 )
               ) : panel === "myPlaces" ? (
-                savedPlacesByCity.length > 0 ? (
-                  <div className="grid grid-cols-2 gap-4">
-                    {savedPlacesByCity.map((group) => {
-                      const currentIndex = savedPlaceIndexes[group.city] ?? 0;
-                      const currentPlace = group.places[currentIndex] ?? group.places[0] ?? null;
-                      if (!currentPlace) return null;
-
-                      return (
-                        <div key={group.city}>
-                          <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
-                          <button
-                            type="button"
-                            onClick={() => { setPanel(null); onOpenSavedPlace(currentPlace.id); }}
-                            onTouchStart={onSavedPlacesTouchStart}
-                            onTouchMove={onSavedPlacesTouchMove}
-                            onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
-                            className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
-                            style={{
-                              minHeight: "148px",
-                              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
-                            }}
-                          >
-                            {currentPlace.panoramaImage ? (
-                              <img
-                                src={currentPlace.panoramaImage}
-                                alt=""
-                                className="absolute inset-0 h-full w-full object-cover"
-                              />
-                            ) : null}
-                            <div
-                              className="absolute inset-0"
-                              style={{
-                                background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
-                              }}
-                            ></div>
-                            <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
-                              <div>
-                                <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
-                                  {currentPlace.name}
-                                </p>
-                                <p className="mt-1 text-[11px] opacity-90 truncate text-white/90">
-                                  {currentPlace.address || "Indie Map"}
-                                </p>
-                              </div>
-                            </div>
-                            {group.places.length > 1 ? (
-                              <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
-                                {group.places.map((item, index) => (
-                                  <span
-                                    key={item.id}
-                                    className={index === currentIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
-                                  />
-                                ))}
-                              </div>
-                            ) : null}
-                          </button>
-                        </div>
-                      );
-                    })}
+<>
+                  <div className="mb-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                      {isFr ? "Espace perso" : "Personal space"}
+                    </p>
+                    <h2 className="mt-1 font-serif text-[24px] font-semibold leading-tight text-white">
+                      {isFr ? "Ton tableau de bord" : "Your dashboard"}
+                    </h2>
                   </div>
-                ) : (
-                  <p className="text-white/80">
-                    {isFr ? "Aucun lieu enregistré pour le moment." : "No saved places yet."}
-                  </p>
-                )
+
+                  <div className="mb-5 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[26px] font-semibold leading-none text-white">
+                        0
+                      </p>
+                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Lieux" : "Places"}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[26px] font-semibold leading-none text-white">0</p>
+                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Contributions" : "Contributions"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setPanel("myPlacesList")}
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/10 bg-white/8 p-4 text-left hover:bg-white/12 active:bg-white/16"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/75">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 20.2s-6.8-4.1-8.4-8.2C2.5 9.1 4.1 6.5 6.8 6.2c1.6-.2 3.1.6 4.2 2c1.1-1.4 2.6-2.2 4.2-2c2.7.3 4.3 2.9 3.2 5.8C18.8 16.1 12 20.2 12 20.2z" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/70">
+                        {isFr ? "Mes lieux" : "My places"}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
+                          <path d="M15.8 10.6a2.6 2.6 0 1 0 0-5.2" />
+                          <path d="M3.8 19c.8-3.1 2.6-4.8 4.7-4.8s3.9 1.7 4.7 4.8" />
+                          <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {isFr ? "Mes amis" : "Friends"}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 3.8l1.8 5.2h5.5l-4.4 3.2l1.7 5.3L12 14.2l-4.6 3.3l1.7-5.3L4.7 9h5.5L12 3.8z" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {isFr ? "Impact local" : "Local impact"}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 5v14" />
+                          <path d="M5 12h14" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {isFr ? "Contributions" : "Contributions"}
+                      </span>
+                    </button>
+                  </div>
+                </>
+              ) : panel === "myPlacesList" ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setPanel("myPlaces")}
+                    className="mb-4 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[13px] font-semibold text-white/75 hover:bg-white/12 active:bg-white/16"
+                  >
+                    ← {isFr ? "Retour" : "Back"}
+                  </button>
+
+                  {savedPlacesByCity.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      {savedPlacesByCity.map((group) => {
+                        const currentIndex = savedPlaceIndexes[group.city] ?? 0;
+                        const currentPlace = group.places[currentIndex] ?? group.places[0] ?? null;
+                        if (!currentPlace) return null;
+
+                        return (
+                          <div key={group.city}>
+                            <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
+                            <button
+                              type="button"
+                              onClick={() => { setPanel(null); onOpenSavedPlace(currentPlace.id); }}
+                              onTouchStart={onSavedPlacesTouchStart}
+                              onTouchMove={onSavedPlacesTouchMove}
+                              onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
+                              className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                              style={{
+                                minHeight: "148px",
+                                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                              }}
+                            >
+                              {currentPlace.panoramaImage ? (
+                                <img
+                                  src={currentPlace.panoramaImage}
+                                  alt=""
+                                  className="absolute inset-0 h-full w-full object-cover"
+                                />
+                              ) : null}
+                              <div
+                                className="absolute inset-0"
+                                style={{
+                                  background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                                }}
+                              ></div>
+                              <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                                <div>
+                                  <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                                    {currentPlace.name}
+                                  </p>
+                                  <p className="mt-1 text-[11px] opacity-90 truncate text-white/90">
+                                    {currentPlace.address || "Indie Map"}
+                                  </p>
+                                </div>
+                              </div>
+                              {group.places.length > 1 ? (
+                                <div className="absolute bottom-2 right-2 z-20 flex items-center gap-1.5">
+                                  {group.places.map((item, index) => (
+                                    <span
+                                      key={item.id}
+                                      className={index === currentIndex ? "h-1.5 w-3 rounded-full bg-white/95" : "h-1.5 w-1.5 rounded-full bg-white/55"}
+                                    />
+                                  ))}
+                                </div>
+                              ) : null}
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <p className="text-white/80">
+                      {isFr ? "Aucun lieu enregistré pour le moment." : "No saved places yet."}
+                    </p>
+                  )}
+                </>
               ) : isFr ? (
                 <>
                   <p className="mb-4 text-white/80">
