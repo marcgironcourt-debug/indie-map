@@ -850,8 +850,11 @@ const filtered = source.filter((b) => {
                     onClick={() => setPanel("myPlaces")}
                     className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
                   >
-                    <span className="text-[22px] leading-none">♡</span>
-                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Mes lieux" : "My places"}</span>
+                    <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="3.2" />
+              <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
+            </svg>
+                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>
                   </button>
         
                   <button
