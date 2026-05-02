@@ -1873,7 +1873,7 @@ export default function HomeScreen({
                   <div className="mb-5 grid grid-cols-2 gap-3">
                     <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
                       <p className="text-[26px] font-semibold leading-none text-white">
-                        0
+                        {Object.values(placeNotes).filter((note) => note?.visited).length}
                       </p>
                       <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
                         {isFr ? "Lieux" : "Places"}
@@ -2005,7 +2005,44 @@ export default function HomeScreen({
                                     }}
                                   ></div>
 
-                                  <div className={placeNotes[place.id]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-orange-500 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}>
+                                  <div
+                                    role="button"
+                                    tabIndex={0}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+
+                                      const nextNotes: Record<string, PlaceNote> = {
+                                        ...placeNotes,
+                                        [place.id]: {
+                                          ...(placeNotes[place.id] ?? {}),
+                                          visited: true,
+                                          updatedAt: new Date().toISOString()
+                                        }
+                                      };
+
+                                      setPlaceNotes(nextNotes);
+                                      writePlaceNotes(nextNotes);
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key !== "Enter" && e.key !== " ") return;
+                                      e.preventDefault();
+                                      e.stopPropagation();
+
+                                      const nextNotes: Record<string, PlaceNote> = {
+                                        ...placeNotes,
+                                        [place.id]: {
+                                          ...(placeNotes[place.id] ?? {}),
+                                          visited: true,
+                                          updatedAt: new Date().toISOString()
+                                        }
+                                      };
+
+                                      setPlaceNotes(nextNotes);
+                                      writePlaceNotes(nextNotes);
+                                    }}
+                                    className={placeNotes[place.id]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-yellow-400 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}
+                                  >
                                     {placeNotes[place.id]?.visited ? (isFr ? "Visité" : "Visited") : (isFr ? "À visiter" : "To visit")}
                                   </div>
 
