@@ -7,6 +7,7 @@ import React from "react";
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import { isOpenNowFR } from "@/lib/openingHours";
+import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
 type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList";
 
@@ -149,35 +150,6 @@ declare global {
 
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; contextPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 const SAVED_PLACES_KEY = "im-saved-places";
-const PLACE_NOTES_KEY = "im:place-notes";
-
-type PlaceNote = {
-  visited?: boolean;
-  comment?: string;
-  updatedAt?: string;
-};
-
-function readPlaceNotes(): Record<string, PlaceNote> {
-  try {
-    if (typeof window === "undefined") return {};
-    const raw = window.localStorage.getItem(PLACE_NOTES_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
-    return parsed as Record<string, PlaceNote>;
-  } catch {
-    return {};
-  }
-}
-
-function writePlaceNotes(notes: Record<string, PlaceNote>) {
-  try {
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem(PLACE_NOTES_KEY, JSON.stringify(notes));
-    window.dispatchEvent(new Event("im:place-notes-updated"));
-  } catch {}
-}
-
 function readSavedPlaces(): SavedPlace[] {
   try {
     if (typeof window === "undefined") return [];
@@ -1870,19 +1842,42 @@ export default function HomeScreen({
                     </h2>
                   </div>
 
-                  <div className="mb-5 grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-                      <p className="text-[26px] font-semibold leading-none text-white">
+                  <div className="mb-5 grid grid-cols-2 gap-2">
+                    <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[22px] font-semibold leading-none text-white">
                         {Object.values(placeNotes).filter((note) => note?.visited).length}
                       </p>
-                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
-                        {isFr ? "Lieux" : "Places"}
+                      <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Lieux testés" : "Tested places"}
                       </p>
                     </div>
 
-                    <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-                      <p className="text-[26px] font-semibold leading-none text-white">0</p>
-                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
+                    <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[22px] font-semibold leading-none text-white">
+                        {new Set(Object.entries(placeNotes).filter(([, note]) => note?.visited).map(([id]) => (allPlaces.find((item) => item.id === id)?.city || savedPlaces.find((item) => item.id === id)?.city || "").trim()).filter(Boolean)).size}
+                      </p>
+                      <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Villes visitées" : "Visited cities"}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[22px] font-semibold leading-none text-white">
+                        {Object.values(placeNotes).filter((note) => {
+                          if (!note?.visited || !note.visitedAt) return false;
+                          const visited = new Date(note.visitedAt);
+                          const now = new Date();
+                          return visited.getFullYear() === now.getFullYear() && visited.getMonth() === now.getMonth();
+                        }).length}
+                      </p>
+                      <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Ce mois-ci" : "This month"}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[22px] font-semibold leading-none text-white">0</p>
+                      <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
                         {isFr ? "Contributions" : "Contributions"}
                       </p>
                     </div>
@@ -1934,6 +1929,23 @@ export default function HomeScreen({
                       </span>
                       <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
                         {isFr ? "Impact local" : "Local impact"}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M5 5.5h14v9H8.5L5 18.2V5.5z" />
+                          <path d="M8.5 9h7" />
+                          <path d="M8.5 12h4.5" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {isFr ? "Commentaires" : "Comments"}
                       </span>
                     </button>
                   </div>
@@ -2013,12 +2025,14 @@ export default function HomeScreen({
                                       e.stopPropagation();
 
                                       const isVisited = Boolean(placeNotes[place.id]?.visited);
+                                      const now = new Date().toISOString();
                                       const nextNotes: Record<string, PlaceNote> = {
                                         ...placeNotes,
                                         [place.id]: {
                                           ...(placeNotes[place.id] ?? {}),
                                           visited: !isVisited,
-                                          updatedAt: new Date().toISOString()
+                                          visitedAt: isVisited ? undefined : now,
+                                          updatedAt: now
                                         }
                                       };
 
@@ -2031,12 +2045,14 @@ export default function HomeScreen({
                                       e.stopPropagation();
 
                                       const isVisited = Boolean(placeNotes[place.id]?.visited);
+                                      const now = new Date().toISOString();
                                       const nextNotes: Record<string, PlaceNote> = {
                                         ...placeNotes,
                                         [place.id]: {
                                           ...(placeNotes[place.id] ?? {}),
                                           visited: !isVisited,
-                                          updatedAt: new Date().toISOString()
+                                          visitedAt: isVisited ? undefined : now,
+                                          updatedAt: now
                                         }
                                       };
 

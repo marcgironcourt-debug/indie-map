@@ -228,7 +228,14 @@ export default function BottomBarOverlay({
                         0
                       </p>
                       <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
-                        {isFr ? "Lieux" : "Places"}
+                        {isFr ? "Lieux testés" : "Tested places"}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
+                      <p className="text-[26px] font-semibold leading-none text-white">0</p>
+                      <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
+                        {isFr ? "Villes visitées" : "Visited cities"}
                       </p>
                     </div>
 
@@ -286,6 +293,23 @@ export default function BottomBarOverlay({
                       </span>
                       <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
                         {isFr ? "Impact local" : "Local impact"}
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
+                        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M5 5.5h14v9H8.5L5 18.2V5.5z" />
+                          <path d="M8.5 9h7" />
+                          <path d="M8.5 12h4.5" />
+                        </svg>
+                      </span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {isFr ? "Commentaires" : "Comments"}
                       </span>
                     </button>
                   </div>
