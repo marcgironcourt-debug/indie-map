@@ -12,7 +12,6 @@ type BottomNavBarProps = {
   authProfile: BottomNavBarProfile | null;
   onOpenPersonal: () => void;
   onOpenContrib: () => void;
-  onOpenAbout: () => void;
   onOpenPros: () => void;
   minHeightClassName?: string;
 };
@@ -22,14 +21,13 @@ export default function BottomNavBar({
   authProfile,
   onOpenPersonal,
   onOpenContrib,
-  onOpenAbout,
   onOpenPros,
   minHeightClassName = "min-h-[50px]",
 }: BottomNavBarProps) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-[1200]">
       <div
-        className="grid w-full grid-cols-4 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+        className="grid w-full grid-cols-3 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <button
@@ -69,21 +67,6 @@ export default function BottomNavBar({
             </svg>
           </span>
           <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={onOpenAbout}
-          className={`flex ${minHeightClassName} flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10`}
-        >
-          <span className="flex h-6 w-6 items-center justify-center">
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 16v-5" />
-              <path d="M12 8h.01" />
-              <circle cx="12" cy="12" r="9" />
-            </svg>
-          </span>
-          <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
         </button>
 
         <button

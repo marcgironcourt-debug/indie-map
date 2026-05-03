@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
 import BottomNavBar from "@/components/BottomNavBar";
@@ -8,7 +7,7 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ContributeForm from "@/components/ContributeForm";
 import { readPlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
-type Panel = null | "pros" | "contrib" | "about" | "personalSpace" | "myPlacesList" | "profileInfo";
+type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo";
 
 type AuthProfile = {
   id: string;
@@ -1190,8 +1189,7 @@ const filtered = source.filter((b) => {
           authProfile={authProfile}
           onOpenPersonal={() => setPanel("personalSpace")}
           onOpenContrib={() => setPanel("contrib")}
-          onOpenAbout={() => setPanel("about")}
-          onOpenPros={() => setPanel("pros")}
+            onOpenPros={() => setPanel("pros")}
         />
       ) : null}
 
@@ -1434,101 +1432,7 @@ const filtered = source.filter((b) => {
                           </p>
                         )}
                       </>
-                    ) : isFr ? (
-                      <>
-                        <p className="mb-4 text-white/80">
-                          Indie Map est né d’une difficulté simple : trouver des lieux qui produisent ou travaillent réellement localement.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          En voyage comme dans sa propre ville, il devient compliqué d’identifier ce qui est fabriqué, cultivé ou pensé à l’échelle d’un territoire. Les informations existent, mais elles sont dispersées.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          L’application référence des cafés, restaurants, ateliers, fermes, marchés, librairies ou boutiques qui ont un lien concret avec leur environnement : production locale, circuits courts, fabrication sur place, agriculture respectueuse, transformation artisanale.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          Chaque lieu est présenté avec des informations essentielles : où il se trouve, ce qu’il fait, comment il fonctionne.
-                        </p>
-                        <p className="text-white/80">
-                          Indie Map est conçu comme un outil simple : une carte pour repérer plus facilement ce qui se fait localement, où que l’on soit.
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="mb-4 text-white/80">
-                          Indie Map was created from a simple difficulty: finding places that genuinely produce or work locally.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          Whether traveling or in your own city, it can be hard to identify what is actually made, grown, or rooted in a specific territory. The information exists, but it is scattered.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          Indie Map gathers these places on a clear map.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          The app references cafés, restaurants, workshops, farms, markets, bookstores, and shops that maintain a concrete link to their environment: local production, short supply chains, on-site making, respectful farming, artisanal transformation.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          The goal is not to judge or rank. It is to make visible. While making it easier to consume differently.
-                        </p>
-                        <p className="mb-4 text-white/80">
-                          Each place is presented with essential information: where it is, what it does, how it operates.
-                        </p>
-                        <p className="text-white/80">
-                          Indie Map is designed as a simple tool: a map to more easily locate what is produced locally, wherever you are. The project grows progressively, city by city, prioritizing coherence and accuracy.
-                        </p>
-                      </>
-                    )}
-      
-                    {panel === "about" && (
-                      <div className="mt-6">
-                        <p className="mb-2 text-sm font-semibold tracking-wide text-white/80">
-                          {isFr ? "Langue" : "Language"}
-                        </p>
-                        <div className="flex gap-2">
-                          <button
-                            type="button"
-                            onClick={() => switchLocale("fr")}
-                            className={"px-4 py-2 rounded-2xl border text-sm text-white " + (isFr ? "bg-white/12 border-white/20" : "bg-white/5 border-white/10 hover:bg-white/10")}
-                          >
-                            Français
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => switchLocale("en")}
-                            className={"px-4 py-2 rounded-2xl border text-sm text-white " + (!isFr ? "bg-white/12 border-white/20" : "bg-white/5 border-white/10 hover:bg-white/10")}
-                          >
-                            English
-                          </button>
-                        </div>
-                      </div>
-                    )}
-      
-                    {panel === "about" && (
-                      <div className="mt-4">
-                        <p className="mb-2 text-sm text-white/80">
-                          {isFr ? "Pour toutes questions ou suggestions :" : "For any questions or suggestions:"}
-                        </p>
-                        <a
-                          href="mailto:contact@indie-map.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
-                        >
-                          Contact
-                        </a>
-                      </div>
-                    )}
-      
-                    {panel === "about" && (
-                      <div className="mt-4 text-[11px] text-white/60">
-                        <Link href={`/${locale}/privacy`} className="opacity-70 hover:opacity-100">
-                          {isFr ? "Confidentialité" : "Privacy"}
-                        </Link>
-                        <br />
-                        <Link href={`/${locale}/support`} className="opacity-70 hover:opacity-100">
-                          Support
-                        </Link>
-                      </div>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>
