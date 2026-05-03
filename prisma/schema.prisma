@@ -118,6 +118,7 @@ model User {
   recommendationsSent  PlaceRecommendation[] @relation("RecommendationSender")
   recommendationsInbox PlaceRecommendation[] @relation("RecommendationReceiver")
   sessions             UserSession[]
+  passwordResetTokens  PasswordResetToken[]
 }
 
 model Friendship {
@@ -250,6 +251,20 @@ model LoginToken {
   createdAt DateTime  @default(now())
 
   @@index([email])
+  @@index([expiresAt])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  userId    String
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
   @@index([expiresAt])
 }
 

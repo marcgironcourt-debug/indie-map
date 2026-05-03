@@ -393,10 +393,13 @@ export default function HomeScreen({
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [authProfile, setAuthProfile] = React.useState<AuthProfile | null>(null);
   const [authLoading, setAuthLoading] = React.useState(false);
-  const [authMode, setAuthMode] = React.useState<"signup" | "login">("signup");
+  const [authMode, setAuthMode] = React.useState<"signup" | "login" | "resetRequest" | "resetConfirm">("signup");
   const [authEmail, setAuthEmail] = React.useState("");
   const [authUsername, setAuthUsername] = React.useState("");
   const [authPassword, setAuthPassword] = React.useState("");
+  const [authResetToken, setAuthResetToken] = React.useState("");
+  const [authResetDone, setAuthResetDone] = React.useState(false);
+  const [authForceForm, setAuthForceForm] = React.useState(false);
   const [authSending, setAuthSending] = React.useState(false);
   const [authError, setAuthError] = React.useState("");
   const [profileUsername, setProfileUsername] = React.useState("");
@@ -448,6 +451,10 @@ export default function HomeScreen({
   }, []);
 
   React.useEffect(() => {
+    refreshAuthProfile();
+  }, [refreshAuthProfile]);
+
+  React.useEffect(() => {
     if (panel === "myPlaces") {
       refreshAuthProfile();
     }
@@ -460,7 +467,97 @@ export default function HomeScreen({
       setPanel("myPlaces");
       refreshAuthProfile();
     }
+
+    const resetPasswordToken = params.get("resetPasswordToken");
+    if (resetPasswordToken) {
+      setPanel("myPlaces");
+      setAuthMode("resetConfirm");
+      setAuthResetToken(resetPasswordToken);
+      setAuthError("");
+      setAuthResetDone(false);
+      setAuthForceForm(true);
+    }
   }, [refreshAuthProfile]);
+
+  async function requestPasswordReset() {
+    const email = authEmail.trim();
+    setAuthError("");
+    setAuthResetDone(false);
+
+    if (!email || !email.includes("@")) {
+      setAuthError(isFr ? "Entre l’email associé à ton compte." : "Enter the email linked to your account.");
+      return;
+    }
+
+    setAuthSending(true);
+    try {
+      const res = await fetch("/api/v1/auth/password-reset/request", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        setAuthError(isFr ? "Impossible d’envoyer le lien pour l’instant." : "Unable to send the link right now.");
+        return;
+      }
+
+      setAuthResetDone(true);
+    } catch {
+      setAuthError(isFr ? "Impossible d’envoyer le lien pour l’instant." : "Unable to send the link right now.");
+    } finally {
+      setAuthSending(false);
+    }
+  }
+
+  async function confirmPasswordReset() {
+    const password = authPassword;
+    setAuthError("");
+
+    if (!authResetToken) {
+      setAuthError(isFr ? "Lien invalide ou expiré." : "Invalid or expired link.");
+      return;
+    }
+
+    if (password.length < 8) {
+      setAuthError(isFr ? "Le mot de passe doit contenir au moins 8 caractères." : "Password must be at least 8 characters.");
+      return;
+    }
+
+    setAuthSending(true);
+    try {
+      const res = await fetch("/api/v1/auth/password-reset/confirm", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ token: authResetToken, password }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        setAuthError(isFr ? "Lien invalide ou expiré." : "Invalid or expired link.");
+        return;
+      }
+
+      setAuthUsername(data.username || "");
+      setAuthPassword("");
+      setAuthResetToken("");
+      setAuthResetDone(true);
+      setAuthMode("login");
+
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("resetPasswordToken");
+        window.history.replaceState({}, "", url.toString());
+      }
+    } catch {
+      setAuthError(isFr ? "Impossible de modifier le mot de passe." : "Unable to update the password.");
+    } finally {
+      setAuthSending(false);
+    }
+  }
 
   async function submitAuth() {
     const email = authEmail.trim();
@@ -518,6 +615,7 @@ export default function HomeScreen({
       }
 
       setAuthProfile(data.user);
+      setAuthForceForm(false);
       setProfileUsername(data.user.username || "");
       setProfileDisplayName(data.user.displayName || "");
       setProfileAvatarUrl(data.user.avatarUrl || "");
@@ -526,6 +624,41 @@ export default function HomeScreen({
       setAuthPassword("");
     } catch {
       setAuthError(authMode === "signup" ? (isFr ? "Impossible de créer le compte." : "Unable to create the account.") : (isFr ? "Impossible de se connecter." : "Unable to sign in."));
+    } finally {
+      setAuthSending(false);
+    }
+  }
+
+
+  async function logoutAuth() {
+    setAuthError("");
+    setAuthSending(true);
+
+    try {
+      const res = await fetch("/api/v1/auth/logout", {
+        method: "POST",
+      });
+
+      if (!res.ok) {
+        setAuthError(isFr ? "Impossible de se déconnecter pour l’instant." : "Unable to sign out right now.");
+        return;
+      }
+
+      setAuthProfile(null);
+      setAuthMode("login");
+      setAuthEmail("");
+      setAuthUsername("");
+      setAuthPassword("");
+      setAuthResetToken("");
+      setAuthResetDone(false);
+      setAuthForceForm(false);
+      setProfileUsername("");
+      setProfileDisplayName("");
+      setProfileAvatarUrl("");
+      setProfileHomeCity("");
+      setProfileAgeRange("");
+    } catch {
+      setAuthError(isFr ? "Impossible de se déconnecter pour l’instant." : "Unable to sign out right now.");
     } finally {
       setAuthSending(false);
     }
@@ -2030,41 +2163,57 @@ export default function HomeScreen({
                         {isFr ? "Chargement..." : "Loading..."}
                       </h2>
                     </div>
-                  ) : !authProfile ? (
+                  ) : !authProfile || authMode === "resetConfirm" ? (
                     <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
                         {isFr ? "Espace perso" : "Personal space"}
                       </p>
                       <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
-                        {authMode === "signup" ? (isFr ? "Créer un compte" : "Create an account") : (isFr ? "Se connecter" : "Sign in")}
+                        {authMode === "signup"
+                          ? (isFr ? "Créer un compte" : "Create an account")
+                          : authMode === "login"
+                            ? (isFr ? "Se connecter" : "Sign in")
+                            : authMode === "resetRequest"
+                              ? (isFr ? "Mot de passe oublié" : "Forgot password")
+                              : (isFr ? "Nouveau mot de passe" : "New password")}
                       </h2>
-                      <div className="mt-4 grid grid-cols-2 gap-2">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setAuthMode("signup");
-                            setAuthError("");
-                          }}
-                          className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "signup" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
-                        >
-                          {isFr ? "Créer un compte" : "Create account"}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setAuthMode("login");
-                            setAuthError("");
-                          }}
-                          className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "login" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
-                        >
-                          {isFr ? "Se connecter" : "Sign in"}
-                        </button>
-                      </div>
+                      {authMode === "resetRequest" || authMode === "resetConfirm" ? null : (
+                        <div className="mt-4 grid grid-cols-2 gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAuthMode("signup");
+                              setAuthError("");
+                              setAuthResetDone(false);
+                            }}
+                            className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "signup" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
+                          >
+                            {isFr ? "Créer un compte" : "Create account"}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAuthMode("login");
+                              setAuthError("");
+                              setAuthResetDone(false);
+                            }}
+                            className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "login" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
+                          >
+                            {isFr ? "Se connecter" : "Sign in"}
+                          </button>
+                        </div>
+                      )}
                       <p className="mt-3 text-[14px] leading-relaxed text-white/65">
-                        {authMode === "signup" ? (isFr ? "Crée ton espace personnel avec un email, un pseudo et un mot de passe." : "Create your personal space with an email, a username, and a password.") : (isFr ? "Connecte-toi avec ton email ou ton pseudo, puis ton mot de passe." : "Sign in with your email or username, then your password.")}
+                        {authMode === "signup"
+                          ? (isFr ? "Crée ton espace personnel avec un email, un pseudo et un mot de passe." : "Create your personal space with an email, a username, and a password.")
+                          : authMode === "login"
+                            ? (isFr ? "Connecte-toi avec ton email ou ton pseudo, puis ton mot de passe." : "Sign in with your email or username, then your password.")
+                            : authMode === "resetRequest"
+                              ? (isFr ? "Entre ton email. Indie Map t’enverra un lien sécurisé et te rappellera ton pseudo." : "Enter your email. Indie Map will send you a secure link and remind you of your username.")
+                              : (isFr ? "Choisis un nouveau mot de passe pour ton compte Indie Map." : "Choose a new password for your Indie Map account.")}
                       </p>
                       <div className="mt-5 space-y-3">
-                        {authMode === "signup" ? (
+                        {authMode === "signup" || authMode === "resetRequest" ? (
                           <input
                             type="email"
                             value={authEmail}
@@ -2073,28 +2222,84 @@ export default function HomeScreen({
                             className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
                           />
                         ) : null}
-                        <input
-                          type="text"
-                          value={authUsername}
-                          onChange={(e) => setAuthUsername(e.target.value)}
-                          placeholder={authMode === "signup" ? (isFr ? "Pseudo" : "Username") : (isFr ? "Email ou pseudo" : "Email or username")}
-                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-                        />
-                        <input
-                          type="password"
-                          value={authPassword}
-                          onChange={(e) => setAuthPassword(e.target.value)}
-                          placeholder={isFr ? "Mot de passe" : "Password"}
-                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-                        />
+                        {authMode === "signup" || authMode === "login" ? (
+                          <input
+                            type="text"
+                            value={authUsername}
+                            onChange={(e) => setAuthUsername(e.target.value)}
+                            placeholder={authMode === "signup" ? (isFr ? "Pseudo" : "Username") : (isFr ? "Email ou pseudo" : "Email or username")}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                          />
+                        ) : null}
+                        {authMode === "signup" || authMode === "login" || authMode === "resetConfirm" ? (
+                          <input
+                            type="password"
+                            value={authPassword}
+                            onChange={(e) => setAuthPassword(e.target.value)}
+                            placeholder={authMode === "resetConfirm" ? (isFr ? "Nouveau mot de passe" : "New password") : (isFr ? "Mot de passe" : "Password")}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                          />
+                        ) : null}
                         <button
                           type="button"
-                          onClick={submitAuth}
+                          onClick={authMode === "resetRequest" ? requestPasswordReset : authMode === "resetConfirm" ? confirmPasswordReset : submitAuth}
                           disabled={authSending}
                           className="w-full rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
                         >
-                          {authSending ? (isFr ? "Patiente..." : "Please wait...") : authMode === "signup" ? (isFr ? "Créer mon compte" : "Create my account") : (isFr ? "Me connecter" : "Sign in")}
+                          {authSending
+                            ? (isFr ? "Patiente..." : "Please wait...")
+                            : authMode === "signup"
+                              ? (isFr ? "Créer mon compte" : "Create my account")
+                              : authMode === "login"
+                                ? (isFr ? "Me connecter" : "Sign in")
+                                : authMode === "resetRequest"
+                                  ? (isFr ? "Recevoir le lien" : "Send link")
+                                  : (isFr ? "Changer mon mot de passe" : "Change my password")}
                         </button>
+                        {authMode === "signup" || authMode === "login" ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAuthMode("resetRequest");
+                              setAuthError("");
+                              setAuthResetDone(false);
+                              setAuthForceForm(true);
+                              setAuthPassword("");
+                            }}
+                            className="w-full text-center text-[13px] font-medium text-white/55 underline underline-offset-4 hover:text-white/80"
+                          >
+                            {isFr ? "Mot de passe / pseudo oublié ?" : "Forgot password / username?"}
+                          </button>
+                        ) : null}
+                        {authMode === "resetRequest" || authMode === "resetConfirm" ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAuthMode("login");
+                              setAuthError("");
+                              setAuthResetDone(false);
+                              setAuthForceForm(true);
+                              setAuthPassword("");
+                              setAuthResetToken("");
+
+                              if (typeof window !== "undefined") {
+                                const url = new URL(window.location.href);
+                                url.searchParams.delete("resetPasswordToken");
+                                window.history.replaceState({}, "", url.toString());
+                              }
+                            }}
+                            className="w-full text-center text-[13px] font-medium text-white/55 underline underline-offset-4 hover:text-white/80"
+                          >
+                            {isFr ? "Retour à la connexion" : "Back to sign in"}
+                          </button>
+                        ) : null}
+                        {authResetDone ? (
+                          <p className="text-[13px] leading-relaxed text-emerald-200">
+                            {authMode === "login"
+                              ? (isFr ? "Mot de passe modifié. Ton pseudo est prérempli si le compte en avait un." : "Password updated. Your username is prefilled if the account had one.")
+                              : (isFr ? "Si un compte existe avec cet email, un lien vient d’être envoyé." : "If an account exists with that email, a link has been sent.")}
+                          </p>
+                        ) : null}
                         {authError ? (
                           <p className="text-[13px] leading-relaxed text-red-200">{authError}</p>
                         ) : null}
@@ -2286,6 +2491,15 @@ export default function HomeScreen({
                       </span>
                     </button>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={logoutAuth}
+                    disabled={authSending}
+                    className="mt-5 w-full rounded-2xl border border-red-300/20 bg-red-500/12 px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-red-100/85 hover:bg-red-500/18 active:bg-red-500/24 disabled:opacity-60"
+                  >
+                    {authSending ? (isFr ? "Déconnexion..." : "Signing out...") : (isFr ? "Déconnexion" : "Sign out")}
+                  </button>
                     </>
                   )}
                 </>
