@@ -11,8 +11,7 @@ const ui = (fr: string, en: string) => (isEnUI ? en : fr);
 function openPlaceDetailFromMini(placeId: string) {
   const id = String(placeId || "").trim();
   if (!id || typeof window === "undefined") return;
-  const locale = /^\/en(\/|$)/.test(window.location.pathname) ? "en" : "fr";
-  window.location.href = "/" + locale + "?place=" + encodeURIComponent(id);
+  window.dispatchEvent(new CustomEvent("im:open-place-detail", { detail: { id } }));
 }
 
 
@@ -2477,6 +2476,16 @@ map.on("mouseenter", LAYER_ID, () => {
             el.innerHTML = html;
 
             try { bindFavButton(el); } catch {}
+
+            try {
+              const ob = el.querySelector("[data-open-place=\"1\"]") as HTMLElement | null;
+              if (ob) {
+                ob.addEventListener("click", (ev: any) => {
+                  try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+                  try { openPlaceDetailFromMini(String((props as any)?.id ?? fid ?? "")); } catch {}
+                });
+              }
+            } catch {}
 
             const recenterMini = () => {
                       try {

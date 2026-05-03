@@ -768,24 +768,6 @@ export default function HomeScreen({
   const savedPlacesTouchDeltaXRef = React.useRef(0);
 
   React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    const placeId = String(params.get("place") || "").trim();
-    if (!placeId || allPlaces.length === 0) return;
-
-    const place = allPlaces.find((item) => String(item.id) === placeId);
-    if (!place) return;
-
-    setSelectedHomePlace(place);
-    setSelectedPlaceCommentsOpen(false);
-
-    params.delete("place");
-    const nextQuery = params.toString();
-    const nextUrl = window.location.pathname + (nextQuery ? "?" + nextQuery : "") + window.location.hash;
-    window.history.replaceState(null, "", nextUrl);
-  }, [allPlaces]);
-
-  React.useEffect(() => {
     homeMemoryCache[locale] = {
       discoverPlace: mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null),
       contextPlace: mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null),

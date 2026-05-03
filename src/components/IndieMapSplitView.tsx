@@ -5,7 +5,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ContributeForm from "@/components/ContributeForm";
-import { readPlaceNotes, type PlaceNote } from "@/lib/placeNotes";
+import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
 type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends";
 
@@ -85,6 +85,78 @@ const displayCategory = (locale: UILocale, cat: string) => {
 
 
 
+function renderOpeningHours(openingHours: string | undefined, timeZone: string | undefined) {
+  if (!openingHours) return null;
+
+  const zone = timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const now = new Date();
+
+  const today = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    timeZone: zone,
+  }).format(now).toLowerCase();
+
+  const timeParts = new Intl.DateTimeFormat("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: zone,
+  }).formatToParts(now);
+
+  const currentMinutes =
+    Number(timeParts.find((part) => part.type === "hour")?.value ?? 0) * 60 +
+    Number(timeParts.find((part) => part.type === "minute")?.value ?? 0);
+
+  const days: Record<string, string[]> = {
+    monday: ["lundi", "monday"],
+    tuesday: ["mardi", "tuesday"],
+    wednesday: ["mercredi", "wednesday"],
+    thursday: ["jeudi", "thursday"],
+    friday: ["vendredi", "friday"],
+    saturday: ["samedi", "saturday"],
+    sunday: ["dimanche", "sunday"],
+  };
+
+  const todayLabels = days[today] ?? [];
+
+  function parseHour(value: string) {
+    const match = value.match(/(\d{1,2})\s*[h:]\s*(\d{2})?/i);
+    if (!match) return null;
+    return Number(match[1]) * 60 + Number(match[2] ?? 0);
+  }
+
+  function isLineOpenNow(line: string) {
+    const normalized = line.trim().toLowerCase();
+    if (normalized.includes("fermé") || normalized.includes("ferme") || normalized.includes("closed")) return false;
+
+    const ranges = [...normalized.matchAll(/(\d{1,2}\s*[h:]\s*\d{0,2})\s*[-–—]\s*(\d{1,2}\s*[h:]\s*\d{0,2})/g)];
+
+    return ranges.some((range) => {
+      const startMinutes = parseHour(range[1]);
+      const endMinutes = parseHour(range[2]);
+      if (startMinutes === null || endMinutes === null) return false;
+      return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+    });
+  }
+
+  return openingHours.split(/\r?\n/).map((line, index) => {
+    const normalized = line.trim().toLowerCase();
+    const isToday = todayLabels.some((day) => normalized.startsWith(day));
+
+    const color = isToday
+      ? isLineOpenNow(line)
+        ? "text-green-400"
+        : "text-red-400"
+      : "text-white/80";
+
+    return (
+      <div key={`${line}-${index}`} className={`text-[16px] font-serif leading-relaxed ${color}`}>
+        {line}
+      </div>
+    );
+  });
+}
+
 type Business = {
   id: string;
   name: string;
@@ -94,6 +166,8 @@ type Business = {
   openingHours?: string;
   phone?: string;
   panoramaImage?: string;
+  miniText?: string;
+  timeZone?: string;
   lat?: number;
   lng?: number;
   city?: string;
@@ -379,6 +453,12 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [profileError, setProfileError] = React.useState("");
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
+  const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
+  const [addressCopied, setAddressCopied] = React.useState(false);
+  const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
+  const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
+  const [selectedPlaceCommentSaving, setSelectedPlaceCommentSaving] = React.useState(false);
+  const [selectedPlaceCommentError, setSelectedPlaceCommentError] = React.useState("");
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
@@ -698,6 +778,23 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   }
 
   React.useEffect(() => {
+    const onOpenPlaceDetail = (event: Event) => {
+      const id = String((event as CustomEvent<{ id?: string }>)?.detail?.id ?? "").trim();
+      if (!id) return;
+      const place = businesses.find((item) => String(item.id) === id);
+      if (!place) return;
+      setSelectedDetailPlace(place);
+      setSelectedPlaceCommentsOpen(false);
+      setSelectedPlaceCommentInput("");
+      setSelectedPlaceCommentError("");
+      setAddressCopied(false);
+    };
+
+    window.addEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
+    return () => window.removeEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
+  }, [businesses]);
+
+  React.useEffect(() => {
     const syncSavedPlaces = () => {
       setSavedPlaces(readSavedPlaces());
     };
@@ -819,6 +916,95 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     }, 4500);
     return () => window.clearInterval(id);
   }, [savedPlacesByCity]);
+
+  function toggleSelectedDetailPlaceSaved() {
+    if (!selectedDetailPlace?.id) return;
+
+    const id = String(selectedDetailPlace.id);
+    const exists = savedPlaces.some((item) => String(item.id) === id);
+    const next = exists
+      ? savedPlaces.filter((item) => String(item.id) !== id)
+      : [
+          {
+            id,
+            name: String(selectedDetailPlace.name ?? "").trim(),
+            panoramaImage: String(selectedDetailPlace.panoramaImage ?? "").trim() || undefined,
+            city: String(selectedDetailPlace.city ?? "").trim() || undefined,
+            address: String(selectedDetailPlace.address ?? "").trim() || undefined,
+            lat: Number.isFinite(Number(selectedDetailPlace.lat)) ? Number(selectedDetailPlace.lat) : undefined,
+            lng: Number.isFinite(Number(selectedDetailPlace.lng)) ? Number(selectedDetailPlace.lng) : undefined
+          },
+          ...savedPlaces
+        ];
+
+    setSavedPlaces(next);
+    window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+    window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
+
+    try {
+      fetch("/api/v1/me/saved-places", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId: id,
+          saved: !exists
+        })
+      }).catch(() => {});
+    } catch {}
+  }
+
+  async function saveSelectedDetailPlaceComment() {
+    if (!selectedDetailPlace?.id || !authProfile) return;
+
+    const placeId = String(selectedDetailPlace.id);
+    const currentNote = placeNotes[placeId];
+    const comment = selectedPlaceCommentInput.trim();
+
+    if (!comment || currentNote?.comment) return;
+
+    setSelectedPlaceCommentSaving(true);
+    setSelectedPlaceCommentError("");
+
+    const nextNote: PlaceNote = {
+      ...(currentNote ?? {}),
+      comment,
+      updatedAt: new Date().toISOString()
+    };
+
+    try {
+      const res = await fetch("/api/v1/me/place-notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId,
+          visited: currentNote?.visited === true,
+          visitedAt: currentNote?.visitedAt ?? null,
+          comment
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error("comment_save_failed");
+      }
+
+      const nextNotes = {
+        ...placeNotes,
+        [placeId]: nextNote
+      };
+
+      setPlaceNotes(nextNotes);
+      writePlaceNotes(nextNotes, authProfile.id);
+      setSelectedPlaceCommentInput("");
+    } catch {
+      setSelectedPlaceCommentError(isFr ? "Impossible d’enregistrer ce commentaire." : "Unable to save this comment.");
+    } finally {
+      setSelectedPlaceCommentSaving(false);
+    }
+  }
 
   function goToSavedPlace(city: string, delta: number, length: number) {
     setSavedPlaceIndexes((prev) => {
@@ -1199,7 +1385,7 @@ const filtered = source.filter((b) => {
           selectionVersion={selectionVersion}
           overlaysReady={discoverUiReady}
           searchMode={Boolean(searchIdSet)}
-          homeOverlay={!heroOpen ? (
+          homeOverlay={!heroOpen && !selectedDetailPlace ? (
             <div
               className="absolute z-[1450] pointer-events-auto"
               style={{ right: "12px", top: "calc(env(safe-area-inset-top) + 64px)" }}
@@ -1217,7 +1403,7 @@ const filtered = source.filter((b) => {
               </div>
             </div>
           ) : null}
-          topOverlay={!heroOpen ? (
+          topOverlay={!heroOpen && !selectedDetailPlace ? (
             <div className="absolute left-0 right-0 z-[1400] pointer-events-none" style={{ top: "env(safe-area-inset-top)" }}>
               <div id="im-filters" className="pointer-events-auto w-screen overflow-visible">
                 <FilterBar locale={locale} categories={categories}
@@ -1236,7 +1422,7 @@ const filtered = source.filter((b) => {
           }}          />
       </div>
 
-      {!heroOpen ? (
+      {!heroOpen && !selectedDetailPlace ? (
         <BottomNavBar
           isFr={isFr}
           authProfile={authProfile}
@@ -1494,6 +1680,311 @@ const filtered = source.filter((b) => {
                 </div>
               </div>
             ) : null}
+
+      {selectedDetailPlace ? (
+        <div className="fixed inset-0 z-[2200] overflow-hidden bg-[#2f2f2f] text-white">
+          {(() => {
+            const selectedDetailPlaceSaved = savedPlaces.some((item) => String(item.id) === String(selectedDetailPlace.id));
+
+            return (
+              <button
+                type="button"
+                onClick={toggleSelectedDetailPlaceSaved}
+                className="absolute left-4 z-[80] grid place-items-center"
+                style={{
+                  top: "calc(env(safe-area-inset-top) + 16px)",
+                  width: 40,
+                  height: 40,
+                  background: "rgba(0,0,0,0.35)",
+                  backdropFilter: "blur(8px)",
+                  borderRadius: "9999px",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "#ffffff",
+                  padding: 0
+                }}
+                aria-label={selectedDetailPlaceSaved ? (isFr ? "Retirer des favoris" : "Remove from favorites") : (isFr ? "Ajouter aux favoris" : "Add to favorites")}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill={selectedDetailPlaceSaved ? "#6F6528" : "none"}
+                  stroke="rgba(255,255,255,0.95)"
+                  strokeWidth="2.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z" />
+                </svg>
+              </button>
+            );
+          })()}
+
+          {selectedDetailPlace.panoramaImage ? (
+            <img
+              src={selectedDetailPlace.panoramaImage}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-white/10" />
+          )}
+
+          <div className="absolute inset-0 z-10 overflow-y-auto">
+            <div className="relative mt-[55vh] min-h-[45vh] rounded-t-3xl bg-black/80 px-6 pt-6 pb-8">
+              <div>
+                <div className="absolute inset-x-0 bottom-full z-40 -mb-px flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlaceCommentsOpen((value) => !value)}
+                    className="inline-flex rounded-t-xl rounded-b-none bg-black/55 px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black/60 active:bg-black/65"
+                  >
+                    {isFr ? "Commentaires" : "Comments"}
+                  </button>
+
+                  {selectedPlaceCommentsOpen ? (
+                    <div className="absolute inset-x-0 bottom-full z-30 max-h-[42vh] overflow-y-auto rounded-3xl border border-white/10 bg-black/35 px-6 py-5 shadow-[0_-18px_45px_rgba(0,0,0,0.35)] backdrop-blur-md">
+                      {(() => {
+                        const note = placeNotes[String(selectedDetailPlace.id)];
+                        const existingComment = String(note?.comment ?? "").trim();
+                        const friendComments = Array.isArray(note?.friendComments) ? note.friendComments : [];
+                        const hasAnyComment = Boolean(existingComment) || friendComments.length > 0;
+
+                        return (
+                          <div className="space-y-4">
+                            {existingComment ? (
+                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                <p className="text-[15px] leading-relaxed text-white/88">
+                                  <span className="font-semibold text-white">{isFr ? "Moi : " : "Me: "}</span>
+                                  <span>{existingComment}</span>
+                                </p>
+                              </div>
+                            ) : null}
+
+                            {friendComments.map((item) => {
+                              const friendName = String(item.displayName || item.username || "").trim() || (isFr ? "Ami" : "Friend");
+                              const friendComment = String(item.comment ?? "").trim();
+
+                              if (!friendComment) return null;
+
+                              return (
+                                <div key={`${item.userId}-${item.updatedAt}`} className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                  <p className="text-[15px] leading-relaxed text-white/88">
+                                    <span className="font-semibold text-white">{friendName} : </span>
+                                    <span>{friendComment}</span>
+                                  </p>
+                                </div>
+                              );
+                            })}
+
+                            {!existingComment ? (
+                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                {!hasAnyComment ? (
+                                  <div className="mb-3 text-[14px] text-white/70">
+                                    {isFr ? "Aucun commentaire pour le moment." : "No comments yet."}
+                                  </div>
+                                ) : null}
+
+                                {authProfile ? (
+                                  <div className="space-y-3">
+                                    <textarea
+                                      value={selectedPlaceCommentInput}
+                                      onChange={(e) => setSelectedPlaceCommentInput(e.target.value)}
+                                      maxLength={1200}
+                                      rows={4}
+                                      placeholder={isFr ? "Écris ton commentaire..." : "Write your comment..."}
+                                      className="w-full resize-none rounded-2xl border border-white/10 bg-black/45 px-4 py-3 text-[14px] leading-relaxed text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                                    />
+
+                                    {selectedPlaceCommentError ? (
+                                      <p className="text-[12px] text-red-200/85">{selectedPlaceCommentError}</p>
+                                    ) : null}
+
+                                    <button
+                                      type="button"
+                                      onClick={saveSelectedDetailPlaceComment}
+                                      disabled={selectedPlaceCommentSaving || !selectedPlaceCommentInput.trim()}
+                                      className="rounded-full bg-[#F97316] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white disabled:opacity-45"
+                                    >
+                                      {selectedPlaceCommentSaving ? (isFr ? "Enregistrement..." : "Saving...") : (isFr ? "Publier" : "Post")}
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <p className="text-[13px] leading-relaxed text-white/45">
+                                    {isFr ? "Connecte-toi à ton espace perso pour écrire un commentaire." : "Sign in to your personal space to write a comment."}
+                                  </p>
+                                )}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="mb-6">
+                  <div className="text-[28px] font-bold leading-tight text-white">
+                    {selectedDetailPlace.name}
+                  </div>
+
+                  {(selectedDetailPlace.type || selectedDetailPlace.website) ? (
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      {selectedDetailPlace.type ? (
+                        <div className="text-[14px] text-white/70">
+                          {displayCategory(locale, selectedDetailPlace.type)}
+                        </div>
+                      ) : null}
+
+                      {selectedDetailPlace.website ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const website = selectedDetailPlace.website ?? "";
+                            const url =
+                              website.startsWith("http://") ||
+                              website.startsWith("https://")
+                                ? website
+                                : `https://${website}`;
+
+                            window.open(url, "_blank");
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-white/75"
+                        >
+                          {isFr ? "Site web" : "Website"}
+                        </button>
+                      ) : null}
+                    </div>
+                  ) : null}
+
+                  {selectedDetailPlace.address ? (
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
+                      <div className="text-[16px] font-serif leading-relaxed text-[#F97316]">
+                        {selectedDetailPlace.address}
+                      </div>
+
+                      <div className="flex gap-3">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const address = encodeURIComponent(selectedDetailPlace.address ?? "");
+                            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                            const isAndroid = /Android/.test(navigator.userAgent);
+
+                            if (isIOS) {
+                              window.location.href = `http://maps.apple.com/?q=${address}`;
+                            } else if (isAndroid) {
+                              window.location.href = `geo:0,0?q=${address}`;
+                            } else {
+                              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, "_blank");
+                            }
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
+                        >
+                          {isFr ? "Itinéraire" : "Directions"}
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const text = selectedDetailPlace.address ?? "";
+                            let ok = false;
+                            try {
+                              await navigator.clipboard.writeText(text);
+                              ok = true;
+                            } catch {
+                              try {
+                                const area = document.createElement("textarea");
+                                area.value = text;
+                                area.setAttribute("readonly", "");
+                                area.style.position = "fixed";
+                                area.style.top = "0";
+                                area.style.left = "0";
+                                area.style.opacity = "0";
+                                document.body.appendChild(area);
+                                area.focus();
+                                area.select();
+                                area.setSelectionRange(0, area.value.length);
+                                ok = document.execCommand("copy");
+                                document.body.removeChild(area);
+                              } catch {
+                                ok = false;
+                              }
+                            }
+                            if (ok) {
+                              setAddressCopied(true);
+                              window.setTimeout(() => setAddressCopied(false), 1500);
+                            }
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
+                        >
+                          {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier l'adresse" : "Copy address")}
+                        </button>
+
+                        {selectedDetailPlace?.phone ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              window.location.href = `tel:${selectedDetailPlace.phone}`;
+                            }}
+                            className="rounded-[9px] border border-white/10 bg-white/8 p-1.5 text-white/75"
+                          >
+                            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.37 1.78.73 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.25a2 2 0 0 1 2.11-.45c.82.36 1.7.61 2.6.73A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {selectedDetailPlace.openingHours ? (
+                    <div className="mt-5">
+                      {renderOpeningHours(selectedDetailPlace.openingHours, selectedDetailPlace.timeZone)}
+                    </div>
+                  ) : null}
+                </div>
+
+                {selectedDetailPlace.miniText ? (
+                  <div className="mt-2">
+                    <div className="mb-2 text-[12px] uppercase tracking-wide text-white/40">À propos</div>
+                    <p className="text-[17px] leading-[1.7] text-white/90">
+                      {selectedDetailPlace.miniText}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedDetailPlace(null);
+              setSelectedPlaceCommentsOpen(false);
+            }}
+            className="absolute right-4 z-[80] grid place-items-center"
+            style={{
+              top: "calc(env(safe-area-inset-top) + 16px)",
+              width: 40,
+              height: 40,
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(8px)",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              color: "#ffffff",
+              fontSize: "22px",
+              fontWeight: 500,
+              lineHeight: 1,
+              padding: 0
+            }}
+            aria-label={isFr ? "Fermer" : "Close"}
+          >
+            <span className="block -translate-y-px leading-none">×</span>
+          </button>
+        </div>
+      ) : null}
 
     </div>
   );
