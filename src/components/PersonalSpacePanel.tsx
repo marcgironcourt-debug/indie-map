@@ -785,6 +785,24 @@ export default function PersonalSpacePanel({
             <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
               <button
                 type="button"
+                onClick={() => onSetCommentsVisibleToFriends(!commentsVisibleToFriends)}
+                className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
+              >
+                <div className="min-w-0">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Commentaires visibles par mes amis" : "Comments visible to friends"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Tes amis verront les commentaires que tu choisis de partager." : "Friends will see comments you choose to share."}
+                  </p>
+                </div>
+                <span className={commentsVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
+                  <span className={commentsVisibleToFriends ? "h-5 w-5 translate-x-5 rounded-full bg-white transition-transform" : "h-5 w-5 rounded-full bg-white transition-transform"} />
+                </span>
+              </button>
+
+              <button
+                type="button"
                 onClick={() => onSetVisitedPlacesVisibleToFriends(!visitedPlacesVisibleToFriends)}
                 className="flex w-full items-center justify-between gap-4 border-t border-white/10 px-4 py-4 text-left"
               >

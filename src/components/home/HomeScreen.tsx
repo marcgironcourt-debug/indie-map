@@ -1937,6 +1937,8 @@ export default function HomeScreen({
                       {(() => {
                         const note = placeNotes[String(selectedHomePlace.id)];
                         const existingComment = String(note?.comment ?? "").trim();
+                        const friendComments = Array.isArray(note?.friendComments) ? note.friendComments : [];
+                        const hasAnyComment = Boolean(existingComment) || friendComments.length > 0;
 
                         return (
                           <div className="space-y-4">
@@ -1947,11 +1949,31 @@ export default function HomeScreen({
                                   <span>{existingComment}</span>
                                 </p>
                               </div>
-                            ) : (
-                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
-                                <div className="mb-3 text-[14px] text-white/70">
-                                  {isFr ? "Aucun commentaire pour le moment." : "No comments yet."}
+                            ) : null}
+
+                            {friendComments.map((item) => {
+                              const friendName = String(item.displayName || item.username || "").trim() || (isFr ? "Ami" : "Friend");
+                              const friendComment = String(item.comment ?? "").trim();
+
+                              if (!friendComment) return null;
+
+                              return (
+                                <div key={`${item.userId}-${item.updatedAt}`} className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                  <p className="text-[15px] leading-relaxed text-white/88">
+                                    <span className="font-semibold text-white">{friendName} : </span>
+                                    <span>{friendComment}</span>
+                                  </p>
                                 </div>
+                              );
+                            })}
+
+                            {!existingComment ? (
+                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                {!hasAnyComment ? (
+                                  <div className="mb-3 text-[14px] text-white/70">
+                                    {isFr ? "Aucun commentaire pour le moment." : "No comments yet."}
+                                  </div>
+                                ) : null}
 
                                 {authProfile ? (
                                   <div className="space-y-3">
@@ -1983,7 +2005,7 @@ export default function HomeScreen({
                                   </p>
                                 )}
                               </div>
-                            )}
+                            ) : null}
                           </div>
                         );
                       })()}

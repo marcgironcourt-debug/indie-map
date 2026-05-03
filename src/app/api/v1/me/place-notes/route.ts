@@ -24,7 +24,29 @@ export async function GET() {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
     }
 
-    const [places, comments] = await Promise.all([
+    const friendships = await prisma.friendship.findMany({
+      where: {
+        status: "accepted",
+        OR: [
+          {
+            requesterId: currentUser.id,
+          },
+          {
+            receiverId: currentUser.id,
+          },
+        ],
+      },
+      select: {
+        requesterId: true,
+        receiverId: true,
+      },
+    });
+
+    const friendIds = friendships
+      .map((friendship) => friendship.requesterId === currentUser.id ? friendship.receiverId : friendship.requesterId)
+      .filter((id) => id !== currentUser.id);
+
+    const [places, comments, friendComments] = await Promise.all([
       prisma.userPlace.findMany({
         where: {
           userId: currentUser.id,
@@ -46,9 +68,53 @@ export async function GET() {
           updatedAt: true,
         },
       }),
+      friendIds.length > 0
+        ? prisma.placeComment.findMany({
+            where: {
+              userId: {
+                in: friendIds,
+              },
+              visibility: "friends",
+              user: {
+                commentsVisibleToFriends: true,
+              },
+            },
+            orderBy: {
+              updatedAt: "desc",
+            },
+            select: {
+              placeId: true,
+              body: true,
+              updatedAt: true,
+              user: {
+                select: {
+                  id: true,
+                  username: true,
+                  displayName: true,
+                  avatarUrl: true,
+                  avatarColor: true,
+                },
+              },
+            },
+          })
+        : Promise.resolve([]),
     ]);
 
-    const notes: Record<string, { visited?: boolean; visitedAt?: string; comment?: string; updatedAt?: string }> = {};
+    const notes: Record<string, {
+      visited?: boolean;
+      visitedAt?: string;
+      comment?: string;
+      updatedAt?: string;
+      friendComments?: Array<{
+        userId: string;
+        username: string;
+        displayName: string;
+        avatarUrl: string | null;
+        avatarColor: string | null;
+        comment: string;
+        updatedAt: string;
+      }>;
+    }> = {};
 
     for (const place of places) {
       notes[place.placeId] = {
@@ -64,6 +130,25 @@ export async function GET() {
         ...(notes[comment.placeId] ?? {}),
         comment: comment.body,
         updatedAt: comment.updatedAt.toISOString(),
+      };
+    }
+
+    for (const comment of friendComments) {
+      const previous = notes[comment.placeId] ?? {};
+      notes[comment.placeId] = {
+        ...previous,
+        friendComments: [
+          ...(previous.friendComments ?? []),
+          {
+            userId: comment.user.id,
+            username: comment.user.username,
+            displayName: comment.user.displayName,
+            avatarUrl: comment.user.avatarUrl,
+            avatarColor: comment.user.avatarColor,
+            comment: comment.body,
+            updatedAt: comment.updatedAt.toISOString(),
+          },
+        ],
       };
     }
 

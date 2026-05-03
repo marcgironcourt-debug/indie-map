@@ -5,6 +5,15 @@ export type PlaceNote = {
   visitedAt?: string;
   comment?: string;
   updatedAt?: string;
+  friendComments?: Array<{
+    userId: string;
+    username: string;
+    displayName: string;
+    avatarUrl: string | null;
+    avatarColor: string | null;
+    comment: string;
+    updatedAt: string;
+  }>;
 };
 
 function getPlaceNotesKey(userId?: string | null) {
