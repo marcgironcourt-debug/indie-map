@@ -349,118 +349,128 @@ export default function PersonalSpacePanel({
   if (mode === "profile") {
     return (
       <>
-        <button
-          type="button"
-          onClick={() => onModeChange("dashboard")}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 py-2 text-[12px] font-medium text-white/70 hover:bg-white/12 active:bg-white/16"
-        >
-          <span aria-hidden="true">←</span>
-          <span>{isFr ? "Retour" : "Back"}</span>
-        </button>
-
-        <div className="mb-6">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
-            {isFr ? "Mon profil" : "My profile"}
-          </p>
-          <h2 className="mt-1 font-serif text-[24px] font-semibold leading-tight text-white">
-            {isFr ? "Mes informations" : "My information"}
-          </h2>
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => onModeChange("dashboard")}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+            aria-label={isFr ? "Retour" : "Back"}
+          >
+            ←
+          </button>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+              {isFr ? "Réglages" : "Settings"}
+            </p>
+            <h2 className="mt-0.5 font-serif text-[23px] font-semibold leading-tight text-white">
+              {isFr ? "Mon profil" : "My profile"}
+            </h2>
+          </div>
+          <div className="h-10 w-10" />
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
-              {isFr ? "Pseudo" : "Username"}
-            </label>
-            <input
-              value={profileDisplayName}
-              onChange={(event) => onSetProfileDisplayName(event.target.value)}
-              placeholder={isFr ? "Nom visible dans ton espace perso" : "Name shown in your personal space"}
-              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-            />
-          </div>
+        <div className="space-y-6">
+          <section>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              {isFr ? "Profil" : "Profile"}
+            </p>
 
-          <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
-            <div className="mb-3 flex items-center gap-3">
-              <span
-                className="flex h-11 w-11 items-center justify-center rounded-full text-[15px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)]"
-                style={{ backgroundColor: profileAvatarColor }}
-              >
-                {(profileDisplayName || profileUsername || "?").slice(0, 1)}
-              </span>
-              <div>
-                <p className="text-[13px] font-semibold text-white/85">
-                  {isFr ? "Couleur du profil" : "Profile color"}
-                </p>
-                <p className="mt-0.5 text-[12px] text-white/45">
-                  {isFr ? "Choisis la couleur de ton avatar." : "Choose your avatar color."}
-                </p>
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
+              <div className="flex items-center justify-between gap-4 px-4 py-4">
+                <div className="min-w-0">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Avatar" : "Avatar"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Couleur affichée sur ton profil." : "Color shown on your profile."}
+                  </p>
+                </div>
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-[16px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)]"
+                  style={{ backgroundColor: profileAvatarColor }}
+                >
+                  {(profileDisplayName || profileUsername || "?").slice(0, 1)}
+                </span>
               </div>
-            </div>
 
-            <div className="flex flex-wrap gap-2">
-              {AVATAR_COLORS.map((color) => (
-                <button
-                  key={color}
-                  type="button"
-                  onClick={() => onSetProfileAvatarColor(color)}
-                  aria-label={color}
-                  className={profileAvatarColor === color ? "h-9 w-9 rounded-full border-2 border-white shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "h-9 w-9 rounded-full border border-white/15"}
-                  style={{ backgroundColor: color }}
+              <div className="border-t border-white/10 px-4 py-3">
+                <div className="flex flex-wrap justify-end gap-2">
+                  {AVATAR_COLORS.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() => onSetProfileAvatarColor(color)}
+                      aria-label={color}
+                      className={profileAvatarColor === color ? "h-8 w-8 rounded-full border-2 border-white shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "h-8 w-8 rounded-full border border-white/15"}
+                      style={{ backgroundColor: color }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <label className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
+                <span className="shrink-0 text-[14px] font-medium text-white/85">
+                  {isFr ? "Nom affiché" : "Display name"}
+                </span>
+                <input
+                  value={profileDisplayName}
+                  onChange={(event) => onSetProfileDisplayName(event.target.value)}
+                  placeholder={isFr ? "Optionnel" : "Optional"}
+                  className="min-w-0 flex-1 bg-transparent text-right text-[14px] text-white outline-none placeholder:text-white/30"
                 />
-              ))}
+              </label>
+
+              <label className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
+                <span className="shrink-0 text-[14px] font-medium text-white/85">
+                  {isFr ? "Ville" : "City"}
+                </span>
+                <input
+                  value={profileHomeCity}
+                  onChange={(event) => onSetProfileHomeCity(event.target.value)}
+                  placeholder={isFr ? "Optionnel" : "Optional"}
+                  className="min-w-0 flex-1 bg-transparent text-right text-[14px] text-white outline-none placeholder:text-white/30"
+                />
+              </label>
+
+              <label className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
+                <span className="shrink-0 text-[14px] font-medium text-white/85">
+                  {isFr ? "Tranche d’âge" : "Age range"}
+                </span>
+                <select
+                  value={profileAgeRange}
+                  onChange={(event) => onSetProfileAgeRange(event.target.value)}
+                  className="min-w-0 flex-1 bg-transparent text-right text-[14px] text-white outline-none"
+                >
+                  <option value="">{isFr ? "Optionnel" : "Optional"}</option>
+                  <option value="18_24">18–24</option>
+                  <option value="25_34">25–34</option>
+                  <option value="35_44">35–44</option>
+                  <option value="45_54">45–54</option>
+                  <option value="55_64">55–64</option>
+                  <option value="65_plus">65+</option>
+                  <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
+                </select>
+              </label>
             </div>
-          </div>
+          </section>
 
-          <div>
-            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
-              {isFr ? "Ville" : "City"}
-            </label>
-            <input
-              value={profileHomeCity}
-              onChange={(event) => onSetProfileHomeCity(event.target.value)}
-              placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
-              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-            />
-          </div>
-
-          <div>
-            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
-              {isFr ? "Tranche d’âge" : "Age range"}
-            </label>
-            <select
-              value={profileAgeRange}
-              onChange={(event) => onSetProfileAgeRange(event.target.value)}
-              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none focus:border-white/25"
-            >
-              <option value="">{isFr ? "Optionnel" : "Optional"}</option>
-              <option value="18_24">18–24</option>
-              <option value="25_34">25–34</option>
-              <option value="35_44">35–44</option>
-              <option value="45_54">45–54</option>
-              <option value="55_64">55–64</option>
-              <option value="65_plus">65+</option>
-              <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
-            </select>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
-            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-white/45">
+          <section>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
               {isFr ? "Confidentialité" : "Privacy"}
             </p>
 
-            <div className="space-y-3">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
               <button
                 type="button"
                 onClick={() => onSetCommentsVisibleToFriends(!commentsVisibleToFriends)}
-                className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-left"
+                className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
               >
-                <div>
-                  <p className="text-[13px] font-semibold text-white/85">
-                    {isFr ? "Commentaires visibles par mes amis" : "Comments visible to my friends"}
+                <div className="min-w-0">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Commentaires visibles par mes amis" : "Comments visible to friends"}
                   </p>
                   <p className="mt-0.5 text-[12px] leading-snug text-white/45">
-                    {isFr ? "Tes amis pourront voir les commentaires que tu choisis de partager." : "Your friends will be able to see the comments you choose to share."}
+                    {isFr ? "Tes amis verront seulement les commentaires que tu choisis de partager." : "Friends will only see comments you choose to share."}
                   </p>
                 </div>
                 <span className={commentsVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
@@ -471,14 +481,14 @@ export default function PersonalSpacePanel({
               <button
                 type="button"
                 onClick={() => onSetVisitedPlacesVisibleToFriends(!visitedPlacesVisibleToFriends)}
-                className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-left"
+                className="flex w-full items-center justify-between gap-4 border-t border-white/10 px-4 py-4 text-left"
               >
-                <div>
-                  <p className="text-[13px] font-semibold text-white/85">
-                    {isFr ? "Lieux visités visibles par mes amis" : "Visited places visible to my friends"}
+                <div className="min-w-0">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Lieux visités visibles par mes amis" : "Visited places visible to friends"}
                   </p>
                   <p className="mt-0.5 text-[12px] leading-snug text-white/45">
-                    {isFr ? "Tes amis pourront voir les lieux que tu marques comme visités." : "Your friends will be able to see the places you mark as visited."}
+                    {isFr ? "Tes amis verront les lieux que tu marques comme visités." : "Friends will see places you mark as visited."}
                   </p>
                 </div>
                 <span className={visitedPlacesVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
@@ -486,7 +496,8 @@ export default function PersonalSpacePanel({
                 </span>
               </button>
             </div>
-          </div>
+          </section>
+
           <button
             type="button"
             onClick={onSaveProfile}
@@ -495,6 +506,7 @@ export default function PersonalSpacePanel({
           >
             {profileSaving ? (isFr ? "Enregistrement..." : "Saving...") : (isFr ? "Enregistrer" : "Save")}
           </button>
+
           {profileSuccess ? (
             <p className="text-[13px] leading-relaxed text-emerald-200">{profileSuccess}</p>
           ) : null}
