@@ -41,9 +41,8 @@ model Event {
   createdAt DateTime @default(now())
 }
 
-
 model Submission {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   locale       String
   name         String
   address      String
@@ -52,9 +51,9 @@ model Submission {
   website      String?
   photoMime    String?
   photoBase64  String?
-  createdAt    DateTime @default(now())
-  status     String   @default("pending")
-  reviewedAt DateTime?
+  createdAt    DateTime  @default(now())
+  status       String    @default("pending")
+  reviewedAt   DateTime?
 }
 
 model ActiveSession {
@@ -66,6 +65,7 @@ model ActiveSession {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
 model DailyActiveUser {
   id        String   @id @default(uuid())
   day       String
@@ -93,4 +93,171 @@ model DailySession {
 
   @@unique([day, launchId])
   @@index([day])
+}
+
+model User {
+  id          String   @id @default(uuid())
+  email       String?  @unique
+  username    String   @unique
+  displayName String
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sentFriendships      Friendship[]          @relation("FriendshipRequester")
+  receivedFriendships  Friendship[]          @relation("FriendshipReceiver")
+  sentInvites          Invite[]
+  places               UserPlace[]
+  comments             PlaceComment[]
+  ownedLists           SharedList[]          @relation("SharedListOwner")
+  listMemberships      SharedListMember[]
+  recommendationsSent  PlaceRecommendation[] @relation("RecommendationSender")
+  recommendationsInbox PlaceRecommendation[] @relation("RecommendationReceiver")
+  sessions             UserSession[]
+}
+
+model Friendship {
+  id          String   @id @default(uuid())
+  requesterId String
+  receiverId  String
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  requester User @relation("FriendshipRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  receiver  User @relation("FriendshipReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, receiverId])
+  @@index([receiverId, status])
+  @@index([requesterId, status])
+}
+
+model Invite {
+  id         String    @id @default(uuid())
+  senderId   String
+  email      String?
+  token      String    @unique
+  status     String    @default("pending")
+  createdAt  DateTime  @default(now())
+  acceptedAt DateTime?
+
+  sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([email])
+}
+
+model UserPlace {
+  id         String    @id @default(uuid())
+  userId     String
+  placeId    String
+  visibility String    @default("private")
+  visited    Boolean   @default(false)
+  visitedAt  DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, placeId])
+  @@index([placeId])
+  @@index([userId, visibility])
+}
+
+model PlaceComment {
+  id         String   @id @default(uuid())
+  userId     String
+  placeId    String
+  body       String
+  visibility String   @default("private")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([placeId, visibility])
+  @@index([userId])
+}
+
+model SharedList {
+  id        String   @id @default(uuid())
+  ownerId   String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner   User               @relation("SharedListOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  members SharedListMember[]
+  places  SharedListPlace[]
+
+  @@index([ownerId])
+}
+
+model SharedListMember {
+  id        String   @id @default(uuid())
+  listId    String
+  userId    String
+  role      String   @default("member")
+  createdAt DateTime @default(now())
+
+  list SharedList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, userId])
+  @@index([userId])
+}
+
+model SharedListPlace {
+  id        String   @id @default(uuid())
+  listId    String
+  placeId   String
+  addedById String?
+  createdAt DateTime @default(now())
+
+  list SharedList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, placeId])
+  @@index([placeId])
+}
+
+model PlaceRecommendation {
+  id         String    @id @default(uuid())
+  senderId   String
+  receiverId String
+  placeId    String
+  message    String?
+  readAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  sender   User @relation("RecommendationSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("RecommendationReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@index([receiverId, readAt])
+  @@index([senderId])
+  @@index([placeId])
+}
+
+model LoginToken {
+  id        String    @id @default(uuid())
+  email     String
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([email])
+  @@index([expiresAt])
+}
+
+model UserSession {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
