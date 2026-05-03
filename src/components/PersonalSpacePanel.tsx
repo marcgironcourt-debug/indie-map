@@ -113,6 +113,43 @@ export default function PersonalSpacePanel({
   onSaveProfile,
   onLogout,
 }: PersonalSpacePanelProps) {
+  const locale = isFr ? "fr" : "en";
+  const legalLinks = (
+    <section className="mt-6 px-1">
+      <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
+        {isFr ? "Aide et sécurité" : "Help and safety"}
+      </p>
+      <div className="space-y-1">
+        <a
+          href={`/${locale}/privacy`}
+          onClick={(event) => {
+            event.preventDefault();
+            window.location.href = `/${locale}/privacy`;
+          }}
+          className="block py-0 text-[11px] font-medium text-white/60 no-underline hover:text-white/85"
+        >
+          {isFr ? "Confidentialité" : "Privacy"}
+        </a>
+        <a
+          href={`/${locale}/support`}
+          onClick={(event) => {
+            event.preventDefault();
+            window.location.href = `/${locale}/support`;
+          }}
+          className="block py-0 text-[11px] font-medium text-white/60 no-underline hover:text-white/85"
+        >
+          Support
+        </a>
+        <a
+          href="mailto:contact@indie-map.com"
+          className="block py-0 text-[11px] font-medium text-white/60 no-underline hover:text-white/85"
+        >
+          Contact
+        </a>
+      </div>
+    </section>
+  );
+
   if (authLoading) {
     return (
       <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
@@ -128,7 +165,8 @@ export default function PersonalSpacePanel({
 
   if (!authProfile || authMode === "resetConfirm") {
     return (
-      <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
+      <>
+        <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
           {isFr ? "Espace perso" : "Personal space"}
         </p>
@@ -278,7 +316,9 @@ export default function PersonalSpacePanel({
             <p className="text-[13px] leading-relaxed text-red-200">{authError}</p>
           ) : null}
         </div>
-      </div>
+        </div>
+        {legalLinks}
+      </>
     );
   }
 
@@ -330,6 +370,8 @@ export default function PersonalSpacePanel({
             <option value="65_plus">65+</option>
             <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
           </select>
+          {legalLinks}
+
           <button
             type="button"
             onClick={onSaveProfile}
@@ -513,6 +555,8 @@ export default function PersonalSpacePanel({
           {profileError ? (
             <p className="text-[13px] leading-relaxed text-red-200">{profileError}</p>
           ) : null}
+
+          {legalLinks}
         </div>
       </>
     );
@@ -520,112 +564,139 @@ export default function PersonalSpacePanel({
 
   return (
     <>
-      <div className="mb-5">
-        <button
-          type="button"
-          onClick={() => onModeChange("profile")}
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-2.5 py-2 text-white/80 hover:bg-white/12 active:bg-white/16"
-        >
-          {authProfile.avatarUrl ? (
-            <img src={authProfile.avatarUrl} alt="" className="h-7 w-7 rounded-full object-cover" />
-          ) : (
-            <span
-              className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-[12px] font-semibold text-white/80"
-              style={{ backgroundColor: authProfile.avatarColor || "#F97316" }}
-            >
-              {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
-            </span>
-          )}
-          <span className="text-[12px] font-semibold uppercase tracking-[0.18em]">
-            {isFr ? "Mon profil" : "My profile"}
+      <button
+        type="button"
+        onClick={() => onModeChange("profile")}
+        className="mb-5 flex w-full items-center gap-4 rounded-3xl border border-white/10 bg-white/10 px-4 py-4 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_16px_35px_rgba(0,0,0,0.18)] hover:bg-white/13 active:bg-white/16"
+      >
+        {authProfile.avatarUrl ? (
+          <img src={authProfile.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover" />
+        ) : (
+          <span
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white"
+            style={{ backgroundColor: authProfile.avatarColor || "#F97316" }}
+          >
+            {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
           </span>
-        </button>
-        <h2 className="mt-3 font-serif text-[24px] font-semibold leading-tight text-white">
-          {isFr ? "Ton tableau de bord" : "Your dashboard"}
-        </h2>
-      </div>
+        )}
 
-      <div className="mb-5 grid grid-cols-2 gap-2">
-        <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-          <p className="text-[22px] font-semibold leading-none text-white">{visitedPlacesCount}</p>
-          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
-            {isFr ? "Lieux testés" : "Tested places"}
+        <span className="min-w-0 flex-1">
+          <span className="block font-serif text-[25px] font-semibold leading-tight text-white">
+            {authProfile.displayName || authProfile.username}
+          </span>
+          <span className="mt-1 block text-[12px] font-medium text-white/45">
+            {isFr ? "Voir et modifier mon profil" : "View and edit my profile"}
+          </span>
+        </span>
+      </button>
+
+      <div className="mb-6 grid grid-cols-4 gap-2">
+        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
+          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedPlacesCount}</p>
+          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Lieux visités" : "Visited"}
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-          <p className="text-[22px] font-semibold leading-none text-white">{visitedCitiesCount}</p>
-          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
-            {isFr ? "Villes visitées" : "Visited cities"}
+        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
+          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedCitiesCount}</p>
+          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Villes explorées" : "Cities"}
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-          <p className="text-[22px] font-semibold leading-none text-white">{visitedThisMonthCount}</p>
-          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
-            {isFr ? "Ce mois-ci" : "This month"}
+        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
+          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedThisMonthCount}</p>
+          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Total visité par mois" : "Total visited per month"}
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-black/25 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_rgba(0,0,0,0.18)]">
-          <p className="text-[22px] font-semibold leading-none text-white">0</p>
-          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-white/45">
+        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
+          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">0</p>
+          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
             {isFr ? "Contributions" : "Contributions"}
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <button
-          type="button"
-          onClick={onOpenSavedPlaces}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/10 bg-white/8 p-4 text-left hover:bg-white/12 active:bg-white/16"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/75">
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 20.2s-6.8-4.1-8.4-8.2C2.5 9.1 4.1 6.5 6.8 6.2c1.6-.2 3.1.6 4.2 2c1.1-1.4 2.6-2.2 4.2-2c2.7.3 4.3 2.9 3.2 5.8C18.8 16.1 12 20.2 12 20.2z" />
-            </svg>
-          </span>
-          <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/70">
-            {isFr ? "Mes lieux" : "My places"}
-          </span>
-        </button>
+      <section>
+        <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#5C6E3B]">
+          {isFr ? "Mon espace" : "My space"}
+        </p>
 
-        <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
-              <path d="M15.8 10.6a2.6 2.6 0 1 0 0-5.2" />
-              <path d="M3.8 19c.8-3.1 2.6-4.8 4.7-4.8s3.9 1.7 4.7 4.8" />
-              <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
-            </svg>
-          </span>
-          <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-            {isFr ? "Mes amis" : "Friends"}
-          </span>
-        </button>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={onOpenSavedPlaces}
+            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 20.2s-6.8-4.1-8.4-8.2C2.5 9.1 4.1 6.5 6.8 6.2c1.6-.2 3.1.6 4.2 2c1.1-1.4 2.6-2.2 4.2-2c2.7.3 4.3 2.9 3.2 5.8C18.8 16.1 12 20.2 12 20.2z" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr ? "Mes lieux" : "My places"}
+              </span>
+              <span className="mt-1 block text-[11px] leading-snug text-white/35">
+                {isFr ? "Lieux gardés de côté." : "Saved places."}
+              </span>
+            </span>
+          </button>
 
-        <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 3.8l1.8 5.2h5.5l-4.4 3.2l1.7 5.3L12 14.2l-4.6 3.3l1.7-5.3L4.7 9h5.5L12 3.8z" />
-            </svg>
-          </span>
-          <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-            {isFr ? "Impact local" : "Local impact"}
-          </span>
-        </button>
+          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
+                <path d="M15.8 10.6a2.6 2.6 0 1 0 0-5.2" />
+                <path d="M3.8 19c.8-3.1 2.6-4.8 4.7-4.8s3.9 1.7 4.7 4.8" />
+                <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr ? "Mes amis" : "Friends"}
+              </span>
+              <span className="mt-1 block text-[11px] leading-snug text-white/30">
+                {isFr ? "Bientôt." : "Soon."}
+              </span>
+            </span>
+          </button>
 
-        <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/60">
-            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 5.5h14v9H8.5L5 18.2V5.5z" />
-              <path d="M8.5 9h7" />
-              <path d="M8.5 12h4.5" />
-            </svg>
-          </span>
-          <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-            {isFr ? "Commentaires" : "Comments"}
-          </span>
-        </button>
-      </div>
+          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3.8l1.8 5.2h5.5l-4.4 3.2l1.7 5.3L12 14.2l-4.6 3.3l1.7-5.3L4.7 9h5.5L12 3.8z" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr ? "Impact local" : "Local impact"}
+              </span>
+              <span className="mt-1 block text-[11px] leading-snug text-white/30">
+                {isFr ? "Bientôt." : "Soon."}
+              </span>
+            </span>
+          </button>
+
+          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 5.5h14v9H8.5L5 18.2V5.5z" />
+                <path d="M8.5 9h7" />
+                <path d="M8.5 12h4.5" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr ? "Commentaires" : "Comments"}
+              </span>
+              <span className="mt-1 block text-[11px] leading-snug text-white/30">
+                {isFr ? "Bientôt." : "Soon."}
+              </span>
+            </span>
+          </button>
+        </div>
+      </section>
 
       <button
         type="button"
@@ -637,4 +708,5 @@ export default function PersonalSpacePanel({
       </button>
     </>
   );
+
 }
