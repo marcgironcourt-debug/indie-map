@@ -10,7 +10,7 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import { isOpenNowFR } from "@/lib/openingHours";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
-type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo";
+type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends";
 
 type AuthProfile = {
   id: string;
@@ -2132,10 +2132,10 @@ export default function HomeScreen({
                     </div>
                   </>
                 )
-              ) : panel === "personalSpace" || panel === "profileInfo" ? (
+              ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" ? (
                 <PersonalSpacePanel
                   isFr={isFr}
-                  mode={panel === "profileInfo" ? "profile" : "dashboard"}
+                  mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : "dashboard"}
                   authLoading={authLoading}
                   authProfile={authProfile}
                   authMode={authMode}
@@ -2164,7 +2164,7 @@ export default function HomeScreen({
                     const now = new Date();
                     return visited.getFullYear() === now.getFullYear() && visited.getMonth() === now.getMonth();
                   }).length}
-                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : "personalSpace")}
+                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : "personalSpace")}
                   onOpenSavedPlaces={() => setPanel("myPlacesList")}
                   onSwitchLocale={switchLocale}
                   onSetAuthMode={setAuthMode}

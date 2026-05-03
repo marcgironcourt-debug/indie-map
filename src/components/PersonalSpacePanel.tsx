@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export type PersonalSpacePanelMode = "dashboard" | "profile";
+export type PersonalSpacePanelMode = "dashboard" | "profile" | "friends";
 
 export type PersonalSpaceAuthMode = "signup" | "login" | "resetRequest" | "resetConfirm";
 
@@ -12,6 +12,28 @@ export type PersonalSpaceAuthProfile = {
   avatarUrl: string | null;
   avatarColor: string | null;
   profileCompleted: boolean;
+};
+
+type FriendPublicUser = {
+  id: string;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  avatarColor: string | null;
+};
+
+type FriendEntry = {
+  id: string;
+  status: string;
+  createdAt: string;
+  updatedAt?: string;
+  user: FriendPublicUser;
+};
+
+type FriendsPayload = {
+  friends: FriendEntry[];
+  incomingRequests: FriendEntry[];
+  outgoingRequests: FriendEntry[];
 };
 
 type PersonalSpacePanelProps = {
@@ -120,6 +142,56 @@ export default function PersonalSpacePanel({
   onLogout,
 }: PersonalSpacePanelProps) {
   const locale = isFr ? "fr" : "en";
+  const [friendsLoading, setFriendsLoading] = React.useState(false);
+  const [friendsError, setFriendsError] = React.useState("");
+  const [friendsPayload, setFriendsPayload] = React.useState<FriendsPayload>({
+    friends: [],
+    incomingRequests: [],
+    outgoingRequests: [],
+  });
+
+  React.useEffect(() => {
+    if (mode !== "friends" || !authProfile) return;
+
+    let cancelled = false;
+
+    async function loadFriends() {
+      setFriendsLoading(true);
+      setFriendsError("");
+
+      try {
+        const res = await fetch("/api/v1/me/friends", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok) {
+          throw new Error("friends_load_failed");
+        }
+
+        if (!cancelled) {
+          setFriendsPayload({
+            friends: Array.isArray(data.friends) ? data.friends : [],
+            incomingRequests: Array.isArray(data.incomingRequests) ? data.incomingRequests : [],
+            outgoingRequests: Array.isArray(data.outgoingRequests) ? data.outgoingRequests : [],
+          });
+        }
+      } catch {
+        if (!cancelled) {
+          setFriendsError(isFr ? "Impossible de charger tes amis pour le moment." : "Unable to load your friends right now.");
+        }
+      } finally {
+        if (!cancelled) {
+          setFriendsLoading(false);
+        }
+      }
+    }
+
+    loadFriends();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, authProfile, isFr]);
+
   const legalLinks = (
     <section className="mt-6 px-1">
       <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
@@ -605,6 +677,127 @@ export default function PersonalSpacePanel({
     );
   }
 
+  if (mode === "friends") {
+    return (
+      <>
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => onModeChange("dashboard")}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+            aria-label={isFr ? "Retour" : "Back"}
+          >
+            ←
+          </button>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+              {isFr ? "Social privé" : "Private social"}
+            </p>
+            <h2 className="mt-0.5 font-serif text-[23px] font-semibold leading-tight text-white">
+              {isFr ? "Mes amis" : "Friends"}
+            </h2>
+          </div>
+          <div className="h-10 w-10" />
+        </div>
+
+        <div className="space-y-4">
+          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+                  {isFr ? "Ajouter un ami" : "Add a friend"}
+                </p>
+                <p className="mt-2 text-[13px] leading-relaxed text-white/50">
+                  {isFr
+                    ? "Recherche par pseudo et invitation arriveront ici."
+                    : "Username search and invitations will arrive here."}
+                </p>
+              </div>
+              <button
+                type="button"
+                disabled
+                className="shrink-0 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35"
+              >
+                {isFr ? "Bientôt" : "Soon"}
+              </button>
+            </div>
+          </section>
+
+          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
+            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+              {isFr ? "Mes amis" : "My friends"}
+            </p>
+
+            {friendsLoading ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                {isFr ? "Chargement..." : "Loading..."}
+              </p>
+            ) : friendsError ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-red-200">
+                {friendsError}
+              </p>
+            ) : friendsPayload.friends.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                {friendsPayload.friends.map((entry) => (
+                  <div key={entry.id} className="flex items-center gap-3 rounded-2xl bg-black/20 px-3 py-3">
+                    {entry.user.avatarUrl ? (
+                      <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                    ) : (
+                      <span
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                        style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
+                      >
+                        {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
+                      </span>
+                    )}
+                    <span className="min-w-0">
+                      <span className="block truncate text-[14px] font-semibold text-white/90">
+                        {entry.user.displayName || entry.user.username}
+                      </span>
+                      <span className="block truncate text-[12px] text-white/40">
+                        @{entry.user.username}
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                {isFr
+                  ? "Tu n’as pas encore ajouté d’amis."
+                  : "You have not added any friends yet."}
+              </p>
+            )}
+          </section>
+
+          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
+            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+              {isFr ? "Demandes" : "Requests"}
+            </p>
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <div className="rounded-2xl bg-black/20 p-4">
+                <p className="text-[24px] font-semibold text-white">
+                  {friendsPayload.incomingRequests.length}
+                </p>
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                  {isFr ? "Reçues" : "Incoming"}
+                </p>
+              </div>
+              <div className="rounded-2xl bg-black/20 p-4">
+                <p className="text-[24px] font-semibold text-white">
+                  {friendsPayload.outgoingRequests.length}
+                </p>
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                  {isFr ? "Envoyées" : "Outgoing"}
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <button
@@ -686,7 +879,11 @@ export default function PersonalSpacePanel({
             </span>
           </button>
 
-          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
+          <button
+            type="button"
+            onClick={() => onModeChange("friends")}
+            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          >
             <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
               <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
@@ -700,7 +897,7 @@ export default function PersonalSpacePanel({
                 {isFr ? "Mes amis" : "Friends"}
               </span>
               <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr ? "Bientôt." : "Soon."}
+                {isFr ? "Social privé." : "Private social."}
               </span>
             </span>
           </button>
