@@ -2246,6 +2246,7 @@ export default function HomeScreen({
                   }).length}
                   onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : "personalSpace")}
                   onOpenSavedPlaces={() => setPanel("myPlacesList")}
+                  onOpenPlace={(place) => setSelectedHomePlace(place as DiscoverPlace)}
                   onSwitchLocale={switchLocale}
                   onSetAuthMode={setAuthMode}
                   onSetAuthEmail={setAuthEmail}

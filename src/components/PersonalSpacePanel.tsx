@@ -42,6 +42,13 @@ type PlaceSummary = {
   address?: string;
   city?: string;
   category?: string;
+  miniText?: string;
+  website?: string;
+  phone?: string;
+  openingHours?: string;
+  timeZone?: string;
+  lat?: number;
+  lng?: number;
   panoramaImage?: string | null;
 };
 
@@ -88,6 +95,7 @@ type PersonalSpacePanelProps = {
   visitedThisMonthCount: number;
   onModeChange: (mode: PersonalSpacePanelMode) => void;
   onOpenSavedPlaces: () => void;
+  onOpenPlace?: (place: PlaceSummary) => void;
   onSwitchLocale: (nextLocale: "fr" | "en") => void;
   onSetAuthMode: (mode: PersonalSpaceAuthMode) => void;
   onSetAuthEmail: (value: string) => void;
@@ -143,6 +151,7 @@ export default function PersonalSpacePanel({
   visitedThisMonthCount,
   onModeChange,
   onOpenSavedPlaces,
+  onOpenPlace,
   onSwitchLocale,
   onSetAuthMode,
   onSetAuthEmail,
@@ -882,6 +891,7 @@ export default function PersonalSpacePanel({
                           <div key={item.placeId} className="relative">
                             <button
                               type="button"
+                              onClick={() => onOpenPlace?.(place)}
                               className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
                               style={{
                                 minHeight: "130px",
