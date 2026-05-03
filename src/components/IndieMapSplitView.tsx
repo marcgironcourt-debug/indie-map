@@ -2,11 +2,12 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
+import BottomNavBar from "@/components/BottomNavBar";
 import MapPanel from "@/components/MapPanel";
 import ContributeForm from "@/components/ContributeForm";
 import { readPlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
-type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList";
+type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList" | "profileInfo";
 
 type AuthProfile = {
   id: string;
@@ -14,6 +15,7 @@ type AuthProfile = {
   username: string;
   displayName: string;
   avatarUrl: string | null;
+  avatarColor: string | null;
   homeCity: string | null;
   ageRange: string | null;
   profileCompleted: boolean;
@@ -363,9 +365,11 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [profileUsername, setProfileUsername] = React.useState("");
   const [profileDisplayName, setProfileDisplayName] = React.useState("");
   const [profileAvatarUrl, setProfileAvatarUrl] = React.useState("");
+  const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
   const [profileAgeRange, setProfileAgeRange] = React.useState("");
   const [profileSaving, setProfileSaving] = React.useState(false);
+  const [profileSuccess, setProfileSuccess] = React.useState("");
   const [profileError, setProfileError] = React.useState("");
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>(() => readPlaceNotes());
@@ -395,6 +399,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         setProfileUsername(user.username || "");
         setProfileDisplayName(user.displayName || "");
         setProfileAvatarUrl(user.avatarUrl || "");
+        setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
         setProfileAgeRange(user.ageRange || "");
         return user as AuthProfile;
@@ -578,6 +583,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       setProfileUsername(data.user.username || "");
       setProfileDisplayName(data.user.displayName || "");
       setProfileAvatarUrl(data.user.avatarUrl || "");
+      setProfileAvatarColor(data.user.avatarColor || "#F97316");
       setProfileHomeCity(data.user.homeCity || "");
       setProfileAgeRange(data.user.ageRange || "");
       setAuthPassword("");
@@ -614,6 +620,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       setProfileUsername("");
       setProfileDisplayName("");
       setProfileAvatarUrl("");
+      setProfileAvatarColor("#F97316");
       setProfileHomeCity("");
       setProfileAgeRange("");
     } catch {
@@ -625,6 +632,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
   async function saveProfile() {
     setProfileError("");
+    setProfileSuccess("");
     const username = profileUsername.trim();
     if (username.length < 3) {
       setProfileError(isFr ? "Le pseudo doit contenir au moins 3 caractères." : "Username must be at least 3 characters.");
@@ -638,7 +646,8 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         body: JSON.stringify({
           username,
           displayName: profileDisplayName.trim() || username,
-          avatarUrl: profileAvatarUrl.trim() || null,
+          avatarUrl: authProfile?.avatarUrl || null,
+          avatarColor: profileAvatarColor,
           homeCity: profileHomeCity.trim() || null,
           ageRange: profileAgeRange || null,
         }),
@@ -649,6 +658,8 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         return;
       }
       setAuthProfile(data.user);
+      setProfileAvatarColor(data.user.avatarColor || profileAvatarColor);
+      setProfileSuccess(isFr ? "Profil enregistré." : "Profile saved.");
     } catch {
       setProfileError(isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile.");
     } finally {
@@ -1161,72 +1172,14 @@ const filtered = source.filter((b) => {
       </div>
 
       {!heroOpen ? (
-
-              <div className="fixed inset-x-0 bottom-0 z-[1200]">
-                <div
-                  className="grid w-full grid-cols-4 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
-                  style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setPanel("myPlaces")}
-                    className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
-                  >
-                    {authProfile?.avatarUrl ? (
-                      <img src={authProfile.avatarUrl} alt="" className="h-5.5 w-5.5 rounded-full object-cover" />
-                    ) : authProfile ? (
-                      <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full border border-white/20 bg-white/10 text-[10px] font-semibold uppercase text-white">
-                        {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
-                      </span>
-                    ) : (
-                      <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="8" r="3.2" />
-                        <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
-                      </svg>
-                    )}
-                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>
-                  </button>
-        
-                  <button
-                    type="button"
-                    onClick={() => setPanel("contrib")}
-                    className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
-                  >
-                    <svg viewBox="0 0 24 24" className="whitespace-nowrap h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 5v14" />
-                      <path d="M5 12h14" />
-                    </svg>
-                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
-                  </button>
-        
-                  <button
-                    type="button"
-                    onClick={() => setPanel("about")}
-                    className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 16v-5" />
-                      <path d="M12 8h.01" />
-                      <circle cx="12" cy="12" r="9" />
-                    </svg>
-                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
-                  </button>
-        
-                  <button
-                    type="button"
-                    onClick={() => setPanel("pros")}
-                    className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M10 6h4" />
-                      <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
-                      <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
-                      <path d="M9 14h6" />
-                    </svg>
-                    <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
-                  </button>
-                </div>
-              </div>
+        <BottomNavBar
+          isFr={isFr}
+          authProfile={authProfile}
+          onOpenPersonal={() => setPanel("myPlaces")}
+          onOpenContrib={() => setPanel("contrib")}
+          onOpenAbout={() => setPanel("about")}
+          onOpenPros={() => setPanel("pros")}
+        />
       ) : null}
 
             {panel ? (
@@ -1558,10 +1511,26 @@ const filtered = source.filter((b) => {
                   ) : (
                     <>
                   <div className="mb-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
-                      {isFr ? "Espace perso" : "Personal space"}
-                    </p>
-                    <h2 className="mt-1 font-serif text-[24px] font-semibold leading-tight text-white">
+                    <button
+                      type="button"
+                      onClick={() => setPanel("profileInfo")}
+                      className="flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-2.5 py-2 text-white/80 hover:bg-white/12 active:bg-white/16"
+                    >
+                      {authProfile?.avatarUrl ? (
+                        <img src={authProfile.avatarUrl} alt="" className="h-7 w-7 rounded-full object-cover" />
+                      ) : (
+                        <span
+                          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-[12px] font-semibold text-white/80"
+                          style={{ backgroundColor: authProfile?.avatarColor || "#F97316" }}
+                        >
+                          {(authProfile?.displayName || authProfile?.username || "?").slice(0, 1)}
+                        </span>
+                      )}
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.18em]">
+                        {isFr ? "Mon profil" : "My profile"}
+                      </span>
+                    </button>
+                    <h2 className="mt-3 font-serif text-[24px] font-semibold leading-tight text-white">
                       {isFr ? "Ton tableau de bord" : "Your dashboard"}
                     </h2>
                   </div>
@@ -1685,6 +1654,103 @@ const filtered = source.filter((b) => {
                     </>
                   )}
                 </>
+                    ) : panel === "profileInfo" ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setPanel("myPlaces")}
+                          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 py-2 text-[12px] font-medium text-white/70 hover:bg-white/12 active:bg-white/16"
+                        >
+                          <span aria-hidden="true">←</span>
+                          <span>{isFr ? "Retour" : "Back"}</span>
+                        </button>
+
+                        <div className="mb-6">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                            {isFr ? "Mon profil" : "My profile"}
+                          </p>
+                          <h2 className="mt-1 font-serif text-[24px] font-semibold leading-tight text-white">
+                            {isFr ? "Mes informations" : "My information"}
+                          </h2>
+                        </div>
+
+                        <div className="space-y-3">
+                          <input
+                            value={profileDisplayName}
+                            onChange={(event) => setProfileDisplayName(event.target.value)}
+                            placeholder={isFr ? "Pseudo" : "Username"}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                          />
+
+                          <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
+                            <div className="mb-3 flex items-center gap-3">
+                              <span
+                                className="flex h-11 w-11 items-center justify-center rounded-full text-[15px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)]"
+                                style={{ backgroundColor: profileAvatarColor }}
+                              >
+                                {(profileDisplayName || profileUsername || "?").slice(0, 1)}
+                              </span>
+                              <div>
+                                <p className="text-[13px] font-semibold text-white/85">
+                                  {isFr ? "Couleur du profil" : "Profile color"}
+                                </p>
+                                <p className="mt-0.5 text-[12px] text-white/45">
+                                  {isFr ? "Choisis la couleur de ton avatar." : "Choose your avatar color."}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2">
+                              {["#F97316", "#84A98C", "#2563EB", "#A855F7", "#EAB308", "#EC4899"].map((color) => (
+                                <button
+                                  key={color}
+                                  type="button"
+                                  onClick={() => setProfileAvatarColor(color)}
+                                  aria-label={color}
+                                  className={profileAvatarColor === color ? "h-9 w-9 rounded-full border-2 border-white shadow-[0_0_0_3px_rgba(255,255,255,0.18)]" : "h-9 w-9 rounded-full border border-white/15"}
+                                  style={{ backgroundColor: color }}
+                                />
+                              ))}
+                            </div>
+                          </div>
+
+                          <input
+                            value={profileHomeCity}
+                            onChange={(event) => setProfileHomeCity(event.target.value)}
+                            placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                          />
+                          <select
+                            value={profileAgeRange}
+                            onChange={(event) => setProfileAgeRange(event.target.value)}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none focus:border-white/25"
+                          >
+                            <option value="">{isFr ? "Tranche d’âge optionnelle" : "Optional age range"}</option>
+                            <option value="13_17">13–17</option>
+                            <option value="18_24">18–24</option>
+                            <option value="25_34">25–34</option>
+                            <option value="35_44">35–44</option>
+                            <option value="45_54">45–54</option>
+                            <option value="55_64">55–64</option>
+                            <option value="65_plus">65+</option>
+                            <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
+                          </select>
+                          <button
+                            type="button"
+                            onClick={saveProfile}
+                            disabled={profileSaving}
+                            className="w-full rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                          >
+                            {profileSaving ? (isFr ? "Enregistrement..." : "Saving...") : (isFr ? "Enregistrer" : "Save")}
+                          </button>
+                          {profileSuccess ? (
+                            <p className="text-[13px] leading-relaxed text-emerald-200">{profileSuccess}</p>
+                          ) : null}
+                          {profileError ? (
+                            <p className="text-[13px] leading-relaxed text-red-200">{profileError}</p>
+                          ) : null}
+                        </div>
+                      </>
                     ) : panel === "myPlacesList" ? (
                       <>
                         <button

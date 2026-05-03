@@ -6,6 +6,15 @@ const V1_HEADERS = {
   "X-API-Version": "1",
 } as const;
 
+const AVATAR_COLORS = new Set([
+  "#F97316",
+  "#84A98C",
+  "#2563EB",
+  "#A855F7",
+  "#EAB308",
+  "#EC4899",
+]);
+
 const AGE_RANGES = new Set([
   "under_18",
   "18_24",
@@ -39,6 +48,7 @@ function serializeUser(user: {
   username: string;
   displayName: string;
   avatarUrl: string | null;
+  avatarColor: string | null;
   homeCity: string | null;
   ageRange: string | null;
   profileCompletedAt: Date | null;
@@ -49,6 +59,7 @@ function serializeUser(user: {
     username: user.username,
     displayName: user.displayName,
     avatarUrl: user.avatarUrl,
+    avatarColor: user.avatarColor,
     homeCity: user.homeCity,
     ageRange: user.ageRange,
     profileCompleted: Boolean(user.profileCompletedAt),
@@ -82,6 +93,8 @@ export async function POST(req: Request) {
     const username = normUsername(body?.username);
     const displayName = normStr(body?.displayName, 80) || username;
     const avatarUrl = normStr(body?.avatarUrl, 600);
+    const avatarColorRaw = normStr(body?.avatarColor, 20);
+    const avatarColor = avatarColorRaw && AVATAR_COLORS.has(avatarColorRaw) ? avatarColorRaw : null;
     const homeCity = normStr(body?.homeCity, 120);
     const ageRangeRaw = normStr(body?.ageRange, 40);
     const ageRange = ageRangeRaw && AGE_RANGES.has(ageRangeRaw) ? ageRangeRaw : null;
@@ -105,6 +118,7 @@ export async function POST(req: Request) {
         username,
         displayName: displayName || username,
         avatarUrl,
+        avatarColor,
         homeCity,
         ageRange,
         profileCompletedAt: currentUser.profileCompletedAt || new Date(),

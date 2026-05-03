@@ -102,6 +102,7 @@ model User {
   passwordHash       String?
   displayName        String
   avatarUrl          String?
+  avatarColor        String?
   homeCity           String?
   ageRange           String?
   profileCompletedAt DateTime?
