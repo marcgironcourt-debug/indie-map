@@ -798,152 +798,159 @@ export default function PersonalSpacePanel({
           <div className="h-10 w-10" />
         </div>
 
-        <div className="space-y-4">
-          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
-            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
-              {isFr ? "Ajouter un ami" : "Add a friend"}
-            </p>
-            <p className="mt-2 text-[13px] leading-relaxed text-white/50">
-              {isFr
-                ? "Recherche une personne par son pseudo Indie Map."
-                : "Search for someone by their Indie Map username."}
+        <div className="space-y-6">
+          <section>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              {isFr ? "Ajouter des amis" : "Add friends"}
             </p>
 
-            <input
-              value={friendSearchQuery}
-              onChange={(event) => setFriendSearchQuery(event.target.value)}
-              placeholder={isFr ? "Pseudo, ex. marcos" : "Username, e.g. marcos"}
-              className="mt-4 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
-            />
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
+              <div className="px-4 py-4">
+                <p className="text-[12px] leading-snug text-white/45">
+                  {isFr ? "Recherche une personne par son pseudo Indie Map." : "Search for someone by their Indie Map username."}
+                </p>
 
-            {friendSearchLoading ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
-                {isFr ? "Recherche..." : "Searching..."}
-              </p>
-            ) : friendSearchError ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-red-200">
-                {friendSearchError}
-              </p>
-            ) : friendSearchQuery.trim().length >= 2 && friendSearchUsers.length === 0 ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
-                {isFr ? "Aucun utilisateur trouvé." : "No user found."}
-              </p>
-            ) : friendSearchUsers.length > 0 ? (
-              <div className="mt-4 space-y-2">
-                {friendSearchUsers.map((user) => (
-                  <div key={user.id} className="flex items-center gap-3 rounded-2xl bg-black/20 px-3 py-3">
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
-                    ) : (
-                      <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
-                        style={{ backgroundColor: user.avatarColor || "#F97316" }}
-                      >
-                        {(user.displayName || user.username || "?").slice(0, 1)}
-                      </span>
-                    )}
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[14px] font-semibold text-white/90">
-                        {user.displayName || user.username}
-                      </span>
-                      <span className="block truncate text-[12px] text-white/40">
-                        @{user.username}
-                      </span>
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => sendFriendRequest(user.id)}
-                      disabled={friendRequestSendingId === user.id}
-                      className="shrink-0 rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
-                    >
-                      {friendRequestSendingId === user.id ? (isFr ? "..." : "...") : (isFr ? "Ajouter" : "Add")}
-                    </button>
-                  </div>
-                ))}
+                <input
+                  value={friendSearchQuery}
+                  onChange={(event) => setFriendSearchQuery(event.target.value)}
+                  placeholder={isFr ? "Pseudo, ex. marcos" : "Username, e.g. marcos"}
+                  className="mt-4 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
+                />
+
+                {friendSearchLoading ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                    {isFr ? "Recherche..." : "Searching..."}
+                  </p>
+                ) : friendSearchError ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-red-200">
+                    {friendSearchError}
+                  </p>
+                ) : friendSearchQuery.trim().length >= 2 && friendSearchUsers.length === 0 ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                    {isFr ? "Aucun utilisateur trouvé." : "No user found."}
+                  </p>
+                ) : null}
+
+                {friendRequestMessage ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/55">
+                    {friendRequestMessage}
+                  </p>
+                ) : null}
               </div>
-            ) : null}
 
-            {friendRequestMessage ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-white/55">
-                {friendRequestMessage}
-              </p>
-            ) : null}
+              {friendSearchUsers.length > 0 ? (
+                <div className="border-t border-white/10">
+                  {friendSearchUsers.map((user) => (
+                    <div key={user.id} className="flex items-center gap-3 border-t border-white/10 px-4 py-3 first:border-t-0">
+                      {user.avatarUrl ? (
+                        <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                      ) : (
+                        <span
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                          style={{ backgroundColor: user.avatarColor || "#F97316" }}
+                        >
+                          {(user.displayName || user.username || "?").slice(0, 1)}
+                        </span>
+                      )}
+
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-[14px] font-semibold text-white/90">
+                          {user.displayName || user.username}
+                        </span>
+                        <span className="block truncate text-[12px] text-white/40">
+                          @{user.username}
+                        </span>
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => sendFriendRequest(user.id)}
+                        disabled={friendRequestSendingId === user.id}
+                        className="shrink-0 rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                      >
+                        {friendRequestSendingId === user.id ? "..." : (isFr ? "Ajouter" : "Add")}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           </section>
 
-          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
-            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+          <section>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
               {isFr ? "Mes amis" : "My friends"}
             </p>
 
             {friendsLoading ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+              <p className="px-1 text-[13px] leading-relaxed text-white/45">
                 {isFr ? "Chargement..." : "Loading..."}
               </p>
             ) : friendsError ? (
-              <p className="mt-3 text-[13px] leading-relaxed text-red-200">
+              <p className="px-1 text-[13px] leading-relaxed text-red-200">
                 {friendsError}
               </p>
             ) : friendsPayload.friends.length > 0 ? (
-              <div className="mt-4 space-y-2">
+              <div className="flex flex-wrap gap-x-5 gap-y-5 px-1">
                 {friendsPayload.friends.map((entry) => (
-                  <div key={entry.id} className="flex items-center gap-3 rounded-2xl bg-black/20 px-3 py-3">
+                  <div key={entry.id} className="flex w-[72px] flex-col items-center text-center">
                     {entry.user.avatarUrl ? (
-                      <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                      <img src={entry.user.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
                     ) : (
                       <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
                         style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
                       >
                         {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
                       </span>
                     )}
-                    <span className="min-w-0">
-                      <span className="block truncate text-[14px] font-semibold text-white/90">
-                        {entry.user.displayName || entry.user.username}
-                      </span>
-                      <span className="block truncate text-[12px] text-white/40">
-                        @{entry.user.username}
-                      </span>
+
+                    <span className="mt-2 block w-full truncate text-[12px] font-semibold leading-tight text-white/85">
+                      {entry.user.displayName || entry.user.username}
                     </span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
-                {isFr
-                  ? "Tu n’as pas encore ajouté d’amis."
-                  : "You have not added any friends yet."}
-              </p>
+              <div className="px-1">
+                <p className="text-[14px] font-semibold text-white/90">
+                  {isFr ? "Aucun ami pour le moment" : "No friends yet"}
+                </p>
+                <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                  {isFr ? "Tes amis apparaîtront ici après acceptation." : "Your friends will appear here once accepted."}
+                </p>
+              </div>
             )}
           </section>
 
-          <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
-            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+          <section>
+            <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
               {isFr ? "Demandes" : "Requests"}
             </p>
-            <div className="mt-3 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-black/20 p-4">
-                <p className="text-[24px] font-semibold text-white">
-                  {friendsPayload.incomingRequests.length}
-                </p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
-                  {isFr ? "Reçues" : "Incoming"}
-                </p>
-              </div>
-              <div className="rounded-2xl bg-black/20 p-4">
-                <p className="text-[24px] font-semibold text-white">
-                  {friendsPayload.outgoingRequests.length}
-                </p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
-                  {isFr ? "Envoyées" : "Outgoing"}
-                </p>
-              </div>
-            </div>
 
-            {friendsPayload.incomingRequests.length > 0 ? (
-              <div className="mt-4 space-y-2">
-                {friendsPayload.incomingRequests.map((entry) => (
-                  <div key={entry.id} className="rounded-2xl bg-black/20 px-3 py-3">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
+              <div className="grid grid-cols-2 border-b border-white/10">
+                <div className="px-4 py-4">
+                  <p className="text-[22px] font-semibold text-white">
+                    {friendsPayload.incomingRequests.length}
+                  </p>
+                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                    {isFr ? "Reçues" : "Incoming"}
+                  </p>
+                </div>
+                <div className="border-l border-white/10 px-4 py-4">
+                  <p className="text-[22px] font-semibold text-white">
+                    {friendsPayload.outgoingRequests.length}
+                  </p>
+                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                    {isFr ? "Envoyées" : "Outgoing"}
+                  </p>
+                </div>
+              </div>
+
+              {friendsPayload.incomingRequests.length > 0 ? (
+                friendsPayload.incomingRequests.map((entry) => (
+                  <div key={entry.id} className="border-t border-white/10 px-4 py-3 first:border-t-0">
                     <div className="flex items-center gap-3">
                       {entry.user.avatarUrl ? (
                         <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
@@ -955,6 +962,7 @@ export default function PersonalSpacePanel({
                           {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
                         </span>
                       )}
+
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-[14px] font-semibold text-white/90">
                           {entry.user.displayName || entry.user.username}
@@ -984,9 +992,18 @@ export default function PersonalSpacePanel({
                       </button>
                     </div>
                   </div>
-                ))}
-              </div>
-            ) : null}
+                ))
+              ) : (
+                <div className="px-4 py-4">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Aucune demande reçue" : "No incoming requests"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Les nouvelles demandes d’amis apparaîtront ici." : "New friend requests will appear here."}
+                  </p>
+                </div>
+              )}
+            </div>
           </section>
         </div>
       </>
