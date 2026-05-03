@@ -349,7 +349,10 @@ function FilterBar({
 export default function IndieMapSplitView({ locale, discoverId, entry, searchIds }: { locale: UILocale; discoverId?: string | null; entry?: string | null; searchIds?: string | null }) {
   const router = useRouter();
   const isFr = locale === "fr";
-  const [panel, setPanel] = React.useState<Panel>(null);
+  const [panel, setPanel] = React.useState<Panel>(() => {
+    if (typeof window === "undefined") return null;
+    return window.sessionStorage.getItem("im:pending-panel-after-locale") === "personalSpace" ? "personalSpace" : null;
+  });
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [authProfile, setAuthProfile] = React.useState<AuthProfile | null>(null);
   const [authLoading, setAuthLoading] = React.useState(false);
@@ -368,6 +371,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
   const [profileAgeRange, setProfileAgeRange] = React.useState("");
+  const [profileLocale, setProfileLocale] = React.useState<"fr" | "en">(locale);
   const [commentsVisibleToFriends, setCommentsVisibleToFriends] = React.useState(false);
   const [visitedPlacesVisibleToFriends, setVisitedPlacesVisibleToFriends] = React.useState(false);
   const [profileSaving, setProfileSaving] = React.useState(false);
@@ -404,6 +408,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
         setProfileAgeRange(user.ageRange || "");
+        setProfileLocale(locale);
         setCommentsVisibleToFriends(user.commentsVisibleToFriends === true);
         setVisitedPlacesVisibleToFriends(user.visitedPlacesVisibleToFriends === true);
         return user as AuthProfile;
@@ -432,6 +437,13 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("auth") === "ok") {
+      setPanel("personalSpace");
+      refreshAuthProfile();
+    }
+
+    const pendingPanel = window.sessionStorage.getItem("im:pending-panel-after-locale");
+    if (pendingPanel === "personalSpace") {
+      window.sessionStorage.removeItem("im:pending-panel-after-locale");
       setPanel("personalSpace");
       refreshAuthProfile();
     }
@@ -629,6 +641,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       setProfileAvatarColor("#F97316");
       setProfileHomeCity("");
       setProfileAgeRange("");
+      setProfileLocale(locale);
       setCommentsVisibleToFriends(false);
       setVisitedPlacesVisibleToFriends(false);
     } catch {
@@ -671,6 +684,11 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       setProfileAvatarColor(data.user.avatarColor || profileAvatarColor);
       setCommentsVisibleToFriends(data.user.commentsVisibleToFriends === true);
       setVisitedPlacesVisibleToFriends(data.user.visitedPlacesVisibleToFriends === true);
+      if (profileLocale !== locale) {
+        document.cookie = `NEXT_LOCALE=${profileLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+        window.location.href = window.location.pathname.replace(/^\/(fr|en)(?=\/|$)/, `/${profileLocale}`);
+        return;
+      }
       setProfileSuccess(isFr ? "Profil enregistré." : "Profile saved.");
     } catch {
       setProfileError(isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile.");
@@ -810,7 +828,12 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   function switchLocale(nextLocale: "fr" | "en") {
     if (nextLocale === locale) return;
     document.cookie = `NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
-    window.location.href = `/${nextLocale}`;
+    window.sessionStorage.setItem("im:pending-panel-after-locale", "personalSpace");
+    const nextPath = window.location.pathname.match(/^\/(fr|en)(?=\/|$)/)
+      ? window.location.pathname.replace(/^\/(fr|en)(?=\/|$)/, `/${nextLocale}`)
+      : `/${nextLocale}`;
+    setPanel("personalSpace");
+    router.push(nextPath + window.location.search);
   }
 
   React.useEffect(() => {
@@ -1316,6 +1339,7 @@ const filtered = source.filter((b) => {
                         profileAvatarColor={profileAvatarColor}
                         profileHomeCity={profileHomeCity}
                         profileAgeRange={profileAgeRange}
+                        profileLocale={profileLocale}
                         commentsVisibleToFriends={commentsVisibleToFriends}
                         visitedPlacesVisibleToFriends={visitedPlacesVisibleToFriends}
                         profileSaving={profileSaving}
@@ -1331,6 +1355,7 @@ const filtered = source.filter((b) => {
                         }).length}
                         onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : "personalSpace")}
                         onOpenSavedPlaces={() => setPanel("myPlacesList")}
+                        onSwitchLocale={switchLocale}
                         onSetAuthMode={setAuthMode}
                         onSetAuthEmail={setAuthEmail}
                         onSetAuthUsername={setAuthUsername}
@@ -1344,6 +1369,7 @@ const filtered = source.filter((b) => {
                         onSetProfileAvatarColor={setProfileAvatarColor}
                         onSetProfileHomeCity={setProfileHomeCity}
                         onSetProfileAgeRange={setProfileAgeRange}
+                        onSetProfileLocale={setProfileLocale}
                         onSetCommentsVisibleToFriends={setCommentsVisibleToFriends}
                         onSetVisitedPlacesVisibleToFriends={setVisitedPlacesVisibleToFriends}
                         onSubmitAuth={submitAuth}

@@ -31,6 +31,7 @@ type PersonalSpacePanelProps = {
   profileAvatarColor: string;
   profileHomeCity: string;
   profileAgeRange: string;
+  profileLocale: "fr" | "en";
   commentsVisibleToFriends: boolean;
   visitedPlacesVisibleToFriends: boolean;
   profileSaving: boolean;
@@ -41,6 +42,7 @@ type PersonalSpacePanelProps = {
   visitedThisMonthCount: number;
   onModeChange: (mode: PersonalSpacePanelMode) => void;
   onOpenSavedPlaces: () => void;
+  onSwitchLocale: (nextLocale: "fr" | "en") => void;
   onSetAuthMode: (mode: PersonalSpaceAuthMode) => void;
   onSetAuthEmail: (value: string) => void;
   onSetAuthUsername: (value: string) => void;
@@ -54,6 +56,7 @@ type PersonalSpacePanelProps = {
   onSetProfileAvatarColor: (value: string) => void;
   onSetProfileHomeCity: (value: string) => void;
   onSetProfileAgeRange: (value: string) => void;
+  onSetProfileLocale: (value: "fr" | "en") => void;
   onSetCommentsVisibleToFriends: (value: boolean) => void;
   onSetVisitedPlacesVisibleToFriends: (value: boolean) => void;
   onSubmitAuth: () => void;
@@ -82,6 +85,7 @@ export default function PersonalSpacePanel({
   profileAvatarColor,
   profileHomeCity,
   profileAgeRange,
+  profileLocale,
   commentsVisibleToFriends,
   visitedPlacesVisibleToFriends,
   profileSaving,
@@ -92,6 +96,7 @@ export default function PersonalSpacePanel({
   visitedThisMonthCount,
   onModeChange,
   onOpenSavedPlaces,
+  onSwitchLocale,
   onSetAuthMode,
   onSetAuthEmail,
   onSetAuthUsername,
@@ -105,6 +110,7 @@ export default function PersonalSpacePanel({
   onSetProfileAvatarColor,
   onSetProfileHomeCity,
   onSetProfileAgeRange,
+  onSetProfileLocale,
   onSetCommentsVisibleToFriends,
   onSetVisitedPlacesVisibleToFriends,
   onSubmitAuth,
@@ -167,9 +173,19 @@ export default function PersonalSpacePanel({
     return (
       <>
         <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
-          {isFr ? "Espace perso" : "Personal space"}
-        </p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+            {isFr ? "Espace perso" : "Personal space"}
+          </p>
+          <button
+            type="button"
+            onClick={() => onSwitchLocale(isFr ? "en" : "fr")}
+            className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-white/10 bg-white/8 px-2 text-[15px] hover:bg-white/12"
+            aria-label={isFr ? "Switch to English" : "Passer en français"}
+          >
+            {isFr ? "🇬🇧" : "🇫🇷"}
+          </button>
+        </div>
         <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
           {authMode === "signup"
             ? (isFr ? "Créer un compte" : "Create an account")
@@ -370,6 +386,19 @@ export default function PersonalSpacePanel({
             <option value="65_plus">65+</option>
             <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
           </select>
+
+          <label className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-left text-[15px] text-white">
+            <span>{isFr ? "Langue" : "Language"}</span>
+            <select
+              value={profileLocale}
+              onChange={(event) => onSetProfileLocale(event.target.value as "fr" | "en")}
+              className="w-[128px] shrink-0 bg-transparent text-right text-[15px] font-semibold text-white/70 outline-none"
+            >
+              <option value="fr">Français</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+
           {legalLinks}
 
           <button
@@ -491,6 +520,20 @@ export default function PersonalSpacePanel({
                   <option value="55_64">55–64</option>
                   <option value="65_plus">65+</option>
                   <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
+                </select>
+              </label>
+
+              <label className="flex w-full items-center justify-between gap-4 border-t border-white/10 px-4 py-3 text-left">
+                <span className="shrink-0 text-[14px] font-medium text-white/85">
+                  {isFr ? "Langue" : "Language"}
+                </span>
+                <select
+                  value={profileLocale}
+                  onChange={(event) => onSetProfileLocale(event.target.value as "fr" | "en")}
+                  className="w-[118px] shrink-0 bg-transparent text-right text-[14px] font-medium text-white/70 outline-none"
+                >
+                  <option value="fr">Français</option>
+                  <option value="en">English</option>
                 </select>
               </label>
             </div>
