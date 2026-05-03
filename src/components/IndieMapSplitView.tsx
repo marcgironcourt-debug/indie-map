@@ -351,9 +351,11 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [authProfile, setAuthProfile] = React.useState<AuthProfile | null>(null);
   const [authLoading, setAuthLoading] = React.useState(false);
+  const [authMode, setAuthMode] = React.useState<"signup" | "login">("signup");
   const [authEmail, setAuthEmail] = React.useState("");
+  const [authUsername, setAuthUsername] = React.useState("");
+  const [authPassword, setAuthPassword] = React.useState("");
   const [authSending, setAuthSending] = React.useState(false);
-  const [authSent, setAuthSent] = React.useState(false);
   const [authError, setAuthError] = React.useState("");
   const [profileUsername, setProfileUsername] = React.useState("");
   const [profileDisplayName, setProfileDisplayName] = React.useState("");
@@ -419,28 +421,70 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     }
   }, [refreshAuthProfile]);
 
-  async function requestAuthLink() {
+  async function submitAuth() {
     const email = authEmail.trim();
+    const username = authUsername.trim();
+    const password = authPassword;
     setAuthError("");
-    setAuthSent(false);
-    if (!email || !email.includes("@")) {
-      setAuthError(isFr ? "Entre une adresse email valide." : "Enter a valid email address.");
-      return;
-    }
-    setAuthSending(true);
-    try {
-      const res = await fetch("/api/v1/auth/request", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (!res.ok) {
-        setAuthError(isFr ? "Impossible d’envoyer le lien pour le moment." : "Unable to send the link right now.");
+
+    if (authMode === "signup") {
+      if (!email || !email.includes("@")) {
+        setAuthError(isFr ? "Entre une adresse email valide." : "Enter a valid email address.");
         return;
       }
-      setAuthSent(true);
+      if (username.length < 3) {
+        setAuthError(isFr ? "Le pseudo doit contenir au moins 3 caractères." : "Username must be at least 3 characters.");
+        return;
+      }
+    } else if (username.length < 3) {
+      setAuthError(isFr ? "Entre ton email ou ton pseudo." : "Enter your email or username.");
+      return;
+    }
+
+    if (password.length < 8) {
+      setAuthError(isFr ? "Le mot de passe doit contenir au moins 8 caractères." : "Password must be at least 8 characters.");
+      return;
+    }
+
+    setAuthSending(true);
+    try {
+      const res = await fetch(authMode === "signup" ? "/api/v1/auth/signup" : "/api/v1/auth/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(
+          authMode === "signup"
+            ? { email, username, password }
+            : { identifier: username, password }
+        ),
+      });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok || !data?.user) {
+        if (data?.error === "email_taken") {
+          setAuthError(isFr ? "Un compte existe déjà avec cet email." : "An account already exists with this email.");
+          return;
+        }
+        if (data?.error === "username_taken") {
+          setAuthError(isFr ? "Ce pseudo est déjà pris." : "This username is already taken.");
+          return;
+        }
+        if (data?.error === "invalid_credentials") {
+          setAuthError(isFr ? "Identifiant ou mot de passe incorrect." : "Incorrect identifier or password.");
+          return;
+        }
+        setAuthError(authMode === "signup" ? (isFr ? "Impossible de créer le compte." : "Unable to create the account.") : (isFr ? "Impossible de se connecter." : "Unable to sign in."));
+        return;
+      }
+
+      setAuthProfile(data.user);
+      setProfileUsername(data.user.username || "");
+      setProfileDisplayName(data.user.displayName || "");
+      setProfileAvatarUrl(data.user.avatarUrl || "");
+      setProfileHomeCity(data.user.homeCity || "");
+      setProfileAgeRange(data.user.ageRange || "");
+      setAuthPassword("");
     } catch {
-      setAuthError(isFr ? "Impossible d’envoyer le lien pour le moment." : "Unable to send the link right now.");
+      setAuthError(authMode === "signup" ? (isFr ? "Impossible de créer le compte." : "Unable to create the account.") : (isFr ? "Impossible de se connecter." : "Unable to sign in."));
     } finally {
       setAuthSending(false);
     }
@@ -1174,32 +1218,65 @@ const filtered = source.filter((b) => {
                         {isFr ? "Espace perso" : "Personal space"}
                       </p>
                       <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
-                        {isFr ? "Créer un compte ou s’identifier" : "Create an account or sign in"}
+                        {authMode === "signup" ? (isFr ? "Créer un compte" : "Create an account") : (isFr ? "Se connecter" : "Sign in")}
                       </h2>
+                      <div className="mt-4 grid grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAuthMode("signup");
+                            setAuthError("");
+                          }}
+                          className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "signup" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
+                        >
+                          {isFr ? "Créer un compte" : "Create account"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAuthMode("login");
+                            setAuthError("");
+                          }}
+                          className={`rounded-2xl border px-3 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${authMode === "login" ? "border-white/25 bg-white text-black" : "border-white/10 bg-white/8 text-white/65"}`}
+                        >
+                          {isFr ? "Se connecter" : "Sign in"}
+                        </button>
+                      </div>
                       <p className="mt-3 text-[14px] leading-relaxed text-white/65">
-                        {isFr ? "Entre ton email. Indie Map t’enverra un lien magique pour accéder à ton espace personnel." : "Enter your email. Indie Map will send you a magic link to access your personal space."}
+                        {authMode === "signup" ? (isFr ? "Crée ton espace personnel avec un email, un pseudo et un mot de passe." : "Create your personal space with an email, a username, and a password.") : (isFr ? "Connecte-toi avec ton email ou ton pseudo, puis ton mot de passe." : "Sign in with your email or username, then your password.")}
                       </p>
                       <div className="mt-5 space-y-3">
+                        {authMode === "signup" ? (
+                          <input
+                            type="email"
+                            value={authEmail}
+                            onChange={(e) => setAuthEmail(e.target.value)}
+                            placeholder={isFr ? "Email" : "Email"}
+                            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                          />
+                        ) : null}
                         <input
-                          type="email"
-                          value={authEmail}
-                          onChange={(e) => setAuthEmail(e.target.value)}
-                          placeholder={isFr ? "ton@email.com" : "you@email.com"}
+                          type="text"
+                          value={authUsername}
+                          onChange={(e) => setAuthUsername(e.target.value)}
+                          placeholder={authMode === "signup" ? (isFr ? "Pseudo" : "Username") : (isFr ? "Email ou pseudo" : "Email or username")}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <input
+                          type="password"
+                          value={authPassword}
+                          onChange={(e) => setAuthPassword(e.target.value)}
+                          placeholder={isFr ? "Mot de passe" : "Password"}
                           className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
                         />
                         <button
                           type="button"
-                          onClick={requestAuthLink}
+                          onClick={submitAuth}
                           disabled={authSending}
                           className="w-full rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
                         >
-                          {authSending ? (isFr ? "Envoi..." : "Sending...") : (isFr ? "Recevoir mon lien" : "Get my link")}
+                          {authSending ? (isFr ? "Patiente..." : "Please wait...") : authMode === "signup" ? (isFr ? "Créer mon compte" : "Create my account") : (isFr ? "Me connecter" : "Sign in")}
                         </button>
-                        {authSent ? (
-                          <p className="text-[13px] leading-relaxed text-emerald-200">
-                            {isFr ? "Lien envoyé. Vérifie ta boîte mail." : "Link sent. Check your inbox."}
-                          </p>
-                        ) : null}
                         {authError ? (
                           <p className="text-[13px] leading-relaxed text-red-200">{authError}</p>
                         ) : null}

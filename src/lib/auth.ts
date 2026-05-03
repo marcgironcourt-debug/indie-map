@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { randomBytes, createHash } from "node:crypto";
+import { randomBytes, createHash, scrypt, timingSafeEqual } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 
 export const AUTH_COOKIE = "im_session";
@@ -18,6 +18,52 @@ export function normalizeEmail(value: unknown) {
   if (!email || email.length > 254) return null;
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
   return email;
+}
+
+export function normalizeUsername(value: unknown) {
+  if (typeof value !== "string") return null;
+  const raw = value.trim().toLowerCase();
+  if (!raw) return null;
+  const clean = raw.replace(/[^a-z0-9_]/g, "_").replace(/^_+|_+$/g, "").slice(0, 24);
+  if (clean.length < 3) return null;
+  return clean;
+}
+
+export function normalizePassword(value: unknown) {
+  if (typeof value !== "string") return null;
+  if (value.length < 8 || value.length > 200) return null;
+  return value;
+}
+
+function scryptAsync(password: string, salt: string) {
+  return new Promise<Buffer>((resolve, reject) => {
+    scrypt(password, salt, 64, (err, derivedKey) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(derivedKey as Buffer);
+    });
+  });
+}
+
+export async function hashPassword(password: string) {
+  const salt = randomBytes(16).toString("hex");
+  const derivedKey = await scryptAsync(password, salt);
+  return `scrypt:${salt}:${derivedKey.toString("hex")}`;
+}
+
+export async function verifyPassword(password: string, storedHash: string | null | undefined) {
+  if (!storedHash) return false;
+  const parts = storedHash.split(":");
+  if (parts.length !== 3 || parts[0] !== "scrypt") return false;
+  const salt = parts[1];
+  const hash = parts[2];
+  if (!salt || !hash) return false;
+  const expected = Buffer.from(hash, "hex");
+  const derivedKey = await scryptAsync(password, salt);
+  if (expected.length !== derivedKey.length) return false;
+  return timingSafeEqual(expected, derivedKey);
 }
 
 export function usernameFromEmail(email: string) {
