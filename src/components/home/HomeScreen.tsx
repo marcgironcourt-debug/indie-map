@@ -11,6 +11,17 @@ import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNote
 
 type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList";
 
+type AuthProfile = {
+  id: string;
+  email: string | null;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  homeCity: string | null;
+  ageRange: string | null;
+  profileCompleted: boolean;
+};
+
 type DiscoverPlace = {
   id: string;
   name: string;
@@ -380,6 +391,19 @@ export default function HomeScreen({
   const isFr = locale === "fr";
   const [panel, setPanel] = React.useState<Panel>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
+  const [authProfile, setAuthProfile] = React.useState<AuthProfile | null>(null);
+  const [authLoading, setAuthLoading] = React.useState(false);
+  const [authEmail, setAuthEmail] = React.useState("");
+  const [authSending, setAuthSending] = React.useState(false);
+  const [authSent, setAuthSent] = React.useState(false);
+  const [authError, setAuthError] = React.useState("");
+  const [profileUsername, setProfileUsername] = React.useState("");
+  const [profileDisplayName, setProfileDisplayName] = React.useState("");
+  const [profileAvatarUrl, setProfileAvatarUrl] = React.useState("");
+  const [profileHomeCity, setProfileHomeCity] = React.useState("");
+  const [profileAgeRange, setProfileAgeRange] = React.useState("");
+  const [profileSaving, setProfileSaving] = React.useState(false);
+  const [profileError, setProfileError] = React.useState("");
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null));
   const [contextPlace, setContextPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null));
   const [contextPlaceNearby, setContextPlaceNearby] = React.useState(false);
@@ -391,6 +415,110 @@ export default function HomeScreen({
   });
   const [suggestionIndex, setSuggestionIndex] = React.useState(0);
   const suggestionScrollRef = React.useRef<HTMLDivElement | null>(null);
+
+  const refreshAuthProfile = React.useCallback(async () => {
+    setAuthLoading(true);
+    try {
+      const res = await fetch("/api/v1/me/profile", { cache: "no-store" });
+      if (res.status === 401) {
+        setAuthProfile(null);
+        return null;
+      }
+      const data = await res.json().catch(() => null);
+      const user = data?.user ?? null;
+      if (data?.ok && user) {
+        setAuthProfile(user);
+        setProfileUsername(user.username || "");
+        setProfileDisplayName(user.displayName || "");
+        setProfileAvatarUrl(user.avatarUrl || "");
+        setProfileHomeCity(user.homeCity || "");
+        setProfileAgeRange(user.ageRange || "");
+        return user as AuthProfile;
+      }
+      setAuthProfile(null);
+      return null;
+    } catch {
+      setAuthProfile(null);
+      return null;
+    } finally {
+      setAuthLoading(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (panel === "myPlaces") {
+      refreshAuthProfile();
+    }
+  }, [panel, refreshAuthProfile]);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("auth") === "ok") {
+      setPanel("myPlaces");
+      refreshAuthProfile();
+    }
+  }, [refreshAuthProfile]);
+
+  async function requestAuthLink() {
+    const email = authEmail.trim();
+    setAuthError("");
+    setAuthSent(false);
+    if (!email || !email.includes("@")) {
+      setAuthError(isFr ? "Entre une adresse email valide." : "Enter a valid email address.");
+      return;
+    }
+    setAuthSending(true);
+    try {
+      const res = await fetch("/api/v1/auth/request", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        setAuthError(isFr ? "Impossible d’envoyer le lien pour le moment." : "Unable to send the link right now.");
+        return;
+      }
+      setAuthSent(true);
+    } catch {
+      setAuthError(isFr ? "Impossible d’envoyer le lien pour le moment." : "Unable to send the link right now.");
+    } finally {
+      setAuthSending(false);
+    }
+  }
+
+  async function saveProfile() {
+    setProfileError("");
+    const username = profileUsername.trim();
+    if (username.length < 3) {
+      setProfileError(isFr ? "Le pseudo doit contenir au moins 3 caractères." : "Username must be at least 3 characters.");
+      return;
+    }
+    setProfileSaving(true);
+    try {
+      const res = await fetch("/api/v1/me/profile", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          username,
+          displayName: profileDisplayName.trim() || username,
+          avatarUrl: profileAvatarUrl.trim() || null,
+          homeCity: profileHomeCity.trim() || null,
+          ageRange: profileAgeRange || null,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok || !data?.user) {
+        setProfileError(data?.error === "username_taken" ? (isFr ? "Ce pseudo est déjà pris." : "This username is already taken.") : (isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile."));
+        return;
+      }
+      setAuthProfile(data.user);
+    } catch {
+      setProfileError(isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile.");
+    } finally {
+      setProfileSaving(false);
+    }
+  }
 
   React.useEffect(() => {
     try { router.prefetch(`/${locale}/carte`); } catch {}
@@ -1678,10 +1806,20 @@ export default function HomeScreen({
             onClick={() => setPanel("myPlaces")}
             className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="8" r="3.2" />
-              <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
-            </svg>
+            <span className="flex h-6 w-6 items-center justify-center">
+              {authProfile?.avatarUrl ? (
+                <img src={authProfile.avatarUrl} alt="" className="h-5.5 w-5.5 rounded-full object-cover" />
+              ) : authProfile ? (
+                <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full border border-white/20 bg-white/10 text-[10px] font-semibold uppercase text-white">
+                  {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
+                </span>
+              ) : (
+                <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="3.2" />
+                  <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
+                </svg>
+              )}
+            </span>
             <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>
           </button>
 
@@ -1690,10 +1828,12 @@ export default function HomeScreen({
             onClick={() => setPanel("contrib")}
             className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="whitespace-nowrap h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14" />
-              <path d="M5 12h14" />
-            </svg>
+            <span className="flex h-6 w-6 items-center justify-center">
+              <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14" />
+                <path d="M5 12h14" />
+              </svg>
+            </span>
             <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
           </button>
 
@@ -1702,11 +1842,13 @@ export default function HomeScreen({
             onClick={() => setPanel("about")}
             className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 16v-5" />
-              <path d="M12 8h.01" />
-              <circle cx="12" cy="12" r="9" />
-            </svg>
+            <span className="flex h-6 w-6 items-center justify-center">
+              <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 16v-5" />
+                <path d="M12 8h.01" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </span>
             <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Infos" : "Info"}</span>
           </button>
 
@@ -1715,12 +1857,14 @@ export default function HomeScreen({
             onClick={() => setPanel("pros")}
             className="flex min-h-[50px] flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10"
           >
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10 6h4" />
-              <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
-              <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
-              <path d="M9 14h6" />
-            </svg>
+            <span className="flex h-6 w-6 items-center justify-center">
+              <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 6h4" />
+                <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
+                <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
+                <path d="M9 14h6" />
+              </svg>
+            </span>
             <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
           </button>
         </div>
@@ -1832,7 +1976,123 @@ export default function HomeScreen({
                   </>
                 )
               ) : panel === "myPlaces" ? (
-<>
+                <>
+                  {authLoading ? (
+                    <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                        {isFr ? "Espace perso" : "Personal space"}
+                      </p>
+                      <h2 className="mt-2 font-serif text-[24px] font-semibold leading-tight text-white">
+                        {isFr ? "Chargement..." : "Loading..."}
+                      </h2>
+                    </div>
+                  ) : !authProfile ? (
+                    <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                        {isFr ? "Espace perso" : "Personal space"}
+                      </p>
+                      <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
+                        {isFr ? "Créer un compte ou s’identifier" : "Create an account or sign in"}
+                      </h2>
+                      <p className="mt-3 text-[14px] leading-relaxed text-white/65">
+                        {isFr ? "Entre ton email. Indie Map t’enverra un lien magique pour accéder à ton espace personnel." : "Enter your email. Indie Map will send you a magic link to access your personal space."}
+                      </p>
+                      <div className="mt-5 space-y-3">
+                        <input
+                          type="email"
+                          value={authEmail}
+                          onChange={(e) => setAuthEmail(e.target.value)}
+                          placeholder={isFr ? "ton@email.com" : "you@email.com"}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <button
+                          type="button"
+                          onClick={requestAuthLink}
+                          disabled={authSending}
+                          className="w-full rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                        >
+                          {authSending ? (isFr ? "Envoi..." : "Sending...") : (isFr ? "Recevoir mon lien" : "Get my link")}
+                        </button>
+                        {authSent ? (
+                          <p className="text-[13px] leading-relaxed text-emerald-200">
+                            {isFr ? "Lien envoyé. Vérifie ta boîte mail." : "Link sent. Check your inbox."}
+                          </p>
+                        ) : null}
+                        {authError ? (
+                          <p className="text-[13px] leading-relaxed text-red-200">{authError}</p>
+                        ) : null}
+                      </div>
+                    </div>
+                  ) : !authProfile.profileCompleted ? (
+                    <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                        {isFr ? "Profil" : "Profile"}
+                      </p>
+                      <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
+                        {isFr ? "Finalise ton profil" : "Complete your profile"}
+                      </h2>
+                      <p className="mt-3 text-[14px] leading-relaxed text-white/65">
+                        {isFr ? "Seul le pseudo est obligatoire. Les autres informations pourront être modifiées plus tard." : "Only the username is required. The other details can be changed later."}
+                      </p>
+                      <div className="mt-5 space-y-3">
+                        <input
+                          type="text"
+                          value={profileUsername}
+                          onChange={(e) => setProfileUsername(e.target.value)}
+                          placeholder={isFr ? "Pseudo obligatoire" : "Required username"}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <input
+                          type="text"
+                          value={profileDisplayName}
+                          onChange={(e) => setProfileDisplayName(e.target.value)}
+                          placeholder={isFr ? "Nom affiché optionnel" : "Optional display name"}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <input
+                          type="url"
+                          value={profileAvatarUrl}
+                          onChange={(e) => setProfileAvatarUrl(e.target.value)}
+                          placeholder={isFr ? "Lien photo de profil optionnel" : "Optional profile photo link"}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <input
+                          type="text"
+                          value={profileHomeCity}
+                          onChange={(e) => setProfileHomeCity(e.target.value)}
+                          placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                        />
+                        <select
+                          value={profileAgeRange}
+                          onChange={(e) => setProfileAgeRange(e.target.value)}
+                          className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none focus:border-white/25"
+                        >
+                          <option value="">{isFr ? "Tranche d’âge optionnelle" : "Optional age range"}</option>
+                          <option value="under_18">{isFr ? "Moins de 18 ans" : "Under 18"}</option>
+                          <option value="18_24">18–24</option>
+                          <option value="25_34">25–34</option>
+                          <option value="35_44">35–44</option>
+                          <option value="45_54">45–54</option>
+                          <option value="55_64">55–64</option>
+                          <option value="65_plus">65+</option>
+                          <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
+                        </select>
+                        <button
+                          type="button"
+                          onClick={saveProfile}
+                          disabled={profileSaving}
+                          className="w-full rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                        >
+                          {profileSaving ? (isFr ? "Enregistrement..." : "Saving...") : (isFr ? "Entrer dans mon espace" : "Enter my space")}
+                        </button>
+                        {profileError ? (
+                          <p className="text-[13px] leading-relaxed text-red-200">{profileError}</p>
+                        ) : null}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
                   <div className="mb-5">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
                       {isFr ? "Espace perso" : "Personal space"}
@@ -1949,6 +2209,8 @@ export default function HomeScreen({
                       </span>
                     </button>
                   </div>
+                    </>
+                  )}
                 </>
               ) : panel === "myPlacesList" ? (
                 <>

@@ -96,13 +96,16 @@ model DailySession {
 }
 
 model User {
-  id          String   @id @default(uuid())
-  email       String?  @unique
-  username    String   @unique
-  displayName String
-  avatarUrl   String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                 String    @id @default(uuid())
+  email              String?   @unique
+  username           String    @unique
+  displayName        String
+  avatarUrl          String?
+  homeCity           String?
+  ageRange           String?
+  profileCompletedAt DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   sentFriendships      Friendship[]          @relation("FriendshipRequester")
   receivedFriendships  Friendship[]          @relation("FriendshipReceiver")

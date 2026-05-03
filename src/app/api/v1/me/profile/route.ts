@@ -1,0 +1,119 @@
+import { NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+
+const V1_HEADERS = {
+  "X-API-Version": "1",
+} as const;
+
+const AGE_RANGES = new Set([
+  "under_18",
+  "18_24",
+  "25_34",
+  "35_44",
+  "45_54",
+  "55_64",
+  "65_plus",
+  "prefer_not_to_say",
+]);
+
+function normStr(value: unknown, max: number) {
+  if (typeof value !== "string") return null;
+  const t = value.trim();
+  if (!t) return null;
+  return t.length > max ? t.slice(0, max) : t;
+}
+
+function normUsername(value: unknown) {
+  if (typeof value !== "string") return null;
+  const raw = value.trim().toLowerCase();
+  if (!raw) return null;
+  const clean = raw.replace(/[^a-z0-9_]/g, "_").replace(/^_+|_+$/g, "").slice(0, 24);
+  if (clean.length < 3) return null;
+  return clean;
+}
+
+function serializeUser(user: {
+  id: string;
+  email: string | null;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  homeCity: string | null;
+  ageRange: string | null;
+  profileCompletedAt: Date | null;
+}) {
+  return {
+    id: user.id,
+    email: user.email,
+    username: user.username,
+    displayName: user.displayName,
+    avatarUrl: user.avatarUrl,
+    homeCity: user.homeCity,
+    ageRange: user.ageRange,
+    profileCompleted: Boolean(user.profileCompletedAt),
+  };
+}
+
+export async function GET() {
+  try {
+    const user = await getCurrentUser();
+
+    if (!user) {
+      return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
+    }
+
+    return NextResponse.json({ ok: true, user: serializeUser(user) }, { headers: V1_HEADERS });
+  } catch (err) {
+    console.error("[/api/v1/me/profile] GET error", err);
+    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+  }
+}
+
+export async function POST(req: Request) {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
+    }
+
+    const body = await req.json().catch(() => null);
+    const username = normUsername(body?.username);
+    const displayName = normStr(body?.displayName, 80) || username;
+    const avatarUrl = normStr(body?.avatarUrl, 600);
+    const homeCity = normStr(body?.homeCity, 120);
+    const ageRangeRaw = normStr(body?.ageRange, 40);
+    const ageRange = ageRangeRaw && AGE_RANGES.has(ageRangeRaw) ? ageRangeRaw : null;
+
+    if (!username) {
+      return NextResponse.json({ ok: false, error: "invalid_username" }, { status: 400, headers: V1_HEADERS });
+    }
+
+    const existingUsername = await prisma.user.findUnique({
+      where: { username },
+      select: { id: true },
+    });
+
+    if (existingUsername && existingUsername.id !== currentUser.id) {
+      return NextResponse.json({ ok: false, error: "username_taken" }, { status: 409, headers: V1_HEADERS });
+    }
+
+    const user = await prisma.user.update({
+      where: { id: currentUser.id },
+      data: {
+        username,
+        displayName: displayName || username,
+        avatarUrl,
+        homeCity,
+        ageRange,
+        profileCompletedAt: currentUser.profileCompletedAt || new Date(),
+      },
+    });
+
+    return NextResponse.json({ ok: true, user: serializeUser(user) }, { headers: V1_HEADERS });
+  } catch (err) {
+    console.error("[/api/v1/me/profile] POST error", err);
+    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+  }
+}
