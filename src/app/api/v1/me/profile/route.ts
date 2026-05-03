@@ -16,7 +16,6 @@ const AVATAR_COLORS = new Set([
 ]);
 
 const AGE_RANGES = new Set([
-  "under_18",
   "18_24",
   "25_34",
   "35_44",
@@ -51,6 +50,8 @@ function serializeUser(user: {
   avatarColor: string | null;
   homeCity: string | null;
   ageRange: string | null;
+  commentsVisibleToFriends: boolean;
+  visitedPlacesVisibleToFriends: boolean;
   profileCompletedAt: Date | null;
 }) {
   return {
@@ -62,6 +63,8 @@ function serializeUser(user: {
     avatarColor: user.avatarColor,
     homeCity: user.homeCity,
     ageRange: user.ageRange,
+    commentsVisibleToFriends: user.commentsVisibleToFriends,
+    visitedPlacesVisibleToFriends: user.visitedPlacesVisibleToFriends,
     profileCompleted: Boolean(user.profileCompletedAt),
   };
 }
@@ -98,6 +101,8 @@ export async function POST(req: Request) {
     const homeCity = normStr(body?.homeCity, 120);
     const ageRangeRaw = normStr(body?.ageRange, 40);
     const ageRange = ageRangeRaw && AGE_RANGES.has(ageRangeRaw) ? ageRangeRaw : null;
+    const commentsVisibleToFriends = body?.commentsVisibleToFriends === true;
+    const visitedPlacesVisibleToFriends = body?.visitedPlacesVisibleToFriends === true;
 
     if (!username) {
       return NextResponse.json({ ok: false, error: "invalid_username" }, { status: 400, headers: V1_HEADERS });
@@ -121,6 +126,8 @@ export async function POST(req: Request) {
         avatarColor,
         homeCity,
         ageRange,
+        commentsVisibleToFriends,
+        visitedPlacesVisibleToFriends,
         profileCompletedAt: currentUser.profileCompletedAt || new Date(),
       },
     });

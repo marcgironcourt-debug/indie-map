@@ -31,6 +31,8 @@ type PersonalSpacePanelProps = {
   profileAvatarColor: string;
   profileHomeCity: string;
   profileAgeRange: string;
+  commentsVisibleToFriends: boolean;
+  visitedPlacesVisibleToFriends: boolean;
   profileSaving: boolean;
   profileSuccess: string;
   profileError: string;
@@ -52,6 +54,8 @@ type PersonalSpacePanelProps = {
   onSetProfileAvatarColor: (value: string) => void;
   onSetProfileHomeCity: (value: string) => void;
   onSetProfileAgeRange: (value: string) => void;
+  onSetCommentsVisibleToFriends: (value: boolean) => void;
+  onSetVisitedPlacesVisibleToFriends: (value: boolean) => void;
   onSubmitAuth: () => void;
   onRequestPasswordReset: () => void;
   onConfirmPasswordReset: () => void;
@@ -78,6 +82,8 @@ export default function PersonalSpacePanel({
   profileAvatarColor,
   profileHomeCity,
   profileAgeRange,
+  commentsVisibleToFriends,
+  visitedPlacesVisibleToFriends,
   profileSaving,
   profileSuccess,
   profileError,
@@ -99,6 +105,8 @@ export default function PersonalSpacePanel({
   onSetProfileAvatarColor,
   onSetProfileHomeCity,
   onSetProfileAgeRange,
+  onSetCommentsVisibleToFriends,
+  onSetVisitedPlacesVisibleToFriends,
   onSubmitAuth,
   onRequestPasswordReset,
   onConfirmPasswordReset,
@@ -314,7 +322,6 @@ export default function PersonalSpacePanel({
             className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none focus:border-white/25"
           >
             <option value="">{isFr ? "Tranche d’âge optionnelle" : "Optional age range"}</option>
-            <option value="13_17">13–17</option>
             <option value="18_24">18–24</option>
             <option value="25_34">25–34</option>
             <option value="35_44">35–44</option>
@@ -360,13 +367,18 @@ export default function PersonalSpacePanel({
           </h2>
         </div>
 
-        <div className="space-y-3">
-          <input
-            value={profileDisplayName}
-            onChange={(event) => onSetProfileDisplayName(event.target.value)}
-            placeholder={isFr ? "Pseudo" : "Username"}
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-          />
+        <div className="space-y-4">
+          <div>
+            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
+              {isFr ? "Pseudo" : "Username"}
+            </label>
+            <input
+              value={profileDisplayName}
+              onChange={(event) => onSetProfileDisplayName(event.target.value)}
+              placeholder={isFr ? "Nom visible dans ton espace perso" : "Name shown in your personal space"}
+              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+            />
+          </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
             <div className="mb-3 flex items-center gap-3">
@@ -400,27 +412,81 @@ export default function PersonalSpacePanel({
             </div>
           </div>
 
-          <input
-            value={profileHomeCity}
-            onChange={(event) => onSetProfileHomeCity(event.target.value)}
-            placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-          />
-          <select
-            value={profileAgeRange}
-            onChange={(event) => onSetProfileAgeRange(event.target.value)}
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none focus:border-white/25"
-          >
-            <option value="">{isFr ? "Tranche d’âge optionnelle" : "Optional age range"}</option>
-            <option value="13_17">13–17</option>
-            <option value="18_24">18–24</option>
-            <option value="25_34">25–34</option>
-            <option value="35_44">35–44</option>
-            <option value="45_54">45–54</option>
-            <option value="55_64">55–64</option>
-            <option value="65_plus">65+</option>
-            <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
-          </select>
+          <div>
+            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
+              {isFr ? "Ville" : "City"}
+            </label>
+            <input
+              value={profileHomeCity}
+              onChange={(event) => onSetProfileHomeCity(event.target.value)}
+              placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
+              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-[12px] font-semibold text-white/70">
+              {isFr ? "Tranche d’âge" : "Age range"}
+            </label>
+            <select
+              value={profileAgeRange}
+              onChange={(event) => onSetProfileAgeRange(event.target.value)}
+              className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[14px] text-white outline-none focus:border-white/25"
+            >
+              <option value="">{isFr ? "Optionnel" : "Optional"}</option>
+              <option value="18_24">18–24</option>
+              <option value="25_34">25–34</option>
+              <option value="35_44">35–44</option>
+              <option value="45_54">45–54</option>
+              <option value="55_64">55–64</option>
+              <option value="65_plus">65+</option>
+              <option value="prefer_not_to_say">{isFr ? "Préfère ne pas répondre" : "Prefer not to say"}</option>
+            </select>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
+            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-white/45">
+              {isFr ? "Confidentialité" : "Privacy"}
+            </p>
+
+            <div className="space-y-3">
+              <button
+                type="button"
+                onClick={() => onSetCommentsVisibleToFriends(!commentsVisibleToFriends)}
+                className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-left"
+              >
+                <div>
+                  <p className="text-[13px] font-semibold text-white/85">
+                    {isFr ? "Commentaires visibles par mes amis" : "Comments visible to my friends"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Tes amis pourront voir les commentaires que tu choisis de partager." : "Your friends will be able to see the comments you choose to share."}
+                  </p>
+                </div>
+                <span className={commentsVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
+                  <span className={commentsVisibleToFriends ? "h-5 w-5 translate-x-5 rounded-full bg-white transition-transform" : "h-5 w-5 rounded-full bg-white transition-transform"} />
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onSetVisitedPlacesVisibleToFriends(!visitedPlacesVisibleToFriends)}
+                className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3 text-left"
+              >
+                <div>
+                  <p className="text-[13px] font-semibold text-white/85">
+                    {isFr ? "Lieux visités visibles par mes amis" : "Visited places visible to my friends"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Tes amis pourront voir les lieux que tu marques comme visités." : "Your friends will be able to see the places you mark as visited."}
+                  </p>
+                </div>
+                <span className={visitedPlacesVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
+                  <span className={visitedPlacesVisibleToFriends ? "h-5 w-5 translate-x-5 rounded-full bg-white transition-transform" : "h-5 w-5 rounded-full bg-white transition-transform"} />
+                </span>
+              </button>
+            </div>
+          </div>
           <button
             type="button"
             onClick={onSaveProfile}

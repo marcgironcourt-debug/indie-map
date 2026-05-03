@@ -96,18 +96,20 @@ model DailySession {
 }
 
 model User {
-  id                 String    @id @default(uuid())
-  email              String?   @unique
-  username           String    @unique
-  passwordHash       String?
-  displayName        String
-  avatarUrl          String?
-  avatarColor        String?
-  homeCity           String?
-  ageRange           String?
-  profileCompletedAt DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  id                            String    @id @default(uuid())
+  email                         String?   @unique
+  username                      String    @unique
+  passwordHash                  String?
+  displayName                   String
+  avatarUrl                     String?
+  avatarColor                   String?
+  homeCity                      String?
+  ageRange                      String?
+  commentsVisibleToFriends      Boolean   @default(false)
+  visitedPlacesVisibleToFriends Boolean   @default(false)
+  profileCompletedAt            DateTime?
+  createdAt                     DateTime  @default(now())
+  updatedAt                     DateTime  @updatedAt
 
   sentFriendships      Friendship[]          @relation("FriendshipRequester")
   receivedFriendships  Friendship[]          @relation("FriendshipReceiver")

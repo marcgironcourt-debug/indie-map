@@ -11,7 +11,7 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import { isOpenNowFR } from "@/lib/openingHours";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
-type Panel = null | "pros" | "contrib" | "about" | "myPlaces" | "myPlacesList" | "profileInfo";
+type Panel = null | "pros" | "contrib" | "about" | "personalSpace" | "myPlacesList" | "profileInfo";
 
 type AuthProfile = {
   id: string;
@@ -411,6 +411,8 @@ export default function HomeScreen({
   const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
   const [profileAgeRange, setProfileAgeRange] = React.useState("");
+  const [commentsVisibleToFriends, setCommentsVisibleToFriends] = React.useState(false);
+  const [visitedPlacesVisibleToFriends, setVisitedPlacesVisibleToFriends] = React.useState(false);
   const [profileSaving, setProfileSaving] = React.useState(false);
   const [profileSuccess, setProfileSuccess] = React.useState("");
   const [profileError, setProfileError] = React.useState("");
@@ -444,6 +446,8 @@ export default function HomeScreen({
         setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
         setProfileAgeRange(user.ageRange || "");
+        setCommentsVisibleToFriends(user.commentsVisibleToFriends === true);
+        setVisitedPlacesVisibleToFriends(user.visitedPlacesVisibleToFriends === true);
         return user as AuthProfile;
       }
       setAuthProfile(null);
@@ -461,7 +465,7 @@ export default function HomeScreen({
   }, [refreshAuthProfile]);
 
   React.useEffect(() => {
-    if (panel === "myPlaces") {
+    if (panel === "personalSpace") {
       refreshAuthProfile();
     }
   }, [panel, refreshAuthProfile]);
@@ -470,13 +474,13 @@ export default function HomeScreen({
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("auth") === "ok") {
-      setPanel("myPlaces");
+      setPanel("personalSpace");
       refreshAuthProfile();
     }
 
     const resetPasswordToken = params.get("resetPasswordToken");
     if (resetPasswordToken) {
-      setPanel("myPlaces");
+      setPanel("personalSpace");
       setAuthMode("resetConfirm");
       setAuthResetToken(resetPasswordToken);
       setAuthError("");
@@ -628,6 +632,8 @@ export default function HomeScreen({
       setProfileAvatarColor(data.user.avatarColor || "#F97316");
       setProfileHomeCity(data.user.homeCity || "");
       setProfileAgeRange(data.user.ageRange || "");
+      setCommentsVisibleToFriends(data.user.commentsVisibleToFriends === true);
+      setVisitedPlacesVisibleToFriends(data.user.visitedPlacesVisibleToFriends === true);
       setAuthPassword("");
     } catch {
       setAuthError(authMode === "signup" ? (isFr ? "Impossible de créer le compte." : "Unable to create the account.") : (isFr ? "Impossible de se connecter." : "Unable to sign in."));
@@ -665,6 +671,8 @@ export default function HomeScreen({
       setProfileAvatarColor("#F97316");
       setProfileHomeCity("");
       setProfileAgeRange("");
+      setCommentsVisibleToFriends(false);
+      setVisitedPlacesVisibleToFriends(false);
     } catch {
       setAuthError(isFr ? "Impossible de se déconnecter pour l’instant." : "Unable to sign out right now.");
     } finally {
@@ -692,6 +700,8 @@ export default function HomeScreen({
           avatarColor: profileAvatarColor,
           homeCity: profileHomeCity.trim() || null,
           ageRange: profileAgeRange || null,
+          commentsVisibleToFriends,
+          visitedPlacesVisibleToFriends,
         }),
       });
       const data = await res.json().catch(() => null);
@@ -701,6 +711,8 @@ export default function HomeScreen({
       }
       setAuthProfile(data.user);
       setProfileAvatarColor(data.user.avatarColor || profileAvatarColor);
+      setCommentsVisibleToFriends(data.user.commentsVisibleToFriends === true);
+      setVisitedPlacesVisibleToFriends(data.user.visitedPlacesVisibleToFriends === true);
       setProfileSuccess(isFr ? "Profil enregistré." : "Profile saved.");
     } catch {
       setProfileError(isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile.");
@@ -1988,7 +2000,7 @@ export default function HomeScreen({
       <BottomNavBar
         isFr={isFr}
         authProfile={authProfile}
-        onOpenPersonal={() => setPanel("myPlaces")}
+        onOpenPersonal={() => setPanel("personalSpace")}
         onOpenContrib={() => setPanel("contrib")}
         onOpenAbout={() => setPanel("about")}
         onOpenPros={() => setPanel("pros")}
@@ -2099,7 +2111,7 @@ export default function HomeScreen({
                     </div>
                   </>
                 )
-              ) : panel === "myPlaces" || panel === "profileInfo" ? (
+              ) : panel === "personalSpace" || panel === "profileInfo" ? (
                 <PersonalSpacePanel
                   isFr={isFr}
                   mode={panel === "profileInfo" ? "profile" : "dashboard"}
@@ -2117,6 +2129,8 @@ export default function HomeScreen({
                   profileAvatarColor={profileAvatarColor}
                   profileHomeCity={profileHomeCity}
                   profileAgeRange={profileAgeRange}
+                  commentsVisibleToFriends={commentsVisibleToFriends}
+                  visitedPlacesVisibleToFriends={visitedPlacesVisibleToFriends}
                   profileSaving={profileSaving}
                   profileSuccess={profileSuccess}
                   profileError={profileError}
@@ -2128,7 +2142,7 @@ export default function HomeScreen({
                     const now = new Date();
                     return visited.getFullYear() === now.getFullYear() && visited.getMonth() === now.getMonth();
                   }).length}
-                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : "myPlaces")}
+                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : "personalSpace")}
                   onOpenSavedPlaces={() => setPanel("myPlacesList")}
                   onSetAuthMode={setAuthMode}
                   onSetAuthEmail={setAuthEmail}
@@ -2143,6 +2157,8 @@ export default function HomeScreen({
                   onSetProfileAvatarColor={setProfileAvatarColor}
                   onSetProfileHomeCity={setProfileHomeCity}
                   onSetProfileAgeRange={setProfileAgeRange}
+                  onSetCommentsVisibleToFriends={setCommentsVisibleToFriends}
+                  onSetVisitedPlacesVisibleToFriends={setVisitedPlacesVisibleToFriends}
                   onSubmitAuth={submitAuth}
                   onRequestPasswordReset={requestPasswordReset}
                   onConfirmPasswordReset={confirmPasswordReset}
@@ -2153,7 +2169,7 @@ export default function HomeScreen({
                 <>
                   <button
                     type="button"
-                    onClick={() => setPanel("myPlaces")}
+                    onClick={() => setPanel("personalSpace")}
                     className="mb-4 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[13px] font-semibold text-white/75 hover:bg-white/12 active:bg-white/16"
                   >
                     ← {isFr ? "Retour" : "Back"}
