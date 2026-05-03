@@ -1301,24 +1301,6 @@ export default function PersonalSpacePanel({
               </span>
             </span>
           </button>
-
-          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 5.5h14v9H8.5L5 18.2V5.5z" />
-                <path d="M8.5 9h7" />
-                <path d="M8.5 12h4.5" />
-              </svg>
-            </span>
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr ? "Commentaires" : "Comments"}
-              </span>
-              <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr ? "Bientôt." : "Soon."}
-              </span>
-            </span>
-          </button>
         </div>
       </section>
 

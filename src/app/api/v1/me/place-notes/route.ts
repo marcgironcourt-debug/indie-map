@@ -136,29 +136,23 @@ export async function POST(req: Request) {
 
     let placeComment = null;
 
+    if (comment && existingComment) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "comment_already_exists",
+        },
+        { status: 409, headers: V1_HEADERS }
+      );
+    }
+
     if (comment) {
-      placeComment = existingComment
-        ? await prisma.placeComment.update({
-            where: {
-              id: existingComment.id,
-            },
-            data: {
-              body: comment,
-              visibility: "friends",
-            },
-          })
-        : await prisma.placeComment.create({
-            data: {
-              userId: currentUser.id,
-              placeId,
-              body: comment,
-              visibility: "friends",
-            },
-          });
-    } else if (existingComment) {
-      await prisma.placeComment.delete({
-        where: {
-          id: existingComment.id,
+      placeComment = await prisma.placeComment.create({
+        data: {
+          userId: currentUser.id,
+          placeId,
+          body: comment,
+          visibility: "friends",
         },
       });
     }

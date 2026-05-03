@@ -752,6 +752,10 @@ export default function HomeScreen({
   const [searchLoading, setSearchLoading] = React.useState(false);
   const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
   const [addressCopied, setAddressCopied] = React.useState(false);
+  const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
+  const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
+  const [selectedPlaceCommentSaving, setSelectedPlaceCommentSaving] = React.useState(false);
+  const [selectedPlaceCommentError, setSelectedPlaceCommentError] = React.useState("");
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
@@ -770,6 +774,13 @@ export default function HomeScreen({
       newPlaces: (homeMemoryCache[locale]?.newPlaces?.length ?? 0) > 0 ? homeMemoryCache[locale]!.newPlaces : (initialNewPlaces ?? [])
     };
   }, [locale, initialDiscoverPlace, initialContextPlace, initialNewPlaces]);
+
+  React.useEffect(() => {
+    setSelectedPlaceCommentsOpen(false);
+    setSelectedPlaceCommentInput("");
+    setSelectedPlaceCommentError("");
+    setSelectedPlaceCommentSaving(false);
+  }, [selectedHomePlace?.id]);
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -971,6 +982,97 @@ export default function HomeScreen({
     void syncPlaceNoteToServer(editingPlaceNote.id, nextNotes[editingPlaceNote.id]);
     setEditingPlaceNote(null);
     setEditingPlaceComment("");
+  }
+
+  function toggleSelectedHomePlaceSaved() {
+    if (!selectedHomePlace?.id) return;
+
+    const id = String(selectedHomePlace.id);
+    const exists = savedPlaces.some((item) => String(item.id) === id);
+    const next = exists
+      ? savedPlaces.filter((item) => String(item.id) !== id)
+      : [
+          {
+            id,
+            name: String(selectedHomePlace.name ?? "").trim(),
+            panoramaImage: String(selectedHomePlace.panoramaImage ?? "").trim() || undefined,
+            city: String(selectedHomePlace.city ?? "").trim() || undefined,
+            address: String(selectedHomePlace.address ?? "").trim() || undefined,
+            lat: Number.isFinite(Number(selectedHomePlace.lat)) ? Number(selectedHomePlace.lat) : undefined,
+            lng: Number.isFinite(Number(selectedHomePlace.lng)) ? Number(selectedHomePlace.lng) : undefined,
+            createdAt: String(selectedHomePlace.createdAt ?? "").trim() || undefined,
+            updatedAt: String(selectedHomePlace.updatedAt ?? "").trim() || undefined
+          },
+          ...savedPlaces
+        ];
+
+    setSavedPlaces(next);
+    window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+    window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
+
+    try {
+      fetch("/api/v1/me/saved-places", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId: id,
+          saved: !exists
+        })
+      }).catch(() => {});
+    } catch {}
+  }
+
+  async function saveSelectedHomePlaceComment() {
+    if (!selectedHomePlace?.id || !authProfile) return;
+
+    const placeId = String(selectedHomePlace.id);
+    const currentNote = placeNotes[placeId];
+    const comment = selectedPlaceCommentInput.trim();
+
+    if (!comment || currentNote?.comment) return;
+
+    setSelectedPlaceCommentSaving(true);
+    setSelectedPlaceCommentError("");
+
+    const nextNote: PlaceNote = {
+      ...(currentNote ?? {}),
+      comment,
+      updatedAt: new Date().toISOString()
+    };
+
+    try {
+      const res = await fetch("/api/v1/me/place-notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId,
+          visited: currentNote?.visited === true,
+          visitedAt: currentNote?.visitedAt ?? null,
+          comment
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error("comment_save_failed");
+      }
+
+      const nextNotes = {
+        ...placeNotes,
+        [placeId]: nextNote
+      };
+
+      setPlaceNotes(nextNotes);
+      writePlaceNotes(nextNotes, authProfile.id);
+      setSelectedPlaceCommentInput("");
+    } catch {
+      setSelectedPlaceCommentError(isFr ? "Impossible d’enregistrer ce commentaire." : "Unable to save this comment.");
+    } finally {
+      setSelectedPlaceCommentSaving(false);
+    }
   }
 
   function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
@@ -1770,6 +1872,43 @@ export default function HomeScreen({
 
       {selectedHomePlace ? (
         <div className="fixed inset-0 z-[2200] overflow-hidden bg-[#2f2f2f] text-white">
+          {(() => {
+            const selectedHomePlaceSaved = savedPlaces.some((item) => String(item.id) === String(selectedHomePlace.id));
+
+            return (
+              <button
+                type="button"
+                onClick={toggleSelectedHomePlaceSaved}
+                className="absolute left-4 z-[80] grid place-items-center"
+                style={{
+                  top: "calc(env(safe-area-inset-top) + 16px)",
+                  width: 40,
+                  height: 40,
+                  background: "rgba(0,0,0,0.35)",
+                  backdropFilter: "blur(8px)",
+                  borderRadius: "9999px",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "#ffffff",
+                  padding: 0
+                }}
+                aria-label={selectedHomePlaceSaved ? (isFr ? "Retirer des favoris" : "Remove from favorites") : (isFr ? "Ajouter aux favoris" : "Add to favorites")}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill={selectedHomePlaceSaved ? "#6F6528" : "none"}
+                  stroke="rgba(255,255,255,0.95)"
+                  strokeWidth="2.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z" />
+                </svg>
+              </button>
+            );
+          })()}
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
@@ -1784,6 +1923,74 @@ export default function HomeScreen({
           {selectedHomePlace?.miniText ? (
             <div className="relative mt-[55vh] min-h-[45vh] rounded-t-3xl bg-black/80 px-6 pt-6 pb-8">
               <div>
+                <div className="absolute inset-x-0 bottom-full z-40 -mb-px flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlaceCommentsOpen((value) => !value)}
+                    className="inline-flex rounded-t-xl rounded-b-none bg-black/55 px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black/60 active:bg-black/65"
+                  >
+                    {isFr ? "Commentaires" : "Comments"}
+                  </button>
+
+                  {selectedPlaceCommentsOpen ? (
+                    <div className="absolute inset-x-0 bottom-full z-30 max-h-[42vh] overflow-y-auto rounded-3xl border border-white/10 bg-black/35 px-6 py-5 shadow-[0_-18px_45px_rgba(0,0,0,0.35)] backdrop-blur-md">
+                      {(() => {
+                        const note = placeNotes[String(selectedHomePlace.id)];
+                        const existingComment = String(note?.comment ?? "").trim();
+
+                        return (
+                          <div className="space-y-4">
+                            {existingComment ? (
+                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                <p className="text-[15px] leading-relaxed text-white/88">
+                                  <span className="font-semibold text-white">{isFr ? "Moi : " : "Me: "}</span>
+                                  <span>{existingComment}</span>
+                                </p>
+                              </div>
+                            ) : (
+                              <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
+                                <div className="mb-3 text-[14px] text-white/70">
+                                  {isFr ? "Aucun commentaire pour le moment." : "No comments yet."}
+                                </div>
+
+                                {authProfile ? (
+                                  <div className="space-y-3">
+                                    <textarea
+                                      value={selectedPlaceCommentInput}
+                                      onChange={(e) => setSelectedPlaceCommentInput(e.target.value)}
+                                      maxLength={1200}
+                                      rows={4}
+                                      placeholder={isFr ? "Écris ton commentaire..." : "Write your comment..."}
+                                      className="w-full resize-none rounded-2xl border border-white/10 bg-black/45 px-4 py-3 text-[14px] leading-relaxed text-white outline-none placeholder:text-white/35 focus:border-white/25"
+                                    />
+
+                                    {selectedPlaceCommentError ? (
+                                      <p className="text-[12px] text-red-200/85">{selectedPlaceCommentError}</p>
+                                    ) : null}
+
+                                    <button
+                                      type="button"
+                                      onClick={saveSelectedHomePlaceComment}
+                                      disabled={selectedPlaceCommentSaving || !selectedPlaceCommentInput.trim()}
+                                      className="rounded-full bg-[#F97316] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white disabled:opacity-45"
+                                    >
+                                      {selectedPlaceCommentSaving ? (isFr ? "Enregistrement..." : "Saving...") : (isFr ? "Publier" : "Post")}
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <p className="text-[13px] leading-relaxed text-white/45">
+                                    {isFr ? "Connecte-toi à ton espace perso pour écrire un commentaire." : "Sign in to your personal space to write a comment."}
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  ) : null}
+                </div>
+
                 <div className="mb-6">
                   <div className="text-[28px] font-bold leading-tight text-white">
                     {selectedHomePlace.name}
