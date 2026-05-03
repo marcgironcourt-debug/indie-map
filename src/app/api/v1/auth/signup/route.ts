@@ -12,6 +12,7 @@ function serializeUser(user: {
   username: string;
   displayName: string;
   avatarUrl: string | null;
+  avatarColor: string | null;
   homeCity: string | null;
   ageRange: string | null;
   profileCompletedAt: Date | null;
@@ -22,6 +23,7 @@ function serializeUser(user: {
     username: user.username,
     displayName: user.displayName,
     avatarUrl: user.avatarUrl,
+    avatarColor: user.avatarColor,
     homeCity: user.homeCity,
     ageRange: user.ageRange,
     profileCompleted: Boolean(user.profileCompletedAt),

@@ -21,6 +21,7 @@ export async function GET() {
         username: user.username,
         displayName: user.displayName,
         avatarUrl: user.avatarUrl,
+        avatarColor: user.avatarColor,
       },
     }, { headers: V1_HEADERS });
   } catch (err) {
