@@ -7,10 +7,15 @@ export type PlaceNote = {
   updatedAt?: string;
 };
 
-export function readPlaceNotes(): Record<string, PlaceNote> {
+function getPlaceNotesKey(userId?: string | null) {
+  const cleanUserId = typeof userId === "string" ? userId.trim() : "";
+  return cleanUserId ? `${PLACE_NOTES_KEY}:${cleanUserId}` : PLACE_NOTES_KEY;
+}
+
+export function readPlaceNotes(userId?: string | null): Record<string, PlaceNote> {
   try {
     if (typeof window === "undefined") return {};
-    const raw = window.localStorage.getItem(PLACE_NOTES_KEY);
+    const raw = window.localStorage.getItem(getPlaceNotesKey(userId));
     if (!raw) return {};
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
@@ -20,10 +25,10 @@ export function readPlaceNotes(): Record<string, PlaceNote> {
   }
 }
 
-export function writePlaceNotes(notes: Record<string, PlaceNote>) {
+export function writePlaceNotes(notes: Record<string, PlaceNote>, userId?: string | null) {
   try {
     if (typeof window === "undefined") return;
-    window.localStorage.setItem(PLACE_NOTES_KEY, JSON.stringify(notes));
+    window.localStorage.setItem(getPlaceNotesKey(userId), JSON.stringify(notes));
     window.dispatchEvent(new Event("im:place-notes-updated"));
   } catch {}
 }

@@ -149,48 +149,146 @@ export default function PersonalSpacePanel({
     incomingRequests: [],
     outgoingRequests: [],
   });
+  const [friendSearchQuery, setFriendSearchQuery] = React.useState("");
+  const [friendSearchLoading, setFriendSearchLoading] = React.useState(false);
+  const [friendSearchError, setFriendSearchError] = React.useState("");
+  const [friendSearchUsers, setFriendSearchUsers] = React.useState<FriendPublicUser[]>([]);
+  const [friendRequestSendingId, setFriendRequestSendingId] = React.useState<string | null>(null);
+  const [friendRequestMessage, setFriendRequestMessage] = React.useState("");
+  const [friendResponseSendingId, setFriendResponseSendingId] = React.useState<string | null>(null);
+
+  const reloadFriends = React.useCallback(async () => {
+    if (!authProfile) return;
+
+    setFriendsLoading(true);
+    setFriendsError("");
+
+    try {
+      const res = await fetch("/api/v1/me/friends", { cache: "no-store" });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("friends_load_failed");
+      }
+
+      setFriendsPayload({
+        friends: Array.isArray(data.friends) ? data.friends : [],
+        incomingRequests: Array.isArray(data.incomingRequests) ? data.incomingRequests : [],
+        outgoingRequests: Array.isArray(data.outgoingRequests) ? data.outgoingRequests : [],
+      });
+    } catch {
+      setFriendsError(isFr ? "Impossible de charger tes amis pour le moment." : "Unable to load your friends right now.");
+    } finally {
+      setFriendsLoading(false);
+    }
+  }, [authProfile, isFr]);
+
+  React.useEffect(() => {
+    if (mode !== "friends" || !authProfile) return;
+    reloadFriends();
+  }, [mode, authProfile, reloadFriends]);
 
   React.useEffect(() => {
     if (mode !== "friends" || !authProfile) return;
 
-    let cancelled = false;
+    const q = friendSearchQuery.trim();
 
-    async function loadFriends() {
-      setFriendsLoading(true);
-      setFriendsError("");
+    if (q.length < 2) {
+      setFriendSearchUsers([]);
+      setFriendSearchError("");
+      setFriendSearchLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    const timer = window.setTimeout(async () => {
+      setFriendSearchLoading(true);
+      setFriendSearchError("");
 
       try {
-        const res = await fetch("/api/v1/me/friends", { cache: "no-store" });
+        const res = await fetch(`/api/v1/users/search?q=${encodeURIComponent(q)}`, { cache: "no-store" });
         const data = await res.json().catch(() => null);
 
         if (!res.ok || !data?.ok) {
-          throw new Error("friends_load_failed");
+          throw new Error("friend_search_failed");
         }
 
         if (!cancelled) {
-          setFriendsPayload({
-            friends: Array.isArray(data.friends) ? data.friends : [],
-            incomingRequests: Array.isArray(data.incomingRequests) ? data.incomingRequests : [],
-            outgoingRequests: Array.isArray(data.outgoingRequests) ? data.outgoingRequests : [],
-          });
+          setFriendSearchUsers(Array.isArray(data.users) ? data.users : []);
         }
       } catch {
         if (!cancelled) {
-          setFriendsError(isFr ? "Impossible de charger tes amis pour le moment." : "Unable to load your friends right now.");
+          setFriendSearchUsers([]);
+          setFriendSearchError(isFr ? "Recherche impossible pour le moment." : "Search unavailable right now.");
         }
       } finally {
         if (!cancelled) {
-          setFriendsLoading(false);
+          setFriendSearchLoading(false);
         }
       }
-    }
-
-    loadFriends();
+    }, 250);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(timer);
     };
-  }, [mode, authProfile, isFr]);
+  }, [mode, authProfile, friendSearchQuery, isFr]);
+
+  async function sendFriendRequest(receiverId: string) {
+    setFriendRequestSendingId(receiverId);
+    setFriendRequestMessage("");
+
+    try {
+      const res = await fetch("/api/v1/me/friends/request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ receiverId }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("friend_request_failed");
+      }
+
+      setFriendRequestMessage(isFr ? "Demande envoyée." : "Request sent.");
+      await reloadFriends();
+    } catch {
+      setFriendRequestMessage(isFr ? "Impossible d’envoyer la demande." : "Unable to send request.");
+    } finally {
+      setFriendRequestSendingId(null);
+    }
+  }
+
+  async function respondToFriendRequest(friendshipId: string, action: "accept" | "decline") {
+    setFriendResponseSendingId(friendshipId);
+    setFriendRequestMessage("");
+
+    try {
+      const res = await fetch("/api/v1/me/friends/respond", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ friendshipId, action }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("friend_response_failed");
+      }
+
+      setFriendRequestMessage(action === "accept" ? (isFr ? "Demande acceptée." : "Request accepted.") : (isFr ? "Demande refusée." : "Request declined."));
+      await reloadFriends();
+    } catch {
+      setFriendRequestMessage(isFr ? "Impossible de répondre à la demande." : "Unable to respond to the request.");
+    } finally {
+      setFriendResponseSendingId(null);
+    }
+  }
 
   const legalLinks = (
     <section className="mt-6 px-1">
@@ -702,25 +800,74 @@ export default function PersonalSpacePanel({
 
         <div className="space-y-4">
           <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <p className="font-serif text-[22px] font-semibold leading-tight text-white">
-                  {isFr ? "Ajouter un ami" : "Add a friend"}
-                </p>
-                <p className="mt-2 text-[13px] leading-relaxed text-white/50">
-                  {isFr
-                    ? "Recherche par pseudo et invitation arriveront ici."
-                    : "Username search and invitations will arrive here."}
-                </p>
+            <p className="font-serif text-[22px] font-semibold leading-tight text-white">
+              {isFr ? "Ajouter un ami" : "Add a friend"}
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed text-white/50">
+              {isFr
+                ? "Recherche une personne par son pseudo Indie Map."
+                : "Search for someone by their Indie Map username."}
+            </p>
+
+            <input
+              value={friendSearchQuery}
+              onChange={(event) => setFriendSearchQuery(event.target.value)}
+              placeholder={isFr ? "Pseudo, ex. marcos" : "Username, e.g. marcos"}
+              className="mt-4 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
+            />
+
+            {friendSearchLoading ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                {isFr ? "Recherche..." : "Searching..."}
+              </p>
+            ) : friendSearchError ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-red-200">
+                {friendSearchError}
+              </p>
+            ) : friendSearchQuery.trim().length >= 2 && friendSearchUsers.length === 0 ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+                {isFr ? "Aucun utilisateur trouvé." : "No user found."}
+              </p>
+            ) : friendSearchUsers.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                {friendSearchUsers.map((user) => (
+                  <div key={user.id} className="flex items-center gap-3 rounded-2xl bg-black/20 px-3 py-3">
+                    {user.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                    ) : (
+                      <span
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                        style={{ backgroundColor: user.avatarColor || "#F97316" }}
+                      >
+                        {(user.displayName || user.username || "?").slice(0, 1)}
+                      </span>
+                    )}
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-[14px] font-semibold text-white/90">
+                        {user.displayName || user.username}
+                      </span>
+                      <span className="block truncate text-[12px] text-white/40">
+                        @{user.username}
+                      </span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => sendFriendRequest(user.id)}
+                      disabled={friendRequestSendingId === user.id}
+                      className="shrink-0 rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                    >
+                      {friendRequestSendingId === user.id ? (isFr ? "..." : "...") : (isFr ? "Ajouter" : "Add")}
+                    </button>
+                  </div>
+                ))}
               </div>
-              <button
-                type="button"
-                disabled
-                className="shrink-0 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35"
-              >
-                {isFr ? "Bientôt" : "Soon"}
-              </button>
-            </div>
+            ) : null}
+
+            {friendRequestMessage ? (
+              <p className="mt-3 text-[13px] leading-relaxed text-white/55">
+                {friendRequestMessage}
+              </p>
+            ) : null}
           </section>
 
           <section className="rounded-3xl border border-white/10 bg-white/8 p-5">
@@ -792,6 +939,54 @@ export default function PersonalSpacePanel({
                 </p>
               </div>
             </div>
+
+            {friendsPayload.incomingRequests.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                {friendsPayload.incomingRequests.map((entry) => (
+                  <div key={entry.id} className="rounded-2xl bg-black/20 px-3 py-3">
+                    <div className="flex items-center gap-3">
+                      {entry.user.avatarUrl ? (
+                        <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                      ) : (
+                        <span
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                          style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
+                        >
+                          {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
+                        </span>
+                      )}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-[14px] font-semibold text-white/90">
+                          {entry.user.displayName || entry.user.username}
+                        </span>
+                        <span className="block truncate text-[12px] text-white/40">
+                          @{entry.user.username}
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => respondToFriendRequest(entry.id, "accept")}
+                        disabled={friendResponseSendingId === entry.id}
+                        className="rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                      >
+                        {isFr ? "Accepter" : "Accept"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => respondToFriendRequest(entry.id, "decline")}
+                        disabled={friendResponseSendingId === entry.id}
+                        className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70 disabled:opacity-60"
+                      >
+                        {isFr ? "Refuser" : "Decline"}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </section>
         </div>
       </>

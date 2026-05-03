@@ -753,7 +753,7 @@ export default function HomeScreen({
   const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
-  const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>(() => readPlaceNotes());
+  const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
   const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
@@ -837,7 +837,7 @@ export default function HomeScreen({
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
-      setPlaceNotes(readPlaceNotes());
+      setPlaceNotes(readPlaceNotes(authProfile?.id ?? null));
     };
 
     syncPlaceNotes();
@@ -848,7 +848,7 @@ export default function HomeScreen({
       window.removeEventListener("storage", syncPlaceNotes);
       window.removeEventListener("im:place-notes-updated", syncPlaceNotes as EventListener);
     };
-  }, []);
+  }, [authProfile?.id]);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -889,7 +889,7 @@ export default function HomeScreen({
     };
 
     setPlaceNotes(nextNotes);
-    writePlaceNotes(nextNotes);
+    writePlaceNotes(nextNotes, authProfile?.id ?? null);
     setEditingPlaceNote(null);
     setEditingPlaceComment("");
   }
@@ -2276,7 +2276,7 @@ export default function HomeScreen({
                                       };
 
                                       setPlaceNotes(nextNotes);
-                                      writePlaceNotes(nextNotes);
+                                      writePlaceNotes(nextNotes, authProfile?.id ?? null);
                                     }}
                                     onKeyDown={(e) => {
                                       if (e.key !== "Enter" && e.key !== " ") return;
@@ -2296,7 +2296,7 @@ export default function HomeScreen({
                                       };
 
                                       setPlaceNotes(nextNotes);
-                                      writePlaceNotes(nextNotes);
+                                      writePlaceNotes(nextNotes, authProfile?.id ?? null);
                                     }}
                                     className={placeNotes[place.id]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-yellow-400 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}
                                   >

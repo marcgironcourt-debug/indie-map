@@ -378,7 +378,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [profileSuccess, setProfileSuccess] = React.useState("");
   const [profileError, setProfileError] = React.useState("");
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
-  const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>(() => readPlaceNotes());
+  const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
@@ -421,7 +421,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     } finally {
       setAuthLoading(false);
     }
-  }, []);
+  }, [authProfile?.id]);
 
   React.useEffect(() => {
     refreshAuthProfile();
@@ -713,7 +713,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
-      setPlaceNotes(readPlaceNotes());
+      setPlaceNotes(readPlaceNotes(authProfile?.id ?? null));
     };
 
     syncPlaceNotes();
