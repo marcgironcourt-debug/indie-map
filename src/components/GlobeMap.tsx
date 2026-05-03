@@ -124,6 +124,21 @@ function isSavedPlace(id: string) {
   return readSavedPlaces().some((item: any) => String(item?.id ?? "") === String(id ?? ""));
 }
 
+function syncSavedPlaceToServer(placeId: string, saved: boolean) {
+  try {
+    fetch("/api/v1/me/saved-places", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        placeId,
+        saved
+      })
+    }).catch(() => {});
+  } catch {}
+}
+
 function toggleSavedPlace(place: any) {
   try {
     if (typeof window === "undefined") return false;
@@ -147,9 +162,12 @@ function toggleSavedPlace(place: any) {
           ...current
         ];
 
+    const saved = !exists;
+
     window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
     window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
-    return !exists;
+    syncSavedPlaceToServer(id, saved);
+    return saved;
   } catch {
     return false;
   }

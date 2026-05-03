@@ -836,6 +836,37 @@ export default function HomeScreen({
   }, []);
 
   React.useEffect(() => {
+    if (!authProfile) return;
+
+    const userId = authProfile.id;
+    let cancelled = false;
+
+    async function loadSavedPlacesFromServer() {
+      try {
+        const res = await fetch("/api/v1/me/saved-places", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok || !Array.isArray(data.places)) return;
+
+        const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
+        const next = allPlaces.filter((place) => ids.has(String(place.id)));
+
+        if (cancelled) return;
+
+        setSavedPlaces(next);
+        window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+        window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
+      } catch {}
+    }
+
+    void loadSavedPlacesFromServer();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authProfile, allPlaces]);
+
+  React.useEffect(() => {
     const syncPlaceNotes = () => {
       setPlaceNotes(readPlaceNotes(authProfile?.id ?? null));
     };
@@ -849,6 +880,34 @@ export default function HomeScreen({
       window.removeEventListener("im:place-notes-updated", syncPlaceNotes as EventListener);
     };
   }, [authProfile?.id]);
+
+  React.useEffect(() => {
+    if (!authProfile) return;
+
+    const userId = authProfile.id;
+    let cancelled = false;
+
+    async function loadPlaceNotesFromServer() {
+      try {
+        const res = await fetch("/api/v1/me/place-notes", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok || !data.notes || typeof data.notes !== "object") return;
+
+        if (cancelled) return;
+
+        setPlaceNotes(data.notes);
+        writePlaceNotes(data.notes, userId);
+      } catch {}
+    }
+
+    void loadPlaceNotesFromServer();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authProfile]);
+
 
   React.useEffect(() => {
     if (!panel) return;
@@ -868,6 +927,25 @@ export default function HomeScreen({
         [city]: (current + delta + length) % length
       };
     });
+  }
+
+  async function syncPlaceNoteToServer(placeId: string, note: PlaceNote | undefined) {
+    if (!authProfile) return;
+
+    try {
+      await fetch("/api/v1/me/place-notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId,
+          visited: note?.visited === true,
+          visitedAt: note?.visitedAt ?? null,
+          comment: note?.comment ?? ""
+        })
+      });
+    } catch {}
   }
 
   function openPlaceNoteEditor(place: SavedPlace) {
@@ -890,6 +968,7 @@ export default function HomeScreen({
 
     setPlaceNotes(nextNotes);
     writePlaceNotes(nextNotes, authProfile?.id ?? null);
+    void syncPlaceNoteToServer(editingPlaceNote.id, nextNotes[editingPlaceNote.id]);
     setEditingPlaceNote(null);
     setEditingPlaceComment("");
   }
@@ -2135,6 +2214,7 @@ export default function HomeScreen({
               ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" ? (
                 <PersonalSpacePanel
                   isFr={isFr}
+                  places={allPlaces}
                   mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : "dashboard"}
                   authLoading={authLoading}
                   authProfile={authProfile}
@@ -2277,6 +2357,7 @@ export default function HomeScreen({
 
                                       setPlaceNotes(nextNotes);
                                       writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                      void syncPlaceNoteToServer(place.id, nextNotes[place.id]);
                                     }}
                                     onKeyDown={(e) => {
                                       if (e.key !== "Enter" && e.key !== " ") return;
@@ -2297,6 +2378,7 @@ export default function HomeScreen({
 
                                       setPlaceNotes(nextNotes);
                                       writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                      void syncPlaceNoteToServer(place.id, nextNotes[place.id]);
                                     }}
                                     className={placeNotes[place.id]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-yellow-400 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}
                                   >

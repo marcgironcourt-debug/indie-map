@@ -36,8 +36,32 @@ type FriendsPayload = {
   outgoingRequests: FriendEntry[];
 };
 
+type PlaceSummary = {
+  id: string;
+  name: string;
+  address?: string;
+  city?: string;
+  category?: string;
+  panoramaImage?: string | null;
+};
+
+type FriendVisitedPlace = {
+  placeId: string;
+  visitedAt: string | null;
+  updatedAt: string;
+};
+
+type FriendProfilePayload = {
+  friend: FriendPublicUser & {
+    visitedPlacesVisibleToFriends: boolean;
+    commentsVisibleToFriends: boolean;
+  };
+  visitedPlaces: FriendVisitedPlace[];
+};
+
 type PersonalSpacePanelProps = {
   isFr: boolean;
+  places: PlaceSummary[];
   mode: PersonalSpacePanelMode;
   authLoading: boolean;
   authProfile: PersonalSpaceAuthProfile | null;
@@ -92,6 +116,7 @@ const AVATAR_COLORS = ["#F97316", "#84A98C", "#2563EB", "#A855F7", "#EAB308", "#
 
 export default function PersonalSpacePanel({
   isFr,
+  places,
   mode,
   authLoading,
   authProfile,
@@ -156,6 +181,40 @@ export default function PersonalSpacePanel({
   const [friendRequestSendingId, setFriendRequestSendingId] = React.useState<string | null>(null);
   const [friendRequestMessage, setFriendRequestMessage] = React.useState("");
   const [friendResponseSendingId, setFriendResponseSendingId] = React.useState<string | null>(null);
+  const [selectedFriend, setSelectedFriend] = React.useState<FriendPublicUser | null>(null);
+  const [friendProfileLoading, setFriendProfileLoading] = React.useState(false);
+  const [friendProfileError, setFriendProfileError] = React.useState("");
+  const [friendProfilePayload, setFriendProfilePayload] = React.useState<FriendProfilePayload | null>(null);
+
+  function findPlace(placeId: string) {
+    return places.find((place) => String(place.id) === String(placeId)) ?? null;
+  }
+
+  async function openFriendProfile(user: FriendPublicUser) {
+    setSelectedFriend(user);
+    setFriendProfileLoading(true);
+    setFriendProfileError("");
+    setFriendProfilePayload(null);
+
+    try {
+      const res = await fetch(`/api/v1/me/friends/${encodeURIComponent(user.id)}/profile`, { cache: "no-store" });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("friend_profile_failed");
+      }
+
+      setFriendProfilePayload({
+        friend: data.friend,
+        visitedPlaces: Array.isArray(data.visitedPlaces) ? data.visitedPlaces : [],
+
+      });
+    } catch {
+      setFriendProfileError(isFr ? "Impossible de charger le profil de cet ami pour le moment." : "Unable to load this friend profile right now.");
+    } finally {
+      setFriendProfileLoading(false);
+    }
+  }
 
   const reloadFriends = React.useCallback(async () => {
     if (!authProfile) return;
@@ -717,24 +776,6 @@ export default function PersonalSpacePanel({
             <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
               <button
                 type="button"
-                onClick={() => onSetCommentsVisibleToFriends(!commentsVisibleToFriends)}
-                className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
-              >
-                <div className="min-w-0">
-                  <p className="text-[14px] font-semibold text-white/90">
-                    {isFr ? "Commentaires visibles par mes amis" : "Comments visible to friends"}
-                  </p>
-                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
-                    {isFr ? "Tes amis verront seulement les commentaires que tu choisis de partager." : "Friends will only see comments you choose to share."}
-                  </p>
-                </div>
-                <span className={commentsVisibleToFriends ? "flex h-7 w-12 shrink-0 items-center rounded-full bg-[#84A98C] p-1" : "flex h-7 w-12 shrink-0 items-center rounded-full bg-white/15 p-1"}>
-                  <span className={commentsVisibleToFriends ? "h-5 w-5 translate-x-5 rounded-full bg-white transition-transform" : "h-5 w-5 rounded-full bg-white transition-transform"} />
-                </span>
-              </button>
-
-              <button
-                type="button"
                 onClick={() => onSetVisitedPlacesVisibleToFriends(!visitedPlacesVisibleToFriends)}
                 className="flex w-full items-center justify-between gap-4 border-t border-white/10 px-4 py-4 text-left"
               >
@@ -776,6 +817,127 @@ export default function PersonalSpacePanel({
   }
 
   if (mode === "friends") {
+    if (selectedFriend) {
+      const visibleVisitedPlaces = friendProfilePayload?.visitedPlaces ?? [];
+
+      return (
+        <>
+          <div className="mb-5 flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedFriend(null);
+                setFriendProfilePayload(null);
+                setFriendProfileError("");
+              }}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+              aria-label={isFr ? "Retour" : "Back"}
+            >
+              ←
+            </button>
+
+            <div className="min-w-0 flex-1 text-center">
+              {selectedFriend.avatarUrl ? (
+                <img src={selectedFriend.avatarUrl} alt="" className="mx-auto h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
+              ) : (
+                <span
+                  className="mx-auto flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
+                  style={{ backgroundColor: selectedFriend.avatarColor || "#F97316" }}
+                >
+                  {(selectedFriend.displayName || selectedFriend.username || "?").slice(0, 1)}
+                </span>
+              )}
+
+              <h2 className="mt-2 truncate font-serif text-[23px] font-semibold leading-tight text-white">
+                {selectedFriend.displayName || selectedFriend.username}
+              </h2>
+            </div>
+
+            <div className="h-10 w-10" />
+          </div>
+
+          <div className="space-y-6">
+            {friendProfileLoading ? (
+              <p className="px-1 text-[13px] leading-relaxed text-white/45">
+                {isFr ? "Chargement..." : "Loading..."}
+              </p>
+            ) : friendProfileError ? (
+              <p className="px-1 text-[13px] leading-relaxed text-red-200">
+                {friendProfileError}
+              </p>
+            ) : (
+              <>
+                <section>
+                  <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                    {isFr ? "Lieux visités" : "Visited places"}
+                  </p>
+
+                  {visibleVisitedPlaces.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-5">
+                      {visibleVisitedPlaces.map((item) => {
+                        const place = findPlace(item.placeId);
+                        if (!place) return null;
+
+                        return (
+                          <div key={item.placeId} className="relative">
+                            <button
+                              type="button"
+                              className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
+                              style={{
+                                minHeight: "130px",
+                                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                              }}
+                            >
+                              {place.panoramaImage ? (
+                                <img
+                                  src={place.panoramaImage}
+                                  alt=""
+                                  className="absolute inset-0 h-full w-full object-cover"
+                                />
+                              ) : null}
+
+                              <div
+                                className="absolute inset-0"
+                                style={{
+                                  background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                                }}
+                              />
+
+                              <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                                <div>
+                                  <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                                    {place.name}
+                                  </p>
+
+                                  <p className="mt-1 truncate text-[11px] text-white/90 opacity-90">
+                                    {place.address || place.city || "Indie Map"}
+                                  </p>
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="px-1">
+                      <p className="text-[14px] font-semibold text-white/90">
+                        {isFr ? "Aucun lieu partagé" : "No shared places"}
+                      </p>
+                      <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                        {isFr ? "Cet ami ne partage pas encore ses lieux visités." : "This friend is not sharing visited places yet."}
+                      </p>
+                    </div>
+                  )}
+                </section>
+
+              </>
+            )}
+          </div>
+        </>
+      );
+    }
+
     return (
       <>
         <div className="mb-5 flex items-center justify-between gap-3">
@@ -788,12 +950,7 @@ export default function PersonalSpacePanel({
             ←
           </button>
           <div className="min-w-0 flex-1 text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
-              {isFr ? "Social privé" : "Private social"}
-            </p>
-            <h2 className="mt-0.5 font-serif text-[23px] font-semibold leading-tight text-white">
-              {isFr ? "Mes amis" : "Friends"}
-            </h2>
+            <div className="h-8" />
           </div>
           <div className="h-10 w-10" />
         </div>
@@ -893,7 +1050,12 @@ export default function PersonalSpacePanel({
             ) : friendsPayload.friends.length > 0 ? (
               <div className="flex flex-wrap gap-x-5 gap-y-5 px-1">
                 {friendsPayload.friends.map((entry) => (
-                  <div key={entry.id} className="flex w-[72px] flex-col items-center text-center">
+                  <button
+                    key={entry.id}
+                    type="button"
+                    onClick={() => openFriendProfile(entry.user)}
+                    className="flex w-[72px] flex-col items-center text-center"
+                  >
                     {entry.user.avatarUrl ? (
                       <img src={entry.user.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
                     ) : (
@@ -908,7 +1070,7 @@ export default function PersonalSpacePanel({
                     <span className="mt-2 block w-full truncate text-[12px] font-semibold leading-tight text-white/85">
                       {entry.user.displayName || entry.user.username}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             ) : (

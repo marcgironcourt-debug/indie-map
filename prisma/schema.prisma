@@ -160,6 +160,7 @@ model UserPlace {
   userId     String
   placeId    String
   visibility String    @default("private")
+  saved      Boolean   @default(false)
   visited    Boolean   @default(false)
   visitedAt  DateTime?
   createdAt  DateTime  @default(now())

@@ -712,6 +712,36 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   }, []);
 
   React.useEffect(() => {
+    if (!authProfile) return;
+
+    let cancelled = false;
+
+    async function loadSavedPlacesFromServer() {
+      try {
+        const res = await fetch("/api/v1/me/saved-places", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok || !Array.isArray(data.places)) return;
+
+        const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
+        const next = businesses.filter((place) => ids.has(String(place.id)));
+
+        if (cancelled) return;
+
+        setSavedPlaces(next);
+        window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+        window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
+      } catch {}
+    }
+
+    void loadSavedPlacesFromServer();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authProfile, businesses]);
+
+  React.useEffect(() => {
     const syncPlaceNotes = () => {
       setPlaceNotes(readPlaceNotes(authProfile?.id ?? null));
     };
@@ -1324,6 +1354,7 @@ const filtered = source.filter((b) => {
                     ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" ? (
                       <PersonalSpacePanel
                         isFr={isFr}
+                        places={businesses}
                         mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : "dashboard"}
                         authLoading={authLoading}
                         authProfile={authProfile}
