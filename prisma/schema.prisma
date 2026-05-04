@@ -129,6 +129,7 @@ model User {
   passwordResetTokens        PasswordResetToken[]
   pushDevices                PushDevice[]
   contextualNotificationLogs ContextualNotificationLog[]
+  appUpdateNotificationLogs AppUpdateNotificationLog[]
 }
 
 model Friendship {
@@ -323,4 +324,21 @@ model ContextualNotificationLog {
   @@index([userId, sentAt])
   @@index([userId, categoryKey, sentAt])
   @@index([placeId])
+}
+
+model AppUpdateNotificationLog {
+  id       String   @id @default(uuid())
+  userId   String
+  version  String
+  platform String
+  title    String
+  body     String
+  sentAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, version, platform])
+  @@index([userId, sentAt])
+  @@index([version])
+  @@index([platform])
 }

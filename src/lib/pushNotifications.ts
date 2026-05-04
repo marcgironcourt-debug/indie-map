@@ -3,7 +3,7 @@ import { createSign } from "node:crypto";
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
 
-type PushKind = "friend_request" | "context_suggestion" | "reactivation";
+type PushKind = "friend_request" | "context_suggestion" | "reactivation" | "app_update";
 
 type PushPayload = {
   kind: PushKind;
@@ -14,6 +14,7 @@ type PushPayload = {
   badge?: number;
   placeId?: string;
   categoryKey?: string;
+  appVersion?: string;
 };
 
 type BadgePayload = {
@@ -47,6 +48,37 @@ function canSendApns() {
     process.env.APNS_BUNDLE_ID &&
     process.env.APNS_PRIVATE_KEY
   );
+}
+
+function getStoreUrlForPlatform(platform: string) {
+  if (platform === "ios") {
+    return String(process.env.APP_STORE_URL || "").trim();
+  }
+
+  if (platform === "android") {
+    return String(process.env.PLAY_STORE_URL || "").trim();
+  }
+
+  return "";
+}
+
+function buildAppUpdateCopy(params: {
+  locale?: string | null;
+  version: string;
+}) {
+  const isFr = params.locale !== "en";
+
+  if (isFr) {
+    return {
+      title: "Nouvelle mise à jour disponible",
+      body: `La version ${params.version} d’Indie Map est disponible.`,
+    };
+  }
+
+  return {
+    title: "New update available",
+    body: `Indie Map version ${params.version} is available.`,
+  };
 }
 
 function base64Url(input: Buffer | string) {
@@ -356,6 +388,111 @@ export async function notifyReactivation(params: {
     badge,
   };
 }
+
+export async function notifyAppUpdateAvailable(params: {
+  userId: string;
+  version: string;
+  locale?: string | null;
+}) {
+  const version = params.version.trim();
+
+  if (!version) {
+    return {
+      attempted: 0,
+      sent: 0,
+      skipped: 0,
+      reason: "missing_version",
+    };
+  }
+
+  const badge = await getUnreadNotificationBadgeCount(params.userId);
+
+  const devices = await prisma.pushDevice.findMany({
+    where: { userId: params.userId },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+      subscription: true,
+    },
+  });
+
+  let skipped = 0;
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      const platform = device.platform;
+      const url = getStoreUrlForPlatform(platform);
+
+      if (!url) {
+        skipped += 1;
+        return false;
+      }
+
+      const existing = await prisma.appUpdateNotificationLog.findUnique({
+        where: {
+          userId_version_platform: {
+            userId: params.userId,
+            version,
+            platform,
+          },
+        },
+      });
+
+      if (existing) {
+        skipped += 1;
+        return false;
+      }
+
+      const copy = buildAppUpdateCopy({
+        locale: params.locale,
+        version,
+      });
+
+      const payload: PushPayload = {
+        kind: "app_update",
+        title: copy.title,
+        body: copy.body,
+        url,
+        target: "app_update",
+        badge,
+        appVersion: version,
+      };
+
+      let sent = false;
+
+      if ((platform === "android" || platform === "web") && device.subscription) {
+        sent = await sendWebPush(device.subscription, payload);
+      }
+
+      if (platform === "ios" && device.token) {
+        sent = await sendApns(device.token, payload);
+      }
+
+      if (sent) {
+        await prisma.appUpdateNotificationLog.create({
+          data: {
+            userId: params.userId,
+            version,
+            platform,
+            title: copy.title,
+            body: copy.body,
+          },
+        });
+      }
+
+      return sent;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    skipped,
+    badge,
+  };
+}
+
 
 
 export async function syncNotificationBadge(params: {
