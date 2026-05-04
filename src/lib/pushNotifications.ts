@@ -3,7 +3,7 @@ import { createSign } from "node:crypto";
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
 
-type PushKind = "friend_request";
+type PushKind = "friend_request" | "context_suggestion";
 
 type PushPayload = {
   kind: PushKind;
@@ -12,6 +12,8 @@ type PushPayload = {
   url: string;
   target: string;
   badge?: number;
+  placeId?: string;
+  categoryKey?: string;
 };
 
 type BadgePayload = {
@@ -161,6 +163,8 @@ async function sendApns(token: string, payload: PushPayload | BadgePayload) {
           kind: payload.kind,
           target: payload.target,
           url: payload.url,
+          ...(payload.placeId ? { placeId: payload.placeId } : {}),
+          ...(payload.categoryKey ? { categoryKey: payload.categoryKey } : {}),
         }
       : {}),
   });
@@ -252,6 +256,58 @@ export async function notifyFriendRequest(params: {
   return {
     attempted: devices.length,
     sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+  };
+}
+
+
+export async function notifyContextSuggestion(params: {
+  userId: string;
+  title: string;
+  body: string;
+  url: string;
+  placeId?: string | null;
+  categoryKey?: string | null;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.userId);
+
+  const payload: PushPayload = {
+    kind: "context_suggestion",
+    title: params.title,
+    body: params.body,
+    url: params.url,
+    target: "context_suggestion",
+    badge,
+    ...(params.placeId ? { placeId: params.placeId } : {}),
+    ...(params.categoryKey ? { categoryKey: params.categoryKey } : {}),
+  };
+
+  const devices = await prisma.pushDevice.findMany({
+    where: {
+      userId: params.userId,
+      platform: "ios",
+    },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+      subscription: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if (device.platform === "ios" && device.token) {
+        return sendApns(device.token, payload);
+      }
+
+      return false;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
   };
 }
 

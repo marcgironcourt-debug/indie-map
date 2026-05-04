@@ -103,7 +103,7 @@ model User {
   displayName                   String
   avatarUrl                     String?
   avatarColor                   String?
-  preferredLocale               String                @default("fr")
+  preferredLocale               String    @default("fr")
   homeCity                      String?
   ageRange                      String?
   commentsVisibleToFriends      Boolean   @default(false)
@@ -112,18 +112,19 @@ model User {
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @updatedAt
 
-  sentFriendships      Friendship[]          @relation("FriendshipRequester")
-  receivedFriendships  Friendship[]          @relation("FriendshipReceiver")
-  sentInvites          Invite[]
-  places               UserPlace[]
-  comments             PlaceComment[]
-  ownedLists           SharedList[]          @relation("SharedListOwner")
-  listMemberships      SharedListMember[]
-  recommendationsSent  PlaceRecommendation[] @relation("RecommendationSender")
-  recommendationsInbox PlaceRecommendation[] @relation("RecommendationReceiver")
-  sessions             UserSession[]
-  passwordResetTokens  PasswordResetToken[]
-  pushDevices          PushDevice[]
+  sentFriendships            Friendship[]                @relation("FriendshipRequester")
+  receivedFriendships        Friendship[]                @relation("FriendshipReceiver")
+  sentInvites                Invite[]
+  places                     UserPlace[]
+  comments                   PlaceComment[]
+  ownedLists                 SharedList[]                @relation("SharedListOwner")
+  listMemberships            SharedListMember[]
+  recommendationsSent        PlaceRecommendation[]       @relation("RecommendationSender")
+  recommendationsInbox       PlaceRecommendation[]       @relation("RecommendationReceiver")
+  sessions                   UserSession[]
+  passwordResetTokens        PasswordResetToken[]
+  pushDevices                PushDevice[]
+  contextualNotificationLogs ContextualNotificationLog[]
 }
 
 model Friendship {
@@ -301,4 +302,21 @@ model PushDevice {
 
   @@index([userId])
   @@index([platform])
+}
+
+model ContextualNotificationLog {
+  id          String    @id @default(uuid())
+  userId      String
+  categoryKey String
+  placeId     String?
+  title       String
+  body        String
+  sentAt      DateTime  @default(now())
+  openedAt    DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, sentAt])
+  @@index([userId, categoryKey, sentAt])
+  @@index([placeId])
 }

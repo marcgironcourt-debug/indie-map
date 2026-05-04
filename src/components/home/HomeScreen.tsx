@@ -7,7 +7,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
-import { isOpenNowFR } from "@/lib/openingHours";
+import { isContextSuggestionCandidateOpen, normalizeContextCategory, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
 type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends";
@@ -290,88 +290,6 @@ function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
   return sorted[hash % sorted.length] ?? null;
 }
 
-function normalizeCategory(value: string | undefined) {
-  const v = String(value ?? "").trim().toLowerCase();
-  if (!v) return "";
-  if (v === "café" || v === "cafe" || v === "café / brunch") return "cafe";
-  if (v === "boulangerie") return "boulangerie";
-  if (v === "restaurant") return "restaurant";
-  if (v === "brunch") return "brunch";
-  if (
-    v === "bar" ||
-    v === "pub" ||
-    v === "brasserie" ||
-    v === "brasserie / bar" ||
-    v === "brasserie / bar / pub" ||
-    v === "brasserie bar"
-  ) return "bar";
-  if (v === "épicerie" || v === "epicerie" || v === "grocery") return "epicerie";
-  if (v === "ferme") return "ferme";
-  if (v === "librairie") return "librairie";
-  if (v === "boutique" || v === "mode" || v === "artisanat" || v === "artisanat / créateurs locaux") return "boutique";
-  if (v === "atelier") return "atelier";
-  if (v === "lieu alternatif" || v === "lieu de vie") return "alternatif";
-  if (v === "marché" || v === "marche") return "marche";
-  return v.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
-function getContextCategoryTargets(now: Date) {
-  const hour = now.getHours();
-  const day = now.getDay();
-  const isWeekend = day === 0 || day === 6;
-  const targets: string[] = [];
-
-  if (hour >= 6 && hour < 11) {
-    targets.push("cafe", "boulangerie");
-  }
-
-  if (hour >= 11 && hour < 14) {
-    targets.push("restaurant", "brunch");
-  }
-
-  if (hour >= 14 && hour < 17) {
-    targets.push("boutique", "librairie", "atelier");
-  }
-
-  if (hour >= 16 && hour < 20) {
-    targets.push("epicerie", "ferme", "restaurant");
-  }
-
-  if (hour >= 17 || hour < 1) {
-    targets.push("bar", "restaurant", "alternatif");
-  }
-
-  if (isWeekend) {
-    targets.push("marche", "ferme", "brunch", "librairie", "alternatif", "cafe");
-  }
-
-  if (targets.length === 0) {
-    targets.push("cafe", "restaurant", "boutique");
-  }
-
-  return [...new Set(targets)];
-}
-
-function pickContextPlaces(list: DiscoverPlace[], now: Date) {
-  const targets = getContextCategoryTargets(now);
-  return list
-    .map((item) => {
-      const normalized = normalizeCategory(item.category);
-      const index = targets.indexOf(normalized);
-      return {
-        item,
-        index,
-        updatedAt: Date.parse(item.updatedAt || item.createdAt || "") || 0
-      };
-    })
-    .filter((entry) => entry.index >= 0)
-    .sort((a, b) => {
-      if (a.index !== b.index) return a.index - b.index;
-      return b.updatedAt - a.updatedAt;
-    })
-    .map((entry) => entry.item);
-}
-
 function getSuggestionCopy(place: DiscoverPlace | null, locale: "fr" | "en", isNearby: boolean) {
   if (!place) return "";
   if (locale === "fr") {
@@ -387,18 +305,11 @@ function getInitialSuggestionPlaces(
   contextPlace: DiscoverPlace | null | undefined
 ) {
   const pool = all.filter((item) => item.id !== discoverPlace?.id);
-  const picks = pickContextPlaces(pool.filter(isSuggestionCandidateOpen), now);
+  const picks = pickContextPlaces(pool.filter(isContextSuggestionCandidateOpen), now);
   const fallback = pickContextPlaces(pool, now);
   const list = (picks.length > 0 ? picks : fallback).slice(0, 3);
   if (list.length > 0) return list;
   return contextPlace ? [contextPlace] : [];
-}
-
-function isSuggestionCandidateOpen(place: DiscoverPlace) {
-  const opening = String(place.openingHours ?? "").trim();
-  const timeZone = String(place.timeZone ?? "").trim();
-  if (!opening || !timeZone) return true;
-  return isOpenNowFR(opening, timeZone) !== false;
 }
 
 export default function HomeScreen({
@@ -1213,8 +1124,8 @@ export default function HomeScreen({
 
           const contextBasePool = (pool.length > 0 ? pool : all).filter((item) => item.id !== nextDiscover?.id);
           const contextFallbackPool = all.filter((item) => item.id !== nextDiscover?.id);
-          const openContextBasePool = contextBasePool.filter(isSuggestionCandidateOpen);
-          const openContextFallbackPool = contextFallbackPool.filter(isSuggestionCandidateOpen);
+          const openContextBasePool = contextBasePool.filter(isContextSuggestionCandidateOpen);
+          const openContextFallbackPool = contextFallbackPool.filter(isContextSuggestionCandidateOpen);
 
           const nearbySuggestionsOpen = hasLocation && pool.length > 0 ? pickContextPlaces(openContextBasePool, now) : [];
           const nearbySuggestionsAll = hasLocation && pool.length > 0 ? pickContextPlaces(contextBasePool, now) : [];
@@ -1654,7 +1565,7 @@ export default function HomeScreen({
                         const rawCategory = normalize(place.category || "");
                         const miniText = normalize(place.miniText || "");
                         const miniTextEn = normalize((place as any).translations?.en?.miniText || "");
-                        const searchCategory = rawCategory.includes("brunch") ? "brunch" : normalizeCategory(place.category);
+                        const searchCategory = rawCategory.includes("brunch") ? "brunch" : normalizeContextCategory(place.category);
 
                         if (targetCategories.includes(searchCategory)) return true;
                         if (targetCategories.includes("brunch") && (miniText.includes("brunch") || miniTextEn.includes("brunch"))) return true;
@@ -1671,7 +1582,7 @@ export default function HomeScreen({
                         .map((place) => {
                           const placeCity = normalize(place.city || "");
                           const rawCategory = normalize(place.category || "");
-                          const placeCategory = rawCategory.includes("brunch") ? "brunch" : normalizeCategory(place.category);
+                          const placeCategory = rawCategory.includes("brunch") ? "brunch" : normalizeContextCategory(place.category);
                           const name = normalize(place.name || "");
                           const address = normalize(place.address || "");
                           const category = normalize(place.category || "");
