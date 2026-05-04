@@ -1265,10 +1265,17 @@ export default function HomeScreen({
         });
 
         if (pos && Number.isFinite(pos.lat) && Number.isFinite(pos.lng)) {
+          fetch("/api/v1/me/location", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ lat: pos.lat, lng: pos.lng }),
+            keepalive: true,
+          }).catch(() => null);
+
           const nearby = all.filter((item) => {
             const lat = Number(item.lat);
             const lng = Number(item.lng);
-            return Number.isFinite(lat) && Number.isFinite(lng) && haversineKm(pos.lat, pos.lng, lat, lng) <= 50;
+            return Number.isFinite(lat) && Number.isFinite(lng) && haversineKm(pos.lat, pos.lng, lat, lng) <= 30;
           });
           finish(nearby, true);
           return;

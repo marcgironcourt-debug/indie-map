@@ -3,7 +3,7 @@ import { createSign } from "node:crypto";
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
 
-type PushKind = "friend_request" | "context_suggestion";
+type PushKind = "friend_request" | "context_suggestion" | "reactivation";
 
 type PushPayload = {
   kind: PushKind;
@@ -297,6 +297,52 @@ export async function notifyContextSuggestion(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       if (device.platform === "ios" && device.token) {
+        return sendApns(device.token, payload);
+      }
+
+      return false;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
+  };
+}
+
+export async function notifyReactivation(params: {
+  userId: string;
+  title: string;
+  body: string;
+  url: string;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.userId);
+
+  const payload: PushPayload = {
+    kind: "reactivation",
+    title: params.title,
+    body: params.body,
+    url: params.url,
+    target: "reactivation",
+    badge,
+  };
+
+  const devices = await prisma.pushDevice.findMany({
+    where: {
+      userId: params.userId,
+      platform: "ios",
+    },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if (device.token) {
         return sendApns(device.token, payload);
       }
 

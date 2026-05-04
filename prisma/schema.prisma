@@ -109,6 +109,10 @@ model User {
   commentsVisibleToFriends      Boolean   @default(false)
   visitedPlacesVisibleToFriends Boolean   @default(false)
   profileCompletedAt            DateTime?
+  lastKnownLat                  Float?
+  lastKnownLng                  Float?
+  lastKnownLocationAt           DateTime?
+  lastSeenAt                    DateTime?
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @updatedAt
 

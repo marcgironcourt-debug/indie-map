@@ -98,5 +98,11 @@ export async function getCurrentUser() {
     return null;
   }
 
+  prisma.user.update({
+    where: { id: session.user.id },
+    data: { lastSeenAt: new Date() },
+    select: { id: true },
+  }).catch(() => null);
+
   return session.user;
 }
