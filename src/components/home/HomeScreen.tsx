@@ -434,7 +434,7 @@ export default function HomeScreen({
     return () => {
       delete window.__IM_REGISTER_PUSH_TOKEN__;
     };
-  }, [authProfile?.id]);
+  }, [authProfile?.id, panel]);
 
 
   React.useEffect(() => {
@@ -824,6 +824,7 @@ export default function HomeScreen({
 
   React.useEffect(() => {
     if (!authProfile) return;
+    if (panel !== "myPlacesList") return;
 
     const userId = authProfile.id;
     let cancelled = false;
@@ -851,7 +852,7 @@ export default function HomeScreen({
     return () => {
       cancelled = true;
     };
-  }, [authProfile?.id, allPlaces]);
+  }, [authProfile?.id, allPlaces, panel]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
@@ -870,6 +871,7 @@ export default function HomeScreen({
 
   React.useEffect(() => {
     if (!authProfile) return;
+    if (panel !== "personalSpace" && panel !== "myPlacesList") return;
 
     const userId = authProfile.id;
     let cancelled = false;

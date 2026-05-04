@@ -493,9 +493,15 @@ export default function PersonalSpacePanel({
   }, [authProfile, isFr]);
 
   React.useEffect(() => {
-    if ((mode !== "friends" && mode !== "sharedLists") || !authProfile) return;
-    reloadFriends();
-  }, [mode, authProfile, reloadFriends]);
+    if (!authProfile) return;
+    if (mode === "friends") {
+      reloadFriends();
+      return;
+    }
+    if (mode === "sharedLists" && selectedSharedListId) {
+      reloadFriends();
+    }
+  }, [mode, authProfile, selectedSharedListId, reloadFriends]);
 
   React.useEffect(() => {
     if (mode !== "sharedLists" || !authProfile) return;
