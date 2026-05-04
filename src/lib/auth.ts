@@ -98,11 +98,16 @@ export async function getCurrentUser() {
     return null;
   }
 
-  prisma.user.update({
-    where: { id: session.user.id },
-    data: { lastSeenAt: new Date() },
-    select: { id: true },
-  }).catch(() => null);
+  const now = Date.now();
+  const lastSeenAt = session.user.lastSeenAt?.getTime() ?? 0;
+
+  if (now - lastSeenAt > 5 * 60 * 1000) {
+    await prisma.user.update({
+      where: { id: session.user.id },
+      data: { lastSeenAt: new Date(now) },
+      select: { id: true },
+    }).catch(() => null);
+  }
 
   return session.user;
 }

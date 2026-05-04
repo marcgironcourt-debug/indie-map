@@ -434,14 +434,14 @@ export default function HomeScreen({
     return () => {
       delete window.__IM_REGISTER_PUSH_TOKEN__;
     };
-  }, [authProfile]);
+  }, [authProfile?.id]);
 
 
   React.useEffect(() => {
-    if (panel === "personalSpace") {
+    if (panel === "personalSpace" && !authProfile) {
       refreshAuthProfile();
     }
-  }, [panel, refreshAuthProfile]);
+  }, [panel, authProfile, refreshAuthProfile]);
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -851,7 +851,7 @@ export default function HomeScreen({
     return () => {
       cancelled = true;
     };
-  }, [authProfile, allPlaces]);
+  }, [authProfile?.id, allPlaces]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {

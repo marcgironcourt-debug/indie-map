@@ -528,7 +528,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     } finally {
       setAuthLoading(false);
     }
-  }, [authProfile?.id]);
+  }, [locale]);
 
   React.useEffect(() => {
     refreshAuthProfile();
@@ -564,14 +564,14 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     return () => {
       delete window.__IM_REGISTER_PUSH_TOKEN__;
     };
-  }, [authProfile]);
+  }, [authProfile?.id]);
 
 
   React.useEffect(() => {
-    if (panel === "personalSpace") {
+    if (panel === "personalSpace" && !authProfile) {
       refreshAuthProfile();
     }
-  }, [panel, refreshAuthProfile]);
+  }, [panel, authProfile, refreshAuthProfile]);
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -903,7 +903,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     return () => {
       cancelled = true;
     };
-  }, [authProfile, businesses]);
+  }, [authProfile?.id, businesses]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
