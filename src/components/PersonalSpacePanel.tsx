@@ -122,6 +122,9 @@ type PersonalSpacePanelProps = {
 
 const AVATAR_COLORS = ["#F97316", "#84A98C", "#2563EB", "#A855F7", "#EAB308", "#EC4899"];
 
+const APP_DOWNLOAD_URL_FR = "https://apps.apple.com/fr/app/indie-map-back-to-local/id6761104779?l=fr";
+const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-local/id6761104779?l=en";
+
 export default function PersonalSpacePanel({
   isFr,
   places,
@@ -197,6 +200,39 @@ export default function PersonalSpacePanel({
 
   function findPlace(placeId: string) {
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
+  }
+
+  async function inviteFriend() {
+    const nav = navigator as Navigator & {
+      share?: (data: { title?: string; text?: string; url?: string }) => Promise<void>;
+      clipboard?: {
+        writeText?: (text: string) => Promise<void>;
+      };
+    };
+
+    const appDownloadUrl = isFr ? APP_DOWNLOAD_URL_FR : APP_DOWNLOAD_URL_EN;
+
+    const shareData = {
+      title: "Indie Map",
+      text: isFr ? "Découvre Indie Map, la carte des lieux locaux et indépendants." : "Discover Indie Map, the map of local and independent places.",
+      url: appDownloadUrl,
+    };
+
+    if (typeof nav.share === "function") {
+      try {
+        await nav.share(shareData);
+        return;
+      } catch {
+        return;
+      }
+    }
+
+    try {
+      await nav.clipboard?.writeText?.(appDownloadUrl);
+      setFriendRequestMessage(isFr ? "Lien copié. Tu peux l’envoyer à ton ami." : "Link copied. You can send it to your friend.");
+    } catch {
+      window.open(appDownloadUrl, "_blank", "noopener,noreferrer");
+    }
   }
 
   async function openFriendProfile(user: FriendPublicUser) {
@@ -1063,6 +1099,26 @@ export default function PersonalSpacePanel({
           </section>
 
           <section>
+            <button
+              type="button"
+              onClick={inviteFriend}
+              className="flex w-full items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white px-5 py-4 text-left text-black shadow-[0_18px_42px_rgba(0,0,0,0.22)] active:scale-[0.99]"
+            >
+              <span className="min-w-0">
+                <span className="block text-[15px] font-semibold">
+                  {isFr ? "Inviter un ami" : "Invite a friend"}
+                </span>
+                <span className="mt-0.5 block text-[12px] leading-snug text-black/55">
+                  {isFr ? "Partager Indie Map avec quelqu’un." : "Share Indie Map with someone."}
+                </span>
+              </span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-[18px] text-white">
+                ↗
+              </span>
+            </button>
+          </section>
+
+          <section>
             <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
               {isFr ? "Mes amis" : "My friends"}
             </p>
@@ -1115,32 +1171,13 @@ export default function PersonalSpacePanel({
 
           <section>
             <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
-              {isFr ? "Demandes" : "Requests"}
+              {isFr ? "Demandes reçues" : "Incoming requests"}
             </p>
 
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/8">
-              <div className="grid grid-cols-2 border-b border-white/10">
-                <div className="px-4 py-4">
-                  <p className="text-[22px] font-semibold text-white">
-                    {friendsPayload.incomingRequests.length}
-                  </p>
-                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
-                    {isFr ? "Reçues" : "Incoming"}
-                  </p>
-                </div>
-                <div className="border-l border-white/10 px-4 py-4">
-                  <p className="text-[22px] font-semibold text-white">
-                    {friendsPayload.outgoingRequests.length}
-                  </p>
-                  <p className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
-                    {isFr ? "Envoyées" : "Outgoing"}
-                  </p>
-                </div>
-              </div>
-
-              {friendsPayload.incomingRequests.length > 0 ? (
-                friendsPayload.incomingRequests.map((entry) => (
-                  <div key={entry.id} className="border-t border-white/10 px-4 py-3 first:border-t-0">
+            {friendsPayload.incomingRequests.length > 0 ? (
+              <div className="space-y-3 px-1">
+                {friendsPayload.incomingRequests.map((entry) => (
+                  <div key={entry.id} className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
                     <div className="flex items-center gap-3">
                       {entry.user.avatarUrl ? (
                         <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
@@ -1163,12 +1200,12 @@ export default function PersonalSpacePanel({
                       </span>
                     </div>
 
-                    <div className="mt-3 grid grid-cols-2 gap-2">
+                    <div className="mt-3 flex gap-2">
                       <button
                         type="button"
                         onClick={() => respondToFriendRequest(entry.id, "accept")}
                         disabled={friendResponseSendingId === entry.id}
-                        className="rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
+                        className="flex-1 rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-60"
                       >
                         {isFr ? "Accepter" : "Accept"}
                       </button>
@@ -1176,24 +1213,24 @@ export default function PersonalSpacePanel({
                         type="button"
                         onClick={() => respondToFriendRequest(entry.id, "decline")}
                         disabled={friendResponseSendingId === entry.id}
-                        className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70 disabled:opacity-60"
+                        className="flex-1 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70 disabled:opacity-60"
                       >
                         {isFr ? "Refuser" : "Decline"}
                       </button>
                     </div>
                   </div>
-                ))
-              ) : (
-                <div className="px-4 py-4">
-                  <p className="text-[14px] font-semibold text-white/90">
-                    {isFr ? "Aucune demande reçue" : "No incoming requests"}
-                  </p>
-                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
-                    {isFr ? "Les nouvelles demandes d’amis apparaîtront ici." : "New friend requests will appear here."}
-                  </p>
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="px-1">
+                <p className="text-[14px] font-semibold text-white/90">
+                  {isFr ? "Aucune demande reçue" : "No incoming requests"}
+                </p>
+                <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                  {isFr ? "Les nouvelles demandes d’amis apparaîtront ici." : "New friend requests will appear here."}
+                </p>
+              </div>
+            )}
           </section>
         </div>
       </>
