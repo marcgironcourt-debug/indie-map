@@ -1340,22 +1340,6 @@ export default function PersonalSpacePanel({
               </span>
             </span>
           </button>
-
-          <button type="button" disabled className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left opacity-70">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3.8l1.8 5.2h5.5l-4.4 3.2l1.7 5.3L12 14.2l-4.6 3.3l1.7-5.3L4.7 9h5.5L12 3.8z" />
-              </svg>
-            </span>
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr ? "Impact local" : "Local impact"}
-              </span>
-              <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr ? "Bientôt." : "Soon."}
-              </span>
-            </span>
-          </button>
         </div>
       </section>
 
