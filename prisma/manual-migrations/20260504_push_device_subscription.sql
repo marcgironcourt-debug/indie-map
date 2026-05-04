@@ -1,0 +1,1 @@
+ALTER TABLE "PushDevice" ADD COLUMN IF NOT EXISTS "subscription" TEXT;

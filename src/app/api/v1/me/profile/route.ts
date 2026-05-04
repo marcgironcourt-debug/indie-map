@@ -41,6 +41,13 @@ function normUsername(value: unknown) {
   return clean;
 }
 
+function normLocale(value: unknown) {
+  if (typeof value !== "string") return null;
+  const locale = value.trim().toLowerCase();
+  if (locale !== "fr" && locale !== "en") return null;
+  return locale;
+}
+
 function serializeUser(user: {
   id: string;
   email: string | null;
@@ -48,6 +55,7 @@ function serializeUser(user: {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
+  preferredLocale: string;
   homeCity: string | null;
   ageRange: string | null;
   commentsVisibleToFriends: boolean;
@@ -61,6 +69,7 @@ function serializeUser(user: {
     displayName: user.displayName,
     avatarUrl: user.avatarUrl,
     avatarColor: user.avatarColor,
+    preferredLocale: user.preferredLocale,
     homeCity: user.homeCity,
     ageRange: user.ageRange,
     commentsVisibleToFriends: user.commentsVisibleToFriends,
@@ -98,6 +107,7 @@ export async function POST(req: Request) {
     const avatarUrl = normStr(body?.avatarUrl, 600);
     const avatarColorRaw = normStr(body?.avatarColor, 20);
     const avatarColor = avatarColorRaw && AVATAR_COLORS.has(avatarColorRaw) ? avatarColorRaw : null;
+    const preferredLocale = normLocale(body?.preferredLocale) || currentUser.preferredLocale || "fr";
     const homeCity = normStr(body?.homeCity, 120);
     const ageRangeRaw = normStr(body?.ageRange, 40);
     const ageRange = ageRangeRaw && AGE_RANGES.has(ageRangeRaw) ? ageRangeRaw : null;
@@ -124,6 +134,7 @@ export async function POST(req: Request) {
         displayName: displayName || username,
         avatarUrl,
         avatarColor,
+        preferredLocale,
         homeCity,
         ageRange,
         commentsVisibleToFriends,

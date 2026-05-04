@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { notifyFriendRequest } from "@/lib/pushNotifications";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -29,7 +30,10 @@ export async function POST(req: Request) {
 
     const receiver = await prisma.user.findUnique({
       where: { id: receiverId },
-      select: { id: true },
+      select: {
+        id: true,
+        preferredLocale: true,
+      },
     });
 
     if (!receiver) {
@@ -75,6 +79,14 @@ export async function POST(req: Request) {
         receiverId: true,
         createdAt: true,
       },
+    });
+
+    notifyFriendRequest({
+      receiverId,
+      requesterDisplayName: currentUser.displayName || currentUser.username,
+      locale: receiver.preferredLocale,
+    }).catch((error) => {
+      console.error("[/api/v1/me/friends/request] notification error", error);
     });
 
     return NextResponse.json(

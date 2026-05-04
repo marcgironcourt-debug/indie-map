@@ -19,6 +19,7 @@ type AuthProfile = {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
+  preferredLocale: string;
   homeCity: string | null;
   ageRange: string | null;
   profileCompleted: boolean;
@@ -159,10 +160,34 @@ declare global {
   interface WindowEventMap {
     "im:native-location": CustomEvent<{ lat: number; lng: number }>;
   }
+
+  interface Window {
+    __IM_PENDING_PUSH_TOKEN__?: string;
+    __IM_REGISTER_PUSH_TOKEN__?: (token: string) => void;
+  }
 }
 
 const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; contextPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 const SAVED_PLACES_KEY = "im-saved-places";
+
+function normalizePushToken(value: unknown) {
+  if (typeof value !== "string") return null;
+  const token = value.trim();
+  if (!token || token.length < 16 || token.length > 2000) return null;
+  return token;
+}
+
+async function registerPushToken(token: string) {
+  const res = await fetch("/api/v1/me/push-devices", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ platform: "ios", token }),
+  });
+
+  if (res.status === 401) return false;
+  return res.ok;
+}
+
 function readSavedPlaces(): SavedPlace[] {
   try {
     if (typeof window === "undefined") return [];
@@ -449,7 +474,7 @@ export default function HomeScreen({
         setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
         setProfileAgeRange(user.ageRange || "");
-        setProfileLocale(locale);
+        setProfileLocale(user.preferredLocale || locale);
         setCommentsVisibleToFriends(user.commentsVisibleToFriends === true);
         setVisitedPlacesVisibleToFriends(user.visitedPlacesVisibleToFriends === true);
         return user as AuthProfile;
@@ -467,6 +492,39 @@ export default function HomeScreen({
   React.useEffect(() => {
     refreshAuthProfile();
   }, [refreshAuthProfile]);
+  React.useEffect(() => {
+    window.__IM_REGISTER_PUSH_TOKEN__ = (rawToken: string) => {
+      const token = normalizePushToken(rawToken);
+      if (!token) return;
+      window.__IM_PENDING_PUSH_TOKEN__ = token;
+
+      if (!authProfile) return;
+
+      registerPushToken(token)
+        .then((ok) => {
+          if (ok && window.__IM_PENDING_PUSH_TOKEN__ === token) {
+            delete window.__IM_PENDING_PUSH_TOKEN__;
+          }
+        })
+        .catch(() => null);
+    };
+
+    const pendingToken = normalizePushToken(window.__IM_PENDING_PUSH_TOKEN__);
+    if (pendingToken && authProfile) {
+      registerPushToken(pendingToken)
+        .then((ok) => {
+          if (ok && window.__IM_PENDING_PUSH_TOKEN__ === pendingToken) {
+            delete window.__IM_PENDING_PUSH_TOKEN__;
+          }
+        })
+        .catch(() => null);
+    }
+
+    return () => {
+      delete window.__IM_REGISTER_PUSH_TOKEN__;
+    };
+  }, [authProfile]);
+
 
   React.useEffect(() => {
     if (panel === "personalSpace") {
@@ -479,6 +537,11 @@ export default function HomeScreen({
     const params = new URLSearchParams(window.location.search);
     if (params.get("auth") === "ok") {
       setPanel("personalSpace");
+      refreshAuthProfile();
+    }
+
+    if (params.get("panel") === "friends") {
+      setPanel("friends");
       refreshAuthProfile();
     }
 
@@ -643,6 +706,7 @@ export default function HomeScreen({
       setProfileAvatarColor(data.user.avatarColor || "#F97316");
       setProfileHomeCity(data.user.homeCity || "");
       setProfileAgeRange(data.user.ageRange || "");
+      setProfileLocale(data.user.preferredLocale || locale);
       setCommentsVisibleToFriends(data.user.commentsVisibleToFriends === true);
       setVisitedPlacesVisibleToFriends(data.user.visitedPlacesVisibleToFriends === true);
       setAuthPassword("");
@@ -710,6 +774,7 @@ export default function HomeScreen({
           displayName: profileDisplayName.trim() || username,
           avatarUrl: authProfile?.avatarUrl || null,
           avatarColor: profileAvatarColor,
+          preferredLocale: profileLocale || locale,
           homeCity: profileHomeCity.trim() || null,
           ageRange: profileAgeRange || null,
           commentsVisibleToFriends,
