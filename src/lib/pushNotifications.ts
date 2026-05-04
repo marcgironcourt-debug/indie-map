@@ -11,6 +11,11 @@ type PushPayload = {
   body: string;
   url: string;
   target: string;
+  badge?: number;
+};
+
+type BadgePayload = {
+  badge: number;
 };
 
 function getBaseUrl() {
@@ -67,9 +72,29 @@ function getApnsJwt() {
   return `${body}.${base64Url(signature)}`;
 }
 
+async function getUnreadNotificationBadgeCount(userId: string) {
+  const [pendingFriendRequests, unreadPlaceRecommendations] = await Promise.all([
+    prisma.friendship.count({
+      where: {
+        receiverId: userId,
+        status: "pending",
+      },
+    }),
+    prisma.placeRecommendation.count({
+      where: {
+        receiverId: userId,
+        readAt: null,
+      },
+    }),
+  ]);
+
+  return pendingFriendRequests + unreadPlaceRecommendations;
+}
+
 function buildFriendRequestPayload(params: {
   requesterDisplayName: string;
   locale?: string | null;
+  badge: number;
 }): PushPayload {
   const isFr = params.locale !== "en";
   const name = params.requesterDisplayName.trim() || (isFr ? "Quelqu’un" : "Someone");
@@ -82,6 +107,7 @@ function buildFriendRequestPayload(params: {
       : `${name} wants to add you on Indie Map.`,
     url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=friends`,
     target: "friends",
+    badge: params.badge,
   };
 }
 
@@ -99,24 +125,44 @@ async function sendWebPush(subscriptionRaw: string, payload: PushPayload) {
   return true;
 }
 
-async function sendApns(token: string, payload: PushPayload) {
+async function sendApns(token: string, payload: PushPayload | BadgePayload) {
   if (!canSendApns()) return false;
 
   const bundleId = process.env.APNS_BUNDLE_ID || "";
   const env = (process.env.APNS_ENV || "production").toLowerCase();
   const host = env === "development" ? "https://api.sandbox.push.apple.com" : "https://api.push.apple.com";
 
+  const isNotificationPayload = "kind" in payload;
+  const aps: {
+    alert?: {
+      title: string;
+      body: string;
+    };
+    sound?: string;
+    badge?: number;
+  } = {};
+
+  if (isNotificationPayload) {
+    aps.alert = {
+      title: payload.title,
+      body: payload.body,
+    };
+    aps.sound = "default";
+  }
+
+  if (typeof payload.badge === "number") {
+    aps.badge = Math.max(0, Math.floor(payload.badge));
+  }
+
   const body = JSON.stringify({
-    aps: {
-      alert: {
-        title: payload.title,
-        body: payload.body,
-      },
-      sound: "default",
-    },
-    kind: payload.kind,
-    target: payload.target,
-    url: payload.url,
+    aps,
+    ...(isNotificationPayload
+      ? {
+          kind: payload.kind,
+          target: payload.target,
+          url: payload.url,
+        }
+      : {}),
   });
 
   await new Promise<void>((resolve, reject) => {
@@ -171,9 +217,12 @@ export async function notifyFriendRequest(params: {
   requesterDisplayName: string;
   locale?: string | null;
 }) {
+  const badge = await getUnreadNotificationBadgeCount(params.receiverId);
+
   const payload = buildFriendRequestPayload({
     requesterDisplayName: params.requesterDisplayName,
     locale: params.locale,
+    badge,
   });
 
   const devices = await prisma.pushDevice.findMany({
@@ -203,5 +252,36 @@ export async function notifyFriendRequest(params: {
   return {
     attempted: devices.length,
     sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+  };
+}
+
+
+export async function syncNotificationBadge(params: {
+  userId: string;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.userId);
+
+  const devices = await prisma.pushDevice.findMany({
+    where: {
+      userId: params.userId,
+      platform: "ios",
+    },
+    select: {
+      id: true,
+      token: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if (!device.token) return false;
+      return sendApns(device.token, { badge });
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
   };
 }

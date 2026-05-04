@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { syncNotificationBadge } from "@/lib/pushNotifications";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -55,6 +56,10 @@ export async function POST(req: Request) {
         where: { id: friendshipId },
       });
 
+      syncNotificationBadge({ userId: currentUser.id }).catch((error) => {
+        console.error("[/api/v1/me/friends/respond] badge sync error", error);
+      });
+
       return NextResponse.json({ ok: true, declined: true }, { headers: V1_HEADERS });
     }
 
@@ -71,6 +76,10 @@ export async function POST(req: Request) {
         createdAt: true,
         updatedAt: true,
       },
+    });
+
+    syncNotificationBadge({ userId: currentUser.id }).catch((error) => {
+      console.error("[/api/v1/me/friends/respond] badge sync error", error);
     });
 
     return NextResponse.json(
