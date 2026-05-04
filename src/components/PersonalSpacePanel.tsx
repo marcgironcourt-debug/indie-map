@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export type PersonalSpacePanelMode = "dashboard" | "profile" | "friends";
+export type PersonalSpacePanelMode = "dashboard" | "profile" | "friends" | "sharedLists";
 
 export type PersonalSpaceAuthMode = "signup" | "login" | "resetRequest" | "resetConfirm";
 
@@ -34,6 +34,32 @@ type FriendsPayload = {
   friends: FriendEntry[];
   incomingRequests: FriendEntry[];
   outgoingRequests: FriendEntry[];
+};
+
+type SharedListMember = {
+  id: string;
+  userId: string;
+  role: string;
+  createdAt: string;
+  user: FriendPublicUser;
+};
+
+type SharedListPlace = {
+  id: string;
+  placeId: string;
+  addedById: string | null;
+  createdAt: string;
+};
+
+type SharedList = {
+  id: string;
+  title: string;
+  ownerId: string;
+  owner: FriendPublicUser;
+  createdAt: string;
+  updatedAt: string;
+  members: SharedListMember[];
+  places: SharedListPlace[];
 };
 
 type PlaceSummary = {
@@ -197,9 +223,188 @@ export default function PersonalSpacePanel({
   const [friendProfileLoading, setFriendProfileLoading] = React.useState(false);
   const [friendProfileError, setFriendProfileError] = React.useState("");
   const [friendProfilePayload, setFriendProfilePayload] = React.useState<FriendProfilePayload | null>(null);
+  const [sharedListsLoading, setSharedListsLoading] = React.useState(false);
+  const [sharedListsError, setSharedListsError] = React.useState("");
+  const [sharedLists, setSharedLists] = React.useState<SharedList[]>([]);
+  const [selectedSharedListId, setSelectedSharedListId] = React.useState<string | null>(null);
+  const [newSharedListTitle, setNewSharedListTitle] = React.useState("");
+  const [sharedListSaving, setSharedListSaving] = React.useState(false);
+  const [sharedListMessage, setSharedListMessage] = React.useState("");
+  const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
+  const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
 
   function findPlace(placeId: string) {
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
+  }
+
+  const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
+
+  const sharedPlaceResults = React.useMemo(() => {
+    const q = sharedPlaceQuery.trim().toLowerCase();
+    if (!q) return places.slice(0, 12);
+
+    return places
+      .filter((place) => {
+        const haystack = [place.name, place.city, place.address, place.category].join(" ").toLowerCase();
+        return haystack.includes(q);
+      })
+      .slice(0, 12);
+  }, [places, sharedPlaceQuery]);
+
+  const reloadSharedLists = React.useCallback(async () => {
+    if (!authProfile) return;
+
+    setSharedListsLoading(true);
+    setSharedListsError("");
+
+    try {
+      const res = await fetch("/api/v1/me/shared-lists", { cache: "no-store" });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_lists_load_failed");
+      }
+
+      const nextLists = Array.isArray(data.lists) ? data.lists : [];
+      setSharedLists(nextLists);
+
+      if (selectedSharedListId && !nextLists.some((list: SharedList) => list.id === selectedSharedListId)) {
+        setSelectedSharedListId(null);
+      }
+    } catch {
+      setSharedListsError(isFr ? "Impossible de charger tes listes partagées pour le moment." : "Unable to load your shared lists right now.");
+    } finally {
+      setSharedListsLoading(false);
+    }
+  }, [authProfile, isFr, selectedSharedListId]);
+
+  async function createSharedList() {
+    const title = newSharedListTitle.trim();
+
+    if (!title) {
+      setSharedListMessage(isFr ? "Donne un titre à ta liste." : "Give your list a title.");
+      return;
+    }
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch("/api/v1/me/shared-lists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_create_failed");
+      }
+
+      setNewSharedListTitle("");
+      setSelectedSharedListId(typeof data.listId === "string" ? data.listId : null);
+      setSharedListMessage(isFr ? "Liste créée." : "List created.");
+      await reloadSharedLists();
+    } catch {
+      setSharedListMessage(isFr ? "Impossible de créer cette liste." : "Unable to create this list.");
+    } finally {
+      setSharedListSaving(false);
+    }
+  }
+
+  async function addFriendToSharedList() {
+    if (!selectedSharedList || !selectedSharedFriendId) return;
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(selectedSharedList.id)}/members`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: selectedSharedFriendId }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_member_failed");
+      }
+
+      setSelectedSharedFriendId("");
+      setSharedListMessage(isFr ? "Ami ajouté à la liste." : "Friend added to the list.");
+      await reloadSharedLists();
+    } catch {
+      setSharedListMessage(isFr ? "Impossible d’ajouter cet ami." : "Unable to add this friend.");
+    } finally {
+      setSharedListSaving(false);
+    }
+  }
+
+  async function addPlaceToSharedList(placeId: string) {
+    if (!selectedSharedList) return;
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(selectedSharedList.id)}/places`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ placeId }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_place_failed");
+      }
+
+      setSharedPlaceQuery("");
+      setSharedListMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");
+      await reloadSharedLists();
+    } catch {
+      setSharedListMessage(isFr ? "Impossible d’ajouter ce lieu." : "Unable to add this place.");
+    } finally {
+      setSharedListSaving(false);
+    }
+  }
+
+  async function removePlaceFromSharedList(placeId: string) {
+    if (!selectedSharedList) return;
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(selectedSharedList.id)}/places`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ placeId }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_place_remove_failed");
+      }
+
+      setSharedListMessage(isFr ? "Lieu retiré de la liste." : "Place removed from the list.");
+      await reloadSharedLists();
+    } catch {
+      setSharedListMessage(isFr ? "Impossible de retirer ce lieu." : "Unable to remove this place.");
+    } finally {
+      setSharedListSaving(false);
+    }
   }
 
   async function inviteFriend() {
@@ -288,9 +493,14 @@ export default function PersonalSpacePanel({
   }, [authProfile, isFr]);
 
   React.useEffect(() => {
-    if (mode !== "friends" || !authProfile) return;
+    if ((mode !== "friends" && mode !== "sharedLists") || !authProfile) return;
     reloadFriends();
   }, [mode, authProfile, reloadFriends]);
+
+  React.useEffect(() => {
+    if (mode !== "sharedLists" || !authProfile) return;
+    reloadSharedLists();
+  }, [mode, authProfile, reloadSharedLists]);
 
   React.useEffect(() => {
     if (mode !== "friends" || !authProfile) return;
@@ -879,6 +1089,309 @@ export default function PersonalSpacePanel({
     );
   }
 
+  if (mode === "sharedLists") {
+    return (
+      <>
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              if (selectedSharedList) {
+                setSelectedSharedListId(null);
+                setSharedListMessage("");
+                return;
+              }
+
+              onModeChange("dashboard");
+            }}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+            aria-label={isFr ? "Retour" : "Back"}
+          >
+            ←
+          </button>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+              {isFr ? "Avec mes amis" : "With friends"}
+            </p>
+            <h2 className="mt-0.5 truncate font-serif text-[23px] font-semibold leading-tight text-white">
+              {selectedSharedList ? selectedSharedList.title : (isFr ? "Listes partagées" : "Shared lists")}
+            </h2>
+          </div>
+          <div className="h-10 w-10" />
+        </div>
+
+        {selectedSharedList ? (
+          <div className="space-y-6">
+            <section>
+              <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                {isFr ? "Participants" : "Participants"}
+              </p>
+
+              <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+                {selectedSharedList.members.length > 0 ? (
+                  <div className="flex flex-wrap gap-3">
+                    {selectedSharedList.members.map((member) => (
+                      <div key={member.id} className="flex items-center gap-2 rounded-full bg-black/25 py-1 pl-1 pr-3">
+                        {member.user.avatarUrl ? (
+                          <img src={member.user.avatarUrl} alt="" className="h-8 w-8 rounded-full object-cover" />
+                        ) : (
+                          <span
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-semibold uppercase text-white"
+                            style={{ backgroundColor: member.user.avatarColor || "#F97316" }}
+                          >
+                            {(member.user.displayName || member.user.username || "?").slice(0, 1)}
+                          </span>
+                        )}
+                        <span className="max-w-[120px] truncate text-[12px] font-semibold text-white/85">
+                          {member.user.displayName || member.user.username}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                <div className="mt-4 flex gap-2">
+                  <select
+                    value={selectedSharedFriendId}
+                    onChange={(event) => setSelectedSharedFriendId(event.target.value)}
+                    className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-black/25 px-3 py-3 text-[13px] text-white outline-none"
+                  >
+                    <option value="">{isFr ? "Ajouter un ami" : "Add a friend"}</option>
+                    {friendsPayload.friends
+                      .filter((entry) => !selectedSharedList.members.some((member) => member.userId === entry.user.id))
+                      .map((entry) => (
+                        <option key={entry.user.id} value={entry.user.id}>
+                          {entry.user.displayName || entry.user.username}
+                        </option>
+                      ))}
+                  </select>
+
+                  <button
+                    type="button"
+                    onClick={addFriendToSharedList}
+                    disabled={sharedListSaving || !selectedSharedFriendId}
+                    className="shrink-0 rounded-2xl bg-white px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-50"
+                  >
+                    {isFr ? "Ajouter" : "Add"}
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                {isFr ? "Lieux de la liste" : "Places in this list"}
+              </p>
+
+              {selectedSharedList.places.length > 0 ? (
+                <div className="grid grid-cols-2 gap-5">
+                  {selectedSharedList.places.map((item) => {
+                    const place = findPlace(item.placeId);
+                    if (!place) return null;
+
+                    return (
+                      <div key={item.id} className="relative">
+                        <button
+                          type="button"
+                          onClick={() => onOpenPlace?.(place)}
+                          className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
+                          style={{
+                            minHeight: "130px",
+                            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
+                          }}
+                        >
+                          {place.panoramaImage ? (
+                            <img src={place.panoramaImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                          ) : null}
+
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
+                            }}
+                          />
+
+                          <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                            <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                              {place.name}
+                            </p>
+                            <p className="mt-1 truncate text-[11px] text-white/90 opacity-90">
+                              {place.address || place.city || "Indie Map"}
+                            </p>
+                          </div>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => removePlaceFromSharedList(place.id)}
+                          disabled={sharedListSaving}
+                          className="absolute right-2 top-2 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-[15px] text-white/85 backdrop-blur-md disabled:opacity-50"
+                          aria-label={isFr ? "Retirer" : "Remove"}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Aucun lieu dans cette liste" : "No places in this list"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Ajoute des adresses pour préparer cette liste avec tes amis." : "Add places to prepare this list with your friends."}
+                  </p>
+                </div>
+              )}
+            </section>
+
+            <section>
+              <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                {isFr ? "Ajouter un lieu" : "Add a place"}
+              </p>
+
+              <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+                <input
+                  value={sharedPlaceQuery}
+                  onChange={(event) => setSharedPlaceQuery(event.target.value)}
+                  placeholder={isFr ? "Chercher un lieu" : "Search a place"}
+                  className="w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
+                />
+
+                <div className="mt-3 max-h-[260px] space-y-2 overflow-y-auto pr-1">
+                  {sharedPlaceResults.map((place) => {
+                    const alreadyAdded = selectedSharedList.places.some((item) => item.placeId === place.id);
+
+                    return (
+                      <button
+                        key={place.id}
+                        type="button"
+                        onClick={() => alreadyAdded ? undefined : addPlaceToSharedList(place.id)}
+                        disabled={sharedListSaving || alreadyAdded}
+                        className="flex w-full items-center gap-3 rounded-2xl bg-black/25 p-2 text-left disabled:opacity-45"
+                      >
+                        {place.panoramaImage ? (
+                          <img src={place.panoramaImage} alt="" className="h-12 w-12 rounded-xl object-cover" />
+                        ) : (
+                          <span className="h-12 w-12 rounded-xl bg-white/10" />
+                        )}
+
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-[13px] font-semibold text-white/90">
+                            {place.name}
+                          </span>
+                          <span className="block truncate text-[11px] text-white/40">
+                            {place.city || place.address || "Indie Map"}
+                          </span>
+                        </span>
+
+                        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                          {alreadyAdded ? (isFr ? "Ajouté" : "Added") : "+"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+
+            {sharedListMessage ? (
+              <p className="px-1 text-[13px] leading-relaxed text-white/55">{sharedListMessage}</p>
+            ) : null}
+          </div>
+        ) : (
+          <div className="space-y-6">
+            <section>
+              <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                {isFr ? "Créer une liste" : "Create a list"}
+              </p>
+
+              <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+                <p className="text-[12px] leading-snug text-white/45">
+                  {isFr ? "Prépare une liste de lieux avec tes amis : sorties, cafés, restaurants, voyage ou adresses à tester." : "Prepare a list of places with friends: outings, cafés, restaurants, trips, or places to try."}
+                </p>
+
+                <div className="mt-4 flex gap-2">
+                  <input
+                    value={newSharedListTitle}
+                    onChange={(event) => setNewSharedListTitle(event.target.value)}
+                    placeholder={isFr ? "Titre de la liste" : "List title"}
+                    className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={createSharedList}
+                    disabled={sharedListSaving}
+                    className="shrink-0 rounded-2xl bg-white px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-50"
+                  >
+                    {isFr ? "Créer" : "Create"}
+                  </button>
+                </div>
+
+                {sharedListMessage ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/55">{sharedListMessage}</p>
+                ) : null}
+              </div>
+            </section>
+
+            <section>
+              <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                {isFr ? "Mes listes" : "My lists"}
+              </p>
+
+              {sharedListsLoading ? (
+                <p className="px-1 text-[13px] leading-relaxed text-white/45">
+                  {isFr ? "Chargement..." : "Loading..."}
+                </p>
+              ) : sharedListsError ? (
+                <p className="px-1 text-[13px] leading-relaxed text-red-200">
+                  {sharedListsError}
+                </p>
+              ) : sharedLists.length > 0 ? (
+                <div className="space-y-3">
+                  {sharedLists.map((list) => (
+                    <button
+                      key={list.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedSharedListId(list.id);
+                        setSharedListMessage("");
+                      }}
+                      className="flex w-full items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/8 px-4 py-4 text-left hover:bg-white/12 active:bg-white/16"
+                    >
+                      <span className="min-w-0">
+                        <span className="block truncate font-serif text-[19px] font-semibold text-white">
+                          {list.title}
+                        </span>
+                        <span className="mt-1 block text-[12px] leading-snug text-white/45">
+                          {list.members.length} {isFr ? "participant(s)" : "participant(s)"} · {list.places.length} {isFr ? "lieu(x)" : "place(s)"}
+                        </span>
+                      </span>
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-[18px] text-white/75">
+                        →
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+                  <p className="text-[14px] font-semibold text-white/90">
+                    {isFr ? "Aucune liste partagée" : "No shared lists"}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+                    {isFr ? "Crée ta première liste pour préparer des lieux avec tes amis." : "Create your first list to prepare places with friends."}
+                  </p>
+                </div>
+              )}
+            </section>
+          </div>
+        )}
+      </>
+    );
+  }
+
   if (mode === "friends") {
     if (selectedFriend) {
       const visibleVisitedPlaces = friendProfilePayload?.visitedPlaces ?? [];
@@ -1337,6 +1850,29 @@ export default function PersonalSpacePanel({
               </span>
               <span className="mt-1 block text-[11px] leading-snug text-white/30">
                 {isFr ? "Social privé." : "Private social."}
+              </span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onModeChange("sharedLists")}
+            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 7.5h10" />
+                <path d="M7 12h10" />
+                <path d="M7 16.5h6" />
+                <path d="M5.5 3.8h13A1.7 1.7 0 0 1 20.2 5.5v13a1.7 1.7 0 0 1-1.7 1.7h-13a1.7 1.7 0 0 1-1.7-1.7v-13A1.7 1.7 0 0 1 5.5 3.8z" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr ? "Listes partagées" : "Shared lists"}
+              </span>
+              <span className="mt-1 block text-[11px] leading-snug text-white/30">
+                {isFr ? "Avec tes amis." : "With friends."}
               </span>
             </span>
           </button>

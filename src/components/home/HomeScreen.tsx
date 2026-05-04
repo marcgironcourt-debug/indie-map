@@ -10,7 +10,7 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import { isContextSuggestionCandidateOpen, normalizeContextCategory, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
-type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends";
+type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends" | "sharedLists";
 
 type AuthProfile = {
   id: string;
@@ -2423,11 +2423,11 @@ export default function HomeScreen({
                     </div>
                   </>
                 )
-              ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" ? (
+              ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" || panel === "sharedLists" ? (
                 <PersonalSpacePanel
                   isFr={isFr}
                   places={allPlaces}
-                  mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : "dashboard"}
+                  mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : panel === "sharedLists" ? "sharedLists" : "dashboard"}
                   authLoading={authLoading}
                   authProfile={authProfile}
                   authMode={authMode}
@@ -2456,7 +2456,7 @@ export default function HomeScreen({
                     const now = new Date();
                     return visited.getFullYear() === now.getFullYear() && visited.getMonth() === now.getMonth();
                   }).length}
-                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : "personalSpace")}
+                  onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : mode === "sharedLists" ? "sharedLists" : "personalSpace")}
                   onOpenSavedPlaces={() => setPanel("myPlacesList")}
                   onOpenPlace={(place) => setSelectedHomePlace(place as DiscoverPlace)}
                   onSwitchLocale={switchLocale}
