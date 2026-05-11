@@ -42,7 +42,12 @@ export async function GET() {
           { members: { some: { userId: currentUser.id } } },
         ],
       },
-      include: {
+      select: {
+        id: true,
+        title: true,
+        ownerId: true,
+        createdAt: true,
+        updatedAt: true,
         owner: {
           select: {
             id: true,
@@ -53,7 +58,11 @@ export async function GET() {
           },
         },
         members: {
-          include: {
+          select: {
+            id: true,
+            userId: true,
+            role: true,
+            createdAt: true,
             user: {
               select: {
                 id: true,
@@ -67,6 +76,12 @@ export async function GET() {
           orderBy: { createdAt: "asc" },
         },
         places: {
+          select: {
+            id: true,
+            placeId: true,
+            addedById: true,
+            createdAt: true,
+          },
           orderBy: { createdAt: "desc" },
         },
       },

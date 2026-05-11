@@ -339,6 +339,7 @@ export default function HomeScreen({
     if (typeof window === "undefined") return null;
     return window.sessionStorage.getItem("im:pending-panel-after-locale") === "personalSpace" ? "personalSpace" : null;
   });
+  const [initialSharedListId, setInitialSharedListId] = React.useState<string | null>(null);
   const panelScrollRef = React.useRef<HTMLDivElement | null>(null);
   const [authProfile, setAuthProfile] = React.useState<AuthProfile | null>(null);
   const [authLoading, setAuthLoading] = React.useState(false);
@@ -461,6 +462,13 @@ export default function HomeScreen({
 
     if (params.get("panel") === "friends") {
       setPanel("friends");
+      refreshAuthProfile();
+    }
+
+    if (params.get("panel") === "sharedLists") {
+      const sharedListId = params.get("sharedListId") || params.get("listId");
+      setInitialSharedListId(sharedListId);
+      setPanel("sharedLists");
       refreshAuthProfile();
     }
 
@@ -2704,6 +2712,7 @@ export default function HomeScreen({
                   isFr={isFr}
                   places={allPlaces}
                   mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : panel === "sharedLists" ? "sharedLists" : "dashboard"}
+                  initialSharedListId={initialSharedListId}
                   authLoading={authLoading}
                   authProfile={authProfile}
                   authMode={authMode}

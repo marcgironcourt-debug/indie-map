@@ -97,6 +97,7 @@ type PersonalSpacePanelProps = {
   isFr: boolean;
   places: PlaceSummary[];
   mode: PersonalSpacePanelMode;
+  initialSharedListId?: string | null;
   authLoading: boolean;
   authProfile: PersonalSpaceAuthProfile | null;
   authMode: PersonalSpaceAuthMode;
@@ -152,10 +153,42 @@ const AVATAR_COLORS = ["#F97316", "#84A98C", "#2563EB", "#A855F7", "#EAB308", "#
 const APP_DOWNLOAD_URL_FR = "https://apps.apple.com/fr/app/indie-map-back-to-local/id6761104779?l=fr";
 const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-local/id6761104779?l=en";
 
+let sharedListsInflight: Promise<SharedList[]> | null = null;
+let sharedListsCache: { at: number; lists: SharedList[] } | null = null;
+
+async function fetchSharedListsOnce(force = false) {
+  const now = Date.now();
+
+  if (!force && sharedListsCache && now - sharedListsCache.at < 10000) {
+    return sharedListsCache.lists;
+  }
+
+  if (!sharedListsInflight) {
+    sharedListsInflight = fetch("/api/v1/me/shared-lists", { cache: "no-store" })
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok) {
+          throw new Error("shared_lists_load_failed");
+        }
+
+        const lists = Array.isArray(data.lists) ? data.lists : [];
+        sharedListsCache = { at: Date.now(), lists };
+        return lists;
+      })
+      .finally(() => {
+        sharedListsInflight = null;
+      });
+  }
+
+  return sharedListsInflight;
+}
+
 export default function PersonalSpacePanel({
   isFr,
   places,
   mode,
+  initialSharedListId,
   authLoading,
   authProfile,
   authMode,
@@ -227,12 +260,14 @@ export default function PersonalSpacePanel({
   const [sharedListsLoading, setSharedListsLoading] = React.useState(false);
   const [sharedListsError, setSharedListsError] = React.useState("");
   const [sharedLists, setSharedLists] = React.useState<SharedList[]>([]);
-  const [selectedSharedListId, setSelectedSharedListId] = React.useState<string | null>(null);
+  const [selectedSharedListId, setSelectedSharedListId] = React.useState<string | null>(initialSharedListId || null);
   const [newSharedListTitle, setNewSharedListTitle] = React.useState("");
   const [sharedListSaving, setSharedListSaving] = React.useState(false);
   const [sharedListMessage, setSharedListMessage] = React.useState("");
   const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
   const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
+  const friendsLoadingRef = React.useRef(false);
+  const sharedListsLoadingRef = React.useRef(false);
 
   function findPlace(placeId: string) {
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
@@ -247,6 +282,12 @@ export default function PersonalSpacePanel({
   }
 
   const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
+
+  React.useEffect(() => {
+    if (mode !== "sharedLists") return;
+    if (!initialSharedListId) return;
+    setSelectedSharedListId(initialSharedListId);
+  }, [mode, initialSharedListId]);
 
   const sharedPlaceResults = React.useMemo(() => {
     const sortByName = (items: PlaceSummary[]) =>
@@ -269,32 +310,28 @@ export default function PersonalSpacePanel({
     );
   }, [places, sharedPlaceQuery, locale]);
 
-  const reloadSharedLists = React.useCallback(async () => {
+  const reloadSharedLists = React.useCallback(async (force = false) => {
     if (!authProfile) return;
+    if (sharedListsLoadingRef.current) return;
 
+    sharedListsLoadingRef.current = true;
     setSharedListsLoading(true);
     setSharedListsError("");
 
     try {
-      const res = await fetch("/api/v1/me/shared-lists", { cache: "no-store" });
-      const data = await res.json().catch(() => null);
-
-      if (!res.ok || !data?.ok) {
-        throw new Error("shared_lists_load_failed");
-      }
-
-      const nextLists = Array.isArray(data.lists) ? data.lists : [];
+      const nextLists = await fetchSharedListsOnce(force);
       setSharedLists(nextLists);
 
-      if (selectedSharedListId && !nextLists.some((list: SharedList) => list.id === selectedSharedListId)) {
-        setSelectedSharedListId(null);
-      }
+      setSelectedSharedListId((current) =>
+        current && !nextLists.some((list: SharedList) => list.id === current) ? null : current
+      );
     } catch {
       setSharedListsError(isFr ? "Impossible de charger tes listes partagées pour le moment." : "Unable to load your shared lists right now.");
     } finally {
+      sharedListsLoadingRef.current = false;
       setSharedListsLoading(false);
     }
-  }, [authProfile, isFr, selectedSharedListId]);
+  }, [authProfile?.id, isFr]);
 
   async function createSharedList() {
     const title = newSharedListTitle.trim();
@@ -325,7 +362,7 @@ export default function PersonalSpacePanel({
       setNewSharedListTitle("");
       setSelectedSharedListId(typeof data.listId === "string" ? data.listId : null);
       setSharedListMessage(isFr ? "Liste créée." : "List created.");
-      await reloadSharedLists();
+      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible de créer cette liste." : "Unable to create this list.");
     } finally {
@@ -356,7 +393,7 @@ export default function PersonalSpacePanel({
 
       setSelectedSharedFriendId("");
       setSharedListMessage(isFr ? "Ami ajouté à la liste." : "Friend added to the list.");
-      await reloadSharedLists();
+      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible d’ajouter cet ami." : "Unable to add this friend.");
     } finally {
@@ -387,7 +424,7 @@ export default function PersonalSpacePanel({
 
       setSharedPlaceQuery("");
       setSharedListMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");
-      await reloadSharedLists();
+      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible d’ajouter ce lieu." : "Unable to add this place.");
     } finally {
@@ -417,7 +454,7 @@ export default function PersonalSpacePanel({
       }
 
       setSharedListMessage(isFr ? "Lieu retiré de la liste." : "Place removed from the list.");
-      await reloadSharedLists();
+      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible de retirer ce lieu." : "Unable to remove this place.");
     } finally {
@@ -454,7 +491,7 @@ export default function PersonalSpacePanel({
       setSelectedSharedFriendId("");
       setSharedPlaceQuery("");
       setSharedListMessage(isFr ? "Liste supprimée." : "List deleted.");
-      await reloadSharedLists();
+      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible de supprimer cette liste." : "Unable to delete this list.");
     } finally {
@@ -523,7 +560,9 @@ export default function PersonalSpacePanel({
 
   const reloadFriends = React.useCallback(async () => {
     if (!authProfile) return;
+    if (friendsLoadingRef.current) return;
 
+    friendsLoadingRef.current = true;
     setFriendsLoading(true);
     setFriendsError("");
 
@@ -543,9 +582,10 @@ export default function PersonalSpacePanel({
     } catch {
       setFriendsError(isFr ? "Impossible de charger tes amis pour le moment." : "Unable to load your friends right now.");
     } finally {
+      friendsLoadingRef.current = false;
       setFriendsLoading(false);
     }
-  }, [authProfile, isFr]);
+  }, [authProfile?.id, isFr]);
 
   React.useEffect(() => {
     if (!authProfile) return;
@@ -556,12 +596,12 @@ export default function PersonalSpacePanel({
     if (mode === "sharedLists" && selectedSharedListId) {
       reloadFriends();
     }
-  }, [mode, authProfile, selectedSharedListId, reloadFriends]);
+  }, [mode, authProfile?.id, selectedSharedListId, reloadFriends]);
 
   React.useEffect(() => {
     if (mode !== "sharedLists" || !authProfile) return;
     reloadSharedLists();
-  }, [mode, authProfile, reloadSharedLists]);
+  }, [mode, authProfile?.id, reloadSharedLists]);
 
   React.useEffect(() => {
     if (mode !== "friends" || !authProfile) return;

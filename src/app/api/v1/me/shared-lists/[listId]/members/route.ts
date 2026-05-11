@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { notifySharedListInvite } from "@/lib/pushNotifications";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -72,7 +73,19 @@ export async function POST(req: Request, context: { params: Promise<{ listId: st
       }
     }
 
-    await prisma.sharedListMember.upsert({
+    const existingMember = await prisma.sharedListMember.findUnique({
+      where: {
+        listId_userId: {
+          listId: cleanListId,
+          userId,
+        },
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const member = await prisma.sharedListMember.upsert({
       where: {
         listId_userId: {
           listId: cleanListId,
@@ -87,7 +100,32 @@ export async function POST(req: Request, context: { params: Promise<{ listId: st
       update: {},
     });
 
-    return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
+    if (!existingMember && userId !== currentUser.id) {
+      const [list, addedUser] = await Promise.all([
+        prisma.sharedList.findUnique({
+          where: { id: cleanListId },
+          select: { title: true },
+        }),
+        prisma.user.findUnique({
+          where: { id: userId },
+          select: { preferredLocale: true },
+        }),
+      ]);
+
+      try {
+        await notifySharedListInvite({
+          receiverId: userId,
+          inviterDisplayName: currentUser.displayName || currentUser.username,
+          listTitle: list?.title || "",
+          listId: cleanListId,
+          locale: addedUser?.preferredLocale,
+        });
+      } catch (error) {
+        console.error("[/api/v1/me/shared-lists/[listId]/members] notifySharedListInvite error", error);
+      }
+    }
+
+    return NextResponse.json({ ok: true, memberId: member.id }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/me/shared-lists/[listId]/members] POST error", err);
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });

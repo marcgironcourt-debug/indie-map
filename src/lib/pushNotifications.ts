@@ -3,7 +3,7 @@ import { createSign } from "node:crypto";
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
 
-type PushKind = "friend_request" | "context_suggestion" | "reactivation" | "app_update";
+type PushKind = "friend_request" | "shared_list_invite" | "context_suggestion" | "reactivation" | "app_update";
 
 type PushPayload = {
   kind: PushKind;
@@ -141,6 +141,29 @@ function buildFriendRequestPayload(params: {
       : `${name} wants to add you on Indie Map.`,
     url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=friends`,
     target: "friends",
+    badge: params.badge,
+  };
+}
+
+function buildSharedListInvitePayload(params: {
+  inviterDisplayName: string;
+  listTitle: string;
+  listId: string;
+  locale?: string | null;
+  badge: number;
+}): PushPayload {
+  const isFr = params.locale !== "en";
+  const name = params.inviterDisplayName.trim() || (isFr ? "Un ami" : "A friend");
+  const title = params.listTitle.trim() || (isFr ? "une liste partagée" : "a shared list");
+
+  return {
+    kind: "shared_list_invite",
+    title: isFr ? "Nouvelle liste partagée" : "New shared list",
+    body: isFr
+      ? `${name} t’a ajouté à « ${title} ».`
+      : `${name} added you to “${title}”.`,
+    url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=sharedLists&sharedListId=${encodeURIComponent(params.listId)}`,
+    target: "shared_list",
     badge: params.badge,
   };
 }
@@ -288,6 +311,55 @@ export async function notifyFriendRequest(params: {
   return {
     attempted: devices.length,
     sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+  };
+}
+
+
+export async function notifySharedListInvite(params: {
+  receiverId: string;
+  inviterDisplayName: string;
+  listTitle: string;
+  listId: string;
+  locale?: string | null;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.receiverId);
+
+  const payload = buildSharedListInvitePayload({
+    inviterDisplayName: params.inviterDisplayName,
+    listTitle: params.listTitle,
+    listId: params.listId,
+    locale: params.locale,
+    badge,
+  });
+
+  const devices = await prisma.pushDevice.findMany({
+    where: { userId: params.receiverId },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+      subscription: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if ((device.platform === "android" || device.platform === "web") && device.subscription) {
+        return sendWebPush(device.subscription, payload);
+      }
+
+      if (device.platform === "ios" && device.token) {
+        return sendApns(device.token, payload);
+      }
+
+      return false;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
   };
 }
 
