@@ -2006,12 +2006,16 @@ export default function HomeScreen({
                   style={{
                     width: 40,
                     height: 40,
-                    background: "rgba(0,0,0,0.35)",
+                    backgroundColor: "rgba(0,0,0,0.48)",
+                    WebkitBackdropFilter: "blur(8px)",
                     backdropFilter: "blur(8px)",
                     borderRadius: "9999px",
                     border: "1px solid rgba(255,255,255,0.15)",
                     color: "#ffffff",
-                    padding: 0
+                    padding: 0,
+                    WebkitAppearance: "none",
+                    appearance: "none",
+                    WebkitTapHighlightColor: "transparent"
                   }}
                   aria-label={selectedHomePlaceSaved ? (isFr ? "Retirer des favoris" : "Remove from favorites") : (isFr ? "Ajouter aux favoris" : "Add to favorites")}
                 >
@@ -2037,11 +2041,16 @@ export default function HomeScreen({
                   style={{
                     width: 40,
                     height: 40,
-                    background: "rgba(0,0,0,0.35)",
+                    backgroundColor: "rgba(0,0,0,0.48)",
+                    WebkitBackdropFilter: "blur(8px)",
                     backdropFilter: "blur(8px)",
                     borderRadius: "9999px",
                     border: "1px solid rgba(255,255,255,0.15)",
-                    padding: 0
+                    color: "#ffffff",
+                    padding: 0,
+                    WebkitAppearance: "none",
+                    appearance: "none",
+                    WebkitTapHighlightColor: "transparent"
                   }}
                   aria-label={isFr ? "Ajouter à une liste partagée" : "Add to a shared list"}
                 >
@@ -2417,7 +2426,8 @@ export default function HomeScreen({
               top: "calc(env(safe-area-inset-top) + 16px)",
               width: 40,
               height: 40,
-              background: "rgba(0,0,0,0.35)",
+              backgroundColor: "rgba(0,0,0,0.48)",
+              WebkitBackdropFilter: "blur(8px)",
               backdropFilter: "blur(8px)",
               borderRadius: "9999px",
               border: "1px solid rgba(255,255,255,0.15)",
@@ -2425,7 +2435,10 @@ export default function HomeScreen({
               fontSize: "22px",
               fontWeight: 500,
               lineHeight: 1,
-              padding: 0
+              padding: 0,
+              WebkitAppearance: "none",
+              appearance: "none",
+              WebkitTapHighlightColor: "transparent"
             }}
             aria-label={isFr ? "Fermer" : "Close"}
           >
