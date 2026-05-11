@@ -2037,7 +2037,7 @@ export default function HomeScreen({
                 <button
                   type="button"
                   onClick={openSelectedPlaceSharedListPicker}
-                  className="grid place-items-center text-[24px] font-light leading-none text-white"
+                  className="grid place-items-center text-white"
                   style={{
                     width: 40,
                     height: 40,
@@ -2054,7 +2054,19 @@ export default function HomeScreen({
                   }}
                   aria-label={isFr ? "Ajouter à une liste partagée" : "Add to a shared list"}
                 >
-                  +
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.95)"
+                    strokeWidth="2.1"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 5v14" />
+                    <path d="M5 12h14" />
+                  </svg>
                 </button>
               </div>
             );
