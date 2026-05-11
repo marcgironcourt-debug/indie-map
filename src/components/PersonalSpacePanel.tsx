@@ -7,6 +7,7 @@ export type PersonalSpacePanelMode = "dashboard" | "profile" | "friends" | "shar
 export type PersonalSpaceAuthMode = "signup" | "login" | "resetRequest" | "resetConfirm";
 
 export type PersonalSpaceAuthProfile = {
+  id: string;
   username: string;
   displayName: string;
   avatarUrl: string | null;
@@ -402,6 +403,43 @@ export default function PersonalSpacePanel({
       await reloadSharedLists();
     } catch {
       setSharedListMessage(isFr ? "Impossible de retirer ce lieu." : "Unable to remove this place.");
+    } finally {
+      setSharedListSaving(false);
+    }
+  }
+
+  async function deleteSharedList() {
+    if (!selectedSharedList) return;
+
+    const confirmed = window.confirm(
+      isFr
+        ? `Supprimer la liste « ${selectedSharedList.title} » ?`
+        : `Delete the list “${selectedSharedList.title}”?`
+    );
+
+    if (!confirmed) return;
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(selectedSharedList.id)}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_delete_failed");
+      }
+
+      setSelectedSharedListId(null);
+      setSelectedSharedFriendId("");
+      setSharedPlaceQuery("");
+      setSharedListMessage(isFr ? "Liste supprimée." : "List deleted.");
+      await reloadSharedLists();
+    } catch {
+      setSharedListMessage(isFr ? "Impossible de supprimer cette liste." : "Unable to delete this list.");
     } finally {
       setSharedListSaving(false);
     }
@@ -1096,6 +1134,15 @@ export default function PersonalSpacePanel({
   }
 
   if (mode === "sharedLists") {
+    const formatSharedListStats = (list: SharedList) => {
+      const memberLabel = list.members.length > 1 ? "participants" : "participant";
+      const placeLabel = isFr
+        ? list.places.length > 1 ? "lieux" : "lieu"
+        : list.places.length > 1 ? "places" : "place";
+
+      return `${list.members.length} ${memberLabel} · ${list.places.length} ${placeLabel}`;
+    };
+
     return (
       <>
         <div className="mb-5 flex items-center justify-between gap-3">
@@ -1302,6 +1349,17 @@ export default function PersonalSpacePanel({
               </div>
             </section>
 
+            {authProfile?.id === selectedSharedList.ownerId ? (
+              <button
+                type="button"
+                onClick={deleteSharedList}
+                disabled={sharedListSaving}
+                className="w-full rounded-3xl border border-red-300/20 bg-red-500/10 px-4 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-red-100 disabled:opacity-50"
+              >
+                {isFr ? "Supprimer la liste" : "Delete list"}
+              </button>
+            ) : null}
+
             {sharedListMessage ? (
               <p className="px-1 text-[13px] leading-relaxed text-white/55">{sharedListMessage}</p>
             ) : null}
@@ -1372,7 +1430,7 @@ export default function PersonalSpacePanel({
                           {list.title}
                         </span>
                         <span className="mt-1 block text-[12px] leading-snug text-white/45">
-                          {list.members.length} {isFr ? "participant(s)" : "participant(s)"} · {list.places.length} {isFr ? "lieu(x)" : "place(s)"}
+                          {formatSharedListStats(list)}
                         </span>
                       </span>
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-[18px] text-white/75">
