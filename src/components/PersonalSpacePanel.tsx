@@ -238,19 +238,36 @@ export default function PersonalSpacePanel({
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
   }
 
+  function normalizeSearchText(value: unknown) {
+    return String(value ?? "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
   const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
 
   const sharedPlaceResults = React.useMemo(() => {
-    const q = sharedPlaceQuery.trim().toLowerCase();
-    if (!q) return places.slice(0, 12);
+    const sortByName = (items: PlaceSummary[]) =>
+      [...items].sort((a, b) => String(a.name ?? "").localeCompare(String(b.name ?? ""), locale, { sensitivity: "base" }));
 
-    return places
-      .filter((place) => {
-        const haystack = [place.name, place.city, place.address, place.category].join(" ").toLowerCase();
+    const q = normalizeSearchText(sharedPlaceQuery);
+    if (!q) return sortByName(places).slice(0, 12);
+
+    const cityMatches = places.filter((place) => normalizeSearchText(place.city) === q);
+
+    if (cityMatches.length > 0) {
+      return sortByName(cityMatches);
+    }
+
+    return sortByName(
+      places.filter((place) => {
+        const haystack = normalizeSearchText([place.name, place.city, place.address, place.category].join(" "));
         return haystack.includes(q);
       })
-      .slice(0, 12);
-  }, [places, sharedPlaceQuery]);
+    );
+  }, [places, sharedPlaceQuery, locale]);
 
   const reloadSharedLists = React.useCallback(async () => {
     if (!authProfile) return;
