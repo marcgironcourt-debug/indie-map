@@ -253,7 +253,7 @@ export default function PersonalSpacePanel({
       [...items].sort((a, b) => String(a.name ?? "").localeCompare(String(b.name ?? ""), locale, { sensitivity: "base" }));
 
     const q = normalizeSearchText(sharedPlaceQuery);
-    if (!q) return sortByName(places).slice(0, 12);
+    if (!q) return sortByName(places);
 
     const cityMatches = places.filter((place) => normalizeSearchText(place.city) === q);
 
@@ -1334,32 +1334,41 @@ export default function PersonalSpacePanel({
                     const alreadyAdded = selectedSharedList.places.some((item) => item.placeId === place.id);
 
                     return (
-                      <button
+                      <div
                         key={place.id}
-                        type="button"
-                        onClick={() => alreadyAdded ? undefined : addPlaceToSharedList(place.id)}
-                        disabled={sharedListSaving || alreadyAdded}
-                        className="flex w-full items-center gap-3 rounded-2xl bg-black/25 p-2 text-left disabled:opacity-45"
+                        className="flex w-full items-center gap-3 rounded-2xl bg-black/25 p-2 text-left"
                       >
-                        {place.panoramaImage ? (
-                          <img src={place.panoramaImage} alt="" className="h-12 w-12 rounded-xl object-cover" />
-                        ) : (
-                          <span className="h-12 w-12 rounded-xl bg-white/10" />
-                        )}
+                        <button
+                          type="button"
+                          onClick={() => onOpenPlace?.(place)}
+                          className="flex min-w-0 flex-1 items-center gap-3 text-left"
+                        >
+                          {place.panoramaImage ? (
+                            <img src={place.panoramaImage} alt="" className="h-12 w-12 rounded-xl object-cover" />
+                          ) : (
+                            <span className="h-12 w-12 rounded-xl bg-white/10" />
+                          )}
 
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-[13px] font-semibold text-white/90">
-                            {place.name}
+                          <span className="min-w-0 flex-1">
+                            <span className="block truncate text-[13px] font-semibold text-white/90">
+                              {place.name}
+                            </span>
+                            <span className="block truncate text-[11px] text-white/40">
+                              {place.city || place.address || "Indie Map"}
+                            </span>
                           </span>
-                          <span className="block truncate text-[11px] text-white/40">
-                            {place.city || place.address || "Indie Map"}
-                          </span>
-                        </span>
+                        </button>
 
-                        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/45">
-                          {alreadyAdded ? (isFr ? "Ajouté" : "Added") : "+"}
-                        </span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => alreadyAdded ? undefined : addPlaceToSharedList(place.id)}
+                          disabled={sharedListSaving || alreadyAdded}
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[20px] font-semibold leading-none text-black disabled:bg-white/10 disabled:text-white/35"
+                          aria-label={alreadyAdded ? (isFr ? "Déjà ajouté" : "Already added") : (isFr ? "Ajouter à la liste" : "Add to list")}
+                        >
+                          {alreadyAdded ? "✓" : "+"}
+                        </button>
+                      </div>
                     );
                   })}
                 </div>

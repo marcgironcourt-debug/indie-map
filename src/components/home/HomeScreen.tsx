@@ -50,6 +50,14 @@ type DiscoverPlace = {
 type NewPlace = DiscoverPlace;
 type SavedPlace = DiscoverPlace;
 
+type SharedListChoice = {
+  id: string;
+  title: string;
+  places: {
+    placeId: string;
+  }[];
+};
+
 
 function renderOpeningHours(openingHours: string | undefined, timeZone: string | undefined) {
   if (!openingHours) return null;
@@ -723,6 +731,13 @@ export default function HomeScreen({
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
+  const [selectedPlaceSharedListPickerOpen, setSelectedPlaceSharedListPickerOpen] = React.useState(false);
+  const [selectedPlaceSharedLists, setSelectedPlaceSharedLists] = React.useState<SharedListChoice[]>([]);
+  const [selectedPlaceSharedListsLoading, setSelectedPlaceSharedListsLoading] = React.useState(false);
+  const [selectedPlaceSharedListsSaving, setSelectedPlaceSharedListsSaving] = React.useState(false);
+  const [selectedPlaceSharedListsError, setSelectedPlaceSharedListsError] = React.useState("");
+  const [selectedPlaceSharedListsMessage, setSelectedPlaceSharedListsMessage] = React.useState("");
+  const [selectedPlaceNewSharedListTitle, setSelectedPlaceNewSharedListTitle] = React.useState("");
   const [searchQuery, setSearchQuery] = React.useState("");
   const [searchFocused, setSearchFocused] = React.useState(false);
   const [searchLoading, setSearchLoading] = React.useState(false);
@@ -756,6 +771,11 @@ export default function HomeScreen({
     setSelectedPlaceCommentInput("");
     setSelectedPlaceCommentError("");
     setSelectedPlaceCommentSaving(false);
+    setSelectedPlaceSharedListPickerOpen(false);
+    setSelectedPlaceSharedLists([]);
+    setSelectedPlaceSharedListsError("");
+    setSelectedPlaceSharedListsMessage("");
+    setSelectedPlaceNewSharedListTitle("");
   }, [selectedHomePlace?.id]);
 
   React.useEffect(() => {
@@ -1000,6 +1020,123 @@ export default function HomeScreen({
         })
       }).catch(() => {});
     } catch {}
+  }
+
+  async function reloadSelectedPlaceSharedLists() {
+    if (!authProfile) return;
+
+    setSelectedPlaceSharedListsLoading(true);
+    setSelectedPlaceSharedListsError("");
+
+    try {
+      const res = await fetch("/api/v1/me/shared-lists", { cache: "no-store" });
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_lists_load_failed");
+      }
+
+      setSelectedPlaceSharedLists(Array.isArray(data.lists) ? data.lists : []);
+    } catch {
+      setSelectedPlaceSharedListsError(isFr ? "Impossible de charger tes listes." : "Unable to load your lists.");
+    } finally {
+      setSelectedPlaceSharedListsLoading(false);
+    }
+  }
+
+  async function openSelectedPlaceSharedListPicker() {
+    if (!authProfile) {
+      setPanel("personalSpace");
+      return;
+    }
+
+    setSelectedPlaceSharedListPickerOpen(true);
+    setSelectedPlaceSharedListsMessage("");
+    await reloadSelectedPlaceSharedLists();
+  }
+
+  async function addSelectedPlaceToSharedList(listId: string) {
+    if (!selectedHomePlace?.id || !listId) return;
+
+    setSelectedPlaceSharedListsSaving(true);
+    setSelectedPlaceSharedListsMessage("");
+    setSelectedPlaceSharedListsError("");
+
+    try {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(listId)}/places`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ placeId: String(selectedHomePlace.id) })
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("shared_list_place_failed");
+      }
+
+      setSelectedPlaceSharedListsMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");
+      await reloadSelectedPlaceSharedLists();
+    } catch {
+      setSelectedPlaceSharedListsError(isFr ? "Impossible d’ajouter ce lieu." : "Unable to add this place.");
+    } finally {
+      setSelectedPlaceSharedListsSaving(false);
+    }
+  }
+
+  async function createSharedListAndAddSelectedPlace() {
+    if (!selectedHomePlace?.id) return;
+
+    const title = selectedPlaceNewSharedListTitle.trim();
+
+    if (!title) {
+      setSelectedPlaceSharedListsError(isFr ? "Donne un titre à ta liste." : "Give your list a title.");
+      return;
+    }
+
+    setSelectedPlaceSharedListsSaving(true);
+    setSelectedPlaceSharedListsMessage("");
+    setSelectedPlaceSharedListsError("");
+
+    try {
+      const createRes = await fetch("/api/v1/me/shared-lists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title })
+      });
+
+      const createData = await createRes.json().catch(() => null);
+
+      if (!createRes.ok || !createData?.ok || typeof createData.listId !== "string") {
+        throw new Error("shared_list_create_failed");
+      }
+
+      const addRes = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(createData.listId)}/places`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ placeId: String(selectedHomePlace.id) })
+      });
+
+      const addData = await addRes.json().catch(() => null);
+
+      if (!addRes.ok || !addData?.ok) {
+        throw new Error("shared_list_place_failed");
+      }
+
+      setSelectedPlaceNewSharedListTitle("");
+      setSelectedPlaceSharedListsMessage(isFr ? "Liste créée et lieu ajouté." : "List created and place added.");
+      await reloadSelectedPlaceSharedLists();
+    } catch {
+      setSelectedPlaceSharedListsError(isFr ? "Impossible de créer cette liste." : "Unable to create this list.");
+    } finally {
+      setSelectedPlaceSharedListsSaving(false);
+    }
   }
 
   async function saveSelectedHomePlaceComment() {
@@ -1861,39 +1998,151 @@ export default function HomeScreen({
             const selectedHomePlaceSaved = savedPlaces.some((item) => String(item.id) === String(selectedHomePlace.id));
 
             return (
-              <button
-                type="button"
-                onClick={toggleSelectedHomePlaceSaved}
-                className="absolute left-4 z-[80] grid place-items-center"
-                style={{
-                  top: "calc(env(safe-area-inset-top) + 16px)",
-                  width: 40,
-                  height: 40,
-                  background: "rgba(0,0,0,0.35)",
-                  backdropFilter: "blur(8px)",
-                  borderRadius: "9999px",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  color: "#ffffff",
-                  padding: 0
-                }}
-                aria-label={selectedHomePlaceSaved ? (isFr ? "Retirer des favoris" : "Remove from favorites") : (isFr ? "Ajouter aux favoris" : "Add to favorites")}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="22"
-                  height="22"
-                  fill={selectedHomePlaceSaved ? "#6F6528" : "none"}
-                  stroke="rgba(255,255,255,0.95)"
-                  strokeWidth="2.1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
+              <div className="absolute left-4 z-[80] flex flex-col gap-3" style={{ top: "calc(env(safe-area-inset-top) + 16px)" }}>
+                <button
+                  type="button"
+                  onClick={toggleSelectedHomePlaceSaved}
+                  className="grid place-items-center"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    background: "rgba(0,0,0,0.35)",
+                    backdropFilter: "blur(8px)",
+                    borderRadius: "9999px",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#ffffff",
+                    padding: 0
+                  }}
+                  aria-label={selectedHomePlaceSaved ? (isFr ? "Retirer des favoris" : "Remove from favorites") : (isFr ? "Ajouter aux favoris" : "Add to favorites")}
                 >
-                  <path d="M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z" />
-                </svg>
-              </button>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                    fill={selectedHomePlaceSaved ? "#6F6528" : "none"}
+                    stroke="rgba(255,255,255,0.95)"
+                    strokeWidth="2.1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21.2c-.3 0-.6-.1-.8-.3C8.1 18.4 2.5 13.9 2.5 8.4C2.5 5.5 4.8 3.3 7.7 3.3c1.8 0 3.4.8 4.3 2.2c.9-1.4 2.5-2.2 4.3-2.2c2.9 0 5.2 2.2 5.2 5.1c0 5.5-5.6 10-8.7 12.5c-.2.2-.5.3-.8.3z" />
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={openSelectedPlaceSharedListPicker}
+                  className="grid place-items-center text-[24px] font-light leading-none text-white"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    background: "rgba(0,0,0,0.35)",
+                    backdropFilter: "blur(8px)",
+                    borderRadius: "9999px",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    padding: 0
+                  }}
+                  aria-label={isFr ? "Ajouter à une liste partagée" : "Add to a shared list"}
+                >
+                  +
+                </button>
+              </div>
             );
           })()}
+          {selectedPlaceSharedListPickerOpen ? (
+            <div className="absolute inset-0 z-[120] flex items-end bg-black/45 px-4 pb-5 pt-20 backdrop-blur-sm">
+              <div className="max-h-[72vh] w-full overflow-y-auto rounded-[28px] border border-white/10 bg-[#1f1f1f] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                      {isFr ? "Listes partagées" : "Shared lists"}
+                    </p>
+                    <h3 className="mt-1 truncate font-serif text-[22px] font-semibold text-white">
+                      {isFr ? "Ajouter ce lieu" : "Add this place"}
+                    </h3>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlaceSharedListPickerOpen(false)}
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-[18px] text-white/75"
+                    aria-label={isFr ? "Fermer" : "Close"}
+                  >
+                    ×
+                  </button>
+                </div>
+
+                {selectedPlaceSharedListsLoading ? (
+                  <p className="text-[13px] text-white/45">
+                    {isFr ? "Chargement..." : "Loading..."}
+                  </p>
+                ) : selectedPlaceSharedLists.length > 0 ? (
+                  <div className="space-y-2">
+                    {selectedPlaceSharedLists.map((list) => {
+                      const alreadyAdded = list.places.some((item) => String(item.placeId) === String(selectedHomePlace.id));
+
+                      return (
+                        <button
+                          key={list.id}
+                          type="button"
+                          onClick={() => alreadyAdded ? undefined : addSelectedPlaceToSharedList(list.id)}
+                          disabled={selectedPlaceSharedListsSaving || alreadyAdded}
+                          className="flex w-full items-center justify-between gap-3 rounded-2xl bg-white/8 px-4 py-3 text-left disabled:opacity-50"
+                        >
+                          <span className="min-w-0">
+                            <span className="block truncate text-[14px] font-semibold text-white/90">
+                              {list.title}
+                            </span>
+                            <span className="mt-0.5 block text-[11px] text-white/40">
+                              {alreadyAdded ? (isFr ? "Déjà dans cette liste" : "Already in this list") : (isFr ? "Ajouter à cette liste" : "Add to this list")}
+                            </span>
+                          </span>
+                          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[18px] font-semibold text-black">
+                            {alreadyAdded ? "✓" : "+"}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="rounded-2xl bg-white/8 px-4 py-3 text-[13px] leading-relaxed text-white/55">
+                    {isFr ? "Tu n’as pas encore de liste partagée." : "You do not have any shared list yet."}
+                  </p>
+                )}
+
+                <div className="mt-4 rounded-2xl border border-white/10 bg-white/8 p-3">
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35">
+                    {isFr ? "Nouvelle liste" : "New list"}
+                  </p>
+                  <div className="flex gap-2">
+                    <input
+                      value={selectedPlaceNewSharedListTitle}
+                      onChange={(event) => setSelectedPlaceNewSharedListTitle(event.target.value)}
+                      placeholder={isFr ? "Titre de la liste" : "List title"}
+                      className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/30"
+                    />
+                    <button
+                      type="button"
+                      onClick={createSharedListAndAddSelectedPlace}
+                      disabled={selectedPlaceSharedListsSaving}
+                      className="shrink-0 rounded-2xl bg-white px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black disabled:opacity-50"
+                    >
+                      {isFr ? "Créer" : "Create"}
+                    </button>
+                  </div>
+                </div>
+
+                {selectedPlaceSharedListsError ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-red-200">{selectedPlaceSharedListsError}</p>
+                ) : null}
+
+                {selectedPlaceSharedListsMessage ? (
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/55">{selectedPlaceSharedListsMessage}</p>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+
           {selectedHomePlace.panoramaImage ? (
             <img
               src={selectedHomePlace.panoramaImage}
