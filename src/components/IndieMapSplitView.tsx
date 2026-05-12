@@ -484,6 +484,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
+  const [selectedDetailPlaceSource, setSelectedDetailPlaceSource] = React.useState("map");
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
   const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
@@ -870,6 +871,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         locale,
         metadata: { name: place.name, source }
       });
+      setSelectedDetailPlaceSource(source);
       setSelectedDetailPlace(place);
       setSelectedPlaceCommentsOpen(false);
       setSelectedPlaceCommentInput("");
@@ -1017,7 +1019,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       city: selectedDetailPlace.city,
       category: selectedDetailPlace.type,
       locale,
-      metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+      metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
     });
 
     const next = exists
@@ -1706,6 +1708,7 @@ const filtered = source.filter((b) => {
                             locale,
                             metadata: { name: detailPlace.name, source: viewSource }
                           });
+                          setSelectedDetailPlaceSource(viewSource);
                           setSelectedDetailPlace(detailPlace);
                           setPanel(null);
                           setSelectedPlaceCommentsOpen(false);
@@ -1973,7 +1976,7 @@ const filtered = source.filter((b) => {
                               city: selectedDetailPlace.city,
                               category: selectedDetailPlace.type,
                               locale,
-                              metadata: { name: selectedDetailPlace.name, url, source: "map_detail" }
+                              metadata: { name: selectedDetailPlace.name, url, source: selectedDetailPlaceSource }
                             });
 
                             window.open(url, "_blank");
@@ -2006,7 +2009,7 @@ const filtered = source.filter((b) => {
                               city: selectedDetailPlace.city,
                               category: selectedDetailPlace.type,
                               locale,
-                              metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                              metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
                             });
 
                             if (isIOS) {
@@ -2056,7 +2059,7 @@ const filtered = source.filter((b) => {
                                 city: selectedDetailPlace.city,
                                 category: selectedDetailPlace.type,
                                 locale,
-                                metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                                metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
                               });
                               setAddressCopied(true);
                               window.setTimeout(() => setAddressCopied(false), 1500);
@@ -2077,7 +2080,7 @@ const filtered = source.filter((b) => {
                                 city: selectedDetailPlace.city,
                                 category: selectedDetailPlace.type,
                                 locale,
-                                metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                                metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
                               });
                               window.location.href = `tel:${selectedDetailPlace.phone}`;
                             }}

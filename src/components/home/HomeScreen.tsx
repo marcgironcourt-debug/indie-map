@@ -741,6 +741,7 @@ export default function HomeScreen({
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
+  const [selectedHomePlaceSource, setSelectedHomePlaceSource] = React.useState("home_detail");
   const [selectedPlaceSharedListPickerOpen, setSelectedPlaceSharedListPickerOpen] = React.useState(false);
   const [selectedPlaceSharedLists, setSelectedPlaceSharedLists] = React.useState<SharedListChoice[]>([]);
   const [selectedPlaceSharedListsLoading, setSelectedPlaceSharedListsLoading] = React.useState(false);
@@ -1004,7 +1005,7 @@ export default function HomeScreen({
       city: selectedHomePlace.city,
       category: selectedHomePlace.category,
       locale,
-      metadata: { name: selectedHomePlace.name, source: "home_detail" }
+      metadata: { name: selectedHomePlace.name, source: selectedHomePlaceSource }
     });
     const next = exists
       ? savedPlaces.filter((item) => String(item.id) !== id)
@@ -1076,7 +1077,7 @@ export default function HomeScreen({
         city: selectedHomePlace.city,
         category: selectedHomePlace.category,
         locale,
-        metadata: { name: selectedHomePlace.name, source: "home_detail" }
+        metadata: { name: selectedHomePlace.name, source: selectedHomePlaceSource }
       });
     }
 
@@ -1113,7 +1114,7 @@ export default function HomeScreen({
         city: selectedHomePlace.city,
         category: selectedHomePlace.category,
         locale,
-        metadata: { listId, name: selectedHomePlace.name, source: "home_detail" }
+        metadata: { listId, name: selectedHomePlace.name, source: selectedHomePlaceSource }
       });
 
       setSelectedPlaceSharedListsMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");
@@ -1174,7 +1175,7 @@ export default function HomeScreen({
         city: selectedHomePlace.city,
         category: selectedHomePlace.category,
         locale,
-        metadata: { listId: createData.listId, title, source: "home_detail" }
+        metadata: { listId: createData.listId, title, source: selectedHomePlaceSource }
       });
 
       trackEvent({
@@ -1183,7 +1184,7 @@ export default function HomeScreen({
         city: selectedHomePlace.city,
         category: selectedHomePlace.category,
         locale,
-        metadata: { listId: createData.listId, name: selectedHomePlace.name, source: "home_detail_create" }
+        metadata: { listId: createData.listId, name: selectedHomePlace.name, source: selectedHomePlaceSource }
       });
 
       setSelectedPlaceNewSharedListTitle("");
@@ -1982,6 +1983,7 @@ export default function HomeScreen({
                           locale,
                           metadata: { source: "recent_additions", name: item.name }
                         });
+                        setSelectedHomePlaceSource("recent_additions");
                         setSelectedHomePlace(item);
                       }}
                       className="relative h-[190px] w-[170px] shrink-0 overflow-hidden rounded-xl bg-white/10 text-left"
@@ -2041,6 +2043,7 @@ export default function HomeScreen({
                   locale,
                   metadata: { source: "discovery_of_day", name: place.name }
                 });
+                setSelectedHomePlaceSource("discovery_of_day");
                 setSelectedHomePlace(place);
               }}
               className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
@@ -2396,7 +2399,7 @@ export default function HomeScreen({
                               city: selectedHomePlace.city,
                               category: selectedHomePlace.category,
                               locale,
-                              metadata: { name: selectedHomePlace.name, url }
+                              metadata: { name: selectedHomePlace.name, url, source: selectedHomePlaceSource }
                             });
 
                             window.open(url, "_blank");
@@ -2427,7 +2430,7 @@ export default function HomeScreen({
                               city: selectedHomePlace.city,
                               category: selectedHomePlace.category,
                               locale,
-                              metadata: { name: selectedHomePlace.name }
+                              metadata: { name: selectedHomePlace.name, source: selectedHomePlaceSource }
                             });
 
                             if (isIOS) {
@@ -2476,7 +2479,7 @@ export default function HomeScreen({
                                 city: selectedHomePlace.city,
                                 category: selectedHomePlace.category,
                                 locale,
-                                metadata: { name: selectedHomePlace.name }
+                                metadata: { name: selectedHomePlace.name, source: selectedHomePlaceSource }
                               });
                               setAddressCopied(true);
                               window.setTimeout(() => setAddressCopied(false), 1500);
@@ -2490,6 +2493,14 @@ export default function HomeScreen({
                           <button
                             type="button"
                             onClick={() => {
+                              trackEvent({
+                                eventType: "click_detail_phone",
+                                placeId: selectedHomePlace.id,
+                                city: selectedHomePlace.city,
+                                category: selectedHomePlace.category,
+                                locale,
+                                metadata: { name: selectedHomePlace.name, source: selectedHomePlaceSource }
+                              });
                               window.location.href = `tel:${selectedHomePlace.phone}`;
                             }}
                             className="rounded-[9px] border border-white/10 bg-white/8 p-1.5 text-white/75"
@@ -2698,6 +2709,7 @@ export default function HomeScreen({
                                 locale,
                                 metadata: { source: "search_result", name: item.name }
                               });
+                              setSelectedHomePlaceSource("search_result");
                               setSelectedHomePlace(item);
                             }}
                             className="flex w-full items-center justify-center px-4 py-3 text-center text-[14px] font-semibold text-white/85"
@@ -2896,6 +2908,7 @@ export default function HomeScreen({
                   onOpenPlace={(place, source) => {
                     const selected = place as DiscoverPlace;
                     const viewSource = String(source || "personal_space").trim() || "personal_space";
+                    setSelectedHomePlaceSource(viewSource);
                     trackEvent({
                       eventType: "view_place_detail",
                       placeId: selected.id,
