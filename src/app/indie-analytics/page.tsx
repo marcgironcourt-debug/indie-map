@@ -371,11 +371,12 @@ export default async function IndieAnalyticsPage({
   const searchesWithResults = searchEvents.filter((event) => metadataBoolean(event.metadata, "hasResults") === true).length;
   const searchToDetailRate = searchTotal > 0 ? Math.round((searchDetailClicks / searchTotal) * 100) : 0;
   const searchToMapRate = searchTotal > 0 ? Math.round((searchMapClicks / searchTotal) * 100) : 0;
-  const searchesWithoutResults = searchEvents.filter((event) => {
+  const searchesNoResults = searchEvents.filter((event) => {
     const hasResults = metadataBoolean(event.metadata, "hasResults");
     const resultsCount = metadataNumber(event.metadata, "resultsCount");
     return hasResults === false || resultsCount === 0;
-  }).length;
+  });
+  const searchesWithoutResults = searchesNoResults.length;
   const searchResultCounts = searchEvents.map((event) => metadataNumber(event.metadata, "resultsCount")).filter((value): value is number => typeof value === "number");
   const averageSearchResults = searchResultCounts.length > 0 ? Math.round(searchResultCounts.reduce((sum, value) => sum + value, 0) / searchResultCounts.length) : 0;
   const searchCities = countTexts(searchEvents.map((event) => event.city || metadataText(event.metadata, "detectedCity")));
@@ -679,6 +680,18 @@ export default async function IndieAnalyticsPage({
                             <div className="font-semibold">{metadataText(event.metadata, "query") || "—"}</div>
                             <div className="text-black/55">{event.city || metadataText(event.metadata, "detectedCity") || "ville —"}</div>
                             <div className="text-black/55">{metadataNumber(event.metadata, "resultsCount") ?? "—"} résultat(s)</div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="grid gap-2">
+                        <div className="text-sm font-semibold text-black/55">Recherches sans résultat</div>
+                        {searchesNoResults.length === 0 ? empty("Aucune recherche sans résultat.") : searchesNoResults.slice(0, 12).map((event, index) => (
+                          <div key={`${event.createdAt.toISOString()}-empty-${index}`} className="grid gap-2 rounded-2xl border border-black/10 bg-[#faf7f0] p-4 text-sm md:grid-cols-[150px_1fr_110px_110px]">
+                            <div className="text-black/45">{event.createdAt.toISOString().replace("T", " ").slice(0, 16)}</div>
+                            <div className="font-semibold">{metadataText(event.metadata, "query") || "—"}</div>
+                            <div className="text-black/55">{event.city || metadataText(event.metadata, "detectedCity") || "ville —"}</div>
+                            <div className="text-black/55">{event.category || metadataFirstText(event.metadata, "targetCategories") || metadataText(event.metadata, "explicitCategory") || "catégorie —"}</div>
                           </div>
                         ))}
                       </div>
