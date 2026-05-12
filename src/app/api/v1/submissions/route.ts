@@ -86,6 +86,20 @@ export async function POST(req: Request) {
     const approveUrl = reviewBaseUrl.replace(/\/$/, "") + "/api/v1/submissions/review?action=approve&token=" + encodeURIComponent(reviewToken);
     const rejectUrl = reviewBaseUrl.replace(/\/$/, "") + "/api/v1/submissions/review?action=reject&token=" + encodeURIComponent(reviewToken);
 
+    await prisma.submission.create({
+      data: {
+        locale: formLocale,
+        name,
+        address: address || "",
+        openingHours,
+        phone,
+        website,
+        reviewToken,
+        user: currentUser ? { connect: { id: currentUser.id } } : undefined,
+      },
+      select: { id: true },
+    });
+
     const html =
       "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#111\">" +
       "<h2 style=\"margin:0 0 16px 0;\">" + esc(subject) + "</h2>" +
@@ -114,20 +128,6 @@ export async function POST(req: Request) {
       console.error("[/api/v1/submissions] resend error", error);
       return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
     }
-
-    await prisma.submission.create({
-      data: {
-        locale: formLocale,
-        name,
-        address: address || "",
-        openingHours,
-        phone,
-        website,
-        reviewToken,
-        user: currentUser ? { connect: { id: currentUser.id } } : undefined,
-      },
-      select: { id: true },
-    });
 
     return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {
