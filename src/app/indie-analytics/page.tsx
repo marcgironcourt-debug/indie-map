@@ -281,6 +281,8 @@ export default async function IndieAnalyticsPage({
     eventsByPlace,
     viewPlaceDetailEvents,
     searchEvents,
+    searchDetailClicks,
+    searchMapClicks,
     usersByAge,
     usersByHomeCity,
     users,
@@ -331,6 +333,12 @@ export default async function IndieAnalyticsPage({
       take: 5000,
       orderBy: { createdAt: "desc" },
     }),
+    prisma.event.count({
+      where: { eventType: "click_search_result_detail" },
+    }),
+    prisma.event.count({
+      where: { eventType: "click_search_results_map" },
+    }),
     prisma.user.groupBy({
       by: ["ageRange"],
       _count: { _all: true },
@@ -361,6 +369,8 @@ export default async function IndieAnalyticsPage({
 
   const searchTotal = searchEvents.length;
   const searchesWithResults = searchEvents.filter((event) => metadataBoolean(event.metadata, "hasResults") === true).length;
+  const searchToDetailRate = searchTotal > 0 ? Math.round((searchDetailClicks / searchTotal) * 100) : 0;
+  const searchToMapRate = searchTotal > 0 ? Math.round((searchMapClicks / searchTotal) * 100) : 0;
   const searchesWithoutResults = searchEvents.filter((event) => {
     const hasResults = metadataBoolean(event.metadata, "hasResults");
     const resultsCount = metadataNumber(event.metadata, "resultsCount");
@@ -637,6 +647,8 @@ export default async function IndieAnalyticsPage({
                         {metric("Avec résultat", searchesWithResults, "au moins un lieu")}
                         {metric("Sans résultat", searchesWithoutResults, "manques de couverture")}
                         {metric("Résultats moyens", averageSearchResults, "par recherche")}
+                        {metric("Fiches depuis recherche", searchDetailClicks, `${searchToDetailRate}% des recherches`)}
+                        {metric("Carte depuis recherche", searchMapClicks, `${searchToMapRate}% des recherches`)}
                       </div>
 
                       <div className="grid gap-5 xl:grid-cols-2">
