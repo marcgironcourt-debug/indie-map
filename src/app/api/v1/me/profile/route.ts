@@ -61,6 +61,7 @@ function serializeUser(user: {
   commentsVisibleToFriends: boolean;
   visitedPlacesVisibleToFriends: boolean;
   profileCompletedAt: Date | null;
+  contributionsCount?: number;
 }) {
   return {
     id: user.id,
@@ -75,6 +76,7 @@ function serializeUser(user: {
     commentsVisibleToFriends: user.commentsVisibleToFriends,
     visitedPlacesVisibleToFriends: user.visitedPlacesVisibleToFriends,
     profileCompleted: Boolean(user.profileCompletedAt),
+    contributionsCount: user.contributionsCount ?? 0,
   };
 }
 
@@ -86,7 +88,14 @@ export async function GET() {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
     }
 
-    return NextResponse.json({ ok: true, user: serializeUser(user) }, { headers: V1_HEADERS });
+    const contributionsCount = await prisma.submission.count({
+      where: {
+        userId: user.id,
+        status: "approved",
+      },
+    });
+
+    return NextResponse.json({ ok: true, user: serializeUser({ ...user, contributionsCount }) }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/me/profile] GET error", err);
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
@@ -143,7 +152,14 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, user: serializeUser(user) }, { headers: V1_HEADERS });
+    const contributionsCount = await prisma.submission.count({
+      where: {
+        userId: user.id,
+        status: "approved",
+      },
+    });
+
+    return NextResponse.json({ ok: true, user: serializeUser({ ...user, contributionsCount }) }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/me/profile] POST error", err);
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });

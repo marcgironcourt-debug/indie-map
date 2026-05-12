@@ -55,6 +55,11 @@ model Submission {
   createdAt    DateTime  @default(now())
   status       String    @default("pending")
   reviewedAt   DateTime?
+  reviewToken  String?   @unique
+  userId       String?
+  user         User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
 }
 
 model ActiveSession {
@@ -117,6 +122,7 @@ model User {
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @updatedAt
 
+  submissions                Submission[]
   sentFriendships            Friendship[]                @relation("FriendshipRequester")
   receivedFriendships        Friendship[]                @relation("FriendshipReceiver")
   sentInvites                Invite[]

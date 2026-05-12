@@ -121,6 +121,7 @@ type PersonalSpacePanelProps = {
   visitedPlacesCount: number;
   visitedCitiesCount: number;
   visitedThisMonthCount: number;
+  contributionsCount: number;
   onModeChange: (mode: PersonalSpacePanelMode) => void;
   onOpenSavedPlaces: () => void;
   onOpenPlace?: (place: PlaceSummary) => void;
@@ -212,6 +213,7 @@ export default function PersonalSpacePanel({
   visitedPlacesCount,
   visitedCitiesCount,
   visitedThisMonthCount,
+  contributionsCount,
   onModeChange,
   onOpenSavedPlaces,
   onOpenPlace,
@@ -1931,7 +1933,7 @@ export default function PersonalSpacePanel({
           </p>
         </div>
         <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
-          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">0</p>
+          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{contributionsCount}</p>
           <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
             {isFr ? "Contributions" : "Contributions"}
           </p>

@@ -27,6 +27,7 @@ type AuthProfile = {
   homeCity: string | null;
   ageRange: string | null;
   profileCompleted: boolean;
+  contributionsCount?: number;
 };
 
 type SavedPlace = {
@@ -1639,6 +1640,7 @@ const filtered = source.filter((b) => {
                         profileSaving={profileSaving}
                         profileSuccess={profileSuccess}
                         profileError={profileError}
+                        contributionsCount={authProfile?.contributionsCount ?? 0}
                         visitedPlacesCount={Object.values(placeNotes).filter((note) => note?.visited).length}
                         visitedCitiesCount={new Set(Object.entries(placeNotes).filter(([, note]) => note?.visited).map(([id]) => (businesses.find((item) => item.id === id)?.city || savedPlaces.find((item) => item.id === id)?.city || "").trim()).filter(Boolean)).size}
                         visitedThisMonthCount={Object.values(placeNotes).filter((note) => {
