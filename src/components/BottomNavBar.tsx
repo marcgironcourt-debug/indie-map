@@ -61,12 +61,12 @@ export default function BottomNavBar({
           className={`flex ${minHeightClassName} flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10`}
         >
           <span className="flex h-6 w-6 items-center justify-center">
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 5v14" />
               <path d="M5 12h14" />
             </svg>
           </span>
-          <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Proposer un lieu" : "Suggest"}</span>
+          <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Participer" : "Participate"}</span>
         </button>
 
         <button

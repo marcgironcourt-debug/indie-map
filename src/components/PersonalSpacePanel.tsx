@@ -1331,14 +1331,17 @@ export default function PersonalSpacePanel({
                           </div>
                         </button>
 
-                        <button
+                                                <button
                           type="button"
                           onClick={() => removePlaceFromSharedList(place.id)}
                           disabled={sharedListSaving}
-                          className="absolute right-2 top-2 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-[15px] text-white/85 backdrop-blur-md disabled:opacity-50"
-                          aria-label={isFr ? "Retirer" : "Remove"}
+                          className="absolute right-2 top-2 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-white/85 backdrop-blur-md disabled:opacity-50"
+                          aria-label={isFr ? "Retirer ce lieu" : "Remove this place"}
                         >
-                          ×
+                          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M6 6l12 12" />
+                            <path d="M18 6L6 18" />
+                          </svg>
                         </button>
                       </div>
                     );
