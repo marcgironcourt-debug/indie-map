@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export type PersonalSpacePanelMode = "dashboard" | "profile" | "friends" | "sharedLists";
 
@@ -361,6 +362,15 @@ export default function PersonalSpacePanel({
         throw new Error("shared_list_create_failed");
       }
 
+      trackEvent({
+        eventType: "create_shared_list",
+        metadata: {
+          listId: typeof data.listId === "string" ? data.listId : null,
+          title,
+          source: "personal_space"
+        }
+      });
+
       setNewSharedListTitle("");
       setSelectedSharedListId(typeof data.listId === "string" ? data.listId : null);
       setSharedListMessage(isFr ? "Liste créée." : "List created.");
@@ -423,6 +433,16 @@ export default function PersonalSpacePanel({
       if (!res.ok || !data?.ok) {
         throw new Error("shared_list_place_failed");
       }
+
+      trackEvent({
+        eventType: "add_place_to_shared_list",
+        placeId,
+        metadata: {
+          listId: selectedSharedList.id,
+          listTitle: selectedSharedList.title,
+          source: "personal_space"
+        }
+      });
 
       setSharedPlaceQuery("");
       setSharedListMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");

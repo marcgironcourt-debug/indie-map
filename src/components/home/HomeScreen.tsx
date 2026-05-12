@@ -7,6 +7,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
+import { trackEvent } from "@/lib/analytics";
 import { isContextSuggestionCandidateOpen, normalizeContextCategory, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
@@ -996,6 +997,15 @@ export default function HomeScreen({
 
     const id = String(selectedHomePlace.id);
     const exists = savedPlaces.some((item) => String(item.id) === id);
+
+    trackEvent({
+      eventType: exists ? "unsave_place" : "save_place",
+      placeId: selectedHomePlace.id,
+      city: selectedHomePlace.city,
+      category: selectedHomePlace.category,
+      locale,
+      metadata: { name: selectedHomePlace.name, source: "home_detail" }
+    });
     const next = exists
       ? savedPlaces.filter((item) => String(item.id) !== id)
       : [
@@ -1059,6 +1069,17 @@ export default function HomeScreen({
       return;
     }
 
+    if (selectedHomePlace?.id) {
+      trackEvent({
+        eventType: "open_shared_list_picker",
+        placeId: selectedHomePlace.id,
+        city: selectedHomePlace.city,
+        category: selectedHomePlace.category,
+        locale,
+        metadata: { name: selectedHomePlace.name, source: "home_detail" }
+      });
+    }
+
     setSelectedPlaceSharedListPickerOpen(true);
     setSelectedPlaceSharedListsMessage("");
     await reloadSelectedPlaceSharedLists();
@@ -1085,6 +1106,15 @@ export default function HomeScreen({
       if (!res.ok || !data?.ok) {
         throw new Error("shared_list_place_failed");
       }
+
+      trackEvent({
+        eventType: "add_place_to_shared_list",
+        placeId: selectedHomePlace.id,
+        city: selectedHomePlace.city,
+        category: selectedHomePlace.category,
+        locale,
+        metadata: { listId, name: selectedHomePlace.name, source: "home_detail" }
+      });
 
       setSelectedPlaceSharedListsMessage(isFr ? "Lieu ajouté à la liste." : "Place added to the list.");
       await reloadSelectedPlaceSharedLists();
@@ -1137,6 +1167,24 @@ export default function HomeScreen({
       if (!addRes.ok || !addData?.ok) {
         throw new Error("shared_list_place_failed");
       }
+
+      trackEvent({
+        eventType: "create_shared_list",
+        placeId: selectedHomePlace.id,
+        city: selectedHomePlace.city,
+        category: selectedHomePlace.category,
+        locale,
+        metadata: { listId: createData.listId, title, source: "home_detail" }
+      });
+
+      trackEvent({
+        eventType: "add_place_to_shared_list",
+        placeId: selectedHomePlace.id,
+        city: selectedHomePlace.city,
+        category: selectedHomePlace.category,
+        locale,
+        metadata: { listId: createData.listId, name: selectedHomePlace.name, source: "home_detail_create" }
+      });
 
       setSelectedPlaceNewSharedListTitle("");
       setSelectedPlaceSharedListsMessage(isFr ? "Liste créée et lieu ajouté." : "List created and place added.");
@@ -1585,7 +1633,10 @@ export default function HomeScreen({
 
 
           <button
-            onClick={() => router.push(`/${locale}/carte?entry=explore`)}
+            onClick={() => {
+              trackEvent({ eventType: "click_explore_world", locale });
+              router.push(`/${locale}/carte?entry=explore`);
+            }}
             className="relative mb-2 h-[290px] w-full shrink-0 overflow-hidden rounded-b-xl"
               style={{
                 background: "#181914"
@@ -1621,6 +1672,12 @@ export default function HomeScreen({
                 event.preventDefault();
                 const query = searchQuery.trim();
                 if (!query) return;
+
+                trackEvent({
+                  eventType: "search_ai_used",
+                  locale,
+                  metadata: { query }
+                });
 
                 setSearchResults(null);
                 setSearchLoading(true);
@@ -1909,6 +1966,22 @@ export default function HomeScreen({
                       key={item.id}
                       type="button"
                       onClick={() => {
+                        trackEvent({
+                          eventType: "click_recent_additions",
+                          placeId: item.id,
+                          city: item.city,
+                          category: item.category,
+                          locale,
+                          metadata: { name: item.name, source: "recent_additions" }
+                        });
+                        trackEvent({
+                          eventType: "view_place_detail",
+                          placeId: item.id,
+                          city: item.city,
+                          category: item.category,
+                          locale,
+                          metadata: { source: "recent_additions", name: item.name }
+                        });
                         setSelectedHomePlace(item);
                       }}
                       className="relative h-[190px] w-[170px] shrink-0 overflow-hidden rounded-xl bg-white/10 text-left"
@@ -1951,7 +2024,24 @@ export default function HomeScreen({
             <button
               type="button"
               onClick={() => {
-                setSelectedHomePlace(discoverPlace || ({ id: "__discovery__", name: "Discovery" } as DiscoverPlace));
+                const place = discoverPlace || ({ id: "__discovery__", name: "Discovery" } as DiscoverPlace);
+                trackEvent({
+                  eventType: "click_discovery_of_day",
+                  placeId: place.id,
+                  city: place.city,
+                  category: place.category,
+                  locale,
+                  metadata: { name: place.name, source: "discovery_of_day" }
+                });
+                trackEvent({
+                  eventType: "view_place_detail",
+                  placeId: place.id,
+                  city: place.city,
+                  category: place.category,
+                  locale,
+                  metadata: { source: "discovery_of_day", name: place.name }
+                });
+                setSelectedHomePlace(place);
               }}
               className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
               style={{
@@ -2300,6 +2390,15 @@ export default function HomeScreen({
                                 ? website
                                 : `https://${website}`;
 
+                            trackEvent({
+                              eventType: "click_detail_website",
+                              placeId: selectedHomePlace.id,
+                              city: selectedHomePlace.city,
+                              category: selectedHomePlace.category,
+                              locale,
+                              metadata: { name: selectedHomePlace.name, url }
+                            });
+
                             window.open(url, "_blank");
                           }}
                           className="rounded-[9px] border border-white/10 bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-white/75"
@@ -2321,6 +2420,15 @@ export default function HomeScreen({
                             const address = encodeURIComponent(selectedHomePlace.address ?? "");
                             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                             const isAndroid = /Android/.test(navigator.userAgent);
+
+                            trackEvent({
+                              eventType: "click_detail_itinerary",
+                              placeId: selectedHomePlace.id,
+                              city: selectedHomePlace.city,
+                              category: selectedHomePlace.category,
+                              locale,
+                              metadata: { name: selectedHomePlace.name }
+                            });
 
                             if (isIOS) {
                               window.location.href = `http://maps.apple.com/?q=${address}`;
@@ -2362,6 +2470,14 @@ export default function HomeScreen({
                               }
                             }
                             if (ok) {
+                              trackEvent({
+                                eventType: "click_detail_copy_address",
+                                placeId: selectedHomePlace.id,
+                                city: selectedHomePlace.city,
+                                category: selectedHomePlace.category,
+                                locale,
+                                metadata: { name: selectedHomePlace.name }
+                              });
                               setAddressCopied(true);
                               window.setTimeout(() => setAddressCopied(false), 1500);
                             }
@@ -2402,6 +2518,14 @@ export default function HomeScreen({
                     <button
                       type="button"
                       onClick={() => {
+                        trackEvent({
+                          eventType: "click_detail_view_on_map",
+                          placeId: selectedHomePlace.id,
+                          city: selectedHomePlace.city,
+                          category: selectedHomePlace.category,
+                          locale,
+                          metadata: { name: selectedHomePlace.name }
+                        });
                         router.push(`/${locale}/carte?discover=${selectedHomePlace.id}`);
                       }}
                       className="relative mt-6 block h-[190px] w-full overflow-hidden rounded-2xl bg-[#101510]"
@@ -2558,6 +2682,22 @@ export default function HomeScreen({
                           <button
                             type="button"
                             onClick={() => {
+                              trackEvent({
+                                eventType: "click_search_result_detail",
+                                placeId: item.id,
+                                city: item.city,
+                                category: item.category,
+                                locale,
+                                metadata: { name: item.name }
+                              });
+                              trackEvent({
+                                eventType: "view_place_detail",
+                                placeId: item.id,
+                                city: item.city,
+                                category: item.category,
+                                locale,
+                                metadata: { source: "search_result", name: item.name }
+                              });
                               setSelectedHomePlace(item);
                             }}
                             className="flex w-full items-center justify-center px-4 py-3 text-center text-[14px] font-semibold text-white/85"
@@ -2581,6 +2721,14 @@ export default function HomeScreen({
                       type="button"
                       onClick={() => {
                         const ids = (searchResults ?? []).map((item) => item.id).filter(Boolean).join(",");
+                        trackEvent({
+                          eventType: "click_search_results_map",
+                          locale,
+                          metadata: {
+                            resultCount: (searchResults ?? []).length,
+                            ids
+                          }
+                        });
                         router.push(`/${locale}/carte?searchIds=${encodeURIComponent(ids)}`);
                       }}
                       className="pointer-events-auto rounded-full border border-white/15 bg-black/55 px-7 py-2.5 text-center text-[14px] font-semibold text-white shadow-[0_10px_35px_rgba(0,0,0,0.45)] backdrop-blur-md active:bg-black/70"

@@ -36,10 +36,24 @@ model Business {
 model Event {
   id        String   @id @default(uuid())
   eventType String
-  placeId   String
-  city      String
-  category  String
+  placeId   String?
+  city      String?
+  country   String?
+  category  String?
+  sessionId String?
+  userId    String?
+  locale    String?
+  platform  String?
+  metadata  Json?
   createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([eventType])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([sessionId])
+  @@index([placeId])
 }
 
 model Submission {
@@ -137,6 +151,7 @@ model User {
   pushDevices                PushDevice[]
   contextualNotificationLogs ContextualNotificationLog[]
   appUpdateNotificationLogs AppUpdateNotificationLog[]
+  events                    Event[]
 }
 
 model Friendship {

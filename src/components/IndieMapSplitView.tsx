@@ -5,6 +5,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ContributeForm from "@/components/ContributeForm";
+import { trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
 declare global {
@@ -859,6 +860,14 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       if (!id) return;
       const place = businesses.find((item) => String(item.id) === id);
       if (!place) return;
+      trackEvent({
+        eventType: "view_place_detail",
+        placeId: place.id,
+        city: place.city,
+        category: place.type,
+        locale,
+        metadata: { name: place.name, source: "map_detail_event" }
+      });
       setSelectedDetailPlace(place);
       setSelectedPlaceCommentsOpen(false);
       setSelectedPlaceCommentInput("");
@@ -999,6 +1008,16 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
     const id = String(selectedDetailPlace.id);
     const exists = savedPlaces.some((item) => String(item.id) === id);
+
+    trackEvent({
+      eventType: exists ? "unsave_place" : "save_place",
+      placeId: selectedDetailPlace.id,
+      city: selectedDetailPlace.city,
+      category: selectedDetailPlace.type,
+      locale,
+      metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+    });
+
     const next = exists
       ? savedPlaces.filter((item) => String(item.id) !== id)
       : [
@@ -1927,6 +1946,15 @@ const filtered = source.filter((b) => {
                                 ? website
                                 : `https://${website}`;
 
+                            trackEvent({
+                              eventType: "click_detail_website",
+                              placeId: selectedDetailPlace.id,
+                              city: selectedDetailPlace.city,
+                              category: selectedDetailPlace.type,
+                              locale,
+                              metadata: { name: selectedDetailPlace.name, url, source: "map_detail" }
+                            });
+
                             window.open(url, "_blank");
                           }}
                           className="rounded-[9px] border border-white/10 bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-white/75"
@@ -1950,6 +1978,15 @@ const filtered = source.filter((b) => {
                             const address = encodeURIComponent(selectedDetailPlace.address ?? "");
                             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                             const isAndroid = /Android/.test(navigator.userAgent);
+
+                            trackEvent({
+                              eventType: "click_detail_itinerary",
+                              placeId: selectedDetailPlace.id,
+                              city: selectedDetailPlace.city,
+                              category: selectedDetailPlace.type,
+                              locale,
+                              metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                            });
 
                             if (isIOS) {
                               window.location.href = `http://maps.apple.com/?q=${address}`;
@@ -1992,6 +2029,14 @@ const filtered = source.filter((b) => {
                               }
                             }
                             if (ok) {
+                              trackEvent({
+                                eventType: "click_detail_copy_address",
+                                placeId: selectedDetailPlace.id,
+                                city: selectedDetailPlace.city,
+                                category: selectedDetailPlace.type,
+                                locale,
+                                metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                              });
                               setAddressCopied(true);
                               window.setTimeout(() => setAddressCopied(false), 1500);
                             }
@@ -2005,6 +2050,14 @@ const filtered = source.filter((b) => {
                           <button
                             type="button"
                             onClick={() => {
+                              trackEvent({
+                                eventType: "click_detail_phone",
+                                placeId: selectedDetailPlace.id,
+                                city: selectedDetailPlace.city,
+                                category: selectedDetailPlace.type,
+                                locale,
+                                metadata: { name: selectedDetailPlace.name, source: "map_detail" }
+                              });
                               window.location.href = `tel:${selectedDetailPlace.phone}`;
                             }}
                             className="rounded-[9px] border border-white/10 bg-white/8 p-1.5 text-white/75"

@@ -4,6 +4,7 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { isOpenNowFR, parseOpeningHoursFR } from "@/lib/openingHours";
+import { trackEvent } from "@/lib/analytics";
 
 const isEnUI = typeof window !== "undefined" ? /^\/en(\/|$)/.test(window.location.pathname) : false;
 const ui = (fr: string, en: string) => (isEnUI ? en : fr);
@@ -11,6 +12,11 @@ const ui = (fr: string, en: string) => (isEnUI ? en : fr);
 function openPlaceDetailFromMini(placeId: string) {
   const id = String(placeId || "").trim();
   if (!id || typeof window === "undefined") return;
+  trackEvent({
+    eventType: "click_mini_more_info",
+    placeId: id,
+    metadata: { source: "mini_window" }
+  });
   window.dispatchEvent(new CustomEvent("im:open-place-detail", { detail: { id } }));
 }
 
@@ -1771,6 +1777,15 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
           if (db) {
             db.addEventListener("click", (ev) => {
               try { ev.preventDefault(); ev.stopPropagation(); } catch {}
+              try {
+                trackEvent({
+                  eventType: "click_mini_immersion",
+                  placeId: String(props?.id ?? sid ?? ""),
+                  city: String((props as any)?.city ?? ""),
+                  category: String((props as any)?.type ?? (props as any)?.category ?? ""),
+                  metadata: { name: String(props?.name ?? props?.title ?? ""), source: "mini_window" }
+                });
+              } catch {}
               try { setSheetOpen(false); } catch {}
               try { setSheetHtml(""); } catch {}
               try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch {}
@@ -2806,6 +2821,15 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
               if (db) {
                 db.addEventListener("click", (ev) => {
                   try { ev.preventDefault(); ev.stopPropagation(); } catch (e) {}
+                  try {
+                    trackEvent({
+                      eventType: "click_mini_immersion",
+                      placeId: String(props?.id ?? fid ?? ""),
+                      city: String((props as any)?.city ?? ""),
+                      category: String((props as any)?.type ?? (props as any)?.category ?? ""),
+                      metadata: { name: String(props?.name ?? props?.title ?? ""), source: "mini_window" }
+                    });
+                  } catch {}
                   try { setSheetOpen(false); } catch (e) {}
                   try { setSheetHtml(""); } catch (e) {}
                   try { if (geolocateElRef.current) geolocateElRef.current.style.display = "none"; } catch (e) {}
@@ -4583,6 +4607,15 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                             const lat2 = Number((st2 as any).lat);
                             const props2 = (st2 as any).props || {};
                             const fid2 = (st2 as any).fid ? String((st2 as any).fid) : null;
+                            try {
+                              trackEvent({
+                                eventType: "click_mini_immersion",
+                                placeId: String(props2?.id ?? fid2 ?? ""),
+                                city: String((props2 as any)?.city ?? ""),
+                                category: String((props2 as any)?.type ?? (props2 as any)?.category ?? ""),
+                                metadata: { name: String(props2?.name ?? props2?.title ?? ""), source: "mini_window_return" }
+                              });
+                            } catch {}
                             try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch {}
                             try { heroReturnPopupRef.current = { lng: Number(lng2), lat: Number(lat2), props: props2, fid: fid2 }; } catch {}
                             try { setDiscoverPanel(null); } catch {}
