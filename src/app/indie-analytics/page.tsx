@@ -141,6 +141,52 @@ function countSources(events: { metadata: unknown }[]) {
     .sort((a, b) => b.count - a.count);
 }
 
+function metadataText(metadata: unknown, key: string) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return "";
+  const value = (metadata as Record<string, unknown>)[key];
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function metadataNumber(metadata: unknown, key: string) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return null;
+  const value = (metadata as Record<string, unknown>)[key];
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function metadataBoolean(metadata: unknown, key: string) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return null;
+  const value = (metadata as Record<string, unknown>)[key];
+  return typeof value === "boolean" ? value : null;
+}
+
+function metadataFirstText(metadata: unknown, key: string) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return "";
+  const value = (metadata as Record<string, unknown>)[key];
+
+  if (typeof value === "string") return value.trim();
+
+  if (Array.isArray(value)) {
+    const first = value.find((item) => typeof item === "string" && item.trim());
+    return typeof first === "string" ? first.trim() : "";
+  }
+
+  return "";
+}
+
+function countTexts(values: string[]) {
+  const counts = new Map<string, number>();
+
+  for (const value of values) {
+    const clean = value.trim();
+    if (!clean) continue;
+    counts.set(clean, (counts.get(clean) || 0) + 1);
+  }
+
+  return Array.from(counts.entries())
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+}
+
 function ageLabel(ageRange: string | null) {
   if (!ageRange) return "—";
   return AGE_LABELS[ageRange] || ageRange;
@@ -234,6 +280,7 @@ export default async function IndieAnalyticsPage({
     eventTypes,
     eventsByPlace,
     viewPlaceDetailEvents,
+    searchEvents,
     usersByAge,
     usersByHomeCity,
     users,
@@ -278,6 +325,12 @@ export default async function IndieAnalyticsPage({
       take: 5000,
       orderBy: { createdAt: "desc" },
     }),
+    prisma.event.findMany({
+      where: { eventType: "search_ai_used" },
+      select: { createdAt: true, city: true, category: true, metadata: true },
+      take: 5000,
+      orderBy: { createdAt: "desc" },
+    }),
     prisma.user.groupBy({
       by: ["ageRange"],
       _count: { _all: true },
@@ -305,6 +358,20 @@ export default async function IndieAnalyticsPage({
 
   const viewSources = countSources(viewPlaceDetailEvents);
   const maxViewSourceCount = Math.max(1, ...viewSources.map((item) => item.count));
+
+  const searchTotal = searchEvents.length;
+  const searchesWithResults = searchEvents.filter((event) => metadataBoolean(event.metadata, "hasResults") === true).length;
+  const searchesWithoutResults = searchEvents.filter((event) => {
+    const hasResults = metadataBoolean(event.metadata, "hasResults");
+    const resultsCount = metadataNumber(event.metadata, "resultsCount");
+    return hasResults === false || resultsCount === 0;
+  }).length;
+  const searchResultCounts = searchEvents.map((event) => metadataNumber(event.metadata, "resultsCount")).filter((value): value is number => typeof value === "number");
+  const averageSearchResults = searchResultCounts.length > 0 ? Math.round(searchResultCounts.reduce((sum, value) => sum + value, 0) / searchResultCounts.length) : 0;
+  const searchCities = countTexts(searchEvents.map((event) => event.city || metadataText(event.metadata, "detectedCity")));
+  const searchCategories = countTexts(searchEvents.map((event) => event.category || metadataFirstText(event.metadata, "targetCategories") || metadataText(event.metadata, "explicitCategory")));
+  const maxSearchCityCount = Math.max(1, ...searchCities.map((item) => item.count));
+  const maxSearchCategoryCount = Math.max(1, ...searchCategories.map((item) => item.count));
 
   const selectedUser = selectedUserId
     ? await prisma.user.findUnique({
@@ -559,6 +626,53 @@ export default async function IndieAnalyticsPage({
                     </div>
                   ),
                   "Permet de comprendre pourquoi une fiche est ouverte : recherche, carte, mini-fenêtre, liste partagée ou ami."
+                )}
+
+                {panel(
+                  "Recherches",
+                  searchTotal === 0 ? empty("Aucune recherche enregistrée pour le moment.") : (
+                    <div className="space-y-5">
+                      <div className="grid gap-4 md:grid-cols-4">
+                        {metric("Recherches", searchTotal, "requêtes tapées")}
+                        {metric("Avec résultat", searchesWithResults, "au moins un lieu")}
+                        {metric("Sans résultat", searchesWithoutResults, "manques de couverture")}
+                        {metric("Résultats moyens", averageSearchResults, "par recherche")}
+                      </div>
+
+                      <div className="grid gap-5 xl:grid-cols-2">
+                        <div className="grid gap-3">
+                          <div className="text-sm font-semibold text-black/55">Villes recherchées</div>
+                          {searchCities.length === 0 ? empty("Aucune ville détectée.") : searchCities.slice(0, 8).map((row) => (
+                            <div key={row.label}>
+                              {progressRow(row.label, row.count, maxSearchCityCount)}
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="grid gap-3">
+                          <div className="text-sm font-semibold text-black/55">Catégories demandées</div>
+                          {searchCategories.length === 0 ? empty("Aucune catégorie détectée.") : searchCategories.slice(0, 8).map((row) => (
+                            <div key={row.label}>
+                              {progressRow(row.label, row.count, maxSearchCategoryCount)}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="grid gap-2">
+                        <div className="text-sm font-semibold text-black/55">Dernières recherches</div>
+                        {searchEvents.slice(0, 12).map((event, index) => (
+                          <div key={`${event.createdAt.toISOString()}-${index}`} className="grid gap-2 rounded-2xl border border-black/10 bg-[#faf7f0] p-4 text-sm md:grid-cols-[150px_1fr_110px_90px]">
+                            <div className="text-black/45">{event.createdAt.toISOString().replace("T", " ").slice(0, 16)}</div>
+                            <div className="font-semibold">{metadataText(event.metadata, "query") || "—"}</div>
+                            <div className="text-black/55">{event.city || metadataText(event.metadata, "detectedCity") || "ville —"}</div>
+                            <div className="text-black/55">{metadataNumber(event.metadata, "resultsCount") ?? "—"} résultat(s)</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ),
+                  "Permet de voir ce que les gens cherchent, les villes demandées et les recherches sans résultat."
                 )}
               </>
             ) : null}

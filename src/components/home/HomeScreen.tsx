@@ -1674,12 +1674,6 @@ export default function HomeScreen({
                 const query = searchQuery.trim();
                 if (!query) return;
 
-                trackEvent({
-                  eventType: "search_ai_used",
-                  locale,
-                  metadata: { query }
-                });
-
                 setSearchResults(null);
                 setSearchLoading(true);
 
@@ -1821,6 +1815,23 @@ export default function HomeScreen({
                         .filter((entry) => entry.score > 0)
                         .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
                         .map((entry) => entry.place);
+
+                  trackEvent({
+                    eventType: "search_ai_used",
+                    locale,
+                    city: detectedCity,
+                    category: targetCategories[0] || explicitCategory || null,
+                    metadata: {
+                      query,
+                      detectedCity,
+                      explicitCategory,
+                      targetCategories,
+                      resultsCount: results.length,
+                      hasResults: results.length > 0,
+                      meaningfulTokens,
+                      searchMode: shouldReturnFullPool ? "full_pool" : "scored"
+                    }
+                  });
 
                   setSearchResults(results);
                   setSearchLoading(false);
@@ -2737,6 +2748,7 @@ export default function HomeScreen({
                           eventType: "click_search_results_map",
                           locale,
                           metadata: {
+                            query: searchQuery.trim(),
                             resultCount: (searchResults ?? []).length,
                             ids
                           }
