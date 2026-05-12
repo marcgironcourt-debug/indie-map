@@ -17,7 +17,7 @@ function openPlaceDetailFromMini(placeId: string) {
     placeId: id,
     metadata: { source: "mini_window" }
   });
-  window.dispatchEvent(new CustomEvent("im:open-place-detail", { detail: { id } }));
+  window.dispatchEvent(new CustomEvent("im:open-place-detail", { detail: { id, source: "mini_window" } }));
 }
 
 

@@ -50,6 +50,23 @@ const AGE_LABELS: Record<string, string> = {
   prefer_not_to_say: "Préfère ne pas dire",
 };
 
+const SOURCE_LABELS: Record<string, string> = {
+  recent_additions: "Ajouts récents",
+  discovery_of_day: "Découverte du jour",
+  search_result: "Recherche",
+  mini_window: "Mini-fenêtre carte",
+  mini_window_return: "Mini-fenêtre après immersion",
+  map: "Carte",
+  map_detail: "Fiche carte",
+  home_detail: "Fiche accueil",
+  home_detail_create: "Création depuis fiche accueil",
+  shared_list: "Liste partagée",
+  shared_list_search: "Recherche dans liste",
+  friend_visited_place: "Lieu visité par un ami",
+  personal_space: "Espace perso",
+  unknown: "Source inconnue",
+};
+
 const TABS = [
   { key: "overview", label: "Vue d’ensemble" },
   { key: "actions", label: "Actions" },
@@ -97,6 +114,31 @@ function placeCity(placeMap: Map<string, PlaceLite>, placeId: string | null | un
 
 function eventLabel(eventType: string) {
   return EVENT_LABELS[eventType] || eventType;
+}
+
+function sourceLabel(source: string) {
+  return SOURCE_LABELS[source] || source || "—";
+}
+
+function metadataSource(metadata: unknown) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) return "unknown";
+  const raw = (metadata as { source?: unknown }).source;
+  if (typeof raw !== "string") return "unknown";
+  const clean = raw.trim();
+  return clean || "unknown";
+}
+
+function countSources(events: { metadata: unknown }[]) {
+  const counts = new Map<string, number>();
+
+  for (const event of events) {
+    const source = metadataSource(event.metadata);
+    counts.set(source, (counts.get(source) || 0) + 1);
+  }
+
+  return Array.from(counts.entries())
+    .map(([source, count]) => ({ source, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 function ageLabel(ageRange: string | null) {
@@ -191,6 +233,7 @@ export default async function IndieAnalyticsPage({
     anonymousEventSessions,
     eventTypes,
     eventsByPlace,
+    viewPlaceDetailEvents,
     usersByAge,
     usersByHomeCity,
     users,
@@ -229,6 +272,12 @@ export default async function IndieAnalyticsPage({
       orderBy: { _count: { placeId: "desc" } },
       take: 30,
     }),
+    prisma.event.findMany({
+      where: { eventType: "view_place_detail" },
+      select: { metadata: true },
+      take: 5000,
+      orderBy: { createdAt: "desc" },
+    }),
     prisma.user.groupBy({
       by: ["ageRange"],
       _count: { _all: true },
@@ -253,6 +302,9 @@ export default async function IndieAnalyticsPage({
       },
     }),
   ]);
+
+  const viewSources = countSources(viewPlaceDetailEvents);
+  const maxViewSourceCount = Math.max(1, ...viewSources.map((item) => item.count));
 
   const selectedUser = selectedUserId
     ? await prisma.user.findUnique({
@@ -281,6 +333,9 @@ export default async function IndieAnalyticsPage({
 
   const maxEventCount = Math.max(1, ...eventTypes.map((row) => row._count._all));
   const maxPlaceCount = Math.max(1, ...eventsByPlace.map((row) => row._count._all));
+  const selectedUserViewEvents = selectedUser?.events.filter((event) => event.eventType === "view_place_detail") ?? [];
+  const selectedUserViewSources = countSources(selectedUserViewEvents);
+  const maxSelectedUserViewSourceCount = Math.max(1, ...selectedUserViewSources.map((item) => item.count));
 
   return (
     <main className="h-screen overflow-y-auto bg-[#f3eee5] px-4 py-4 pb-16 text-black md:px-8 md:py-8 md:pb-20">
@@ -352,6 +407,19 @@ export default async function IndieAnalyticsPage({
               )
             )}
 
+            {panel(
+              "Sources des vues fiche",
+              selectedUserViewSources.length === 0 ? empty("Aucune vue fiche enregistrée pour cet utilisateur.") : (
+                <div className="grid gap-3 md:grid-cols-2">
+                  {selectedUserViewSources.map((row) => (
+                    <div key={row.source}>
+                      {progressRow(sourceLabel(row.source), row.count, maxSelectedUserViewSourceCount)}
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
+
             <div className="grid gap-6 xl:grid-cols-2">
               {panel(
                 "Lieux favoris",
@@ -392,7 +460,12 @@ export default async function IndieAnalyticsPage({
                     <div key={event.id} className="grid gap-2 rounded-2xl border border-black/10 bg-[#faf7f0] p-4 text-sm md:grid-cols-[170px_1fr_1fr_90px]">
                       <div className="text-black/45">{event.createdAt.toISOString().replace("T", " ").slice(0, 16)}</div>
                       <div className="font-semibold">{eventLabel(event.eventType)}</div>
-                      <div>{placeName(placeMap, event.placeId)}</div>
+                      <div>
+                        <div>{placeName(placeMap, event.placeId)}</div>
+                        {event.eventType === "view_place_detail" ? (
+                          <div className="mt-0.5 text-xs text-black/40">{sourceLabel(metadataSource(event.metadata))}</div>
+                        ) : null}
+                      </div>
                       <div className="text-black/45">{event.platform || "—"}</div>
                     </div>
                   ))}
@@ -441,6 +514,19 @@ export default async function IndieAnalyticsPage({
                       </div>
                     )
                   )}
+
+                  {panel(
+                    "Sources des vues fiche",
+                    viewSources.length === 0 ? empty("Aucune source de vue fiche enregistrée.") : (
+                      <div className="grid gap-3">
+                        {viewSources.slice(0, 8).map((row) => (
+                          <div key={row.source}>
+                            {progressRow(sourceLabel(row.source), row.count, maxViewSourceCount)}
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  )}
                 </div>
               </>
             ) : null}
@@ -459,6 +545,20 @@ export default async function IndieAnalyticsPage({
                     </div>
                   ),
                   "Chaque ligne correspond à une interaction réellement envoyée à /api/v1/event."
+                )}
+
+                {panel(
+                  "Sources des vues fiche",
+                  viewSources.length === 0 ? empty("Aucune source de vue fiche enregistrée.") : (
+                    <div className="grid gap-3 md:grid-cols-2">
+                      {viewSources.map((row) => (
+                        <div key={row.source}>
+                          {progressRow(sourceLabel(row.source), row.count, maxViewSourceCount)}
+                        </div>
+                      ))}
+                    </div>
+                  ),
+                  "Permet de comprendre pourquoi une fiche est ouverte : recherche, carte, mini-fenêtre, liste partagée ou ami."
                 )}
               </>
             ) : null}

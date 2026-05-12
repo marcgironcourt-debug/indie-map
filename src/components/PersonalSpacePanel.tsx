@@ -125,7 +125,7 @@ type PersonalSpacePanelProps = {
   contributionsCount: number;
   onModeChange: (mode: PersonalSpacePanelMode) => void;
   onOpenSavedPlaces: () => void;
-  onOpenPlace?: (place: PlaceSummary) => void;
+  onOpenPlace?: (place: PlaceSummary, source?: string) => void;
   onSwitchLocale: (nextLocale: "fr" | "en") => void;
   onSetAuthMode: (mode: PersonalSpaceAuthMode) => void;
   onSetAuthEmail: (value: string) => void;
@@ -1325,7 +1325,7 @@ export default function PersonalSpacePanel({
                       <div key={item.id} className="relative">
                         <button
                           type="button"
-                          onClick={() => onOpenPlace?.(place)}
+                          onClick={() => onOpenPlace?.(place, "shared_list")}
                           className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
                           style={{
                             minHeight: "130px",
@@ -1405,7 +1405,7 @@ export default function PersonalSpacePanel({
                       >
                         <button
                           type="button"
-                          onClick={() => onOpenPlace?.(place)}
+                          onClick={() => onOpenPlace?.(place, "shared_list_search")}
                           className="flex min-w-0 flex-1 items-center gap-3 text-left"
                         >
                           {place.panoramaImage ? (
@@ -1613,7 +1613,7 @@ export default function PersonalSpacePanel({
                           <div key={item.placeId} className="relative">
                             <button
                               type="button"
-                              onClick={() => onOpenPlace?.(place)}
+                              onClick={() => onOpenPlace?.(place, "friend_visited_place")}
                               className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
                               style={{
                                 minHeight: "130px",

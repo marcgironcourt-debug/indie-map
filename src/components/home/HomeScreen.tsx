@@ -2893,7 +2893,19 @@ export default function HomeScreen({
                   }).length}
                   onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : mode === "sharedLists" ? "sharedLists" : "personalSpace")}
                   onOpenSavedPlaces={() => setPanel("myPlacesList")}
-                  onOpenPlace={(place) => setSelectedHomePlace(place as DiscoverPlace)}
+                  onOpenPlace={(place, source) => {
+                    const selected = place as DiscoverPlace;
+                    const viewSource = String(source || "personal_space").trim() || "personal_space";
+                    trackEvent({
+                      eventType: "view_place_detail",
+                      placeId: selected.id,
+                      city: selected.city,
+                      category: selected.category,
+                      locale,
+                      metadata: { name: selected.name, source: viewSource }
+                    });
+                    setSelectedHomePlace(selected);
+                  }}
                   onSwitchLocale={switchLocale}
                   onSetAuthMode={setAuthMode}
                   onSetAuthEmail={setAuthEmail}

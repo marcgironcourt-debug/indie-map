@@ -856,7 +856,9 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
   React.useEffect(() => {
     const onOpenPlaceDetail = (event: Event) => {
-      const id = String((event as CustomEvent<{ id?: string }>)?.detail?.id ?? "").trim();
+      const detail = (event as CustomEvent<{ id?: string; source?: string }>)?.detail ?? {};
+      const id = String(detail.id ?? "").trim();
+      const source = String(detail.source ?? "map").trim() || "map";
       if (!id) return;
       const place = businesses.find((item) => String(item.id) === id);
       if (!place) return;
@@ -866,7 +868,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         city: place.city,
         category: place.type,
         locale,
-        metadata: { name: place.name, source: "map_detail_event" }
+        metadata: { name: place.name, source }
       });
       setSelectedDetailPlace(place);
       setSelectedPlaceCommentsOpen(false);
@@ -1692,6 +1694,25 @@ const filtered = source.filter((b) => {
                         onConfirmPasswordReset={confirmPasswordReset}
                         onSaveProfile={saveProfile}
                         onLogout={logoutAuth}
+                        onOpenPlace={(place, source) => {
+                          const detailPlace = businesses.find((item) => String(item.id) === String(place.id));
+                          if (!detailPlace) return;
+                          const viewSource = String(source || "personal_space").trim() || "personal_space";
+                          trackEvent({
+                            eventType: "view_place_detail",
+                            placeId: detailPlace.id,
+                            city: detailPlace.city,
+                            category: detailPlace.type,
+                            locale,
+                            metadata: { name: detailPlace.name, source: viewSource }
+                          });
+                          setSelectedDetailPlace(detailPlace);
+                          setPanel(null);
+                          setSelectedPlaceCommentsOpen(false);
+                          setSelectedPlaceCommentInput("");
+                          setSelectedPlaceCommentError("");
+                          setAddressCopied(false);
+                        }}
                       />
                     ) : panel === "myPlacesList" ? (
                       <>
