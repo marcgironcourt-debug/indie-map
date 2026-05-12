@@ -16,6 +16,13 @@ function normStr(v: unknown, max = 500): string | null {
   return t.length > max ? t.slice(0, max) : t;
 }
 
+function formatSender(from: string) {
+  const clean = from.trim();
+  if (!clean) return clean;
+  if (clean.includes("<") && clean.includes(">")) return clean;
+  return "Indie Map <" + clean + ">";
+}
+
 function esc(s: string): string {
   return s
     .replaceAll("&", "&amp;")
@@ -97,7 +104,7 @@ export async function POST(req: Request) {
       "</div>";
 
     const { error } = await resend.emails.send({
-      from,
+      from: formatSender(from),
       to: [to],
       subject,
       html,

@@ -6,6 +6,13 @@ const V1_HEADERS = {
   "X-API-Version": "1",
 } as const;
 
+function formatSender(from: string) {
+  const clean = from.trim();
+  if (!clean) return clean;
+  if (clean.includes("<") && clean.includes(">")) return clean;
+  return "Indie Map <" + clean + ">";
+}
+
 function esc(s: string): string {
   return s
     .replaceAll("&", "&amp;")
@@ -111,7 +118,7 @@ export async function GET(req: Request) {
             : "Thank you for helping Indie Map grow. Your latest contribution, “" + updated.name + "”, was unfortunately not accepted because the place does not fully match Indie Map’s values or criteria.\n\nMarc\nFounder of Indie Map";
 
         await resend.emails.send({
-          from,
+          from: formatSender(from),
           to: [updated.user.email],
           subject,
           html: "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#111\"><p>" + esc(body).replaceAll("\n", "<br>") + "</p></div>",
