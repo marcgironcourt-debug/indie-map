@@ -881,7 +881,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
     window.addEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
     return () => window.removeEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
-  }, [businesses]);
+  }, [businesses, locale]);
 
   React.useEffect(() => {
     const syncSavedPlaces = () => {

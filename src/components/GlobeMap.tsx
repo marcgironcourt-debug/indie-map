@@ -4613,7 +4613,7 @@ const goBtn = mkBtn(ui("Itinéraire →","Directions →"));
                                 placeId: String(props2?.id ?? fid2 ?? ""),
                                 city: String((props2 as any)?.city ?? ""),
                                 category: String((props2 as any)?.type ?? (props2 as any)?.category ?? ""),
-                                metadata: { name: String(props2?.name ?? props2?.title ?? ""), source: "mini_window_return" }
+                                metadata: { name: String(props2?.name ?? props2?.title ?? ""), source: "mini_window" }
                               });
                             } catch {}
                             try { setDiscoverMeta({ id: String(props2?.id ?? fid2 ?? ""), name: String(props2?.name ?? props2?.title ?? "") }); } catch {}

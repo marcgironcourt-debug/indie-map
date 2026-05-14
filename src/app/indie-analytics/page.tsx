@@ -55,7 +55,6 @@ const SOURCE_LABELS: Record<string, string> = {
   discovery_of_day: "Découverte du jour",
   search_result: "Recherche",
   mini_window: "Mini-fenêtre carte",
-  mini_window_return: "Mini-fenêtre après immersion",
   map: "Carte",
   map_detail: "Fiche carte",
   home_detail: "Fiche accueil",
@@ -286,6 +285,11 @@ export default async function IndieAnalyticsPage({
     usersByAge,
     usersByHomeCity,
     users,
+    savedByUser,
+    visitedByUser,
+    ownedListsByUser,
+    memberListsByUser,
+    eventsByUser,
   ] = await Promise.all([
     prisma.activeSession.count({ where: { lastSeenAt: { gte: fiveMin } } }),
     prisma.activeSession.count({ where: { lastSeenAt: { gte: fifteenMin } } }),
@@ -352,15 +356,37 @@ export default async function IndieAnalyticsPage({
     }),
     prisma.user.findMany({
       orderBy: { createdAt: "desc" },
-      include: {
-        places: true,
-        ownedLists: { include: { places: true, members: true } },
-        listMemberships: { include: { list: true } },
-        events: {
-          orderBy: { createdAt: "desc" },
-          take: 200,
-        },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        preferredLocale: true,
+        homeCity: true,
+        ageRange: true,
       },
+    }),
+    prisma.userPlace.groupBy({
+      by: ["userId"],
+      where: { saved: true },
+      _count: { _all: true },
+    }),
+    prisma.userPlace.groupBy({
+      by: ["userId"],
+      where: { visited: true },
+      _count: { _all: true },
+    }),
+    prisma.sharedList.groupBy({
+      by: ["ownerId"],
+      _count: { _all: true },
+    }),
+    prisma.sharedListMember.groupBy({
+      by: ["userId"],
+      _count: { _all: true },
+    }),
+    prisma.event.groupBy({
+      by: ["userId"],
+      where: { userId: { not: null } },
+      _count: { _all: true },
     }),
   ]);
 
@@ -383,6 +409,13 @@ export default async function IndieAnalyticsPage({
   const searchCategories = countTexts(searchEvents.map((event) => event.category || metadataFirstText(event.metadata, "targetCategories") || metadataText(event.metadata, "explicitCategory")));
   const maxSearchCityCount = Math.max(1, ...searchCities.map((item) => item.count));
   const maxSearchCategoryCount = Math.max(1, ...searchCategories.map((item) => item.count));
+
+  const savedByUserMap = new Map(savedByUser.map((row) => [row.userId, row._count._all]));
+  const visitedByUserMap = new Map(visitedByUser.map((row) => [row.userId, row._count._all]));
+  const ownedListsByUserMap = new Map(ownedListsByUser.map((row) => [row.ownerId, row._count._all]));
+  const memberListsByUserMap = new Map(memberListsByUser.map((row) => [row.userId, row._count._all]));
+  const eventsByUserMap = new Map(eventsByUser.map((row) => [row.userId, row._count._all]));
+
 
   const selectedUser = selectedUserId
     ? await prisma.user.findUnique({
@@ -776,19 +809,19 @@ export default async function IndieAnalyticsPage({
 
                           <div className="mt-5 grid grid-cols-4 gap-2 text-center">
                             <div className="rounded-2xl bg-white p-2">
-                              <div className="text-lg font-semibold">{user.places.filter((item) => item.saved).length}</div>
+                              <div className="text-lg font-semibold">{savedByUserMap.get(user.id) || 0}</div>
                               <div className="text-[10px] uppercase tracking-[0.1em] text-black/35">Favoris</div>
                             </div>
                             <div className="rounded-2xl bg-white p-2">
-                              <div className="text-lg font-semibold">{user.places.filter((item) => item.visited).length}</div>
+                              <div className="text-lg font-semibold">{visitedByUserMap.get(user.id) || 0}</div>
                               <div className="text-[10px] uppercase tracking-[0.1em] text-black/35">Visités</div>
                             </div>
                             <div className="rounded-2xl bg-white p-2">
-                              <div className="text-lg font-semibold">{user.ownedLists.length + user.listMemberships.length}</div>
+                              <div className="text-lg font-semibold">{(ownedListsByUserMap.get(user.id) || 0) + (memberListsByUserMap.get(user.id) || 0)}</div>
                               <div className="text-[10px] uppercase tracking-[0.1em] text-black/35">Listes</div>
                             </div>
                             <div className="rounded-2xl bg-white p-2">
-                              <div className="text-lg font-semibold">{user.events.length}</div>
+                              <div className="text-lg font-semibold">{eventsByUserMap.get(user.id) || 0}</div>
                               <div className="text-[10px] uppercase tracking-[0.1em] text-black/35">Actions</div>
                             </div>
                           </div>
