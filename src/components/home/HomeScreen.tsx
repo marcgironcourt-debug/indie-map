@@ -369,12 +369,7 @@ export default function HomeScreen({
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null));
   const [contextPlace, setContextPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null));
   const [contextPlaceNearby, setContextPlaceNearby] = React.useState(false);
-  const [suggestionPlaces, setSuggestionPlaces] = React.useState<DiscoverPlace[]>(() => {
-    const cachedContext = mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null);
-    const cachedDiscover = mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null);
-    const baseAll = (initialAllPlaces ?? []).filter((item) => !!item?.id && !!item?.name);
-    return getInitialSuggestionPlaces(baseAll, new Date(), cachedDiscover, cachedContext);
-  });
+  const [suggestionPlaces, setSuggestionPlaces] = React.useState<DiscoverPlace[]>([]);
   const [suggestionIndex, setSuggestionIndex] = React.useState(0);
   const suggestionScrollRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -821,15 +816,6 @@ export default function HomeScreen({
       const mergedContext = mergePlace(cached.contextPlace, initialContextPlace ?? null);
       const mergedDiscover = mergePlace(cached.discoverPlace ?? null, initialDiscoverPlace ?? null);
       setContextPlace(mergedContext);
-      setSuggestionPlaces(
-        getInitialSuggestionPlaces(
-          (initialAllPlaces ?? []).filter((item) => !!item?.id && !!item?.name),
-          new Date(),
-          mergedDiscover,
-          mergedContext
-        )
-      );
-      setSuggestionIndex(0);
     }
     if (Array.isArray(cached.newPlaces) && cached.newPlaces.length > 0) {
       setNewPlaces(cached.newPlaces);
