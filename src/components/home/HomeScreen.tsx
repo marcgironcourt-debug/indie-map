@@ -8,7 +8,7 @@ import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import { trackEvent } from "@/lib/analytics";
-import { isContextSuggestionCandidateOpen, normalizeContextCategory, pickContextPlaces } from "@/lib/contextSuggestions";
+import { isContextSuggestionCandidateOpen, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 
 type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends" | "sharedLists";
@@ -1669,7 +1669,7 @@ export default function HomeScreen({
             </div>
 
             <form
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
                 const query = searchQuery.trim();
                 if (!query) return;
@@ -1677,165 +1677,53 @@ export default function HomeScreen({
                 setSearchResults(null);
                 setSearchLoading(true);
 
-                window.setTimeout(() => {
-                  const normalize = (value: string) =>
-                    value
-                      .toLowerCase()
-                      .normalize("NFD")
-                      .replace(/[\u0300-\u036f]/g, "")
-                      .replace(/[^a-z0-9\s]/g, " ")
-                      .replace(/\s+/g, " ")
-                      .trim();
+                try {
+                  const res = await fetch("/api/v1/ai/search", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query, locale }),
+                  });
 
-                  const normalizedQuery = normalize(query);
-
-                  const knownCities = [...new Set(allPlaces.map((place) => place.city).filter(Boolean) as string[])]
-                    .sort((a, b) => b.length - a.length);
-
-                  const detectedCity = knownCities.find((city) => normalizedQuery.includes(normalize(city))) || null;
-                  const normalizedDetectedCity = detectedCity ? normalize(detectedCity) : "";
-
-                  const includesAny = (values: string[]) => values.some((value) => normalizedQuery.includes(normalize(value)));
-
-                  const explicitCategoryAliases: Record<string, string[]> = {
-                    epicerie: ["epicerie", "epiceries", "grocery", "groceries", "magasin bio"],
-                    restaurant: ["restaurant", "restaurants", "resto", "restos"],
-                    brunch: ["brunch", "brunchs"],
-                    cafe: ["cafe", "cafes", "coffee", "coffees"],
-                    bar: ["bar", "bars", "pub", "pubs", "brasserie", "brasseries"],
-                    boutique: ["boutique", "boutiques", "mode", "shopping"],
-                    librairie: ["librairie", "librairies", "bookstore"],
-                    boulangerie: ["boulangerie", "boulangeries", "bakery"],
-                    ferme: ["ferme", "fermes", "producteur", "producteurs", "farm", "farms"],
-                    marche: ["marche", "marches", "market", "markets"],
-                    atelier: ["atelier", "ateliers", "artisan", "artisans"],
-                    alternatif: ["alternatif", "alternative", "lieu alternatif"]
-                  };
-
-                  const explicitCategory = Object.entries(explicitCategoryAliases).find(([, aliases]) =>
-                    aliases.some((alias) => normalizedQuery.includes(normalize(alias)))
-                  )?.[0] || null;
-
-                  let targetCategories = explicitCategory ? [explicitCategory] : [];
-
-                  if (targetCategories.length === 0) {
-                    if (includesAny(["boire un verre", "prendre un verre", "sortir boire", "aller boire", "un verre", "biere", "beer", "drink", "cocktail", "aperitif", "apero"])) {
-                      targetCategories = ["bar"];
-                    } else if (includesAny(["faire les courses", "faire mes courses", "acheter a manger", "ingredients", "ingredient", "repas maison", "cuisiner", "produits locaux", "local food", "organic food", "grocery"])) {
-                      targetCategories = ["epicerie", "marche", "ferme"];
-                    } else if (includesAny(["manger", "dejeuner", "diner", "souper", "bon repas", "lunch", "dinner", "eat", "food"])) {
-                      targetCategories = ["restaurant"];
-                    } else if (includesAny(["boire un cafe", "prendre un cafe", "travailler", "lire", "pause cafe", "gouter", "coffee", "work", "read"])) {
-                      targetCategories = ["cafe"];
-                    } else if (includesAny(["cadeau", "cadeaux", "gift", "gifts", "pour ma niece", "pour mon neveu", "pour un enfant", "objet", "objets", "souvenir", "decoration", "deco"])) {
-                      targetCategories = ["boutique", "atelier", "librairie", "alternatif"];
-                    } else if (includesAny(["pain", "viennoiserie", "croissant", "baguette", "bread"])) {
-                      targetCategories = ["boulangerie"];
-                    } else if (includesAny(["expo", "exposition", "art", "culture", "galerie", "gallery"])) {
-                      targetCategories = ["alternatif", "atelier"];
-                    }
-                  }
-
-                  const stopWords = new Set([
-                    "je", "j", "me", "moi", "tu", "te", "le", "la", "les", "un", "une", "des", "de", "du", "d", "a", "au", "aux",
-                    "en", "sur", "pour", "dans", "avec", "trouve", "trouver", "montre", "montrez", "voir", "veux", "voudrais",
-                    "besoin", "cherche", "chercher", "peux", "peut", "aller", "faire", "bientot", "quelques", "jours", "place",
-                    "lieu", "lieux", "ville", "city", "near", "nearby", "show", "find", "for", "where", "need", "want", "ce", "soir"
-                  ]);
-
-                  const tokens = normalizedQuery
-                    .split(/\s+/)
-                    .map((token) => token.trim())
-                    .filter((token) => token.length > 2 && !stopWords.has(token) && token !== normalizedDetectedCity);
-
-                  const ignoredSearchTokens = new Set([
-                    ...Object.values(explicitCategoryAliases)
-                      .flatMap((aliases) => aliases)
-                      .flatMap((alias) => normalize(alias).split(/\s+/)),
-                    "boire", "prendre", "verre", "sortir", "biere", "beer", "drink", "cocktail", "aperitif", "apero",
-                    "manger", "dejeuner", "diner", "souper", "repas", "lunch", "dinner", "eat", "food",
-                    "cafe", "coffee", "travailler", "lire", "pause", "gouter", "work", "read",
-                    "courses", "acheter", "ingredients", "ingredient", "cuisiner", "produits", "locaux", "local", "organic",
-                    "cadeau", "cadeaux", "gift", "gifts", "niece", "neveu", "enfant", "objet", "objets", "souvenir",
-                    "pain", "viennoiserie", "croissant", "baguette", "bread",
-                    "expo", "exposition", "art", "culture", "galerie", "gallery"
-                  ].filter((token) => token.length > 2));
-
-                  const meaningfulTokens = tokens.filter((token) => !ignoredSearchTokens.has(token));
-
-                  const cityPool = detectedCity
-                    ? allPlaces.filter((place) => normalize(place.city || "") === normalizedDetectedCity)
-                    : allPlaces;
-
-                  const categoryPool = targetCategories.length > 0
-                    ? cityPool.filter((place) => {
-                        const rawCategory = normalize(place.category || "");
-                        const miniText = normalize(place.miniText || "");
-                        const miniTextEn = normalize((place as any).translations?.en?.miniText || "");
-                        const searchCategory = rawCategory.includes("brunch") ? "brunch" : normalizeContextCategory(place.category);
-
-                        if (targetCategories.includes(searchCategory)) return true;
-                        if (targetCategories.includes("brunch") && (miniText.includes("brunch") || miniTextEn.includes("brunch"))) return true;
-
-                        return false;
-                      })
-                    : cityPool;
-
-                  const shouldReturnFullPool = Boolean(detectedCity) && (targetCategories.length > 0 || tokens.length === 0) && meaningfulTokens.length === 0;
-
-                  const results = shouldReturnFullPool
-                    ? categoryPool.sort((a, b) => a.name.localeCompare(b.name))
-                    : categoryPool
-                        .map((place) => {
-                          const placeCity = normalize(place.city || "");
-                          const rawCategory = normalize(place.category || "");
-                          const placeCategory = rawCategory.includes("brunch") ? "brunch" : normalizeContextCategory(place.category);
-                          const name = normalize(place.name || "");
-                          const address = normalize(place.address || "");
-                          const category = normalize(place.category || "");
-                          const miniText = normalize(place.miniText || "");
-                          const haystack = [name, placeCity, address, category, miniText].filter(Boolean).join(" ");
-
-                          let score = 0;
-
-                          if (detectedCity && placeCity === normalizedDetectedCity) score += 80;
-                          if (targetCategories.includes(placeCategory)) score += 70;
-
-                          for (const token of meaningfulTokens) {
-                            if (name.includes(token)) score += 18;
-                            if (category.includes(token)) score += 14;
-                            if (placeCity.includes(token)) score += 12;
-                            if (address.includes(token)) score += 8;
-                            if (miniText.includes(token)) score += 10;
-                            if (haystack.includes(token)) score += 3;
-                          }
-
-                          return { place, score };
-                        })
-                        .filter((entry) => entry.score > 0)
-                        .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
-                        .map((entry) => entry.place);
+                  const data = await res.json().catch(() => null);
+                  const results = Array.isArray(data?.results) ? data.results : [];
 
                   trackEvent({
                     eventType: "search_ai_used",
                     locale,
-                    city: detectedCity,
-                    category: targetCategories[0] || explicitCategory || null,
+                    city: data?.detectedCity || null,
+                    category: Array.isArray(data?.targetCategories) ? data.targetCategories[0] || null : data?.explicitCategory || null,
                     metadata: {
                       query,
-                      detectedCity,
-                      explicitCategory,
-                      targetCategories,
+                      mode: data?.mode || "unknown",
+                      detectedCity: data?.detectedCity || null,
+                      explicitCategory: data?.explicitCategory || null,
+                      targetCategories: Array.isArray(data?.targetCategories) ? data.targetCategories : [],
                       resultsCount: results.length,
                       hasResults: results.length > 0,
-                      meaningfulTokens,
-                      searchMode: shouldReturnFullPool ? "full_pool" : "scored"
-                    }
+                      meaningfulTokens: Array.isArray(data?.meaningfulTokens) ? data.meaningfulTokens : [],
+                      searchMode: data?.searchMode || "api",
+                    },
                   });
 
                   setSearchResults(results);
+                } catch (err) {
+                  console.error("[HomeScreen search] API error", err);
+
+                  trackEvent({
+                    eventType: "search_ai_used",
+                    locale,
+                    metadata: {
+                      query,
+                      mode: "client_error",
+                      resultsCount: 0,
+                      hasResults: false,
+                    },
+                  });
+
+                  setSearchResults([]);
+                } finally {
                   setSearchLoading(false);
-                }, 800);
+                }
               }}
               className={`flex w-full border border-white/10 bg-black/75 px-4 text-left text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_10px_26px_rgba(0,0,0,0.28)] backdrop-blur-sm transition-all duration-300 ${
                 searchFocused
