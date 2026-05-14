@@ -50,13 +50,17 @@ function canSendApns() {
   );
 }
 
-function getStoreUrlForPlatform(platform: string) {
+function getStoreUrlForPlatform(platform: string, locale?: string | null) {
+  const isFr = locale !== "en";
+
   if (platform === "ios") {
-    return String(process.env.APP_STORE_URL || "").trim();
+    const localizedUrl = isFr ? process.env.APP_STORE_URL_FR : process.env.APP_STORE_URL_EN;
+    return String(localizedUrl || process.env.APP_STORE_URL || "").trim();
   }
 
   if (platform === "android") {
-    return String(process.env.PLAY_STORE_URL || "").trim();
+    const localizedUrl = isFr ? process.env.PLAY_STORE_URL_FR : process.env.PLAY_STORE_URL_EN;
+    return String(localizedUrl || process.env.PLAY_STORE_URL || "").trim();
   }
 
   return "";
@@ -494,7 +498,7 @@ export async function notifyAppUpdateAvailable(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       const platform = device.platform;
-      const url = getStoreUrlForPlatform(platform);
+      const url = getStoreUrlForPlatform(platform, params.locale);
 
       if (!url) {
         skipped += 1;
