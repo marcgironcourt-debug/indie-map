@@ -156,7 +156,19 @@ function getLocalizedCategory(category: string | undefined, isFr: boolean) {
     "atelier": { fr: "Atelier", en: "Workshop" },
     "workshop": { fr: "Atelier", en: "Workshop" },
     "lieu alternatif": { fr: "Lieu alternatif", en: "Alternative place" },
+    "lieu de vie": { fr: "Lieu de vie", en: "Alternative place" },
     "alternative place": { fr: "Lieu alternatif", en: "Alternative place" },
+    "mode": { fr: "Mode", en: "Fashion" },
+    "fashion": { fr: "Mode", en: "Fashion" },
+    "brasserie": { fr: "Brasserie", en: "Brewery" },
+    "brasserie / bar": { fr: "Brasserie / bar", en: "Brewery / bar" },
+    "brasserie / bar / pub": { fr: "Brasserie / bar / pub", en: "Brewery / bar / pub" },
+    "brasserie bar": { fr: "Brasserie / bar", en: "Brewery / bar" },
+    "bar": { fr: "Bar", en: "Bar" },
+    "pub": { fr: "Pub", en: "Pub" },
+    "brunch": { fr: "Brunch", en: "Brunch" },
+    "café / brunch": { fr: "Café / brunch", en: "Cafe / brunch" },
+    "cafe / brunch": { fr: "Café / brunch", en: "Cafe / brunch" },
   };
 
   return categories[key]?.[isFr ? "fr" : "en"] ?? String(category ?? "").trim();
