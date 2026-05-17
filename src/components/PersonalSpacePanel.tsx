@@ -510,6 +510,48 @@ export default function PersonalSpacePanel({
     }
   }
 
+  async function deleteSelectedFriend() {
+    if (!selectedFriend) return;
+
+    const confirmed = window.confirm(
+      isFr
+        ? `Supprimer ${selectedFriend.displayName || selectedFriend.username} de tes amis ?`
+        : `Remove ${selectedFriend.displayName || selectedFriend.username} from your friends?`
+    );
+
+    if (!confirmed) return;
+
+    setFriendsLoading(true);
+    setFriendsError("");
+
+    try {
+      const res = await fetch("/api/v1/me/friends", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          friendId: selectedFriend.id,
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error("friend_delete_failed");
+      }
+
+      setSelectedFriend(null);
+      setFriendProfilePayload(null);
+      setFriendProfileError("");
+      await reloadFriends();
+    } catch {
+      setFriendsError(isFr ? "Impossible de supprimer cet ami." : "Unable to remove this friend.");
+    } finally {
+      setFriendsLoading(false);
+    }
+  }
+
   async function deleteSharedList() {
     if (!selectedSharedList) return;
 
@@ -1693,6 +1735,17 @@ export default function PersonalSpacePanel({
                     </div>
                   )}
                 </section>
+
+                {!friendProfileLoading && !friendProfileError ? (
+                  <button
+                    type="button"
+                    onClick={deleteSelectedFriend}
+                    disabled={friendsLoading}
+                    className="w-full rounded-3xl border border-red-300/20 bg-red-500/10 px-4 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-red-100 disabled:opacity-50"
+                  >
+                    {isFr ? "Supprimer l’ami" : "Remove friend"}
+                  </button>
+                ) : null}
 
               </>
             )}

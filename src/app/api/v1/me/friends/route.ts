@@ -113,3 +113,48 @@ export async function GET() {
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
+    }
+
+    const body = await req.json().catch(() => null);
+    const friendId = typeof body?.friendId === "string" ? body.friendId.trim() : "";
+
+    if (!friendId || friendId === currentUser.id) {
+      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
+    }
+
+    const friendship = await prisma.friendship.findFirst({
+      where: {
+        status: "accepted",
+        OR: [
+          { requesterId: currentUser.id, receiverId: friendId },
+          { requesterId: friendId, receiverId: currentUser.id },
+        ],
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!friendship) {
+      return NextResponse.json({ ok: false }, { status: 404, headers: V1_HEADERS });
+    }
+
+    await prisma.friendship.delete({
+      where: {
+        id: friendship.id,
+      },
+    });
+
+    return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
+  } catch (err) {
+    console.error("[/api/v1/me/friends] DELETE error", err);
+    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+  }
+}
