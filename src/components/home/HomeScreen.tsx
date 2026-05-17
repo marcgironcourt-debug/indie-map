@@ -61,7 +61,7 @@ type SharedListChoice = {
 };
 
 
-function renderOpeningHours(openingHours: string | undefined, timeZone: string | undefined) {
+function renderOpeningHours(openingHours: string | undefined, timeZone: string | undefined, isFr: boolean = true) {
   if (!openingHours) return null;
 
   const zone = timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -115,6 +115,20 @@ function renderOpeningHours(openingHours: string | undefined, timeZone: string |
     });
   }
 
+  function displayOpeningHoursLine(line: string) {
+    if (isFr) return line;
+
+    return line
+      .replace(/^Lundi\b/i, "Monday")
+      .replace(/^Mardi\b/i, "Tuesday")
+      .replace(/^Mercredi\b/i, "Wednesday")
+      .replace(/^Jeudi\b/i, "Thursday")
+      .replace(/^Vendredi\b/i, "Friday")
+      .replace(/^Samedi\b/i, "Saturday")
+      .replace(/^Dimanche\b/i, "Sunday")
+      .replace(/Fermé/gi, "Closed");
+  }
+
   return openingHours.split(/\r?\n/).map((line, index) => {
     const normalized = line.trim().toLowerCase();
     const isToday = todayLabels.some((day) => normalized.startsWith(day));
@@ -127,7 +141,7 @@ function renderOpeningHours(openingHours: string | undefined, timeZone: string |
 
     return (
       <div key={`${line}-${index}`} className={`text-[16px] font-serif leading-relaxed ${color}`}>
-        {line}
+        {displayOpeningHoursLine(line)}
       </div>
     );
   });
@@ -406,7 +420,15 @@ export default function HomeScreen({
         setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
         setProfileAgeRange(user.ageRange || "");
-        setProfileLocale(user.preferredLocale || locale);
+        const preferredLocale = user.preferredLocale === "en" ? "en" : "fr";
+        setProfileLocale(preferredLocale);
+        if (preferredLocale !== locale && typeof window !== "undefined") {
+          document.cookie = `NEXT_LOCALE=${preferredLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+          const nextPath = window.location.pathname.match(/^\/(fr|en)(?=\/|$)/)
+            ? window.location.pathname.replace(/^\/(fr|en)(?=\/|$)/, `/${preferredLocale}`)
+            : `/${preferredLocale}`;
+          router.replace(nextPath + window.location.search);
+        }
         setCommentsVisibleToFriends(user.commentsVisibleToFriends === true);
         setVisitedPlacesVisibleToFriends(user.visitedPlacesVisibleToFriends === true);
         return user as AuthProfile;
@@ -421,7 +443,7 @@ export default function HomeScreen({
     } finally {
       setAuthLoading(false);
     }
-  }, []);
+  }, [locale, router]);
 
   const refreshPersonalNotificationCounts = React.useCallback(async () => {
     if (!authProfile) {
@@ -2464,7 +2486,7 @@ export default function HomeScreen({
                   ) : null}
                   {selectedHomePlace.openingHours ? (
                     <div className="mt-5">
-                      {renderOpeningHours(selectedHomePlace.openingHours, selectedHomePlace.timeZone)}
+                      {renderOpeningHours(selectedHomePlace.openingHours, selectedHomePlace.timeZone, isFr)}
                     </div>
                   ) : null}
                 </div>
