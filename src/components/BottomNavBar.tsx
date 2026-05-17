@@ -10,6 +10,7 @@ type BottomNavBarProfile = {
 type BottomNavBarProps = {
   isFr: boolean;
   authProfile: BottomNavBarProfile | null;
+  hasPersonalNotification?: boolean;
   onOpenPersonal: () => void;
   onOpenContrib: () => void;
   onOpenPros: () => void;
@@ -19,6 +20,7 @@ type BottomNavBarProps = {
 export default function BottomNavBar({
   isFr,
   authProfile,
+  hasPersonalNotification = false,
   onOpenPersonal,
   onOpenContrib,
   onOpenPros,
@@ -35,7 +37,7 @@ export default function BottomNavBar({
           onClick={onOpenPersonal}
           className={`flex ${minHeightClassName} flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10`}
         >
-          <span className="flex h-6 w-6 items-center justify-center">
+          <span className="relative flex h-6 w-6 items-center justify-center">
             {authProfile?.avatarUrl ? (
               <img src={authProfile.avatarUrl} alt="" className="h-5.5 w-5.5 rounded-full object-cover" />
             ) : authProfile ? (
@@ -51,6 +53,9 @@ export default function BottomNavBar({
                 <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
               </svg>
             )}
+            {hasPersonalNotification ? (
+              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#5C6E3B]" />
+            ) : null}
           </span>
           <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>
         </button>

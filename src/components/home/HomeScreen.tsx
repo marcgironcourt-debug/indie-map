@@ -366,6 +366,7 @@ export default function HomeScreen({
   const [profileSaving, setProfileSaving] = React.useState(false);
   const [profileSuccess, setProfileSuccess] = React.useState("");
   const [profileError, setProfileError] = React.useState("");
+  const [incomingFriendRequestCount, setIncomingFriendRequestCount] = React.useState(0);
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null));
   const [contextPlace, setContextPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null));
   const [contextPlaceNearby, setContextPlaceNearby] = React.useState(false);
@@ -379,6 +380,7 @@ export default function HomeScreen({
       const res = await fetch("/api/v1/me/profile", { cache: "no-store" });
       if (res.status === 401) {
         setAuthProfile(null);
+        setIncomingFriendRequestCount(0);
         return null;
       }
       const data = await res.json().catch(() => null);
@@ -397,18 +399,44 @@ export default function HomeScreen({
         return user as AuthProfile;
       }
       setAuthProfile(null);
+      setIncomingFriendRequestCount(0);
       return null;
     } catch {
       setAuthProfile(null);
+      setIncomingFriendRequestCount(0);
       return null;
     } finally {
       setAuthLoading(false);
     }
   }, []);
 
+  const refreshPersonalNotificationCounts = React.useCallback(async () => {
+    if (!authProfile) {
+      setIncomingFriendRequestCount(0);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/v1/me/friends", { cache: "no-store" });
+      if (!res.ok) {
+        setIncomingFriendRequestCount(0);
+        return;
+      }
+
+      const data = await res.json().catch(() => null);
+      setIncomingFriendRequestCount(Array.isArray(data?.incomingRequests) ? data.incomingRequests.length : 0);
+    } catch {
+      setIncomingFriendRequestCount(0);
+    }
+  }, [authProfile?.id]);
+
   React.useEffect(() => {
     refreshAuthProfile();
   }, [refreshAuthProfile]);
+
+  React.useEffect(() => {
+    refreshPersonalNotificationCounts();
+  }, [refreshPersonalNotificationCounts, panel]);
   React.useEffect(() => {
     window.__IM_REGISTER_PUSH_TOKEN__ = (rawToken: string) => {
       const token = normalizePushToken(rawToken);
@@ -457,16 +485,21 @@ export default function HomeScreen({
       refreshAuthProfile();
     }
 
-    if (params.get("panel") === "friends") {
+    const requestedPanel = params.get("panel");
+    if (requestedPanel === "friends") {
+      window.sessionStorage.removeItem("im:pending-panel-after-locale");
       setPanel("friends");
       refreshAuthProfile();
+      return;
     }
 
-    if (params.get("panel") === "sharedLists") {
+    if (requestedPanel === "sharedLists") {
+      window.sessionStorage.removeItem("im:pending-panel-after-locale");
       const sharedListId = params.get("sharedListId") || params.get("listId");
       setInitialSharedListId(sharedListId);
       setPanel("sharedLists");
       refreshAuthProfile();
+      return;
     }
 
     const pendingPanel = window.sessionStorage.getItem("im:pending-panel-after-locale");
@@ -2644,6 +2677,7 @@ export default function HomeScreen({
       <BottomNavBar
         isFr={isFr}
         authProfile={authProfile}
+        hasPersonalNotification={incomingFriendRequestCount > 0}
         onOpenPersonal={() => setPanel("personalSpace")}
         onOpenContrib={() => setPanel("contrib")}
         onOpenPros={() => setPanel("pros")}
@@ -2760,6 +2794,7 @@ export default function HomeScreen({
                   places={allPlaces}
                   mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : panel === "sharedLists" ? "sharedLists" : "dashboard"}
                   initialSharedListId={initialSharedListId}
+                  incomingFriendRequestCount={incomingFriendRequestCount}
                   authLoading={authLoading}
                   authProfile={authProfile}
                   authMode={authMode}

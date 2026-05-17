@@ -99,6 +99,7 @@ type PersonalSpacePanelProps = {
   places: PlaceSummary[];
   mode: PersonalSpacePanelMode;
   initialSharedListId?: string | null;
+  incomingFriendRequestCount?: number;
   authLoading: boolean;
   authProfile: PersonalSpaceAuthProfile | null;
   authMode: PersonalSpaceAuthMode;
@@ -191,6 +192,7 @@ export default function PersonalSpacePanel({
   places,
   mode,
   initialSharedListId,
+  incomingFriendRequestCount = 0,
   authLoading,
   authProfile,
   authMode,
@@ -1991,13 +1993,16 @@ export default function PersonalSpacePanel({
             onClick={() => onModeChange("friends")}
             className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
               <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
                 <path d="M15.8 10.6a2.6 2.6 0 1 0 0-5.2" />
                 <path d="M3.8 19c.8-3.1 2.6-4.8 4.7-4.8s3.9 1.7 4.7 4.8" />
                 <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
               </svg>
+              {incomingFriendRequestCount > 0 ? (
+                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#5C6E3B]" />
+              ) : null}
             </span>
             <span>
               <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
