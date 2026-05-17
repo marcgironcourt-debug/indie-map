@@ -27,9 +27,11 @@ function serializePublicUser(user: {
   };
 }
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     const currentUser = await getCurrentUser();
+    const url = new URL(req.url);
+    const markSeen = url.searchParams.get("markSeen") === "1";
 
     if (!currentUser) {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
@@ -63,6 +65,7 @@ export async function GET() {
             userId: true,
             role: true,
             createdAt: true,
+            seenAt: true,
             user: {
               select: {
                 id: true,
@@ -88,6 +91,17 @@ export async function GET() {
       orderBy: { updatedAt: "desc" },
     });
 
+    if (markSeen) {
+      await prisma.sharedListMember.updateMany({
+        where: {
+          userId: currentUser.id,
+          role: { not: "owner" },
+          seenAt: null,
+        },
+        data: { seenAt: new Date() },
+      });
+    }
+
     return NextResponse.json(
       {
         ok: true,
@@ -103,6 +117,7 @@ export async function GET() {
             userId: member.userId,
             role: member.role,
             createdAt: member.createdAt.toISOString(),
+            seenAt: member.seenAt ? member.seenAt.toISOString() : null,
             user: serializePublicUser(member.user),
           })),
           places: list.places.map((place) => ({

@@ -43,6 +43,7 @@ type SharedListMember = {
   userId: string;
   role: string;
   createdAt: string;
+  seenAt: string | null;
   user: FriendPublicUser;
 };
 
@@ -100,6 +101,7 @@ type PersonalSpacePanelProps = {
   mode: PersonalSpacePanelMode;
   initialSharedListId?: string | null;
   incomingFriendRequestCount?: number;
+  unseenSharedListCount?: number;
   authLoading: boolean;
   authProfile: PersonalSpaceAuthProfile | null;
   authMode: PersonalSpaceAuthMode;
@@ -148,6 +150,7 @@ type PersonalSpacePanelProps = {
   onRequestPasswordReset: () => void;
   onConfirmPasswordReset: () => void;
   onSaveProfile: () => void;
+  onSharedListsSeen?: () => void;
   onLogout: () => void;
 };
 
@@ -159,15 +162,16 @@ const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-loc
 let sharedListsInflight: Promise<SharedList[]> | null = null;
 let sharedListsCache: { at: number; lists: SharedList[] } | null = null;
 
-async function fetchSharedListsOnce(force = false) {
+async function fetchSharedListsOnce(force = false, markSeen = false) {
   const now = Date.now();
 
-  if (!force && sharedListsCache && now - sharedListsCache.at < 10000) {
+  if (!markSeen && !force && sharedListsCache && now - sharedListsCache.at < 10000) {
     return sharedListsCache.lists;
   }
 
   if (!sharedListsInflight) {
-    sharedListsInflight = fetch("/api/v1/me/shared-lists", { cache: "no-store" })
+    const url = markSeen ? "/api/v1/me/shared-lists?markSeen=1" : "/api/v1/me/shared-lists";
+    sharedListsInflight = fetch(url, { cache: "no-store" })
       .then(async (res) => {
         const data = await res.json().catch(() => null);
 
@@ -193,6 +197,7 @@ export default function PersonalSpacePanel({
   mode,
   initialSharedListId,
   incomingFriendRequestCount = 0,
+  unseenSharedListCount = 0,
   authLoading,
   authProfile,
   authMode,
@@ -241,6 +246,7 @@ export default function PersonalSpacePanel({
   onRequestPasswordReset,
   onConfirmPasswordReset,
   onSaveProfile,
+  onSharedListsSeen,
   onLogout,
 }: PersonalSpacePanelProps) {
   const locale = isFr ? "fr" : "en";
@@ -288,6 +294,12 @@ export default function PersonalSpacePanel({
 
   const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
 
+  function isUnseenSharedList(list: SharedList) {
+    if (!authProfile) return false;
+    if (list.ownerId === authProfile.id) return false;
+    return list.members.some((member) => member.userId === authProfile.id && member.role !== "owner" && !member.seenAt);
+  }
+
   React.useEffect(() => {
     if (mode !== "sharedLists") return;
     if (!initialSharedListId) return;
@@ -324,11 +336,23 @@ export default function PersonalSpacePanel({
     setSharedListsError("");
 
     try {
-      const nextLists = await fetchSharedListsOnce(force);
-      setSharedLists(nextLists);
+      const markSeen = mode === "sharedLists";
+      const nextLists = await fetchSharedListsOnce(force || markSeen, markSeen);
+      const normalizedLists = markSeen && authProfile
+        ? nextLists.map((list: SharedList) => ({
+            ...list,
+            members: list.members.map((member) =>
+              member.userId === authProfile.id && member.role !== "owner" && !member.seenAt
+                ? { ...member, seenAt: new Date().toISOString() }
+                : member
+            ),
+          }))
+        : nextLists;
+      setSharedLists(normalizedLists);
+      if (markSeen) onSharedListsSeen?.();
 
       setSelectedSharedListId((current) =>
-        current && !nextLists.some((list: SharedList) => list.id === current) ? null : current
+        current && !normalizedLists.some((list: SharedList) => list.id === current) ? null : current
       );
     } catch {
       setSharedListsError(isFr ? "Impossible de charger tes listes partagées pour le moment." : "Unable to load your shared lists right now.");
@@ -336,7 +360,7 @@ export default function PersonalSpacePanel({
       sharedListsLoadingRef.current = false;
       setSharedListsLoading(false);
     }
-  }, [authProfile?.id, isFr]);
+  }, [authProfile, authProfile?.id, isFr, mode, onSharedListsSeen]);
 
   async function createSharedList() {
     const title = newSharedListTitle.trim();
@@ -1519,8 +1543,13 @@ export default function PersonalSpacePanel({
                       className="flex w-full items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/8 px-4 py-4 text-left hover:bg-white/12 active:bg-white/16"
                     >
                       <span className="min-w-0">
-                        <span className="block truncate font-serif text-[19px] font-semibold text-white">
-                          {list.title}
+                        <span className="flex min-w-0 items-center gap-2">
+                          {isUnseenSharedList(list) ? (
+                            <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#F97316]" />
+                          ) : null}
+                          <span className="block truncate font-serif text-[19px] font-semibold text-white">
+                            {list.title}
+                          </span>
                         </span>
                         <span className="mt-1 block text-[12px] leading-snug text-white/45">
                           {formatSharedListStats(list)}
@@ -2001,7 +2030,7 @@ export default function PersonalSpacePanel({
                 <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
               </svg>
               {incomingFriendRequestCount > 0 ? (
-                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#5C6E3B]" />
+                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
               ) : null}
             </span>
             <span>
@@ -2019,13 +2048,16 @@ export default function PersonalSpacePanel({
             onClick={() => onModeChange("sharedLists")}
             className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
               <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 7.5h10" />
                 <path d="M7 12h10" />
                 <path d="M7 16.5h6" />
                 <path d="M5.5 3.8h13A1.7 1.7 0 0 1 20.2 5.5v13a1.7 1.7 0 0 1-1.7 1.7h-13a1.7 1.7 0 0 1-1.7-1.7v-13A1.7 1.7 0 0 1 5.5 3.8z" />
               </svg>
+              {unseenSharedListCount > 0 ? (
+                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
+              ) : null}
             </span>
             <span>
               <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">

@@ -54,7 +54,7 @@ export default function BottomNavBar({
               </svg>
             )}
             {hasPersonalNotification ? (
-              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#5C6E3B]" />
+              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
             ) : null}
           </span>
           <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>

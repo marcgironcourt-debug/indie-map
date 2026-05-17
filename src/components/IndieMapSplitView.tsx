@@ -488,6 +488,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [profileSuccess, setProfileSuccess] = React.useState("");
   const [profileError, setProfileError] = React.useState("");
   const [incomingFriendRequestCount, setIncomingFriendRequestCount] = React.useState(0);
+  const [unseenSharedListCount, setUnseenSharedListCount] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
@@ -554,20 +555,38 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const refreshPersonalNotificationCounts = React.useCallback(async () => {
     if (!authProfile) {
       setIncomingFriendRequestCount(0);
+      setUnseenSharedListCount(0);
       return;
     }
 
     try {
-      const res = await fetch("/api/v1/me/friends", { cache: "no-store" });
-      if (!res.ok) {
+      const [friendsRes, sharedListsRes] = await Promise.all([
+        fetch("/api/v1/me/friends", { cache: "no-store" }),
+        fetch("/api/v1/me/shared-lists", { cache: "no-store" }),
+      ]);
+
+      if (friendsRes.ok) {
+        const friendsData = await friendsRes.json().catch(() => null);
+        setIncomingFriendRequestCount(Array.isArray(friendsData?.incomingRequests) ? friendsData.incomingRequests.length : 0);
+      } else {
         setIncomingFriendRequestCount(0);
-        return;
       }
 
-      const data = await res.json().catch(() => null);
-      setIncomingFriendRequestCount(Array.isArray(data?.incomingRequests) ? data.incomingRequests.length : 0);
+      if (sharedListsRes.ok) {
+        const sharedListsData = await sharedListsRes.json().catch(() => null);
+        const lists = Array.isArray(sharedListsData?.lists) ? sharedListsData.lists : [];
+        const unseenCount = lists.filter((list: { ownerId?: string; members?: { userId?: string; role?: string; seenAt?: string | null }[] }) =>
+          list.ownerId !== authProfile.id &&
+          Array.isArray(list.members) &&
+          list.members.some((member: { userId?: string; role?: string; seenAt?: string | null }) => member.userId === authProfile.id && member.role !== "owner" && !member.seenAt)
+        ).length;
+        setUnseenSharedListCount(unseenCount);
+      } else {
+        setUnseenSharedListCount(0);
+      }
     } catch {
       setIncomingFriendRequestCount(0);
+      setUnseenSharedListCount(0);
     }
   }, [authProfile?.id]);
 
@@ -1732,7 +1751,7 @@ const filtered = source.filter((b) => {
         <BottomNavBar
           isFr={isFr}
           authProfile={authProfile}
-          hasPersonalNotification={incomingFriendRequestCount > 0}
+          hasPersonalNotification={incomingFriendRequestCount > 0 || unseenSharedListCount > 0}
           onOpenPersonal={() => setPanel("personalSpace")}
           onOpenContrib={() => setPanel("contrib")}
             onOpenPros={() => setPanel("pros")}
@@ -1851,6 +1870,11 @@ const filtered = source.filter((b) => {
                         mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : panel === "sharedLists" ? "sharedLists" : "dashboard"}
                         initialSharedListId={initialSharedListId}
                         incomingFriendRequestCount={incomingFriendRequestCount}
+                  unseenSharedListCount={unseenSharedListCount}
+                  onSharedListsSeen={() => {
+                    setUnseenSharedListCount(0);
+                    refreshPersonalNotificationCounts();
+                  }}
                         authLoading={authLoading}
                         authProfile={authProfile}
                         authMode={authMode}

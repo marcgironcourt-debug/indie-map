@@ -234,11 +234,12 @@ model SharedList {
 }
 
 model SharedListMember {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   listId    String
   userId    String
-  role      String   @default("member")
-  createdAt DateTime @default(now())
+  role      String    @default("member")
+  createdAt DateTime  @default(now())
+  seenAt    DateTime?
 
   list SharedList @relation(fields: [listId], references: [id], onDelete: Cascade)
   user User       @relation(fields: [userId], references: [id], onDelete: Cascade)

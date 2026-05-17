@@ -1,0 +1,2 @@
+ALTER TABLE "SharedListMember"
+ADD COLUMN IF NOT EXISTS "seenAt" TIMESTAMP(3);
