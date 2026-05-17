@@ -2548,7 +2548,7 @@ export default function HomeScreen({
               setSearchLoading(false);
               setSearchResults(null);
             }}
-            className="absolute right-4 z-20 grid place-items-center"
+            className="absolute right-[calc(env(safe-area-inset-right)+24px)] z-20 grid place-items-center"
             style={{
               top: "calc(env(safe-area-inset-top) + 16px)",
               width: 40,
