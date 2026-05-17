@@ -35,6 +35,7 @@ const EVENT_LABELS: Record<string, string> = {
   click_detail_website: "Site web",
   click_detail_itinerary: "Itinéraire",
   click_detail_copy_address: "Adresse copiée",
+  click_detail_share: "Partager",
   click_detail_view_on_map: "Voir sur carte",
   click_detail_phone: "Téléphone",
   view_place_detail: "Vue fiche",

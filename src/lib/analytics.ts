@@ -15,6 +15,7 @@ export type IndieEventType =
   | "click_detail_website"
   | "click_detail_itinerary"
   | "click_detail_copy_address"
+  | "click_detail_share"
   | "click_detail_view_on_map"
   | "click_detail_phone"
   | "view_place_detail";

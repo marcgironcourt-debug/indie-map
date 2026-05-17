@@ -2460,6 +2460,46 @@ export default function HomeScreen({
                         >
                           {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier l'adresse" : "Copy address")}
                         </button>
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const shareUrl = `https://www.indie-map.com/${locale}/carte?discover=${encodeURIComponent(selectedHomePlace.id)}`;
+                            const shareData = {
+                              title: selectedHomePlace.name,
+                              text: isFr ? `Découvre ${selectedHomePlace.name} sur Indie Map.` : `Discover ${selectedHomePlace.name} on Indie Map.`,
+                              url: shareUrl
+                            };
+
+                            trackEvent({
+                              eventType: "click_detail_share",
+                              placeId: selectedHomePlace.id,
+                              city: selectedHomePlace.city,
+                              category: selectedHomePlace.category,
+                              locale,
+                              metadata: { name: selectedHomePlace.name, url: shareUrl, source: selectedHomePlaceSource }
+                            });
+
+                            try {
+                              if (navigator.share) {
+                                await navigator.share(shareData);
+                                return;
+                              }
+
+                              await navigator.clipboard.writeText(shareUrl);
+                              setAddressCopied(true);
+                              window.setTimeout(() => setAddressCopied(false), 1500);
+                            } catch {
+                              try {
+                                await navigator.clipboard.writeText(shareUrl);
+                                setAddressCopied(true);
+                                window.setTimeout(() => setAddressCopied(false), 1500);
+                              } catch {}
+                            }
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
+                        >
+                          {isFr ? "Partager" : "Share"}
+                        </button>
                         {selectedHomePlace?.phone ? (
                           <button
                             type="button"

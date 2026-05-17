@@ -2440,6 +2440,47 @@ const filtered = source.filter((b) => {
                           {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier l'adresse" : "Copy address")}
                         </button>
 
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const shareUrl = `https://www.indie-map.com/${locale}/carte?discover=${encodeURIComponent(selectedDetailPlace.id)}`;
+                            const shareData = {
+                              title: selectedDetailPlace.name,
+                              text: isFr ? `Découvre ${selectedDetailPlace.name} sur Indie Map.` : `Discover ${selectedDetailPlace.name} on Indie Map.`,
+                              url: shareUrl
+                            };
+
+                            trackEvent({
+                              eventType: "click_detail_share",
+                              placeId: selectedDetailPlace.id,
+                              city: selectedDetailPlace.city,
+                              category: selectedDetailPlace.type,
+                              locale,
+                              metadata: { name: selectedDetailPlace.name, url: shareUrl, source: selectedDetailPlaceSource }
+                            });
+
+                            try {
+                              if (navigator.share) {
+                                await navigator.share(shareData);
+                                return;
+                              }
+
+                              await navigator.clipboard.writeText(shareUrl);
+                              setAddressCopied(true);
+                              window.setTimeout(() => setAddressCopied(false), 1500);
+                            } catch {
+                              try {
+                                await navigator.clipboard.writeText(shareUrl);
+                                setAddressCopied(true);
+                                window.setTimeout(() => setAddressCopied(false), 1500);
+                              } catch {}
+                            }
+                          }}
+                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
+                        >
+                          {isFr ? "Partager" : "Share"}
+                        </button>
+
                         {selectedDetailPlace?.phone ? (
                           <button
                             type="button"
