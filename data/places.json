@@ -15917,5 +15917,133 @@
       }
     },
     "panoramaImage": "/downloads/farmcafebangkok.jpg"
+  },
+  {
+    "id": "9398564c-ae60-4a39-a15b-4dfe47da931c",
+    "name": "La Cité Bleue",
+    "city": "Bordeaux",
+    "country": "FR",
+    "address": "176 Rue Achard Batiment N1-N2, 33300 Bordeaux, France",
+    "website": "https://www.cite-bleue.fr/",
+    "openingHours": "Lundi 06h00-19h30\nMardi 06h00-19h30\nMercredi 06h00-19h30\nJeudi 06h00-19h30\nVendredi 06h00-19h30\nSamedi 11h00-22h00\nDimanche Fermé",
+    "lat": 44.87145794816747,
+    "lng": -0.5463940116447853,
+    "category": "Lieu alternatif",
+    "phone": "",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-05-18T01:06:18.082Z",
+    "updatedAt": "2026-05-18T01:18:50.044Z",
+    "miniText": "Lieu alternatif installé à Bacalan, sur un ancien site de raffinerie de sucre. Réunissant des organisations autour de la production locale, de la sobriété, de la coopération, du lien social, de l’artisanat, de l’économie sociale et solidaire, de l’économie circulaire, de l’art et de la culture.",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An alternative place based in Bacalan, on a former sugar refinery site. Bringing together organizations around local production, sobriety, cooperation, social connection, crafts, the social and solidarity economy, circular economy, art and culture.",
+        "homeTextNear": "An alternative place in Bacalan, centered on local production, cooperation and social connection.",
+        "homeTextFar": "In Bordeaux, a former refinery site turned into a collective place around circular economy, crafts and culture."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "Un lieu alternatif à Bacalan, autour de la production locale, de la coopération et du lien social.",
+    "homeTextFar": "À Bordeaux, un ancien site de raffinerie devenu lieu collectif autour de l’économie circulaire, de l’artisanat et de la culture.",
+    "panoramaImage": "/downloads/citebleuebordeaux.png"
+  },
+  {
+    "id": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "name": "Ïkos",
+    "city": "Bordeaux",
+    "country": "FR",
+    "address": "23 Mail des Bordelais, 33300 Bordeaux, France",
+    "website": "https://ikos-bordeaux.fr",
+    "openingHours": "Lundi 10h00-19h00\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche Fermé",
+    "lat": 44.87878103710275,
+    "lng": -0.5699255,
+    "category": "Boutique",
+    "phone": "+33 9 56 74 99 39",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-05-18T06:00:01.011Z",
+    "updatedAt": "2026-05-19T08:45:28.895Z",
+    "miniText": "Boutique solidaire dédiée au réemploi à Bordeaux. Ïkos propose des objets de seconde main, des espaces de vente conviviaux, des ateliers créatifs, des événements et des actions de sensibilisation autour de l’économie circulaire et d’une consommation plus responsable.",
+    "tags": [
+      "Boutique solidaire"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A solidarity-based reuse shop in Bordeaux. Ïkos offers second-hand objects, welcoming sales spaces, creative workshops, events and awareness activities around circular economy and more responsible consumption.",
+        "homeTextNear": "A solidarity-based shop near you for buying second-hand and discovering another way to consume.",
+        "homeTextFar": "In Bordeaux, Ïkos makes reuse more visible through a solidarity-based shop, workshops and events around circular economy."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "Une boutique solidaire près de toi pour acheter de seconde main et découvrir une autre façon de consommer.",
+    "homeTextFar": "À Bordeaux, Ïkos rend le réemploi plus visible avec une boutique solidaire, des ateliers et des événements autour de l’économie circulaire.",
+    "panoramaImage": "/downloads/ikosbordeaux.png"
+  },
+  {
+    "id": "828bddab-49f6-4319-a8de-c303241db9de",
+    "name": "MURE épicerie",
+    "city": "Paris",
+    "country": "FR",
+    "address": "54 Rue du Faubourg du Temple, 75011 Paris, France",
+    "website": "https://www.mure.family/epicerie",
+    "openingHours": "Lundi 10h00-20h30\nMardi 10h00-20h30\nMercredi 10h00-20h30\nJeudi 10h00-20h30\nVendredi 10h00-20h30\nSamedi 10h00-20h30\nDimanche 10h00-14h00",
+    "lat": 48.86982234276741,
+    "lng": 2.370511771164478,
+    "category": "Épicerie",
+    "phone": "",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-05-18T06:27:29.859Z",
+    "updatedAt": "2026-05-19T08:45:28.895Z",
+    "miniText": "Épicerie bio au cœur de Paris, MURE propose des produits frais et locaux, issus de ses fermes et de fermes partenaires. On y trouve des fruits et légumes de saison, des produits paysans et artisanaux, du vrac, un comptoir traiteur et une sélection d’autres produits.",
+    "tags": [
+      "Épicerie bio"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store in the heart of Paris, MURE offers fresh, local products from its own farms and partner farms. You’ll find seasonal fruit and vegetables, farm-made and artisanal products, bulk goods, a deli counter and a selection of other products.",
+        "homeTextNear": "An organic grocery store near you for fresh, local, artisanal and seasonal products.",
+        "homeTextFar": "In Paris, MURE brings together organic groceries, local products, a deli counter and house-made food."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "Une épicerie bio près de toi pour trouver des produits frais, locaux, artisanaux et de saison.",
+    "homeTextFar": "À Paris, MURE réunit épicerie bio, produits locaux, comptoir traiteur et fabrications maison.",
+    "panoramaImage": "/downloads/mureepicerieparis-fixed.png"
+  },
+  {
+    "id": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
+    "name": "MÛRE Trinité",
+    "city": "Paris",
+    "country": "FR",
+    "address": "2 Rue de Clichy, 75009 Paris, France",
+    "website": "https://www.mure.family/",
+    "openingHours": "Lundi 08h00-15h00\nMardi 08h00-15h00\nMercredi 08h00-15h00\nJeudi 08h00-15h00\nVendredi 08h00-15h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.87732576306155,
+    "lng": 2.330930986505189,
+    "category": "Restaurant",
+    "phone": "",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-05-19T08:21:14.132Z",
+    "updatedAt": "2026-05-19T08:24:35.406Z",
+    "miniText": "Restaurant bio proposant un coffee shop le matin et une restauration au comptoir le midi. La cuisine est gourmande et équilibrée, préparée chaque jour à partir de légumes bio et ultra-frais issus de leur ferme en Île-de-France.",
+    "tags": [
+      "Restaurant bio"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic restaurant offering a coffee shop in the morning and counter-service lunch at midday. The food is generous and balanced, prepared every day with ultra-fresh organic vegetables from their farm in Île-de-France.",
+        "homeTextNear": "If you want morning coffee or an organic lunch nearby, MÛRE Trinité offers food built around fresh vegetables from their farm.",
+        "homeTextFar": "In Paris, MÛRE Trinité brings together a coffee shop, counter-service lunch and organic food from their farm in Île-de-France."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "Si tu veux un café le matin ou un déjeuner bio sans t’éloigner, MÛRE Trinité propose une cuisine autour de légumes frais issus de leur ferme.",
+    "homeTextFar": "À Paris, MÛRE Trinité mêle coffee shop, déjeuner au comptoir et cuisine bio issue de leur ferme en Île-de-France.",
+    "panoramaImage": "/downloads/mureclichy.webp"
   }
 ]
