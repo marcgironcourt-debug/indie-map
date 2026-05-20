@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.indiemap.app",
+      "sha256_cert_fingerprints": [
+        "EA:B3:7E:38:AB:26:D0:F6:AC:47:23:4D:4E:0E:58:8E:CB:88:B8:5C:23:44:2F:AF:7F:92:4D:7F:CA:BF:EE:46"
+      ]
+    }
+  }
+]
