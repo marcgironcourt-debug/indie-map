@@ -376,7 +376,9 @@ export async function GET(req: Request) {
     where: {
       pushDevices: {
         some: {
-          platform: "ios",
+          platform: {
+            in: ["ios", "android", "web"],
+          },
         },
       },
     },

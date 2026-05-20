@@ -392,7 +392,6 @@ export async function notifyContextSuggestion(params: {
   const devices = await prisma.pushDevice.findMany({
     where: {
       userId: params.userId,
-      platform: "ios",
     },
     select: {
       id: true,
@@ -404,6 +403,10 @@ export async function notifyContextSuggestion(params: {
 
   const results = await Promise.allSettled(
     devices.map(async (device) => {
+      if ((device.platform === "android" || device.platform === "web") && device.subscription) {
+        return sendWebPush(device.subscription, payload);
+      }
+
       if (device.platform === "ios" && device.token) {
         return sendApns(device.token, payload);
       }
@@ -439,18 +442,22 @@ export async function notifyReactivation(params: {
   const devices = await prisma.pushDevice.findMany({
     where: {
       userId: params.userId,
-      platform: "ios",
     },
     select: {
       id: true,
       platform: true,
       token: true,
+      subscription: true,
     },
   });
 
   const results = await Promise.allSettled(
     devices.map(async (device) => {
-      if (device.token) {
+      if ((device.platform === "android" || device.platform === "web") && device.subscription) {
+        return sendWebPush(device.subscription, payload);
+      }
+
+      if (device.platform === "ios" && device.token) {
         return sendApns(device.token, payload);
       }
 

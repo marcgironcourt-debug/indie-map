@@ -654,6 +654,11 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
 
   React.useEffect(() => {
+    if (!authProfile) return;
+    window.__IM_REGISTER_WEB_PUSH__?.().catch(() => false);
+  }, [authProfile?.id]);
+
+  React.useEffect(() => {
     if (panel === "personalSpace" && !authProfile) {
       refreshAuthProfile();
     }
