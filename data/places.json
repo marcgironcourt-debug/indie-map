@@ -15916,7 +15916,7 @@
         "homeTextFar": "In Bangkok, Farm to Table, Organic Cafe is a cafe rooted in the farm-to-table spirit, with artisanal ice cream, coffee and dishes from their own production."
       }
     },
-    "panoramaImage": "/downloads/farmcafebangkok.jpg"
+    "panoramaImage": "/downloads/farmcafebangkok.webp"
   },
   {
     "id": "9398564c-ae60-4a39-a15b-4dfe47da931c",
@@ -15948,7 +15948,7 @@
     "homeTextDone": true,
     "homeTextNear": "Un lieu alternatif à Bacalan, autour de la production locale, de la coopération et du lien social.",
     "homeTextFar": "À Bordeaux, un ancien site de raffinerie devenu lieu collectif autour de l’économie circulaire, de l’artisanat et de la culture.",
-    "panoramaImage": "/downloads/citebleuebordeaux.png"
+    "panoramaImage": "/downloads/citebleuebordeaux.webp"
   },
   {
     "id": "5a85860e-2c2f-412f-b880-343594b0b9b0",
@@ -15980,7 +15980,7 @@
     "homeTextDone": true,
     "homeTextNear": "Une boutique solidaire près de toi pour acheter de seconde main et découvrir une autre façon de consommer.",
     "homeTextFar": "À Bordeaux, Ïkos rend le réemploi plus visible avec une boutique solidaire, des ateliers et des événements autour de l’économie circulaire.",
-    "panoramaImage": "/downloads/ikosbordeaux.png"
+    "panoramaImage": "/downloads/ikosbordeaux.webp"
   },
   {
     "id": "828bddab-49f6-4319-a8de-c303241db9de",
@@ -16012,7 +16012,7 @@
     "homeTextDone": true,
     "homeTextNear": "Une épicerie bio près de toi pour trouver des produits frais, locaux, artisanaux et de saison.",
     "homeTextFar": "À Paris, MURE réunit épicerie bio, produits locaux, comptoir traiteur et fabrications maison.",
-    "panoramaImage": "/downloads/mureepicerieparis-fixed.png"
+    "panoramaImage": "/downloads/mureepicerieparis-fixed.webp"
   },
   {
     "id": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
