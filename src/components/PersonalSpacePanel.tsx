@@ -112,7 +112,6 @@ type PersonalSpacePanelProps = {
   authResetDone: boolean;
   authError: string;
   profileUsername: string;
-  profileDisplayName: string;
   profileAvatarColor: string;
   profileHomeCity: string;
   profileAgeRange: string;
@@ -139,7 +138,6 @@ type PersonalSpacePanelProps = {
   onSetAuthForceForm: (value: boolean) => void;
   onSetAuthResetToken: (value: string) => void;
   onSetProfileUsername: (value: string) => void;
-  onSetProfileDisplayName: (value: string) => void;
   onSetProfileAvatarColor: (value: string) => void;
   onSetProfileHomeCity: (value: string) => void;
   onSetProfileAgeRange: (value: string) => void;
@@ -213,7 +211,6 @@ export default function PersonalSpacePanel({
   authResetDone,
   authError,
   profileUsername,
-  profileDisplayName,
   profileAvatarColor,
   profileHomeCity,
   profileAgeRange,
@@ -240,7 +237,6 @@ export default function PersonalSpacePanel({
   onSetAuthForceForm,
   onSetAuthResetToken,
   onSetProfileUsername,
-  onSetProfileDisplayName,
   onSetProfileAvatarColor,
   onSetProfileHomeCity,
   onSetProfileAgeRange,
@@ -1085,13 +1081,6 @@ export default function PersonalSpacePanel({
           />
           <input
             type="text"
-            value={profileDisplayName}
-            onChange={(e) => onSetProfileDisplayName(e.target.value)}
-            placeholder={isFr ? "Nom affiché optionnel" : "Optional display name"}
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white/25"
-          />
-          <input
-            type="text"
             value={profileHomeCity}
             onChange={(e) => onSetProfileHomeCity(e.target.value)}
             placeholder={isFr ? "Ville de résidence optionnelle" : "Optional home city"}
@@ -1185,7 +1174,7 @@ export default function PersonalSpacePanel({
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-[16px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)]"
                   style={{ backgroundColor: profileAvatarColor }}
                 >
-                  {(profileDisplayName || profileUsername || "?").slice(0, 1)}
+                  {(profileUsername || "?").slice(0, 1)}
                 </span>
               </div>
 
@@ -1204,17 +1193,14 @@ export default function PersonalSpacePanel({
                 </div>
               </div>
 
-              <label className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
+              <div className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
                 <span className="shrink-0 text-[14px] font-medium text-white/85">
-                  {isFr ? "Nom affiché" : "Display name"}
+                  {isFr ? "Mon pseudo" : "My username"}
                 </span>
-                <input
-                  value={profileDisplayName}
-                  onChange={(event) => onSetProfileDisplayName(event.target.value)}
-                  placeholder={isFr ? "Optionnel" : "Optional"}
-                  className="min-w-0 flex-1 bg-transparent text-right text-[14px] text-white outline-none placeholder:text-white/30"
-                />
-              </label>
+                <span className="min-w-0 flex-1 truncate text-right text-[14px] font-semibold text-white">
+                  {profileUsername || "—"}
+                </span>
+              </div>
 
               <label className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3">
                 <span className="shrink-0 text-[14px] font-medium text-white/85">

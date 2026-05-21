@@ -381,7 +381,6 @@ export default function HomeScreen({
   const [authSending, setAuthSending] = React.useState(false);
   const [authError, setAuthError] = React.useState("");
   const [profileUsername, setProfileUsername] = React.useState("");
-  const [profileDisplayName, setProfileDisplayName] = React.useState("");
   const [profileAvatarUrl, setProfileAvatarUrl] = React.useState("");
   const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
@@ -415,7 +414,6 @@ export default function HomeScreen({
       if (data?.ok && user) {
         setAuthProfile(user);
         setProfileUsername(user.username || "");
-        setProfileDisplayName(user.displayName || "");
         setProfileAvatarUrl(user.avatarUrl || "");
         setProfileAvatarColor(user.avatarColor || "#F97316");
         setProfileHomeCity(user.homeCity || "");
@@ -716,7 +714,6 @@ export default function HomeScreen({
       setAuthProfile(data.user);
       setAuthForceForm(false);
       setProfileUsername(data.user.username || "");
-      setProfileDisplayName(data.user.displayName || "");
       setProfileAvatarUrl(data.user.avatarUrl || "");
       setProfileAvatarColor(data.user.avatarColor || "#F97316");
       setProfileHomeCity(data.user.homeCity || "");
@@ -756,7 +753,6 @@ export default function HomeScreen({
       setAuthResetDone(false);
       setAuthForceForm(false);
       setProfileUsername("");
-      setProfileDisplayName("");
       setProfileAvatarUrl("");
       setProfileAvatarColor("#F97316");
       setProfileHomeCity("");
@@ -786,7 +782,7 @@ export default function HomeScreen({
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           username,
-          displayName: profileDisplayName.trim() || username,
+          displayName: username,
           avatarUrl: authProfile?.avatarUrl || null,
           avatarColor: profileAvatarColor,
           preferredLocale: profileLocale || locale,
@@ -2919,7 +2915,6 @@ export default function HomeScreen({
                   authResetDone={authResetDone}
                   authError={authError}
                   profileUsername={profileUsername}
-                  profileDisplayName={profileDisplayName}
                   profileAvatarColor={profileAvatarColor}
                   profileHomeCity={profileHomeCity}
                   profileAgeRange={profileAgeRange}
@@ -2964,7 +2959,6 @@ export default function HomeScreen({
                   onSetAuthForceForm={setAuthForceForm}
                   onSetAuthResetToken={setAuthResetToken}
                   onSetProfileUsername={setProfileUsername}
-                  onSetProfileDisplayName={setProfileDisplayName}
                   onSetProfileAvatarColor={setProfileAvatarColor}
                   onSetProfileHomeCity={setProfileHomeCity}
                   onSetProfileAgeRange={setProfileAgeRange}

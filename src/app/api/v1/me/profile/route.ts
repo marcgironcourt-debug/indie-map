@@ -112,7 +112,6 @@ export async function POST(req: Request) {
 
     const body = await req.json().catch(() => null);
     const username = normUsername(body?.username);
-    const displayName = normStr(body?.displayName, 80) || username;
     const avatarUrl = normStr(body?.avatarUrl, 600);
     const avatarColorRaw = normStr(body?.avatarColor, 20);
     const avatarColor = avatarColorRaw && AVATAR_COLORS.has(avatarColorRaw) ? avatarColorRaw : null;
@@ -140,7 +139,7 @@ export async function POST(req: Request) {
       where: { id: currentUser.id },
       data: {
         username,
-        displayName: displayName || username,
+        displayName: username,
         avatarUrl,
         avatarColor,
         preferredLocale,
