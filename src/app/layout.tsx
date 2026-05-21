@@ -7,6 +7,7 @@ import { Sora } from "next/font/google";
 
 const sora = Sora({ subsets: ["latin"] });
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import PresenceHeartbeat from "@/components/PresenceHeartbeat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default async function RootLayout({
     <html lang={finalLocale} className={kalam.className}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen overflow-hidden fixed inset-0 bg-[hsl(var(--bg))]`}>
         <ServiceWorkerRegister />
+        <PresenceHeartbeat />
         {children}
       </body>
     </html>

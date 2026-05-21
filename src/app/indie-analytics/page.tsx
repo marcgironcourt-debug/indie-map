@@ -16,6 +16,7 @@ type PlaceLite = {
 type SearchParams = {
   userId?: string;
   tab?: string;
+  token?: string;
 };
 
 const EVENT_LABELS: Record<string, string> = {
@@ -239,8 +240,15 @@ function progressRow(label: string, value: number, max: number, hint?: string) {
   );
 }
 
-function tabHref(tab: string) {
-  return `/indie-analytics?tab=${encodeURIComponent(tab)}`;
+function dashboardHref(params: { tab?: string; userId?: string }, token: string) {
+  const query = new URLSearchParams();
+
+  if (params.tab) query.set("tab", params.tab);
+  if (params.userId) query.set("userId", params.userId);
+  if (token) query.set("token", token);
+
+  const suffix = query.toString();
+  return suffix ? `/indie-analytics?${suffix}` : "/indie-analytics";
 }
 
 export default async function IndieAnalyticsPage({
@@ -251,6 +259,22 @@ export default async function IndieAnalyticsPage({
   const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
   const selectedUserId = String(resolvedSearchParams?.userId ?? "").trim();
   const activeTab = TABS.some((item) => item.key === resolvedSearchParams?.tab) ? String(resolvedSearchParams?.tab) : "overview";
+  const providedToken = String(resolvedSearchParams?.token ?? "").trim();
+  const dashboardToken = String(process.env.INDIE_ANALYTICS_TOKEN ?? "").trim();
+
+  if (!dashboardToken || providedToken !== dashboardToken) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#f3eee5] px-6 text-black">
+        <section className="max-w-md rounded-[30px] border border-black/10 bg-white p-6 text-center shadow-sm">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/35">Dashboard privé</div>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight">Accès refusé</h1>
+          <p className="mt-3 text-sm leading-relaxed text-black/50">
+            Ce dashboard est privé. Ajoute le token autorisé dans l’URL pour y accéder.
+          </p>
+        </section>
+      </main>
+    );
+  }
 
   const placeMap = readPlacesMap();
   const now = new Date();
@@ -361,9 +385,17 @@ export default async function IndieAnalyticsPage({
         id: true,
         username: true,
         email: true,
+        displayName: true,
         preferredLocale: true,
         homeCity: true,
         ageRange: true,
+        pushDevices: {
+          select: {
+            platform: true,
+            updatedAt: true,
+          },
+          orderBy: { updatedAt: "desc" },
+        },
       },
     }),
     prisma.userPlace.groupBy({
@@ -426,6 +458,9 @@ export default async function IndieAnalyticsPage({
           comments: true,
           ownedLists: { include: { places: true, members: true } },
           listMemberships: { include: { list: true } },
+          pushDevices: {
+            orderBy: { updatedAt: "desc" },
+          },
           events: {
             orderBy: { createdAt: "desc" },
             take: 500,
@@ -474,7 +509,7 @@ export default async function IndieAnalyticsPage({
                 {TABS.map((tab) => (
                   <a
                     key={tab.key}
-                    href={tabHref(tab.key)}
+                    href={dashboardHref({ tab: tab.key }, providedToken)}
                     className={activeTab === tab.key ? "shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black" : "shrink-0 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-sm font-semibold text-white/60"}
                   >
                     {tab.label}
@@ -482,7 +517,7 @@ export default async function IndieAnalyticsPage({
                 ))}
               </nav>
             ) : (
-              <a href="/indie-analytics" className="mt-7 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
+              <a href={dashboardHref({}, providedToken)} className="mt-7 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
                 Retour au dashboard
               </a>
             )}
@@ -502,9 +537,24 @@ export default async function IndieAnalyticsPage({
                 {metric("Âge", ageLabel(selectedUser.ageRange), "tranche déclarée")}
                 {metric("Favoris", selectedUser.places.filter((item) => item.saved).length, "lieux sauvegardés")}
                 {metric("Visités", selectedUser.places.filter((item) => item.visited).length, "lieux marqués")}
+                {metric("Appareils", selectedUser.pushDevices.length, selectedUser.pushDevices.map((device) => device.platform).join(", ") || "aucun appareil")}
                 {metric("Événements", selectedUser.events.length, "dernières actions")}
               </div>
             </section>
+
+            {panel(
+              "Appareils de cet utilisateur",
+              selectedUser.pushDevices.length === 0 ? empty("Aucun appareil enregistré.") : (
+                <div className="grid gap-3 md:grid-cols-2">
+                  {selectedUser.pushDevices.map((device) => (
+                    <div key={device.id} className="rounded-2xl border border-black/10 bg-[#faf7f0] p-4">
+                      <div className="text-lg font-semibold text-black">{device.platform}</div>
+                      <div className="mt-1 text-xs text-black/45">Dernière mise à jour : {device.updatedAt.toISOString().replace("T", " ").slice(0, 16)}</div>
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
 
             {panel(
               "Actions de cet utilisateur",
@@ -794,11 +844,11 @@ export default async function IndieAnalyticsPage({
                   users.length === 0 ? empty("Aucun utilisateur.") : (
                     <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
                       {users.map((user) => (
-                        <a key={user.id} href={`/indie-analytics?userId=${encodeURIComponent(user.id)}`} className="block rounded-[24px] border border-black/10 bg-[#faf7f0] p-5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
+                        <a key={user.id} href={dashboardHref({ userId: user.id }, providedToken)} className="block rounded-[24px] border border-black/10 bg-[#faf7f0] p-5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="truncate text-lg font-semibold">{user.username}</div>
-                              <div className="mt-1 truncate text-sm text-black/45">{user.email || "—"}</div>
+                              <div className="truncate text-lg font-semibold">{user.displayName || user.username}</div>
+                              <div className="mt-1 truncate text-sm text-black/45">@{user.username} · {user.email || "—"}</div>
                             </div>
                             <div className="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white">{user.preferredLocale || "—"}</div>
                           </div>
@@ -806,6 +856,15 @@ export default async function IndieAnalyticsPage({
                           <div className="mt-4 flex flex-wrap gap-2 text-xs">
                             <span className="rounded-full bg-white px-3 py-1 text-black/60">{user.homeCity || "ville —"}</span>
                             <span className="rounded-full bg-white px-3 py-1 text-black/60">{ageLabel(user.ageRange)}</span>
+                            {user.pushDevices.length === 0 ? (
+                              <span className="rounded-full bg-white px-3 py-1 text-black/35">aucun appareil</span>
+                            ) : (
+                              user.pushDevices.map((device, index) => (
+                                <span key={`${user.id}-${device.platform}-${index}`} className="rounded-full bg-black px-3 py-1 text-white">
+                                  {device.platform}
+                                </span>
+                              ))
+                            )}
                           </div>
 
                           <div className="mt-5 grid grid-cols-4 gap-2 text-center">

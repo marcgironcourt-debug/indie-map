@@ -26,7 +26,12 @@ const day = new Intl.DateTimeFormat("en-CA", {
       null;
 
     const platform =
-      req.headers.get("user-agent")?.includes("Mobile") ? "mobile" : "desktop";
+      req.headers.get("x-platform") ||
+      (req.headers.get("user-agent")?.includes("Android")
+        ? "android"
+        : req.headers.get("user-agent")?.match(/iPhone|iPad|iPod/i)
+          ? "ios"
+          : "web");
 
     await prisma.$transaction([
       prisma.activeSession.upsert({

@@ -1506,7 +1506,12 @@ export default function HomeScreen({
               if (readNativeAgain()) return;
 
               try {
-                if (!navigator.geolocation) {
+                const isNativeIos =
+                  typeof window !== "undefined" &&
+                  window.__IM_NATIVE_APP__ &&
+                  window.__IM_NATIVE_APP__.platform === "ios";
+
+                if (isNativeIos || !navigator.geolocation) {
                   done(null);
                   return;
                 }

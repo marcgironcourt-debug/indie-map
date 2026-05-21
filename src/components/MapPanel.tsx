@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import GlobeMap from "./GlobeMap";
 
 type Biz = {
@@ -39,54 +39,6 @@ export default function MapPanel(props: {
     hideGeolocate = false,
     searchMode = false
   } = props;
-
-  useEffect(() => {
-    const sessionKey = "im_session_id";
-    const launchKey = "im_launch_id";
-
-    const makeId = () => {
-      try {
-        if (typeof globalThis.crypto !== "undefined" && typeof globalThis.crypto.randomUUID === "function") {
-          return globalThis.crypto.randomUUID();
-        }
-      } catch {}
-      return "im_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
-    };
-
-    let sessionId = "";
-    try {
-      sessionId = window.localStorage.getItem(sessionKey) || "";
-      if (!sessionId) {
-        sessionId = makeId();
-        window.localStorage.setItem(sessionKey, sessionId);
-      }
-    } catch {
-      sessionId = makeId();
-    }
-
-    const launchId = makeId();
-    try {
-      window.sessionStorage.setItem(launchKey, launchId);
-    } catch {}
-
-    const send = () => {
-      try {
-        fetch("/api/presence/heartbeat", {
-          method: "POST",
-          headers: {
-            "x-session-id": sessionId,
-            "x-launch-id": launchId,
-          },
-          keepalive: true,
-          cache: "no-store",
-        }).catch(() => {});
-      } catch {}
-    };
-
-    send();
-    const id = window.setInterval(send, 90000);
-    return () => window.clearInterval(id);
-  }, []);
 
   return (
     <section

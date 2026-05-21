@@ -1307,6 +1307,25 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     }
   }
 
+  async function syncPlaceNoteToServer(placeId: string, note: PlaceNote | undefined) {
+    if (!authProfile) return;
+
+    try {
+      await fetch("/api/v1/me/place-notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          placeId,
+          visited: note?.visited === true,
+          visitedAt: note?.visitedAt ?? null,
+          comment: note?.comment ?? ""
+        })
+      });
+    } catch {}
+  }
+
   async function saveSelectedDetailPlaceComment() {
     if (!selectedDetailPlace?.id || !authProfile) return;
 
@@ -1999,9 +2018,23 @@ const filtered = source.filter((b) => {
                                   <button
                                     type="button"
                                     onClick={() => {
+                                      const detailPlace = businesses.find((item) => String(item.id) === String(currentPlace.id));
+                                      if (!detailPlace) return;
+                                      trackEvent({
+                                        eventType: "view_place_detail",
+                                        placeId: detailPlace.id,
+                                        city: detailPlace.city,
+                                        category: detailPlace.type,
+                                        locale,
+                                        metadata: { name: detailPlace.name, source: "personal_space_saved_place" }
+                                      });
+                                      setSelectedDetailPlaceSource("personal_space_saved_place");
+                                      setSelectedDetailPlace(detailPlace);
                                       setPanel(null);
-                                      setSelectedId(String(currentPlace.id));
-                                      setSelectionVersion((v) => v + 1);
+                                      setSelectedPlaceCommentsOpen(false);
+                                      setSelectedPlaceCommentInput("");
+                                      setSelectedPlaceCommentError("");
+                                      setAddressCopied(false);
                                     }}
                                     onTouchStart={onSavedPlacesTouchStart}
                                     onTouchMove={onSavedPlacesTouchMove}
@@ -2025,6 +2058,56 @@ const filtered = source.filter((b) => {
                                         background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
                                       }}
                                     ></div>
+                                    <div
+                                      role="button"
+                                      tabIndex={0}
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+
+                                        const id = String(currentPlace.id);
+                                        const isVisited = Boolean(placeNotes[id]?.visited);
+                                        const now = new Date().toISOString();
+                                        const nextNotes: Record<string, PlaceNote> = {
+                                          ...placeNotes,
+                                          [id]: {
+                                            ...(placeNotes[id] ?? {}),
+                                            visited: !isVisited,
+                                            visitedAt: isVisited ? undefined : now,
+                                            updatedAt: now
+                                          }
+                                        };
+
+                                        setPlaceNotes(nextNotes);
+                                        writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                        void syncPlaceNoteToServer(id, nextNotes[id]);
+                                      }}
+                                      onKeyDown={(e) => {
+                                        if (e.key !== "Enter" && e.key !== " ") return;
+                                        e.preventDefault();
+                                        e.stopPropagation();
+
+                                        const id = String(currentPlace.id);
+                                        const isVisited = Boolean(placeNotes[id]?.visited);
+                                        const now = new Date().toISOString();
+                                        const nextNotes: Record<string, PlaceNote> = {
+                                          ...placeNotes,
+                                          [id]: {
+                                            ...(placeNotes[id] ?? {}),
+                                            visited: !isVisited,
+                                            visitedAt: isVisited ? undefined : now,
+                                            updatedAt: now
+                                          }
+                                        };
+
+                                        setPlaceNotes(nextNotes);
+                                        writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                        void syncPlaceNoteToServer(id, nextNotes[id]);
+                                      }}
+                                      className={placeNotes[String(currentPlace.id)]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-yellow-400 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}
+                                    >
+                                      {placeNotes[String(currentPlace.id)]?.visited ? (isFr ? "Visité" : "Visited") : (isFr ? "À visiter" : "To visit")}
+                                    </div>
                                     <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
                                       <div>
                                         <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
