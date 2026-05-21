@@ -1040,7 +1040,35 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       window.removeEventListener("storage", syncPlaceNotes);
       window.removeEventListener("im:place-notes-updated", syncPlaceNotes as EventListener);
     };
-  }, []);
+  }, [authProfile?.id]);
+
+  React.useEffect(() => {
+    if (!authProfile) return;
+    if (panel !== "personalSpace" && panel !== "myPlacesList") return;
+
+    const userId = authProfile.id;
+    let cancelled = false;
+
+    async function loadPlaceNotesFromServer() {
+      try {
+        const res = await fetch("/api/v1/me/place-notes", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok || !data.notes || typeof data.notes !== "object") return;
+
+        if (cancelled) return;
+
+        setPlaceNotes(data.notes);
+        writePlaceNotes(data.notes, userId);
+      } catch {}
+    }
+
+    void loadPlaceNotesFromServer();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authProfile, panel]);
 
   React.useEffect(() => {
     if (!panel) return;
@@ -1395,12 +1423,12 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     });
   }
 
-  function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
+  function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLElement>) {
     savedPlacesTouchStartXRef.current = e.touches[0]?.clientX ?? null;
     savedPlacesTouchDeltaXRef.current = 0;
   }
 
-  function onSavedPlacesTouchMove(e: React.TouchEvent<HTMLButtonElement>) {
+  function onSavedPlacesTouchMove(e: React.TouchEvent<HTMLElement>) {
     const startX = savedPlacesTouchStartXRef.current;
     if (startX == null) return;
     const currentX = e.touches[0]?.clientX ?? startX;
@@ -2029,9 +2057,32 @@ const filtered = source.filter((b) => {
                               return (
                                 <div key={group.city}>
                                   <h2 className="mb-2 text-sm font-semibold tracking-wide text-white/80">{group.city}</h2>
-                                  <button
-                                    type="button"
+                                  <div
+                                    role="button"
+                                    tabIndex={0}
                                     onClick={() => {
+                                      const detailPlace = businesses.find((item) => String(item.id) === String(currentPlace.id));
+                                      if (!detailPlace) return;
+                                      trackEvent({
+                                        eventType: "view_place_detail",
+                                        placeId: detailPlace.id,
+                                        city: detailPlace.city,
+                                        category: detailPlace.type,
+                                        locale,
+                                        metadata: { name: detailPlace.name, source: "personal_space_saved_place" }
+                                      });
+                                      setSelectedDetailPlaceSource("personal_space_saved_place");
+                                      setSelectedDetailPlace(detailPlace);
+                                      setPanel(null);
+                                      setSelectedPlaceCommentsOpen(false);
+                                      setSelectedPlaceCommentInput("");
+                                      setSelectedPlaceCommentError("");
+                                      setAddressCopied(false);
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key !== "Enter" && e.key !== " ") return;
+                                      e.preventDefault();
+
                                       const detailPlace = businesses.find((item) => String(item.id) === String(currentPlace.id));
                                       if (!detailPlace) return;
                                       trackEvent({
@@ -2053,7 +2104,7 @@ const filtered = source.filter((b) => {
                                     onTouchStart={onSavedPlacesTouchStart}
                                     onTouchMove={onSavedPlacesTouchMove}
                                     onTouchEnd={() => onSavedPlacesTouchEnd(group.city, group.places.length)}
-                                    className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
+                                    className="relative block w-full overflow-hidden rounded-xl bg-white/10 text-left hover:bg-white/14 active:bg-white/18 touch-pan-y"
                                     style={{
                                       minHeight: "148px",
                                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
@@ -2163,7 +2214,7 @@ const filtered = source.filter((b) => {
                                         ))}
                                       </div>
                                     ) : null}
-                                  </button>
+                                  </div>
                                 </div>
                               );
                             })}
@@ -2642,6 +2693,47 @@ const filtered = source.filter((b) => {
                     <p className="text-[17px] leading-[1.7] text-white/90">
                       {selectedDetailPlace.miniText}
                     </p>
+
+                    {Number.isFinite(Number(selectedDetailPlace.lat)) && Number.isFinite(Number(selectedDetailPlace.lng)) ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          trackEvent({
+                            eventType: "click_detail_view_on_map",
+                            placeId: selectedDetailPlace.id,
+                            city: selectedDetailPlace.city,
+                            category: selectedDetailPlace.type,
+                            locale,
+                            metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
+                          });
+                          setSelectedId(String(selectedDetailPlace.id));
+                          setSelectedDetailPlace(null);
+                          setSelectedPlaceCommentsOpen(false);
+                        }}
+                        className="relative mt-6 block h-[190px] w-full overflow-hidden rounded-2xl bg-[#101510]"
+                      >
+                        <div className="absolute inset-0 pointer-events-none">
+                          <MapPanel
+                            items={[selectedDetailPlace]}
+                            selectedId={selectedDetailPlace.id}
+                            overlaysReady={true}
+                            hideGeolocate={true}
+                          />
+                        </div>
+
+                        <div className="absolute inset-0 bg-black/10" />
+
+                        <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-white">
+                          <div className="text-left">
+                            <div className="text-[20px] font-serif">
+                              {isFr ? "Voir sur la carte" : "View on map"}
+                            </div>
+                          </div>
+
+                          <div className="text-[24px] leading-none">→</div>
+                        </div>
+                      </button>
+                    ) : null}
                   </div>
                 ) : null}
               </div>
