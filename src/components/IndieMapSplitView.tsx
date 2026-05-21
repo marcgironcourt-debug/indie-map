@@ -2095,21 +2095,24 @@ const filtered = source.filter((b) => {
                                         e.stopPropagation();
 
                                         const id = String(currentPlace.id);
-                                        const isVisited = Boolean(placeNotes[id]?.visited);
-                                        const now = new Date().toISOString();
-                                        const nextNotes: Record<string, PlaceNote> = {
-                                          ...placeNotes,
-                                          [id]: {
-                                            ...(placeNotes[id] ?? {}),
-                                            visited: !isVisited,
-                                            visitedAt: isVisited ? undefined : now,
-                                            updatedAt: now
-                                          }
-                                        };
+                                        setPlaceNotes((prev) => {
+                                          const isVisited = Boolean(prev[id]?.visited);
+                                          const now = new Date().toISOString();
+                                          const nextNotes: Record<string, PlaceNote> = {
+                                            ...prev,
+                                            [id]: {
+                                              ...(prev[id] ?? {}),
+                                              visited: !isVisited,
+                                              visitedAt: isVisited ? undefined : now,
+                                              updatedAt: now
+                                            }
+                                          };
 
-                                        setPlaceNotes(nextNotes);
-                                        writePlaceNotes(nextNotes, authProfile?.id ?? null);
-                                        void syncPlaceNoteToServer(id, nextNotes[id]);
+                                          writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                          void syncPlaceNoteToServer(id, nextNotes[id]);
+
+                                          return nextNotes;
+                                        });
                                       }}
                                       onKeyDown={(e) => {
                                         if (e.key !== "Enter" && e.key !== " ") return;
@@ -2117,21 +2120,24 @@ const filtered = source.filter((b) => {
                                         e.stopPropagation();
 
                                         const id = String(currentPlace.id);
-                                        const isVisited = Boolean(placeNotes[id]?.visited);
-                                        const now = new Date().toISOString();
-                                        const nextNotes: Record<string, PlaceNote> = {
-                                          ...placeNotes,
-                                          [id]: {
-                                            ...(placeNotes[id] ?? {}),
-                                            visited: !isVisited,
-                                            visitedAt: isVisited ? undefined : now,
-                                            updatedAt: now
-                                          }
-                                        };
+                                        setPlaceNotes((prev) => {
+                                          const isVisited = Boolean(prev[id]?.visited);
+                                          const now = new Date().toISOString();
+                                          const nextNotes: Record<string, PlaceNote> = {
+                                            ...prev,
+                                            [id]: {
+                                              ...(prev[id] ?? {}),
+                                              visited: !isVisited,
+                                              visitedAt: isVisited ? undefined : now,
+                                              updatedAt: now
+                                            }
+                                          };
 
-                                        setPlaceNotes(nextNotes);
-                                        writePlaceNotes(nextNotes, authProfile?.id ?? null);
-                                        void syncPlaceNoteToServer(id, nextNotes[id]);
+                                          writePlaceNotes(nextNotes, authProfile?.id ?? null);
+                                          void syncPlaceNoteToServer(id, nextNotes[id]);
+
+                                          return nextNotes;
+                                        });
                                       }}
                                       className={placeNotes[String(currentPlace.id)]?.visited ? "absolute left-3 top-3 z-20 rounded-full bg-yellow-400 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black shadow-[0_8px_18px_rgba(0,0,0,0.25)]" : "absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm"}
                                     >

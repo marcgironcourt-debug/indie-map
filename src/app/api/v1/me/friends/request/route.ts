@@ -81,7 +81,7 @@ export async function POST(req: Request) {
       },
     });
 
-    notifyFriendRequest({
+    await notifyFriendRequest({
       receiverId,
       requesterDisplayName: currentUser.displayName || currentUser.username,
       locale: receiver.preferredLocale,
