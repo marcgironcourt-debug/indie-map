@@ -56,13 +56,18 @@ export async function POST(req: Request) {
         where: { id: friendshipId },
       });
 
+      let badgeSync = null;
+
       try {
-        await syncNotificationBadge({ userId: currentUser.id });
+        badgeSync = await syncNotificationBadge({ userId: currentUser.id });
+        if (badgeSync.badge === 0) {
+          badgeSync = await syncNotificationBadge({ userId: currentUser.id });
+        }
       } catch (error) {
         console.error("[/api/v1/me/friends/respond] badge sync error", error);
       }
 
-      return NextResponse.json({ ok: true, declined: true }, { headers: V1_HEADERS });
+      return NextResponse.json({ ok: true, declined: true, badgeSync }, { headers: V1_HEADERS });
     }
 
     const updated = await prisma.friendship.update({
@@ -80,8 +85,13 @@ export async function POST(req: Request) {
       },
     });
 
+    let badgeSync = null;
+
     try {
-      await syncNotificationBadge({ userId: currentUser.id });
+      badgeSync = await syncNotificationBadge({ userId: currentUser.id });
+      if (badgeSync.badge === 0) {
+        badgeSync = await syncNotificationBadge({ userId: currentUser.id });
+      }
     } catch (error) {
       console.error("[/api/v1/me/friends/respond] badge sync error", error);
     }
@@ -89,6 +99,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         ok: true,
+        badgeSync,
         friendship: {
           ...updated,
           createdAt: updated.createdAt.toISOString(),
