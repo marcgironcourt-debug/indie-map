@@ -268,6 +268,7 @@ export default function PersonalSpacePanel({
   const [friendProfileLoading, setFriendProfileLoading] = React.useState(false);
   const [friendProfileError, setFriendProfileError] = React.useState("");
   const [friendProfilePayload, setFriendProfilePayload] = React.useState<FriendProfilePayload | null>(null);
+  const [pendingDeleteFriendId, setPendingDeleteFriendId] = React.useState("");
   const [sharedListsLoading, setSharedListsLoading] = React.useState(false);
   const [sharedListsError, setSharedListsError] = React.useState("");
   const [sharedLists, setSharedLists] = React.useState<SharedList[]>([]);
@@ -275,6 +276,7 @@ export default function PersonalSpacePanel({
   const [newSharedListTitle, setNewSharedListTitle] = React.useState("");
   const [sharedListSaving, setSharedListSaving] = React.useState(false);
   const [sharedListMessage, setSharedListMessage] = React.useState("");
+  const [pendingDeleteSharedListId, setPendingDeleteSharedListId] = React.useState("");
   const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
   const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
   const friendsLoadingRef = React.useRef(false);
@@ -513,14 +515,13 @@ export default function PersonalSpacePanel({
   async function deleteSelectedFriend() {
     if (!selectedFriend) return;
 
-    const confirmed = window.confirm(
-      isFr
-        ? `Supprimer ${selectedFriend.displayName || selectedFriend.username} de tes amis ?`
-        : `Remove ${selectedFriend.displayName || selectedFriend.username} from your friends?`
-    );
+    if (pendingDeleteFriendId !== selectedFriend.id) {
+      setPendingDeleteFriendId(selectedFriend.id);
+      setFriendProfileError("");
+      return;
+    }
 
-    if (!confirmed) return;
-
+    setPendingDeleteFriendId("");
     setFriendsLoading(true);
     setFriendsError("");
 
@@ -542,6 +543,7 @@ export default function PersonalSpacePanel({
       }
 
       setSelectedFriend(null);
+      setPendingDeleteFriendId("");
       setFriendProfilePayload(null);
       setFriendProfileError("");
       await reloadFriends();
@@ -555,14 +557,13 @@ export default function PersonalSpacePanel({
   async function deleteSharedList() {
     if (!selectedSharedList) return;
 
-    const confirmed = window.confirm(
-      isFr
-        ? `Supprimer la liste « ${selectedSharedList.title} » ?`
-        : `Delete the list “${selectedSharedList.title}”?`
-    );
+    if (pendingDeleteSharedListId !== selectedSharedList.id) {
+      setPendingDeleteSharedListId(selectedSharedList.id);
+      setSharedListMessage(isFr ? "Appuie encore pour confirmer la suppression." : "Tap again to confirm deletion.");
+      return;
+    }
 
-    if (!confirmed) return;
-
+    setPendingDeleteSharedListId("");
     setSharedListSaving(true);
     setSharedListMessage("");
 
@@ -578,6 +579,7 @@ export default function PersonalSpacePanel({
       }
 
       setSelectedSharedListId(null);
+      setPendingDeleteSharedListId("");
       setSelectedSharedFriendId("");
       setSharedPlaceQuery("");
       setSharedListMessage(isFr ? "Liste supprimée." : "List deleted.");
@@ -1515,7 +1517,7 @@ export default function PersonalSpacePanel({
                 disabled={sharedListSaving}
                 className="w-full rounded-3xl border border-red-300/20 bg-red-500/10 px-4 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-red-100 disabled:opacity-50"
               >
-                {isFr ? "Supprimer la liste" : "Delete list"}
+                {pendingDeleteSharedListId === selectedSharedList.id ? (isFr ? "Confirmer la suppression" : "Confirm deletion") : (isFr ? "Supprimer la liste" : "Delete list")}
               </button>
             ) : null}
 
@@ -1743,7 +1745,7 @@ export default function PersonalSpacePanel({
                     disabled={friendsLoading}
                     className="w-full rounded-3xl border border-red-300/20 bg-red-500/10 px-4 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-red-100 disabled:opacity-50"
                   >
-                    {isFr ? "Supprimer l’ami" : "Remove friend"}
+                    {pendingDeleteFriendId === selectedFriend.id ? (isFr ? "Confirmer la suppression" : "Confirm deletion") : (isFr ? "Supprimer l’ami" : "Remove friend")}
                   </button>
                 ) : null}
 
