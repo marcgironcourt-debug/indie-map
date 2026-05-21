@@ -162,6 +162,11 @@ const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-loc
 let sharedListsInflight: Promise<SharedList[]> | null = null;
 let sharedListsCache: { at: number; lists: SharedList[] } | null = null;
 
+function clearSharedListsCache() {
+  sharedListsCache = null;
+  sharedListsInflight = null;
+}
+
 async function fetchSharedListsOnce(force = false, markSeen = false) {
   const now = Date.now();
 
@@ -578,6 +583,10 @@ export default function PersonalSpacePanel({
         throw new Error("shared_list_delete_failed");
       }
 
+      const deletedListId = selectedSharedList.id;
+
+      clearSharedListsCache();
+      setSharedLists((current) => current.filter((list) => list.id !== deletedListId));
       setSelectedSharedListId(null);
       setPendingDeleteSharedListId("");
       setSelectedSharedFriendId("");

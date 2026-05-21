@@ -2067,6 +2067,12 @@ const filtered = source.filter((b) => {
                                     <div
                                       role="button"
                                       tabIndex={0}
+                                      onPointerDown={(e) => {
+                                        e.stopPropagation();
+                                      }}
+                                      onTouchStart={(e) => {
+                                        e.stopPropagation();
+                                      }}
                                       onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
