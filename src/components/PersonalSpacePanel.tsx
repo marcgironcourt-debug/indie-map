@@ -332,7 +332,7 @@ export default function PersonalSpacePanel({
     if (sharedListsLoadingRef.current) return;
 
     sharedListsLoadingRef.current = true;
-    setSharedListsLoading(true);
+    setSharedListsLoading((current) => sharedLists.length === 0 ? true : current);
     setSharedListsError("");
 
     try {
@@ -360,7 +360,7 @@ export default function PersonalSpacePanel({
       sharedListsLoadingRef.current = false;
       setSharedListsLoading(false);
     }
-  }, [authProfile, authProfile?.id, isFr, mode, onSharedListsSeen]);
+  }, [authProfile, authProfile?.id, isFr, mode, onSharedListsSeen, sharedLists.length]);
 
   async function createSharedList() {
     const title = newSharedListTitle.trim();
