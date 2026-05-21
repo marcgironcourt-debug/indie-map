@@ -845,6 +845,7 @@ export default function HomeScreen({
   const [selectedPlaceCommentSaving, setSelectedPlaceCommentSaving] = React.useState(false);
   const [selectedPlaceCommentError, setSelectedPlaceCommentError] = React.useState("");
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
+  const savedPlaceMutationIdsRef = React.useRef<Set<string>>(new Set());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
   const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
@@ -947,7 +948,7 @@ export default function HomeScreen({
         const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
         const next = allPlaces.filter((place) => ids.has(String(place.id)));
 
-        if (cancelled) return;
+        if (cancelled || savedPlaceMutationIdsRef.current.size > 0) return;
 
         setSavedPlaces(next);
         window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
@@ -1075,6 +1076,7 @@ export default function HomeScreen({
 
     const id = String(selectedHomePlace.id);
     const exists = savedPlaces.some((item) => String(item.id) === id);
+    savedPlaceMutationIdsRef.current.add(id);
 
     trackEvent({
       eventType: exists ? "unsave_place" : "save_place",
@@ -1115,8 +1117,12 @@ export default function HomeScreen({
           placeId: id,
           saved: !exists
         })
-      }).catch(() => {});
-    } catch {}
+      }).catch(() => {}).finally(() => {
+        savedPlaceMutationIdsRef.current.delete(id);
+      });
+    } catch {
+      savedPlaceMutationIdsRef.current.delete(id);
+    }
   }
 
   async function reloadSelectedPlaceSharedLists() {

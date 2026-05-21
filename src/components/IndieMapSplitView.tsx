@@ -504,6 +504,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [incomingFriendRequestCount, setIncomingFriendRequestCount] = React.useState(0);
   const [unseenSharedListCount, setUnseenSharedListCount] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
+  const savedPlaceMutationIdsRef = React.useRef<Set<string>>(new Set());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
   const [selectedDetailPlaceSource, setSelectedDetailPlaceSource] = React.useState("map");
@@ -1010,7 +1011,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
         const next = businesses.filter((place) => ids.has(String(place.id)));
 
-        if (cancelled) return;
+        if (cancelled || savedPlaceMutationIdsRef.current.size > 0) return;
 
         setSavedPlaces(next);
         window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
@@ -1109,6 +1110,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
     const id = String(selectedDetailPlace.id);
     const exists = savedPlaces.some((item) => String(item.id) === id);
+    savedPlaceMutationIdsRef.current.add(id);
 
     trackEvent({
       eventType: exists ? "unsave_place" : "save_place",
@@ -1148,8 +1150,12 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
           placeId: id,
           saved: !exists
         })
-      }).catch(() => {});
-    } catch {}
+      }).catch(() => {}).finally(() => {
+        savedPlaceMutationIdsRef.current.delete(id);
+      });
+    } catch {
+      savedPlaceMutationIdsRef.current.delete(id);
+    }
   }
 
   async function reloadSelectedDetailPlaceSharedLists() {
