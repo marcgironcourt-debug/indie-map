@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { syncNotificationBadge } from "@/lib/pushNotifications";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -100,6 +101,12 @@ export async function GET(req: Request) {
         },
         data: { seenAt: new Date() },
       });
+
+      try {
+        await syncNotificationBadge({ userId: currentUser.id });
+      } catch (error) {
+        console.error("[/api/v1/me/shared-lists] badge sync error", error);
+      }
     }
 
     return NextResponse.json(

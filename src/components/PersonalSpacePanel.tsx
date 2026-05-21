@@ -418,16 +418,19 @@ export default function PersonalSpacePanel({
   async function addFriendToSharedList() {
     if (!selectedSharedList || !selectedSharedFriendId) return;
 
+    const listId = selectedSharedList.id;
+    const addedUserId = selectedSharedFriendId;
+
     setSharedListSaving(true);
     setSharedListMessage("");
 
     try {
-      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(selectedSharedList.id)}/members`, {
+      const res = await fetch(`/api/v1/me/shared-lists/${encodeURIComponent(listId)}/members`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: selectedSharedFriendId }),
+        body: JSON.stringify({ userId: addedUserId }),
       });
 
       const data = await res.json().catch(() => null);
@@ -436,9 +439,44 @@ export default function PersonalSpacePanel({
         throw new Error("shared_list_member_failed");
       }
 
+      const addedFriend = friendsPayload.friends.find((entry) => entry.user.id === addedUserId)?.user;
+
+      clearSharedListsCache();
+
+      if (addedFriend) {
+        const now = new Date().toISOString();
+        const memberId = typeof data.memberId === "string" ? data.memberId : `${listId}:${addedUserId}`;
+
+        setSharedLists((current) =>
+          current.map((list) => {
+            if (list.id !== listId) return list;
+
+            if (list.members.some((member) => member.userId === addedUserId)) {
+              return list;
+            }
+
+            return {
+              ...list,
+              members: [
+                ...list.members,
+                {
+                  id: memberId,
+                  userId: addedUserId,
+                  role: addedUserId === authProfile?.id ? "owner" : "member",
+                  createdAt: now,
+                  seenAt: addedUserId === authProfile?.id ? now : null,
+                  user: addedFriend,
+                },
+              ],
+            };
+          })
+        );
+      } else {
+        await reloadSharedLists(true);
+      }
+
       setSelectedSharedFriendId("");
       setSharedListMessage(isFr ? "Ami ajouté à la liste." : "Friend added to the list.");
-      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible d’ajouter cet ami." : "Unable to add this friend.");
     } finally {
@@ -586,13 +624,14 @@ export default function PersonalSpacePanel({
       const deletedListId = selectedSharedList.id;
 
       clearSharedListsCache();
+      sharedListsLoadingRef.current = false;
+      setSharedListsLoading(false);
       setSharedLists((current) => current.filter((list) => list.id !== deletedListId));
       setSelectedSharedListId(null);
       setPendingDeleteSharedListId("");
       setSelectedSharedFriendId("");
       setSharedPlaceQuery("");
       setSharedListMessage(isFr ? "Liste supprimée." : "List deleted.");
-      await reloadSharedLists(true);
     } catch {
       setSharedListMessage(isFr ? "Impossible de supprimer cette liste." : "Unable to delete this list.");
     } finally {

@@ -21,13 +21,32 @@ type BadgePayload = {
   badge: number;
 };
 
-function getBaseUrl() {
-  const raw =
-    process.env.NEXT_PUBLIC_APP_URL ||
-    process.env.APP_URL ||
-    "https://preview.marcgironcourt-debugs-projects.vercel.app";
+function getBaseUrlForPlatform(platform?: string | null) {
+  return platform === "ios" || platform === "android" ? "https://app.indie-map.com" : "https://www.indie-map.com";
+}
 
-  return raw.replace(/\/+$/, "");
+function getBaseUrl() {
+  return getBaseUrlForPlatform("web");
+}
+
+function withPlatformUrl(payload: PushPayload, platform?: string | null): PushPayload {
+  const baseUrl = getBaseUrlForPlatform(platform);
+  const base = new URL(baseUrl);
+
+  try {
+    const url = new URL(payload.url || baseUrl, baseUrl);
+    url.protocol = base.protocol;
+    url.host = base.host;
+    return {
+      ...payload,
+      url: url.toString(),
+    };
+  } catch {
+    return {
+      ...payload,
+      url: baseUrl,
+    };
+  }
 }
 
 function getVapidSubject() {
@@ -111,7 +130,7 @@ function getApnsJwt() {
 }
 
 async function getUnreadNotificationBadgeCount(userId: string) {
-  const [pendingFriendRequests, unreadPlaceRecommendations] = await Promise.all([
+  const [pendingFriendRequests, unreadPlaceRecommendations, unseenSharedLists] = await Promise.all([
     prisma.friendship.count({
       where: {
         receiverId: userId,
@@ -124,9 +143,16 @@ async function getUnreadNotificationBadgeCount(userId: string) {
         readAt: null,
       },
     }),
+    prisma.sharedListMember.count({
+      where: {
+        userId,
+        role: { not: "owner" },
+        seenAt: null,
+      },
+    }),
   ]);
 
-  return pendingFriendRequests + unreadPlaceRecommendations;
+  return pendingFriendRequests + unreadPlaceRecommendations + unseenSharedLists;
 }
 
 function buildFriendRequestPayload(params: {
@@ -301,11 +327,11 @@ export async function notifyFriendRequest(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       if ((device.platform === "android" || device.platform === "web") && device.subscription) {
-        return sendWebPush(device.subscription, payload);
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
       }
 
       if (device.platform === "ios" && device.token) {
-        return sendApns(device.token, payload);
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
       }
 
       return false;
@@ -349,11 +375,11 @@ export async function notifySharedListInvite(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       if ((device.platform === "android" || device.platform === "web") && device.subscription) {
-        return sendWebPush(device.subscription, payload);
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
       }
 
       if (device.platform === "ios" && device.token) {
-        return sendApns(device.token, payload);
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
       }
 
       return false;
@@ -404,11 +430,11 @@ export async function notifyContextSuggestion(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       if ((device.platform === "android" || device.platform === "web") && device.subscription) {
-        return sendWebPush(device.subscription, payload);
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
       }
 
       if (device.platform === "ios" && device.token) {
-        return sendApns(device.token, payload);
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
       }
 
       return false;
@@ -454,11 +480,11 @@ export async function notifyReactivation(params: {
   const results = await Promise.allSettled(
     devices.map(async (device) => {
       if ((device.platform === "android" || device.platform === "web") && device.subscription) {
-        return sendWebPush(device.subscription, payload);
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
       }
 
       if (device.platform === "ios" && device.token) {
-        return sendApns(device.token, payload);
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
       }
 
       return false;

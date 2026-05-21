@@ -56,9 +56,11 @@ export async function POST(req: Request) {
         where: { id: friendshipId },
       });
 
-      syncNotificationBadge({ userId: currentUser.id }).catch((error) => {
+      try {
+        await syncNotificationBadge({ userId: currentUser.id });
+      } catch (error) {
         console.error("[/api/v1/me/friends/respond] badge sync error", error);
-      });
+      }
 
       return NextResponse.json({ ok: true, declined: true }, { headers: V1_HEADERS });
     }
@@ -78,9 +80,11 @@ export async function POST(req: Request) {
       },
     });
 
-    syncNotificationBadge({ userId: currentUser.id }).catch((error) => {
+    try {
+      await syncNotificationBadge({ userId: currentUser.id });
+    } catch (error) {
       console.error("[/api/v1/me/friends/respond] badge sync error", error);
-    });
+    }
 
     return NextResponse.json(
       {

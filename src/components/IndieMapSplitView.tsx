@@ -523,6 +523,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
   const savedPlacesTouchDeltaXRef = React.useRef(0);
+  const savedPlacesActionTouchRef = React.useRef(false);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
   const [businesses, setBusinesses] = React.useState<Business[]>([]);
@@ -1407,6 +1408,13 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   }
 
   function onSavedPlacesTouchEnd(city: string, length: number) {
+    if (savedPlacesActionTouchRef.current) {
+      savedPlacesActionTouchRef.current = false;
+      savedPlacesTouchStartXRef.current = null;
+      savedPlacesTouchDeltaXRef.current = 0;
+      return;
+    }
+
     const dx = savedPlacesTouchDeltaXRef.current;
     savedPlacesTouchStartXRef.current = null;
     savedPlacesTouchDeltaXRef.current = 0;
@@ -2068,9 +2076,18 @@ const filtered = source.filter((b) => {
                                       role="button"
                                       tabIndex={0}
                                       onPointerDown={(e) => {
+                                        savedPlacesActionTouchRef.current = true;
+                                        e.stopPropagation();
+                                      }}
+                                      onPointerUp={(e) => {
                                         e.stopPropagation();
                                       }}
                                       onTouchStart={(e) => {
+                                        savedPlacesActionTouchRef.current = true;
+                                        e.stopPropagation();
+                                      }}
+                                      onTouchEnd={(e) => {
+                                        savedPlacesActionTouchRef.current = true;
                                         e.stopPropagation();
                                       }}
                                       onClick={(e) => {

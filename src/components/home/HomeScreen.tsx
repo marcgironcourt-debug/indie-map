@@ -3050,7 +3050,13 @@ export default function HomeScreen({
                                     onPointerDown={(e) => {
                                       e.stopPropagation();
                                     }}
+                                    onPointerUp={(e) => {
+                                      e.stopPropagation();
+                                    }}
                                     onTouchStart={(e) => {
+                                      e.stopPropagation();
+                                    }}
+                                    onTouchEnd={(e) => {
                                       e.stopPropagation();
                                     }}
                                     onClick={(e) => {
