@@ -103,7 +103,6 @@ export default async function Page({ params }: Props) {
       initialDiscoverPlace={initialDiscoverPlace}
       initialContextPlace={initialContextPlace}
       initialNewPlaces={initialNewPlaces}
-      initialAllPlaces={allPlaces}
     />
   );
 }
