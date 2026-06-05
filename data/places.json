@@ -16045,5 +16045,38 @@
     "homeTextNear": "Si tu veux un café le matin ou un déjeuner bio sans t’éloigner, MÛRE Trinité propose une cuisine autour de légumes frais issus de leur ferme.",
     "homeTextFar": "À Paris, MÛRE Trinité mêle coffee shop, déjeuner au comptoir et cuisine bio issue de leur ferme en Île-de-France.",
     "panoramaImage": "/downloads/mureclichy.webp"
+  },
+  {
+    "id": "ec57520f-2b73-465a-8b6c-d89f2a65c3a5",
+    "name": "MÛRE Poissonnière",
+    "city": "Paris",
+    "address": "53 Rue du Faubourg Poissonnière, 75009 Paris, France",
+    "website": "https://www.mure.family/menu-poissonniere",
+    "lat": 48.87489322275448,
+    "lng": 2.347956867886799,
+    "category": "Restaurant",
+    "phone": "",
+    "openingHours": "Lundi 11h30-15h00\nMardi 11h30-15h00\nMercredi 11h30-15h00\nJeudi 11h30-15h00\nVendredi 11h30-15h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "MÛRE Poissonnière propose le midi des plats gourmands et équilibrés, sur place ou à emporter, cuisinés à partir de légumes bio issus de leurs propres fermes en Seine-et-Marne.",
+    "homeTextNear": "Si tu veux déjeuner bio sans t’éloigner, MÛRE Poissonnière propose des plats gourmands et équilibrés préparés avec les légumes de leur ferme.",
+    "homeTextFar": "À Paris, MÛRE Poissonnière propose une cuisine de midi bio, sur place ou à emporter, autour des légumes cultivés dans leurs fermes de Seine-et-Marne.",
+    "translations": {
+      "fr": {
+        "miniText": "MÛRE Poissonnière propose le midi des plats gourmands et équilibrés, sur place ou à emporter, cuisinés à partir de légumes bio issus de leurs propres fermes en Seine-et-Marne.",
+        "homeTextNear": "Si tu veux déjeuner bio sans t’éloigner, MÛRE Poissonnière propose des plats gourmands et équilibrés préparés avec les légumes de leur ferme.",
+        "homeTextFar": "À Paris, MÛRE Poissonnière propose une cuisine de midi bio, sur place ou à emporter, autour des légumes cultivés dans leurs fermes de Seine-et-Marne."
+      },
+      "en": {
+        "miniText": "MÛRE Poissonnière serves generous, balanced lunch dishes to eat in or take away, prepared with organic vegetables from their own farms in Seine-et-Marne.",
+        "homeTextNear": "If you want an organic lunch nearby, MÛRE Poissonnière serves generous, balanced dishes prepared with vegetables from their farm.",
+        "homeTextFar": "In Paris, MÛRE Poissonnière offers organic lunch dishes to eat in or take away, built around vegetables grown on their farms in Seine-et-Marne."
+      }
+    },
+    "createdAt": "2026-06-05T08:13:34.205Z",
+    "updatedAt": "2026-06-05T08:13:34.206Z"
   }
 ]
