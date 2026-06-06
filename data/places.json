@@ -16077,6 +16077,177 @@
       }
     },
     "createdAt": "2026-06-05T08:13:34.205Z",
-    "updatedAt": "2026-06-05T08:13:34.206Z"
+    "updatedAt": "2026-06-05T08:30:34.902Z",
+    "panoramaImage": "/downloads/murepoissonniere.png"
+  },
+  {
+    "id": "c24bdaf6-2ba1-411c-b345-fcfc4eb5d778",
+    "name": "Échoppe de la Lune",
+    "city": "Bordeaux",
+    "address": "Centre Bord’eau Village, Quai de Bacalan Hangar 18, 33300 Bordeaux, France",
+    "website": "https://www.echoppe-delalune-bordeaux.com/",
+    "lat": 44.85832378813899,
+    "lng": -0.5567308691182529,
+    "category": "Épicerie",
+    "phone": "+33 5 56 58 89 67",
+    "openingHours": "Lundi 10h00-19h00\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche 10h00-19h00",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Échoppe de la Lune est une épicerie historique et gourmande dédiée aux spécialités bordelaises, avec des produits sucrés et salés de Bordeaux à découvrir ou à offrir.",
+    "homeTextNear": "À deux pas, l’épicerie Échoppe de la Lune rassemble spécialités bordelaises, produits gourmands et idées cadeaux autour du patrimoine local.",
+    "homeTextFar": "À Bordeaux, Échoppe de la Lune met en avant les spécialités bordelaises dans une épicerie historique tournée vers les produits locaux et les cadeaux gourmands.",
+    "translations": {
+      "fr": {
+        "miniText": "Échoppe de la Lune est une épicerie historique et gourmande dédiée aux spécialités bordelaises, avec des produits sucrés et salés de Bordeaux à découvrir ou à offrir.",
+        "homeTextNear": "À deux pas, l’épicerie Échoppe de la Lune rassemble spécialités bordelaises, produits gourmands et idées cadeaux autour du patrimoine local.",
+        "homeTextFar": "À Bordeaux, Échoppe de la Lune met en avant les spécialités bordelaises dans une épicerie historique tournée vers les produits locaux et les cadeaux gourmands."
+      },
+      "en": {
+        "miniText": "Échoppe de la Lune is a historic gourmet grocery dedicated to Bordeaux specialties, with sweet and savory local products to discover or give as gifts.",
+        "homeTextNear": "Just nearby, Échoppe de la Lune gathers Bordeaux specialties, gourmet products and gift ideas around local heritage.",
+        "homeTextFar": "In Bordeaux, Échoppe de la Lune highlights Bordeaux specialties in a historic grocery focused on local products and gourmet gifts."
+      }
+    },
+    "createdAt": "2026-06-05T08:23:39.325Z",
+    "updatedAt": "2026-06-05T08:39:24.995Z",
+    "panoramaImage": "/downloads/echoppedelalune.jpg"
+  },
+  {
+    "id": "4e8a3056-8075-4046-a890-c8d1cd1326fc",
+    "name": "La Vie de Quartier - Cocagne",
+    "city": "Bordeaux",
+    "address": "62 Cours Portal, 33000 Bordeaux, France",
+    "website": "https://laviedequartier.fr/",
+    "lat": 44.85447600821737,
+    "lng": -0.5720333556848308,
+    "category": "Épicerie",
+    "phone": "+33 5 57 26 90 98",
+    "openingHours": "Lundi 09h30-19h30\nMardi 09h30-19h30\nMercredi 09h30-19h30\nJeudi 09h30-19h30\nVendredi 09h30-19h30\nSamedi 09h30-19h30\nDimanche 10h00-13h00, 16h30-19h30",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "La Vie de Quartier - Cocagne est une épicerie de proximité bordelaise centrée sur les produits frais, les courses du quotidien et la convivialité d’un commerce de quartier.",
+    "homeTextNear": "Faire tes courses dans une épicerie de quartier devient simple ici, avec La Vie de Quartier - Cocagne pour trouver produits frais et essentiels du quotidien.",
+    "homeTextFar": "À Bordeaux, La Vie de Quartier - Cocagne développe une épicerie de proximité autour du frais, de la convivialité et des besoins du quotidien.",
+    "translations": {
+      "fr": {
+        "miniText": "La Vie de Quartier - Cocagne est une épicerie de proximité bordelaise centrée sur les produits frais, les courses du quotidien et la convivialité d’un commerce de quartier.",
+        "homeTextNear": "Faire tes courses dans une épicerie de quartier devient simple ici, avec La Vie de Quartier - Cocagne pour trouver produits frais et essentiels du quotidien.",
+        "homeTextFar": "À Bordeaux, La Vie de Quartier - Cocagne développe une épicerie de proximité autour du frais, de la convivialité et des besoins du quotidien."
+      },
+      "en": {
+        "miniText": "La Vie de Quartier - Cocagne is a neighborhood grocery in Bordeaux focused on fresh products, everyday shopping and the warmth of a local shop.",
+        "homeTextNear": "Doing your groceries in a neighborhood shop is simple here, with La Vie de Quartier - Cocagne offering fresh products and everyday essentials.",
+        "homeTextFar": "In Bordeaux, La Vie de Quartier - Cocagne develops a local grocery focused on freshness, conviviality and everyday needs."
+      }
+    },
+    "createdAt": "2026-06-05T08:46:45.608Z",
+    "updatedAt": "2026-06-05T08:55:30.142Z",
+    "panoramaImage": "/downloads/laviedequartier.webp"
+  },
+  {
+    "id": "cfac09a8-397d-4561-9277-6ce2e868cd66",
+    "name": "La Compagnie Fermière",
+    "city": "Mérignac",
+    "address": "10 Avenue Jean Perrin, 33700 Mérignac, France",
+    "website": "https://www.lacompagniefermiere.fr/",
+    "lat": 44.83812514137832,
+    "lng": -0.669614642276884,
+    "category": "Épicerie",
+    "phone": "+33 5 40 24 61 81",
+    "openingHours": "Lundi Fermé\nMardi 09h00-19h00\nMercredi 09h00-19h00\nJeudi 09h00-19h00\nVendredi 09h00-19h00\nSamedi 09h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "La Compagnie Fermière est un magasin de producteurs à Mérignac qui réunit fruits, légumes, viandes, fromages, produits laitiers et épicerie autour du goût du bon et du local.",
+    "homeTextNear": "Faire tes courses avec des produits locaux devient simple ici, avec La Compagnie Fermière pour retrouver fruits, légumes, fromages et produits fermiers.",
+    "homeTextFar": "À Mérignac, La Compagnie Fermière rassemble des producteurs locaux dans un magasin tourné vers la vente directe, les produits fermiers et les circuits courts.",
+    "translations": {
+      "fr": {
+        "miniText": "La Compagnie Fermière est un magasin de producteurs à Mérignac qui réunit fruits, légumes, viandes, fromages, produits laitiers et épicerie autour du goût du bon et du local.",
+        "homeTextNear": "Faire tes courses avec des produits locaux devient simple ici, avec La Compagnie Fermière pour retrouver fruits, légumes, fromages et produits fermiers.",
+        "homeTextFar": "À Mérignac, La Compagnie Fermière rassemble des producteurs locaux dans un magasin tourné vers la vente directe, les produits fermiers et les circuits courts."
+      },
+      "en": {
+        "miniText": "La Compagnie Fermière is a farmers’ shop in Mérignac bringing together fruit, vegetables, meats, cheeses, dairy products and groceries around local, flavorful food.",
+        "homeTextNear": "Shopping for local products is simple here, with La Compagnie Fermière offering fruit, vegetables, cheeses and farm products.",
+        "homeTextFar": "In Mérignac, La Compagnie Fermière brings local producers together in a shop focused on direct sales, farm products and short supply chains."
+      }
+    },
+    "createdAt": "2026-06-05T09:03:31.871Z",
+    "updatedAt": "2026-06-05T09:07:18.614Z",
+    "panoramaImage": "/downloads/marchefermiermerignac.webp"
+  },
+  {
+    "id": "d6f1a665-34a6-47a9-aceb-1667be0c0735",
+    "name": "La Compagnie Fermière - Gradignan",
+    "city": "Gradignan",
+    "address": "6 Allée de Mégévie, 33170 Gradignan, France",
+    "website": "https://www.lacompagniefermiere.fr/",
+    "lat": 44.77469795698385,
+    "lng": -0.6398529401941466,
+    "category": "Épicerie",
+    "phone": "+33 5 40 25 05 32",
+    "openingHours": "Lundi Fermé\nMardi 09h00-19h00\nMercredi 09h00-19h00\nJeudi 09h00-19h00\nVendredi 09h00-19h00\nSamedi 09h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "La Compagnie Fermière - Gradignan est un magasin de producteurs qui réunit fruits, légumes, viandes, fromages, produits laitiers et épicerie autour du goût du bon et du local.",
+    "homeTextNear": "Faire tes courses avec des produits locaux devient simple ici, avec La Compagnie Fermière - Gradignan pour retrouver fruits, légumes, fromages et produits fermiers.",
+    "homeTextFar": "À Gradignan, La Compagnie Fermière rassemble des producteurs locaux dans un magasin tourné vers la vente directe, les produits fermiers et les circuits courts.",
+    "panoramaImage": "/downloads/marchefermiermerignac.webp",
+    "translations": {
+      "fr": {
+        "miniText": "La Compagnie Fermière - Gradignan est un magasin de producteurs qui réunit fruits, légumes, viandes, fromages, produits laitiers et épicerie autour du goût du bon et du local.",
+        "homeTextNear": "Faire tes courses avec des produits locaux devient simple ici, avec La Compagnie Fermière - Gradignan pour retrouver fruits, légumes, fromages et produits fermiers.",
+        "homeTextFar": "À Gradignan, La Compagnie Fermière rassemble des producteurs locaux dans un magasin tourné vers la vente directe, les produits fermiers et les circuits courts."
+      },
+      "en": {
+        "miniText": "La Compagnie Fermière - Gradignan is a farmers’ shop bringing together fruit, vegetables, meats, cheeses, dairy products and groceries around local, flavorful food.",
+        "homeTextNear": "Shopping for local products is simple here, with La Compagnie Fermière - Gradignan offering fruit, vegetables, cheeses and farm products.",
+        "homeTextFar": "In Gradignan, La Compagnie Fermière brings local producers together in a shop focused on direct sales, farm products and short supply chains."
+      }
+    },
+    "createdAt": "2026-06-05T09:10:43.081Z",
+    "updatedAt": "2026-06-05T09:10:43.082Z"
+  },
+  {
+    "id": "33ea4641-6ec7-48f5-897d-31fb60c875fb",
+    "name": "Aux Petits Poids",
+    "city": "Bordeaux",
+    "address": "260 Cours de la Somme, 33800 Bordeaux, France",
+    "website": "https://www.auxpetitspoids.fr/",
+    "lat": 44.82090216200638,
+    "lng": -0.5722834288589389,
+    "category": "Épicerie",
+    "phone": "+33 5 57 67 60 81",
+    "openingHours": "Lundi 09h00-13h00, 15h00-19h00\nMardi 09h00-13h00, 15h00-19h00\nMercredi 09h00-13h00, 15h00-19h00\nJeudi 09h00-13h00, 15h00-19h00\nVendredi 09h00-13h00, 15h00-19h00\nSamedi 09h00-13h00, 15h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Aux Petits Poids est une épicerie vrac bordelaise du quartier Nansouty, pensée pour consommer plus juste avec bocaux, sacs à vrac et produits du quotidien.",
+    "homeTextNear": "Faire tes courses en vrac devient simple dans le quartier, avec Aux Petits Poids pour remplir bocaux, sacs et boîtes avec des produits du quotidien.",
+    "homeTextFar": "À Bordeaux, Aux Petits Poids développe une épicerie vrac tournée vers la réduction des déchets et une consommation plus juste.",
+    "translations": {
+      "fr": {
+        "miniText": "Aux Petits Poids est une épicerie vrac bordelaise du quartier Nansouty, pensée pour consommer plus juste avec bocaux, sacs à vrac et produits du quotidien.",
+        "homeTextNear": "Faire tes courses en vrac devient simple dans le quartier, avec Aux Petits Poids pour remplir bocaux, sacs et boîtes avec des produits du quotidien.",
+        "homeTextFar": "À Bordeaux, Aux Petits Poids développe une épicerie vrac tournée vers la réduction des déchets et une consommation plus juste."
+      },
+      "en": {
+        "miniText": "Aux Petits Poids is a bulk grocery store in Bordeaux’s Nansouty neighborhood, designed for more responsible shopping with jars, bulk bags and everyday products.",
+        "homeTextNear": "Bulk shopping becomes simple in the neighborhood, with Aux Petits Poids where you can refill jars, bags and boxes with everyday products.",
+        "homeTextFar": "In Bordeaux, Aux Petits Poids develops a bulk grocery focused on waste reduction and more responsible shopping."
+      }
+    },
+    "createdAt": "2026-06-05T09:15:06.721Z",
+    "updatedAt": "2026-06-06T07:36:01.478Z",
+    "panoramaImage": "/downloads/auxpetitspois.webp"
   }
 ]
