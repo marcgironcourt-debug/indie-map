@@ -6,12 +6,12 @@ export async function POST(req: Request) {
     const sessionId = req.headers.get("x-session-id") || "unknown";
     const launchId = req.headers.get("x-launch-id") || "unknown";
     const now = new Date();
-const day = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "Asia/Ho_Chi_Minh",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-}).format(now);
+    const day = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Ho_Chi_Minh",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(now);
 
     const geo = geolocation(req);
 
@@ -37,65 +37,49 @@ const day = new Intl.DateTimeFormat("en-CA", {
       prisma.activeSession.upsert({
         where: { sessionId },
         update: {
-          lastSeenAt: new Date(),
+          lastSeenAt: now,
           city,
           country,
           platform,
         },
         create: {
           sessionId,
-          lastSeenAt: new Date(),
+          lastSeenAt: now,
           city,
           country,
           platform,
         },
       }),
-      prisma.dailyActiveUser.upsert({
-        where: {
-          day_sessionId: {
+      prisma.dailyActiveUser.createMany({
+        data: [
+          {
             day,
             sessionId,
+            city,
+            country,
+            platform,
           },
-        },
-        update: {
-          city,
-          country,
-          platform,
-        },
-        create: {
-          day,
-          sessionId,
-          city,
-          country,
-          platform,
-        },
+        ],
+        skipDuplicates: true,
       }),
-      prisma.dailySession.upsert({
-        where: {
-          day_launchId: {
+      prisma.dailySession.createMany({
+        data: [
+          {
             day,
             launchId,
+            sessionId,
+            city,
+            country,
+            platform,
           },
-        },
-        update: {
-          sessionId,
-          city,
-          country,
-          platform,
-        },
-        create: {
-          day,
-          launchId,
-          sessionId,
-          city,
-          country,
-          platform,
-        },
+        ],
+        skipDuplicates: true,
       }),
     ]);
 
     return Response.json({ ok: true, sessionId, launchId, day, city, country, platform });
-  } catch {
+  } catch (error) {
+    console.error("presence heartbeat failed", error);
     return Response.json({ ok: false }, { status: 500 });
   }
 }

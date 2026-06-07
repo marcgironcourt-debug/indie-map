@@ -56,7 +56,13 @@ export default function PresenceHeartbeat() {
 
     const platform = getPlatform();
 
+    let inFlight = false;
+
     const send = () => {
+      if (inFlight) return;
+
+      inFlight = true;
+
       try {
         fetch("/api/presence/heartbeat", {
           method: "POST",
@@ -67,8 +73,14 @@ export default function PresenceHeartbeat() {
           },
           keepalive: true,
           cache: "no-store",
-        }).catch(() => {});
-      } catch {}
+        })
+          .catch(() => {})
+          .finally(() => {
+            inFlight = false;
+          });
+      } catch {
+        inFlight = false;
+      }
     };
 
     send();

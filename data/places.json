@@ -16249,5 +16249,209 @@
     "createdAt": "2026-06-05T09:15:06.721Z",
     "updatedAt": "2026-06-06T07:36:01.478Z",
     "panoramaImage": "/downloads/auxpetitspois.webp"
+  },
+  {
+    "id": "142e7968-92ce-41ba-9371-600278f2f650",
+    "name": "Fred's",
+    "city": "Sydney",
+    "address": "380 Oxford St, Paddington NSW 2021, Australie",
+    "website": "https://merivale.com/venues/freds/",
+    "lat": -33.886545145206945,
+    "lng": 151.230112030467,
+    "category": "Restaurant",
+    "phone": "+61 2 9114 7331",
+    "openingHours": "Lundi Fermé\nMardi 16h00-23h00\nMercredi 16h00-23h00\nJeudi 16h00-23h00\nVendredi 12h00-23h00\nSamedi 12h00-23h00\nDimanche 12h00-23h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Fred’s est un restaurant farm-to-table de Paddington, centré sur les produits de saison, la cuisine ouverte et les cuissons au feu dans une atmosphère chaleureuse.",
+    "homeTextNear": "Si tu veux t’installer dans un restaurant chaleureux autour des produits de saison et des cuissons au feu, Fred’s est accessible ici à Paddington.",
+    "homeTextFar": "À Sydney, Fred’s est un restaurant farm-to-table de Paddington centré sur les produits de saison, la cuisine ouverte et les cuissons au feu.",
+    "translations": {
+      "fr": {
+        "miniText": "Fred’s est un restaurant farm-to-table de Paddington, centré sur les produits de saison, la cuisine ouverte et les cuissons au feu dans une atmosphère chaleureuse.",
+        "homeTextNear": "Si tu veux t’installer dans un restaurant chaleureux autour des produits de saison et des cuissons au feu, Fred’s est accessible ici à Paddington.",
+        "homeTextFar": "À Sydney, Fred’s est un restaurant farm-to-table de Paddington centré sur les produits de saison, la cuisine ouverte et les cuissons au feu."
+      },
+      "en": {
+        "miniText": "Fred’s is a farm-to-table restaurant in Paddington focused on seasonal produce, an open kitchen and open-fire cooking in a warm atmosphere.",
+        "homeTextNear": "If you feel like sitting down in a warm restaurant built around seasonal produce and open-fire cooking, Fred’s is right here in Paddington.",
+        "homeTextFar": "In Sydney, Fred’s is a farm-to-table restaurant in Paddington focused on seasonal produce, an open kitchen and open-fire cooking."
+      }
+    },
+    "createdAt": "2026-06-06T08:00:41.857Z",
+    "updatedAt": "2026-06-06T08:07:16.930Z",
+    "panoramaImage": "/downloads/fredssydney.webp"
+  },
+  {
+    "id": "29208605-a7e5-4a88-ab7a-34fc2e59b9f3",
+    "name": "The Nine",
+    "city": "Sydney",
+    "address": "163 Glenayr Ave, Bondi Beach NSW 2026, Australie",
+    "website": "https://theninesydney.com.au/",
+    "lat": -33.88807818670354,
+    "lng": 151.2709382576287,
+    "category": "Café",
+    "phone": "+61 493 276 795",
+    "openingHours": "Lundi 07h30-15h00\nMardi 07h30-15h00\nMercredi 07h30-15h00\nJeudi 07h30-15h00\nVendredi 07h30-15h00\nSamedi 08h00-15h30\nDimanche 08h00-15h30",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Café"
+    ],
+    "miniText": "The Nine est un café, eatery et wine bar de Bondi Beach inspiré par la cuisine méditerranéenne, avec une approche centrée sur les produits de saison, les fournisseurs locaux et une alimentation plus responsable. Le lieu propose petit-déjeuner, brunch et déjeuner, avec des options vegan et sans gluten.",
+    "homeTextNear": "Si tu veux un brunch ou un déjeuner à Bondi Beach, The Nine propose une cuisine de café autour des produits de saison, avec options vegan et sans gluten.",
+    "homeTextFar": "À Sydney, The Nine est un café de Bondi Beach tourné vers le brunch, le déjeuner, les produits de saison et les options vegan et sans gluten.",
+    "translations": {
+      "fr": {
+        "miniText": "The Nine est un café, eatery et wine bar de Bondi Beach inspiré par la cuisine méditerranéenne, avec une approche centrée sur les produits de saison, les fournisseurs locaux et une alimentation plus responsable. Le lieu propose petit-déjeuner, brunch et déjeuner, avec des options vegan et sans gluten.",
+        "homeTextNear": "Si tu veux un brunch ou un déjeuner à Bondi Beach, The Nine propose une cuisine de café autour des produits de saison, avec options vegan et sans gluten.",
+        "homeTextFar": "À Sydney, The Nine est un café de Bondi Beach tourné vers le brunch, le déjeuner, les produits de saison et les options vegan et sans gluten."
+      },
+      "en": {
+        "miniText": "The Nine is a café, eatery and wine bar in Bondi Beach inspired by Mediterranean cooking, with an approach centered on seasonal produce, local suppliers and more responsible food. The venue serves breakfast, brunch and lunch, with vegan and gluten-free options.",
+        "homeTextNear": "If you want brunch or lunch in Bondi Beach, The Nine offers café food built around seasonal produce, with vegan and gluten-free options.",
+        "homeTextFar": "In Sydney, The Nine is a Bondi Beach café focused on brunch, lunch, seasonal produce and vegan and gluten-free options."
+      }
+    },
+    "createdAt": "2026-06-06T08:24:59.934Z",
+    "updatedAt": "2026-06-06T08:32:40.887Z",
+    "panoramaImage": "/downloads/theninesydney.webp"
+  },
+  {
+    "id": "06d5757c-d9a6-4310-b4ab-b53bf16eb7f7",
+    "name": "Chiswick Woollahra",
+    "city": "Sydney",
+    "address": "65 Ocean Street, Woollahra NSW 2025, Australie",
+    "website": "https://chiswickwoollahra.com.au/",
+    "lat": -33.885912615171954,
+    "lng": 151.24007175088198,
+    "category": "Restaurant",
+    "phone": "+61 2 8388 8688",
+    "openingHours": "Lundi 12h00-23h00\nMardi 12h00-23h00\nMercredi 12h00-23h00\nJeudi 12h00-23h00\nVendredi 12h00-23h00\nSamedi 12h00-23h00\nDimanche 12h00-22h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Restaurant de quartier situé dans les jardins de Woollahra, avec une cuisine australienne moderne centrée sur les produits de saison. Le lieu met en avant des ingrédients issus de son potager, de producteurs locaux et une cuisine pensée pour le partage.",
+    "homeTextNear": "Si tu veux t’installer dans un restaurant de quartier entouré de verdure, Chiswick Woollahra propose une cuisine australienne de saison pensée pour le partage.",
+    "homeTextFar": "À Sydney, Chiswick Woollahra est un restaurant situé dans les jardins de Woollahra, centré sur les produits de saison, le potager du lieu et les producteurs locaux.",
+    "translations": {
+      "fr": {
+        "miniText": "Restaurant de quartier situé dans les jardins de Woollahra, avec une cuisine australienne moderne centrée sur les produits de saison. Le lieu met en avant des ingrédients issus de son potager, de producteurs locaux et une cuisine pensée pour le partage.",
+        "homeTextNear": "Si tu veux t’installer dans un restaurant de quartier entouré de verdure, Chiswick Woollahra propose une cuisine australienne de saison pensée pour le partage.",
+        "homeTextFar": "À Sydney, Chiswick Woollahra est un restaurant situé dans les jardins de Woollahra, centré sur les produits de saison, le potager du lieu et les producteurs locaux."
+      },
+      "en": {
+        "miniText": "Neighborhood restaurant set in the gardens of Woollahra, serving modern Australian food centered on seasonal produce. The venue highlights ingredients from its kitchen garden, local suppliers and food designed for sharing.",
+        "homeTextNear": "If you want to sit down in a neighborhood restaurant surrounded by greenery, Chiswick Woollahra offers seasonal Australian food designed for sharing.",
+        "homeTextFar": "In Sydney, Chiswick Woollahra is a restaurant set in the gardens of Woollahra, focused on seasonal produce, its kitchen garden and local suppliers."
+      }
+    },
+    "createdAt": "2026-06-07T05:50:50.675Z",
+    "updatedAt": "2026-06-07T05:56:23.448Z",
+    "panoramaImage": "/downloads/chiswicksydney.webp"
+  },
+  {
+    "id": "e0a59ef1-df53-4268-8c54-7946ccd70265",
+    "name": "Urban Green Sydney",
+    "city": "Sydney",
+    "address": "1 Shelley St, Barangaroo NSW 2000, Australie",
+    "website": "http://www.urbangreensydney.com/",
+    "lat": -33.86597516234394,
+    "lng": 151.20205985086287,
+    "category": "Ferme",
+    "phone": "+61 404 685 523",
+    "openingHours": "Lundi 09h00-15h00\nMardi 09h00-15h00\nMercredi 09h00-15h00\nJeudi 09h00-15h00\nVendredi 09h00-15h00\nSamedi Fermé\nDimanche Fermé",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme urbaine intérieure, spécialisée dans les micropousses, germes et jeunes pousses. Le lieu cultive localement pour des restaurants, des professionnels et propose le click-and-collect, avec une approche tournée vers une production urbaine plus durable.",
+    "homeTextNear": "Si tu veux découvrir une production locale vraiment urbaine, Urban Green Sydney cultive microgreens et jeunes pousses sous Barangaroo.",
+    "homeTextFar": "À Sydney, Urban Green Sydney développe une ferme indoor souterraine autour des microgreens, des sprouts et d’une production alimentaire plus durable.",
+    "translations": {
+      "fr": {
+        "miniText": "Ferme urbaine intérieure, spécialisée dans les micropousses, germes et jeunes pousses. Le lieu cultive localement pour des restaurants, des professionnels et propose le click-and-collect, avec une approche tournée vers une production urbaine plus durable.",
+        "homeTextNear": "Si tu veux découvrir une production locale vraiment urbaine, Urban Green Sydney cultive microgreens et jeunes pousses sous Barangaroo.",
+        "homeTextFar": "À Sydney, Urban Green Sydney développe une ferme indoor souterraine autour des microgreens, des sprouts et d’une production alimentaire plus durable."
+      },
+      "en": {
+        "miniText": "Urban indoor farm specializing in microgreens, sprouts and baby greens. The place grows locally for restaurants and professionals, and offers click-and-collect, with an approach focused on more sustainable urban production.",
+        "homeTextNear": "If you want to discover truly urban local production, Urban Green Sydney grows microgreens and baby greens beneath Barangaroo.",
+        "homeTextFar": "In Sydney, Urban Green Sydney develops an underground indoor farm around microgreens, sprouts and more sustainable food production."
+      }
+    },
+    "createdAt": "2026-06-07T06:11:04.484Z",
+    "updatedAt": "2026-06-07T06:22:46.574Z",
+    "panoramaImage": "/downloads/urbangreen.webp"
+  },
+  {
+    "id": "965dc23c-f860-44e1-aba2-7338919e871d",
+    "name": "Warrah Organic Farm Shop",
+    "city": "Sydney",
+    "address": "20 Harris Road, Dural NSW 2158, Australie",
+    "website": "https://warrahfarmshop.org.au/",
+    "lat": -33.70477326547379,
+    "lng": 151.03606377963433,
+    "category": "Ferme",
+    "phone": "+61 2 9651 3869",
+    "openingHours": "Lundi 09h00-17h00\nMardi 09h00-17h00\nMercredi 09h00-17h00\nJeudi 09h00-17h00\nVendredi 09h00-17h00\nSamedi 09h00-15h00\nDimanche Fermé",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Ferme biodynamique et boutique à la ferme située à Dural, Warrah Organic Farm Shop propose des fruits et légumes certifiés bio, des produits laitiers, de l’épicerie, du pain et de la viande. Le lieu fonctionne aussi comme une entreprise sociale liée aux services de Warrah pour les personnes en situation de handicap.",
+    "homeTextNear": "Si tu veux faire tes courses directement dans une ferme bio, Warrah Organic Farm Shop rassemble fruits, légumes et produits fermiers à Dural.",
+    "homeTextFar": "À Sydney, Warrah Organic Farm Shop relie ferme biodynamique, boutique bio et projet social autour d’une alimentation locale plus responsable.",
+    "translations": {
+      "fr": {
+        "miniText": "Ferme biodynamique et boutique à la ferme située à Dural, Warrah Organic Farm Shop propose des fruits et légumes certifiés bio, des produits laitiers, de l’épicerie, du pain et de la viande. Le lieu fonctionne aussi comme une entreprise sociale liée aux services de Warrah pour les personnes en situation de handicap.",
+        "homeTextNear": "Si tu veux faire tes courses directement dans une ferme bio, Warrah Organic Farm Shop rassemble fruits, légumes et produits fermiers à Dural.",
+        "homeTextFar": "À Sydney, Warrah Organic Farm Shop relie ferme biodynamique, boutique bio et projet social autour d’une alimentation locale plus responsable."
+      },
+      "en": {
+        "miniText": "Biodynamic farm and farm shop based in Dural, Warrah Organic Farm Shop offers certified organic fruit and vegetables, dairy products, groceries, bread and meat. The place also operates as a social enterprise connected to Warrah’s services for people with disability.",
+        "homeTextNear": "If you want to shop directly from an organic farm, Warrah Organic Farm Shop brings together fruit, vegetables and farm products in Dural.",
+        "homeTextFar": "In Sydney, Warrah Organic Farm Shop connects a biodynamic farm, organic shop and social project around more responsible local food."
+      }
+    },
+    "createdAt": "2026-06-07T06:29:21.673Z",
+    "updatedAt": "2026-06-07T06:38:18.387Z",
+    "panoramaImage": "/downloads/warrahfarm.webp"
+  },
+  {
+    "id": "0c9f0833-7b0f-40ae-96cf-f2517fd510dd",
+    "name": "Marrickville Organic Food Market",
+    "city": "Sydney",
+    "address": "142 Addison Road, Marrickville NSW 2204, Australie",
+    "website": "https://www.organicfoodmarkets.com.au/",
+    "lat": -33.90201932255012,
+    "lng": 151.1626812373071,
+    "category": "Marché",
+    "phone": "+61 2 9999 2226",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche 09h00-15h00",
+    "timeZone": "Australia/Sydney",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché bio hebdomadaire installé à l’Addison Road Centre de Marrickville, autour des produits frais, locaux et artisanaux. Le lieu rassemble producteurs, stands alimentaires et commerces indépendants dans une atmosphère de marché de quartier.",
+    "homeTextNear": "Si tu veux faire un marché bio le dimanche, Marrickville Organic Food Market rassemble produits frais, stands alimentaires et producteurs locaux à Addison Road.",
+    "homeTextFar": "À Sydney, Marrickville Organic Food Market développe un marché de quartier autour des produits bio, locaux et artisanaux.",
+    "translations": {
+      "fr": {
+        "miniText": "Marché bio hebdomadaire installé à l’Addison Road Centre de Marrickville, autour des produits frais, locaux et artisanaux. Le lieu rassemble producteurs, stands alimentaires et commerces indépendants dans une atmosphère de marché de quartier.",
+        "homeTextNear": "Si tu veux faire un marché bio le dimanche, Marrickville Organic Food Market rassemble produits frais, stands alimentaires et producteurs locaux à Addison Road.",
+        "homeTextFar": "À Sydney, Marrickville Organic Food Market développe un marché de quartier autour des produits bio, locaux et artisanaux."
+      },
+      "en": {
+        "miniText": "Weekly organic market held at the Addison Road Centre in Marrickville, focused on fresh, local and artisanal products. The place brings together growers, food stalls and independent vendors in a neighborhood market atmosphere.",
+        "homeTextNear": "If you want to visit an organic Sunday market, Marrickville Organic Food Market brings together fresh produce, food stalls and local growers at Addison Road.",
+        "homeTextFar": "In Sydney, Marrickville Organic Food Market develops a neighborhood market around organic, local and artisanal products."
+      }
+    },
+    "createdAt": "2026-06-07T06:47:31.957Z",
+    "updatedAt": "2026-06-07T07:18:44.662Z",
+    "panoramaImage": "/downloads/marrickvillesydney.webp"
   }
 ]
