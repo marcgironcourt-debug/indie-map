@@ -16453,5 +16453,36 @@
     "createdAt": "2026-06-07T06:47:31.957Z",
     "updatedAt": "2026-06-07T07:18:44.662Z",
     "panoramaImage": "/downloads/marrickvillesydney.webp"
+  },
+  {
+    "id": "f3fabeaf-8b6c-442e-83cc-675a1d469757",
+    "name": "Caillebotte Primeur",
+    "city": "Apt",
+    "country": "FR",
+    "address": "41 Rue des Marchands, 84400 Apt, France",
+    "website": "https://www.facebook.com/p/Caillebotte-primeur-61561136453767/",
+    "lat": 43.876208909475665,
+    "lng": 5.3956183711340024,
+    "category": "Épicerie",
+    "phone": "+33 9 86 27 79 45",
+    "openingHours": "Lundi Fermé\nMardi 9h00-12h45, 15h00-19h00\nMercredi 9h00-12h45, 15h00-19h00\nJeudi 9h00-12h45, 15h00-19h00\nVendredi 9h00-12h45, 15h00-19h00\nSamedi 9h00-12h45, 15h00-19h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-06-20T02:50:18.145Z",
+    "updatedAt": "2026-06-20T02:52:51.316Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Primeur-épicerie installé au cœur du centre-ville d’Apt depuis 2015. Caillebotte sélectionne des fruits et légumes de saison de Provence et des terroirs français, issus d’agriculture biologique ou traditionnelle, avec une attention portée à la fraîcheur, au goût et au commerce de proximité.",
+    "translations": {
+      "en": {
+        "miniText": "A produce and grocery shop in the heart of Apt’s town center since 2015. Caillebotte selects seasonal fruit and vegetables from Provence and French terroirs, sourced from organic or traditional farming, with a focus on freshness, taste and local neighborhood commerce.",
+        "homeTextNear": "In Apt, Caillebotte Primeur is a place to shop for fruit, vegetables and grocery products selected for freshness and seasonality.",
+        "homeTextFar": "In the heart of Apt, Caillebotte Primeur offers a neighborhood produce and grocery shop built around seasonal products from Provence and French terroirs."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "À Apt, Caillebotte Primeur permet de faire ses courses avec des fruits, légumes et produits d’épicerie sélectionnés pour leur fraîcheur et leur saisonnalité.",
+    "homeTextFar": "Au cœur du centre-ville d’Apt, Caillebotte Primeur défend une épicerie-primeur de proximité autour des produits de saison de Provence et des terroirs français.",
+    "panoramaImage": "/downloads/caillebotteprimeur.webp"
   }
 ]
