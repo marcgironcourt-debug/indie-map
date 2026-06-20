@@ -16484,5 +16484,36 @@
     "homeTextNear": "À Apt, Caillebotte Primeur permet de faire ses courses avec des fruits, légumes et produits d’épicerie sélectionnés pour leur fraîcheur et leur saisonnalité.",
     "homeTextFar": "Au cœur du centre-ville d’Apt, Caillebotte Primeur défend une épicerie-primeur de proximité autour des produits de saison de Provence et des terroirs français.",
     "panoramaImage": "/downloads/caillebotteprimeur.webp"
+  },
+  {
+    "id": "d576f660-3a04-4308-966c-8081b7c27516",
+    "name": "Marché Paysan de Coustellet",
+    "city": "Maubec",
+    "country": "FR",
+    "address": "Place du marché, 84660 Maubec, France",
+    "website": "https://www.facebook.com/p/Le-Marché-Paysan-de-Coustellet-100087421808416/",
+    "lat": 43.86822002221054,
+    "lng": 5.143441186568996,
+    "category": "Marché",
+    "phone": "+33 6 32 59 75 61",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi Fermé\nDimanche 8h00-13h00",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-06-20T03:03:17.092Z",
+    "updatedAt": "2026-06-20T03:20:58.765Z",
+    "tags": [
+      "Marché"
+    ],
+    "miniText": "Marché paysan de producteurs, installé Place du marché à Maubec. Créé en 1983, il rassemble le dimanche matin, de mars à décembre, des produits locaux et de saison vendus en direct par les producteurs du Luberon.",
+    "translations": {
+      "en": {
+        "miniText": "A farmers’ market, held at Place du marché in Maubec. Created in 1983, it brings together local and seasonal products on Sunday mornings, from March to December, sold directly by producers from the Luberon.",
+        "homeTextNear": "In Coustellet, this farmers’ market is a Sunday morning stop for local, seasonal products sold directly by producers.",
+        "homeTextFar": "In Maubec, Marché Paysan de Coustellet connects producers and visitors around Luberon products, in a Sunday market rooted there since 1983."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "À Coustellet, ce marché paysan permet de remplir son panier le dimanche matin avec des produits locaux et de saison vendus directement par les producteurs.",
+    "homeTextFar": "À Maubec, le Marché Paysan de Coustellet relie producteurs et visiteurs autour des produits du Luberon, dans un marché dominical ancré depuis 1983.",
+    "panoramaImage": "/downloads/marchecoustellet.webp"
   }
 ]
