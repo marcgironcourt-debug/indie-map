@@ -16515,5 +16515,36 @@
     "homeTextNear": "À Coustellet, ce marché paysan permet de remplir son panier le dimanche matin avec des produits locaux et de saison vendus directement par les producteurs.",
     "homeTextFar": "À Maubec, le Marché Paysan de Coustellet relie producteurs et visiteurs autour des produits du Luberon, dans un marché dominical ancré depuis 1983.",
     "panoramaImage": "/downloads/marchecoustellet.webp"
+  },
+  {
+    "id": "5b8047bf-1a3f-4a8d-af62-ae92857207d9",
+    "name": "L'Épicerie Verte",
+    "city": "Apt",
+    "country": "FR",
+    "address": "83 Bd Maréchal Foch, 84400 Apt, France",
+    "website": "",
+    "lat": 43.87540114386345,
+    "lng": 5.395156128863258,
+    "category": "Épicerie",
+    "phone": "+33 4 90 74 31 36",
+    "openingHours": "Lundi 8h30-13h00, 15h30-19h30\nMardi 8h30-13h00, 15h30-19h30\nMercredi 8h30-13h00, 15h30-19h30\nJeudi 8h30-13h00, 15h30-19h30\nVendredi 8h30-13h00, 15h30-19h30\nSamedi 8h30-13h00, 15h30-19h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "createdAt": "2026-06-20T03:36:38.914Z",
+    "updatedAt": "2026-06-20T03:38:40.504Z",
+    "tags": [
+      "Épicerie"
+    ],
+    "miniText": "Magasin bio et épicerie à Apt, installé boulevard Maréchal Foch. L’Épicerie Verte propose une offre tournée vers l’alimentation du quotidien, avec épicerie sèche, fruits et légumes, produits bio et une approche de commerce de proximité plus saine et responsable.",
+    "translations": {
+      "en": {
+        "miniText": "An organic grocery shop in Apt, located on Boulevard Maréchal Foch. L’Épicerie Verte offers everyday food shopping with dry goods, fruit and vegetables, organic products and a healthier, more responsible neighborhood approach.",
+        "homeTextNear": "In Apt, L’Épicerie Verte is a neighborhood stop for organic products, dry goods, fruit and vegetables.",
+        "homeTextFar": "In Apt, L’Épicerie Verte offers a neighborhood organic grocery shop focused on everyday food and more responsible consumption."
+      }
+    },
+    "homeTextDone": true,
+    "homeTextNear": "À Apt, L’Épicerie Verte permet de faire ses courses avec des produits bio, de l’épicerie sèche, des fruits et légumes, dans un commerce de proximité.",
+    "homeTextFar": "À Apt, L’Épicerie Verte propose une épicerie bio de proximité autour de l’alimentation du quotidien et d’une consommation plus responsable.",
+    "panoramaImage": "/downloads/lepicerieverte.webp"
   }
 ]
