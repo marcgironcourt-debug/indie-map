@@ -16546,5 +16546,40 @@
     "homeTextNear": "À Apt, L’Épicerie Verte permet de faire ses courses avec des produits bio, de l’épicerie sèche, des fruits et légumes, dans un commerce de proximité.",
     "homeTextFar": "À Apt, L’Épicerie Verte propose une épicerie bio de proximité autour de l’alimentation du quotidien et d’une consommation plus responsable.",
     "panoramaImage": "/downloads/lepicerieverte.webp"
+  },
+  {
+    "id": "23ab39a4-961c-4aac-be84-a2755bbaaa0d",
+    "name": "La Fabrique Pains et Bricoles",
+    "city": "Bordeaux",
+    "country": "FR",
+    "address": "47 Rue du Pas-Saint-Georges, 33000 Bordeaux, France",
+    "website": "https://la-fabrique-pains-et-bricoles-bordeaux.eatbu.com/?lang=fr",
+    "lat": 44.83875639412625,
+    "lng": -0.5719333490748094,
+    "category": "Boulangerie",
+    "phone": "+33 5 56 44 84 26",
+    "openingHours": "Lundi 07h00-20h30\nMardi 07h00-20h30\nMercredi 07h00-20h30\nJeudi 07h00-20h30\nVendredi 07h00-20h30\nSamedi 07h00-20h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Boulangerie"
+    ],
+    "miniText": "Une boulangerie artisanale du vieux Bordeaux, créée en 2003, où tout est fabriqué sur place et 100% maison, avec des blés sélectionnés auprès d’agriculteurs engagés dans une agriculture raisonnée.",
+    "homeTextNear": "À deux pas, La Fabrique Pains et Bricoles défend une boulangerie 100% maison, avec des farines labellisées, des blés soigneusement choisis et un vrai respect du métier.",
+    "homeTextFar": "Dans le vieux Bordeaux, La Fabrique Pains et Bricoles raconte une boulangerie artisanale fidèle au fait maison, aux farines de qualité et au travail patient d’une équipe de passionnés.",
+    "translations": {
+      "fr": {
+        "miniText": "Une boulangerie artisanale du vieux Bordeaux, créée en 2003, où tout est fabriqué sur place et 100% maison, avec des blés sélectionnés auprès d’agriculteurs engagés dans une agriculture raisonnée.",
+        "homeTextNear": "À deux pas, La Fabrique Pains et Bricoles défend une boulangerie 100% maison, avec des farines labellisées, des blés soigneusement choisis et un vrai respect du métier.",
+        "homeTextFar": "Dans le vieux Bordeaux, La Fabrique Pains et Bricoles raconte une boulangerie artisanale fidèle au fait maison, aux farines de qualité et au travail patient d’une équipe de passionnés."
+      },
+      "en": {
+        "miniText": "An artisan bakery in old Bordeaux, founded in 2003, where everything is made on site and fully homemade, using carefully selected wheat from farmers committed to responsible agriculture.",
+        "homeTextNear": "Just nearby, La Fabrique Pains et Bricoles stands for fully homemade baking, with certified flours, carefully selected wheat, and a genuine respect for the craft.",
+        "homeTextFar": "In old Bordeaux, La Fabrique Pains et Bricoles reflects an artisan bakery devoted to homemade work, quality flours, and the patient craft of a passionate team."
+      }
+    },
+    "createdAt": "2026-06-23T07:12:29.094Z",
+    "updatedAt": "2026-06-23T07:16:19.928Z",
+    "panoramaImage": "/downloads/lafabriqueetbricole.webp"
   }
 ]
