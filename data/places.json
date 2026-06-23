@@ -16616,5 +16616,40 @@
     "createdAt": "2026-06-23T07:25:41.637Z",
     "updatedAt": "2026-06-23T07:32:10.415Z",
     "panoramaImage": "/downloads/hortus.webp"
+  },
+  {
+    "id": "d43043ad-41de-4a7e-bcc8-a9acf18e21a5",
+    "name": "BioEthik",
+    "city": "Cadillac-sur-Garonne",
+    "country": "FR",
+    "address": "19 Rte de Branne, 33410 Cadillac-sur-Garonne, France",
+    "website": "https://www.bioethikbordeaux.com",
+    "lat": 44.63668061270689,
+    "lng": -0.31815794907480927,
+    "category": "Lieu alternatif",
+    "phone": "+33 6 03 37 21 10",
+    "openingHours": "Lundi 09h00-23h00\nMardi 09h00-23h00\nMercredi 09h00-23h00\nJeudi 09h00-23h00\nVendredi 09h00-23h00\nSamedi 09h00-23h00\nDimanche 09h00-23h00",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Lieu alternatif"
+    ],
+    "miniText": "BioEthik est un lieu agricole et vivant à Cadillac-sur-Garonne, entre table, ferme en biodynamie certifiée Demeter, produits de la ferme, plantes aromatiques et événements.",
+    "homeTextNear": "À deux pas, BioEthik réunit restaurant, ferme et lieu de rencontre autour de produits bio, de saison et issus d’un travail agricole engagé.",
+    "homeTextFar": "À Cadillac-sur-Garonne, BioEthik développe un lieu alternatif entre table, ferme biodynamique, produits locaux, plantes aromatiques et événements ancrés dans le vivant.",
+    "translations": {
+      "fr": {
+        "miniText": "BioEthik est un lieu agricole et vivant à Cadillac-sur-Garonne, entre table, ferme en biodynamie certifiée Demeter, produits de la ferme, plantes aromatiques et événements.",
+        "homeTextNear": "À deux pas, BioEthik réunit restaurant, ferme et lieu de rencontre autour de produits bio, de saison et issus d’un travail agricole engagé.",
+        "homeTextFar": "À Cadillac-sur-Garonne, BioEthik développe un lieu alternatif entre table, ferme biodynamique, produits locaux, plantes aromatiques et événements ancrés dans le vivant."
+      },
+      "en": {
+        "miniText": "BioEthik is a living agricultural place in Cadillac-sur-Garonne, combining a table, a Demeter-certified biodynamic farm, farm products, aromatic plants, and events.",
+        "homeTextNear": "Just nearby, BioEthik brings together a restaurant, a farm, and a gathering place around organic, seasonal products shaped by committed agricultural work.",
+        "homeTextFar": "In Cadillac-sur-Garonne, BioEthik develops an alternative place combining a table, biodynamic farming, local products, aromatic plants, and events rooted in living agriculture."
+      }
+    },
+    "createdAt": "2026-06-23T07:48:11.512Z",
+    "updatedAt": "2026-06-23T07:53:20.736Z",
+    "panoramaImage": "/downloads/bioethik.webp"
   }
 ]
