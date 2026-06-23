@@ -16651,5 +16651,40 @@
     "createdAt": "2026-06-23T07:48:11.512Z",
     "updatedAt": "2026-06-23T07:53:20.736Z",
     "panoramaImage": "/downloads/bioethik.webp"
+  },
+  {
+    "id": "045e7399-eeb3-4414-85b0-295866a210d8",
+    "name": "Les Jardins Garonnais - Vente à la ferme",
+    "city": "Floirac",
+    "country": "FR",
+    "address": "5 Chem. de Bories, 33270 Floirac, France",
+    "website": "https://lesjardinsgaronnais.fr",
+    "lat": 44.83925461541368,
+    "lng": -0.4981597779105783,
+    "category": "Ferme",
+    "phone": "+33 6 22 03 76 16",
+    "openingHours": "Lundi Fermé\nMardi 16h30-18h30\nMercredi Fermé\nJeudi Fermé\nVendredi 16h30-18h30\nSamedi 09h00-12h00\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Ferme"
+    ],
+    "miniText": "Les Jardins Garonnais sont une ferme bio à Floirac, portée par un collectif de producteur·ices qui cultivent fruits et légumes en bord de Garonne et sur les coteaux de la rive droite.",
+    "homeTextNear": "À deux pas, la vente à la ferme des Jardins Garonnais permet de retrouver des fruits, légumes et produits locaux directement auprès de producteurs bio.",
+    "homeTextFar": "À Floirac, Les Jardins Garonnais proposent une vente directe à la ferme autour d’une production bio locale, cultivée entre bord de Garonne et coteaux bordelais.",
+    "translations": {
+      "fr": {
+        "miniText": "Les Jardins Garonnais sont une ferme bio à Floirac, portée par un collectif de producteur·ices qui cultivent fruits et légumes en bord de Garonne et sur les coteaux de la rive droite.",
+        "homeTextNear": "À deux pas, la vente à la ferme des Jardins Garonnais permet de retrouver des fruits, légumes et produits locaux directement auprès de producteurs bio.",
+        "homeTextFar": "À Floirac, Les Jardins Garonnais proposent une vente directe à la ferme autour d’une production bio locale, cultivée entre bord de Garonne et coteaux bordelais."
+      },
+      "en": {
+        "miniText": "Les Jardins Garonnais is an organic farm in Floirac, run by a collective of growers cultivating fruit and vegetables along the Garonne and on the right-bank hillsides.",
+        "homeTextNear": "Just nearby, the farm shop at Les Jardins Garonnais offers fruit, vegetables and local products directly from organic growers.",
+        "homeTextFar": "In Floirac, Les Jardins Garonnais offers direct farm sales built around local organic produce grown between the Garonne riverbank and Bordeaux’s hillsides."
+      }
+    },
+    "createdAt": "2026-06-23T08:22:06.062Z",
+    "updatedAt": "2026-06-23T08:23:45.106Z",
+    "panoramaImage": "/downloads/lesjardinsgaronnais.webp"
   }
 ]
