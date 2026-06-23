@@ -16581,5 +16581,40 @@
     "createdAt": "2026-06-23T07:12:29.094Z",
     "updatedAt": "2026-06-23T07:16:19.928Z",
     "panoramaImage": "/downloads/lafabriqueetbricole.webp"
+  },
+  {
+    "id": "2daf7dbd-ba02-4f52-a201-39656dc7dc87",
+    "name": "Hortus",
+    "city": "Bordeaux",
+    "country": "FR",
+    "address": "114 Cr de Verdun, 33000 Bordeaux, France",
+    "website": "https://www.hortus-restaurant.fr",
+    "lat": 44.85153390933678,
+    "lng": -0.5738190220894218,
+    "category": "Restaurant",
+    "phone": "+33 5 57 59 90 63",
+    "openingHours": "Lundi 12h00-14h00, 19h30-21h30\nMardi 12h00-14h00, 19h30-21h30\nMercredi 12h00-14h00, 19h30-21h30\nJeudi 12h00-14h00, 19h30-21h30\nVendredi 12h00-14h00, 19h30-21h30\nSamedi 19h30-21h30\nDimanche Fermé",
+    "timeZone": "Europe/Paris",
+    "tags": [
+      "Restaurant"
+    ],
+    "miniText": "Hortus est un restaurant des Chartrons où le chef signe une cuisine guidée par le produit, les saisons et le travail de producteurs locaux sélectionnés avec exigence.",
+    "homeTextNear": "À deux pas, Hortus propose une cuisine de saison, engagée et pensée pour mettre en valeur les produits locaux sans artifice inutile.",
+    "homeTextFar": "Aux Chartrons, Hortus défend une table vivante, attachée au rythme des saisons, aux producteurs locaux et au sens dans l’assiette.",
+    "translations": {
+      "fr": {
+        "miniText": "Hortus est un restaurant des Chartrons où le chef signe une cuisine guidée par le produit, les saisons et le travail de producteurs locaux sélectionnés avec exigence.",
+        "homeTextNear": "À deux pas, Hortus propose une cuisine de saison, engagée et pensée pour mettre en valeur les produits locaux sans artifice inutile.",
+        "homeTextFar": "Aux Chartrons, Hortus défend une table vivante, attachée au rythme des saisons, aux producteurs locaux et au sens dans l’assiette."
+      },
+      "en": {
+        "miniText": "Hortus is a restaurant in the Chartrons district where the chef creates cuisine guided by produce, the seasons, and carefully selected local producers.",
+        "homeTextNear": "Just nearby, Hortus offers committed seasonal cooking designed to highlight local produce without unnecessary artifice.",
+        "homeTextFar": "In the Chartrons district, Hortus offers a lively restaurant shaped by the seasons, local producers, and meaning on the plate."
+      }
+    },
+    "createdAt": "2026-06-23T07:25:41.637Z",
+    "updatedAt": "2026-06-23T07:32:10.415Z",
+    "panoramaImage": "/downloads/hortus.webp"
   }
 ]
