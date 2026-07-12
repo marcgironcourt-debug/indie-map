@@ -4,12 +4,20 @@ import React from "react";
 
 function makeId() {
   try {
-    if (typeof globalThis.crypto !== "undefined" && typeof globalThis.crypto.randomUUID === "function") {
+    if (
+      typeof globalThis.crypto !== "undefined" &&
+      typeof globalThis.crypto.randomUUID === "function"
+    ) {
       return globalThis.crypto.randomUUID();
     }
   } catch {}
 
-  return "im_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
+  return (
+    "im_" +
+    Date.now().toString(36) +
+    "_" +
+    Math.random().toString(36).slice(2, 12)
+  );
 }
 
 function getPlatform() {
@@ -27,6 +35,13 @@ export default function PresenceHeartbeat() {
   React.useEffect(() => {
     const sessionKey = "im_session_id";
     const launchKey = "im_launch_id";
+    const heartbeatLockKey = "im_presence_heartbeat_at";
+
+    /*
+     * Plusieurs onglets partagent localStorage.
+     * Cette fenêtre empêche leurs heartbeats de partir simultanément.
+     */
+    const heartbeatLockMs = 60_000;
 
     let sessionId = "";
 
@@ -58,8 +73,33 @@ export default function PresenceHeartbeat() {
 
     let inFlight = false;
 
+    const reserveHeartbeat = () => {
+      const now = Date.now();
+
+      try {
+        const previous = Number(
+          window.localStorage.getItem(heartbeatLockKey) || "0",
+        );
+
+        if (Number.isFinite(previous) && now - previous < heartbeatLockMs) {
+          return false;
+        }
+
+        window.localStorage.setItem(heartbeatLockKey, String(now));
+        return true;
+      } catch {
+        /*
+         * Si localStorage est indisponible, le verrou local inFlight
+         * continue au moins à protéger cette instance.
+         */
+        return true;
+      }
+    };
+
     const send = () => {
       if (inFlight) return;
+      if (document.visibilityState !== "visible") return;
+      if (!reserveHeartbeat()) return;
 
       inFlight = true;
 
@@ -83,11 +123,25 @@ export default function PresenceHeartbeat() {
       }
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        send();
+      }
+    };
+
     send();
 
-    const id = window.setInterval(send, 90000);
+    const intervalId = window.setInterval(send, 90_000);
 
-    return () => window.clearInterval(id);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.clearInterval(intervalId);
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange,
+      );
+    };
   }, []);
 
   return null;
