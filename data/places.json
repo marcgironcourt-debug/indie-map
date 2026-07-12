@@ -16788,5 +16788,39 @@
     "homeTextNear": "Tout près, Irwin transforme les souvenirs et le terroir en une cuisine d’instant, portée par des produits locaux et de saison.",
     "homeTextFar": "À Paris, découvrez la table d’Irwin Durand, où des menus inspirés par les étapes de son parcours racontent une cuisine entre mémoire, innovation et produits de saison.",
     "panoramaImage": "/downloads/irwinparis.webp"
+  },
+  {
+    "id": "03da9d35-996c-41a5-bcee-df65961d05ec",
+    "name": "Le Camélia",
+    "city": "Bougival",
+    "address": "7 Quai Georges Clemenceau, 78380 Bougival, France",
+    "website": "https://lecamelia-restaurant.fr",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00-13h30, 19h30-21h30\nJeudi 12h00-13h30, 19h30-21h30\nVendredi 12h00-13h30, 19h30-21h30\nSamedi 12h00-13h30, 19h30-21h30\nDimanche 12h00-14h00",
+    "lat": 48.867408319629654,
+    "lng": 2.139472022089369,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T09:39:49.376Z",
+    "updatedAt": "2026-07-12T09:45:44.286Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 34 51 70 09",
+    "miniText": "À Bougival, Le Camélia imagine une cuisine responsable qui évolue au fil des saisons et des arrivages. Proche de ses fournisseurs, la maison met à l’honneur les produits locaux, notamment ceux du terroir yvelinois, et accorde une place centrale au végétal, en cherchant à révéler la richesse de chaque ingrédient.",
+    "tags": [
+      "Produits locaux",
+      "Cuisine de saison",
+      "Terroir yvelinois"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In Bougival, Le Camélia creates responsible cuisine that changes with the seasons and available produce. Working closely with its suppliers, the restaurant showcases local ingredients, particularly those from the Yvelines region, while giving vegetables a central place and revealing the character of each ingredient.",
+        "homeTextNear": "Nearby, Le Camélia offers local, seasonal cuisine rooted in close relationships with producers from the Yvelines region.",
+        "homeTextFar": "In Bougival, discover a responsible restaurant where local produce, vegetables and the work of Yvelines growers inspire cuisine that changes with the seasons."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Le Camélia fait vivre une cuisine locale et de saison, proche des producteurs et profondément ancrée dans le terroir yvelinois.",
+    "homeTextFar": "À Bougival, découvrez une table responsable où les produits locaux, le végétal et le travail des producteurs des Yvelines inspirent une cuisine qui évolue au fil des saisons.",
+    "panoramaImage": "/downloads/lecamelia.webp"
   }
 ]
