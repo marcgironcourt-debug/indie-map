@@ -16856,5 +16856,39 @@
     "homeTextNear": "Tout près, retrouvez des fruits et légumes bio cultivés sur place, ainsi qu’une sélection de produits de partenaires locaux.",
     "homeTextFar": "À Villepreux, découvrez une vente directe au cœur des vergers, entre production biologique de saison et épicerie locale.",
     "panoramaImage": "/downloads/lesvergersdelahaye.webp"
+  },
+  {
+    "id": "41e78823-4105-4672-878c-5b74441d8419",
+    "name": "Ferme de la Haye",
+    "city": "Les Mureaux",
+    "address": "Chemin de la Haye, 78130 Les Mureaux, France",
+    "website": "https://fermedelahaye.com/",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 14h00-19h00\nJeudi 14h00-19h00\nVendredi 14h00-19h00\nSamedi 09h30-19h00\nDimanche Fermé",
+    "lat": 48.991125820347364,
+    "lng": 1.8866003509251177,
+    "category": "Ferme",
+    "createdAt": "2026-07-12T09:59:17.670Z",
+    "updatedAt": "2026-07-12T10:01:03.033Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 61 92 04 67",
+    "miniText": "Aux Mureaux, la Ferme de la Haye cultive des fruits et légumes biologiques vendus directement dans sa boutique au fil des saisons. La production de la ferme est complétée par une sélection de produits locaux et biologiques venus de fermes et d’artisans franciliens, des lentilles et œufs aux fromages, pains et volailles.",
+    "tags": [
+      "Agriculture biologique",
+      "Vente directe",
+      "Produits franciliens"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In Les Mureaux, Ferme de la Haye grows organic fruit and vegetables sold directly through its farm shop as the seasons change. Its own harvest is complemented by a selection of local and organic products from farms and artisans across the Paris region, ranging from lentils and eggs to cheese, bread and poultry.",
+        "homeTextNear": "Nearby, find organic fruit and vegetables from Ferme de la Haye, alongside a selection of local products from farms across the Paris region.",
+        "homeTextFar": "In Les Mureaux, discover an organic farm selling directly to the public, combining seasonal harvests with products from local producers across the Paris region."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, retrouvez les fruits et légumes bio de la Ferme de la Haye, complétés par une sélection de produits locaux issus de fermes franciliennes.",
+    "homeTextFar": "Aux Mureaux, découvrez une ferme biologique en vente directe, entre récoltes de saison et produits de producteurs locaux d’Île-de-France.",
+    "panoramaImage": "/downloads/fermedelahaye.webp"
   }
 ]
