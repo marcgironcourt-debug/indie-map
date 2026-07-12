@@ -16924,5 +16924,39 @@
     "homeTextNear": "Tout près, Vivide compose une cuisine gastronomique entièrement végétale, renouvelée chaque jour par les arrivages directs de producteurs franciliens.",
     "homeTextFar": "À Paris, découvrez une table entièrement dédiée au végétal, où un menu en sept temps évolue quotidiennement au rythme des récoltes et des producteurs d’Île-de-France.",
     "panoramaImage": "/downloads/vivideparis.webp"
+  },
+  {
+    "id": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "name": "Pristine",
+    "city": "Paris",
+    "address": "8 Rue de Maubeuge, 75009 Paris, France",
+    "website": "https://pristineparis.com/",
+    "openingHours": "Lundi 19h00-23h00\nMardi 19h00-23h00\nMercredi 19h00-23h00\nJeudi 12h00-14h00, 19h00-23h00\nVendredi 12h00-14h00, 19h00-23h00\nSamedi 12h00-14h00, 19h00-23h00\nDimanche Fermé",
+    "lat": 48.8765177859687,
+    "lng": 2.3411550490748825,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T10:45:51.821Z",
+    "updatedAt": "2026-07-12T10:51:48.399Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 55 67 47 54",
+    "miniText": "Dans le 9e arrondissement, Pristine développe une cuisine hyperlocale entièrement guidée par les produits. Les menus changent chaque jour selon les propositions et les disponibilités des producteurs locaux, faisant évoluer les assiettes au rythme des arrivages.",
+    "tags": [
+      "Cuisine hyperlocale",
+      "Producteurs locaux",
+      "Menus quotidiens"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In Paris’s 9th arrondissement, Pristine creates produce-driven, hyperlocal cuisine. Its menus change every day according to the produce and availability of local growers, allowing each plate to evolve with their latest deliveries.",
+        "homeTextNear": "Nearby, Pristine creates hyperlocal cuisine with menus that change daily according to produce available from local growers.",
+        "homeTextFar": "In Paris, discover a produce-driven restaurant where hyperlocal cuisine is renewed each day through deliveries from local growers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Pristine compose une cuisine hyperlocale dont les menus évoluent chaque jour selon les produits disponibles auprès des producteurs locaux.",
+    "homeTextFar": "À Paris, découvrez une table guidée par les produits, où une cuisine hyperlocale se renouvelle quotidiennement au rythme des arrivages de producteurs locaux.",
+    "panoramaImage": "/downloads/pristineparis.webp"
   }
 ]
