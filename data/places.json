@@ -16890,5 +16890,39 @@
     "homeTextNear": "Tout près, retrouvez les fruits et légumes bio de la Ferme de la Haye, complétés par une sélection de produits locaux issus de fermes franciliennes.",
     "homeTextFar": "Aux Mureaux, découvrez une ferme biologique en vente directe, entre récoltes de saison et produits de producteurs locaux d’Île-de-France.",
     "panoramaImage": "/downloads/fermedelahaye.webp"
+  },
+  {
+    "id": "deab2f94-5e38-4f2d-afb5-173016be4740",
+    "name": "Vivide",
+    "city": "Paris",
+    "address": "3 Rue Dancourt, 75018 Paris, France",
+    "website": "https://vivide-paris.com/",
+    "openingHours": "Lundi Fermé\nMardi 19h00-23h00\nMercredi 19h00-23h00\nJeudi 19h00-23h00\nVendredi 19h00-23h00\nSamedi 19h00-23h00\nDimanche Fermé",
+    "lat": 48.88296916335931,
+    "lng": 2.341810179760865,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T10:16:28.416Z",
+    "updatedAt": "2026-07-12T10:23:06.755Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 42 58 00 11",
+    "miniText": "À Montmartre, Vivide explore toute la richesse des légumes à travers une cuisine gastronomique entièrement végétale, audacieuse et raffinée. Son menu unique en sept temps évolue chaque jour au rythme des arrivages directs de producteurs franciliens, dans une approche intuitive, vivante et responsable.",
+    "tags": [
+      "Cuisine entièrement végétale",
+      "Producteurs franciliens",
+      "Menu en sept temps"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In Montmartre, Vivide explores the richness of vegetables through bold and refined plant-based fine dining. Its unique seven-course menu changes each day according to produce delivered directly by growers from the Paris region, following an intuitive, vibrant and responsible approach.",
+        "homeTextNear": "Nearby, Vivide creates fully plant-based fine dining, renewed each day through produce delivered directly by growers from the Paris region.",
+        "homeTextFar": "In Paris, discover a restaurant entirely devoted to plants, where a seven-course menu changes daily with the harvests and producers of the Paris region."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Vivide compose une cuisine gastronomique entièrement végétale, renouvelée chaque jour par les arrivages directs de producteurs franciliens.",
+    "homeTextFar": "À Paris, découvrez une table entièrement dédiée au végétal, où un menu en sept temps évolue quotidiennement au rythme des récoltes et des producteurs d’Île-de-France.",
+    "panoramaImage": "/downloads/vivideparis.webp"
   }
 ]
