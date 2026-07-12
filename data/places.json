@@ -16720,5 +16720,39 @@
     "homeTextNear": "Une cuisine de marché engagée au cœur du Théâtre de Gennevilliers, avec des récoltes venues jusque de son toit.",
     "homeTextFar": "À Gennevilliers, découvrez une table de saison en circuit court, installée au cœur d’un théâtre et reliée à son potager sur le toit.",
     "panoramaImage": "/downloads/ventrusparis.webp"
+  },
+  {
+    "id": "6fd1d7ad-3d80-4882-b998-f17116280adb",
+    "name": "Datil",
+    "city": "Paris",
+    "address": "13 Rue des Gravilliers, 75003 Paris, France",
+    "website": "https://www.datil-restaurant.fr",
+    "openingHours": "Lundi 19h15-20h45\nMardi 19h15-20h45\nMercredi 12h15-13h30, 19h15-20h45\nJeudi 12h15-13h30, 19h15-20h45\nVendredi 12h15-13h30, 19h15-20h45\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.863730017960215,
+    "lng": 2.3573001355821264,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T06:14:39.151Z",
+    "updatedAt": "2026-07-12T06:19:55.556Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 80 05 74 98",
+    "miniText": "Une cuisine principalement végétale, guidée par les récoltes des saisons et nourrie par un dialogue étroit avec des producteurs franciliens.",
+    "tags": [
+      "Cuisine principalement végétale",
+      "Produits de saison",
+      "Producteurs franciliens"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A primarily plant-based cuisine guided by the seasons’ natural harvests and shaped through close dialogue with producers from the Paris region.",
+        "homeTextNear": "Nearby, Datil continues the work of producers from the Paris region through a primarily plant-based cuisine attentive to the seasons and all forms of life.",
+        "homeTextFar": "Discover Datil in Paris, where the cuisine is rooted in the seasons’ natural harvests, the diversity of life and the work of its producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Datil prolonge le travail de producteurs franciliens à travers une cuisine principalement végétale, attentive aux saisons et au vivant.",
+    "homeTextFar": "À découvrir à Paris, Datil imagine une cuisine ancrée dans les récoltes naturelles des saisons, la diversité du vivant et le travail de ses producteurs.",
+    "panoramaImage": "/downloads/datilparis.webp"
   }
 ]
