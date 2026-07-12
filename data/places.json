@@ -16686,5 +16686,39 @@
     "createdAt": "2026-06-23T08:22:06.062Z",
     "updatedAt": "2026-06-23T08:23:45.106Z",
     "panoramaImage": "/downloads/lesjardinsgaronnais.webp"
+  },
+  {
+    "id": "dd968512-f2dc-4b9f-9e6e-07374a74322d",
+    "name": "Ventrus L'Atelier",
+    "city": "Gennevilliers",
+    "address": "41 avenue des Grésillons, 92230 Gennevilliers, France",
+    "website": "https://ventrus.fr/pages/ventrus-latelier",
+    "openingHours": "Lundi 12h00-14h00\nMardi 12h00-14h00\nMercredi 12h00-14h00\nJeudi 12h00-14h00, 18h00-22h00\nVendredi 12h00-14h00, 18h00-22h00\nSamedi 12h00-14h00\nDimanche Fermé",
+    "lat": 48.91445937107489,
+    "lng": 2.299802166268109,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T05:19:31.057Z",
+    "updatedAt": "2026-07-12T05:26:01.533Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 69 18 39 65",
+    "miniText": "Au Théâtre de Gennevilliers, Ventrus L’Atelier propose une cuisine de marché gourmande et engagée, élaborée au fil des saisons et en circuit court. Une partie des légumes et herbes aromatiques provient du potager installé sur le toit du théâtre.",
+    "tags": [
+      "Cuisine de marché",
+      "Circuit court",
+      "Potager sur le toit"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Inside the Théâtre de Gennevilliers, Ventrus L’Atelier serves thoughtful seasonal market cuisine based on short supply chains. Some of its vegetables and herbs come from the theatre’s rooftop garden.",
+        "homeTextNear": "Thoughtful seasonal cuisine inside the Théâtre de Gennevilliers, featuring produce grown on its rooftop.",
+        "homeTextFar": "In Gennevilliers, discover a seasonal restaurant rooted in short supply chains, set inside a theatre with its own rooftop garden."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Une cuisine de marché engagée au cœur du Théâtre de Gennevilliers, avec des récoltes venues jusque de son toit.",
+    "homeTextFar": "À Gennevilliers, découvrez une table de saison en circuit court, installée au cœur d’un théâtre et reliée à son potager sur le toit.",
+    "panoramaImage": "/downloads/ventrusparis.webp"
   }
 ]
