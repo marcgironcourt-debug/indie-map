@@ -16754,5 +16754,39 @@
     "homeTextNear": "Tout près, Datil prolonge le travail de producteurs franciliens à travers une cuisine principalement végétale, attentive aux saisons et au vivant.",
     "homeTextFar": "À découvrir à Paris, Datil imagine une cuisine ancrée dans les récoltes naturelles des saisons, la diversité du vivant et le travail de ses producteurs.",
     "panoramaImage": "/downloads/datilparis.webp"
+  },
+  {
+    "id": "8ae99410-455b-41fc-84b5-21d69a183a46",
+    "name": "Irwin",
+    "city": "Paris",
+    "address": "22 Rue Cambacérès, 75008 Paris, France",
+    "website": "https://www.irwin.paris",
+    "openingHours": "Lundi 12h00-13h30, 19h30-21h30\nMardi 12h00-13h30, 19h30-21h30\nMercredi 12h00-13h30, 19h30-21h30\nJeudi 12h00-13h30, 19h30-21h30\nVendredi 12h00-13h30, 19h30-21h30\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.873561835896766,
+    "lng": 2.3179521202391347,
+    "category": "Restaurant",
+    "createdAt": "2026-07-12T09:25:49.331Z",
+    "updatedAt": "2026-07-12T09:27:28.136Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 89 40 04 19",
+    "miniText": "Irwin Durand signe une cuisine d’instant entre mémoire et innovation, inspirée par ses souvenirs d’enfance et son amour du terroir. Chaque assiette raconte une étape de son parcours et met en lumière des produits locaux et de saison.",
+    "tags": [
+      "Cuisine d’instant",
+      "Produits locaux",
+      "Produits de saison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Irwin Durand creates a cuisine of the moment between memory and innovation, inspired by his childhood memories and his love of terroir. Each plate tells a chapter of his journey and highlights local, seasonal produce.",
+        "homeTextNear": "Nearby, Irwin transforms memories and terroir into a cuisine of the moment, shaped by local and seasonal produce.",
+        "homeTextFar": "In Paris, discover Irwin Durand’s restaurant, where menus inspired by the stages of his journey tell a story of memory, innovation and seasonal produce."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Irwin transforme les souvenirs et le terroir en une cuisine d’instant, portée par des produits locaux et de saison.",
+    "homeTextFar": "À Paris, découvrez la table d’Irwin Durand, où des menus inspirés par les étapes de son parcours racontent une cuisine entre mémoire, innovation et produits de saison.",
+    "panoramaImage": "/downloads/irwinparis.webp"
   }
 ]
