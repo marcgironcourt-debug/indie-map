@@ -16822,5 +16822,39 @@
     "homeTextNear": "Tout près, Le Camélia fait vivre une cuisine locale et de saison, proche des producteurs et profondément ancrée dans le terroir yvelinois.",
     "homeTextFar": "À Bougival, découvrez une table responsable où les produits locaux, le végétal et le travail des producteurs des Yvelines inspirent une cuisine qui évolue au fil des saisons.",
     "panoramaImage": "/downloads/lecamelia.webp"
+  },
+  {
+    "id": "c3133937-f70d-4f3b-b989-8a1b68f305d0",
+    "name": "Les Vergers de la Haye",
+    "city": "Villepreux",
+    "address": "Côte de Saint-Nom, 78450 Villepreux, France",
+    "website": "https://fermedelahaye.com/",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 14h00-19h00\nJeudi 14h00-19h00\nVendredi 10h00-19h00\nSamedi 09h00-19h00\nDimanche Fermé",
+    "lat": 48.841902416094136,
+    "lng": 2.009103566268108,
+    "category": "Ferme",
+    "createdAt": "2026-07-12T09:54:09.502Z",
+    "updatedAt": "2026-07-12T09:55:48.426Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 67 96 18 36",
+    "miniText": "À Villepreux, Les Vergers de la Haye proposent en vente directe des fruits et légumes biologiques cultivés sur place, au rythme des saisons. La boutique complète cette production avec une sélection de produits d’épicerie issus de partenaires locaux, pour relier le verger, les fermes voisines et l’assiette.",
+    "tags": [
+      "Agriculture biologique",
+      "Vente directe",
+      "Produits locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In Villepreux, Les Vergers de la Haye sell organically grown fruit and vegetables directly from the farm, following the rhythm of the seasons. The shop complements its own produce with a selection of groceries from local partners, connecting the orchard, nearby farms and the table.",
+        "homeTextNear": "Nearby, discover organic fruit and vegetables grown on site, alongside a selection of products from local partners.",
+        "homeTextFar": "In Villepreux, discover direct farm sales at the heart of the orchards, combining seasonal organic produce with local groceries."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, retrouvez des fruits et légumes bio cultivés sur place, ainsi qu’une sélection de produits de partenaires locaux.",
+    "homeTextFar": "À Villepreux, découvrez une vente directe au cœur des vergers, entre production biologique de saison et épicerie locale.",
+    "panoramaImage": "/downloads/lesvergersdelahaye.webp"
   }
 ]
