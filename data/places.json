@@ -16958,5 +16958,39 @@
     "homeTextNear": "Tout près, Pristine compose une cuisine hyperlocale dont les menus évoluent chaque jour selon les produits disponibles auprès des producteurs locaux.",
     "homeTextFar": "À Paris, découvrez une table guidée par les produits, où une cuisine hyperlocale se renouvelle quotidiennement au rythme des arrivages de producteurs locaux.",
     "panoramaImage": "/downloads/pristineparis.webp"
+  },
+  {
+    "id": "d4fc8f2e-9d7d-4360-82e5-03fa6dfca584",
+    "name": "Ferme de l'Envol",
+    "city": "Brétigny-sur-Orge",
+    "address": "25 Avenue du Centre d'Essais en Vol, 91220 Brétigny-sur-Orge, France",
+    "website": "https://www.lafermedelenvol.fr/",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 09h00-13h00\nDimanche Fermé",
+    "lat": 48.5953432365199,
+    "lng": 2.3217871000000003,
+    "category": "Ferme",
+    "createdAt": "2026-07-14T00:09:45.936Z",
+    "updatedAt": "2026-07-14T00:11:42.132Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 49 80 29 33",
+    "miniText": "La Ferme de l’Envol est une ferme biologique et agroécologique qui cultive des légumes de saison, récoltés frais et vendus localement. Conçu par et pour les agriculteurs et les citoyens, le projet développe les circuits courts, favorise une juste rémunération des producteurs et défend une agriculture durable, respectueuse de l’environnement.",
+    "tags": [
+      "Agriculture biologique",
+      "Agroécologie",
+      "Circuits courts"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Ferme de l’Envol is an organic and agroecological farm growing seasonal vegetables that are freshly harvested and sold locally. Designed by and for farmers and local residents, the project develops short supply chains, promotes fair pay for producers and supports sustainable farming that respects the environment.",
+        "homeTextNear": "Nearby, Ferme de l’Envol is a farm where you can buy seasonal organic vegetables grown with respect for nature and freshly harvested.",
+        "homeTextFar": "In Brétigny-sur-Orge, the Ferme de l’Envol farm offers another way to buy vegetables, with organic, agroecological produce sold locally while supporting fair pay for farmers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la Ferme de l’Envol permet d’acheter des légumes biologiques de saison, cultivés dans le respect de la nature et fraîchement récoltés.",
+    "homeTextFar": "À Brétigny-sur-Orge, la ferme de l’Envol propose une autre manière d’acheter ses légumes, avec une production biologique et agroécologique vendue localement et assurant une juste rémunération des agriculteurs.",
+    "panoramaImage": "/downloads/fermelenvolbretigny.webp"
   }
 ]
