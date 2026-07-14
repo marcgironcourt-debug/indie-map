@@ -17059,5 +17059,39 @@
     "homeTextNear": "Tout près, ce lieu alternatif réunit cuisine anti-gaspi, ateliers de réparation et programmation culturelle dans un café associatif à tarif solidaire ou à prix libre.",
     "homeTextFar": "À Paris, La Trockette propose une autre manière de passer du temps, entre repas anti-gaspi, ateliers de réparation, concerts et rencontres dans un lieu associatif.",
     "panoramaImage": "/downloads/trocketteparis.webp"
+  },
+  {
+    "id": "895df528-5a46-4378-97dc-bb9d73baa048",
+    "name": "La Belle Gabrielle",
+    "city": "Nogent-sur-Marne",
+    "address": "Jardin d’Agronomie Tropicale, 45 bis Avenue de la Belle Gabrielle, 94130 Nogent-sur-Marne, France",
+    "website": "https://labellegabrielle-altermarche.fr/",
+    "openingHours": "Lundi 09h00-17h00\nMardi 09h00-17h00\nMercredi 09h00-17h00\nJeudi 09h00-17h00\nVendredi 09h00-17h00\nSamedi 12h00-17h30 (avril à septembre)\nDimanche 12h00-17h30 (avril à septembre)",
+    "lat": 48.83443,
+    "lng": 2.46946,
+    "category": "Restaurant",
+    "createdAt": "2026-07-14T03:03:43.834Z",
+    "updatedAt": "2026-07-14T03:05:35.580Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 48 76 70 45",
+    "miniText": "La Belle Gabrielle est un restaurant responsable installé au cœur du Jardin d’Agronomie Tropicale. Sa carte change chaque semaine autour d’une cuisine maison, biologique, locale et de saison, préparée avec des producteurs franciliens. Porté par Altermarché, le restaurant accompagne également des personnes en insertion ou en situation de handicap dans leur parcours professionnel.",
+    "tags": [
+      "Cuisine bio et locale",
+      "Restaurant d’insertion",
+      "Carte de saison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Belle Gabrielle is a responsible restaurant located in the heart of the Jardin d’Agronomie Tropicale. Its menu changes every week, featuring homemade, organic, local and seasonal cooking prepared with producers from the Paris region. Run by Altermarché, the restaurant also supports people returning to employment or living with disabilities through professional training.",
+        "homeTextNear": "Nearby, La Belle Gabrielle restaurant serves homemade, organic and locally sourced market cooking in the heart of the Jardin d’Agronomie Tropicale.",
+        "homeTextFar": "In Nogent-sur-Marne, La Belle Gabrielle restaurant offers another way to dine, with a menu renewed every week according to the seasons and produce from growers across the Paris region."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant La Belle Gabrielle propose une cuisine de marché biologique, locale et faite maison, au cœur du Jardin d’Agronomie Tropicale.",
+    "homeTextFar": "À Nogent-sur-Marne, le restaurant La Belle Gabrielle propose une autre manière de manger, avec une carte renouvelée chaque semaine au rythme des saisons et des producteurs franciliens.",
+    "panoramaImage": "/downloads/labellegab.webp"
   }
 ]
