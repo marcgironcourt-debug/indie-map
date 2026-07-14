@@ -16992,5 +16992,39 @@
     "homeTextNear": "Tout près, la Ferme de l’Envol permet d’acheter des légumes biologiques de saison, cultivés dans le respect de la nature et fraîchement récoltés.",
     "homeTextFar": "À Brétigny-sur-Orge, la ferme de l’Envol propose une autre manière d’acheter ses légumes, avec une production biologique et agroécologique vendue localement et assurant une juste rémunération des agriculteurs.",
     "panoramaImage": "/downloads/fermelenvolbretigny.webp"
+  },
+  {
+    "id": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "name": "La Borie",
+    "city": "Paris",
+    "address": "9 Rue de Pondichéry, 75015 Paris, France",
+    "website": "https://www.laborie-ferme-et-restaurant.fr/",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 12h00-13h30, 19h00-21h30\nJeudi 12h00-13h30, 19h00-21h30\nVendredi 12h00-13h30, 19h00-21h30\nSamedi 12h00-13h30, 19h00-21h30\nDimanche 12h00-13h30",
+    "lat": 48.850187998571194,
+    "lng": 2.2968017048932787,
+    "category": "Restaurant",
+    "createdAt": "2026-07-14T01:22:33.688Z",
+    "updatedAt": "2026-07-14T01:26:10.407Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 75 75 70 70",
+    "miniText": "La Borie est un restaurant farm-to-table relié à une ferme agroécologique de Haute-Loire. Son menu unique évolue selon les récoltes et les produits de la ferme : légumes, herbes, fruits et produits issus de ses élevages.",
+    "tags": [
+      "Farm-to-table",
+      "Ferme agroécologique",
+      "Menu unique"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Borie is a farm-to-table restaurant connected to an agroecological farm in Haute-Loire. Its single set menu changes with the harvest and the farm’s produce, including vegetables, herbs, fruit and products from its livestock.",
+        "homeTextNear": "Nearby, La Borie restaurant offers a single set menu that changes according to the harvest from its agroecological farm in Haute-Loire.",
+        "homeTextFar": "In Paris, La Borie restaurant offers another way to dine, with a single set menu guided by its farm’s harvest and a closed-loop approach."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant La Borie propose un menu unique qui évolue selon les récoltes de sa ferme agroécologique en Haute-Loire.",
+    "homeTextFar": "À Paris, le restaurant La Borie propose une autre manière de manger, avec un menu unique guidé par les récoltes de sa ferme et un fonctionnement en circuit fermé.",
+    "panoramaImage": "/downloads/laborieparis.webp"
   }
 ]
