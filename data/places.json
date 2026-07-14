@@ -17026,5 +17026,38 @@
     "homeTextNear": "Tout près, le restaurant La Borie propose un menu unique qui évolue selon les récoltes de sa ferme agroécologique en Haute-Loire.",
     "homeTextFar": "À Paris, le restaurant La Borie propose une autre manière de manger, avec un menu unique guidé par les récoltes de sa ferme et un fonctionnement en circuit fermé.",
     "panoramaImage": "/downloads/laborieparis.webp"
+  },
+  {
+    "id": "87f0f5aa-377d-4a96-9100-0ef2244f5bd4",
+    "name": "La Trockette",
+    "city": "Paris",
+    "address": "125 Rue du Chemin Vert, 75011 Paris, France",
+    "website": "https://www.lapetiterockette.org/cafe_restauration/cafe_atelier/",
+    "openingHours": "Lundi Fermé\nMardi 12h30-22h00\nMercredi 12h30-22h00\nJeudi 12h30-22h00\nVendredi 12h30-22h00\nSamedi 11h00-18h00\nDimanche Fermé",
+    "lat": 48.86219487317425,
+    "lng": 2.3839286355819578,
+    "category": "Lieu alternatif",
+    "createdAt": "2026-07-14T02:34:34.470Z",
+    "updatedAt": "2026-07-14T02:42:59.553Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "La Trockette est le café-atelier associatif de La Petite Rockette. Ce lieu réunit une cuisine anti-gaspi préparée à partir d’invendus de commerces partenaires, des ateliers de réparation et de création, ainsi qu’une programmation de concerts, de rencontres et d’échanges.",
+    "tags": [
+      "Cuisine anti-gaspi",
+      "Ateliers de réparation",
+      "Programmation culturelle"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Trockette is the community café and workshop run by La Petite Rockette. It combines anti-waste cooking made with surplus food from partner shops, repair and creative workshops, and a programme of concerts, meetings and discussions.",
+        "homeTextNear": "Nearby, this alternative community venue brings together anti-waste food, repair workshops and cultural events at solidarity or pay-what-you-can prices.",
+        "homeTextFar": "In Paris, La Trockette offers another way to spend time, combining anti-waste meals, repair workshops, concerts and community gatherings."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce lieu alternatif réunit cuisine anti-gaspi, ateliers de réparation et programmation culturelle dans un café associatif à tarif solidaire ou à prix libre.",
+    "homeTextFar": "À Paris, La Trockette propose une autre manière de passer du temps, entre repas anti-gaspi, ateliers de réparation, concerts et rencontres dans un lieu associatif.",
+    "panoramaImage": "/downloads/trocketteparis.webp"
   }
 ]
