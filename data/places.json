@@ -17127,5 +17127,39 @@
     "homeTextNear": "Tout près, le restaurant Les Petites Cantines Paris invite chacun à cuisiner et partager un repas fait maison, préparé avec des produits de saison, bio ou locaux, à prix libre.",
     "homeTextFar": "À Paris, le restaurant Les Petites Cantines propose une autre manière de manger, en cuisinant et partageant les repas dans une cantine de quartier participative ouverte à toutes et tous.",
     "panoramaImage": "/downloads/lespetitescantines.webp"
+  },
+  {
+    "id": "aee104da-dc5b-47d1-8d0c-1fda07ac5187",
+    "name": "La Cop1ne",
+    "city": "Paris",
+    "address": "1 Place Alice Guy, 75014 Paris, France",
+    "website": "https://lacop1ne.fr/",
+    "openingHours": "Lundi Fermé\nMardi 12h00-13h30, 19h30-21h30\nMercredi 12h00-13h30, 19h30-21h30\nJeudi 12h00-13h30, 19h30-21h30\nVendredi 12h00-13h30, 19h30-21h30\nSamedi 12h00-13h30, 19h30-21h30\nDimanche Fermé",
+    "lat": 48.82681863761331,
+    "lng": 2.313387671164405,
+    "category": "Restaurant",
+    "createdAt": "2026-07-17T04:59:03.575Z",
+    "updatedAt": "2026-07-17T05:04:52.401Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 60 16 80 14",
+    "miniText": "La Cop1ne est un restaurant solidaire ouvert à toutes et tous, porté par l’association Cop1. Un nouveau menu est proposé chaque jour, accompagné d’ateliers et de soirées qui font du restaurant un lieu de vie engagé dans la lutte contre la précarité étudiante.",
+    "tags": [
+      "Restaurant solidaire",
+      "Menu quotidien",
+      "Solidarité étudiante"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Cop1ne is a solidarity restaurant open to everyone and run by the Cop1 association. A new menu is offered each day, alongside workshops and evening events that make the restaurant a community space committed to fighting student hardship.",
+        "homeTextNear": "Nearby, La Cop1ne is a solidarity restaurant offering a new menu each day in a community space committed to fighting student hardship.",
+        "homeTextFar": "In Paris, La Cop1ne restaurant offers another way to dine, combining solidarity menus, workshops and evening events open to everyone."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant solidaire La Cop1ne propose chaque jour un nouveau menu dans un lieu de vie engagé contre la précarité étudiante.",
+    "homeTextFar": "À Paris, le restaurant La Cop1ne propose une autre manière de manger, avec des menus solidaires, des ateliers et des soirées ouverts à toutes et tous.",
+    "panoramaImage": "/downloads/cop1neparis.webp"
   }
 ]
