@@ -17229,5 +17229,72 @@
     "homeTextNear": "Tout près, la brasserie Deck & Donohue permet de découvrir des bières biologiques brassées avec des malts et des houblons français.",
     "homeTextFar": "À Bonneuil-sur-Marne, la brasserie Deck & Donohue propose une autre manière de boire une bière, avec des recettes biologiques brassées aux portes de Paris à partir de céréales locales.",
     "panoramaImage": "/downloads/deckanddonohue.webp"
+  },
+  {
+    "id": "8aeb909e-6bc8-4f9d-aea9-7e370b2ee165",
+    "name": "La Quesne, Ferme et Fromagerie",
+    "city": "Bois-Héroult",
+    "address": "1230 Chemin de La Quesne, 76750 Bois-Héroult, France",
+    "website": "https://fermedelaquesne.fr/",
+    "lat": 49.55277744594815,
+    "lng": 1.4065715,
+    "category": "Ferme",
+    "createdAt": "2026-07-17T06:04:20.896Z",
+    "updatedAt": "2026-07-17T06:05:42.243Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 72 66 82 62",
+    "miniText": "La Quesne est une ferme-fromagerie biologique qui maîtrise toute la chaîne, de la culture de l’herbe à l’affinage. Le lait cru entier des vaches, nourries au pâturage et au foin produit sur place, devient cinq fromages fermiers : Tome de Bray, Meule de Bray, Saint-Bray, Fumé de Bray et Raclette Normande.",
+    "tags": [
+      "Fromages fermiers bio",
+      "Lait cru",
+      "Fabrication à la ferme"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Quesne is an organic dairy farm and cheesemaker managing every stage, from growing grass to ageing the cheese. Whole raw milk from cows fed on pasture and hay produced at the farm is transformed into five farmhouse cheeses: Tome de Bray, Meule de Bray, Saint-Bray, Fumé de Bray and Raclette Normande.",
+        "homeTextNear": "Nearby, La Quesne farm and dairy offers organic raw-milk farmhouse cheeses made and aged on site using milk from its own cows.",
+        "homeTextFar": "In Bois-Héroult, La Quesne farm and dairy offers another way to buy cheese, with five organic raw-milk varieties made and aged on site."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la ferme-fromagerie La Quesne permet d’acheter des fromages fermiers biologiques au lait cru, fabriqués et affinés sur place à partir du lait de ses vaches.",
+    "homeTextFar": "À Bois-Héroult, la ferme-fromagerie La Quesne propose une autre manière d’acheter son fromage, avec cinq recettes au lait cru biologique fabriquées et affinées sur place.",
+    "panoramaImage": "/downloads/cavedaffinagelaquesne.webp"
+  },
+  {
+    "id": "bc87db3a-73df-4d2e-9814-c6ce81faee4d",
+    "name": "La Ferme du Grand Laval",
+    "city": "Montélier",
+    "address": "Quartier Le Grand Laval, 26120 Montélier, France",
+    "website": "https://lafermedugrandlaval.wordpress.com/",
+    "openingHours": "Lundi Fermé\nMardi 17h00-19h00\nMercredi Fermé\nJeudi Fermé\nVendredi Fermé\nSamedi 08h30-12h00\nDimanche Fermé",
+    "lat": 44.951117215799485,
+    "lng": 5.006675773013569,
+    "category": "Ferme",
+    "createdAt": "2026-07-17T08:12:28.250Z",
+    "updatedAt": "2026-07-17T08:23:31.138Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 28 62 21 84",
+    "miniText": "La Ferme du Grand Laval est une exploitation biologique en polyculture-polyélevage qui associe brebis, poules pondeuses, verger et grandes cultures. Autonome pour l’alimentation des animaux et la fertilisation des sols, elle produit notamment des œufs, des fruits, des huiles et des légumes secs, entièrement commercialisés en vente directe.",
+    "tags": [
+      "Polyculture-polyélevage",
+      "Agriculture biologique",
+      "Vente directe"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "La Ferme du Grand Laval is an organic mixed farm combining sheep, laying hens, orchards and arable crops. Self-sufficient in animal feed and soil fertilisation, it produces eggs, fruit, oils and dried pulses, all sold directly to customers.",
+        "homeTextNear": "Nearby, La Ferme du Grand Laval sells its organic eggs, fruit, oils and dried pulses directly, alongside products from other local small-scale farms.",
+        "homeTextFar": "In Montélier, La Ferme du Grand Laval offers another way to buy directly from a farm, with diverse organic production combining livestock, orchards and arable crops."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la Ferme du Grand Laval vend directement ses œufs, fruits, huiles et légumes secs biologiques, aux côtés de produits issus de fermes paysannes locales.",
+    "homeTextFar": "À Montélier, la Ferme du Grand Laval propose une autre manière d’acheter directement à la ferme, avec une production biologique diversifiée qui associe élevage, verger et grandes cultures.",
+    "panoramaImage": "/downloads/grandlavalferme.webp"
   }
 ]
