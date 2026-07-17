@@ -17161,5 +17161,39 @@
     "homeTextNear": "Tout près, le restaurant solidaire La Cop1ne propose chaque jour un nouveau menu dans un lieu de vie engagé contre la précarité étudiante.",
     "homeTextFar": "À Paris, le restaurant La Cop1ne propose une autre manière de manger, avec des menus solidaires, des ateliers et des soirées ouverts à toutes et tous.",
     "panoramaImage": "/downloads/cop1neparis.webp"
+  },
+  {
+    "id": "917ab963-e72d-4982-a6ee-96e2020a15ae",
+    "name": "Le Zingam",
+    "city": "Paris",
+    "address": "75 Rue du Chemin Vert, 75011 Paris, France",
+    "website": "https://lezingam.com/",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-14h00",
+    "lat": 48.86061610119322,
+    "lng": 2.37904275767119,
+    "category": "Épicerie",
+    "createdAt": "2026-07-17T05:16:16.107Z",
+    "updatedAt": "2026-07-17T05:22:14.041Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 49 29 32 77",
+    "miniText": "Le Zingam est une épicerie de quartier indépendante qui travaille directement avec des fermes et des coopératives. Elle réunit des fruits et légumes biologiques de saison, des produits d’épicerie, de la crèmerie, des fromages, ainsi qu’une sélection de viandes et de poissons.",
+    "tags": [
+      "Circuits courts",
+      "Produits de saison",
+      "Agriculture paysanne"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Le Zingam is an independent neighbourhood grocery shop working directly with farms and cooperatives. It brings together seasonal organic fruit and vegetables, pantry goods, dairy products, cheese, and a selection of meat and fish.",
+        "homeTextNear": "Nearby, Le Zingam grocery shop offers seasonal organic fruit and vegetables, cheese and products selected directly from farms and cooperatives.",
+        "homeTextFar": "In Paris, Le Zingam grocery shop offers another way to shop, with seasonal products selected directly from farms committed to sustainable small-scale agriculture."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Le Zingam permet de faire ses courses entre fruits et légumes biologiques de saison, fromages et produits sélectionnés directement auprès de fermes et de coopératives.",
+    "homeTextFar": "À Paris, l’épicerie Le Zingam propose une autre manière de faire ses courses, avec des produits de saison choisis directement auprès de fermes engagées dans une agriculture paysanne durable.",
+    "panoramaImage": "/downloads/lezingam.webp"
   }
 ]
