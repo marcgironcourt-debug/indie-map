@@ -17093,5 +17093,39 @@
     "homeTextNear": "Tout près, le restaurant La Belle Gabrielle propose une cuisine de marché biologique, locale et faite maison, au cœur du Jardin d’Agronomie Tropicale.",
     "homeTextFar": "À Nogent-sur-Marne, le restaurant La Belle Gabrielle propose une autre manière de manger, avec une carte renouvelée chaque semaine au rythme des saisons et des producteurs franciliens.",
     "panoramaImage": "/downloads/labellegab.webp"
+  },
+  {
+    "id": "b00517cd-9034-461c-b412-ab9c3582208c",
+    "name": "Les Petites Cantines Paris",
+    "city": "Paris",
+    "address": "94 Boulevard Vincent Auriol, 75013 Paris, France",
+    "website": "https://paris.lespetitescantines.org/",
+    "openingHours": "Lundi Fermé\nMardi 09h30-14h30, 17h00-22h30\nMercredi 09h30-14h30, 17h00-22h30\nJeudi 09h30-14h30, 17h00-22h30\nVendredi 09h30-14h30\nSamedi 10h30-15h30\nDimanche 10h30-15h30",
+    "lat": 48.83388651968041,
+    "lng": 2.3638012374345516,
+    "category": "Restaurant",
+    "createdAt": "2026-07-14T03:17:56.766Z",
+    "updatedAt": "2026-07-14T03:24:40.814Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 65 79 09 59",
+    "miniText": "Les Petites Cantines Paris est une cantine de quartier participative ouverte à toutes et tous, où l’on vient cuisiner, partager un repas ou simplement passer un moment ensemble. Les repas, à prix libre et conscient, privilégient le fait maison, les produits de saison, bio ou locaux, ainsi que les invendus.",
+    "tags": [
+      "Cantine participative",
+      "Prix libre",
+      "Alimentation durable"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Les Petites Cantines Paris is a participatory neighbourhood canteen open to everyone, where people come to cook, share a meal or simply spend time together. Meals are offered on a pay-what-you-can basis and prioritise homemade food, seasonal, organic or local produce, as well as surplus ingredients.",
+        "homeTextNear": "Nearby, Les Petites Cantines Paris is a restaurant where everyone can cook and share a homemade meal prepared with seasonal, organic or local produce on a pay-what-you-can basis.",
+        "homeTextFar": "In Paris, Les Petites Cantines offers another way to eat, by cooking and sharing meals together in a participatory neighbourhood canteen open to everyone."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant Les Petites Cantines Paris invite chacun à cuisiner et partager un repas fait maison, préparé avec des produits de saison, bio ou locaux, à prix libre.",
+    "homeTextFar": "À Paris, le restaurant Les Petites Cantines propose une autre manière de manger, en cuisinant et partageant les repas dans une cantine de quartier participative ouverte à toutes et tous.",
+    "panoramaImage": "/downloads/lespetitescantines.webp"
   }
 ]
