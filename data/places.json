@@ -17195,5 +17195,39 @@
     "homeTextNear": "Tout près, l’épicerie Le Zingam permet de faire ses courses entre fruits et légumes biologiques de saison, fromages et produits sélectionnés directement auprès de fermes et de coopératives.",
     "homeTextFar": "À Paris, l’épicerie Le Zingam propose une autre manière de faire ses courses, avec des produits de saison choisis directement auprès de fermes engagées dans une agriculture paysanne durable.",
     "panoramaImage": "/downloads/lezingam.webp"
+  },
+  {
+    "id": "e3f16391-0ffd-46cf-949f-0992090bf30c",
+    "name": "Deck & Donohue",
+    "city": "Bonneuil-sur-Marne",
+    "address": "1 Avenue des Marronniers, 94380 Bonneuil-sur-Marne, France",
+    "website": "https://deck-donohue.com/",
+    "openingHours": "Lundi 09h30-18h00\nMardi 09h30-18h00\nMercredi 09h30-18h00\nJeudi 09h30-18h00\nVendredi 09h30-18h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.767017660900486,
+    "lng": 2.4932863153423788,
+    "category": "Brasserie / bar / pub",
+    "createdAt": "2026-07-17T05:54:53.985Z",
+    "updatedAt": "2026-07-17T05:56:28.127Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 43 77 96 84",
+    "miniText": "Deck & Donohue est une brasserie artisanale installée aux portes de Paris. Ses bières sont certifiées biologiques et brassées avec des malts et des houblons français, dont une part croissante provient de cultures situées à moins de cinquante kilomètres de la brasserie.",
+    "tags": [
+      "Bières biologiques",
+      "Céréales locales",
+      "Brasserie artisanale"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Deck & Donohue is a craft brewery based just outside Paris. Its beers are certified organic and brewed with French malt and hops, with a growing share sourced from crops located within fifty kilometres of the brewery.",
+        "homeTextNear": "Nearby, Deck & Donohue brewery offers organic beers brewed with French malt and hops.",
+        "homeTextFar": "In Bonneuil-sur-Marne, Deck & Donohue brewery offers another way to enjoy beer, with organic recipes brewed just outside Paris using locally sourced grain."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la brasserie Deck & Donohue permet de découvrir des bières biologiques brassées avec des malts et des houblons français.",
+    "homeTextFar": "À Bonneuil-sur-Marne, la brasserie Deck & Donohue propose une autre manière de boire une bière, avec des recettes biologiques brassées aux portes de Paris à partir de céréales locales.",
+    "panoramaImage": "/downloads/deckanddonohue.webp"
   }
 ]
