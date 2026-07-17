@@ -17296,5 +17296,39 @@
     "homeTextNear": "Tout près, la Ferme du Grand Laval vend directement ses œufs, fruits, huiles et légumes secs biologiques, aux côtés de produits issus de fermes paysannes locales.",
     "homeTextFar": "À Montélier, la Ferme du Grand Laval propose une autre manière d’acheter directement à la ferme, avec une production biologique diversifiée qui associe élevage, verger et grandes cultures.",
     "panoramaImage": "/downloads/grandlavalferme.webp"
+  },
+  {
+    "id": "75e1fc67-798c-471c-a1cf-4c371282affa",
+    "name": "À Deux Pas des Champs",
+    "city": "Peaugres",
+    "address": "569 Rue Centrale, 07340 Peaugres, France",
+    "website": "https://www.facebook.com/adeuxpasdeschamps/",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 09h00-19h00\nJeudi 09h00-19h00\nVendredi 09h00-19h00\nSamedi 09h00-13h00\nDimanche Fermé",
+    "lat": 45.28366397820844,
+    "lng": 4.726149855822025,
+    "category": "Épicerie",
+    "createdAt": "2026-07-17T08:42:42.038Z",
+    "updatedAt": "2026-07-17T08:47:10.309Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 4 75 32 30 01",
+    "miniText": "À Deux Pas des Champs est une épicerie de producteurs qui rassemble des produits locaux, frais et de saison. Fruits, légumes, viandes, fromages et autres spécialités sont proposés directement par les exploitations associées au magasin.",
+    "tags": [
+      "Magasin de producteurs",
+      "Produits locaux",
+      "Produits de saison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "À Deux Pas des Champs is a producers’ grocery shop bringing together fresh, seasonal and locally made food. Fruit, vegetables, meat, cheese and other specialities are supplied directly by the farms associated with the shop.",
+        "homeTextNear": "Nearby, À Deux Pas des Champs grocery shop offers seasonal local fruit, vegetables, meat, cheese and other products supplied by producers.",
+        "homeTextFar": "In Peaugres, À Deux Pas des Champs grocery shop offers another way to shop, bringing together fresh seasonal food supplied directly by local producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie À Deux Pas des Champs permet de faire ses courses parmi des fruits, légumes, viandes, fromages et autres produits locaux de saison.",
+    "homeTextFar": "À Peaugres, l’épicerie À Deux Pas des Champs propose une autre manière de faire ses courses, en réunissant directement les produits frais et de saison de producteurs locaux.",
+    "panoramaImage": "/downloads/adeuxpasdeschamps.webp"
   }
 ]
