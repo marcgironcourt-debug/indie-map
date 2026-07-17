@@ -17330,5 +17330,39 @@
     "homeTextNear": "Tout près, l’épicerie À Deux Pas des Champs permet de faire ses courses parmi des fruits, légumes, viandes, fromages et autres produits locaux de saison.",
     "homeTextFar": "À Peaugres, l’épicerie À Deux Pas des Champs propose une autre manière de faire ses courses, en réunissant directement les produits frais et de saison de producteurs locaux.",
     "panoramaImage": "/downloads/adeuxpasdeschamps.webp"
+  },
+  {
+    "id": "dea516b3-cd73-48c0-8ed2-3af546e258a1",
+    "name": "Les Fermiers de la Baie",
+    "city": "Saint-Malo",
+    "address": "1 Rue Christophe Colomb, 35400 Saint-Malo, France",
+    "website": "https://lesfermiersdelabaie.fr/",
+    "openingHours": "Lundi Fermé\nMardi 09h00-13h00, 15h00-19h00\nMercredi 09h00-13h00, 15h00-19h00\nJeudi 09h00-13h00, 15h00-19h00\nVendredi 09h00-13h00, 15h00-19h00\nSamedi 09h00-18h00\nDimanche Fermé",
+    "lat": 48.64954550295158,
+    "lng": -1.9781974846576202,
+    "category": "Épicerie",
+    "createdAt": "2026-07-17T09:01:20.903Z",
+    "updatedAt": "2026-07-17T09:07:44.116Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 2 99 19 90 74",
+    "miniText": "Les Fermiers de la Baie est un magasin collectif de producteurs locaux proposant en vente directe viandes, volailles, fromages, fruits et légumes de saison, produits d’épicerie, pains et produits de la mer. Les produits proviennent d’exploitations agricoles situées au plus proche de Saint-Malo.",
+    "tags": [
+      "Magasin de producteurs",
+      "Vente directe",
+      "Produits fermiers locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Les Fermiers de la Baie is a collective shop run by local producers, selling meat, poultry, cheese, seasonal fruit and vegetables, groceries, bread and seafood directly to customers. Its products come from farms located as close as possible to Saint-Malo.",
+        "homeTextNear": "Nearby, Les Fermiers de la Baie grocery shop offers local farm produce, seasonal fruit and vegetables, cheese, meat and seafood.",
+        "homeTextFar": "In Saint-Malo, Les Fermiers de la Baie grocery shop offers another way to shop, with farm products sold directly by local producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Les Fermiers de la Baie permet de faire ses courses entre produits fermiers locaux, fruits et légumes de saison, fromages, viandes et produits de la mer.",
+    "homeTextFar": "À Saint-Malo, l’épicerie Les Fermiers de la Baie propose une autre manière de faire ses courses, avec des produits fermiers vendus directement par des producteurs locaux.",
+    "panoramaImage": "/downloads/lesfermiersdelabaie.webp"
   }
 ]
