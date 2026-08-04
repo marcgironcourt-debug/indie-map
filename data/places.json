@@ -17364,5 +17364,413 @@
     "homeTextNear": "Tout près, l’épicerie Les Fermiers de la Baie permet de faire ses courses entre produits fermiers locaux, fruits et légumes de saison, fromages, viandes et produits de la mer.",
     "homeTextFar": "À Saint-Malo, l’épicerie Les Fermiers de la Baie propose une autre manière de faire ses courses, avec des produits fermiers vendus directement par des producteurs locaux.",
     "panoramaImage": "/downloads/lesfermiersdelabaie.webp"
+  },
+  {
+    "id": "c9abb0e2-0991-4484-a813-d02f15e88ff1",
+    "name": "Activ’18",
+    "city": "Paris",
+    "address": "10 Rue Tristan Tzara, 75018 Paris, France",
+    "website": "https://activ18.fr",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-18h00\nDimanche Fermé",
+    "lat": 48.89510426427548,
+    "lng": 2.365663450925306,
+    "category": "Lieu alternatif",
+    "createdAt": "2026-08-04T02:00:57.419Z",
+    "updatedAt": "2026-08-04T02:05:44.281Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 82 43 93 06",
+    "miniText": "Entreprise à but d’emploi implantée dans le nord du 18e arrondissement, Activ’18 crée des emplois utiles à partir des besoins du quartier. Le lieu rassemble une friperie solidaire consacrée au réemploi textile, des activités artisanales et une cantine solidaire qui prépare des repas accessibles en privilégiant des produits issus de fournisseurs locaux.",
+    "tags": [
+      "Friperie solidaire",
+      "Cantine solidaire",
+      "Réemploi"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A purpose-driven employment enterprise based in northern Paris’s 18th arrondissement, Activ’18 creates useful jobs shaped around the needs of the neighborhood. The space brings together a solidarity thrift shop focused on textile reuse, craft activities and a community canteen serving affordable meals while prioritizing produce sourced from local suppliers.",
+        "homeTextNear": "Nearby, this alternative neighborhood space offers affordable second-hand clothing, textile collection and local initiatives centered on reuse.",
+        "homeTextFar": "In Paris, the alternative space Activ’18 offers another way to bring a neighborhood to life, through a solidarity thrift shop, reuse activities and projects that create local employment."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce lieu alternatif de quartier permet de trouver des vêtements de seconde main à petit prix, de déposer des textiles et de découvrir des initiatives locales autour du réemploi.",
+    "homeTextFar": "À Paris, le lieu alternatif Activ’18 propose une autre manière de faire vivre un quartier, avec une friperie solidaire, des activités de réemploi et des projets créateurs d’emplois locaux.",
+    "panoramaImage": "/downloads/activ18.webp"
+  },
+  {
+    "id": "bbff5739-3a94-4c25-ab08-6448fdfd29d6",
+    "name": "Les Marmites Volantes",
+    "city": "Paris",
+    "address": "69 Rue Armand Carrel, 75019 Paris, France",
+    "website": "https://www.marmitesvolantes.fr",
+    "openingHours": "Lundi 12h00-14h00\nMardi 12h00-14h00\nMercredi 12h00-14h00\nJeudi 12h00-14h00\nVendredi 12h00-14h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.88296185040469,
+    "lng": 2.3733460220895046,
+    "category": "Restaurant",
+    "createdAt": "2026-08-04T02:12:35.028Z",
+    "updatedAt": "2026-08-04T02:27:46.091Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 87 50 83 82",
+    "miniText": "À Jaurès, Les Marmites Volantes est un restaurant engagé qui compose chaque jour une carte courte de plats végétariens ou carnés, cuisinés avec des produits frais, biologiques et de saison. Le projet développe également une activité de traiteur zéro déchet, des livraisons en contenants réutilisables et une restauration scolaire attentive à la qualité des repas et à leur impact environnemental.",
+    "tags": [
+      "Cuisine biologique",
+      "Cuisine de saison",
+      "Zéro déchet"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "In the Jaurès neighborhood, Les Marmites Volantes is a committed restaurant serving a short daily menu of vegetarian and meat dishes prepared with fresh, organic and seasonal ingredients. The project also develops zero-waste catering, deliveries in reusable containers and school meals designed with both food quality and environmental impact in mind.",
+        "homeTextNear": "Nearby, Les Marmites Volantes restaurant offers a short lunchtime menu of vegetarian and meat dishes prepared with fresh, organic and seasonal ingredients.",
+        "homeTextFar": "In Paris, Les Marmites Volantes restaurant offers another way to eat, through seasonal cooking, responsible sourcing and an approach focused on reducing waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant Les Marmites Volantes permet de déjeuner autour d’une carte courte de plats végétariens ou carnés, préparés avec des produits frais, biologiques et de saison.",
+    "homeTextFar": "À Paris, le restaurant Les Marmites Volantes propose une autre manière de manger, avec une cuisine de saison, des approvisionnements responsables et une démarche tournée vers la réduction des déchets.",
+    "panoramaImage": "/downloads/lesmarmites.webp"
+  },
+  {
+    "id": "8e09f4c5-f3a7-468d-8bae-afbe4b360f55",
+    "name": "Le TLM Paris",
+    "city": "Paris",
+    "address": "105 Rue Curial, 75019 Paris, France",
+    "website": "https://le-tlm.fr/",
+    "openingHours": "Lundi Fermé\nMardi 12h00-00h00\nMercredi 12h00-00h00\nJeudi 12h00-01h00\nVendredi 12h00-01h00\nSamedi 12h00-01h00\nDimanche 12h00-19h00",
+    "lat": 48.896393161001996,
+    "lng": 2.378818477910496,
+    "category": "Lieu alternatif",
+    "createdAt": "2026-08-04T02:38:57.177Z",
+    "updatedAt": "2026-08-04T02:42:52.758Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 81 72 71 23",
+    "miniText": "Installé dans une ancienne halle ferroviaire de la Petite Ceinture, Le TLM est un tiers-lieu culturel et citoyen ouvert sur le quartier. Concerts, DJ sets, ciné-clubs, rencontres, marchés de créateurs et événements associatifs y côtoient un bar et un restaurant animé par Mam’Ayoka, traiteur solidaire qui prépare une cuisine à partir de produits frais et de saison tout en favorisant l’insertion professionnelle.",
+    "tags": [
+      "Tiers-lieu culturel",
+      "Petite Ceinture",
+      "Restaurant solidaire"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Located in a former railway hall on Paris’s Petite Ceinture, Le TLM is a cultural and community-oriented alternative space connected to its neighborhood. Concerts, DJ sets, film clubs, discussions, designer markets and community events share the venue with a bar and a restaurant run by Mam’Ayoka, a solidarity-based caterer preparing food with fresh, seasonal ingredients while supporting access to employment.",
+        "homeTextNear": "Nearby, the alternative space Le TLM offers a place to spend time by the Petite Ceinture, with seasonal food, concerts, gatherings and free cultural events.",
+        "homeTextFar": "In Paris, the alternative space Le TLM offers another way to spend time, in a former railway hall combining solidarity-based food, cultural programming and community initiatives."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le lieu alternatif Le TLM permet de passer du temps entre Petite Ceinture, cuisine de saison, concerts, rencontres et événements culturels gratuits.",
+    "homeTextFar": "À Paris, le lieu alternatif Le TLM propose une autre manière de passer du temps, avec une ancienne halle ferroviaire réunissant restauration solidaire, programmation culturelle et initiatives citoyennes.",
+    "panoramaImage": "/downloads/letlm.webp"
+  },
+  {
+    "id": "79c8c096-3381-45d4-94db-1a02e9c7c5a5",
+    "name": "Kelbongoo",
+    "city": "Paris",
+    "website": "https://www.kelbongoo.com",
+    "category": "Épicerie",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 80 82 62 20",
+    "miniText": "Kelbongoo rend les produits frais et locaux plus accessibles grâce à un circuit court reliant les consommateurs franciliens à de petites fermes situées à moins de 250 kilomètres de Paris. Fruits et légumes, produits laitiers, viandes, œufs, pains et produits d’épicerie sont réunis grâce à une logistique mutualisée qui limite les intermédiaires et permet aux producteurs de se concentrer sur leur activité tout en fixant leur prix de vente.",
+    "tags": [
+      "Circuit court",
+      "Produits fermiers locaux",
+      "Agriculture paysanne"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Kelbongoo makes fresh, local food more accessible through a short supply chain connecting consumers in the Paris region with small farms located within 250 kilometres of Paris. Fruit and vegetables, dairy products, meat, eggs, bread and groceries are brought together through shared logistics that reduce intermediaries and allow producers to focus on their work while setting their own selling prices.",
+        "homeTextNear": "Nearby, Kelbongoo grocery shop offers a way to buy fresh, seasonal food through a short supply chain connected to small local farms.",
+        "homeTextFar": "In Paris, Kelbongoo grocery shop offers another way to shop, with farm products sourced from nearby producers and logistics designed to provide them with fairer compensation."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Kelbongoo permet de faire ses courses en circuit court, avec des produits frais et de saison provenant de petites fermes locales.",
+    "homeTextFar": "À Paris, l’épicerie Kelbongoo propose une autre manière de faire ses courses, avec des produits paysans issus de fermes de proximité et une logistique pensée pour mieux rémunérer les producteurs.",
+    "address": "3 bis Rue Bichat, 75010 Paris, France",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 14h00-20h00\nJeudi 14h00-20h00\nVendredi 14h00-20h00\nSamedi 10h00-20h00\nDimanche Fermé",
+    "lat": 48.86981505705362,
+    "lng": 2.369086422089504,
+    "createdAt": "2026-08-04T04:04:22.498Z",
+    "updatedAt": "2026-08-04T04:36:36.067Z",
+    "panoramaImage": "/downloads/kelbongoo.webp"
+  },
+  {
+    "id": "a32be4d7-4a6e-4e3b-abb0-91f091f06dd7",
+    "name": "Kelbongoo",
+    "city": "Paris",
+    "website": "https://www.kelbongoo.com",
+    "category": "Épicerie",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 80 82 62 20",
+    "miniText": "Kelbongoo rend les produits frais et locaux plus accessibles grâce à un circuit court reliant les consommateurs franciliens à de petites fermes situées à moins de 250 kilomètres de Paris. Fruits et légumes, produits laitiers, viandes, œufs, pains et produits d’épicerie sont réunis grâce à une logistique mutualisée qui limite les intermédiaires et permet aux producteurs de se concentrer sur leur activité tout en fixant leur prix de vente.",
+    "tags": [
+      "Circuit court",
+      "Produits fermiers locaux",
+      "Agriculture paysanne"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Kelbongoo makes fresh, local food more accessible through a short supply chain connecting consumers in the Paris region with small farms located within 250 kilometres of Paris. Fruit and vegetables, dairy products, meat, eggs, bread and groceries are brought together through shared logistics that reduce intermediaries and allow producers to focus on their work while setting their own selling prices.",
+        "homeTextNear": "Nearby, Kelbongoo grocery shop offers a way to buy fresh, seasonal food through a short supply chain connected to small local farms.",
+        "homeTextFar": "In Paris, Kelbongoo grocery shop offers another way to shop, with farm products sourced from nearby producers and logistics designed to provide them with fairer compensation."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Kelbongoo permet de faire ses courses en circuit court, avec des produits frais et de saison provenant de petites fermes locales.",
+    "homeTextFar": "À Paris, l’épicerie Kelbongoo propose une autre manière de faire ses courses, avec des produits paysans issus de fermes de proximité et une logistique pensée pour mieux rémunérer les producteurs.",
+    "address": "18 Rue du Borrégo, 75020 Paris, France",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 16h00-20h00\nJeudi 16h00-20h00\nVendredi 16h00-20h00\nSamedi 09h00-14h00\nDimanche Fermé",
+    "lat": 48.8729476339512,
+    "lng": 2.399946577910496,
+    "createdAt": "2026-08-04T04:04:22.498Z",
+    "updatedAt": "2026-08-04T04:36:36.067Z",
+    "panoramaImage": "/downloads/kelbongoo.webp"
+  },
+  {
+    "id": "82311d40-9f8a-4bac-a2d1-2deafdccc75f",
+    "name": "Kelbongoo",
+    "city": "Paris",
+    "website": "https://www.kelbongoo.com",
+    "category": "Épicerie",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 80 82 62 20",
+    "miniText": "Kelbongoo rend les produits frais et locaux plus accessibles grâce à un circuit court reliant les consommateurs franciliens à de petites fermes situées à moins de 250 kilomètres de Paris. Fruits et légumes, produits laitiers, viandes, œufs, pains et produits d’épicerie sont réunis grâce à une logistique mutualisée qui limite les intermédiaires et permet aux producteurs de se concentrer sur leur activité tout en fixant leur prix de vente.",
+    "tags": [
+      "Circuit court",
+      "Produits fermiers locaux",
+      "Agriculture paysanne"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Kelbongoo makes fresh, local food more accessible through a short supply chain connecting consumers in the Paris region with small farms located within 250 kilometres of Paris. Fruit and vegetables, dairy products, meat, eggs, bread and groceries are brought together through shared logistics that reduce intermediaries and allow producers to focus on their work while setting their own selling prices.",
+        "homeTextNear": "Nearby, Kelbongoo grocery shop offers a way to buy fresh, seasonal food through a short supply chain connected to small local farms.",
+        "homeTextFar": "In Paris, Kelbongoo grocery shop offers another way to shop, with farm products sourced from nearby producers and logistics designed to provide them with fairer compensation."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Kelbongoo permet de faire ses courses en circuit court, avec des produits frais et de saison provenant de petites fermes locales.",
+    "homeTextFar": "À Paris, l’épicerie Kelbongoo propose une autre manière de faire ses courses, avec des produits paysans issus de fermes de proximité et une logistique pensée pour mieux rémunérer les producteurs.",
+    "address": "47-51 Rue Saint-Blaise, 75020 Paris, France",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 16h00-20h00\nJeudi Fermé\nVendredi 16h00-20h00\nSamedi 09h00-14h00\nDimanche Fermé",
+    "lat": 48.858084181869714,
+    "lng": 2.4074401355820987,
+    "createdAt": "2026-08-04T04:04:22.498Z",
+    "updatedAt": "2026-08-04T04:36:36.067Z",
+    "panoramaImage": "/downloads/kelbongoo.webp"
+  },
+  {
+    "id": "ee42b81a-d367-4792-bb80-87bc493363ef",
+    "name": "Les Glaneuses",
+    "city": "Paris",
+    "address": "18 Bd Voltaire, 75011 Paris, France",
+    "website": "https://lesglaneuses.fr/",
+    "openingHours": "Lundi Fermé\nMardi 10h00-19h30\nMercredi 10h00-19h30\nJeudi 10h00-19h30\nVendredi 10h00-19h30\nSamedi 10h00-19h30\nDimanche 10h00-13h00",
+    "lat": 48.8654168241236,
+    "lng": 2.367172179761107,
+    "category": "Épicerie",
+    "createdAt": "2026-08-04T04:43:34.630Z",
+    "updatedAt": "2026-08-04T04:48:08.234Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 83 73 07 47",
+    "miniText": "À deux pas d’Oberkampf, Les Glaneuses est une épicerie et un lieu de vie consacré au zéro déchet. On y fait ses courses en vrac et en consigne parmi des produits français, majoritairement biologiques et choisis au plus local possible, ainsi que des accessoires durables pour la maison et le quotidien. La boutique organise également des ateliers et conférences, propose la location d’objets utilisés occasionnellement et aménage un espace détente pour accompagner chacun vers une consommation plus responsable.",
+    "tags": [
+      "Vrac",
+      "Zéro déchet",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Near Oberkampf, Les Glaneuses is a grocery shop and community space dedicated to zero-waste living. Customers can shop in bulk and choose returnable containers, with mostly organic French products sourced as locally as possible, alongside durable household and everyday goods. The shop also hosts workshops and talks, rents out items that are only occasionally needed and provides a relaxed space for discovering more responsible ways to consume.",
+        "homeTextNear": "Nearby, Les Glaneuses grocery shop offers bulk shopping, locally sourced products, returnable containers and durable everyday goods designed to reduce waste.",
+        "homeTextFar": "In Paris, Les Glaneuses grocery shop offers another way to shop, combining bulk products, returnable containers, short supply chains and workshops focused on zero-waste living."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Les Glaneuses permet de faire ses courses en vrac entre produits locaux, contenants consignés et accessoires durables pour réduire les déchets du quotidien.",
+    "homeTextFar": "À Paris, l’épicerie Les Glaneuses propose une autre manière de faire ses courses, avec le vrac, la consigne, des produits choisis en circuit court et des ateliers autour du zéro déchet.",
+    "panoramaImage": "/downloads/lesglaneuses.webp"
+  },
+  {
+    "id": "e76e0436-0eef-405d-abff-b1a24591c62f",
+    "name": "Le Producteur Local",
+    "city": "Paris",
+    "address": "168 Boulevard de Charonne, 75020 Paris, France",
+    "website": "https://leproducteurlocal.fr",
+    "openingHours": "Lundi Fermé\nMardi 10h00-14h00, 15h00-20h00\nMercredi 10h00-14h00, 15h00-20h00\nJeudi 10h00-14h00, 15h00-20h00\nVendredi 10h00-14h00, 15h00-20h00\nSamedi 10h00-14h00, 15h00-20h00\nDimanche Fermé",
+    "lat": 48.857217201547655,
+    "lng": 2.3939536932537027,
+    "category": "Épicerie",
+    "createdAt": "2026-08-04T05:07:00.720Z",
+    "updatedAt": "2026-08-04T05:08:20.331Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 43 56 57 51",
+    "miniText": "Le Producteur Local est une épicerie coopérative où producteurs et artisans associés commercialisent directement leurs productions. Les produits sont réunis dans un modèle sans marge prélevée par la coopérative, afin que les producteurs récupèrent l’intégralité du montant de leurs ventes.",
+    "tags": [
+      "Vente directe",
+      "Coopérative de producteurs",
+      "Produits locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Le Producteur Local is a cooperative grocery shop where associated farmers and artisans sell their products directly. The products are brought together through a model in which the cooperative takes no sales margin, allowing producers to receive the full amount generated by their sales.",
+        "homeTextNear": "Nearby, Le Producteur Local grocery shop offers locally produced food sold directly by the farmers and artisans who belong to the cooperative.",
+        "homeTextFar": "In Paris, Le Producteur Local grocery shop offers another way to shop, with products sold directly by farmers and artisans working through a cooperative that takes no sales margin."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Le Producteur Local permet de faire ses courses entre produits alimentaires locaux vendus directement par les producteurs et artisans de la coopérative.",
+    "homeTextFar": "À Paris, l’épicerie Le Producteur Local propose une autre manière de faire ses courses, avec des produits vendus directement par des producteurs et artisans réunis dans une coopérative sans marge sur les ventes.",
+    "panoramaImage": "/downloads/producteurlocslpa.webp"
+  },
+  {
+    "id": "1b48a48e-1235-44fb-b795-3c0461ba271a",
+    "name": "Farinez'vous",
+    "city": "Paris",
+    "website": "https://www.farinez-vous.com",
+    "category": "Boulangerie",
+    "timeZone": "Europe/Paris",
+    "miniText": "Farinez’vous est une boulangerie artisanale, durable et solidaire. Les farines biologiques ou Label Rouge proviennent de céréales cultivées et transformées en Île-de-France, tandis que la gamme courte suit les saisons. Entreprise inclusive et coopérative, Farinez’vous forme et accompagne également des personnes vers les métiers de la boulangerie.",
+    "tags": [
+      "Pain au levain",
+      "Boulangerie solidaire",
+      "Farines franciliennes"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Farinez’vous is an artisanal, sustainable and socially committed bakery. Its organic or Label Rouge flours come from grains grown and processed in the Paris region, while its concise product range follows the seasons. As an inclusive cooperative business, Farinez’vous also trains and supports people entering the bakery profession.",
+        "homeTextNear": "Nearby, Farinez’vous bakery offers sourdough bread, pastries and light meals prepared on site with quality ingredients and a seasonal approach.",
+        "homeTextFar": "In Paris, Farinez’vous bakery offers another way to buy bread, combining artisanal production, flour sourced from the Paris region and a socially committed training and employment project."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la boulangerie Farinez’vous permet de choisir pains au levain, viennoiseries et petite restauration préparés sur place avec des ingrédients de qualité et une gamme attentive aux saisons.",
+    "homeTextFar": "À Paris, la boulangerie Farinez’vous propose une autre manière d’acheter son pain, avec une fabrication artisanale, des farines franciliennes et un projet solidaire tourné vers la formation et l’insertion.",
+    "address": "9 bis Rue Villiot, 75012 Paris, France",
+    "openingHours": "Lundi 07h00-15h00\nMardi 07h00-15h00\nMercredi 07h00-15h00\nJeudi 07h00-15h00\nVendredi 07h00-15h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.84159367787147,
+    "lng": 2.374869522089504,
+    "createdAt": "2026-08-04T05:28:06.008Z",
+    "updatedAt": "2026-08-04T05:30:17.282Z",
+    "phone": "+33 7 57 18 26 84",
+    "panoramaImage": "/downloads/farinezvous.webp"
+  },
+  {
+    "id": "110e9dab-2269-40cf-970e-83d5754103b9",
+    "name": "Farinez'vous",
+    "city": "Paris",
+    "website": "https://www.farinez-vous.com",
+    "category": "Boulangerie",
+    "timeZone": "Europe/Paris",
+    "miniText": "Farinez’vous est une boulangerie artisanale, durable et solidaire. Les farines biologiques ou Label Rouge proviennent de céréales cultivées et transformées en Île-de-France, tandis que la gamme courte suit les saisons. Entreprise inclusive et coopérative, Farinez’vous forme et accompagne également des personnes vers les métiers de la boulangerie.",
+    "tags": [
+      "Pain au levain",
+      "Boulangerie solidaire",
+      "Farines franciliennes"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Farinez’vous is an artisanal, sustainable and socially committed bakery. Its organic or Label Rouge flours come from grains grown and processed in the Paris region, while its concise product range follows the seasons. As an inclusive cooperative business, Farinez’vous also trains and supports people entering the bakery profession.",
+        "homeTextNear": "Nearby, Farinez’vous bakery offers sourdough bread, pastries and light meals prepared on site with quality ingredients and a seasonal approach.",
+        "homeTextFar": "In Paris, Farinez’vous bakery offers another way to buy bread, combining artisanal production, flour sourced from the Paris region and a socially committed training and employment project."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la boulangerie Farinez’vous permet de choisir pains au levain, viennoiseries et petite restauration préparés sur place avec des ingrédients de qualité et une gamme attentive aux saisons.",
+    "homeTextFar": "À Paris, la boulangerie Farinez’vous propose une autre manière d’acheter son pain, avec une fabrication artisanale, des farines franciliennes et un projet solidaire tourné vers la formation et l’insertion.",
+    "address": "74 Rue Clisson, 75013 Paris, France",
+    "openingHours": "Lundi 07h30-19h00\nMardi 07h30-19h00\nMercredi 07h30-19h00\nJeudi 07h30-19h00\nVendredi 07h30-19h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.83003900393317,
+    "lng": 2.3656056797611074,
+    "createdAt": "2026-08-04T05:28:06.008Z",
+    "updatedAt": "2026-08-04T05:30:17.282Z",
+    "phone": "+33 7 57 18 00 67",
+    "panoramaImage": "/downloads/farinezvous.webp"
+  },
+  {
+    "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+    "name": "Farinez'vous",
+    "city": "Paris",
+    "website": "https://www.farinez-vous.com",
+    "category": "Boulangerie",
+    "timeZone": "Europe/Paris",
+    "miniText": "Farinez’vous est une boulangerie artisanale, durable et solidaire. Les farines biologiques ou Label Rouge proviennent de céréales cultivées et transformées en Île-de-France, tandis que la gamme courte suit les saisons. Entreprise inclusive et coopérative, Farinez’vous forme et accompagne également des personnes vers les métiers de la boulangerie.",
+    "tags": [
+      "Pain au levain",
+      "Boulangerie solidaire",
+      "Farines franciliennes"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Farinez’vous is an artisanal, sustainable and socially committed bakery. Its organic or Label Rouge flours come from grains grown and processed in the Paris region, while its concise product range follows the seasons. As an inclusive cooperative business, Farinez’vous also trains and supports people entering the bakery profession.",
+        "homeTextNear": "Nearby, Farinez’vous bakery offers sourdough bread, pastries and light meals prepared on site with quality ingredients and a seasonal approach.",
+        "homeTextFar": "In Paris, Farinez’vous bakery offers another way to buy bread, combining artisanal production, flour sourced from the Paris region and a socially committed training and employment project."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la boulangerie Farinez’vous permet de choisir pains au levain, viennoiseries et petite restauration préparés sur place avec des ingrédients de qualité et une gamme attentive aux saisons.",
+    "homeTextFar": "À Paris, la boulangerie Farinez’vous propose une autre manière d’acheter son pain, avec une fabrication artisanale, des farines franciliennes et un projet solidaire tourné vers la formation et l’insertion.",
+    "address": "19 Rue du Château des Rentiers, 75013 Paris, France",
+    "openingHours": "Lundi 07h00-19h00\nMardi 07h00-19h00\nMercredi 07h00-19h00\nJeudi 07h00-19h00\nVendredi 07h00-19h00\nSamedi Fermé\nDimanche Fermé",
+    "lat": 48.823825245207686,
+    "lng": 2.3705584644179005,
+    "createdAt": "2026-08-04T05:28:06.008Z",
+    "updatedAt": "2026-08-04T05:30:17.282Z",
+    "phone": "+33 7 57 18 71 55",
+    "panoramaImage": "/downloads/farinezvous.webp"
+  },
+  {
+    "id": "472d23b5-f723-4586-a8fd-34522b401ed2",
+    "name": "Laiterie La Chapelle",
+    "city": "Paris",
+    "address": "72 Rue Philippe de Girard, 75018 Paris, France",
+    "website": "https://laiterielachapelle.com",
+    "openingHours": "Lundi Fermé\nMardi 11h30-13h00, 15h30-19h30\nMercredi 11h30-13h00, 15h30-19h30\nJeudi 11h30-13h00, 15h30-19h30\nVendredi 11h30-13h00, 15h30-19h30\nSamedi 09h30-19h30\nDimanche Fermé",
+    "lat": 48.88809456408347,
+    "lng": 2.360915122089504,
+    "category": "Épicerie",
+    "createdAt": "2026-08-04T05:36:10.329Z",
+    "updatedAt": "2026-08-04T05:37:01.830Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 71 27 52 91",
+    "miniText": "Laiterie La Chapelle est une fromagerie artisanale installée au cœur du 18e arrondissement, où les produits sont fabriqués et affinés sur place. Fromages au lait cru, yaourts et autres produits de crèmerie sont élaborés à partir de lait francilien collecté en circuit court, notamment dans une ferme du Vexin située à 35 kilomètres de Paris.",
+    "tags": [
+      "Fromages artisanaux",
+      "Lait francilien",
+      "Vente directe"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Laiterie La Chapelle is an artisanal cheese dairy located in the heart of Paris’s 18th arrondissement, where its products are made and matured on site. Raw-milk cheeses, yogurts and other dairy products are prepared with milk sourced through a short local supply chain, notably from a farm in the Vexin region located 35 kilometres from Paris.",
+        "homeTextNear": "Nearby, Laiterie La Chapelle grocery shop offers cheeses, yogurts and dairy products made on site with milk sourced from the Paris region.",
+        "homeTextFar": "In Paris, Laiterie La Chapelle grocery shop offers another way to shop, with dairy products made and matured in the neighborhood using milk sourced through a short local supply chain."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Laiterie La Chapelle permet d’acheter directement des fromages, yaourts et produits de crèmerie fabriqués sur place avec du lait francilien.",
+    "homeTextFar": "À Paris, l’épicerie Laiterie La Chapelle propose une autre manière de faire ses courses, avec des produits laitiers fabriqués et affinés dans le quartier à partir de lait collecté en circuit court.",
+    "panoramaImage": "/downloads/lachapelleparis.webp"
   }
 ]
