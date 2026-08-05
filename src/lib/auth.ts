@@ -4,6 +4,13 @@ import { prisma } from "@/lib/prisma";
 
 export const AUTH_COOKIE = "im_session";
 
+export const AUTH_SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 365;
+const AUTH_SESSION_REFRESH_THRESHOLD_MS = 1000 * 60 * 60 * 24 * 180;
+
+export function makeSessionExpiresAt(now = Date.now()) {
+  return new Date(now + AUTH_SESSION_TTL_MS);
+}
+
 export function makeToken() {
   return randomBytes(32).toString("hex");
 }
@@ -110,4 +117,59 @@ export async function getCurrentUser() {
   }
 
   return session.user;
+}
+
+export async function refreshCurrentSession() {
+  const jar = await cookies();
+  const raw = jar.get(AUTH_COOKIE)?.value;
+
+  if (!raw) return false;
+
+  const token = hashToken(raw);
+  const session = await prisma.userSession.findUnique({
+    where: { token },
+    select: {
+      id: true,
+      expiresAt: true,
+    },
+  });
+
+  if (!session) return false;
+
+  const now = Date.now();
+
+  if (session.expiresAt.getTime() <= now) {
+    await prisma.userSession.delete({ where: { id: session.id } }).catch(() => null);
+
+    jar.set(AUTH_COOKIE, "", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 0,
+    });
+
+    return false;
+  }
+
+  if (session.expiresAt.getTime() - now > AUTH_SESSION_REFRESH_THRESHOLD_MS) {
+    return true;
+  }
+
+  const expiresAt = makeSessionExpiresAt(now);
+
+  await prisma.userSession.update({
+    where: { id: session.id },
+    data: { expiresAt },
+  });
+
+  jar.set(AUTH_COOKIE, raw, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    expires: expiresAt,
+  });
+
+  return true;
 }

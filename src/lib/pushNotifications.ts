@@ -448,6 +448,69 @@ export async function notifyContextSuggestion(params: {
   };
 }
 
+
+export async function notifyPushInstallationReactivation(
+  params: {
+    platform: string;
+    token: string;
+    subscription?: string | null;
+    title: string;
+    body: string;
+    url: string;
+  },
+) {
+  const payload: PushPayload = {
+    kind: "reactivation",
+    title: params.title,
+    body: params.body,
+    url: params.url,
+    target: "reactivation",
+  };
+
+  try {
+    let sent = false;
+
+    if (
+      (
+        params.platform === "android" ||
+        params.platform === "web"
+      ) &&
+      params.subscription
+    ) {
+      sent = await sendWebPush(
+        params.subscription,
+        withPlatformUrl(
+          payload,
+          params.platform,
+        ),
+      );
+    }
+
+    if (
+      params.platform === "ios" &&
+      params.token
+    ) {
+      sent = await sendApns(
+        params.token,
+        withPlatformUrl(
+          payload,
+          params.platform,
+        ),
+      );
+    }
+
+    return {
+      attempted: 1,
+      sent: sent ? 1 : 0,
+    };
+  } catch {
+    return {
+      attempted: 1,
+      sent: 0,
+    };
+  }
+}
+
 export async function notifyReactivation(params: {
   userId: string;
   title: string;

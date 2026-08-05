@@ -9,5 +9,11 @@
         }
       ]
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/v1/cron/contextual-notifications",
+      "schedule": "0 11 * * *"
+    }
   ]
 }

@@ -75,6 +75,15 @@ export async function POST(req: Request) {
           "updatedAt" = EXCLUDED."updatedAt"
         RETURNING "sessionId"
       ),
+      update_push_installation AS (
+        UPDATE "PushInstallation"
+        SET
+          "platform" = ${platform},
+          "lastSeenAt" = ${now},
+          "updatedAt" = ${now}
+        WHERE "sessionId" = ${sessionId}
+        RETURNING "sessionId"
+      ),
       insert_daily_active_user AS (
         INSERT INTO "DailyActiveUser" (
           "id",

@@ -8,7 +8,8 @@ import {
   pickContextPlaces,
   type ContextSuggestionPlace,
 } from "@/lib/contextSuggestions";
-import { notifyContextSuggestion, notifyReactivation } from "@/lib/pushNotifications";
+import { notifyContextSuggestion, notifyReactivation,
+  notifyPushInstallationReactivation } from "@/lib/pushNotifications";
 
 export const dynamic = "force-dynamic";
 
@@ -372,6 +373,50 @@ export async function GET(req: Request) {
 
   const places = await readPlaces();
 
+  const installations =
+    await prisma.pushInstallation.findMany({
+      where: {
+        platform: {
+          in: ["ios", "android", "web"],
+        },
+        lastSeenAt: {
+          lte: reactivationInactiveSince,
+        },
+        OR: [
+          {
+            lastReactivationAt: null,
+          },
+          {
+            lastReactivationAt: {
+              lte: reactivationCooldownSince,
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+        sessionId: true,
+        userId: true,
+        platform: true,
+        token: true,
+        subscription: true,
+        locale: true,
+        lastSeenAt: true,
+        lastReactivationAt: true,
+        user: {
+          select: {
+            id: true,
+            preferredLocale: true,
+            lastSeenAt: true,
+          },
+        },
+      },
+      take: limit,
+      orderBy: {
+        lastSeenAt: "asc",
+      },
+    });
+
   const users = await prisma.user.findMany({
     where: {
       pushDevices: {
@@ -398,7 +443,8 @@ export async function GET(req: Request) {
   });
 
   const results: Array<{
-    userId: string;
+    userId?: string;
+    installationId?: string;
     status: "skipped_recent" | "skipped_no_location" | "skipped_no_place" | "dry_run" | "sent" | "sent_reactivation" | "not_sent" | "not_sent_reactivation";
     placeId?: string;
     categoryKey?: string;
@@ -406,7 +452,246 @@ export async function GET(req: Request) {
     sent?: number;
   }> = [];
 
+  const processedReactivationUsers =
+    new Set<string>();
+
+  const handledReactivationUsers =
+    new Set<string>();
+
+  for (const installation of installations) {
+    const linkedUserId = installation.userId;
+
+    if (linkedUserId) {
+      if (
+        processedReactivationUsers.has(
+          linkedUserId,
+        )
+      ) {
+        continue;
+      }
+
+      processedReactivationUsers.add(
+        linkedUserId,
+      );
+
+      const recentLinkedInstallation =
+        await prisma.pushInstallation.findFirst({
+          where: {
+            userId: linkedUserId,
+            lastSeenAt: {
+              gt: reactivationInactiveSince,
+            },
+          },
+          select: {
+            id: true,
+          },
+        });
+
+      if (
+        (
+          installation.user?.lastSeenAt &&
+          installation.user.lastSeenAt >
+            reactivationInactiveSince
+        ) ||
+        recentLinkedInstallation
+      ) {
+        results.push({
+          userId: linkedUserId,
+          installationId: installation.id,
+          status: "skipped_recent",
+        });
+        continue;
+      }
+
+      const [
+        recentNotification,
+        recentReactivation,
+      ] = await Promise.all([
+        prisma.contextualNotificationLog.findFirst({
+          where: {
+            userId: linkedUserId,
+            sentAt: {
+              gte: cooldownSince,
+            },
+          },
+          select: {
+            id: true,
+          },
+        }),
+        prisma.contextualNotificationLog.findFirst({
+          where: {
+            userId: linkedUserId,
+            categoryKey:
+              REACTIVATION_CATEGORY_KEY,
+            sentAt: {
+              gte: reactivationCooldownSince,
+            },
+          },
+          select: {
+            id: true,
+          },
+        }),
+      ]);
+
+      if (
+        recentNotification ||
+        recentReactivation
+      ) {
+        results.push({
+          userId: linkedUserId,
+          installationId: installation.id,
+          status: "skipped_recent",
+        });
+        continue;
+      }
+
+      handledReactivationUsers.add(
+        linkedUserId,
+      );
+
+      const preferredLocale =
+        installation.user?.preferredLocale ===
+        "en"
+          ? "en"
+          : "fr";
+
+      const copy = buildReactivationCopy(
+        preferredLocale,
+      );
+
+      const notificationUrl =
+        `${getBaseUrl()}/${preferredLocale}`;
+
+      if (dryRun) {
+        results.push({
+          userId: linkedUserId,
+          installationId: installation.id,
+          status: "dry_run",
+          categoryKey:
+            REACTIVATION_CATEGORY_KEY,
+        });
+        continue;
+      }
+
+      const sent = await notifyReactivation({
+        userId: linkedUserId,
+        title: copy.title,
+        body: copy.body,
+        url: notificationUrl,
+      });
+
+      if (sent.sent > 0) {
+        await prisma.$transaction([
+          prisma.pushInstallation.updateMany({
+            where: {
+              userId: linkedUserId,
+            },
+            data: {
+              lastReactivationAt: now,
+            },
+          }),
+          prisma.contextualNotificationLog.create({
+            data: {
+              userId: linkedUserId,
+              categoryKey:
+                REACTIVATION_CATEGORY_KEY,
+              title: copy.title,
+              body: copy.body,
+            },
+          }),
+        ]);
+
+        results.push({
+          userId: linkedUserId,
+          installationId: installation.id,
+          status: "sent_reactivation",
+          categoryKey:
+            REACTIVATION_CATEGORY_KEY,
+          attempted: sent.attempted,
+          sent: sent.sent,
+        });
+      } else {
+        results.push({
+          userId: linkedUserId,
+          installationId: installation.id,
+          status: "not_sent_reactivation",
+          categoryKey:
+            REACTIVATION_CATEGORY_KEY,
+          attempted: sent.attempted,
+          sent: sent.sent,
+        });
+      }
+
+      continue;
+    }
+
+    const locale =
+      installation.locale === "en"
+        ? "en"
+        : "fr";
+
+    const copy = buildReactivationCopy(locale);
+    const notificationUrl =
+      `${getBaseUrl()}/${locale}`;
+
+    if (dryRun) {
+      results.push({
+        installationId: installation.id,
+        status: "dry_run",
+        categoryKey:
+          REACTIVATION_CATEGORY_KEY,
+      });
+      continue;
+    }
+
+    const sent =
+      await notifyPushInstallationReactivation({
+        platform: installation.platform,
+        token: installation.token,
+        subscription:
+          installation.subscription,
+        title: copy.title,
+        body: copy.body,
+        url: notificationUrl,
+      });
+
+    if (sent.sent > 0) {
+      await prisma.pushInstallation.update({
+        where: {
+          id: installation.id,
+        },
+        data: {
+          lastReactivationAt: now,
+        },
+      });
+
+      results.push({
+        installationId: installation.id,
+        status: "sent_reactivation",
+        categoryKey:
+          REACTIVATION_CATEGORY_KEY,
+        attempted: sent.attempted,
+        sent: sent.sent,
+      });
+    } else {
+      results.push({
+        installationId: installation.id,
+        status: "not_sent_reactivation",
+        categoryKey:
+          REACTIVATION_CATEGORY_KEY,
+        attempted: sent.attempted,
+        sent: sent.sent,
+      });
+    }
+  }
+
   for (const user of users) {
+    if (
+      handledReactivationUsers.has(user.id)
+    ) {
+      continue;
+    }
+
     const recent = await prisma.contextualNotificationLog.findFirst({
       where: {
         userId: user.id,
@@ -422,72 +707,6 @@ export async function GET(req: Request) {
     if (recent) {
       results.push({ userId: user.id, status: "skipped_recent" });
       continue;
-    }
-
-    if (!user.lastSeenAt || user.lastSeenAt <= reactivationInactiveSince) {
-      const recentReactivation = await prisma.contextualNotificationLog.findFirst({
-        where: {
-          userId: user.id,
-          categoryKey: REACTIVATION_CATEGORY_KEY,
-          sentAt: {
-            gte: reactivationCooldownSince,
-          },
-        },
-        select: {
-          id: true,
-        },
-      });
-
-      if (!recentReactivation) {
-        const locale = user.preferredLocale === "en" ? "en" : "fr";
-        const copy = buildReactivationCopy(user.preferredLocale);
-        const notificationUrl = `${getBaseUrl()}/${locale}`;
-
-        if (dryRun) {
-          results.push({
-            userId: user.id,
-            status: "dry_run",
-            categoryKey: REACTIVATION_CATEGORY_KEY,
-          });
-          continue;
-        }
-
-        const sent = await notifyReactivation({
-          userId: user.id,
-          title: copy.title,
-          body: copy.body,
-          url: notificationUrl,
-        });
-
-        if (sent.sent > 0) {
-          await prisma.contextualNotificationLog.create({
-            data: {
-              userId: user.id,
-              categoryKey: REACTIVATION_CATEGORY_KEY,
-              title: copy.title,
-              body: copy.body,
-            },
-          });
-
-          results.push({
-            userId: user.id,
-            status: "sent_reactivation",
-            categoryKey: REACTIVATION_CATEGORY_KEY,
-            attempted: sent.attempted,
-            sent: sent.sent,
-          });
-          continue;
-        }
-
-        results.push({
-          userId: user.id,
-          status: "not_sent_reactivation",
-          categoryKey: REACTIVATION_CATEGORY_KEY,
-          attempted: sent.attempted,
-          sent: sent.sent,
-        });
-        continue;
-      }
     }
 
     const userLat = Number(user.lastKnownLat);
@@ -510,9 +729,12 @@ export async function GET(req: Request) {
     });
 
     const pool = preferredPoolForUser(nearbyPlaces, user.homeCity);
-    const openCandidates = pickContextPlaces(pool.filter(isContextSuggestionCandidateOpen), now);
-    const fallbackCandidates = pickContextPlaces(pool, now);
-    const place = openCandidates[0] ?? fallbackCandidates[0] ?? null;
+    const openCandidates = pickContextPlaces(
+      pool.filter(isContextSuggestionCandidateOpen),
+      now,
+    );
+
+    const place = openCandidates[0] ?? null;
 
     if (!place) {
       results.push({ userId: user.id, status: "skipped_no_place" });
@@ -583,6 +805,8 @@ export async function GET(req: Request) {
     ok: true,
     dryRun,
     cooldownDays,
+    checkedInstallations:
+      installations.length,
     checkedUsers: users.length,
     locationMaxAgeDays,
     reactivationInactiveDays,

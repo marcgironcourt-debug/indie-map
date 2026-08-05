@@ -34,9 +34,68 @@ export function normalizeContextCategory(value: string | undefined) {
   return v.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-export function getContextCategoryTargets(now: Date) {
-  const hour = now.getHours();
-  const day = now.getDay();
+function getLocalHourAndDay(
+  now: Date,
+  timeZone?: string,
+) {
+  const fallback = {
+    hour: now.getHours(),
+    day: now.getDay(),
+  };
+
+  const zone = String(timeZone ?? "").trim();
+  if (!zone) return fallback;
+
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: zone,
+      weekday: "short",
+      hour: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(now);
+
+    const hour = Number(
+      parts.find((part) => part.type === "hour")?.value,
+    );
+
+    const weekday =
+      parts.find((part) => part.type === "weekday")?.value ??
+      "";
+
+    const days: Record<string, number> = {
+      Sun: 0,
+      Mon: 1,
+      Tue: 2,
+      Wed: 3,
+      Thu: 4,
+      Fri: 5,
+      Sat: 6,
+    };
+
+    const day = days[weekday];
+
+    if (!Number.isFinite(hour) || day === undefined) {
+      return fallback;
+    }
+
+    return {
+      hour,
+      day,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+export function getContextCategoryTargets(
+  now: Date,
+  timeZone?: string,
+) {
+  const { hour, day } = getLocalHourAndDay(
+    now,
+    timeZone,
+  );
+
   const isWeekend = day === 0 || day === 6;
   const targets: string[] = [];
 
@@ -61,7 +120,14 @@ export function getContextCategoryTargets(now: Date) {
   }
 
   if (isWeekend) {
-    targets.push("marche", "ferme", "brunch", "librairie", "alternatif", "cafe");
+    targets.push(
+      "marche",
+      "ferme",
+      "brunch",
+      "librairie",
+      "alternatif",
+      "cafe",
+    );
   }
 
   if (targets.length === 0) {
@@ -71,21 +137,50 @@ export function getContextCategoryTargets(now: Date) {
   return [...new Set(targets)];
 }
 
-export function pickContextPlaces<T extends ContextSuggestionPlace>(list: T[], now: Date) {
-  const targets = getContextCategoryTargets(now);
+export function pickContextPlaces<
+  T extends ContextSuggestionPlace,
+>(
+  list: T[],
+  now: Date,
+) {
   return list
     .map((item) => {
-      const normalized = normalizeContextCategory(item.category);
-      const index = targets.indexOf(normalized);
+      const targets = getContextCategoryTargets(
+        now,
+        item.timeZone,
+      );
+
+      const normalized = normalizeContextCategory(
+        item.category,
+      );
+
+      const targetIndex = targets.indexOf(normalized);
+      const matchesCurrentContext = targetIndex >= 0;
+
       return {
         item,
-        index,
-        updatedAt: Date.parse(item.updatedAt || item.createdAt || "") || 0
+        matchesCurrentContext,
+        targetIndex: matchesCurrentContext
+          ? targetIndex
+          : Number.MAX_SAFE_INTEGER,
+        updatedAt:
+          Date.parse(
+            item.updatedAt || item.createdAt || "",
+          ) || 0,
       };
     })
-    .filter((entry) => entry.index >= 0)
     .sort((a, b) => {
-      if (a.index !== b.index) return a.index - b.index;
+      if (
+        a.matchesCurrentContext !==
+        b.matchesCurrentContext
+      ) {
+        return a.matchesCurrentContext ? -1 : 1;
+      }
+
+      if (a.targetIndex !== b.targetIndex) {
+        return a.targetIndex - b.targetIndex;
+      }
+
       return b.updatedAt - a.updatedAt;
     })
     .map((entry) => entry.item);

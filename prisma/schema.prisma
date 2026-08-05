@@ -149,9 +149,10 @@ model User {
   sessions                   UserSession[]
   passwordResetTokens        PasswordResetToken[]
   pushDevices                PushDevice[]
+  pushInstallations          PushInstallation[]
   contextualNotificationLogs ContextualNotificationLog[]
-  appUpdateNotificationLogs AppUpdateNotificationLog[]
-  events                    Event[]
+  appUpdateNotificationLogs  AppUpdateNotificationLog[]
+  events                     Event[]
 }
 
 model Friendship {
@@ -330,6 +331,27 @@ model PushDevice {
 
   @@index([userId])
   @@index([platform])
+}
+
+model PushInstallation {
+  id                 String    @id @default(uuid())
+  sessionId          String    @unique
+  userId             String?
+  platform           String
+  token              String    @unique
+  subscription       String?
+  locale             String    @default("fr")
+  lastSeenAt         DateTime  @default(now())
+  lastReactivationAt DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([platform])
+  @@index([lastSeenAt])
+  @@index([lastReactivationAt])
 }
 
 model ContextualNotificationLog {

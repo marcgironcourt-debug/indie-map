@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { getOrCreateInstallationSessionId } from "@/lib/installationSession";
 
 function makeId() {
   try {
@@ -33,7 +34,6 @@ function getPlatform() {
 
 export default function PresenceHeartbeat() {
   React.useEffect(() => {
-    const sessionKey = "im_session_id";
     const launchKey = "im_launch_id";
     const heartbeatLockKey = "im_presence_heartbeat_at";
 
@@ -43,18 +43,8 @@ export default function PresenceHeartbeat() {
      */
     const heartbeatLockMs = 60_000;
 
-    let sessionId = "";
-
-    try {
-      sessionId = window.localStorage.getItem(sessionKey) || "";
-
-      if (!sessionId) {
-        sessionId = makeId();
-        window.localStorage.setItem(sessionKey, sessionId);
-      }
-    } catch {
-      sessionId = makeId();
-    }
+    const sessionId =
+      getOrCreateInstallationSessionId();
 
     let launchId = "";
 

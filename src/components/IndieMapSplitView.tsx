@@ -7,6 +7,8 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ContributeForm from "@/components/ContributeForm";
 import { trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
+import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
+import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberInstallationPushToken } from "@/lib/installationSession";
 
 declare global {
   interface Window {
@@ -49,7 +51,6 @@ type SharedListChoice = {
   places?: { placeId: string }[];
 };
 
-const SAVED_PLACES_KEY = "im-saved-places";
 
 
 function normalizePushToken(value: unknown) {
@@ -63,36 +64,27 @@ async function registerPushToken(token: string) {
   const res = await fetch("/api/v1/me/push-devices", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ platform: "ios", token }),
+    body: JSON.stringify({
+      platform: "ios",
+      token,
+      sessionId:
+        getOrCreateInstallationSessionId(),
+      locale: getInstallationLocale(),
+    }),
   });
 
-  if (res.status === 401) return false;
   return res.ok;
 }
 
-function readSavedPlaces(): SavedPlace[] {
-  try {
-    if (typeof window === "undefined") return [];
-    const raw = window.localStorage.getItem(SAVED_PLACES_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed
-      .map((item: any) => ({
-        id: String(item?.id ?? "").trim(),
-        name: String(item?.name ?? "").trim(),
-        panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
-        city: String(item?.city ?? "").trim() || undefined,
-        address: String(item?.address ?? "").trim() || undefined,
-        lat: typeof item?.lat === "number" ? item.lat : undefined,
-        lng: typeof item?.lng === "number" ? item.lng : undefined,
-        createdAt: String(item?.createdAt ?? "").trim() || undefined,
-        updatedAt: String(item?.updatedAt ?? "").trim() || undefined
-      }))
-      .filter((item: SavedPlace) => !!item.id && !!item.name);
-  } catch {
-    return [];
-  }
+function readSavedPlaces(userId?: string | null): SavedPlace[] {
+  return readSavedPlacesStorage<SavedPlace>(userId)
+    .filter((item) => !!item && typeof item === "object")
+    .map((item) => ({
+      ...item,
+      id: String(item.id ?? "").trim(),
+      name: String(item.name ?? "").trim(),
+    }))
+    .filter((item) => item.id.length > 0 && item.name.length > 0);
 }
 
 type UILocale = "fr" | "en";
@@ -537,13 +529,21 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       const res = await fetch("/api/v1/me/profile", { cache: "no-store" });
       if (res.status === 401) {
         setAuthProfile(null);
+        setSavedPlacesUserId(null);
         setIncomingFriendRequestCount(0);
         return null;
       }
       const data = await res.json().catch(() => null);
       const user = data?.user ?? null;
       if (data?.ok && user) {
+        const migratedSavedPlaces =
+          await migrateLegacySavedPlacesToUser<SavedPlace>(
+            user.id,
+          );
+
         setAuthProfile(user);
+        setSavedPlacesUserId(user.id);
+        setSavedPlaces(migratedSavedPlaces);
         setProfileUsername(user.username || "");
         setProfileAvatarUrl(user.avatarUrl || "");
         setProfileAvatarColor(user.avatarColor || "#F97316");
@@ -562,12 +562,8 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         setVisitedPlacesVisibleToFriends(user.visitedPlacesVisibleToFriends === true);
         return user as AuthProfile;
       }
-      setAuthProfile(null);
-      setIncomingFriendRequestCount(0);
       return null;
     } catch {
-      setAuthProfile(null);
-      setIncomingFriendRequestCount(0);
       return null;
     } finally {
       setAuthLoading(false);
@@ -613,6 +609,27 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   }, [authProfile?.id]);
 
   React.useEffect(() => {
+    const onAuthExpired = () => {
+      setAuthProfile(null);
+      setSavedPlacesUserId(null);
+      setIncomingFriendRequestCount(0);
+      setUnseenSharedListCount(0);
+    };
+
+    window.addEventListener(
+      "im:auth-expired",
+      onAuthExpired as EventListener,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "im:auth-expired",
+        onAuthExpired as EventListener,
+      );
+    };
+  }, []);
+
+  React.useEffect(() => {
     refreshAuthProfile();
   }, [refreshAuthProfile]);
 
@@ -624,8 +641,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       const token = normalizePushToken(rawToken);
       if (!token) return;
       window.__IM_PENDING_PUSH_TOKEN__ = token;
-
-      if (!authProfile) return;
+      rememberInstallationPushToken(token);
 
       registerPushToken(token)
         .then((ok) => {
@@ -636,8 +652,15 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         .catch(() => null);
     };
 
-    const pendingToken = normalizePushToken(window.__IM_PENDING_PUSH_TOKEN__);
-    if (pendingToken && authProfile) {
+    const pendingToken =
+      normalizePushToken(
+        window.__IM_PENDING_PUSH_TOKEN__,
+      ) ??
+      normalizePushToken(
+        readInstallationPushToken(),
+      );
+
+    if (pendingToken) {
       registerPushToken(pendingToken)
         .then((ok) => {
           if (ok && window.__IM_PENDING_PUSH_TOKEN__ === pendingToken) {
@@ -876,6 +899,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       }
 
       setAuthProfile(null);
+      setSavedPlacesUserId(null);
       setAuthMode("login");
       setAuthEmail("");
       setAuthUsername("");
@@ -980,7 +1004,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
 
   React.useEffect(() => {
     const syncSavedPlaces = () => {
-      setSavedPlaces(readSavedPlaces());
+      setSavedPlaces(readSavedPlaces(authProfile ? authProfile.id : undefined));
     };
 
     syncSavedPlaces();
@@ -990,11 +1014,11 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       window.removeEventListener("storage", syncSavedPlaces);
       window.removeEventListener("im:saved-places-updated", syncSavedPlaces as EventListener);
     };
-  }, []);
+  }, [authProfile?.id]);
 
   React.useEffect(() => {
     if (!authProfile) return;
-    if (panel !== "myPlacesList") return;
+    if (businesses.length === 0) return;
 
     let cancelled = false;
 
@@ -1011,7 +1035,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         if (cancelled || savedPlaceMutationIdsRef.current.size > 0) return;
 
         setSavedPlaces(next);
-        window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+        writeSavedPlacesStorage(next, authProfile?.id ?? null);
         window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
       } catch {}
     }
@@ -1021,7 +1045,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     return () => {
       cancelled = true;
     };
-  }, [authProfile?.id, businesses, panel]);
+  }, [authProfile?.id, businesses]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
@@ -1162,25 +1186,49 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
         ];
 
     setSavedPlaces(next);
-    window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+    writeSavedPlacesStorage(next, authProfile?.id ?? null);
     window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
 
-    try {
-      fetch("/api/v1/me/saved-places", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          placeId: id,
-          saved: !exists
-        })
-      }).catch(() => {}).finally(() => {
+    if (!authProfile) {
+      savedPlaceMutationIdsRef.current.delete(id);
+      return;
+    }
+
+    const previousPlace = savedPlaces.find(
+      (item) => String(item.id) === id,
+    );
+
+    void syncSavedPlaceToServer(
+      authProfile.id,
+      id,
+      !exists,
+    )
+      .then((result) => {
+        if (result.ok) return;
+
+        const latest = readSavedPlaces(authProfile.id);
+        const reverted = exists
+          ? previousPlace &&
+            !latest.some((item) => String(item.id) === id)
+            ? [previousPlace, ...latest]
+            : latest
+          : latest.filter((item) => String(item.id) !== id);
+
+        setSavedPlaces(reverted);
+        writeSavedPlacesStorage(reverted, authProfile.id);
+
+        if (result.unauthorized) {
+          setAuthProfile(null);
+          setSavedPlacesUserId(null);
+        }
+
+        window.dispatchEvent(
+          new CustomEvent("im:saved-places-updated"),
+        );
+      })
+      .finally(() => {
         savedPlaceMutationIdsRef.current.delete(id);
       });
-    } catch {
-      savedPlaceMutationIdsRef.current.delete(id);
-    }
   }
 
   async function reloadSelectedDetailPlaceSharedLists() {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, refreshCurrentSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -87,6 +87,8 @@ export async function GET() {
     if (!user) {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
     }
+
+    await refreshCurrentSession();
 
     const contributionsCount = await prisma.submission.count({
       where: {

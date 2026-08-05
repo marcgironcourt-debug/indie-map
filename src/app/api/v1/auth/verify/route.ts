@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { AUTH_COOKIE, hashToken, makeToken, makeUniqueUsername } from "@/lib/auth";
+import { AUTH_COOKIE, hashToken, makeToken, makeUniqueUsername, makeSessionExpiresAt } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -43,7 +43,7 @@ export async function GET(req: Request) {
 
     const rawSession = makeToken();
     const sessionToken = hashToken(rawSession);
-    const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
+    const expiresAt = makeSessionExpiresAt();
 
     await prisma.userSession.create({
       data: {

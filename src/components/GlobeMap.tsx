@@ -5,6 +5,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { isOpenNowFR, parseOpeningHoursFR } from "@/lib/openingHours";
 import { trackEvent } from "@/lib/analytics";
+import { getSavedPlacesUserId, readSavedPlacesStorage, syncSavedPlaceToServer as syncSavedPlaceToAccount, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
 
 const isEnUI = typeof window !== "undefined" ? /^\/en(\/|$)/.test(window.location.pathname) : false;
 const ui = (fr: string, en: string) => (isEnUI ? en : fr);
@@ -118,37 +119,50 @@ function escapeHtml(s: string) {
     .replace(/>/g, "&gt;");
 }
 
-const SAVED_PLACES_KEY = "im-saved-places";
-
 function readSavedPlaces() {
-  try {
-    if (typeof window === "undefined") return [];
-    const raw = window.localStorage.getItem(SAVED_PLACES_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  return readSavedPlacesStorage<any>();
 }
 
 function isSavedPlace(id: string) {
   return readSavedPlaces().some((item: any) => String(item?.id ?? "") === String(id ?? ""));
 }
 
-function syncSavedPlaceToServer(placeId: string, saved: boolean) {
-  try {
-    fetch("/api/v1/me/saved-places", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        placeId,
-        saved
-      })
-    }).catch(() => {});
-  } catch {}
+function syncSavedPlaceToServer(
+  placeId: string,
+  saved: boolean,
+  previousPlace: any,
+) {
+  const userId = getSavedPlacesUserId();
+  if (!userId) return;
+
+  void syncSavedPlaceToAccount(userId, placeId, saved)
+    .then((result) => {
+      if (result.ok) return;
+
+      const latest = readSavedPlaces();
+      const reverted = saved
+        ? latest.filter(
+            (item: any) => String(item?.id ?? "") !== placeId,
+          )
+        : previousPlace &&
+          !latest.some(
+            (item: any) => String(item?.id ?? "") === placeId,
+          )
+          ? [previousPlace, ...latest]
+          : latest;
+
+      writeSavedPlacesStorage(reverted);
+
+      if (result.unauthorized) {
+        window.dispatchEvent(
+          new CustomEvent("im:auth-expired"),
+        );
+      }
+
+      window.dispatchEvent(
+        new CustomEvent("im:saved-places-updated"),
+      );
+    });
 }
 
 function toggleSavedPlace(place: any) {
@@ -158,7 +172,10 @@ function toggleSavedPlace(place: any) {
     const id = String(place?.id ?? "").trim();
     if (!id) return false;
 
-    const exists = current.some((item: any) => String(item?.id ?? "") === id);
+    const previousPlace = current.find(
+      (item: any) => String(item?.id ?? "") === id,
+    );
+    const exists = Boolean(previousPlace);
     const next = exists
       ? current.filter((item: any) => String(item?.id ?? "") !== id)
       : [
@@ -176,9 +193,9 @@ function toggleSavedPlace(place: any) {
 
     const saved = !exists;
 
-    window.localStorage.setItem(SAVED_PLACES_KEY, JSON.stringify(next));
+    writeSavedPlacesStorage(next);
     window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
-    syncSavedPlaceToServer(id, saved);
+    syncSavedPlaceToServer(id, saved, previousPlace);
     return saved;
   } catch {
     return false;
