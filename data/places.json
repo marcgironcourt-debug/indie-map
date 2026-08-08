@@ -17772,5 +17772,209 @@
     "homeTextNear": "Tout près, l’épicerie Laiterie La Chapelle permet d’acheter directement des fromages, yaourts et produits de crèmerie fabriqués sur place avec du lait francilien.",
     "homeTextFar": "À Paris, l’épicerie Laiterie La Chapelle propose une autre manière de faire ses courses, avec des produits laitiers fabriqués et affinés dans le quartier à partir de lait collecté en circuit court.",
     "panoramaImage": "/downloads/lachapelleparis.webp"
+  },
+  {
+    "id": "962b7f8d-7f25-498e-9658-0b32866a0d30",
+    "name": "Maison Bretonne",
+    "city": "Paris",
+    "address": "5 Rue de Rivoli, 75004 Paris, France",
+    "website": "https://www.maisonbretonneparis.fr",
+    "openingHours": "Lundi 11h00-19h00\nMardi 11h00-19h00\nMercredi 11h00-19h00\nJeudi 11h00-21h00\nVendredi 11h00-21h00\nSamedi 11h00-21h00\nDimanche 11h00-21h00",
+    "lat": 48.85592806431208,
+    "lng": 2.358980803690166,
+    "category": "Restaurant",
+    "createdAt": "2026-08-08T06:31:38.821Z",
+    "updatedAt": "2026-08-08T06:37:15.122Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 45 30 00 55",
+    "miniText": "Maison Bretonne met à l’honneur les produits du terroir breton avec une cuisine de saison préparée à partir de produits frais, majoritairement bio et en provenance directe de Bretagne. La carte mêle galettes de blé noir, recettes carnées et végétariennes, desserts gourmands et boissons exclusivement sourcées en Bretagne.",
+    "tags": [
+      "Crêperie bretonne",
+      "Produits bretons",
+      "Produits bio"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Maison Bretonne showcases Breton produce through seasonal cooking made with fresh, mostly organic ingredients sourced directly from Brittany. The menu combines buckwheat galettes, meat and vegetarian dishes, indulgent desserts and drinks sourced exclusively in Brittany.",
+        "homeTextNear": "Nearby, Maison Bretonne is a crêperie serving fresh, mostly organic produce sourced directly from Brittany.",
+        "homeTextFar": "In Paris, Maison Bretonne is a seasonal Breton crêperie using produce sourced directly from Brittany."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, Maison Bretonne est une crêperie qui cuisine des produits frais, majoritairement bio et venus directement de Bretagne.",
+    "homeTextFar": "À Paris, Maison Bretonne est une crêperie bretonne de saison, avec des produits venus directement de Bretagne.",
+    "panoramaImage": "/downloads/maisonbretonne.webp"
+  },
+  {
+    "id": "246e6bf8-5a20-45c7-80dd-e2a4f0dcbae6",
+    "name": "Cocottes",
+    "city": "Bois-Colombes",
+    "address": "5 Rue Eugénie Carmignat, 92270 Bois-Colombes, France",
+    "website": "https://restaurant-cocottes.com",
+    "openingHours": "Lundi Fermé\nMardi 12h00-14h00, 19h00-22h30\nMercredi 12h00-14h00, 19h00-22h30\nJeudi 12h00-14h00, 19h00-22h30\nVendredi 12h00-14h00, 19h00-22h30\nSamedi 12h00-14h00, 19h00-22h30\nDimanche Fermé",
+    "lat": 48.925704141737064,
+    "lng": 2.2734383865080905,
+    "category": "Restaurant",
+    "createdAt": "2026-08-08T06:45:13.913Z",
+    "updatedAt": "2026-08-08T06:48:23.338Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 85 12 11 61",
+    "miniText": "Cocottes est un restaurant bistronomique de Bois-Colombes avec une carte courte, de saison et 100 % faite maison. La cuisine s’appuie sur des produits frais issus de circuits courts, dans une démarche responsable et inclusive, en employant des personnes en situation de handicap mental ou cognitif.",
+    "tags": [
+      "Cuisine bistronomique",
+      "Circuits courts",
+      "Restaurant inclusif"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Cocottes is a bistronomic restaurant in Bois-Colombes with a short, seasonal and entirely homemade menu. Its cooking relies on fresh ingredients sourced through short supply chains, with a responsible and inclusive approach that employs people with mental or cognitive disabilities.",
+        "homeTextNear": "Nearby, Cocottes restaurant serves homemade seasonal food using fresh ingredients sourced through short supply chains.",
+        "homeTextFar": "In Bois-Colombes, Cocottes restaurant offers another way to eat out, with homemade seasonal bistronomic cooking based on short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, le restaurant Cocottes cuisine maison des produits frais de saison issus de circuits courts.",
+    "homeTextFar": "À Bois-Colombes, le restaurant Cocottes propose une autre manière de manger, avec une cuisine bistronomique maison, de saison et en circuits courts.",
+    "panoramaImage": "/downloads/cocottesparis.webp"
+  },
+  {
+    "id": "cd843b3e-1b78-4f01-892e-6b090ebc4a0f",
+    "name": "Ferme du Thil",
+    "city": "Le Thil-en-Vexin",
+    "address": "42 Rue de la Grande Rue, 27150 Le Thil-en-Vexin, France",
+    "website": "https://www.ferme-du-thil.fr",
+    "openingHours": "Lundi 07h00-22h00\nMardi 07h00-22h00\nMercredi 07h00-22h00\nJeudi 07h00-22h00\nVendredi 07h00-22h00\nSamedi 07h00-22h00\nDimanche 07h00-22h00",
+    "lat": 49.311391955624586,
+    "lng": 1.5561361153441202,
+    "category": "Ferme",
+    "createdAt": "2026-08-08T06:49:57.942Z",
+    "updatedAt": "2026-08-08T06:50:53.280Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 79 83 83 17",
+    "miniText": "Ferme familiale du Vexin, la Ferme du Thil produit des pommes de terre depuis trois générations et développe la vente directe de produits fermiers. Son distributeur en libre-service réunit plusieurs variétés de pommes de terre de l’exploitation, des fruits et légumes de saison ainsi qu’une sélection de produits de producteurs locaux.",
+    "tags": [
+      "Pommes de terre",
+      "Vente directe",
+      "Produits locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A family farm in the Vexin, Ferme du Thil has been growing potatoes for three generations and focuses on direct farm sales. Its self-service vending system brings together several varieties of potatoes grown on the farm, seasonal fruit and vegetables, and a selection of products from local producers.",
+        "homeTextNear": "Nearby, Ferme du Thil offers direct access to its own potatoes and other local farm products.",
+        "homeTextFar": "In Le Thil-en-Vexin, Ferme du Thil offers another way to buy directly from a farm, combining its own potatoes with products from local producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la Ferme du Thil permet d’acheter directement ses pommes de terre et des produits fermiers locaux.",
+    "homeTextFar": "Au Thil-en-Vexin, la Ferme du Thil propose une autre manière d’acheter à la ferme, entre pommes de terre de l’exploitation et produits de producteurs locaux.",
+    "panoramaImage": "/downloads/fermeduthil.webp"
+  },
+  {
+    "id": "86315e11-bb94-42a9-843a-d1b6fd68591e",
+    "name": "Patoche - Microbrasserie",
+    "city": "Paris",
+    "address": "32 Rue des Trois Frères, 75018 Paris, France",
+    "website": "https://brasseriepatoche.fr/",
+    "openingHours": "Lundi 17h00-23h00\nMardi 17h00-00h00\nMercredi 17h00-00h00\nJeudi 17h00-01h00\nVendredi 17h00-01h00\nSamedi 15h00-01h00\nDimanche 16h00-23h00",
+    "lat": 48.88518468946678,
+    "lng": 2.3404965730161806,
+    "category": "Brasserie",
+    "createdAt": "2026-08-08T06:54:26.250Z",
+    "updatedAt": "2026-08-08T06:55:43.578Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 74 64 07 20",
+    "miniText": "Patoche est une microbrasserie de Montmartre où les bières sont brassées et dégustées sur place. Une douzaine de bières constamment renouvelées sortent des fermenteurs, élaborées avec une majorité d’ingrédients bio et plus de 95 % de matières premières françaises.",
+    "tags": [
+      "Bières brassées sur place",
+      "Ingrédients bio",
+      "Matières premières françaises"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Patoche is a Montmartre microbrewery where beers are brewed and served on site. Around twelve constantly changing beers come from its fermenters, made with mostly organic ingredients and more than 95% French raw materials.",
+        "homeTextNear": "Nearby, Patoche microbrewery brews its beers on site using more than 95% French raw materials.",
+        "homeTextFar": "In Paris, Patoche microbrewery offers beers brewed and served directly on site in Montmartre."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la microbrasserie Patoche brasse ses bières sur place avec plus de 95 % de matières premières françaises.",
+    "homeTextFar": "À Paris, la microbrasserie Patoche permet de boire à la source des bières brassées sur place à Montmartre.",
+    "panoramaImage": "/downloads/brasspatoche.webp"
+  },
+  {
+    "id": "880f2223-6584-4b2e-908a-f9d4fb0a7ccf",
+    "name": "Brasserie de l’Être",
+    "city": "Paris",
+    "address": "12 Rue Armand Carrel, 75019 Paris, France",
+    "website": "https://brasseriedeletre.paris",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 16h00-22h00\nJeudi 16h00-22h00\nVendredi 16h00-23h00\nSamedi 16h00-23h00\nDimanche Fermé",
+    "lat": 48.88297041174799,
+    "lng": 2.3805715460323627,
+    "category": "Brasserie",
+    "createdAt": "2026-08-08T06:59:44.509Z",
+    "updatedAt": "2026-08-08T07:08:39.075Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 40 16 56 62",
+    "miniText": "Brasserie bio et engagée du 19e arrondissement, la Brasserie de l’Être produit des bières certifiées AB et Nature & Progrès à partir d’ingrédients français, avec des malts franciliens et des houblons alsaciens. Ses bières vivantes sont non filtrées et non pasteurisées, dans une démarche de circuits courts, d’économie circulaire et d’insertion sociale.",
+    "tags": [
+      "Bières bio",
+      "Circuits courts",
+      "Insertion sociale"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic and socially committed brewery from Paris’s 19th arrondissement, Brasserie de l’Être produces AB and Nature & Progrès certified beers using French ingredients, including malts from the Paris region and hops from Alsace. Its living beers are unfiltered and unpasteurized, with a strong focus on short supply chains, circular economy and social inclusion.",
+        "homeTextNear": "Nearby, Brasserie de l’Être offers organic beers made with French ingredients sourced as locally as possible.",
+        "homeTextFar": "In Paris, Brasserie de l’Être offers another way to enjoy craft beer, with an organic, local and socially committed approach."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, la Brasserie de l’Être propose des bières bio élaborées avec des matières premières françaises et locales autant que possible.",
+    "homeTextFar": "À Paris, la Brasserie de l’Être propose une autre manière de boire de la bière artisanale, bio, locale et engagée.",
+    "panoramaImage": "/downloads/brasseriedeletre.webp"
+  },
+  {
+    "id": "c8481f91-b18b-48a0-82ec-4804d77943ca",
+    "name": "Altrimenti",
+    "city": "Paris",
+    "address": "56 Boulevard Sérurier, 75019 Paris, France",
+    "website": "https://www.altrimenti-asso.org/w/",
+    "openingHours": "Lundi Fermé\nMardi 10h00-18h00\nMercredi 10h00-18h00\nJeudi 10h00-18h00\nVendredi 10h00-18h00\nSamedi 10h00-18h00\nDimanche Fermé",
+    "lat": 48.88064544537395,
+    "lng": 2.39827457301618,
+    "category": "Épicerie",
+    "createdAt": "2026-08-08T07:13:42.409Z",
+    "updatedAt": "2026-08-08T07:19:04.256Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 46 13 64 56",
+    "miniText": "Altrimenti est une épicerie et maison de l’alimentation durable engagée contre le gaspillage alimentaire. Sa gamme Altripasti transforme des légumes bio déclassés en produits artisanaux, et l’association organise aussi des ateliers de cuisine et de sensibilisation à l’anti-gaspi.",
+    "tags": [
+      "Anti-gaspillage",
+      "Alimentation durable",
+      "Ateliers"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Altrimenti is a sustainable food shop and community hub committed to reducing food waste. Its Altripasti range transforms downgraded organic vegetables into artisanal products, while the association also runs cooking workshops and educational activities focused on food waste reduction.",
+        "homeTextNear": "Nearby, Altrimenti grocery shop offers artisanal anti-waste products and workshops on sustainable food.",
+        "homeTextFar": "In Paris, Altrimenti grocery shop offers another way to shop, combining anti-waste products with sustainable cooking workshops."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, l’épicerie Altrimenti propose des produits artisanaux anti-gaspi et des ateliers autour de l’alimentation durable.",
+    "homeTextFar": "À Paris, l’épicerie Altrimenti propose une autre manière de faire ses courses, entre produits anti-gaspi et ateliers de cuisine durable.",
+    "panoramaImage": "/downloads/altrimentipar.webp"
   }
 ]
