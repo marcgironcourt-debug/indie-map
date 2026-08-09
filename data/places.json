@@ -17976,5 +17976,39 @@
     "homeTextNear": "Tout près, l’épicerie Altrimenti propose des produits artisanaux anti-gaspi et des ateliers autour de l’alimentation durable.",
     "homeTextFar": "À Paris, l’épicerie Altrimenti propose une autre manière de faire ses courses, entre produits anti-gaspi et ateliers de cuisine durable.",
     "panoramaImage": "/downloads/altrimentipar.webp"
+  },
+  {
+    "id": "506f01ef-cf78-4c5a-bf0c-4f82bd68076c",
+    "name": "Simply Best Food",
+    "city": "Meudon",
+    "address": "4 Place Tony de Graaff, 92190 Meudon, France",
+    "website": "https://www.simplybestfood.com",
+    "openingHours": "Lundi 08h00-20h00\nMardi 08h00-20h00\nMercredi 08h00-20h00\nJeudi 08h00-20h00\nVendredi 08h00-20h00\nSamedi 08h00-20h00\nDimanche Fermé",
+    "lat": 48.81849185189221,
+    "lng": 2.245773730688241,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:17:51.217Z",
+    "updatedAt": "2026-08-09T03:17:51.217Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 51 32 38 64",
+    "miniText": "Un garde-manger de quartier qui relie petits producteurs ruraux et consommateurs, entre produits bruts, préparés et cuisinés, avec aussi des cours de cuisine.",
+    "tags": [
+      "Producteurs",
+      "Produits frais",
+      "Cours de cuisine"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A neighborhood pantry connecting small rural producers with customers through fresh, prepared and cooked products, also offering cooking classes.",
+        "homeTextNear": "This neighborhood grocery store brings together products from small producers alongside ready-cooked dishes.",
+        "homeTextFar": "In Meudon, Simply Best Food connects small rural producers with customers through products to cook or enjoy already prepared."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette épicerie de quartier permet de faire ses courses auprès de petits producteurs et propose aussi des plats cuisinés.",
+    "homeTextFar": "À Meudon, l’épicerie Simply Best Food rapproche petits producteurs ruraux et consommateurs, avec des produits à cuisiner ou déjà préparés.",
+    "panoramaImage": "/downloads/simplyeatmeudon.webp"
   }
 ]
