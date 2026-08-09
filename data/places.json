@@ -18010,5 +18010,1440 @@
     "homeTextNear": "Cette épicerie de quartier permet de faire ses courses auprès de petits producteurs et propose aussi des plats cuisinés.",
     "homeTextFar": "À Meudon, l’épicerie Simply Best Food rapproche petits producteurs ruraux et consommateurs, avec des produits à cuisiner ou déjà préparés.",
     "panoramaImage": "/downloads/simplyeatmeudon.webp"
+  },
+  {
+    "id": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+    "name": "La Clayette Meudon",
+    "city": "Meudon",
+    "address": "35 Av. du Général Galliéni, 92190 Meudon, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.820190190286084,
+    "lng": 2.2293716730161806,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:27:44.554Z",
+    "updatedAt": "2026-08-09T03:27:44.554Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Meudon, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Meudon, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "58b95c57-de09-456c-b8f0-13bd70bfa2c1",
+    "name": "La Clayette La Garenne-Colombes",
+    "city": "La Garenne-Colombes",
+    "address": "35 Av. Joseph Froment, 92250 La Garenne-Colombes, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.91138622035595,
+    "lng": 2.255048815344121,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In La Garenne-Colombes, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À La Garenne-Colombes, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "02711378-4457-49aa-b4f3-8b7a285ac356",
+    "name": "La Clayette de Puteaux",
+    "city": "Puteaux",
+    "address": "2 Rue des Fusillés de la Résistance, 92800 Puteaux, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.88421800215494,
+    "lng": 2.2259214153441205,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Puteaux, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Puteaux, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "6c66b874-a483-4292-825a-761f3a4a9064",
+    "name": "La Clayette Saint-Cloud",
+    "city": "Saint-Cloud",
+    "address": "Pl. du Moustier, 92210 Saint-Cloud, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.84411907217479,
+    "lng": 2.21988441534412,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Saint-Cloud, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Saint-Cloud, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "8a4ccb54-b980-453a-8308-eee55605893e",
+    "name": "La Clayette Ville d'Avray",
+    "city": "Ville-d'Avray",
+    "address": "Square André Maningue, 92410 Ville-d'Avray, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.82737562532732,
+    "lng": 2.189017430688241,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Ville-d'Avray, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Ville-d'Avray, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "d8f777f5-de73-416b-bd98-2bf67a991f6d",
+    "name": "La Clayette Chaville",
+    "city": "Chaville",
+    "address": "30 Rue Carnot, 92370 Chaville, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.8121478484563,
+    "lng": 2.1879714153441205,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Chaville, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Chaville, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "71e0bbfc-3b0d-42c5-8373-c1841476b75b",
+    "name": "La Clayette Issy",
+    "city": "Issy-les-Moulineaux",
+    "address": "Pl. Jules Gévelot, 92130 Issy-les-Moulineaux, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.82164635073542,
+    "lng": 2.2525905730161804,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Issy-les-Moulineaux, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Issy-les-Moulineaux, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "8a284a11-02c1-4b76-99c3-48f1dbfc3b59",
+    "name": "La Clayette Denfert-Rochereau",
+    "city": "Paris",
+    "address": "Pl. Denfert-Rochereau, 75014 Paris, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.83329382118431,
+    "lng": 2.333259286508091,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Paris, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Paris, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "753d6742-c4ae-48a0-9387-37b7347e4008",
+    "name": "La Clayette",
+    "city": "Montrouge",
+    "address": "58 Av. Aristide Briand, 92120 Montrouge, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.818193595069665,
+    "lng": 2.325094801852211,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Montrouge, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Montrouge, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "c6755689-afaa-46b5-8a97-e9181cb2a267",
+    "name": "La Clayette Massy",
+    "city": "Massy",
+    "address": "Av. de Paris, 91300 Massy, France",
+    "website": "https://www.laclayette.com/",
+    "openingHours": "Lundi 06h00-22h30\nMardi 06h00-22h30\nMercredi 06h00-22h30\nJeudi 06h00-22h30\nVendredi 06h00-22h30\nSamedi 06h00-22h30\nDimanche 06h00-22h30",
+    "lat": 48.722589146067286,
+    "lng": 2.2625166730161803,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T03:54:21.885Z",
+    "updatedAt": "2026-08-09T03:54:21.885Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Un kiosque en libre-service qui rend les produits locaux accessibles en ville, avec fruits, légumes, œufs et autres produits de producteurs sélectionnés pour leur fraîcheur et leur qualité.",
+    "tags": [
+      "Produits locaux",
+      "Libre-service",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A self-service kiosk making local food accessible in the city, with fruit, vegetables, eggs and other products from producers selected for freshness and quality.",
+        "homeTextNear": "Nearby, this self-service kiosk offers fresh local products from selected producers.",
+        "homeTextFar": "In Massy, La Clayette self-service kiosk offers another way to shop for fresh local products directly in the city."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce kiosque en libre-service permet de faire ses courses avec des produits locaux frais issus de producteurs sélectionnés.",
+    "homeTextFar": "À Massy, le kiosque en libre-service La Clayette propose une autre manière de faire ses courses, avec des produits locaux frais accessibles directement en ville.",
+    "panoramaImage": "/downloads/laclayettemeudon.webp"
+  },
+  {
+    "id": "95039c88-b22c-45a5-8cc2-17e7f3925dc0",
+    "name": "Les Tourelles",
+    "city": "Boissy-sous-Saint-Yon",
+    "address": "22 Rue Courtanesse, 91790 Boissy-sous-Saint-Yon, France",
+    "website": "https://www.fermebiotourelles.com",
+    "openingHours": "Lundi Fermé\nMardi 15h00-19h00\nMercredi 10h00-12h00, 15h00-19h00\nJeudi 10h00-12h00, 15h00-19h00\nVendredi 10h00-12h00, 15h00-19h00\nSamedi 10h00-12h30, 15h00-18h00\nDimanche Fermé",
+    "lat": 48.55958421502885,
+    "lng": 2.2059068153441204,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T03:57:12.050Z",
+    "updatedAt": "2026-08-09T03:57:12.050Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 60 82 05 92",
+    "miniText": "Une ferme familiale 100 % bio qui cultive sur place des fruits et légumes de saison, vendus directement aux consommateurs sans intermédiaire. La ferme dispose aussi d’une épicerie bio où l’on retrouve d’autres produits issus de l’agriculture biologique.",
+    "tags": [
+      "Agriculture biologique",
+      "Vente directe",
+      "Fruits et légumes"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A 100% organic family farm growing seasonal fruit and vegetables on site and selling them directly to customers without intermediaries. The farm also has an organic grocery shop offering a wider range of organically produced foods.",
+        "homeTextNear": "Nearby, this organic farm sells seasonal fruit and vegetables grown on site directly to customers.",
+        "homeTextFar": "In Boissy-sous-Saint-Yon, Les Tourelles farm offers another way to buy organic fruit and vegetables, directly from the producer."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette ferme bio permet d’acheter directement fruits et légumes de saison cultivés sur place.",
+    "homeTextFar": "À Boissy-sous-Saint-Yon, la ferme Les Tourelles propose une autre manière d’acheter ses fruits et légumes bio, directement auprès du producteur.",
+    "panoramaImage": "/downloads/lafermedestourellespas.webp"
+  },
+  {
+    "id": "627bb3b2-84de-4fa2-b081-906550d14312",
+    "name": "Ferme de La Pouletterie",
+    "city": "Le Plessis-Pâté",
+    "address": "54 Route de Corbeil, 91220 Le Plessis-Pâté, France",
+    "website": "https://www.fermedelapouletterie.com",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 09h00-12h30, 14h30-19h00\nSamedi 09h00-12h30, 14h30-18h00\nDimanche Fermé",
+    "lat": 48.61002946786918,
+    "lng": 2.325881857672061,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T04:08:06.469Z",
+    "updatedAt": "2026-08-09T04:08:06.469Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 59 55 11 98",
+    "miniText": "Une ferme familiale transmise depuis huit générations, aujourd’hui diversifiée entre cultures céréalières et maraîchage. Elle vend directement ses légumes frais ou transformés à la boutique de la ferme, aux côtés de produits provenant d’autres producteurs et artisans locaux.",
+    "tags": [
+      "Vente directe",
+      "Maraîchage",
+      "Producteurs locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A family farm passed down through eight generations, now combining cereal farming and market gardening. Its farm shop sells its own fresh and processed vegetables directly to customers, alongside products from other local producers and artisans.",
+        "homeTextNear": "Nearby, this farm sells vegetables from its own production directly to customers, alongside products from other local producers.",
+        "homeTextFar": "In Le Plessis-Pâté, Ferme de La Pouletterie offers another way to shop, combining vegetables grown on site with other farm products sold through short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette ferme permet d’acheter directement des légumes issus de sa production, ainsi que des produits d’autres producteurs locaux.",
+    "homeTextFar": "Au Plessis-Pâté, la Ferme de La Pouletterie propose une autre manière de faire ses courses, entre légumes produits sur place et produits fermiers en circuit court.",
+    "panoramaImage": "/downloads/lapoulletterie.webp"
+  },
+  {
+    "id": "25be0070-0a77-49fa-949d-f6dca36334c8",
+    "name": "Ferme de la Roche",
+    "city": "Ollainville",
+    "address": "48 Rue des Primevères, 91340 Ollainville, France",
+    "website": "https://www.fermedelaroche.fr",
+    "openingHours": "Lundi Fermé\nMardi 16h30-19h00\nMercredi Fermé\nJeudi Fermé\nVendredi 10h00-19h00\nSamedi 09h00-12h30\nDimanche Fermé",
+    "lat": 48.60375349718496,
+    "lng": 2.22746472883603,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T04:15:47.019Z",
+    "updatedAt": "2026-08-09T04:15:47.019Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 64 94 03 58",
+    "miniText": "Une ferme maraîchère familiale transmise depuis plusieurs générations, où les légumes sont cultivés en pleine terre, en plein champ et sous tunnel, au rythme des saisons. La ferme privilégie la biodiversité et le circuit court, avec vente directe de ses fruits et légumes fraîchement cueillis.",
+    "tags": [
+      "Maraîchage",
+      "Vente directe",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A family market garden passed down through several generations, growing vegetables directly in the soil, both outdoors and under tunnels, following the seasons. The farm supports biodiversity and short supply chains, selling its freshly harvested fruit and vegetables directly to customers.",
+        "homeTextNear": "Nearby, this market garden sells freshly harvested seasonal fruit and vegetables directly to customers.",
+        "homeTextFar": "In Ollainville, Ferme de la Roche offers another way to buy fruit and vegetables, grown on site and sold through short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette ferme maraîchère permet d’acheter directement des fruits et légumes de saison fraîchement cueillis.",
+    "homeTextFar": "À Ollainville, la Ferme de la Roche propose une autre manière d’acheter ses fruits et légumes, cultivés sur place et vendus en circuit court.",
+    "panoramaImage": "/downloads/fermedelarochepro.webp"
+  },
+  {
+    "id": "cb9b881f-8003-4f27-b5f5-1e9557ced1c7",
+    "name": "Berrie Saint-Lazare",
+    "city": "Paris",
+    "address": "39 Rue Saint-Lazare, 75009 Paris, France",
+    "website": "https://www.blgm.fr/",
+    "openingHours": "Lundi 10h30-14h30, 16h00-20h00\nMardi 10h30-14h30, 16h00-20h00\nMercredi 10h30-14h30, 16h00-20h00\nJeudi 10h30-14h30, 16h00-20h00\nVendredi 10h30-14h30, 16h00-20h00\nSamedi 10h30-14h30, 16h00-20h00\nDimanche Fermé",
+    "lat": 48.876898091262035,
+    "lng": 2.3356073576720604,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:38:03.359Z",
+    "updatedAt": "2026-08-09T04:38:03.359Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie engagée proposant des produits frais et de saison sélectionnés auprès de producteurs, avec également un restaurant. Les cuisiniers y préparent le déjeuner avec les produits de l’épicerie, en privilégiant notamment les ingrédients légèrement abîmés pour limiter le gaspillage.",
+    "tags": [
+      "Produits de saison",
+      "Producteurs",
+      "Restaurant"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A committed grocery store offering fresh, seasonal products selected from producers, alongside a restaurant. The kitchen prepares lunch with products from the grocery store, including slightly imperfect ingredients to help reduce food waste.",
+        "homeTextNear": "Nearby, this grocery store offers fresh seasonal products and a restaurant serving lunch prepared with Berrie ingredients.",
+        "homeTextFar": "In Paris, Berrie Saint-Lazare combines fresh products from producers with a seasonal restaurant designed to help reduce food waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en produits frais et de saison, mais aussi de déjeuner au restaurant préparé avec les produits Berrie.",
+    "homeTextFar": "À Paris, l’épicerie Berrie Saint-Lazare associe produits frais de producteurs et restaurant de saison pensé pour limiter le gaspillage.",
+    "phone": "+33 9 81 17 81 96",
+    "panoramaImage": "/downloads/berrieepice.webp"
+  },
+  {
+    "id": "6adf772e-7446-4b08-9e6f-8547094b23bd",
+    "name": "Berrie Martyrs",
+    "city": "Paris",
+    "address": "21 Rue des Martyrs, 75009 Paris, France",
+    "website": "https://www.blgm.fr/",
+    "openingHours": "Lundi 09h00-20h00\nMardi 09h00-20h00\nMercredi 09h00-20h00\nJeudi 09h00-20h00\nVendredi 09h00-20h00\nSamedi 09h00-20h00\nDimanche 09h00-14h00",
+    "lat": 48.87831583070958,
+    "lng": 2.33952557301618,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:38:03.359Z",
+    "updatedAt": "2026-08-09T04:38:03.359Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie engagée qui réunit une grande variété de produits frais et de saison, sélectionnés auprès de près de 200 producteurs. Berrie privilégie une agriculture paysanne durable, le savoir-faire artisanal et une juste rémunération des producteurs.",
+    "tags": [
+      "Agriculture paysanne",
+      "Produits de saison",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A committed grocery store offering a wide range of fresh, seasonal products selected from nearly 200 producers. Berrie supports sustainable small-scale farming, artisanal know-how and fair remuneration for producers.",
+        "homeTextNear": "Nearby, this grocery store offers fresh, seasonal products sourced from sustainable small-scale farming.",
+        "homeTextFar": "In Paris, Berrie grocery store offers another way to shop, with fresh seasonal products carefully selected from committed producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses avec des produits frais et de saison issus d’une agriculture paysanne durable.",
+    "homeTextFar": "À Paris, l’épicerie Berrie propose une autre manière de faire ses courses, avec des produits frais et de saison sélectionnés auprès de producteurs engagés.",
+    "phone": "+33 9 81 33 15 29",
+    "panoramaImage": "/downloads/berrieepice.webp"
+  },
+  {
+    "id": "c5969ed8-19f9-4b78-90c3-8b74e1fe9102",
+    "name": "Berrie Moines",
+    "city": "Paris",
+    "address": "45 Rue des Moines, 75017 Paris, France",
+    "website": "https://www.blgm.fr/",
+    "openingHours": "Lundi 10h30-14h30, 15h30-20h00\nMardi 10h30-14h30, 15h30-20h00\nMercredi 10h30-14h30, 15h30-20h00\nJeudi 10h30-14h30, 15h30-20h00\nVendredi 10h30-14h30, 15h30-20h00\nSamedi 09h30-20h00\nDimanche 09h30-14h00",
+    "lat": 48.89006304854629,
+    "lng": 2.3202905441801507,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:38:03.359Z",
+    "updatedAt": "2026-08-09T04:38:03.359Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie engagée qui réunit une grande variété de produits frais et de saison, sélectionnés auprès de près de 200 producteurs. Berrie privilégie une agriculture paysanne durable, le savoir-faire artisanal et une juste rémunération des producteurs.",
+    "tags": [
+      "Agriculture paysanne",
+      "Produits de saison",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A committed grocery store offering a wide range of fresh, seasonal products selected from nearly 200 producers. Berrie supports sustainable small-scale farming, artisanal know-how and fair remuneration for producers.",
+        "homeTextNear": "Nearby, this grocery store offers fresh, seasonal products sourced from sustainable small-scale farming.",
+        "homeTextFar": "In Paris, Berrie grocery store offers another way to shop, with fresh seasonal products carefully selected from committed producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses avec des produits frais et de saison issus d’une agriculture paysanne durable.",
+    "homeTextFar": "À Paris, l’épicerie Berrie propose une autre manière de faire ses courses, avec des produits frais et de saison sélectionnés auprès de producteurs engagés.",
+    "phone": "+33 9 73 29 86 33",
+    "panoramaImage": "/downloads/berrieepice.webp"
+  },
+  {
+    "id": "2e378065-c4f0-46fe-ab31-757929fcce1a",
+    "name": "Berrie Bécon",
+    "city": "Asnières-sur-Seine",
+    "address": "62 Rue de la Sablière, 92600 Asnières-sur-Seine, France",
+    "website": "https://www.blgm.fr/",
+    "openingHours": "Lundi 09h30-14h30, 15h30-20h00\nMardi 09h30-14h30, 15h30-20h00\nMercredi 09h30-14h30, 15h30-20h00\nJeudi 09h30-14h30, 15h30-20h00\nVendredi 09h30-20h00\nSamedi 09h30-20h00\nDimanche 09h30-14h00",
+    "lat": 48.9064754755293,
+    "lng": 2.2688652306882413,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:38:03.359Z",
+    "updatedAt": "2026-08-09T04:38:03.359Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie engagée qui réunit une grande variété de produits frais et de saison, sélectionnés auprès de près de 200 producteurs. Berrie privilégie une agriculture paysanne durable, le savoir-faire artisanal et une juste rémunération des producteurs.",
+    "tags": [
+      "Agriculture paysanne",
+      "Produits de saison",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A committed grocery store offering a wide range of fresh, seasonal products selected from nearly 200 producers. Berrie supports sustainable small-scale farming, artisanal know-how and fair remuneration for producers.",
+        "homeTextNear": "Nearby, this grocery store offers fresh, seasonal products sourced from sustainable small-scale farming.",
+        "homeTextFar": "In Asnières-sur-Seine, Berrie grocery store offers another way to shop, with fresh seasonal products carefully selected from committed producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses avec des produits frais et de saison issus d’une agriculture paysanne durable.",
+    "homeTextFar": "À Asnières-sur-Seine, l’épicerie Berrie propose une autre manière de faire ses courses, avec des produits frais et de saison sélectionnés auprès de producteurs engagés.",
+    "phone": "+33 1 74 54 68 93",
+    "panoramaImage": "/downloads/berrieepice.webp"
+  },
+  {
+    "id": "7deb957f-74bf-466f-9798-ce10981e90c3",
+    "name": "Berrie Bécon Fromagerie",
+    "city": "Asnières-sur-Seine",
+    "address": "2 Rue de Strasbourg, 92600 Asnières-sur-Seine, France",
+    "website": "https://www.blgm.fr/",
+    "openingHours": "Lundi Fermé\nMardi 09h30-14h30, 15h30-20h00\nMercredi 09h30-14h30, 15h30-20h00\nJeudi 09h30-14h30, 15h30-20h00\nVendredi 09h30-14h30, 15h30-20h00\nSamedi 09h30-20h00\nDimanche 09h30-14h30",
+    "lat": 48.90667103489626,
+    "lng": 2.26873362883603,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:38:03.359Z",
+    "updatedAt": "2026-08-09T04:38:03.359Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une fromagerie Berrie consacrée aux fromages artisanaux issus de fermes à taille humaine, fabriqués dans le respect des savoir-faire traditionnels. La sélection suit les terroirs et les saisons, complétée par des créations maison élaborées avec les produits des épiceries Berrie.",
+    "tags": [
+      "Fromagerie",
+      "Fromages artisanaux",
+      "Producteurs"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A Berrie cheese shop dedicated to artisanal cheeses from small-scale farms, made using traditional methods. The selection follows terroirs and seasons, alongside house-made creations prepared with products from Berrie grocery stores.",
+        "homeTextNear": "Nearby, this grocery and cheese shop offers artisanal cheeses from small-scale farms alongside seasonal house-made creations.",
+        "homeTextFar": "In Asnières-sur-Seine, Berrie cheese shop offers another way to buy cheese, combining artisanal production with seasonal house-made creations."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie-fromagerie permet de choisir des fromages artisanaux issus de fermes à taille humaine et des créations maison de saison.",
+    "homeTextFar": "À Asnières-sur-Seine, la fromagerie Berrie propose une autre manière d’acheter son fromage, entre productions artisanales et créations maison de saison.",
+    "panoramaImage": "/downloads/berrieepice.webp"
+  },
+  {
+    "id": "cfc6d31c-176e-4421-b27c-21115355084a",
+    "name": "Les Saisonniers - Levallois",
+    "city": "Levallois-Perret",
+    "address": "103 Rue Louis Rouquier, 92300 Levallois-Perret, France",
+    "website": "https://les-saisonniers.fr",
+    "openingHours": "Lundi 10h00-20h00\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 10h00-20h00\nDimanche 10h00-13h00",
+    "lat": 48.89254917076465,
+    "lng": 2.2909091865080904,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T04:44:37.200Z",
+    "updatedAt": "2026-08-09T04:44:37.200Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie engagée qui sélectionne des produits frais et de saison auprès de producteurs proches, investis dans une agriculture durable et respectueuse des savoir-faire. Fruits et légumes viennent principalement d’environ une heure de Paris, complétés par des produits de crèmerie, viande, poisson et autres spécialités de producteurs.",
+    "tags": [
+      "Producteurs locaux",
+      "Produits de saison",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A committed grocery store sourcing fresh, seasonal food from nearby producers engaged in sustainable farming and traditional know-how. Fruit and vegetables mainly come from farms around an hour from Paris, alongside dairy, meat, fish and other products from selected producers.",
+        "homeTextNear": "Nearby, this grocery store offers fresh seasonal food sourced from nearby producers committed to sustainable farming.",
+        "homeTextFar": "In Levallois-Perret, Les Saisonniers grocery store offers another way to shop, with fresh seasonal food selected from nearby producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses avec des produits frais et de saison issus de producteurs proches et engagés.",
+    "homeTextFar": "À Levallois-Perret, l’épicerie Les Saisonniers propose une autre manière de faire ses courses, avec des produits frais et de saison sélectionnés auprès de producteurs proches.",
+    "panoramaImage": "/downloads/lessaisonierslev.webp"
+  },
+  {
+    "id": "81a9ccdc-06b5-4960-8c8a-9f176215b448",
+    "name": "La Main Verte Place d’Italie",
+    "city": "Paris",
+    "address": "44 Avenue d’Italie, 75013 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.8282878078826,
+    "lng": 2.356412644180151,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "24384387-d813-4d5d-b225-404951d44f04",
+    "name": "La Main Verte Gobelins",
+    "city": "Paris",
+    "address": "7 Avenue des Gobelins, 75005 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.83840179295829,
+    "lng": 2.351258157672061,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "3f226e48-1064-4581-a646-81b03710f5f1",
+    "name": "La Main Verte Ledru-Rollin",
+    "city": "Paris",
+    "address": "154 Avenue Ledru-Rollin, 75011 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.85582288665286,
+    "lng": 2.3790275153441205,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "73786a3c-5174-4f7d-9a83-ee3028f005fe",
+    "name": "La Main Verte Glacière",
+    "city": "Paris",
+    "address": "69 Rue de la Glacière, 75013 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.83050739094458,
+    "lng": 2.344219415344121,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "8f65fcf7-c072-4897-8aa3-724287ead580",
+    "name": "La Laiterie de la Main Verte",
+    "city": "Paris",
+    "address": "69 Rue de la Glacière, 75013 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.830186330980844,
+    "lng": 2.3440182441801505,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie-laiterie de La Main Verte dédiée notamment aux produits laitiers et aux fromages, complétés par une sélection de viande, jambons, conserves, jus, bières et vins. Elle prolonge à quelques pas de l’épicerie Glacière l’approche de La Main Verte autour de produits soigneusement sélectionnés.",
+    "tags": [
+      "Fromages",
+      "Produits laitiers",
+      "Épicerie"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A La Main Verte grocery and dairy shop focused on dairy products and cheeses, alongside a selection of meat, ham, preserves, juices, beers and wines. Located just steps from the Glacière store, it extends La Main Verte’s carefully selected food offering.",
+        "homeTextNear": "Nearby, this grocery and dairy shop offers cheeses and dairy products alongside a selection of grocery goods.",
+        "homeTextFar": "In Paris, La Laiterie de la Main Verte complements the Glacière grocery store with cheeses, dairy products and other grocery goods."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie-laiterie permet de choisir fromages et produits laitiers, complétés par une sélection de produits d’épicerie.",
+    "homeTextFar": "À Paris, La Laiterie de la Main Verte complète l’épicerie Glacière avec une sélection de fromages, produits laitiers et autres produits d’épicerie.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "537c2767-4e4f-4c17-bc52-da2a7aeb8d29",
+    "name": "La Main Verte Brézin",
+    "city": "Paris",
+    "address": "6 Rue Brézin, 75014 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.831149489224885,
+    "lng": 2.328898544180151,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "922b3a35-0942-4619-822b-f26e4e347c1b",
+    "name": "La Main Verte Diderot",
+    "city": "Paris",
+    "address": "73 Boulevard Diderot, 75012 Paris, France",
+    "website": "https://lamainverte.bio",
+    "openingHours": "Lundi Fermé\nMardi 10h00-20h00\nMercredi 10h00-20h00\nJeudi 10h00-20h00\nVendredi 10h00-20h00\nSamedi 09h30-20h00\nDimanche 09h30-13h00",
+    "lat": 48.847559504130366,
+    "lng": 2.386052615344121,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:04:40.037Z",
+    "updatedAt": "2026-08-09T05:04:40.037Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie bio pensée comme un marché couvert permanent, spécialisée dans les fruits et légumes de saison et le vrac. La Main Verte privilégie les circuits courts, les produits sans emballage et une rémunération juste des producteurs, avec l’objectif de réduire déchets et gaspillage.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic grocery store designed as a permanent covered market, specializing in seasonal fruit and vegetables and bulk foods. La Main Verte favors short supply chains, packaging-free products and fair remuneration for producers, with the aim of reducing waste.",
+        "homeTextNear": "Nearby, this grocery store offers organic bulk shopping and seasonal fruit and vegetables sourced through short supply chains.",
+        "homeTextFar": "In Paris, La Main Verte grocery store offers another way to shop, combining seasonal organic food, bulk products and short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses en bio et en vrac, avec des fruits et légumes de saison issus de circuits courts.",
+    "homeTextFar": "À Paris, l’épicerie La Main Verte propose une autre manière de faire ses courses, entre produits bio de saison, vrac et circuits courts.",
+    "panoramaImage": "/downloads/lamainverteparis.webp"
+  },
+  {
+    "id": "f5dd9df2-6427-4ed5-9641-b128c96dbd02",
+    "name": "Le Village Potager",
+    "city": "Saint-Pierre-lès-Nemours",
+    "address": "3300 Route de Larchant, 77140 Saint-Pierre-lès-Nemours, France",
+    "website": "https://levillagepotager.com",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 15h00-19h00\nSamedi 10h00-13h00\nDimanche Fermé",
+    "lat": 48.27661482983608,
+    "lng": 2.643164417196332,
+    "category": "Lieu alternatif",
+    "createdAt": "2026-08-09T05:17:03.345Z",
+    "updatedAt": "2026-08-09T05:17:03.345Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 64 78 67 28",
+    "miniText": "Un lieu alternatif qui réunit une ferme maraîchère bio, une boutique terroir, des gîtes et des espaces de séminaires au cœur de la nature. La ferme cultive près de 160 variétés de légumes de saison, vendus directement sur place avec des produits d’épicerie bio provenant aussi de partenaires.",
+    "tags": [
+      "Ferme bio",
+      "Boutique terroir",
+      "Gîtes",
+      "Séminaires"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An alternative place combining an organic market garden, a local food shop, guesthouses and seminar spaces in a natural setting. The farm grows nearly 160 varieties of seasonal vegetables, sold directly on site alongside organic grocery products from partner producers.",
+        "homeTextNear": "Nearby, this alternative place offers organic vegetables from the farm, accommodation and spaces for seminars in the countryside.",
+        "homeTextFar": "In Saint-Pierre-lès-Nemours, Le Village Potager brings together an organic farm, local food shop, guesthouses and seminar spaces in one place focused on local agriculture and nature."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, ce lieu alternatif permet d’acheter les légumes bio de la ferme, de séjourner sur place ou d’organiser un séminaire au vert.",
+    "homeTextFar": "À Saint-Pierre-lès-Nemours, Le Village Potager réunit ferme bio, boutique terroir, gîtes et séminaires dans un même lieu tourné vers l’agriculture locale et la nature.",
+    "panoramaImage": "/downloads/levillagepotager.webp"
+  },
+  {
+    "id": "0534deed-9c80-4aa9-a555-659332ea9d23",
+    "name": "Ferme de Rutel",
+    "city": "Villenoy",
+    "address": "Rutel, 77124 Villenoy, France",
+    "website": "https://www.cueillettederutel.fr",
+    "openingHours": "Lundi 14h30-19h00\nMardi 09h30-12h30, 14h30-19h00\nMercredi 09h30-12h30, 14h30-19h00\nJeudi 09h30-12h30, 14h30-19h00\nVendredi 09h30-12h30, 14h30-19h00\nSamedi 09h30-19h00\nDimanche 09h30-12h30",
+    "lat": 48.94974177132039,
+    "lng": 2.855182915344121,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T05:24:16.815Z",
+    "updatedAt": "2026-08-09T05:24:16.815Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 64 33 44 09",
+    "miniText": "Une ferme familiale cultivée depuis plus de six générations, où fruits, légumes et fleurs poussent sur 20 hectares de potagers et vergers. Depuis 1976, la Ferme de Rutel propose aussi la cueillette en libre-service, complétée par une boutique réunissant les produits de la ferme et ceux de producteurs principalement locaux.",
+    "tags": [
+      "Cueillette",
+      "Vente directe",
+      "Producteurs locaux"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A family farm cultivated for more than six generations, growing fruit, vegetables and flowers across 20 hectares of fields and orchards. Since 1976, Ferme de Rutel has also offered pick-your-own harvesting, alongside a farm shop featuring its own produce and products from mainly local producers.",
+        "homeTextNear": "Nearby, this farm lets visitors pick their own seasonal fruit, vegetables and flowers, or shop for farm produce and goods from local producers.",
+        "homeTextFar": "In Villenoy, Ferme de Rutel offers another way to buy seasonal food, combining pick-your-own harvesting with a farm shop focused on short supply chains."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette ferme permet de cueillir soi-même fruits, légumes et fleurs de saison, ou de retrouver les produits de la ferme et de producteurs locaux à la boutique.",
+    "homeTextFar": "À Villenoy, la Ferme de Rutel propose une autre manière d’acheter ses produits de saison, entre cueillette en libre-service et boutique fermière en circuit court.",
+    "panoramaImage": "/downloads/fermederuelpar.webp"
+  },
+  {
+    "id": "7f348df1-c39b-410e-b1ec-850cd44b9a2e",
+    "name": "Miyam Beaubourg",
+    "city": "Paris",
+    "address": "82 Rue Beaubourg, 75003 Paris, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.86470647794393,
+    "lng": 2.3554273,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Paris, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Paris, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "9a3e1913-6906-471d-9186-ec7821e0c94c",
+    "name": "Miyam Aligre",
+    "city": "Paris",
+    "address": "161 Rue du Faubourg Saint-Antoine, 75011 Paris, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.85099899039078,
+    "lng": 2.379854515344121,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Paris, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Paris, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "3c86ecd3-1428-415a-bbf8-3133b6f7c5fb",
+    "name": "Miyam Poteau",
+    "city": "Paris",
+    "address": "11 Rue du Poteau, 75018 Paris, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.89346069093423,
+    "lng": 2.3430068306882417,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Paris, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Paris, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "a34111ba-73cb-441e-b621-984819ea7fc8",
+    "name": "Miyam Pantin",
+    "city": "Pantin",
+    "address": "45 Rue Hoche, 93500 Pantin, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.89432098103413,
+    "lng": 2.401630486508091,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Pantin, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Pantin, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "f455f49b-7dad-404d-ae2c-b685b436bd81",
+    "name": "Miyam Les Lilas",
+    "city": "Les Lilas",
+    "address": "97 Rue de Paris, 93260 Les Lilas, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.87953297115224,
+    "lng": 2.41435292883603,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Les Lilas, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Les Lilas, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "c58c2360-8ec9-4582-b616-58f7359b6be4",
+    "name": "Miyam Croix de Chavaux",
+    "city": "Montreuil",
+    "address": "9 Avenue de la Résistance, 93100 Montreuil, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.85889249753148,
+    "lng": 2.4362924730161803,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Montreuil, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Montreuil, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "9394d510-cf07-4908-8e74-90e66f82a183",
+    "name": "Miyam Robespierre",
+    "city": "Montreuil",
+    "address": "56 bis Rue Robespierre, 93100 Montreuil, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.85283412886671,
+    "lng": 2.4237010153441205,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Montreuil, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Montreuil, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "0b0bd5cf-362f-4504-b217-4b337f0e4fcb",
+    "name": "Miyam Garibaldi",
+    "city": "Saint-Ouen-sur-Seine",
+    "address": "62 bis Avenue Gabriel Péri, 93400 Saint-Ouen-sur-Seine, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.907499532791704,
+    "lng": 2.33215654418015,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Saint-Ouen-sur-Seine, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Saint-Ouen-sur-Seine, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "f8afcc12-6cdf-4a73-b6ac-f6d77f10b04f",
+    "name": "Miyam Parmentier",
+    "city": "Paris",
+    "address": "101 Avenue Parmentier, 75011 Paris, France",
+    "website": "https://miyam.fr",
+    "openingHours": "Lundi 09h00-20h30\nMardi 09h00-20h30\nMercredi 09h00-20h30\nJeudi 09h00-20h30\nVendredi 09h00-20h30\nSamedi 09h00-20h30\nDimanche 09h00-18h30",
+    "lat": 48.86684433603303,
+    "lng": 2.3733263730161815,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T05:35:18.720Z",
+    "updatedAt": "2026-08-09T05:35:18.720Z",
+    "timeZone": "Europe/Paris",
+    "miniText": "Une épicerie responsable qui travaille directement avec des producteurs français, sans intermédiaire et avec une rémunération au juste prix. Miyam associe produits frais et de saison, cuisine maison et lutte contre le gaspillage, en transformant notamment les produits abîmés en soupes, sauces et autres préparations.",
+    "tags": [
+      "Producteurs français",
+      "Anti-gaspillage",
+      "Cuisine maison"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A responsible grocery store working directly with French producers, without intermediaries and with fair remuneration. Miyam combines fresh seasonal food, house-made cooking and a strong approach to reducing food waste, transforming imperfect produce into soups, sauces and other preparations.",
+        "homeTextNear": "Nearby, this grocery store offers fresh products sourced directly from French producers, alongside house-made food designed to reduce waste.",
+        "homeTextFar": "In Paris, Miyam grocery store offers another way to shop, combining direct sourcing from French producers, fresh products and house-made food that helps reduce waste."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Tout près, cette épicerie permet de faire ses courses auprès de producteurs français en direct, avec des produits frais et une cuisine maison anti-gaspi.",
+    "homeTextFar": "À Paris, l’épicerie Miyam propose une autre manière de faire ses courses, entre producteurs français en direct, produits frais et cuisine maison anti-gaspi.",
+    "panoramaImage": "/downloads/miyamparis.webp"
+  },
+  {
+    "id": "57c00f41-3458-43ea-9ca8-4ac398262e01",
+    "name": "Les Plaisirs du Jardin",
+    "city": "Cergy",
+    "address": "8 Chemin des Pâtis, 95000 Cergy, France",
+    "website": "https://lesplaisirsdujardin.fr",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 09h30-12h30\nJeudi 16h30-19h00\nVendredi 09h30-19h00\nSamedi 09h30-12h30\nDimanche Fermé",
+    "lat": 49.0225397758902,
+    "lng": 2.0798283018522103,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T05:40:33.014Z",
+    "updatedAt": "2026-08-09T05:40:33.014Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 74 09 96 42",
+    "miniText": "Une ferme maraîchère bio de 13 hectares qui cultive près de 160 variétés de légumes, ainsi que des fruits et fruits rouges, dans la plaine de Cergy. Le magasin fermier vend directement la production de la ferme et complète son offre avec des produits provenant d’autres producteurs locaux.",
+    "tags": [
+      "Agriculture biologique",
+      "Maraîchage",
+      "Vente directe"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A 13-hectare organic market garden growing nearly 160 varieties of vegetables, along with fruit and berries, in the Cergy plain. Its farm shop sells produce grown on site directly to customers and complements it with products from other local producers.",
+        "homeTextNear": "This organic farm sells vegetables and fruit grown on site directly to customers, alongside products from other local producers.",
+        "homeTextFar": "In Cergy, Les Plaisirs du Jardin offers another way to buy organic fruit and vegetables, directly from a local market garden."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette ferme bio permet d’acheter directement légumes et fruits cultivés sur place, complétés par des produits d’autres producteurs locaux.",
+    "homeTextFar": "À Cergy, Les Plaisirs du Jardin propose une autre manière d’acheter ses légumes et fruits bio, directement auprès d’une ferme maraîchère locale.",
+    "panoramaImage": "/downloads/lesplaisirsdujardin.webp"
+  },
+  {
+    "id": "7ade6cca-e1c5-4d2b-8474-69018064bf84",
+    "name": "Couleur Vrac",
+    "city": "Créteil",
+    "address": "17 Rue du Général Leclerc, 94000 Créteil, France",
+    "website": "https://couleurvrac.fr/",
+    "openingHours": "Lundi Fermé\nMardi 09h30-13h30, 15h00-19h00\nMercredi 09h30-13h30, 15h00-19h00\nJeudi 09h30-13h30, 15h00-19h00\nVendredi 09h30-13h30, 15h00-19h00\nSamedi 09h30-13h30, 14h30-19h00\nDimanche 09h30-13h00",
+    "lat": 48.79331305466805,
+    "lng": 2.46251618650809,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T06:06:29.118Z",
+    "updatedAt": "2026-08-09T06:06:29.118Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 59 54 50 94",
+    "miniText": "Une épicerie bio et zéro déchet construite autour du vrac, du local et de la qualité. Couleur Vrac propose plus de 500 produits en vrac ou en emballages consignés et privilégie des fournisseurs engagés, notamment situés à moins de 200 km, pour réduire les emballages et soutenir une économie locale durable.",
+    "tags": [
+      "Vrac",
+      "Bio",
+      "Zéro déchet"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic zero-waste grocery store focused on bulk shopping, local sourcing and product quality. Couleur Vrac offers more than 500 products in bulk or returnable packaging and prioritizes committed suppliers, particularly those located within 200 km, to reduce packaging and support a sustainable local economy.",
+        "homeTextNear": "This grocery store offers organic bulk shopping with a wide range of local, returnable and zero-waste products.",
+        "homeTextFar": "In Créteil, Couleur Vrac grocery store offers another way to shop, combining organic food, bulk products, returnable packaging and local sourcing."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette épicerie permet de faire ses courses en vrac et en bio, avec de nombreux produits locaux, consignés et zéro déchet.",
+    "homeTextFar": "À Créteil, l’épicerie Couleur Vrac propose une autre manière de faire ses courses, entre produits bio, vrac, consigne et approvisionnement local.",
+    "panoramaImage": "/downloads/couleurvrac.webp"
+  },
+  {
+    "id": "799ed161-2780-4181-88ba-f43d5400dec6",
+    "name": "Les Mains Dans la Terre",
+    "city": "Vitry-sur-Seine",
+    "address": "11 Av. de l'Abbé Roger Derry, 94400 Vitry-sur-Seine, France",
+    "website": "https://www.epicerielesmainsdanslaterre.com",
+    "openingHours": "Lundi Fermé\nMardi 09h00-14h30, 16h30-19h30\nMercredi 09h00-14h30, 16h30-19h30\nJeudi 09h00-14h30, 16h30-19h30\nVendredi 09h00-14h30, 16h30-19h30\nSamedi 09h00-19h30\nDimanche Fermé",
+    "lat": 48.79040161850178,
+    "lng": 2.39208598465588,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T06:14:08.544Z",
+    "updatedAt": "2026-08-09T06:14:08.544Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 43 98 14 89",
+    "miniText": "Une épicerie indépendante et engagée dédiée aux produits bio, locaux et en vrac, où l’on peut faire ses courses du quotidien pour la cuisine, la maison et le soin. Les Mains Dans la Terre propose aussi des animations, ateliers, recettes et astuces pour accompagner progressivement des pratiques plus durables.",
+    "tags": [
+      "Bio",
+      "Vrac",
+      "Ateliers"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An independent and committed grocery store focused on organic, local and bulk products, covering everyday needs for food, home and personal care. Les Mains Dans la Terre also offers workshops, activities, recipes and practical tips to encourage more sustainable habits.",
+        "homeTextNear": "This grocery store offers organic, local and bulk shopping alongside workshops and practical advice for more sustainable habits.",
+        "homeTextFar": "In Vitry-sur-Seine, Les Mains Dans la Terre offers another way to shop, combining organic, local and bulk products with workshops focused on more sustainable habits."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette épicerie permet de faire ses courses en bio, local et en vrac, tout en proposant des ateliers et conseils autour de pratiques plus durables.",
+    "homeTextFar": "À Vitry-sur-Seine, l’épicerie Les Mains Dans la Terre propose une autre manière de faire ses courses, entre produits bio, locaux, vrac et ateliers autour de pratiques durables.",
+    "panoramaImage": "/downloads/lesmainsdanslaterre.webp"
+  },
+  {
+    "id": "d232f9ae-a8ed-4701-927f-ad027050b930",
+    "name": "La Ferme d’Heurteloup",
+    "city": "Arnouville-lès-Mantes",
+    "address": "Route de Mantes, 78790 Arnouville-lès-Mantes, France",
+    "website": "http://heurteloup.net/",
+    "openingHours": "Lundi Fermé\nMardi 10h00-14h00, 17h00-19h30\nMercredi 10h00-14h00, 17h00-19h30\nJeudi 10h00-14h00, 17h00-19h30\nVendredi 10h00-14h00, 17h00-19h30\nSamedi 10h00-13h00, 16h00-18h30\nDimanche Fermé",
+    "lat": 48.930570622750466,
+    "lng": 1.72087808650809,
+    "category": "Lieu alternatif",
+    "createdAt": "2026-08-09T06:23:21.172Z",
+    "updatedAt": "2026-08-09T06:23:21.172Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 84 97 14 01",
+    "miniText": "Un lieu alternatif à la ferme qui réunit maraîchage, boulange et vente directe de produits fermiers, avec notamment des légumes bio de saison et des pains fabriqués sur place. La Ferme d’Heurteloup accueille aussi les visiteurs dans ses gîtes et propose des espaces à louer pour réunions, stages et séjours.",
+    "tags": [
+      "Ferme",
+      "Gîtes",
+      "Location de salles"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An alternative farm destination combining market gardening, bread making and direct sales of farm products, including seasonal organic vegetables and bread made on site. Ferme d’Heurteloup also offers guest accommodation and spaces for meetings, workshops and stays.",
+        "homeTextNear": "This alternative farm destination offers farm products, guest accommodation and spaces for meetings or workshops.",
+        "homeTextFar": "In Arnouville-lès-Mantes, Ferme d’Heurteloup brings together farming, a farm shop, guest accommodation and event or meeting spaces in one place."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Ce lieu alternatif permet d’acheter les produits de la ferme, de séjourner en gîte ou de louer un espace pour organiser une réunion ou un stage.",
+    "homeTextFar": "À Arnouville-lès-Mantes, la Ferme d’Heurteloup réunit production agricole, boutique fermière, gîtes et location de salles dans un même lieu.",
+    "panoramaImage": "/downloads/fermedheurtolpu.webp"
+  },
+  {
+    "id": "53c4ea4c-f6a0-453c-b668-32a35cfeab87",
+    "name": "La Clairière Paysanne",
+    "city": "Magny-les-Hameaux",
+    "address": "1 Chemin de la Closeraie, 78114 Magny-les-Hameaux, France",
+    "website": "https://www.laclairierepaysanne.com",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi Fermé\nJeudi Fermé\nVendredi 17h00-18h00\nSamedi 09h30-12h30\nDimanche Fermé",
+    "lat": 48.72262112387843,
+    "lng": 2.0747604576720606,
+    "category": "Ferme",
+    "createdAt": "2026-08-09T06:33:51.489Z",
+    "updatedAt": "2026-08-09T06:33:51.489Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 6 76 88 99 47",
+    "miniText": "Une ferme bio qui cultive une grande diversité de fruits, légumes et aromatiques au fil des saisons, avec environ 50 légumes et 20 fruits différents. La Clairière Paysanne transforme aussi une partie de sa production en confitures, sauces, pickles et sorbets, et complète sa boutique avec des produits d’autres producteurs locaux.",
+    "tags": [
+      "Agriculture biologique",
+      "Maraîchage",
+      "Vente directe"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "An organic farm growing a wide variety of seasonal fruit, vegetables and herbs, with around 50 vegetables and 20 different fruits. La Clairière Paysanne also transforms part of its harvest into jams, tomato sauces, pickles and sorbets, while its farm shop offers additional products from other local producers.",
+        "homeTextNear": "This organic farm sells seasonal fruit and vegetables grown on site, alongside farm-made products and goods from other local producers.",
+        "homeTextFar": "In Magny-les-Hameaux, La Clairière Paysanne offers another way to buy seasonal food, directly from an organic farm and local producers."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette ferme bio permet d’acheter directement fruits et légumes de saison cultivés sur place, ainsi que des produits transformés de la ferme et d’autres producteurs locaux.",
+    "homeTextFar": "À Magny-les-Hameaux, La Clairière Paysanne propose une autre manière d’acheter ses produits de saison, directement auprès d’une ferme bio et de producteurs locaux.",
+    "panoramaImage": "/downloads/laclairirerpaysanne.webp"
+  },
+  {
+    "id": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "name": "Le Garde-Manger",
+    "city": "Magny-les-Hameaux",
+    "address": "1 Rue Mathilde de Garlande, 78114 Magny-les-Hameaux, France",
+    "website": "https://www.legarde-manger.fr",
+    "openingHours": "Lundi Fermé\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-18h00\nDimanche Fermé",
+    "lat": 48.740801957014206,
+    "lng": 2.0356009441801506,
+    "category": "Épicerie",
+    "createdAt": "2026-08-09T06:39:08.069Z",
+    "updatedAt": "2026-08-09T06:39:08.069Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 1 30 64 17 77",
+    "miniText": "Une épicerie fermière installée au cœur de la ferme familiale de Romainville, qui réunit plus de 3 000 produits frais, fermiers et artisanaux issus de plus d’une centaine de producteurs français. Le Garde-Manger vend aussi les productions de sa propre ferme et dispose d’une fromagerie avec fromages et charcuteries à la coupe.",
+    "tags": [
+      "Producteurs français",
+      "Circuit court",
+      "Fromagerie"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A farm grocery store located on the family-run Ferme de Romainville, bringing together more than 3,000 fresh, farm-made and artisanal products from over a hundred French producers. Le Garde-Manger also sells products from its own farm and includes a cheese counter with artisanal cheeses and charcuterie.",
+        "homeTextNear": "This farm grocery store offers short-supply-chain shopping with products from the farm and many French producers.",
+        "homeTextFar": "In Magny-les-Hameaux, Le Garde-Manger offers another way to shop, combining products from the farm with French farm-made and artisanal foods."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Cette épicerie fermière permet de faire ses courses en circuit court avec les produits de la ferme et ceux de nombreux producteurs français.",
+    "homeTextFar": "À Magny-les-Hameaux, Le Garde-Manger propose une autre manière de faire ses courses, entre productions de la ferme, produits fermiers et savoir-faire artisanaux français.",
+    "panoramaImage": "/downloads/legardemangeryvelines.webp"
   }
 ]
