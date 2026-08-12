@@ -2485,11 +2485,18 @@ export default function HomeScreen({
                               metadata: { name: selectedHomePlace.name, url, source: selectedHomePlaceSource }
                             });
 
-                            window.open(url, "_blank");
+                            const nativeWebsiteBridge =
+                              (window as any)?.webkit?.messageHandlers?.imWebsite;
+
+                            if (nativeWebsiteBridge?.postMessage) {
+                              nativeWebsiteBridge.postMessage(url);
+                            } else {
+                              window.open(url, "_blank");
+                            }
                           }}
-                          className="rounded-[9px] border border-white/10 bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-white/75"
+                          className="rounded-[9px] border border-[#6F6528] bg-[#6F6528] px-2.5 py-1 text-[12px] font-semibold text-white shadow-sm active:opacity-70"
                         >
-                          {isFr ? "Site web" : "Website"}
+                          {isFr ? "Voir le site ↗" : "Visit website ↗"}
                         </button>
                       ) : null}
                     </div>
