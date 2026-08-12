@@ -2570,6 +2570,13 @@ const filtered = source.filter((b) => {
 
                             if (nativeWebsiteBridge?.postMessage) {
                               nativeWebsiteBridge.postMessage(url);
+                            } else if (/Android/i.test(navigator.userAgent)) {
+                              const encodedUrl = encodeURIComponent(url);
+
+                              window.location.href =
+                                `intent://website?url=${encodedUrl}` +
+                                `#Intent;scheme=indiemap;package=com.indiemap.app;` +
+                                `S.browser_fallback_url=${encodedUrl};end`;
                             } else {
                               window.open(url, "_blank");
                             }
