@@ -4,7 +4,13 @@ import path from "node:path";
 import HomeScreen from "../../components/home/HomeScreen";
 import { pickContextPlace } from "@/lib/contextSuggestions";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    openPlace?: string | string[];
+    source?: string | string[];
+  }>;
+};
 
 type Place = {
   id: string;
@@ -16,6 +22,9 @@ type Place = {
   address?: string;
   category?: string;
   website?: string;
+phone?: string;
+openingHours?: string;
+timeZone?: string;
   miniText?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -58,6 +67,9 @@ function readPlaces(locale: string): Place[] {
       address: String(item?.address ?? "").trim() || undefined,
       category: String(item?.category ?? "").trim() || undefined,
       website: String(item?.website ?? "").trim() || undefined,
+phone: String(item?.phone ?? "").trim() || undefined,
+openingHours: String(item?.openingHours ?? "").trim() || undefined,
+timeZone: String(item?.timeZone ?? "").trim() || undefined,
       miniText: String((locale === "en" ? item?.translations?.en?.miniText : item?.miniText) ?? item?.miniText ?? "").trim() || undefined,
       createdAt: String(item?.createdAt ?? "").trim() || undefined,
       updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
@@ -74,11 +86,27 @@ function readPlaces(locale: string): Place[] {
     );
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const { locale } = await params;
+const query = await searchParams;
+
+const requestedOpenPlace =
+  typeof query?.openPlace === "string" ? query.openPlace : null;
+
+const requestedSource =
+  typeof query?.source === "string" ? query.source : null;
+
   const l = locale === "en" ? "en" : "fr";
 
   const allPlaces = readPlaces(l);
+
+const initialSelectedHomePlace =
+  requestedOpenPlace && requestedSource === "recent_additions_all"
+    ? allPlaces.find(
+        (item) => String(item.id) === String(requestedOpenPlace)
+      ) ?? null
+    : null;
+
   const now = new Date();
   const dayKey = getLocalDayKey(now);
 
@@ -89,13 +117,12 @@ export default async function Page({ params }: Props) {
     pickContextPlace(allPlaces, now);
 
   const initialNewPlaces = [...allPlaces]
-    .filter((item) => item.id !== initialDiscoverPlace?.id && item.id !== initialContextPlace?.id)
-    .sort((a, b) => {
-      const aTime = Date.parse(a.updatedAt || a.createdAt || "") || 0;
-      const bTime = Date.parse(b.updatedAt || b.createdAt || "") || 0;
-      return bTime - aTime;
-    })
-    .slice(0, 5);
+.sort((a, b) => {
+const aTime = Date.parse(a.createdAt || "") || 0;
+const bTime = Date.parse(b.createdAt || "") || 0;
+return bTime - aTime;
+})
+.slice(0, 5);
 
   return (
     <HomeScreen
@@ -103,6 +130,10 @@ export default async function Page({ params }: Props) {
       initialDiscoverPlace={initialDiscoverPlace}
       initialContextPlace={initialContextPlace}
       initialNewPlaces={initialNewPlaces}
+      initialSelectedHomePlace={initialSelectedHomePlace}
+      initialSelectedHomePlaceSource={
+        initialSelectedHomePlace ? "recent_additions_all" : "home_detail"
+      }
     />
   );
 }

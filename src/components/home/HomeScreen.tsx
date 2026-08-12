@@ -345,13 +345,17 @@ export default function HomeScreen({
   initialDiscoverPlace = null,
   initialContextPlace = null,
   initialNewPlaces = [],
-  initialAllPlaces = []
+  initialAllPlaces = [],
+  initialSelectedHomePlace = null,
+  initialSelectedHomePlaceSource = "home_detail"
 }: {
   locale: "fr" | "en";
   initialDiscoverPlace?: DiscoverPlace | null;
   initialContextPlace?: DiscoverPlace | null;
   initialNewPlaces?: NewPlace[];
   initialAllPlaces?: DiscoverPlace[];
+  initialSelectedHomePlace?: DiscoverPlace | null;
+  initialSelectedHomePlaceSource?: string;
 }) {
   const router = useRouter();
   const isFr = locale === "fr";
@@ -846,8 +850,12 @@ export default function HomeScreen({
     return Boolean(cached?.discoverPlace || cached?.contextPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialContextPlace || initialNewPlaces.length > 0);
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
-  const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(null);
-  const [selectedHomePlaceSource, setSelectedHomePlaceSource] = React.useState("home_detail");
+  const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(
+    initialSelectedHomePlace
+  );
+  const [selectedHomePlaceSource, setSelectedHomePlaceSource] = React.useState(
+    initialSelectedHomePlaceSource
+  );
   const [selectedPlaceSharedListPickerOpen, setSelectedPlaceSharedListPickerOpen] = React.useState(false);
   const [selectedPlaceSharedLists, setSelectedPlaceSharedLists] = React.useState<SharedListChoice[]>([]);
   const [selectedPlaceSharedListsLoading, setSelectedPlaceSharedListsLoading] = React.useState(false);
@@ -895,6 +903,42 @@ export default function HomeScreen({
     setSelectedPlaceSharedListsMessage("");
     setSelectedPlaceNewSharedListTitle("");
   }, [selectedHomePlace?.id]);
+
+
+  React.useEffect(() => {
+    if (
+      !initialSelectedHomePlace ||
+      initialSelectedHomePlaceSource !== "recent_additions_all"
+    ) return;
+
+    trackEvent({
+      eventType: "click_recent_additions",
+      placeId: initialSelectedHomePlace.id,
+      city: initialSelectedHomePlace.city,
+      category: initialSelectedHomePlace.category,
+      locale,
+      metadata: {
+        name: initialSelectedHomePlace.name,
+        source: "recent_additions_all"
+      }
+    });
+
+    trackEvent({
+      eventType: "view_place_detail",
+      placeId: initialSelectedHomePlace.id,
+      city: initialSelectedHomePlace.city,
+      category: initialSelectedHomePlace.category,
+      locale,
+      metadata: {
+        name: initialSelectedHomePlace.name,
+        source: "recent_additions_all"
+      }
+    });
+  }, [
+    initialSelectedHomePlace,
+    initialSelectedHomePlaceSource,
+    locale
+  ]);
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -1465,13 +1509,12 @@ export default function HomeScreen({
           const nextIsNearby = hasLocation && (nearbySuggestionsOpen.length > 0 || nearbySuggestionsAll.length > 0);
 
           const latest = [...all]
-            .filter((item) => item.id !== nextDiscover?.id && item.id !== nextContextPlace?.id)
-            .sort((a, b) => {
-              const aTime = Date.parse(a.updatedAt || a.createdAt || "") || 0;
-              const bTime = Date.parse(b.updatedAt || b.createdAt || "") || 0;
-              return bTime - aTime;
-            })
-            .slice(0, 5);
+        .sort((a, b) => {
+          const aTime = Date.parse(a.createdAt || "") || 0;
+          const bTime = Date.parse(b.createdAt || "") || 0;
+          return bTime - aTime;
+        })
+        .slice(0, 5);
 
           homeMemoryCache[locale] = { discoverPlace: nextDiscover, contextPlace: nextContextPlace, newPlaces: latest };
           setNewPlaces(latest);
@@ -1759,7 +1802,7 @@ export default function HomeScreen({
         </div>
 
         <div className="im-home-scroll flex flex-1 w-full min-h-0 flex-col overflow-y-auto overscroll-y-contain" style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)" }}>
-          
+
 
 
 
@@ -1986,11 +2029,21 @@ export default function HomeScreen({
 
           <div className="mb-0 w-full shrink-0 pb-6">
               <div className="w-full relative z-10">
-                <div className="flex items-center justify-between px-3 pt-2">
+                <div className="flex items-baseline gap-1.5 px-3 pt-2">
                   <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
                     {isFr ? "Ajouts récents" : "Recent additions"}
                   </p>
-                </div>
+
+
+                  <button
+                    type="button"
+                    onClick={() => router.push(`/${locale}/ajouts-recents`)}
+                    className="inline-flex items-baseline gap-0.5 text-[10px] leading-none text-white/55 transition-opacity active:opacity-60"
+                  >
+                    <span>{isFr ? "Tout afficher" : "View all"}</span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+</div>
                 <div className="im-home-scroll mt-3 flex gap-5 overflow-x-auto px-3 pb-2">
                   {newPlaces.length > 0 ? newPlaces.slice(0, 5).map((item) => (
                     <button
@@ -2646,7 +2699,16 @@ export default function HomeScreen({
 
           <button
             type="button"
-            onClick={() => setSelectedHomePlace(null)}
+            onClick={() => {
+              const returnToRecentAdditions =
+                selectedHomePlaceSource === "recent_additions_all";
+
+              setSelectedHomePlace(null);
+
+              if (returnToRecentAdditions) {
+                router.back();
+              }
+            }}
             className="absolute right-4 z-[80] grid place-items-center"
             style={{
               top: "calc(env(safe-area-inset-top) + 16px)",
