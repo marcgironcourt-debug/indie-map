@@ -1,0 +1,1729 @@
+{
+  "version": "scout-category-dna-v1",
+  "generatedAt": "2026-08-13T03:30:01.907Z",
+  "totalPlaces": 626,
+  "categories": {
+    "Artisanat": {
+      "places": 5,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localSourcing": {
+          "supported": 0,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 4,
+          "supportedPct": 0,
+          "observedPct": 20
+        },
+        "directProducerRelationship": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 4,
+          "supportedPct": 20,
+          "observedPct": 20
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "artisanCraft": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 4,
+          "supportedPct": 20,
+          "observedPct": 20
+        },
+        "seasonal": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "organic": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 3,
+          "supportedPct": 0,
+          "observedPct": 40
+        },
+        "localCreators": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 80,
+          "observedPct": 80
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Atelier": {
+      "places": 11,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localSourcing": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directProducerRelationship": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 9.1,
+          "observedPct": 9.1
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 1,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 8,
+          "supportedPct": 9.1,
+          "observedPct": 27.3
+        },
+        "artisanCraft": {
+          "supported": 2,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 9,
+          "supportedPct": 18.2,
+          "observedPct": 18.2
+        },
+        "seasonal": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "organic": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "repairReuseSecondHand": {
+          "supported": 5,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 6,
+          "supportedPct": 45.5,
+          "observedPct": 45.5
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "communityAlternative": {
+          "supported": 1,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 9,
+          "supportedPct": 9.1,
+          "observedPct": 18.2
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Boulangerie": {
+      "places": 15,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 15,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 14,
+          "supportedPct": 6.7,
+          "observedPct": 6.7
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 13,
+          "supportedPct": 0,
+          "observedPct": 13.3
+        },
+        "localSourcing": {
+          "supported": 8,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 53.3,
+          "observedPct": 66.7
+        },
+        "directProducerRelationship": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 14,
+          "supportedPct": 6.7,
+          "observedPct": 6.7
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 15,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 2,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 13.3,
+          "observedPct": 33.3
+        },
+        "artisanCraft": {
+          "supported": 9,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 5,
+          "supportedPct": 60,
+          "observedPct": 66.7
+        },
+        "seasonal": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 26.7,
+          "observedPct": 26.7
+        },
+        "organic": {
+          "supported": 6,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 9,
+          "supportedPct": 40,
+          "observedPct": 40
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 15,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 3,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 11,
+          "supportedPct": 20,
+          "observedPct": 26.7
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 15,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 15,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Boutique": {
+      "places": 32,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localSourcing": {
+          "supported": 5,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 25,
+          "supportedPct": 15.6,
+          "observedPct": 21.9
+        },
+        "directProducerRelationship": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 6.3
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 6.3
+        },
+        "artisanCraft": {
+          "supported": 16,
+          "suggested": 4,
+          "contradicted": 0,
+          "unknown": 12,
+          "supportedPct": 50,
+          "observedPct": 62.5
+        },
+        "seasonal": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "organic": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "repairReuseSecondHand": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 25,
+          "supportedPct": 21.9,
+          "observedPct": 21.9
+        },
+        "socialSolidarity": {
+          "supported": 9,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 22,
+          "supportedPct": 28.1,
+          "observedPct": 31.3
+        },
+        "communityAlternative": {
+          "supported": 1,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 28,
+          "supportedPct": 3.1,
+          "observedPct": 12.5
+        },
+        "localCreators": {
+          "supported": 6,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 18.8,
+          "observedPct": 25
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 1,
+          "pct": 3.1
+        }
+      }
+    },
+    "Brasserie / Bar": {
+      "places": 32,
+      "signals": {
+        "independent": {
+          "supported": 2,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 6.3,
+          "observedPct": 6.3
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 13,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 19,
+          "supportedPct": 40.6,
+          "observedPct": 40.6
+        },
+        "localSourcing": {
+          "supported": 4,
+          "suggested": 8,
+          "contradicted": 0,
+          "unknown": 20,
+          "supportedPct": 12.5,
+          "observedPct": 37.5
+        },
+        "directProducerRelationship": {
+          "supported": 2,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 29,
+          "supportedPct": 6.3,
+          "observedPct": 9.4
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 7,
+          "suggested": 11,
+          "contradicted": 0,
+          "unknown": 14,
+          "supportedPct": 21.9,
+          "observedPct": 56.3
+        },
+        "artisanCraft": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 25,
+          "supportedPct": 21.9,
+          "observedPct": 21.9
+        },
+        "seasonal": {
+          "supported": 12,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 19,
+          "supportedPct": 37.5,
+          "observedPct": 40.6
+        },
+        "organic": {
+          "supported": 6,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 26,
+          "supportedPct": 18.8,
+          "observedPct": 18.8
+        },
+        "repairReuseSecondHand": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 31,
+          "supportedPct": 3.1,
+          "observedPct": 3.1
+        },
+        "socialSolidarity": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 31,
+          "supportedPct": 3.1,
+          "observedPct": 3.1
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 31,
+          "supportedPct": 0,
+          "observedPct": 3.1
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 32,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 1,
+          "pct": 3.1
+        }
+      }
+    },
+    "Brunch": {
+      "places": 2,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 50,
+          "observedPct": 50
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localSourcing": {
+          "supported": 2,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 0,
+          "supportedPct": 100,
+          "observedPct": 100
+        },
+        "directProducerRelationship": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 50,
+          "observedPct": 50
+        },
+        "artisanCraft": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 50,
+          "observedPct": 50
+        },
+        "seasonal": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 50,
+          "observedPct": 50
+        },
+        "organic": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 1,
+          "supportedPct": 50,
+          "observedPct": 50
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 2,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Café": {
+      "places": 30,
+      "signals": {
+        "independent": {
+          "supported": 2,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 28,
+          "supportedPct": 6.7,
+          "observedPct": 6.7
+        },
+        "farmToTable": {
+          "supported": 2,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 28,
+          "supportedPct": 6.7,
+          "observedPct": 6.7
+        },
+        "shortSupplyChain": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 26,
+          "supportedPct": 13.3,
+          "observedPct": 13.3
+        },
+        "localSourcing": {
+          "supported": 7,
+          "suggested": 11,
+          "contradicted": 0,
+          "unknown": 12,
+          "supportedPct": 23.3,
+          "observedPct": 60
+        },
+        "directProducerRelationship": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 23,
+          "supportedPct": 23.3,
+          "observedPct": 23.3
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 5,
+          "suggested": 7,
+          "contradicted": 0,
+          "unknown": 18,
+          "supportedPct": 16.7,
+          "observedPct": 40
+        },
+        "artisanCraft": {
+          "supported": 1,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 27,
+          "supportedPct": 3.3,
+          "observedPct": 10
+        },
+        "seasonal": {
+          "supported": 9,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 30,
+          "observedPct": 30
+        },
+        "organic": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 23,
+          "supportedPct": 23.3,
+          "observedPct": 23.3
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "communityAlternative": {
+          "supported": 2,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 27,
+          "supportedPct": 6.7,
+          "observedPct": 10
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 30,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Épicerie": {
+      "places": 116,
+      "signals": {
+        "independent": {
+          "supported": 3,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 113,
+          "supportedPct": 2.6,
+          "observedPct": 2.6
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 115,
+          "supportedPct": 0,
+          "observedPct": 0.9
+        },
+        "shortSupplyChain": {
+          "supported": 36,
+          "suggested": 4,
+          "contradicted": 0,
+          "unknown": 76,
+          "supportedPct": 31,
+          "observedPct": 34.5
+        },
+        "localSourcing": {
+          "supported": 20,
+          "suggested": 45,
+          "contradicted": 0,
+          "unknown": 51,
+          "supportedPct": 17.2,
+          "observedPct": 56
+        },
+        "directProducerRelationship": {
+          "supported": 28,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 86,
+          "supportedPct": 24.1,
+          "observedPct": 25.9
+        },
+        "directSale": {
+          "supported": 12,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 104,
+          "supportedPct": 10.3,
+          "observedPct": 10.3
+        },
+        "onSiteProduction": {
+          "supported": 5,
+          "suggested": 13,
+          "contradicted": 0,
+          "unknown": 98,
+          "supportedPct": 4.3,
+          "observedPct": 15.5
+        },
+        "artisanCraft": {
+          "supported": 6,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 109,
+          "supportedPct": 5.2,
+          "observedPct": 6
+        },
+        "seasonal": {
+          "supported": 25,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 91,
+          "supportedPct": 21.6,
+          "observedPct": 21.6
+        },
+        "organic": {
+          "supported": 39,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 77,
+          "supportedPct": 33.6,
+          "observedPct": 33.6
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 116,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 5,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 111,
+          "supportedPct": 4.3,
+          "observedPct": 4.3
+        },
+        "communityAlternative": {
+          "supported": 3,
+          "suggested": 4,
+          "contradicted": 0,
+          "unknown": 109,
+          "supportedPct": 2.6,
+          "observedPct": 6
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 116,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 12,
+          "pct": 10.3
+        }
+      }
+    },
+    "Ferme": {
+      "places": 68,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 68,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 67,
+          "supportedPct": 1.5,
+          "observedPct": 1.5
+        },
+        "shortSupplyChain": {
+          "supported": 12,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 55,
+          "supportedPct": 17.6,
+          "observedPct": 19.1
+        },
+        "localSourcing": {
+          "supported": 10,
+          "suggested": 20,
+          "contradicted": 0,
+          "unknown": 38,
+          "supportedPct": 14.7,
+          "observedPct": 44.1
+        },
+        "directProducerRelationship": {
+          "supported": 2,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 64,
+          "supportedPct": 2.9,
+          "observedPct": 5.9
+        },
+        "directSale": {
+          "supported": 24,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 44,
+          "supportedPct": 35.3,
+          "observedPct": 35.3
+        },
+        "onSiteProduction": {
+          "supported": 12,
+          "suggested": 23,
+          "contradicted": 0,
+          "unknown": 33,
+          "supportedPct": 17.6,
+          "observedPct": 51.5
+        },
+        "artisanCraft": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 64,
+          "supportedPct": 5.9,
+          "observedPct": 5.9
+        },
+        "seasonal": {
+          "supported": 12,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 55,
+          "supportedPct": 17.6,
+          "observedPct": 19.1
+        },
+        "organic": {
+          "supported": 24,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 43,
+          "supportedPct": 35.3,
+          "observedPct": 36.8
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 68,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 3,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 62,
+          "supportedPct": 4.4,
+          "observedPct": 8.8
+        },
+        "communityAlternative": {
+          "supported": 5,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 62,
+          "supportedPct": 7.4,
+          "observedPct": 8.8
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 68,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Librairie": {
+      "places": 10,
+      "signals": {
+        "independent": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 9,
+          "supportedPct": 10,
+          "observedPct": 10
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localSourcing": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directProducerRelationship": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "artisanCraft": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "seasonal": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "organic": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "repairReuseSecondHand": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 3,
+          "supportedPct": 70,
+          "observedPct": 70
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 8,
+          "supportedPct": 0,
+          "observedPct": 20
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Lieu alternatif": {
+      "places": 67,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 67,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 5,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 59,
+          "supportedPct": 7.5,
+          "observedPct": 11.9
+        },
+        "shortSupplyChain": {
+          "supported": 7,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 60,
+          "supportedPct": 10.4,
+          "observedPct": 10.4
+        },
+        "localSourcing": {
+          "supported": 2,
+          "suggested": 21,
+          "contradicted": 0,
+          "unknown": 44,
+          "supportedPct": 3,
+          "observedPct": 34.3
+        },
+        "directProducerRelationship": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 67,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directSale": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 63,
+          "supportedPct": 6,
+          "observedPct": 6
+        },
+        "onSiteProduction": {
+          "supported": 11,
+          "suggested": 13,
+          "contradicted": 0,
+          "unknown": 43,
+          "supportedPct": 16.4,
+          "observedPct": 35.8
+        },
+        "artisanCraft": {
+          "supported": 4,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 62,
+          "supportedPct": 6,
+          "observedPct": 7.5
+        },
+        "seasonal": {
+          "supported": 6,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 61,
+          "supportedPct": 9,
+          "observedPct": 9
+        },
+        "organic": {
+          "supported": 21,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 46,
+          "supportedPct": 31.3,
+          "observedPct": 31.3
+        },
+        "repairReuseSecondHand": {
+          "supported": 3,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 64,
+          "supportedPct": 4.5,
+          "observedPct": 4.5
+        },
+        "socialSolidarity": {
+          "supported": 11,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 56,
+          "supportedPct": 16.4,
+          "observedPct": 16.4
+        },
+        "communityAlternative": {
+          "supported": 43,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 64.2,
+          "observedPct": 68.7
+        },
+        "localCreators": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 66,
+          "supportedPct": 1.5,
+          "observedPct": 1.5
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Marché": {
+      "places": 24,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 11,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 13,
+          "supportedPct": 45.8,
+          "observedPct": 45.8
+        },
+        "localSourcing": {
+          "supported": 8,
+          "suggested": 4,
+          "contradicted": 0,
+          "unknown": 12,
+          "supportedPct": 33.3,
+          "observedPct": 50
+        },
+        "directProducerRelationship": {
+          "supported": 4,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 19,
+          "supportedPct": 16.7,
+          "observedPct": 20.8
+        },
+        "directSale": {
+          "supported": 13,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 10,
+          "supportedPct": 54.2,
+          "observedPct": 58.3
+        },
+        "onSiteProduction": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "artisanCraft": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "seasonal": {
+          "supported": 10,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 14,
+          "supportedPct": 41.7,
+          "observedPct": 41.7
+        },
+        "organic": {
+          "supported": 3,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 12.5,
+          "observedPct": 12.5
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 24,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "communityAlternative": {
+          "supported": 0,
+          "suggested": 3,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 12.5
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 22,
+          "supportedPct": 0,
+          "observedPct": 8.3
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Mode": {
+      "places": 21,
+      "signals": {
+        "independent": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "farmToTable": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "shortSupplyChain": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 20,
+          "supportedPct": 4.8,
+          "observedPct": 4.8
+        },
+        "localSourcing": {
+          "supported": 1,
+          "suggested": 7,
+          "contradicted": 0,
+          "unknown": 13,
+          "supportedPct": 4.8,
+          "observedPct": 38.1
+        },
+        "directProducerRelationship": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "artisanCraft": {
+          "supported": 4,
+          "suggested": 9,
+          "contradicted": 0,
+          "unknown": 8,
+          "supportedPct": 19,
+          "observedPct": 61.9
+        },
+        "seasonal": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 21,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "organic": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 20,
+          "supportedPct": 4.8,
+          "observedPct": 4.8
+        },
+        "repairReuseSecondHand": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 17,
+          "supportedPct": 19,
+          "observedPct": 19
+        },
+        "socialSolidarity": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 17,
+          "supportedPct": 19,
+          "observedPct": 19
+        },
+        "communityAlternative": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 20,
+          "supportedPct": 4.8,
+          "observedPct": 4.8
+        },
+        "localCreators": {
+          "supported": 2,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 17,
+          "supportedPct": 9.5,
+          "observedPct": 19
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 0,
+          "pct": 0
+        }
+      }
+    },
+    "Restaurant": {
+      "places": 193,
+      "signals": {
+        "independent": {
+          "supported": 1,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 192,
+          "supportedPct": 0.5,
+          "observedPct": 0.5
+        },
+        "farmToTable": {
+          "supported": 23,
+          "suggested": 11,
+          "contradicted": 0,
+          "unknown": 159,
+          "supportedPct": 11.9,
+          "observedPct": 17.6
+        },
+        "shortSupplyChain": {
+          "supported": 17,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 174,
+          "supportedPct": 8.8,
+          "observedPct": 9.8
+        },
+        "localSourcing": {
+          "supported": 54,
+          "suggested": 84,
+          "contradicted": 0,
+          "unknown": 55,
+          "supportedPct": 28,
+          "observedPct": 71.5
+        },
+        "directProducerRelationship": {
+          "supported": 23,
+          "suggested": 9,
+          "contradicted": 0,
+          "unknown": 161,
+          "supportedPct": 11.9,
+          "observedPct": 16.6
+        },
+        "directSale": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 193,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "onSiteProduction": {
+          "supported": 15,
+          "suggested": 17,
+          "contradicted": 0,
+          "unknown": 161,
+          "supportedPct": 7.8,
+          "observedPct": 16.6
+        },
+        "artisanCraft": {
+          "supported": 6,
+          "suggested": 3,
+          "contradicted": 1,
+          "unknown": 183,
+          "supportedPct": 3.1,
+          "observedPct": 5.2
+        },
+        "seasonal": {
+          "supported": 146,
+          "suggested": 6,
+          "contradicted": 0,
+          "unknown": 41,
+          "supportedPct": 75.6,
+          "observedPct": 78.8
+        },
+        "organic": {
+          "supported": 25,
+          "suggested": 1,
+          "contradicted": 0,
+          "unknown": 167,
+          "supportedPct": 13,
+          "observedPct": 13.5
+        },
+        "repairReuseSecondHand": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 193,
+          "supportedPct": 0,
+          "observedPct": 0
+        },
+        "socialSolidarity": {
+          "supported": 4,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 189,
+          "supportedPct": 2.1,
+          "observedPct": 2.1
+        },
+        "communityAlternative": {
+          "supported": 1,
+          "suggested": 2,
+          "contradicted": 0,
+          "unknown": 190,
+          "supportedPct": 0.5,
+          "observedPct": 1.6
+        },
+        "localCreators": {
+          "supported": 0,
+          "suggested": 0,
+          "contradicted": 0,
+          "unknown": 193,
+          "supportedPct": 0,
+          "observedPct": 0
+        }
+      },
+      "candidates": {
+        "wastePackagingReduction": {
+          "places": 1,
+          "pct": 0.5
+        }
+      }
+    }
+  }
+}

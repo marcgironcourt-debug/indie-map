@@ -1,0 +1,237 @@
+{
+  "version": "scout-category-rules-draft-v1",
+  "status": "draft",
+  "principles": {
+    "catalogueIsObservationNotGroundTruth": true,
+    "absenceOfEvidenceIsNotNegativeEvidence": true,
+    "explicitEditorialRulesOverrideCorrelations": true,
+    "anchorsAreNotMandatory": true,
+    "strongSignalsCanProvideAlternativeQualificationPaths": true,
+    "supportingSignalsCannotUsuallyQualifyAPlaceAlone": true,
+    "newCandidatesAreNotYetPromotedToGlobalCriteria": true
+  },
+  "categories": {
+    "Restaurant": {
+      "confidence": "high",
+      "anchors": [
+        "seasonal",
+        "localSourcing"
+      ],
+      "strong": [
+        "farmToTable",
+        "directProducerRelationship",
+        "shortSupplyChain"
+      ],
+      "supporting": [
+        "organic",
+        "onSiteProduction",
+        "socialSolidarity",
+        "wastePackagingReduction"
+      ]
+    },
+    "Épicerie": {
+      "confidence": "high",
+      "anchors": [
+        "shortSupplyChain",
+        "directProducerRelationship",
+        "localSourcing"
+      ],
+      "strong": [
+        "directSale",
+        "organic",
+        "wastePackagingReduction"
+      ],
+      "supporting": [
+        "seasonal",
+        "artisanCraft",
+        "socialSolidarity"
+      ]
+    },
+    "Ferme": {
+      "confidence": "high",
+      "anchors": [
+        "directSale",
+        "shortSupplyChain",
+        "localSourcing"
+      ],
+      "strong": [
+        "organic",
+        "onSiteProduction"
+      ],
+      "supporting": [
+        "seasonal",
+        "communityAlternative",
+        "socialSolidarity"
+      ]
+    },
+    "Marché": {
+      "confidence": "medium",
+      "anchors": [
+        "directSale",
+        "shortSupplyChain",
+        "localSourcing"
+      ],
+      "strong": [
+        "directProducerRelationship"
+      ],
+      "supporting": [
+        "seasonal",
+        "organic",
+        "localCreators"
+      ]
+    },
+    "Boulangerie": {
+      "confidence": "medium",
+      "anchors": [
+        "artisanCraft",
+        "localSourcing",
+        "onSiteProduction"
+      ],
+      "strong": [
+        "organic",
+        "seasonal"
+      ],
+      "supporting": [
+        "directProducerRelationship",
+        "socialSolidarity"
+      ]
+    },
+    "Café": {
+      "confidence": "high",
+      "anchors": [
+        "localSourcing",
+        "directProducerRelationship",
+        "seasonal"
+      ],
+      "strong": [
+        "onSiteProduction",
+        "shortSupplyChain",
+        "organic"
+      ],
+      "supporting": [
+        "communityAlternative",
+        "independent"
+      ]
+    },
+    "Brasserie / Bar": {
+      "confidence": "high",
+      "anchors": [
+        "shortSupplyChain",
+        "onSiteProduction",
+        "artisanCraft"
+      ],
+      "strong": [
+        "seasonal",
+        "localSourcing"
+      ],
+      "supporting": [
+        "organic",
+        "directProducerRelationship",
+        "independent",
+        "wastePackagingReduction"
+      ]
+    },
+    "Boutique": {
+      "confidence": "high",
+      "anchors": [
+        "artisanCraft",
+        "localCreators",
+        "repairReuseSecondHand"
+      ],
+      "strong": [
+        "socialSolidarity",
+        "localSourcing"
+      ],
+      "supporting": [
+        "communityAlternative",
+        "wastePackagingReduction"
+      ]
+    },
+    "Mode": {
+      "confidence": "medium",
+      "anchors": [
+        "artisanCraft",
+        "repairReuseSecondHand",
+        "localCreators",
+        "socialSolidarity"
+      ],
+      "strong": [
+        "localSourcing"
+      ],
+      "supporting": [
+        "shortSupplyChain",
+        "organic",
+        "communityAlternative"
+      ]
+    },
+    "Atelier": {
+      "confidence": "low",
+      "anchors": [
+        "repairReuseSecondHand",
+        "artisanCraft",
+        "onSiteProduction"
+      ],
+      "strong": [
+        "communityAlternative",
+        "socialSolidarity"
+      ],
+      "supporting": [
+        "localCreators"
+      ]
+    },
+    "Librairie": {
+      "confidence": "low",
+      "anchors": [
+        "repairReuseSecondHand",
+        "independent",
+        "socialSolidarity"
+      ],
+      "strong": [],
+      "supporting": [
+        "communityAlternative"
+      ],
+      "note": "Le catalogue actuel est fortement orienté librairies d'occasion ; ne pas transformer repairReuseSecondHand en obligation."
+    },
+    "Lieu alternatif": {
+      "confidence": "high",
+      "anchors": [
+        "communityAlternative"
+      ],
+      "strong": [
+        "socialSolidarity",
+        "repairReuseSecondHand",
+        "onSiteProduction"
+      ],
+      "supporting": [
+        "organic",
+        "shortSupplyChain",
+        "farmToTable",
+        "artisanCraft",
+        "wastePackagingReduction"
+      ]
+    },
+    "Artisanat": {
+      "confidence": "low",
+      "anchors": [
+        "artisanCraft",
+        "localCreators",
+        "onSiteProduction"
+      ],
+      "strong": [
+        "localSourcing"
+      ],
+      "supporting": [
+        "directProducerRelationship",
+        "socialSolidarity"
+      ]
+    },
+    "Brunch": {
+      "confidence": "very_low",
+      "inheritFrom": [
+        "Restaurant",
+        "Café"
+      ],
+      "note": "Seulement 2 lieux : ne pas apprendre de règle spécifique."
+    }
+  }
+}

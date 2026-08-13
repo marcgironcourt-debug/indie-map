@@ -1,0 +1,126 @@
+{
+  "version": "scout-prospect-history-v1",
+  "updatedAt": "2026-08-13T10:18:00.186Z",
+  "proposals": [
+    {
+      "name": "Barbacoa",
+      "municipality": null,
+      "website": "https://barbacoa.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Arkose Cantine Pont de Sèvres",
+      "municipality": null,
+      "website": "https://arkose.com/pont-de-sevres/cantine",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Adèle et Camille",
+      "municipality": null,
+      "website": "https://adele-et-camille-restaurant-boulogne-billancourt.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Le Panier de Boulogne",
+      "municipality": null,
+      "website": "https://lepanierboulogne.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Mabish",
+      "municipality": null,
+      "website": "https://mabish.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Pleni Cantine",
+      "municipality": null,
+      "website": "https://pleni-cantine.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Les Frangines",
+      "municipality": null,
+      "website": "https://lesfrangines-issy.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Au Père Lapin",
+      "municipality": null,
+      "website": "https://auperelapin.com/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Le Nouveau Paris",
+      "municipality": null,
+      "website": "https://lenouveauparis-restaurant.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Papa Pool",
+      "municipality": null,
+      "website": "https://bistrot-papapool.fr/",
+      "firstProposedAt": "2026-08-13T10:13:23.479Z",
+      "sourceSessionId": "restaurants-hauts-de-seine-2026-08-13-01",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      }
+    }
+  ]
+}

@@ -89,6 +89,11 @@ function shouldUseFastStableOfficialPass(
 const OFFICIAL_PAGE_CACHE_TTL_MS =
   24 * 60 * 60 * 1000;
 
+const SCOUT_DISABLE_PERSISTENT_OFFICIAL_PAGE_CACHE =
+  process.env
+    .SCOUT_DISABLE_PERSISTENT_OFFICIAL_PAGE_CACHE ===
+  "1";
+
 /*
  * Une preuve vérifiée est conservée durablement en base.
  *
@@ -324,42 +329,46 @@ async function fetchRaw(
      * Une panne du cache ne doit pas empêcher
      * la vérification officielle de fonctionner.
      */
-    try {
-      const persistent =
-        await getFreshOfficialPageCache(
-          normalizedUrl
-        );
+    if (
+      !SCOUT_DISABLE_PERSISTENT_OFFICIAL_PAGE_CACHE
+    ) {
+      try {
+        const persistent =
+          await getFreshOfficialPageCache(
+            normalizedUrl
+          );
 
-      if (persistent) {
-        usage.persistentCacheHits =
+        if (persistent) {
+          usage.persistentCacheHits =
+            (
+              usage.persistentCacheHits ||
+              0
+            ) + 1;
+
+          return {
+            url:
+              persistent.finalUrl ||
+              persistent.url,
+            contentType:
+              persistent.contentType ||
+              "",
+            body:
+              persistent.body,
+          };
+        }
+
+        usage.persistentCacheMisses =
           (
-            usage.persistentCacheHits ||
+            usage.persistentCacheMisses ||
             0
           ) + 1;
-
-        return {
-          url:
-            persistent.finalUrl ||
-            persistent.url,
-          contentType:
-            persistent.contentType ||
-            "",
-          body:
-            persistent.body,
-        };
+      } catch (error) {
+        console.warn(
+          "[officialSiteVerifier] cache read failed:",
+          normalizedUrl,
+          error
+        );
       }
-
-      usage.persistentCacheMisses =
-        (
-          usage.persistentCacheMisses ||
-          0
-        ) + 1;
-    } catch (error) {
-      console.warn(
-        "[officialSiteVerifier] cache read failed:",
-        normalizedUrl,
-        error
-      );
     }
 
     /*
@@ -439,46 +448,50 @@ async function fetchRaw(
      * Une réponse HTTP réussie est conservée
      * pour les processus/requêtes futurs.
      */
-    try {
-      const fetchedAt =
-        new Date();
+    if (
+      !SCOUT_DISABLE_PERSISTENT_OFFICIAL_PAGE_CACHE
+    ) {
+      try {
+        const fetchedAt =
+          new Date();
 
-      await saveOfficialPageCache({
-        url:
+        await saveOfficialPageCache({
+          url:
+            normalizedUrl,
+          finalUrl:
+            response.url,
+          contentType,
+          httpStatus:
+            response.status,
+          body,
+          etag:
+            response.headers.get(
+              "etag"
+            ) || undefined,
+          lastModified:
+            response.headers.get(
+              "last-modified"
+            ) || undefined,
+          fetchedAt,
+          expiresAt:
+            new Date(
+              fetchedAt.getTime() +
+              OFFICIAL_PAGE_CACHE_TTL_MS
+            ),
+        });
+
+        usage.persistentCacheWrites =
+          (
+            usage.persistentCacheWrites ||
+            0
+          ) + 1;
+      } catch (error) {
+        console.warn(
+          "[officialSiteVerifier] cache write failed:",
           normalizedUrl,
-        finalUrl:
-          response.url,
-        contentType,
-        httpStatus:
-          response.status,
-        body,
-        etag:
-          response.headers.get(
-            "etag"
-          ) || undefined,
-        lastModified:
-          response.headers.get(
-            "last-modified"
-          ) || undefined,
-        fetchedAt,
-        expiresAt:
-          new Date(
-            fetchedAt.getTime() +
-            OFFICIAL_PAGE_CACHE_TTL_MS
-          ),
-      });
-
-      usage.persistentCacheWrites =
-        (
-          usage.persistentCacheWrites ||
-          0
-        ) + 1;
-    } catch (error) {
-      console.warn(
-        "[officialSiteVerifier] cache write failed:",
-        normalizedUrl,
-        error
-      );
+          error
+        );
+      }
     }
 
     return result;
@@ -2019,5 +2032,126 @@ RÈGLES :
           ...allowedUrls,
         ]),
       ],
+  };
+}
+
+export type ScoutOfficialPage = {
+  url: string;
+  title: string;
+  text: string;
+  contentHash: string;
+};
+
+export async function collectOfficialPagesForScout(
+  options: {
+    openai: OpenAI;
+    place: OfficialSitePlace;
+    usage: OfficialVerifierUsage;
+    embeddingModel?: string;
+    maxSelectedPages?: number;
+    restrictToStartPage?: boolean;
+  }
+): Promise<{
+  discoveredCount: number;
+  selectedUrls: string[];
+  pages: ScoutOfficialPage[];
+}> {
+  const {
+    openai,
+    place,
+    usage,
+    embeddingModel =
+      "text-embedding-3-small",
+  } = options;
+
+  const restrictToStartPage =
+    options
+      .restrictToStartPage ??
+    false;
+
+  const website =
+    String(place.website || "").trim();
+
+  if (!website) {
+    throw new Error(
+      `Site officiel absent pour ${place.name}`
+    );
+  }
+
+  const maxSelectedPages =
+    Math.max(
+      1,
+      Math.min(
+        12,
+        Math.trunc(
+          options.maxSelectedPages ?? 8
+        )
+      )
+    );
+
+  const discovery =
+    await discover(
+      website,
+      usage,
+      {
+        includeSitemaps:
+          !restrictToStartPage,
+      }
+    );
+
+  const selectionQuestion = [
+    `Établissement : ${place.name}.`,
+    place.city
+      ? `Ville : ${place.city}.`
+      : "",
+    "Trouver les pages officielles qui documentent",
+    "l'histoire, la mission, les valeurs, les engagements,",
+    "la philosophie, les producteurs, les fournisseurs,",
+    "l'approvisionnement, les circuits courts, la fabrication,",
+    "les savoir-faire, l'artisanat, la saisonnalité,",
+    "les pratiques environnementales, le réemploi,",
+    "l'impact social, la gouvernance, la communauté,",
+    "les ateliers et les actions culturelles ou pédagogiques.",
+    "Inclure les équivalents dans toutes les langues.",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const selected =
+    restrictToStartPage
+      ? []
+      : await selectRelevantUrls(
+          openai,
+          selectionQuestion,
+          discovery.candidates,
+          embeddingModel,
+          usage,
+          maxSelectedPages
+        );
+
+  const pages =
+    await loadPages(
+      selected,
+      discovery.homePage,
+      usage
+    );
+
+  return {
+    discoveredCount:
+      discovery.candidates.length,
+
+    selectedUrls:
+      selected.map(
+        item => item.candidate.url
+      ),
+
+    pages:
+      pages.map(page => ({
+        url: page.url,
+        title: page.title,
+        text: page.text,
+        contentHash:
+          page.contentHash,
+      })),
   };
 }

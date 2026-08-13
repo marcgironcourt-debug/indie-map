@@ -1,0 +1,140 @@
+{
+  "version": "scout-prospect-feedback-v1",
+  "updatedAt": "2026-08-13T10:13:23.479Z",
+  "sessions": [
+    {
+      "id": "restaurants-hauts-de-seine-2026-08-13-01",
+      "reviewedAt": "2026-08-13T10:13:23.479Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Hauts-de-Seine (92)",
+        "requestedCandidates": 10
+      },
+      "source": "manual_user_review",
+      "summary": {
+        "presented": 10,
+        "accepted": 0,
+        "rejectedEditorial": 8,
+        "rejectedInsufficientEvidence": 1,
+        "excludedInactive": 1
+      },
+      "learningPrinciplesFr": [
+        "Pour un restaurant, une affirmation marketing comme « local » ou « principalement local » ne suffit pas si la composition réelle de la carte ne paraît pas cohérente avec cette promesse.",
+        "Le fait maison ne constitue pas une preuve de produits locaux ou de saison.",
+        "Une offre fortement centrée sur la viande, le poisson, les fruits de mer ou des ingrédients importés peut rendre le restaurant incompatible avec Indie Map.",
+        "L'agent doit chercher des indices concrets de produits locaux et de saison, et non seulement une communication générale.",
+        "Un lieu sans informations vérifiables ne doit pas être proposé.",
+        "Un lieu définitivement fermé doit être exclu avant l'évaluation éditoriale et ne doit pas devenir un contre-exemple aux valeurs Indie Map."
+      ],
+      "decisions": [
+        {
+          "rank": 1,
+          "name": "Barbacoa",
+          "website": "https://www.barbacoa.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "Le site indique des produits principalement locaux et pour la plupart bio, mais la carte comporte notamment des crevettes et de la dorade. L'utilisateur considère que l'offre ne correspond pas suffisamment à Indie Map.",
+          "learningSignals": [
+            "local_claim_insufficient",
+            "menu_composition_inconsistent_with_editorial_fit"
+          ]
+        },
+        {
+          "rank": 2,
+          "name": "Arkose Cantine Pont de Sèvres",
+          "website": "https://arkose.com/pont-de-sevres/cantine",
+          "decision": "rejected_editorial",
+          "reasonFr": "Aucune preuve suffisante que les produits soient locaux et de saison.",
+          "learningSignals": [
+            "local_and_seasonal_not_established"
+          ]
+        },
+        {
+          "rank": 3,
+          "name": "Adèle et Camille",
+          "website": "https://www.adele-et-camille-restaurant-boulogne-billancourt.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "La carte contient beaucoup de viande, de poisson, de foie gras, de chocolat, de café et d'autres ingrédients que l'utilisateur juge incompatibles avec l'orientation environnementale et locale recherchée.",
+          "learningSignals": [
+            "animal_products_too_central",
+            "imported_ingredients_too_central",
+            "environmental_fit_insufficient"
+          ]
+        },
+        {
+          "rank": 4,
+          "name": "Le Panier de Boulogne",
+          "website": "https://www.lepanierboulogne.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "L'utilisateur considère que ce lieu n'a rien à voir avec Indie Map. Aucun motif plus précis n'a été établi.",
+          "learningSignals": [
+            "editorial_mismatch_unspecified"
+          ]
+        },
+        {
+          "rank": 5,
+          "name": "Mabish",
+          "website": "https://www.mabish.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "La carte repose notamment sur du tahini, du halloumi et du lait de coco, qui ne sont pas des produits français.",
+          "learningSignals": [
+            "imported_ingredients_too_central",
+            "local_origin_insufficient"
+          ]
+        },
+        {
+          "rank": 6,
+          "name": "Pleni Cantine",
+          "website": "https://www.pleni-cantine.fr/",
+          "decision": "excluded_inactive",
+          "reasonFr": "Le lieu est définitivement fermé.",
+          "learningSignals": [
+            "permanently_closed"
+          ]
+        },
+        {
+          "rank": 7,
+          "name": "Les Frangines",
+          "website": "https://lesfrangines-issy.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "Le restaurant met en avant le fait maison, mais aucune dimension locale suffisante n'est établie.",
+          "learningSignals": [
+            "homemade_is_not_local",
+            "local_origin_insufficient"
+          ]
+        },
+        {
+          "rank": 8,
+          "name": "Au Père Lapin",
+          "website": "https://www.auperelapin.com/",
+          "decision": "rejected_editorial",
+          "reasonFr": "La carte comporte notamment des crevettes, du poulpe et du parmesan. L'utilisateur considère que l'offre n'est pas suffisamment locale et écologique.",
+          "learningSignals": [
+            "imported_ingredients_too_central",
+            "local_and_environmental_fit_insufficient"
+          ]
+        },
+        {
+          "rank": 9,
+          "name": "Le Nouveau Paris",
+          "website": "https://lenouveauparis-restaurant.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "La carte comporte trop de viande, de poisson, de crevettes et d'autres produits que l'utilisateur juge incompatibles avec Indie Map.",
+          "learningSignals": [
+            "animal_products_too_central",
+            "environmental_fit_insufficient"
+          ]
+        },
+        {
+          "rank": 10,
+          "name": "Papa Pool",
+          "website": "https://www.bistrot-papapool.fr/",
+          "decision": "rejected_insufficient_evidence",
+          "reasonFr": "Aucune information permettant de vérifier la compatibilité avec Indie Map.",
+          "learningSignals": [
+            "insufficient_verifiable_information"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "scout-discovery-decisions-v1",
+  "decisions": [
+    {
+      "key": "wastePackagingReduction",
+      "status": "accepted_candidate",
+      "label": "Réduction des déchets et emballages",
+      "definition": "Réduction concrète des déchets ou des emballages intégrée au fonctionnement du lieu : vente en vrac, suppression ou forte réduction des emballages à usage unique, réemploi de contenants ou démarche explicitement zéro déchet.",
+      "sourceClusters": [
+        "cluster-22",
+        "cluster-28",
+        "cluster-39",
+        "cluster-57"
+      ],
+      "notes": "Distinct de repairReuseSecondHand, qui concerne la réparation, le réemploi ou la seconde main des objets et produits."
+    },
+    {
+      "key": "freshProducts",
+      "status": "rejected_as_criterion",
+      "label": "Produits frais",
+      "sourceClusters": [
+        "cluster-47"
+      ],
+      "notes": "Décrit principalement l'offre. Une éventuelle relation directe avec les producteurs doit être traitée séparément par directProducerRelationship."
+    }
+  ]
+}

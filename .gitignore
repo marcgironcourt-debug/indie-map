@@ -46,3 +46,4 @@ next-env.d.ts
 /private/
 /data/private/
 /data/private-*.json
+/tmp/scout-*.log

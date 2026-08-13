@@ -1,0 +1,1839 @@
+{
+  "version": "scout-discovery-themes-v1",
+  "generatedAt": "2026-08-13T03:27:13.517Z",
+  "model": "gpt-5.4-nano",
+  "criteriaVersion": "scout-criteria-v1",
+  "minPlaces": 3,
+  "eligibleClusters": 83,
+  "classificationCounts": {
+    "EXISTING_SIGNAL": 14,
+    "NEW_CANDIDATE": 2,
+    "DESCRIPTIVE_ONLY": 2,
+    "TOO_VAGUE": 0
+  },
+  "warning": "Les NEW_CANDIDATE sont uniquement des hypothèses éditoriales à valider humainement. Aucun critère Indie Map n'est modifié automatiquement.",
+  "themes": [
+    {
+      "label": "Seasonal (de saison / saisonnalité)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "seasonal",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-1",
+        "cluster-6",
+        "cluster-15",
+        "cluster-25",
+        "cluster-29",
+        "cluster-32",
+        "cluster-40",
+        "cluster-45",
+        "cluster-48",
+        "cluster-50",
+        "cluster-55",
+        "cluster-79",
+        "cluster-81",
+        "cluster-82",
+        "cluster-83"
+      ],
+      "reason": "Indique explicitement une offre et/ou une carte construite autour de la saisonnalité.",
+      "distinctPlaces": 201,
+      "categories": {
+        "Restaurant": 130,
+        "Lieu alternatif": 6,
+        "Café": 7,
+        "Brasserie / Bar": 11,
+        "Marché": 10,
+        "Boulangerie": 2,
+        "Ferme": 11,
+        "Épicerie": 24
+      },
+      "examples": [
+        {
+          "name": "Restaurant Toqué!",
+          "category": "Restaurant",
+          "drivers": [
+            "seasonal"
+          ]
+        },
+        {
+          "name": "Hélicoptère",
+          "category": "Restaurant",
+          "drivers": [
+            "seasonal"
+          ]
+        },
+        {
+          "name": "Les Mômes",
+          "category": "Restaurant",
+          "drivers": [
+            "produits de saison"
+          ]
+        },
+        {
+          "name": "O’Thym",
+          "category": "Restaurant",
+          "drivers": [
+            "cuisine de saison"
+          ]
+        },
+        {
+          "name": "Caribou Gourmand",
+          "category": "Restaurant",
+          "drivers": [
+            "produits de saison"
+          ]
+        },
+        {
+          "name": "Rose Ross",
+          "category": "Restaurant",
+          "drivers": [
+            "plats au fil des saisons"
+          ]
+        },
+        {
+          "name": "La cantine Champ Libre",
+          "category": "Restaurant",
+          "drivers": [
+            "produits frais et de saison"
+          ]
+        },
+        {
+          "name": "Bistro Les Artizans",
+          "category": "Restaurant",
+          "drivers": [
+            "saisonnalité"
+          ]
+        },
+        {
+          "name": "Ground Control",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "seasonal"
+          ]
+        },
+        {
+          "name": "Le Pavillon des Canaux",
+          "category": "Café",
+          "drivers": [
+            "seasonal"
+          ]
+        },
+        {
+          "name": "Les Fanés",
+          "category": "Café",
+          "drivers": [
+            "seasonal"
+          ]
+        },
+        {
+          "name": "Le Hasard Ludique",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "seasonal"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Local sourcing (suggested / production locale)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "localSourcing",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-2",
+        "cluster-4",
+        "cluster-16",
+        "cluster-36",
+        "cluster-60",
+        "cluster-62",
+        "cluster-72",
+        "cluster-75",
+        "cluster-80"
+      ],
+      "reason": "“local sourcing” et variantes orientées provenance locale (même suggérée) relèvent du sourcing local.",
+      "distinctPlaces": 177,
+      "categories": {
+        "Café": 9,
+        "Boutique": 5,
+        "Restaurant": 81,
+        "Brasserie / Bar": 9,
+        "Épicerie": 40,
+        "Lieu alternatif": 8,
+        "Ferme": 13,
+        "Marché": 6,
+        "Boulangerie": 2,
+        "Mode": 3,
+        "Artisanat": 1
+      },
+      "examples": [
+        {
+          "name": "Café Dei Campi",
+          "category": "Café",
+          "drivers": [
+            "ingrédients locaux et saisonniers"
+          ]
+        },
+        {
+          "name": "Articho",
+          "category": "Boutique",
+          "drivers": [
+            "majoritairement du Québec"
+          ]
+        },
+        {
+          "name": "Restaurant Toqué!",
+          "category": "Restaurant",
+          "drivers": [
+            "localSourcing"
+          ]
+        },
+        {
+          "name": "Panacée",
+          "category": "Restaurant",
+          "drivers": [
+            "agriculture locale"
+          ]
+        },
+        {
+          "name": "O’Thym",
+          "category": "Restaurant",
+          "drivers": [
+            "majoritairement québécois"
+          ]
+        },
+        {
+          "name": "Caribou Gourmand",
+          "category": "Restaurant",
+          "drivers": [
+            "produits locaux"
+          ]
+        },
+        {
+          "name": "Vices & Versa",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "produits locaux en majorité"
+          ]
+        },
+        {
+          "name": "Romarin - épicerie zéro déchet",
+          "category": "Épicerie",
+          "drivers": [
+            "produits locaux"
+          ]
+        },
+        {
+          "name": "Café des Habitudes",
+          "category": "Café",
+          "drivers": [
+            "majoritairement québécois"
+          ]
+        },
+        {
+          "name": "Candide",
+          "category": "Restaurant",
+          "drivers": [
+            "produits locaux"
+          ]
+        },
+        {
+          "name": "Wolf & Workman",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "produits locaux et saisonniers"
+          ]
+        },
+        {
+          "name": "Le Moulin à Café",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "localSourcing"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Organic (bio)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "organic",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-5",
+        "cluster-19",
+        "cluster-26",
+        "cluster-33",
+        "cluster-35",
+        "cluster-41",
+        "cluster-43",
+        "cluster-53",
+        "cluster-61",
+        "cluster-65",
+        "cluster-69",
+        "cluster-73"
+      ],
+      "reason": "Le concept est directement “organic / bio”.",
+      "distinctPlaces": 102,
+      "categories": {
+        "Épicerie": 34,
+        "Café": 6,
+        "Restaurant": 17,
+        "Lieu alternatif": 17,
+        "Ferme": 20,
+        "Marché": 1,
+        "Brasserie / Bar": 2,
+        "Boulangerie": 5
+      },
+      "examples": [
+        {
+          "name": "Épicerie LOCO Castelnau",
+          "category": "Épicerie",
+          "drivers": [
+            "biologiques"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Verdun",
+          "category": "Épicerie",
+          "drivers": [
+            "biologiques"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Plateau",
+          "category": "Épicerie",
+          "drivers": [
+            "aliments biologiques"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Villeray",
+          "category": "Épicerie",
+          "drivers": [
+            "aliments biologiques"
+          ]
+        },
+        {
+          "name": "Romarin - épicerie zéro déchet",
+          "category": "Épicerie",
+          "drivers": [
+            "produits biologiques"
+          ]
+        },
+        {
+          "name": "Café des Habitudes",
+          "category": "Café",
+          "drivers": [
+            "ingrédients biologiques"
+          ]
+        },
+        {
+          "name": "Café Bloom",
+          "category": "Café",
+          "drivers": [
+            "biologiques"
+          ]
+        },
+        {
+          "name": "La cantine Champ Libre",
+          "category": "Restaurant",
+          "drivers": [
+            "ferme maraîchère bio"
+          ]
+        },
+        {
+          "name": "Kilogramme",
+          "category": "Épicerie",
+          "drivers": [
+            "produits bio"
+          ]
+        },
+        {
+          "name": "Ground Control",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "organic"
+          ]
+        },
+        {
+          "name": "Les Fanés",
+          "category": "Café",
+          "drivers": [
+            "organic"
+          ]
+        },
+        {
+          "name": "CASA GAÏA",
+          "category": "Restaurant",
+          "drivers": [
+            "produits majoritairement bio"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Production sur place (sur place)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "onSiteProduction",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-3",
+        "cluster-24",
+        "cluster-34",
+        "cluster-56",
+        "cluster-66",
+        "cluster-67",
+        "cluster-74"
+      ],
+      "reason": "Le cluster décrit une production réellement réalisée sur place.",
+      "distinctPlaces": 100,
+      "categories": {
+        "Mode": 1,
+        "Restaurant": 26,
+        "Lieu alternatif": 21,
+        "Café": 10,
+        "Brasserie / Bar": 15,
+        "Boulangerie": 2,
+        "Épicerie": 6,
+        "Ferme": 17,
+        "Atelier": 1,
+        "Boutique": 1
+      },
+      "examples": [
+        {
+          "name": "Cokluch",
+          "category": "Mode",
+          "drivers": [
+            "production locale"
+          ]
+        },
+        {
+          "name": "Parcelles",
+          "category": "Restaurant",
+          "drivers": [
+            "produits cultivés sur place"
+          ]
+        },
+        {
+          "name": "Ground Control",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Le Pavillon des Canaux",
+          "category": "Café",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Les Fanés",
+          "category": "Café",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Le Hasard Ludique",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie Vinatier",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie Bellanger",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie Dubillot",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie Martin",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie des Prés",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        },
+        {
+          "name": "Brasserie Charlie",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "onSiteProduction"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Short supply chain (circuit court)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "shortSupplyChain",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-7",
+        "cluster-9",
+        "cluster-17",
+        "cluster-23"
+      ],
+      "reason": "Référence explicite à “short supply chain / circuit court”.",
+      "distinctPlaces": 84,
+      "categories": {
+        "Épicerie": 31,
+        "Restaurant": 13,
+        "Café": 3,
+        "Lieu alternatif": 6,
+        "Mode": 1,
+        "Brasserie / Bar": 11,
+        "Marché": 11,
+        "Ferme": 8
+      },
+      "examples": [
+        {
+          "name": "Racines boréales",
+          "category": "Épicerie",
+          "drivers": [
+            "circuit court"
+          ]
+        },
+        {
+          "name": "Panacée",
+          "category": "Restaurant",
+          "drivers": [
+            "circuits courts"
+          ]
+        },
+        {
+          "name": "Super Condiments",
+          "category": "Café",
+          "drivers": [
+            "circuit court"
+          ]
+        },
+        {
+          "name": "Ground Control",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "L'Appartement Français - Baskets",
+          "category": "Mode",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Le Pavillon des Canaux",
+          "category": "Café",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Les Fanés",
+          "category": "Café",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Le Hasard Ludique",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Brasserie Vinatier",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Brasserie Bellanger",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Brasserie Dubillot",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        },
+        {
+          "name": "Brasserie Martin",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "shortSupplyChain"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Relation directe producteurs (producteurs identifiés)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "directProducerRelationship",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-8",
+        "cluster-14",
+        "cluster-71"
+      ],
+      "reason": "Présente une relation directe avec des producteurs identifiés.",
+      "distinctPlaces": 53,
+      "categories": {
+        "Café": 6,
+        "Restaurant": 24,
+        "Épicerie": 19,
+        "Boutique": 3,
+        "Artisanat": 1
+      },
+      "examples": [
+        {
+          "name": "Super Condiments",
+          "category": "Café",
+          "drivers": [
+            "relations directes avec les producteur·rices"
+          ]
+        },
+        {
+          "name": "CASA GAÏA",
+          "category": "Restaurant",
+          "drivers": [
+            "relations directes producteurs et artisans"
+          ]
+        },
+        {
+          "name": "Table des producteurs Libourne",
+          "category": "Épicerie",
+          "drivers": [
+            "relation directe avec les producteurs"
+          ]
+        },
+        {
+          "name": "4th Street Food Co-op",
+          "category": "Épicerie",
+          "drivers": [
+            "relations directes producteurs et fournisseurs responsables"
+          ]
+        },
+        {
+          "name": "ABC Kitchen",
+          "category": "Restaurant",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "Burdock & Co",
+          "category": "Restaurant",
+          "drivers": [
+            "Relation directe avec les producteurs"
+          ]
+        },
+        {
+          "name": "Arden",
+          "category": "Restaurant",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "Coquine",
+          "category": "Restaurant",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "Bi-Rite Market 18th Street",
+          "category": "Épicerie",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "Bi-Rite Market Divisadero",
+          "category": "Épicerie",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "Bi-Rite Market Polk Street",
+          "category": "Épicerie",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        },
+        {
+          "name": "The Progress",
+          "category": "Restaurant",
+          "drivers": [
+            "directProducerRelationship"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Artisanat / artisanCraft",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "artisanCraft",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-10",
+        "cluster-38",
+        "cluster-46",
+        "cluster-54",
+        "cluster-58",
+        "cluster-63",
+        "cluster-76"
+      ],
+      "reason": "Le cluster exprime un savoir-faire artisanal (fabrication/transformations artisanales).",
+      "distinctPlaces": 51,
+      "categories": {
+        "Mode": 6,
+        "Brasserie / Bar": 6,
+        "Boutique": 14,
+        "Boulangerie": 8,
+        "Épicerie": 3,
+        "Marché": 1,
+        "Atelier": 1,
+        "Restaurant": 5,
+        "Café": 1,
+        "Lieu alternatif": 4,
+        "Ferme": 1,
+        "Artisanat": 1
+      },
+      "examples": [
+        {
+          "name": "atelier b",
+          "category": "Mode",
+          "drivers": [
+            "artisanCraft"
+          ]
+        },
+        {
+          "name": "BreWskey Taproom",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "Brasserie artisanale"
+          ]
+        },
+        {
+          "name": "L'Appartement Français - Mode",
+          "category": "Mode",
+          "drivers": [
+            "artisanCraft (savoir-faire / ateliers français)"
+          ]
+        },
+        {
+          "name": "L'Appartement Français - Baskets",
+          "category": "Mode",
+          "drivers": [
+            "artisanCraft (savoir-faire artisanal)"
+          ]
+        },
+        {
+          "name": "EMPREINTES",
+          "category": "Boutique",
+          "drivers": [
+            "artisanCraft"
+          ]
+        },
+        {
+          "name": "Boulangerie Saudan",
+          "category": "Boulangerie",
+          "drivers": [
+            "boulangerie artisanale"
+          ]
+        },
+        {
+          "name": "She Wolf Bakery",
+          "category": "Boulangerie",
+          "drivers": [
+            "artisanCraft"
+          ]
+        },
+        {
+          "name": "La Minoterie des Anciens",
+          "category": "Épicerie",
+          "drivers": [
+            "Transformation artisanale"
+          ]
+        },
+        {
+          "name": "Beecher’s Handmade Cheese",
+          "category": "Épicerie",
+          "drivers": [
+            "artisanCraft"
+          ]
+        },
+        {
+          "name": "Tartine Manufactory",
+          "category": "Boulangerie",
+          "drivers": [
+            "artisanCraft"
+          ]
+        },
+        {
+          "name": "Mercado de Artesanías La Ciudadela",
+          "category": "Marché",
+          "drivers": [
+            "savoir-faire artisanaux régionaux"
+          ]
+        },
+        {
+          "name": "ScrapsKC",
+          "category": "Atelier",
+          "drivers": [
+            "ateliers"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Vente directe",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "directSale",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-11",
+        "cluster-18",
+        "cluster-30"
+      ],
+      "reason": "La vente est décrite comme directe (sans intermédiaire / vendant directement).",
+      "distinctPlaces": 47,
+      "categories": {
+        "Ferme": 19,
+        "Marché": 12,
+        "Lieu alternatif": 4,
+        "Épicerie": 12
+      },
+      "examples": [
+        {
+          "name": "La ferme de Pellachal",
+          "category": "Ferme",
+          "drivers": [
+            "vente directe"
+          ]
+        },
+        {
+          "name": "Ferme du Manus",
+          "category": "Ferme",
+          "drivers": [
+            "vente directe"
+          ]
+        },
+        {
+          "name": "Union Square Greenmarket",
+          "category": "Marché",
+          "drivers": [
+            "directSale"
+          ]
+        },
+        {
+          "name": "Ottawa Farmers’ Market (Lansdowne)",
+          "category": "Marché",
+          "drivers": [
+            "directSale"
+          ]
+        },
+        {
+          "name": "Evergreen Brick Works Farmers Market",
+          "category": "Marché",
+          "drivers": [
+            "directSale"
+          ]
+        },
+        {
+          "name": "Capitol Hill Farmers Market",
+          "category": "Marché",
+          "drivers": [
+            "Vente directe par les producteurs"
+          ]
+        },
+        {
+          "name": "Ferry Plaza Farmers Market",
+          "category": "Marché",
+          "drivers": [
+            "directSale"
+          ]
+        },
+        {
+          "name": "Mercado de Artesanías La Ciudadela",
+          "category": "Marché",
+          "drivers": [
+            "vente directe"
+          ]
+        },
+        {
+          "name": "Mercado El 100",
+          "category": "Marché",
+          "drivers": [
+            "vente directe"
+          ]
+        },
+        {
+          "name": "Cave à vin de Rangiroa",
+          "category": "Ferme",
+          "drivers": [
+            "directSale"
+          ]
+        },
+        {
+          "name": "La Ferme des 7 Chemins",
+          "category": "Ferme",
+          "drivers": [
+            "directSale (vente directe)"
+          ]
+        },
+        {
+          "name": "Ferme du Roy d'Espagne",
+          "category": "Ferme",
+          "drivers": [
+            "directSale (vente directe)"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Lieu communautaire / alternatif",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "communityAlternative",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-12",
+        "cluster-37"
+      ],
+      "reason": "Vie collective / usage alternatif au-delà d’un commerce classique.",
+      "distinctPlaces": 28,
+      "categories": {
+        "Lieu alternatif": 24,
+        "Atelier": 1,
+        "Marché": 1,
+        "Ferme": 2
+      },
+      "examples": [
+        {
+          "name": "La Recyclerie",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "Le Moulin à Café",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "La Maison du Zéro Déchet",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "ReClaim It",
+          "category": "Atelier",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "The Fumbally",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "lieu alternatif (projet communautaire)"
+          ]
+        },
+        {
+          "name": "Flourish at Glenavon Farm",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "community alternative"
+          ]
+        },
+        {
+          "name": "Cascina Nascosta",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "lieu alternatif (culturel et communautaire)"
+          ]
+        },
+        {
+          "name": "Neot Smadar",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative (vie collective)"
+          ]
+        },
+        {
+          "name": "Marché Souk El Tayeb",
+          "category": "Marché",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "Narköy",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "Solitude Farm of Auroville",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        },
+        {
+          "name": "Our Native Village",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "communityAlternative"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Farm-to-table",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "farmToTable",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-13",
+        "cluster-68",
+        "cluster-78"
+      ],
+      "reason": "“farm to table” décrit une relation documentée entre lieu et producteurs.",
+      "distinctPlaces": 26,
+      "categories": {
+        "Restaurant": 15,
+        "Café": 1,
+        "Lieu alternatif": 7,
+        "Ferme": 2,
+        "Boulangerie": 1
+      },
+      "examples": [
+        {
+          "name": "Blue Hill at Stone Barns",
+          "category": "Restaurant",
+          "drivers": [
+            "cuisine à partir des récoltes de la ferme"
+          ]
+        },
+        {
+          "name": "Bubby’s",
+          "category": "Café",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Farm to Table Escondido",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Leo",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Mini Mal",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "MIL Centro",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Central Restaurante",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "El Albergue",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Vogafjós Farm Resort",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "cuisine directement issue de la ferme"
+          ]
+        },
+        {
+          "name": "Friðheimar",
+          "category": "Ferme",
+          "drivers": [
+            "alimentation directement issue de la ferme"
+          ]
+        },
+        {
+          "name": "OD Urla",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        },
+        {
+          "name": "Le Maraîcher",
+          "category": "Restaurant",
+          "drivers": [
+            "farmToTable"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Repair / réemploi / seconde main",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "repairReuseSecondHand",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-20",
+        "cluster-44",
+        "cluster-49",
+        "cluster-64"
+      ],
+      "reason": "La logique de réparation/réemploi/seconde main est au cœur du cluster.",
+      "distinctPlaces": 20,
+      "categories": {
+        "Mode": 4,
+        "Librairie": 4,
+        "Boutique": 7,
+        "Atelier": 5
+      },
+      "examples": [
+        {
+          "name": "Belle et Rebelle",
+          "category": "Mode",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Boulinier - Châtelet Les Halles",
+          "category": "Librairie",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Boulinier - St Michel",
+          "category": "Librairie",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Boulinier - Jourdan",
+          "category": "Librairie",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Carroussel",
+          "category": "Boutique",
+          "drivers": [
+            "réemploi/seconde main",
+            "économie circulaire"
+          ]
+        },
+        {
+          "name": "Ressourcerie ECOTRIouzoune",
+          "category": "Boutique",
+          "drivers": [
+            "objets de seconde main"
+          ]
+        },
+        {
+          "name": "Sweet Pickle Books",
+          "category": "Librairie",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Tokio 7",
+          "category": "Mode",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Beacon’s Closet",
+          "category": "Mode",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "ReClaim It",
+          "category": "Atelier",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Looptworks",
+          "category": "Atelier",
+          "drivers": [
+            "repairReuseSecondHand"
+          ]
+        },
+        {
+          "name": "Reconsidered Goods",
+          "category": "Atelier",
+          "drivers": [
+            "économie circulaire",
+            "matières réutilisées"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dimension sociale / solidaire (co-op, mission sociale)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "socialSolidarity",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-21",
+        "cluster-77"
+      ],
+      "reason": "Coopérative, solidarité, mission sociale explicitement mentionnées.",
+      "distinctPlaces": 14,
+      "categories": {
+        "Lieu alternatif": 4,
+        "Épicerie": 3,
+        "Boutique": 5,
+        "Restaurant": 2
+      },
+      "examples": [
+        {
+          "name": "Le Moulin à Café",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "4th Street Food Co-op",
+          "category": "Épicerie",
+          "drivers": [
+            "économie solidaire"
+          ]
+        },
+        {
+          "name": "People’s Food Co-op",
+          "category": "Épicerie",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Rainbow Grocery Cooperative",
+          "category": "Épicerie",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Città dell'Altra Economia",
+          "category": "Lieu alternatif",
+          "drivers": [
+            "socialSolidarity: économie alternative et solidaire"
+          ]
+        },
+        {
+          "name": "Pomelo for Myanmar",
+          "category": "Boutique",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Artisans d'Angkor",
+          "category": "Boutique",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Jaan Bai Restaurant",
+          "category": "Restaurant",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "SPOONS Café Restaurant",
+          "category": "Restaurant",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Sana Hastakala",
+          "category": "Boutique",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Reaching Out Arts & Crafts",
+          "category": "Boutique",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        },
+        {
+          "name": "Vụn Art",
+          "category": "Boutique",
+          "drivers": [
+            "socialSolidarity"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Zéro déchet",
+      "classification": "NEW_CANDIDATE",
+      "existingSignal": "",
+      "candidateSignalKey": "zeroWastePackagingAndWasteReduction",
+      "clusterIds": [
+        "cluster-22",
+        "cluster-39",
+        "cluster-57"
+      ],
+      "reason": "Le concept vise explicitement la réduction des déchets (échelle “zéro déchet”), qui n’est pas capturée par les critères existants à l’identique.",
+      "distinctPlaces": 14,
+      "categories": {
+        "Épicerie": 11,
+        "Brasserie / Bar": 1,
+        "Restaurant": 1,
+        "Boutique": 1
+      },
+      "examples": [
+        {
+          "name": "Épicerie LOCO Castelnau",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet et durabilité"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Verdun",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet et durabilité"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Plateau",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet"
+          ]
+        },
+        {
+          "name": "Épicerie LOCO Villeray",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Mont-Royal",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet",
+            "réduction emballages à usage unique"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Masson",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet",
+            "réduction emballages à usage unique"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Beaubien",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet",
+            "réduction emballages à usage unique"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Villeray",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet",
+            "réduction emballages à usage unique"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Hochelaga",
+          "category": "Épicerie",
+          "drivers": [
+            "zéro déchet",
+            "réduction emballages à usage unique"
+          ]
+        },
+        {
+          "name": "La Cale - pub zéro déchet",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "réduction des déchets"
+          ]
+        },
+        {
+          "name": "La Recharge",
+          "category": "Épicerie",
+          "drivers": [
+            "réduction des emballages"
+          ]
+        },
+        {
+          "name": "Le Tilleul",
+          "category": "Restaurant",
+          "drivers": [
+            "vise à réduire les déchets"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Kiosque en libre-service (référence à “independent”)",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "independent",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-42",
+        "cluster-59",
+        "cluster-70"
+      ],
+      "reason": "Le cluster est annoté comme “independent” et relève du caractère non-chainé (sur le signal fourni).",
+      "distinctPlaces": 11,
+      "categories": {
+        "Café": 1,
+        "Librairie": 1,
+        "Brasserie / Bar": 1,
+        "Épicerie": 8
+      },
+      "examples": [
+        {
+          "name": "Le Pavillon des Canaux",
+          "category": "Café",
+          "drivers": [
+            "independent"
+          ]
+        },
+        {
+          "name": "Sweet Pickle Books",
+          "category": "Librairie",
+          "drivers": [
+            "independent"
+          ]
+        },
+        {
+          "name": "Young Henrys",
+          "category": "Brasserie / Bar",
+          "drivers": [
+            "independent"
+          ]
+        },
+        {
+          "name": "Farmily & Co",
+          "category": "Épicerie",
+          "drivers": [
+            "épicerie indépendante"
+          ]
+        },
+        {
+          "name": "Le Zingam",
+          "category": "Épicerie",
+          "drivers": [
+            "épicerie de quartier indépendante"
+          ]
+        },
+        {
+          "name": "La Clayette Meudon",
+          "category": "Épicerie",
+          "drivers": [
+            "kiosque en libre-service"
+          ]
+        },
+        {
+          "name": "La Clayette La Garenne-Colombes",
+          "category": "Épicerie",
+          "drivers": [
+            "kiosque en libre-service"
+          ]
+        },
+        {
+          "name": "La Clayette de Puteaux",
+          "category": "Épicerie",
+          "drivers": [
+            "kiosque en libre-service"
+          ]
+        },
+        {
+          "name": "La Clayette Saint-Cloud",
+          "category": "Épicerie",
+          "drivers": [
+            "kiosque en libre-service"
+          ]
+        },
+        {
+          "name": "La Clayette Ville d'Avray",
+          "category": "Épicerie",
+          "drivers": [
+            "kiosque en libre-service"
+          ]
+        },
+        {
+          "name": "Les Mains Dans la Terre",
+          "category": "Épicerie",
+          "drivers": [
+            "épicerie indépendante"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Créateurs locaux",
+      "classification": "EXISTING_SIGNAL",
+      "existingSignal": "localCreators",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-31",
+        "cluster-51",
+        "cluster-52"
+      ],
+      "reason": "Objets/créations provenant de créateurs locaux.",
+      "distinctPlaces": 10,
+      "categories": {
+        "Mode": 2,
+        "Boutique": 3,
+        "Artisanat": 4,
+        "Marché": 1
+      },
+      "examples": [
+        {
+          "name": "Belle et Rebelle",
+          "category": "Mode",
+          "drivers": [
+            "localCreators"
+          ]
+        },
+        {
+          "name": "Maker House",
+          "category": "Boutique",
+          "drivers": [
+            "localCreators"
+          ]
+        },
+        {
+          "name": "Arts Market – Riverside",
+          "category": "Artisanat",
+          "drivers": [
+            "créateurs locaux de Toronto",
+            "boutique collective"
+          ]
+        },
+        {
+          "name": "Arts Market – Junction",
+          "category": "Artisanat",
+          "drivers": [
+            "créateurs locaux de Toronto",
+            "boutique collective"
+          ]
+        },
+        {
+          "name": "Arts Market – Danforth",
+          "category": "Artisanat",
+          "drivers": [
+            "Boutique collective pour créateurs locaux",
+            "Créateurs locaux (Toronto)"
+          ]
+        },
+        {
+          "name": "Arts Market – College",
+          "category": "Artisanat",
+          "drivers": [
+            "Boutique collective pour créateurs locaux",
+            "Créateurs locaux (Toronto)"
+          ]
+        },
+        {
+          "name": "Bokja",
+          "category": "Mode",
+          "drivers": [
+            "localCreators"
+          ]
+        },
+        {
+          "name": "Pomelo for Myanmar",
+          "category": "Boutique",
+          "drivers": [
+            "localCreators"
+          ]
+        },
+        {
+          "name": "Ma Te Sai",
+          "category": "Boutique",
+          "drivers": [
+            "localCreators"
+          ]
+        },
+        {
+          "name": "Jing Jai Market Chiang Mai",
+          "category": "Marché",
+          "drivers": [
+            "localCreators"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Cuisine maison",
+      "classification": "DESCRIPTIVE_ONLY",
+      "existingSignal": "",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-27"
+      ],
+      "reason": "Concept de style (“cuisine maison”) sans articulation claire avec des critères Indie Map existants.",
+      "distinctPlaces": 7,
+      "categories": {
+        "Épicerie": 7
+      },
+      "examples": [
+        {
+          "name": "Miyam Aligre",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Poteau",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Pantin",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Les Lilas",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Robespierre",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Garibaldi",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        },
+        {
+          "name": "Miyam Parmentier",
+          "category": "Épicerie",
+          "drivers": [
+            "cuisine maison"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Vente en vrac (et sans emballage)",
+      "classification": "NEW_CANDIDATE",
+      "existingSignal": "",
+      "candidateSignalKey": "bulkSalesAndPackagingReduction",
+      "clusterIds": [
+        "cluster-28"
+      ],
+      "reason": "“Vente en vrac / sans emballage” décrit une pratique de réduction/contournement des emballages non couverte directement par les critères existants.",
+      "distinctPlaces": 7,
+      "categories": {
+        "Épicerie": 7
+      },
+      "examples": [
+        {
+          "name": "Méga Vrac – Mont-Royal",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Masson",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Beaubien",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Villeray",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        },
+        {
+          "name": "Méga Vrac – Hochelaga",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        },
+        {
+          "name": "Kilogramme",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac et sans emballage"
+          ]
+        },
+        {
+          "name": "La Recharge",
+          "category": "Épicerie",
+          "drivers": [
+            "vente en vrac"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Produits frais (issus directement des producteurs)",
+      "classification": "DESCRIPTIVE_ONLY",
+      "existingSignal": "",
+      "candidateSignalKey": "",
+      "clusterIds": [
+        "cluster-47"
+      ],
+      "reason": "“produits frais” décrit surtout un type de produit/qualité sans certitude éditoriale indépendante (même si “direct from producers” apparaît, le cluster reste vague).",
+      "distinctPlaces": 4,
+      "categories": {
+        "Restaurant": 3,
+        "Marché": 1
+      },
+      "examples": [
+        {
+          "name": "Frame Brasserie",
+          "category": "Restaurant",
+          "drivers": [
+            "produits frais"
+          ]
+        },
+        {
+          "name": "Bistro Les Artizans",
+          "category": "Restaurant",
+          "drivers": [
+            "produits frais issus directement des producteurs"
+          ]
+        },
+        {
+          "name": "Kuromon Ichiba Market",
+          "category": "Marché",
+          "drivers": [
+            "produits frais"
+          ]
+        },
+        {
+          "name": "Les Marmites Volantes",
+          "category": "Restaurant",
+          "drivers": [
+            "produits frais"
+          ]
+        }
+      ]
+    }
+  ],
+  "usage": {
+    "input_tokens": 37405,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 11008
+    },
+    "output_tokens": 7461,
+    "output_tokens_details": {
+      "reasoning_tokens": 948
+    },
+    "total_tokens": 44866
+  }
+}

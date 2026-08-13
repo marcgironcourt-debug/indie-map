@@ -1,0 +1,109 @@
+{
+  "version": "scout-catalogue-patterns-v1",
+  "criteriaVersion": "scout-criteria-v1",
+  "generatedAt": "2026-08-13T03:06:15.871Z",
+  "analyzedPlaces": 626,
+  "categoryCounts": {
+    "Épicerie": 116,
+    "Mode": 21,
+    "Café": 30,
+    "Boutique": 32,
+    "Librairie": 10,
+    "Restaurant": 193,
+    "Boulangerie": 15,
+    "Brasserie / Bar": 32,
+    "Lieu alternatif": 67,
+    "Atelier": 11,
+    "Ferme": 68,
+    "Marché": 24,
+    "Artisanat": 5,
+    "Brunch": 2
+  },
+  "signals": {
+    "independent": {
+      "supported": 9,
+      "suggested": 0,
+      "contradicted": 0,
+      "unknown": 617
+    },
+    "farmToTable": {
+      "supported": 33,
+      "suggested": 15,
+      "contradicted": 0,
+      "unknown": 578
+    },
+    "shortSupplyChain": {
+      "supported": 101,
+      "suggested": 9,
+      "contradicted": 0,
+      "unknown": 516
+    },
+    "localSourcing": {
+      "supported": 121,
+      "suggested": 205,
+      "contradicted": 0,
+      "unknown": 300
+    },
+    "directProducerRelationship": {
+      "supported": 69,
+      "suggested": 17,
+      "contradicted": 0,
+      "unknown": 540
+    },
+    "directSale": {
+      "supported": 53,
+      "suggested": 1,
+      "contradicted": 0,
+      "unknown": 572
+    },
+    "onSiteProduction": {
+      "supported": 59,
+      "suggested": 91,
+      "contradicted": 0,
+      "unknown": 476
+    },
+    "artisanCraft": {
+      "supported": 61,
+      "suggested": 21,
+      "contradicted": 1,
+      "unknown": 543
+    },
+    "seasonal": {
+      "supported": 225,
+      "suggested": 8,
+      "contradicted": 0,
+      "unknown": 393
+    },
+    "organic": {
+      "supported": 133,
+      "suggested": 2,
+      "contradicted": 0,
+      "unknown": 491
+    },
+    "repairReuseSecondHand": {
+      "supported": 27,
+      "suggested": 0,
+      "contradicted": 0,
+      "unknown": 599
+    },
+    "socialSolidarity": {
+      "supported": 40,
+      "suggested": 7,
+      "contradicted": 0,
+      "unknown": 579
+    },
+    "communityAlternative": {
+      "supported": 57,
+      "suggested": 21,
+      "contradicted": 0,
+      "unknown": 548
+    },
+    "localCreators": {
+      "supported": 13,
+      "suggested": 6,
+      "contradicted": 0,
+      "unknown": 607
+    }
+  },
+  "warning": "Ces chiffres décrivent uniquement ce qui est explicitement présent ou suggéré dans les données internes Indie Map. Ils ne prouvent pas que les caractéristiques absentes ne s'appliquent pas aux lieux."
+}

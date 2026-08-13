@@ -1,0 +1,82 @@
+{
+  "version": "scout-criteria-v1",
+  "principles": [
+    "Les lieux Indie Map existants servent à observer l'ADN actuel du catalogue, pas à créer automatiquement une vérité absolue.",
+    "Les règles éditoriales explicites ont priorité sur les corrélations observées dans le catalogue.",
+    "L'absence d'information ne signifie jamais NON.",
+    "Une affirmation marketing vague n'est pas une preuve suffisante.",
+    "Les critères seront modifiés au fur et à mesure des faux positifs, faux négatifs et cas ambigus."
+  ],
+  "signals": {
+    "independent": {
+      "label": "Indépendance",
+      "weight": 3,
+      "definition": "Lieu, entreprise, ferme, commerce, atelier ou établissement indépendant d'une grande chaîne industrielle ou commerciale."
+    },
+    "farmToTable": {
+      "label": "Farm-to-table",
+      "weight": 5,
+      "definition": "Relation documentée entre un restaurant ou lieu de restauration et les producteurs ou fermes qui fournissent ses ingrédients."
+    },
+    "shortSupplyChain": {
+      "label": "Circuit court",
+      "weight": 5,
+      "definition": "Approvisionnement avec peu d'intermédiaires, notamment achat direct à un producteur, fabricant ou artisan."
+    },
+    "localSourcing": {
+      "label": "Approvisionnement local",
+      "weight": 4,
+      "definition": "Produits, matières premières ou ingrédients dont la provenance locale est documentée par des éléments concrets. Une simple affirmation comme local, produits locaux ou soutien aux producteurs locaux sans provenance, producteur identifié ou détail d'approvisionnement ne constitue qu'un signal suggéré."
+    },
+    "directProducerRelationship": {
+      "label": "Relation directe producteurs",
+      "weight": 5,
+      "definition": "Producteurs, fermes, artisans ou fournisseurs directement identifiés comme partenaires du lieu."
+    },
+    "directSale": {
+      "label": "Vente directe",
+      "weight": 5,
+      "definition": "Le producteur, la ferme, l'artisan ou le fabricant vend directement sa propre production au public."
+    },
+    "onSiteProduction": {
+      "label": "Production sur place",
+      "weight": 4,
+      "definition": "Une part significative des produits vendus ou servis est réellement fabriquée, transformée, brassée, cuite ou produite sur place."
+    },
+    "artisanCraft": {
+      "label": "Artisanat / savoir-faire",
+      "weight": 4,
+      "definition": "Fabrication ou transformation reposant sur un savoir-faire artisanal réel, et pas uniquement sur la revente de produits."
+    },
+    "seasonal": {
+      "label": "Saisonnalité",
+      "weight": 2,
+      "definition": "L'offre, la carte ou la production évolue explicitement selon les saisons, récoltes ou disponibilités."
+    },
+    "organic": {
+      "label": "Bio",
+      "weight": 1,
+      "definition": "Produits ou production biologiques documentés. Le bio n'est pas une condition obligatoire pour Indie Map."
+    },
+    "repairReuseSecondHand": {
+      "label": "Réparation / réemploi / seconde main",
+      "weight": 4,
+      "definition": "Activité contribuant concrètement à réparer, réutiliser, recycler, transformer ou remettre en circulation des biens."
+    },
+    "socialSolidarity": {
+      "label": "Dimension sociale / solidaire",
+      "weight": 3,
+      "definition": "Insertion, coopérative, gouvernance collective, mission sociale ou activité solidaire concrètement documentée."
+    },
+    "communityAlternative": {
+      "label": "Lieu communautaire / alternatif",
+      "weight": 3,
+      "definition": "Lieu proposant des usages collectifs, associatifs, culturels, citoyens, expérimentaux ou alternatifs au-delà d'un commerce classique."
+    },
+    "localCreators": {
+      "label": "Créateurs / fabrication locale",
+      "weight": 3,
+      "definition": "Objets, vêtements ou créations provenant de créateurs, artisans ou fabricants locaux identifiés."
+    }
+  }
+}
