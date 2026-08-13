@@ -1,0 +1,189 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 2
+
+==================================================
+[1/2] Trouve-moi un endroit à Paris pour boire un café
+PHASE A PRETE : resultats=26 inconnus=0 latence=1630ms
+RESULTATS IMMEDIATS :
+- Le Moulin à Café 100/100
+- Le Pavillon des Canaux 94/100
+- Les Fanés 80/100
+- La Trockette 79/100
+- La Recyclerie 78/100
+- La Textilerie 78/100
+- Le Hasard Ludique 77/100
+- Ground Control 77/100
+- Le TLM Paris 76/100
+- Patoche - Microbrasserie 76/100
+- Bistro Les Artizans 75/100
+- La Cop1ne 74/100
+- La cantine Champ Libre 73/100
+- Brasserie de l’Être 72/100
+- Boulinier - Jourdan 72/100
+- Brasserie Bellanger 72/100
+- Brasserie Martin 72/100
+- Frame Brasserie 72/100
+- Boulinier - Châtelet Les Halles 72/100
+- Les Petites Cantines Paris 72/100
+- Brasserie des Prés 71/100
+- L'Appartement Français - Mode 71/100
+- Brasserie Dubillot 71/100
+- L'Appartement Français - Baskets 70/100
+- Boulinier - Bonne Nouvelle 70/100
+- MÛRE Trinité 70/100
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=30
+PHASE C WEB : candidats=0 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=0ms
+V5 SIMPLE : univers=76 candidats=31 faitsMemoire=30 confirmes=31 inconnus=0 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=1589ms retrieval=42ms premiersResultats=1630ms memoireTotal=4433ms attenteMemoireApresPhaseA=2802ms evaluationMemoire=0ms total=4433ms
+COMPRIS : Trouver un endroit à Paris pour boire un café.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : —
+PREF : —
+TEMPS : —
+CANDIDATS : 31
+PREJUDGE : confirmed=31 verify=0 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. Le Moulin à Café [Paris] — 100/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 2. Le Pavillon des Canaux [Paris] — 94/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 3. Les Fanés [Paris] — 80/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 4. La Trockette [Paris] — 79/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 5. La Recyclerie [Paris] — 78/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 6. La Textilerie [Paris] — 78/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 7. Le Hasard Ludique [Paris] — 77/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 8. Ground Control [Paris] — 77/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 9. Le TLM Paris [Paris] — 76/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 10. Patoche - Microbrasserie [Paris] — 76/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 11. Bistro Les Artizans [Paris] — 75/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 12. La Cop1ne [Paris] — 74/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 13. La cantine Champ Libre [Paris] — 73/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 14. Brasserie de l’Être [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 15. Boulinier - Jourdan [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 16. Brasserie Bellanger [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 17. Brasserie Martin [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 18. Frame Brasserie [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 19. Boulinier - Châtelet Les Halles [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 20. Les Petites Cantines Paris [Paris] — 72/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 21. Brasserie des Prés [Paris] — 71/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 22. L'Appartement Français - Mode [Paris] — 71/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 23. Brasserie Dubillot [Paris] — 71/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 24. L'Appartement Français - Baskets [Paris] — 70/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 25. Boulinier - Bonne Nouvelle [Paris] — 70/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+ 26. MÛRE Trinité [Paris] — 70/100
+    Candidat retenu par la recherche sémantique/lexicale Indie Map.
+
+==================================================
+[2/2] Trouve-moi un endroit à Paris pour boire un café dimanche soir
+PHASE A PRETE : resultats=18 inconnus=1 latence=1229ms
+RESULTATS IMMEDIATS :
+- Le Pavillon des Canaux 99/100
+- Le Hasard Ludique 83/100
+- Le TLM Paris 82/100
+- Bistro Les Artizans 81/100
+- Ground Control 80/100
+- Patoche - Microbrasserie 80/100
+- La Recyclerie 80/100
+- Frame Brasserie 80/100
+- Brasserie Martin 80/100
+- Brasserie des Prés 80/100
+- Brasserie Bellanger 80/100
+- Brasserie Dubillot 80/100
+- Boulinier - Jourdan 80/100
+- Boulinier - Bonne Nouvelle 80/100
+- Boulinier - St Michel 80/100
+- Boulinier - Châtelet Les Halles 80/100
+- L'Appartement Français - Mode 80/100
+- L'Appartement Français - Baskets 80/100
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=30
+WEB NON NECESSAIRE : 18 résultat(s) complet(s) déjà trouvé(s) dans Indie Map + mémoire
+WEB INUTILE POUR :
+- La Maison du Zéro Déchet → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=0 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=0ms
+V5 SIMPLE : univers=76 candidats=36 faitsMemoire=30 confirmes=18 inconnus=1 contradits=17
+LATENCE V5 SIMPLE : parse+embedding=1185ms retrieval=44ms premiersResultats=1229ms memoireTotal=1229ms attenteMemoireApresPhaseA=0ms evaluationMemoire=0ms total=1230ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- La Maison du Zéro Déchet 70/100 → être ouvert ou disponible au moment demandé : dimanche soir
+COMPRIS : Trouver un endroit à Paris pour boire un café dimanche soir.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : —
+PREF : —
+TEMPS : dimanche soir
+CANDIDATS : 36
+PREJUDGE : confirmed=18 verify=1 rejected=17
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. Le Pavillon des Canaux [Paris] — 99/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 2. Le Hasard Ludique [Paris] — 83/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 3. Le TLM Paris [Paris] — 82/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 4. Bistro Les Artizans [Paris] — 81/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 5. Ground Control [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 6. Patoche - Microbrasserie [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 7. La Recyclerie [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 8. Frame Brasserie [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 9. Brasserie Martin [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 10. Brasserie des Prés [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 11. Brasserie Bellanger [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 12. Brasserie Dubillot [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 13. Boulinier - Jourdan [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 14. Boulinier - Bonne Nouvelle [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 15. Boulinier - St Michel [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 16. Boulinier - Châtelet Les Halles [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 17. L'Appartement Français - Mode [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 18. L'Appartement Français - Baskets [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 31
+LLM INPUT TOKENS : 1246
+LLM OUTPUT TOKENS : 132
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000415
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

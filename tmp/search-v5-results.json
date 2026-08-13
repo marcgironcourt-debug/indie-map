@@ -1,0 +1,297 @@
+[
+  {
+    "query": "Je cherche à Paris un endroit où apprendre à réparer mes vêtements",
+    "parsed": {
+      "need": "Trouver à Paris un endroit pour apprendre à réparer ses vêtements.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "un endroit pour apprendre à réparer des vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 6,
+      "officialConfirmed": 0,
+      "officialNotFound": 6,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 95,
+        "reason": "À Paris, La Textilerie est un lieu dédié au réemploi textile et indique explicitement qu’on peut y apprendre à réparer (et transformer) des vêtements (« on apprend à réparer et transformer »). Cela répond directement au besoin principal."
+      }
+    ]
+  },
+  {
+    "query": "Où à Paris puis-je participer à des ateliers pour réparer ou transformer mes vêtements ?",
+    "parsed": {
+      "need": "Participer à des ateliers à Paris pour réparer ou transformer ses vêtements.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "des ateliers pour réparer les vêtements",
+        "des ateliers pour transformer (upcycler) les vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 6,
+      "officialConfirmed": 2,
+      "officialNotFound": 4,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 92,
+        "reason": "Lieu dédié au réemploi textile, avec des ateliers de couture indiqués comme permettant d’« apprendre à réparer » et aussi à « transformer » des vêtements. Couvre directement les deux mustHave (réparation + transformation/upcycling)."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 88,
+        "reason": "Le site officiel confirme explicitement des ateliers pour réparer les vêtements (réparer plutôt que racheter) et pour transformer/upcycler des vêtements (créer de nouvelles choses avec des matériaux initialement inutilisables). Les mustHave sont donc satisfaites."
+      },
+      {
+        "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+        "name": "La Maison du Zéro Déchet",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 82,
+        "reason": "Le site officiel confirme des ateliers de couture pour réparer des vêtements (“réparer et créer ses objets…”, “réparer plus”) et des ateliers intégrant l’upcycling/surcyclage (“faire évoluer une pièce de tissu…”, “l’upcycling… fait partie de la démarche DIY”). Les mustHave sont satisfaites, même si le contexte reste plus « zéro déchet » que « textile dédié »."
+      }
+    ]
+  },
+  {
+    "query": "Un lieu à Paris pour apprendre à modifier et réparer ses vêtements",
+    "parsed": {
+      "need": "Trouver un lieu à Paris où apprendre à modifier et réparer ses vêtements.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Un lieu pour apprendre à modifier ses vêtements",
+        "Un lieu pour apprendre à réparer ses vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 6,
+      "officialConfirmed": 1,
+      "officialNotFound": 5,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 95,
+        "reason": "Le lieu est dédié au réemploi textile et est explicitement décrit comme proposant des ateliers où l’on apprend à « réparer et transformer » des vêtements (donc modification + réparation)."
+      },
+      {
+        "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+        "name": "La Maison du Zéro Déchet",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 88,
+        "reason": "Les exigences doivent être satisfaites via des ateliers couture : le site officiel confirme des ateliers pour apprendre la couture visant à réparer et à transformer/personnaliser des vêtements. Le pré-jugement initial était faible, mais les preuves officielles apportent bien la partie modification et réparation."
+      }
+    ]
+  },
+  {
+    "query": "Je cherche un endroit à Paris avec des ateliers de couture orientés réparation et transformation",
+    "parsed": {
+      "need": "Trouver un endroit à Paris (ateliers) orienté couture, spécialisé dans la réparation et la transformation (retouches/transformations de vêtements).",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "ateliers de couture orientés réparation",
+        "ateliers de couture orientés transformation (retouches)"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 6,
+      "officialConfirmed": 0,
+      "officialNotFound": 6,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 95,
+        "reason": "Correspond très bien au besoin : le lieu regroupe des ateliers de couture et indique explicitement qu’on y « apprend à réparer et transformer » des vêtements (orientation réparation + transformation/retouches), à Paris (22 Rue du Château Landon, 75010)."
+      }
+    ]
+  },
+  {
+    "query": "Où apprendre soi-même les gestes pour réparer ses vêtements à Paris ?",
+    "parsed": {
+      "need": "Trouver où apprendre soi-même les gestes pour réparer ses vêtements à Paris (cours, ateliers ou ressources).",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "apprendre soi-même les gestes pour réparer ses vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 5,
+      "officialConfirmed": 1,
+      "officialNotFound": 4,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 92,
+        "reason": "Le lieu est dédié au réemploi textile et indique explicitement qu’on y apprend à « réparer et transformer » des vêtements via des ateliers, ce qui correspond directement à l’objectif d’apprendre soi-même les gestes de réparation à Paris."
+      },
+      {
+        "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+        "name": "La Maison du Zéro Déchet",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 84,
+        "reason": "Preuve officielle : des ateliers couture DIY où les participant(e)s « apprennent la technique » avec une démarche visant « réparer et créer », incluant le « réemploi de ses vêtements » et mentionnant des ateliers couture pour apprendre à utiliser la machine à coudre de manière autonome. C’est bien orienté vers l’apprentissage des gestes, même si ce n’est pas aussi explicitement centré que le candidat n°1 sur la réparation de vêtements."
+      }
+    ]
+  },
+  {
+    "query": "Un lieu de mode circulaire à Paris où je peux apprendre à réparer et transformer mes vêtements",
+    "parsed": {
+      "need": "Trouver un lieu de mode circulaire à Paris où apprendre à réparer et transformer ses vêtements.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Lieu de mode circulaire",
+        "Apprendre à réparer les vêtements",
+        "Apprendre à transformer les vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 23,
+      "rejected": 0,
+      "officialChecks": 6,
+      "officialConfirmed": 0,
+      "officialNotFound": 6,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 95,
+        "reason": "Correspond très bien aux mustHave : La Textilerie est un lieu dédié au réemploi textile (friperie solidaire, recyclerie, ateliers de couture) et il est indiqué qu’on peut apprendre à réparer et à transformer des vêtements."
+      }
+    ]
+  }
+]

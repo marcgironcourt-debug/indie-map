@@ -1,0 +1,2210 @@
+[
+  {
+    "query": "j’ai envie de déjeuner dans un endroit qui cuisine avec ce qui pousse autour de Paris",
+    "parsed": {
+      "need": "Trouver un endroit pour déjeuner qui cuisine avec des produits locaux et de saison autour de Paris.",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "cuisine à partir de produits locaux et de saison autour de Paris"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "462b80ae-f32b-4c9f-9139-541481817b45",
+        "name": "La cantine Champ Libre",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 95,
+        "reason": "La cantine Champ Libre décrit une cuisine maison à partir de produits frais et de saison issus de producteurs engagés et d’une ferme maraîchère bio dans le Vexin. Correspond parfaitement à la demande de déjeuner avec des produits locaux et de saison autour de Paris."
+      },
+      {
+        "id": "b00517cd-9034-461c-b412-ab9c3582208c",
+        "name": "Les Petites Cantines Paris",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 92,
+        "reason": "Les Petites Cantines Paris privilégie les produits de saison, bio ou locaux et une cuisine maison à prix conscient, avec participation locale et invendus. Correspond bien à l’objectif local et saison."
+      },
+      {
+        "id": "bbff5739-3a94-4c25-ab08-6448fdfd29d6",
+        "name": "Les Marmites Volantes",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 88,
+        "reason": "Les Marmites Volantes propose une carte de saison, avec produits biologiques et locaux, et approche zéro déchet. Cadre autour de Paris utile pour déjeuner local et de saison."
+      },
+      {
+        "id": "6fd1d7ad-3d80-4882-b998-f17116280adb",
+        "name": "Datil",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 82,
+        "reason": "Datil met l’accent sur une cuisine principalement végétale et sur des légumes issus de fermes en Île-de-France; correspond à produit local et saison autour de Paris."
+      },
+      {
+        "id": "8ae99410-455b-41fc-84b5-21d69a183a46",
+        "name": "Irwin",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 79,
+        "reason": "Irwin propose une cuisine d’instant avec produits locaux et de saison; cadre Paris central et déjeuner possible."
+      },
+      {
+        "id": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+        "name": "Pristine",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 77,
+        "reason": "Pristine cuisine hyperlocale guidée par produits locaux et menus quotidiens; répond à l’exigence locale autour de Paris."
+      },
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 70,
+        "reason": "Le Hasard Ludique offre cuisine maison à partir de produits de saison et circuits courts; contexte lieu de vie/culture peut convenir pour déjeuner."
+      },
+      {
+        "id": "dd968512-f2dc-4b9f-9e6e-07374a74322d",
+        "name": "Ventrus L'Atelier",
+        "city": "Gennevilliers",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Ventrus L’Atelier propose cuisine de marché en circuit court avec potager sur le toit; cadre autour de Gennevilliers (dans la proche périphérie). Respecte principe local et saison, mais ville résolue est proche de Paris."
+      }
+    ]
+  },
+  {
+    "query": "where can I get a good coffee and read for an hour in Sydney",
+    "parsed": {
+      "need": "Cherche un endroit où prendre un bon café et lire pendant une heure à Sydney",
+      "city": "Sydney",
+      "country": "Australie",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "bon café",
+        "espace calme ou propice à la lecture",
+        "durée environ une heure",
+        "ambiance adaptée à lire"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "29208605-a7e5-4a88-ab7a-34fc2e59b9f3",
+        "name": "The Nine",
+        "city": "Sydney",
+        "category": "Café",
+        "fit": 85,
+        "reason": "The Nine is a café with Mediterranean-inspired menu and seats in Bondi Beach area. It mentions options vegan and gluten-free, cafe context suitable for reading and a relaxed vibe. Location matches Sydney/Bondi Beach."
+      },
+      {
+        "id": "4e74fd43-4da5-445d-8c89-717722771b05",
+        "name": "Two Chaps",
+        "city": "Sydney",
+        "category": "Brunch",
+        "fit": 78,
+        "reason": "Two Chaps is a café in Sydney area (Marrickville) with bakery/pastries and local coffee. Calm cafe vibe suitable for reading, but location is Marrickville not central Sydney; still plausible for a sit-and-read."
+      },
+      {
+        "id": "0c6c0823-9255-4de0-868d-62e37dcff4ad",
+        "name": "Farmhouse Kings Cross",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Farmhouse Kings Cross offers seasonal cuisine; however focuses more on dining and dinners, not explicitly reading-friendly, but it's in Sydney and cafe-like atmosphere could suit a short reading. Weak fit for mustHave reading emphasis."
+      },
+      {
+        "id": "6f1be367-59e5-47f1-916a-c68676351155",
+        "name": "A.P House (A.P Bakery)",
+        "city": "Sydney",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Urban brewing venues like Young Henrys or nearby cafes offer space; however not clearly described as quiet reading spaces. Slight fit in Sydney context."
+      }
+    ]
+  },
+  {
+    "query": "je cherche des baskets fabriquées de manière responsable à Paris",
+    "parsed": {
+      "need": "Rechercher des baskets fabriquées de manière responsable à Paris.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "baskets fabriquées de manière responsable"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+        "name": "L'Appartement Français - Baskets",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 95,
+        "reason": "Correspondance directe: baskets fabriquées en France/production responsable et boutique dédiée aux sneakers."
+      },
+      {
+        "id": "af6c815e-4e45-4bd7-9bd3-1a343041072f",
+        "name": "L'Appartement Français - Mode",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 70,
+        "reason": "Boutique proposant mode fabriquée en France avec production locale et responsable; correspond à la notion générale (basket/MODE). Peut être pertinent mais besoin de précision sneakers."
+      },
+      {
+        "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Mentionne mode fabriquée en France et durable; toutefois pas spécifiquement baskets; utile comme alternative si recherche élargie à mode locale."
+      },
+      {
+        "id": "8a3b62c8-036b-45bf-90a4-4adaa1cb1947",
+        "name": "La Récolte – Beaubourg",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie/épicerie durable; ne répond pas directement à baskets mais montre contexte responsable; inclure seulement si filtre élargi."
+      }
+    ]
+  },
+  {
+    "query": "un endroit où acheter du fromage directement chez le producteur",
+    "parsed": {
+      "need": "Cherche un endroit où acheter du fromage directement chez le producteur (fromagerie/producteur)",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "acheter directement chez le producteur",
+        "fromage",
+        "producteur/local",
+        "point de vente producteur"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "472d23b5-f723-4586-a8fd-34522b401ed2",
+        "name": "Laiterie La Chapelle",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 75,
+        "reason": "Laiterie La Chapelle: vente directe de fromages artisanaux fabriqués sur place, lait cru, circuit court. Correspond fortement au besoin."
+      },
+      {
+        "id": "e76e0436-0eef-405d-abff-b1a24591c62f",
+        "name": "Le Producteur Local",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 72,
+        "reason": "Le Producteur Local: épicerie coopérative avec vente directe de producteurs; correspond à l’achat direct chez le producteur même si c’est via une coopérative."
+      },
+      {
+        "id": "8aeb909e-6bc8-4f9d-aea9-7e370b2ee165",
+        "name": "La Quesne, Ferme et Fromagerie",
+        "city": "Bois-Héroult",
+        "category": "Ferme",
+        "fit": 68,
+        "reason": "La Quesne, Ferme et Fromagerie: ferme-fromagerie avec fabrication et vente directe de fromages. Correspond bien."
+      },
+      {
+        "id": "a0962134-5cca-4c75-b70a-e473800440b2",
+        "name": "Beecher’s Handmade Cheese",
+        "city": "Bellevue",
+        "category": "Épicerie",
+        "fit": 65,
+        "reason": "Beecher’s Handmade Cheese (Bellevue): fromagerie avec vente directe et production sur place; correspond au critère fromage + production locale."
+      },
+      {
+        "id": "6d93f5cc-2c79-47d4-887c-533d3d7f5133",
+        "name": "La Ferme Vaudoise",
+        "city": "Lausanne",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "La Ferme Vaudoise: épicerie mettant en avant produits du terroir et producteurs; vente directe possible via circuit court."
+      },
+      {
+        "id": "d15268fc-e7e5-4cb5-b975-d7d52afc01eb",
+        "name": "La Ferme des 7 Chemins",
+        "city": "Plessé",
+        "category": "Ferme",
+        "fit": 60,
+        "reason": "La Ferme des 7 Chemins: ferme avec vente directe et produits fermiers; correspond au besoin."
+      }
+    ]
+  },
+  {
+    "query": "j'aimerais trouver un marché sympa à Rennes",
+    "parsed": {
+      "need": "Trouver un marché sympa à Rennes (lieu de marché ou marché local agréable)",
+      "city": "Rennes",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Rennes",
+    "resolvedCountry": "",
+    "retrievalCount": 2,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "e41dc32c-113a-49be-be1e-d9d03bcedbaf",
+        "name": "Marché des Lices",
+        "city": "Rennes",
+        "category": "Marché",
+        "fit": 85,
+        "reason": "Marché des Lices correspond largement à la demande: marché local/sympa à Rennes, offre variée de producteurs locaux et produits de saison. Données: lieu précis, type Marché, horaires (weekend). Comparable à une expérience de marché agréable et localisée à Rennes."
+      },
+      {
+        "id": "e5659137-93d4-42da-be40-f7f670a2102c",
+        "name": "Les Récupérables",
+        "city": "Rennes",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Les Récupérables est un café-restaurant à Rennes axé bio et producteurs locaux. Ce n’est pas un marché, mais peut compléter l’objectif si l’utilisateur recherche aussi une pause gourmande locale; toutefois c’est moins aligné qu’un marché. Propre,&nbds: adresse précise et description confirmant le caractère local et durable."
+      }
+    ]
+  },
+  {
+    "query": "une adresse anti-gaspi où faire quelques courses à Paris",
+    "parsed": {
+      "need": "Trouver une adresse ou un point de vente à Paris dédié à l’anti-gaspillage où l’on peut faire quelques courses.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "adresse anti-gaspillage",
+        "courses"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "ee42b81a-d367-4792-bb80-87bc493363ef",
+        "name": "Les Glaneuses",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 85,
+        "reason": "Adresse et activité anti-gaspillage clairement présentées (épicerie vrac, zéro déchet) et offre de courses"
+      },
+      {
+        "id": "c8481f91-b18b-48a0-82ec-4804d77943ca",
+        "name": "Altrimenti",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 68,
+        "reason": "Épicerie anti-gaspillage avec adresse parisienne et possibilités de courses"
+      },
+      {
+        "id": "9a3e1913-6906-471d-9186-ec7821e0c94c",
+        "name": "Miyam Aligre",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 68,
+        "reason": "Épicerie anti-gaspillage avec adresse à Paris, offre de produits durables"
+      },
+      {
+        "id": "f8afcc12-6cdf-4a73-b6ac-f6d77f10b04f",
+        "name": "Miyam Parmentier",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 68,
+        "reason": "Mêmes caractéristiques anti-gaspillage et adresse à Paris"
+      },
+      {
+        "id": "3c86ecd3-1428-415a-bbf8-3133b6f7c5fb",
+        "name": "Miyam Poteau",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 66,
+        "reason": "Épicerie anti-gaspillage avec localisation à Paris et vrac/produits locaux"
+      },
+      {
+        "id": "cb9b881f-8003-4f27-b5f5-1e9557ced1c7",
+        "name": "Berrie Saint-Lazare",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 65,
+        "reason": "Épicerie avec produits de saison et possibilité de faire courses; adresse Paris"
+      },
+      {
+        "id": "24384387-d813-4d5d-b225-404951d44f04",
+        "name": "La Main Verte Gobelins",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 63,
+        "reason": "Épicerie bio/vrac/Circuit court à Paris; correspond à besoin de faire des courses anti-gaspillage"
+      },
+      {
+        "id": "dbab7860-aec2-4adb-aa62-5df6492765b7",
+        "name": "Kilogramme",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie vrac à Paris; correspond partiellement au besoin"
+      }
+    ]
+  },
+  {
+    "query": "je veux boire une bière produite sur place à Sydney",
+    "parsed": {
+      "need": "Trouver un endroit à Sydney où l’on peut boire une bière produite sur place (locale/produite localement)",
+      "city": "Sydney",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "bière produite sur place",
+        "ou bière locale disponible sur place"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "ce15d994-186a-4c13-bbb7-ab108a1363ca",
+        "name": "Batch Brewing Company",
+        "city": "Sydney",
+        "category": "Brasserie",
+        "fit": 90,
+        "reason": "Brasserie locale avec production sur place à Sydney (Batch Brewing Company) et bière brassée sur place."
+      },
+      {
+        "id": "b6c76af7-fbcb-48ff-85ad-27d96212bebe",
+        "name": "Young Henrys",
+        "city": "Sydney",
+        "category": "Brasserie",
+        "fit": 85,
+        "reason": "Brasserie artisanale indépendante à Sydney avec production locale et accès sur place."
+      },
+      {
+        "id": "fcf6a0f5-eb7e-4ac0-8472-e05d0471dba9",
+        "name": "Love, Tilly Devine",
+        "city": "Sydney",
+        "category": "Bar",
+        "fit": 60,
+        "reason": "Bar proposant vins et produits locaux; cependant la demande est bière produite sur place — pas une bière locale sur place."
+      },
+      {
+        "id": "29208605-a7e5-4a88-ab7a-34fc2e59b9f3",
+        "name": "The Nine",
+        "city": "Sydney",
+        "category": "Café",
+        "fit": 60,
+        "reason": "Café avec options vegan/sans gluten; ne correspond pas directement bière locale."
+      },
+      {
+        "id": "4e74fd43-4da5-445d-8c89-717722771b05",
+        "name": "Two Chaps",
+        "city": "Sydney",
+        "category": "Brunch",
+        "fit": 60,
+        "reason": "Brunch/café impliquant produits locaux, mais pas bière. Ne satisfait pas mustHave."
+      },
+      {
+        "id": "0c6c0823-9255-4de0-868d-62e37dcff4ad",
+        "name": "Farmhouse Kings Cross",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Restaurant axé sur produits locaux; pas bière sur place nécessaire."
+      },
+      {
+        "id": "dd706975-224c-4061-aabb-550836d5e42e",
+        "name": "Maloney’s Grocer Coogee",
+        "city": "Sydney",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie locale; pas bière produite sur place."
+      },
+      {
+        "id": "0c9f0833-7b0f-40ae-96cf-f2517fd510dd",
+        "name": "Marrickville Organic Food Market",
+        "city": "Sydney",
+        "category": "Marché",
+        "fit": 60,
+        "reason": "Marché biologique; pas bière produite sur place."
+      }
+    ]
+  },
+  {
+    "query": "un restau végétal pour dîner à deux à Paris",
+    "parsed": {
+      "need": "Trouver un restaurant végétal (végétarien/végan) pour dîner à deux à Paris.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "2",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "restaurant végétal",
+        "dîner à deux",
+        "à Paris"
+      ],
+      "prefer": [
+        "ambiance calme",
+        "romantique? (non explicit)",
+        "végan ou végétarien",
+        "bonne gastronomie"
+      ],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "deab2f94-5e38-4f2d-afb5-173016be4740",
+        "name": "Vivide",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 85,
+        "reason": "Vivide: restaurant entièrement végétale à Paris avec menu en sept temps et ambiance raffinée. Correspond parfaitement à la demande végétal + dîner à deux à Paris."
+      },
+      {
+        "id": "6fd1d7ad-3d80-4882-b998-f17116280adb",
+        "name": "Datil",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 72,
+        "reason": "Datil: cuisine principalement végétale, saisonnière et axée sur producteurs franciliens. Adapté pour dîner à deux à Paris; toutefois wording moins explicit sur purely végétal que Vivide."
+      },
+      {
+        "id": "ec57520f-2b73-465a-8b6c-d89f2a65c3a5",
+        "name": "MÛRE Poissonnière",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 70,
+        "reason": "MÛRE Poissonnière: propose plats midi/biologiques autour légumes bio et fermes; végétal-friendly mais description moins centrée sur végétal pur et dîner romantique."
+      },
+      {
+        "id": "88410024-3379-4eac-9826-6fdc74879e3a",
+        "name": "Bistro Les Artizans",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Bistro Les Artizans: carte de marché et cuisine maison; pas explicitement végétal/végétal-only, mais peut proposer options végétales; utile mais moins aligné."
+      }
+    ]
+  },
+  {
+    "query": "something gluten free around Bondi Beach",
+    "parsed": {
+      "need": "Cherche des options de restauration ou lieux autour de Bondi Beach proposant du gluten free.",
+      "city": "Bondi Beach",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "gluten free",
+        "options adaptées sans gluten"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 0,
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "je cherche un lieu pour réparer ou apprendre à réparer quelque chose à Paris",
+    "parsed": {
+      "need": "Trouver un lieu à Paris où l'on peut réparer quelque chose ou apprendre à réparer (atelier, fablab, réparerie, atelier participatif).",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "réparation d’objet/atelier d’apprentissage"
+      ],
+      "prefer": [
+        "atelier accessible au grand public",
+        "prix raisonnable",
+        "horaires flexibles"
+      ],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 90,
+        "reason": "Lieu à Paris proposant des ateliers de réparation et apprentissage (réemploi textile, réparation vêtements). Correspond parfaitement à la demande et à la ville."
+      },
+      {
+        "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+        "name": "L'Appartement Français - Baskets",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 78,
+        "reason": "Lieu proposant des activités liées à le réparation via mode et accessibilité, et localisation Paris. Convient comme atelier/apprentissage sur réparation dans le domaine textile/mode."
+      },
+      {
+        "id": "c9abb0e2-0991-4484-a813-d02f15e88ff1",
+        "name": "Activ’18",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 70,
+        "reason": "Activités liées au réemploi et ateliers pratiques; Paris. Correspond partiellement à la réparation et apprentissage."
+      },
+      {
+        "id": "af6c815e-4e45-4bd7-9bd3-1a343041072f",
+        "name": "L'Appartement Français - Mode",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 65,
+        "reason": "Boutique/atelier mode en France; mentionne ateliers mais moins centrés réparation; localisation Paris."
+      },
+      {
+        "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Boulangerie/atelier non directement réparation d’objet. Mention atelier possible mais pas clairement réparation d’objet."
+      }
+    ]
+  },
+  {
+    "query": "une librairie indépendante pour trouver un cadeau",
+    "parsed": {
+      "need": "Finding an independent bookstore to buy a gift for someone, likely looking for a place to shop rather than a specific venue yet.",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "21ea0dcc-6cde-422a-b059-d20e01a83615",
+        "name": "Boulinier - Jourdan",
+        "city": "Paris",
+        "category": "Librairie",
+        "fit": 90,
+        "reason": "Librairie indépendante d’occasion à Paris, motif clair pour trouver un cadeau via réemploi et accessibilité des livres."
+      },
+      {
+        "id": "42185ebc-69f6-4f82-ae5d-98df369d5985",
+        "name": "Boulinier - Bonne Nouvelle",
+        "city": "Paris",
+        "category": "Librairie",
+        "fit": 90,
+        "reason": "Autre librairie indépendante d’occasion à Paris, même logique et utilité pour offrir un cadeau sans dépenser beaucoup."
+      },
+      {
+        "id": "87550c29-ef3f-461a-8f00-2b8578a482e1",
+        "name": "Boulinier - St Michel",
+        "city": "Paris",
+        "category": "Librairie",
+        "fit": 85,
+        "reason": "Autre option Boulinier à Paris (librairie d’occasion), répond au besoin de cadeau économique et découverte."
+      },
+      {
+        "id": "d3af0e98-e5e5-4c67-871d-b08cae02c8c9",
+        "name": "East Village Books",
+        "city": "New York",
+        "category": "Librairie",
+        "fit": 80,
+        "reason": "East Village Books – librairie d’occasion à New York, correspond à la demande d’indépendante et cadeau via réemploi."
+      },
+      {
+        "id": "d7537fde-daf2-43e7-9231-fa82d92e578c",
+        "name": "Better Books",
+        "city": "Salmiya",
+        "category": "Librairie",
+        "fit": 75,
+        "reason": "East Village Books-like option à New York; toutefois légèrement moins directe que les Parisiennes, mais reste librairie indépendante d’occasion."
+      },
+      {
+        "id": "aa9c243d-0680-462d-b4d3-6d14bc4285da",
+        "name": "Bouquinerie - Friperie",
+        "city": "Villeneuve-d'Ascq",
+        "category": "Boutique",
+        "fit": 70,
+        "reason": "Bouquinerie - Friperie combine livre et vêtement; peut être pertinent mais mélange textile et livre, moins direct pour cadeau livresque."
+      },
+      {
+        "id": "2efbf49d-fffb-444a-89b1-b3399fe12d74",
+        "name": "Kitazawa Bookstore",
+        "city": "Tokyo",
+        "category": "Librairie",
+        "fit": 60,
+        "reason": "Kitazawa Bookstore (Tokyo) livre rare et d’occasion; correspond à librairie indépendante d’occasion mais hors localisation demandée, peut être pertinent si ouverture internationale."
+      }
+    ]
+  },
+  {
+    "query": "un endroit avec des créateurs locaux à Paris",
+    "parsed": {
+      "need": "Trouver un endroit à Paris où il y a des créateurs locaux (endroits qui mettent en avant des créateurs locaux, artisans, ou designers).",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "créateurs locaux",
+        "endroits où on peut rencontrer ou voir des créations locales"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "e76e0436-0eef-405d-abff-b1a24591c62f",
+        "name": "Le Producteur Local",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 70,
+        "reason": "Épicerie coopérative proposant producteurs et artisans locaux; correspond à ‘créateurs locaux’ et lieu permettant de rencontrer des artisans/producteurs locaux."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 72,
+        "reason": "La Recyclerie est un lieu de vie et événements autour de l’écoresponsabilité avec ateliers et acteurs locaux; cadre favorable à rencontrer des créations locales via ateliers et marchés."
+      },
+      {
+        "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Farinez'vous (3 entrées similaires) met en avant produits locaux et artisans de la région; fort aligné sur le local mais moins orienté création unique que d’autres."
+      },
+      {
+        "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+        "name": "L'Appartement Français - Baskets",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 60,
+        "reason": "L’Appartement Français - Baskets met en avant des marques françaises et production locale; correspond à la notion de créations locales dans le domaine mode."
+      },
+      {
+        "id": "8e09f4c5-f3a7-468d-8bae-afbe4b360f55",
+        "name": "Le TLM Paris",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 60,
+        "reason": "Le TLM Paris rassemble des marchés de créateurs et une programmation culturelle; répond partiellement à la demande de créateurs locaux."
+      },
+      {
+        "id": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+        "name": "Pristine",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Pristine propose une cuisine hyperlocale avec producteurs locaux; lien avec créations locales via approvisionnement, mais moins centré sur des créateurs/atelier."
+      }
+    ]
+  },
+  {
+    "query": "où manger après 22h à Paris",
+    "parsed": {
+      "need": "Trouver des lieux où manger après 22h à Paris, avec éventuels conseils ou options selon préférence tardive.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "après 22h",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "ouvert après 22h",
+        "alimentation (nourriture)",
+        "possibilité de service nocturne"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 85,
+        "reason": "Le Hasard Ludique ouvre tardivement (jusqu’à 1h du matin les soirs) et propose une cuisine maison à partir de produits de saison, avec un espace de vie (concerts/événements) - correspond à nourriture tardive après 22h et service nocturne."
+      },
+      {
+        "id": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
+        "name": "Le Moulin à Café",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 70,
+        "reason": "Le Moulin à Café est un café associatif avec restauration conviviale et heures d’ouverture en soirée (10h-22h en semaine). Adapté pour manger tardivement dans un lieu de vie associatif."
+      },
+      {
+        "id": "36fc783b-00f8-4dc5-8892-ce23b30f9a55",
+        "name": "Les Résistants",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 65,
+        "reason": "Ground Control offre restauration labellisée Ecotable et ouvert jusqu’à 00h00 certains soirs; cadre multi-activité permettant manger tard."
+      },
+      {
+        "id": "4a2c9194-13bc-414a-977a-9f44c388f5c6",
+        "name": "Frame Brasserie",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 65,
+        "reason": "Frame Brasserie propose cuisine française contemporaine avec ouverture jusqu’à minuit (certains jours), options végétariennes et sans gluten; peut convenir pour manger après 22h."
+      },
+      {
+        "id": "88410024-3379-4eac-9826-6fdc74879e3a",
+        "name": "Bistro Les Artizans",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Bistro Les Artizans propose service jusqu’à 23h00 en semaine et week-end, carte de marché et cuisine maison; couvre la période tardive mais pas jusqu’à 22h30 daily."
+      },
+      {
+        "id": "f03f52a8-378b-4533-98c1-bc57bc8b8965",
+        "name": "Brasserie Martin",
+        "city": "Paris",
+        "category": "Brasserie / bar / pub",
+        "fit": 60,
+        "reason": "Brasserie Martin et autres adresses du collectif Nouvelle Garde proposent cuisine maison et ouvertures tardives; possibilité de manger après 22h selon jour."
+      }
+    ]
+  },
+  {
+    "query": "un café ouvert le dimanche matin à Paris",
+    "parsed": {
+      "need": "Trouver un café qui est ouvert le dimanche matin à Paris.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "dimanche matin",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "ouvert le dimanche matin"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "676f2a3d-437d-4eb6-abce-5d1d99a10c64",
+        "name": "Le Pavillon des Canaux",
+        "city": "Paris",
+        "category": "Café",
+        "fit": 84,
+        "reason": "Ouvert dimanche et propose café/brunch, heures dimanche 11h-00h."
+      },
+      {
+        "id": "a4dc2350-c2b9-4eb6-a546-dac0a755b5b2",
+        "name": "Les Fanés",
+        "city": "Paris",
+        "category": "Café",
+        "fit": 60,
+        "reason": "Ouvert dimanche 11h-00h mais description générale; vérifie heures exactes dimanche (Dimanche Fermé selon fiche)."
+      },
+      {
+        "id": "aee104da-dc5b-47d1-8d0c-1fda07ac5187",
+        "name": "La Cop1ne",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Ouvert dimanche (Dimanche Fermé selon fiche) — attention: contradiction entre description et heures."
+      },
+      {
+        "id": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
+        "name": "MÛRE Trinité",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Propose un coffee shop le matin et ouvert certains jours, mais dimanche non spécifié; fonction coffee shop et midi."
+      }
+    ]
+  },
+  {
+    "query": "je cherche un endroit accessible en fauteuil roulant à Paris",
+    "parsed": {
+      "need": "Trouver un endroit à Paris qui soit accessible en fauteuil roulant.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "accessible en fauteuil roulant",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 88,
+        "reason": "La Recyclerie est à Paris et describe un lieu accessible/généraliste. Données suffisantes sur lieu, horaires et accessibilité implicite par nature d’espace public."
+      },
+      {
+        "id": "8e09f4c5-f3a7-468d-8bae-afbe4b360f55",
+        "name": "Le TLM Paris",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 75,
+        "reason": "Le TLM Paris est situé sur Petite Ceinture, offre un espace culturel et social; description inclut restaurant et activité publique, mais pas explicitement accessibilité en fauteuil roulant; reste plausible et utile."
+      },
+      {
+        "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 70,
+        "reason": "La Cop1ne restaurant solidaire; lieu de vie avec accès public et actions solidaires. Détail sur accessibilité non explicite mais lieu public; utile pour demande générale."
+      },
+      {
+        "id": "7410a428-960b-466d-b9e3-769e9f50203a",
+        "name": "Boulinier - Châtelet Les Halles",
+        "city": "Paris",
+        "category": "Librairie",
+        "fit": 66,
+        "reason": "Boulinier Librairie au centre; lieu public, horaires; accessibilité non spécifiée mais lieu de grande accessibilité publique. Convient comme option utile."
+      },
+      {
+        "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+        "name": "L'Appartement Français - Baskets",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 63,
+        "reason": "L’Appartement Français - Baskets est boutique mode; non idéal pour accessibilité mais établissement public, peut être accessible; utile mais moins pertinent que lieux de convivialité."
+      },
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 61,
+        "reason": "La Textilerie, espace réemploi et café; lieu public et accessible; correspond à recherche de lieu accessible et sociabilisant."
+      }
+    ]
+  },
+  {
+    "query": "un truc culturel pas trop touristique à Paris",
+    "parsed": {
+      "need": "Recherche une activité culturelle à Paris qui ne soit pas trop touristique",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "très peu touristique",
+        "option culturelle"
+      ],
+      "prefer": [
+        "calme ou authentique",
+        "moins connu que les grands lieux touristiques"
+      ],
+      "avoid": [
+        "sites ultra touristiques",
+        "quasi incontournables",
+        "groupes de touristes"
+      ]
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "c9abb0e2-0991-4484-a813-d02f15e88ff1",
+        "name": "Activ’18",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 88,
+        "reason": "Activ’18 propose une friperie solidaire, réemploi et cantine solidaire + ateliers; répond à l’aspect culturel alternatif et hors des lieux ultra touristiques, cadre authentique et local."
+      },
+      {
+        "id": "ee42b81a-d367-4792-bb80-87bc493363ef",
+        "name": "Les Glaneuses",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 84,
+        "reason": "Les Glaneuses épicerie zéro déchet avec ateliers et espace détente; cadre local et non touristique, offre activités culturelles associées."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 80,
+        "reason": "La Recyclerie propose café-cantine/atelier/événements autour écoresponsabilité; lieu de vie alternatif propice à une expérience culturelle moins touristique."
+      },
+      {
+        "id": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
+        "name": "Le Moulin à Café",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 70,
+        "reason": "Le Moulin à Café est un lieu de vie associatif avec restauration et programme culturel; cadre intime et non touristique."
+      },
+      {
+        "id": "8e09f4c5-f3a7-468d-8bae-afbe4b360f55",
+        "name": "Le TLM Paris",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 68,
+        "reason": "Le TLM Paris est un tiers-lieu culturel dans un lieu atypique; programmation libre et citoyenne, peu touristique si recherché."
+      },
+      {
+        "id": "87550c29-ef3f-461a-8f00-2b8578a482e1",
+        "name": "Boulinier - St Michel",
+        "city": "Paris",
+        "category": "Librairie",
+        "fit": 60,
+        "reason": "Boulinier - St Michel librairie d’occasion; expérience culturelle et réemploi culturel; cadre local et peu touristique."
+      }
+    ]
+  },
+  {
+    "query": "je veux voir un concert ce soir à Paris",
+    "parsed": {
+      "need": "Trouver un concert à Paris ce soir.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "ce soir",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "8e09f4c5-f3a7-468d-8bae-afbe4b360f55",
+        "name": "Le TLM Paris",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 78,
+        "reason": "Le TLM Paris est un lieu culturel avec concerts et programmation, situé à Paris 19e. Correspond à la demande d’un concert ce soir à Paris et indique une programmation. Proximité et type pertinent."
+      },
+      {
+        "id": "cf0dc4d6-d64b-4f88-8634-0bd64c927d9e",
+        "name": "Ground Control",
+        "city": "Paris",
+        "category": "lieu alternatif",
+        "fit": 72,
+        "reason": "Ground Control est un lieu culturel avec événements et restauration, à Paris 12e. Peut accueillir concerts, programmation, répond partiellement à la demande de concert ce soir."
+      },
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 70,
+        "reason": "Le Hasard Ludique propose concerts et événements; situé à Paris 18e. Correspond bien à concert ce soir dans Paris."
+      },
+      {
+        "id": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
+        "name": "Le Moulin à Café",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 60,
+        "reason": "Le Moulin à Café est un lieu de vie avec restauration et activités; peut proposer concerts, à Paris 14e. Corrélation plausible mais moins direct que les lieux purement concerts."
+      }
+    ]
+  },
+  {
+    "query": "un vernissage demain soir à Paris",
+    "parsed": {
+      "need": "Cherche un vernissage (événement d’ouverture/exposition) demain soir à Paris et probablement des détails pratiques.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "demain soir",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+        "name": "La Maison du Zéro Déchet",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 78,
+        "reason": "La Maison du Zéro Déchet est un lieu associatif avec café et ateliers; peut accueillir vernissage demain soir si programmation/artistes confirmés figurent dans l’entrée, et Paris est la ville résolue."
+      },
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 72,
+        "reason": "Le Hasard Ludique est un lieu avec expositions et événements; programmation peut inclure vernissage et est situé à Paris."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 70,
+        "reason": "La Recyclerie propose activités culturelles et événements; plausible pour un vernissage demain soir; lieu à Paris."
+      },
+      {
+        "id": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+        "name": "Pristine",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 66,
+        "reason": "Pristine est un restaurant avec menus locaux; pas typiquement vernissage, mais peut être lié à expo si programmation jointe; néanmoins correspond partiellement."
+      },
+      {
+        "id": "88410024-3379-4eac-9826-6fdc74879e3a",
+        "name": "Bistro Les Artizans",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Boulinier et librairies: un vernissage possible autour de livres; lieu à Paris; correspond utile."
+      }
+    ]
+  },
+  {
+    "query": "du stand up à Paris ce week-end",
+    "parsed": {
+      "need": "Trouver des options de stand-up à Paris pour ce week-end (verbe: ",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "ce week-end",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [
+        "stand-up",
+        "humour",
+        "spectacle",
+        "spectacle en français",
+        "ce week-end"
+      ],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "86315e11-bb94-42a9-843a-d1b6fd68591e",
+        "name": "Patoche - Microbrasserie",
+        "city": "Paris",
+        "category": "Brasserie",
+        "fit": 85,
+        "reason": "Patoche - Microbrasserie propose ambiance et programmation bière sur place; correspond à “stand-up” comme spectacle vivant hébergé dans un lieu festif (Montmartre) et est à Paris."
+      },
+      {
+        "id": "110e9dab-2269-40cf-970e-83d5754103b9",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 70,
+        "reason": "La Trockette offre une programmation culturelle et concerts; lieu associatif à Paris, correspond à soirée stand-up/humour dans un cadre café/concert."
+      },
+      {
+        "id": "36fc783b-00f8-4dc5-8892-ce23b30f9a55",
+        "name": "Les Résistants",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 65,
+        "reason": "Farinez’vous et ambiance boulangerie/restauration; mentionne pas stand-up mais lieu de vie avec programmation; légèrement décalé mais peut accueillir événements; à Paris."
+      },
+      {
+        "id": "bbff5739-3a94-4c25-ab08-6448fdfd29d6",
+        "name": "Les Marmites Volantes",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 65,
+        "reason": "Les Marmites Volantes propose une carte et programmation et est un restaurant engagé; peut proposer spectacles; Paris 19e."
+      },
+      {
+        "id": "deab2f94-5e38-4f2d-afb5-173016be4740",
+        "name": "Vivide",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Vivide et cuisine végétale; lieu gastronomique, pourrait accueillir événements, mais pas explicitement stand-up."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 60,
+        "reason": "La Recyclerie est lieu de vie avec événements culturels; Paris 18e; propice à spectacles, correspond à la demande week-end stand-up."
+      }
+    ]
+  },
+  {
+    "query": "une ferme près de Paris où acheter des produits",
+    "parsed": {
+      "need": "Trouver une ferme près de Paris où acheter des produits (agriculture/produits fermiers)",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "produits fermiers",
+        "achat direct à la ferme",
+        "près de Paris"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "bc56e05e-5f4c-476f-8f67-b292ed08c778",
+        "name": "La Ferme de Viltain",
+        "city": "Paris",
+        "category": "Ferme",
+        "fit": 100,
+        "reason": "La Ferme de Viltain correspond exactement à une ferme près de Paris proposant des produits en circuit court et un marché/point de vente direct."
+      },
+      {
+        "id": "82311d40-9f8a-4bac-a2d1-2deafdccc75f",
+        "name": "Kelbongoo",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 85,
+        "reason": "Kelbongoo offre des produits fermiers via circuit court près de Paris; correspond à l’achat direct et produits fermiers."
+      },
+      {
+        "id": "a32be4d7-4a6e-4e3b-abb0-91f091f06dd7",
+        "name": "Kelbongoo",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 85,
+        "reason": "Kelbongoo (autre adresse) même logique de circuit court et produits fermiers; candidat valide."
+      },
+      {
+        "id": "e76e0436-0eef-405d-abff-b1a24591c62f",
+        "name": "Le Producteur Local",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 80,
+        "reason": "Le Producteur Local est une épicerie coopérative de producteurs offrant vente directe et produits locaux."
+      },
+      {
+        "id": "c5969ed8-19f9-4b78-90c3-8b74e1fe9102",
+        "name": "Berrie Moines",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Berrie Moines épicerie avec réseau de producteurs; répond partiellement à l’achat direct et produits fermiers."
+      },
+      {
+        "id": "917ab963-e72d-4982-a6ee-96e2020a15ae",
+        "name": "Le Zingam",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Le Zingam épicerie circuits courts; correspond à produits de saison et achats directs."
+      },
+      {
+        "id": "8a284a11-02c1-4b76-99c3-48f1dbfc3b59",
+        "name": "La Clayette Denfert-Rochereau",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "La Récolte – Chemin Vert épicerie promouvant pratiques agricoles vertueuses et produits locaux."
+      }
+    ]
+  },
+  {
+    "query": "where can I buy second hand clothes in Paris",
+    "parsed": {
+      "need": "Trouver des lieux pour acheter des vêtements de seconde main à Paris (locations de friperies, magasins, marchés).",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "vêtements de seconde main",
+        "shops/friperies/marchés",
+        "Paris"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "af6c815e-4e45-4bd7-9bd3-1a343041072f",
+        "name": "L'Appartement Français - Mode",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 85,
+        "reason": "Vêtements/mode et accessoires, Paris, boutique d’inspiration locale et durabilité. Correspond pas forcément à seconde main mais boutique dédiée au vêtement durable; conformité partielle avec mustHave 'vêtements de seconde main'."
+      },
+      {
+        "id": "d9ca0c0e-2823-4885-b00c-ad87dfda5833",
+        "name": "L'Appartement Français - Baskets",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 75,
+        "reason": "Vêtements de seconde main via friperie solidaire et réemploi; Paris 75004. Correspond parfaitement au mustHave et à l’emplacement."
+      },
+      {
+        "id": "ee42b81a-d367-4792-bb80-87bc493363ef",
+        "name": "Les Glaneuses",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie zéro déchet, non vestimentaire; ne satisfait pas mustHave sur vêtements; inclut mais ne correspond pas à la demande principale. Peut être écarté."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 60,
+        "reason": "Lieu de vie multi autour écoresponsabilité; pas de vêtements mentionnés comme offre principale. Candidate borderline mais utile pour contexte écoresponsable."
+      }
+    ]
+  },
+  {
+    "query": "je veux offrir un objet fabriqué par un artisan français",
+    "parsed": {
+      "need": "Trouver un objet fabriqué par un artisan français à offrir, probablement recherchant des produits artisanaux en France à acheter comme cadeau.",
+      "city": "",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "France",
+    "retrievalCount": 2,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "3b0b153c-7033-42ee-b8db-fb0483600535",
+        "name": "Farmily & Co",
+        "city": "Bayonne",
+        "category": "épicerie",
+        "fit": 70,
+        "reason": "Bayonne, France. Lieu localisé et artisanal potentiel via épicerie locale engagée dans circuits courts; correspond à l’objectif d’offrir un objet fabriqué par un artisan français si l’établissement propose des produits artisanaux fabriqués localement et visibles comme issus d’artisans, mais seul le type d’établissement épicerie et description générale ne confirme explicitement un objet fabriqué par un artisan. Peut être pertinent si l’enseigne vend des produits artisanaux locaux."
+      },
+      {
+        "id": "5933857a-56ed-4320-956e-24983ab70c4b",
+        "name": "L'abeille gourmande",
+        "city": "Bordeaux",
+        "category": "restaurant",
+        "fit": 60,
+        "reason": "Bordeaux, France. Restaurant 100% végétarien, bio et local. Pas un lieu dédié à l’achat d’objets artisanaux; ne répond pas explicitement à la demande d’un objet fabriqué par un artisan. Classé utile uniquement si le candidat devait proposer des produits artisanaux, ce qui n’est pas explicite."
+      }
+    ]
+  },
+  {
+    "query": "un endroit convivial pour déjeuner avec des enfants à Paris",
+    "parsed": {
+      "need": "Cherche un endroit convivial pour déjeuner avec des enfants à Paris",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "convivialité pour enfants",
+        "déjeuner"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "b00517cd-9034-461c-b412-ab9c3582208c",
+        "name": "Les Petites Cantines Paris",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 85,
+        "reason": "Les Petites Cantines Paris répond à la convivialité et au déjeuner avec enfants via espace cantine participative et repas faits maison à prix libre; localisation et offre clairement adaptées à une sortie en famille à Paris 13e."
+      },
+      {
+        "id": "8ae99410-455b-41fc-84b5-21d69a183a46",
+        "name": "Irwin",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 70,
+        "reason": "Irwin propose une cuisine locale et de saison pour le déjeuner; lieu en Paris 8e. Convient pour un déjeuner convivial avec enfants, mais moins orienté familial que les cantines."
+      },
+      {
+        "id": "bbff5739-3a94-4c25-ab08-6448fdfd29d6",
+        "name": "Les Marmites Volantes",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 66,
+        "reason": "Les Marmites Volantes offre carte courte et plats frais/bio; ambiance conviviale pour déjeuner en famille. Points forts végétariens et proximité de quartier est pertinent."
+      },
+      {
+        "id": "462b80ae-f32b-4c9f-9139-541481817b45",
+        "name": "La cantine Champ Libre",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 64,
+        "reason": "La cantine Champ Libre propose cuisine maison et produits bio; cadre convivial, adapté à un repas en famille, bien que pas explicitement orienté enfants dans les données."
+      },
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 60,
+        "reason": "Le Hasard Ludique est convivial et permet brunch/déjeuner; activité familiale possible mais la programmation est plus large et pas explicitement enfant-dédiée."
+      }
+    ]
+  },
+  {
+    "query": "un café avec option vegan à Sydney",
+    "parsed": {
+      "need": "Cherche un café à Sydney (Australie) avec option végan (végan-friendly menu ou options véganes)",
+      "city": "Sydney",
+      "country": "Australie",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "option végan"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "29208605-a7e5-4a88-ab7a-34fc2e59b9f3",
+        "name": "The Nine",
+        "city": "Sydney",
+        "category": "Café",
+        "fit": 90,
+        "reason": "The Nine à Bondi Beach (Sydney) propose des options vegan et sans gluten clairement mentionnées dans la description."
+      },
+      {
+        "id": "a0f5bf1a-802f-4c2c-ac55-3f60421dc580",
+        "name": "Yellow",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 70,
+        "reason": "Yellow est végétarien avec menu saisonnier; pas explicitement vegan dans la description, mais potentiel végétarien. Correspond partielle."
+      },
+      {
+        "id": "4e74fd43-4da5-445d-8c89-717722771b05",
+        "name": "Two Chaps",
+        "city": "Sydney",
+        "category": "Brunch",
+        "fit": 60,
+        "reason": "Two Chaps est un café-brunch avec approche locale et saisonnière; pas explicitement vegan dans la description, donc utile mais incertain."
+      },
+      {
+        "id": "e0a59ef1-df53-4268-8c54-7946ccd70265",
+        "name": "Urban Green Sydney",
+        "city": "Sydney",
+        "category": "Ferme",
+        "fit": 60,
+        "reason": "Urban Green Sydney est une ferme urbaine; ne précise pas offre véganes dans le café/restaurant, mais peut proposer options vegan via produits végétaux; information insuffisante."
+      }
+    ]
+  },
+  {
+    "query": "je veux manger breton à Paris",
+    "parsed": {
+      "need": "Chercher un endroit pour manger des plats bretons à Paris (restaurant breton ou spécialités bretonnes)",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "cuisine bretonne",
+        "plats bretons",
+        "restaurant à Paris"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "962b7f8d-7f25-498e-9658-0b32866a0d30",
+        "name": "Maison Bretonne",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 90,
+        "reason": "Correspondance directe: restaurant breton à Paris avec cuisine bretonne et plats bretons, adresse précisée (5 Rue de Rivoli, Paris)"
+      },
+      {
+        "id": "c5969ed8-19f9-4b78-90c3-8b74e1fe9102",
+        "name": "Berrie Moines",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie/bandeau non spécifique à la cuisine bretonne mais description mentionne productrice et terroir; correspond partiellement au cadre breton mais pas explicitement "
+      },
+      {
+        "id": "bbff5739-3a94-4c25-ab08-6448fdfd29d6",
+        "name": "Les Marmites Volantes",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Restaurant avec menu bio et frais, sans lien explicite Bretagne, mais pas de lien fort Bretagne donc score utile mais partiel."
+      }
+    ]
+  },
+  {
+    "query": "un lieu alternatif avec des ateliers autour du réemploi",
+    "parsed": {
+      "need": "Cherche un lieu alternatif proposant des ateliers autour du réemploi (upcycling/reuse).",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "ateliers autour du réemploi",
+        "lieu alternatif"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "ac129af0-401f-49c4-acb7-af302b0d40ef",
+        "name": "ReClaim It",
+        "city": "Portland",
+        "category": "Atelier",
+        "fit": 88,
+        "reason": "Atelier de réemploi créatif with materials récupérés; correspond clairement à ateliers autour du réemploi et lieu alternatif."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 83,
+        "reason": "La Recyclerie à Paris est un lieu de vie avec ateliers et écoresponsabilité, répond partiellement au besoin d’ateliers autour du réemploi et est un lieu alternatif."
+      },
+      {
+        "id": "c9abb0e2-0991-4484-a813-d02f15e88ff1",
+        "name": "Activ’18",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 78,
+        "reason": "Activ’18 combine friperie solidaire et réemploi, avec ateliers; répond au critère lieu alternatif et réemploi."
+      },
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 75,
+        "reason": "La Textilerie dédiée au réemploi textile, ateliers de couture; correspond aux ateliers autour du réemploi et lieu alternatif."
+      },
+      {
+        "id": "df69fde7-a2ef-435e-9a4c-a13d94bfb20f",
+        "name": "La Maison du Zéro Déchet",
+        "city": "Paris",
+        "category": "Lieu alternatif",
+        "fit": 73,
+        "reason": "La Maison du Zéro Déchet propose ateliers et ressources autour du zéro déchet; réemploi/atelier présent."
+      },
+      {
+        "id": "cb004a4b-d010-46f9-9634-71392e1562ec",
+        "name": "Looptworks",
+        "city": "Portland",
+        "category": "Atelier",
+        "fit": 72,
+        "reason": "Looptworks et ReClaim It à Portland proposent ateliers sur réemploi et matériaux excédentaires; correspond au besoin et lieu alternatif."
+      },
+      {
+        "id": "acb662e1-81cb-4578-9a25-29519342865a",
+        "name": "ScrapsKC",
+        "city": "Kansas City",
+        "category": "Atelier",
+        "fit": 70,
+        "reason": "ScrapsKC: atelier réemploi créatif et redistribution de matériaux; correspond."
+      },
+      {
+        "id": "f4106d28-d3b8-47fb-b1bc-a800f3d1c428",
+        "name": "Reconsidered Goods",
+        "city": "Greensboro",
+        "category": "Atelier",
+        "fit": 60,
+        "reason": "Reconsidered Goods: atelier réemploi; utile mais plus proche d’une boutique/atelier localisé; répond au critère atelier et réemploi."
+      }
+    ]
+  },
+  {
+    "query": "un bar à vin naturel à Paris",
+    "parsed": {
+      "need": "Trouver un bar à vin naturel à Paris.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "bar à vin naturel"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "24384387-d813-4d5d-b225-404951d44f04",
+        "name": "La Main Verte Gobelins",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 70,
+        "reason": "La Main Verte Gobelins répond à la demande avec 'bar à vin naturel' comme élément potentiel? Note: candidat est une épicerie. Toutefois, le critère mustHave est explicitement 'bar à vin naturel'. Aucun candidat n’indique explicitement 'bar à vin naturel' dans sa fiche. Le plus proche serait des établissements avec offres vin/vignerons ou bar/brasserie, mais sans mention nature. Entrée partielle."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 60,
+        "reason": "Le Hasard Ludique propose une programmation et restauration, mais pas spécifiquement bar à vin naturel. Correspond à la ville Paris et vibe écoresponsable; valeur partielle."
+      },
+      {
+        "id": "8f65fcf7-c072-4897-8aa3-724287ead580",
+        "name": "La Laiterie de la Main Verte",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "La Laiterie de la Main Verte est une épicerie/laiterie, pas bar à vin naturel. Partiellement pertinent si on étend à vins naturels."
+      }
+    ]
+  },
+  {
+    "query": "un endroit tranquille pour un premier rendez-vous à Paris",
+    "parsed": {
+      "need": "Trouver un endroit tranquille à Paris idéal pour un premier rendez-vous.",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "tranquillité",
+        "aire propice à conversation",
+        "ambiance calme"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
+        "name": "Le Moulin à Café",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 78,
+        "reason": "Le Moulin à Café est un lieu calme et propice à la conversation, ambiance conviviale et accessible, en quartier calme du 14e, idéal pour un premier rendez-vous."
+      },
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 76,
+        "reason": "La Recyclerie offre une atmosphère détendue dans un cadre café-cantine et espaces verts; ambiance adaptée à une conversation, situé dans le 18e."
+      },
+      {
+        "id": "88410024-3379-4eac-9826-6fdc74879e3a",
+        "name": "Bistro Les Artizans",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 74,
+        "reason": "Bistro Les Artizans propose cadre de quartier calme avec cuisine maison; ambiance agréable pour un rendez-vous détendu."
+      },
+      {
+        "id": "cf0dc4d6-d64b-4f88-8634-0bd64c927d9e",
+        "name": "Ground Control",
+        "city": "Paris",
+        "category": "lieu alternatif",
+        "fit": 72,
+        "reason": "Ground Control combine espace culturel et restauration avec ambiance détendue et offre des zones calmes pour discuter."
+      },
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 62,
+        "reason": "Le Hasard Ludique propose cadre convivial et calme en journée; programmation variée mais on peut trouver des moments calmes pour discuter."
+      },
+      {
+        "id": "aee104da-dc5b-47d1-8d0c-1fda07ac5187",
+        "name": "La Cop1ne",
+        "city": "Paris",
+        "category": "Restaurant",
+        "fit": 61,
+        "reason": "La Cop1ne restaurant solidaire propose ambiance simple et détendue; bonne option de rendez-vous convivial."
+      }
+    ]
+  },
+  {
+    "query": "je cherche le resto qui s'appelle peut-être Plantxa",
+    "parsed": {
+      "need": "Trouver un restaurant possiblement nommé Plantxa (hypothèse de nom proche ou d’orthographe similaire) et obtenir ses détails pour réservation ou information.",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "Plantxa (restaurant potentiellement nommé)",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "ecd4b169-3af0-4a59-b26c-ace13dc30904",
+        "name": "Panacée",
+        "city": "Montréal",
+        "category": "Restaurant",
+        "fit": 72,
+        "reason": "Panacée est un restaurant montréalais axé durabilité et circuits courts; nom proche “Plantxa” n’est pas exact mais correspond à un établissement réel du même type (restaurant locavore). Correspondance plausible sur nom/approche."
+      },
+      {
+        "id": "2daf7dbd-ba02-4f52-a201-39656dc7dc87",
+        "name": "Hortus",
+        "city": "Bordeaux",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Hortus à Bordeaux est un restaurant local et saisonnier; nom proche phonétiquementPossible (‘Plantxa’ vs ‘Hortus’) mais correspond partiellement à une dénomination différente. Point faible sur la précision du nom."
+      },
+      {
+        "id": "33a06bac-b752-4cfe-afa7-54a426252bfc",
+        "name": "Parcelles",
+        "city": "Austin",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Parcelles est un restaurant à Austin; nom peu proche de Plantxa mais contextuellement un lieu culinaire local avec menus saisonniers. Correspondance faible sur le nom."
+      }
+    ]
+  },
+  {
+    "query": "1601 Oxford Street Regina",
+    "parsed": {
+      "need": "Trouver une adresse précise ou un lieu sur Regina, probablement un commerce ou établissement situé à 1601 Oxford Street à Regina.",
+      "city": "Regina",
+      "country": "Canada",
+      "location": "Oxford Street, 1601",
+      "entity": "1601 Oxford Street (adresse)",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 0,
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "un marché bio à Chiang Mai",
+    "parsed": {
+      "need": "recherche d'un marché bio à Chiang Mai",
+      "city": "Chiang Mai",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "bio",
+        "marché"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Chiang Mai",
+    "resolvedCountry": "",
+    "retrievalCount": 7,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
+        "name": "Jing Jai Market Chiang Mai",
+        "city": "Chiang Mai",
+        "category": "Marché",
+        "fit": 90,
+        "reason": "Marché permanent à Chiang Mai réunissant producteurs locaux, fermes biologiques et circuits courts. Correspond exactement à la demande de marché bio à Chiang Mai."
+      },
+      {
+        "id": "4bc4fa4f-5cbf-44c5-95c5-1a4689ed7f54",
+        "name": "Pun Pun Organic Farm",
+        "city": "Chiang Mai",
+        "category": "Lieu alternatif",
+        "fit": 70,
+        "reason": "Pun Pun Organic Farm est une ferme biologique et centre de vie autonome avec formation et accès public; répond partiellement à une recherche de produit bio, mais ce n’est pas un marché. Peut être utile comme alternative bio."
+      },
+      {
+        "id": "fce3fcbc-c780-47a5-bf5a-086be9aa4e35",
+        "name": "Akha Ama Phrasingh",
+        "city": "Chiang Mai",
+        "category": "Café",
+        "fit": 60,
+        "reason": "Akha Ama Phrasingh est un café avec traçabilité et cafés issus de fermes locales; ce n’est pas un marché, mais relate à bio et local. Dernier choix si besoin."
+      }
+    ]
+  },
+  {
+    "query": "je veux acheter en vrac à Bordeaux",
+    "parsed": {
+      "need": "Cherche des options d'achat en vrac à Bordeaux (produits en vrac).",
+      "city": "Bordeaux",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "achat en vrac"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Bordeaux",
+    "resolvedCountry": "",
+    "retrievalCount": 16,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "e7a4651c-fdb4-4c79-8c7b-b26c3d4e2a2e",
+        "name": "La Recharge",
+        "city": "Bordeaux",
+        "category": "Épicerie",
+        "fit": 90,
+        "reason": "Correspondance directe: magasin vrac à Bordeaux, adresse et description explicitement axées sur vrac et réduction des emballages."
+      },
+      {
+        "id": "33ea4641-6ec7-48f5-897d-31fb60c875fb",
+        "name": "Aux Petits Poids",
+        "city": "Bordeaux",
+        "category": "Épicerie",
+        "fit": 75,
+        "reason": "Épicerie vrac à Bordeaux, quartier Nansouty, mention claire de vrac et bocaux; correspond bien au besoin d’achat en vrac."
+      },
+      {
+        "id": "3419ea36-1804-497f-a408-903e33e26fc2",
+        "name": "Local'Attitude",
+        "city": "Bordeaux",
+        "category": "Épicerie",
+        "fit": 72,
+        "reason": "Épicerie vrac/participative à Bordeaux, offre et possibilités liées au vrac via adhérents; correspond utilement à l’objectif vrac."
+      },
+      {
+        "id": "4e8a3056-8075-4046-a890-c8d1cd1326fc",
+        "name": "La Vie de Quartier - Cocagne",
+        "city": "Bordeaux",
+        "category": "Épicerie",
+        "fit": 60,
+        "reason": "Épicerie de proximité avec produits frais et daily; mentionne épicerie mais pas explicitement vrac dans la description. pourrait être utile mais moins directe."
+      }
+    ]
+  },
+  {
+    "query": "une boulangerie qui travaille au levain naturel à Paris",
+    "parsed": {
+      "need": "Trouver une boulangerie à Paris qui travaille au levain naturel (levain naturel).",
+      "city": "Paris",
+      "country": "France",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "boulangerie",
+        "levain naturel",
+        "levain au levain naturel"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "France",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "1b48a48e-1235-44fb-b795-3c0461ba271a",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 90,
+        "reason": "Pain au levain mentionné dans les tags et description; boulangerie à Paris avec levain naturel"
+      },
+      {
+        "id": "110e9dab-2269-40cf-970e-83d5754103b9",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 90,
+        "reason": "Pain au levain mentionné dans les tags et description; boulangerie à Paris avec levain naturel"
+      },
+      {
+        "id": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+        "name": "Farinez'vous",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 90,
+        "reason": "Pain au levain mentionné dans les tags et description; boulangerie à Paris avec levain naturel"
+      },
+      {
+        "id": "0057497c-3fe3-49ba-8bbf-53698127efdd",
+        "name": "Boulangerie Chambelland",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Boulangerie sans gluten, pain maîtrisant la filière riz biologique; correspond partiellement à levain naturel par absence de mention explicite du levain dans le nom/tag"
+      },
+      {
+        "id": "f979c7b1-7983-48b2-99ca-acc0de91630d",
+        "name": "Le Bricheton",
+        "city": "Paris",
+        "category": "Boulangerie",
+        "fit": 60,
+        "reason": "Boulangerie présente à Paris; pas de mention levain dans les tags, donc unclear sur levain naturel"
+      }
+    ]
+  },
+  {
+    "query": "je cherche quelque chose de local à Meudon",
+    "parsed": {
+      "need": "Chercher une expérience, lieu ou commerce ",
+      "city": "Meudon",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Meudon",
+    "resolvedCountry": "",
+    "retrievalCount": 2,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+        "name": "La Clayette Meudon",
+        "city": "Meudon",
+        "category": "Épicerie",
+        "fit": 72,
+        "reason": "La Clayette Meudon est un commerce local à Meudon (épicerie/kiosque proposant des produits locaux et producteurs) et correspond à la demande locale dans la ville spécifiée."
+      },
+      {
+        "id": "506f01ef-cf78-4c5a-bf0c-4f82bd68076c",
+        "name": "Simply Best Food",
+        "city": "Meudon",
+        "category": "Épicerie",
+        "fit": 68,
+        "reason": "Simply Best Food est une épicerie de quartier à Meudon axée sur les petits producteurs et produits frais, complémentaire à la recherche locale."
+      }
+    ]
+  },
+  {
+    "query": "I want somewhere interesting to eat in Sydney that doesn't feel like a chain",
+    "parsed": {
+      "need": "Trouver un endroit où manger à Sydney qui a du caractère et qui ne ressemble pas à une chaîne (indépendant/unique, vibe locale).",
+      "city": "Sydney",
+      "country": "Australia",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "ne pas être une chaîne",
+        "endroit intéressant / unique / authentique"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "06d5757c-d9a6-4310-b4ab-b53bf16eb7f7",
+        "name": "Chiswick Woollahra",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 85,
+        "reason": "Chiswick Woollahra est un restaurant de quartier indépendant avec cuisine australienne de saison, non présenté comme une chaîne et revendiquant une approche locale et durable."
+      },
+      {
+        "id": "a0f5bf1a-802f-4c2c-ac55-3f60421dc580",
+        "name": "Yellow",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 78,
+        "reason": "Yellow propose une expérience végétarienne à la carte axée sur les produits locaux et de saison, boutique indépendante sans indication de chaîne."
+      },
+      {
+        "id": "5446612f-b923-40d7-be1a-3e0c1ffa29a2",
+        "name": "Arthur Surry Hills",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 72,
+        "reason": "Arthur Surry Hills offre un menu dégustation saisonnier axé sur producteurs locaux – indépendant et authentique."
+      },
+      {
+        "id": "e0a59ef1-df53-4268-8c54-7946ccd70265",
+        "name": "Urban Green Sydney",
+        "city": "Sydney",
+        "category": "Ferme",
+        "fit": 60,
+        "reason": "Urban Green Sydney est une ferme urbaine/ferme intérieure indépendante, activité locale et non chaîne, apportant une dimension consommation locale."
+      },
+      {
+        "id": "142e7968-92ce-41ba-9371-600278f2f650",
+        "name": "Fred's",
+        "city": "Sydney",
+        "category": "Restaurant",
+        "fit": 60,
+        "reason": "Fred’s est un restaurant farm-to-table à Paddington, centrant sur produits de saison et ambiance locale; indépendant."
+      }
+    ]
+  }
+]

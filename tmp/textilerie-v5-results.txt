@@ -1,0 +1,112 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: ⚙️  write to custom object with { processEnv: myObject }
+=== INDIE MAP AI SEARCH V5 — MEMORY FIRST ===
+REQUÊTES : 6
+
+==================================================
+[1/6] Je cherche à Paris un endroit où apprendre à réparer mes vêtements
+COMPRIS : Un endroit à Paris pour apprendre à réparer ses vêtements (atelier/cours de réparation textile).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Être à Paris | Apprendre à réparer des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=22 rejected=1
+OFFICIEL : checks=6 confirmed=0 not_found=6 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 95/100
+    À Paris, La Textilerie est un lieu dédié au réemploi textile (friperie solidaire/recyclerie) proposant des ateliers de couture où l’on apprend à réparer et transformer des vêtements. Le besoin “être à Paris” et “apprendre à réparer des vêtements” sont couverts par la description du lieu.
+
+==================================================
+[2/6] Où à Paris puis-je participer à des ateliers pour réparer ou transformer mes vêtements ?
+COMPRIS : Trouver à Paris des ateliers où participer pour réparer ou transformer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Participer à un atelier pour réparer des vêtements | Participer à un atelier pour transformer des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=22 rejected=1
+OFFICIEL : checks=6 confirmed=1 not_found=5 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 95/100
+    Atelier(s) explicitement orienté(s) réemploi textile, avec apprentissage de la couture pour « réparer » et « transformer » des vêtements, ce qui correspond directement aux deux must-have.
+ 2. La Maison du Zéro Déchet [Paris] — 82/100
+    Le site officiel mentionne un atelier DIY de couture incluant à la fois l’idée de « réparer plus » des vêtements et la transformation d’une pièce de tissu (« faire évoluer… pour en transformer sa fonctionnalité »). Les must-have sont donc couverts, même si le lien avec la réparation/transformation semble plus cadré via un atelier couture DIY que comme offre principale.
+
+==================================================
+[3/6] Un lieu à Paris pour apprendre à modifier et réparer ses vêtements
+COMPRIS : Un lieu à Paris pour apprendre à modifier et réparer ses vêtements (atelier/cours).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Apprendre à modifier ses vêtements | Apprendre à réparer ses vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=23 rejected=0
+OFFICIEL : checks=6 confirmed=0 not_found=6 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    Correspond très bien au besoin : le descriptif indique que le lieu propose des ateliers de couture et qu’on y apprend à « réparer et transformer » des vêtements (donc à la fois modifier et réparer), à Paris (22 Rue du Château Landon, 75010).
+
+==================================================
+[4/6] Je cherche un endroit à Paris avec des ateliers de couture orientés réparation et transformation
+COMPRIS : Trouver un endroit à Paris proposant des ateliers de couture axés sur la réparation et la transformation (retouches, modification de vêtements).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Ateliers de couture | Orientation réparation | Orientation transformation/modification de vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=0 verify=24 rejected=0
+OFFICIEL : checks=6 confirmed=2 not_found=4 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    Correspond très fortement au besoin : le lieu est dédié au réemploi textile et indique explicitement des ateliers où l’on peut « réparer » et « transformer », avec des « cours de couture et ateliers DIY » et une « permanence repair café textile » pour transmettre les gestes afin de réparer ses vêtements. C’est donc directement aligné sur la couture orientée réparation et transformation/modification de vêtements à Paris.
+ 2. La Maison du Zéro Déchet [Paris] — 78/100
+    Pertinent mais moins spécifiquement centré que le premier : le site officiel confirme des « ateliers de couture » (atelier couture DIY) ainsi qu’une orientation « réparer plus » et l’idée de faire « évoluer une pièce de tissu pour en transformer sa fonctionnalité » (upcycling/surcyclage). Toutefois, le positionnement semble plus général “zéro déchet” et les données fournies ne montrent pas une spécialisation aussi directe que pour la réparation/transformation de vêtements.
+
+==================================================
+[5/6] Où apprendre soi-même les gestes pour réparer ses vêtements à Paris ?
+COMPRIS : Trouver où apprendre (en autonomie) les gestes pour réparer ses vêtements à Paris
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : apprendre soi-même les gestes pour réparer ses vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=23 rejected=0
+OFFICIEL : checks=6 confirmed=0 not_found=6 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    Le lieu est dédié au réemploi textile et indique explicitement qu’on y « apprend à réparer et transformer » des vêtements (donc apprentissage des gestes de réparation à Paris, en autonomie via les ateliers/activité sur place).
+
+==================================================
+[6/6] Un lieu de mode circulaire à Paris où je peux apprendre à réparer et transformer mes vêtements
+COMPRIS : Trouver un lieu de mode circulaire à Paris où apprendre à réparer et transformer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : mode circulaire | apprendre à réparer les vêtements | apprendre à transformer les vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=0 verify=24 rejected=0
+OFFICIEL : checks=6 confirmed=1 not_found=5 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 96/100
+    À Paris, La Textilerie est un lieu de réemploi textile et propose des ateliers où l’on apprend explicitement à réparer et à transformer ses vêtements. Les preuves du site officiel confirment la démarche circulaire via des pratiques telles que “réparer, transformer” en ateliers et une permanence “repair café textile” visant à transmettre les gestes pour réparer ses vêtements.
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 91259
+LLM INPUT TOKENS : 333575
+LLM OUTPUT TOKENS : 41414
+HTTP OFFICIEL : 85
+COÛT ESTIMÉ TOTAL : $ 0.120308
+RÉSULTATS JSON : tmp/search-v4.2-blind-results.json

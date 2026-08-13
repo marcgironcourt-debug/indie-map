@@ -1,0 +1,130 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] Trouve-moi un endroit pour boire une bière à Paris
+PHASE A PRETE : resultats=3 inconnus=42 latence=2466ms
+RESULTATS IMMEDIATS :
+- Patoche - Microbrasserie 100/100
+- Brasserie de l’Être 99/100
+- La Laiterie de la Main Verte 80/100
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=0
+WEB NON NECESSAIRE : aucun critère inconnu ne justifie une consultation du site officiel
+V5 LOCAL ONLY : mémoire web et sites officiels désactivés
+CANDIDATS WEB ELIGIBLES : 0
+WEB INUTILE POUR :
+- Brasserie Martin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Bellanger → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Dubillot → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Moulin à Café → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Bistro Les Artizans → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie des Prés → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Pavillon des Canaux → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le TLM Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Recyclerie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Hasard Ludique → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Frame Brasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Trockette → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Ground Control → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Textilerie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La cantine Champ Libre → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Fanés → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Berrie Moines → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Châtelet Les Halles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - St Michel → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Bonne Nouvelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- MURE épicerie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Laiterie La Chapelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Jourdan → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Cop1ne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Petites Cantines Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Berrie Martyrs → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Récolte – Beaubourg → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Baskets → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Berrie Saint-Lazare → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Marmites Volantes → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Résistants → aucun signal Indie Map suffisant pour justifier une consultation du site
+- MÛRE Poissonnière → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Activ’18 → aucun signal Indie Map suffisant pour justifier une consultation du site
+- MÛRE Trinité → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Ferme de Viltain → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Mode → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=0 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=0ms
+V5 SIMPLE : univers=76 candidats=45 faitsMemoire=0 confirmes=3 inconnus=42 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=2400ms retrieval=54ms premiersResultats=2466ms memoireTotal=2467ms attenteMemoireApresPhaseA=0ms evaluationMemoire=7ms total=2474ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- Brasserie Martin 88/100 → un endroit pour boire une bière
+- Brasserie Bellanger 87/100 → un endroit pour boire une bière
+- Brasserie Dubillot 87/100 → un endroit pour boire une bière
+- Le Moulin à Café 86/100 → un endroit pour boire une bière
+- Bistro Les Artizans 86/100 → un endroit pour boire une bière
+- Brasserie des Prés 85/100 → un endroit pour boire une bière
+- Le Pavillon des Canaux 82/100 → un endroit pour boire une bière
+- Le TLM Paris 81/100 → un endroit pour boire une bière
+- La Recyclerie 81/100 → un endroit pour boire une bière
+- Le Hasard Ludique 80/100 → un endroit pour boire une bière
+- Frame Brasserie 80/100 → un endroit pour boire une bière
+- La Trockette 80/100 → un endroit pour boire une bière
+- Ground Control 79/100 → un endroit pour boire une bière
+- La Textilerie 78/100 → un endroit pour boire une bière
+- La cantine Champ Libre 76/100 → un endroit pour boire une bière
+- Les Fanés 75/100 → un endroit pour boire une bière
+- Berrie Moines 75/100 → un endroit pour boire une bière
+- Farinez'vous 74/100 → un endroit pour boire une bière
+- Boulinier - Châtelet Les Halles 74/100 → un endroit pour boire une bière
+- Farinez'vous 74/100 → un endroit pour boire une bière
+- Farinez'vous 74/100 → un endroit pour boire une bière
+- Boulinier - St Michel 74/100 → un endroit pour boire une bière
+- Boulinier - Bonne Nouvelle 73/100 → un endroit pour boire une bière
+- MURE épicerie 73/100 → un endroit pour boire une bière
+- Laiterie La Chapelle 73/100 → un endroit pour boire une bière
+- Boulinier - Jourdan 73/100 → un endroit pour boire une bière
+- La Cop1ne 72/100 → un endroit pour boire une bière
+- Les Petites Cantines Paris 72/100 → un endroit pour boire une bière
+- Kelbongoo 71/100 → un endroit pour boire une bière
+- Berrie Martyrs 71/100 → un endroit pour boire une bière
+- La Récolte – Beaubourg 71/100 → un endroit pour boire une bière
+- L'Appartement Français - Baskets 71/100 → un endroit pour boire une bière
+- Kelbongoo 71/100 → un endroit pour boire une bière
+- Kelbongoo 70/100 → un endroit pour boire une bière
+- Berrie Saint-Lazare 70/100 → un endroit pour boire une bière
+- Les Marmites Volantes 70/100 → un endroit pour boire une bière
+- Les Résistants 70/100 → un endroit pour boire une bière
+- MÛRE Poissonnière 70/100 → un endroit pour boire une bière
+- Activ’18 69/100 → un endroit pour boire une bière
+- MÛRE Trinité 68/100 → un endroit pour boire une bière
+- La Ferme de Viltain 68/100 → un endroit pour boire une bière
+- L'Appartement Français - Mode 68/100 → un endroit pour boire une bière
+COMPRIS : Trouver un endroit où boire une bière à Paris.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : un endroit pour boire une bière
+PREF : —
+TEMPS : —
+CANDIDATS : 45
+PREJUDGE : confirmed=3 verify=42 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. Patoche - Microbrasserie [Paris] — 100/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 2. Brasserie de l’Être [Paris] — 99/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 3. La Laiterie de la Main Verte [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 15
+LLM INPUT TOKENS : 622
+LLM OUTPUT TOKENS : 70
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000212
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

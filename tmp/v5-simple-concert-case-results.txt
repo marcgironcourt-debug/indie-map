@@ -1,0 +1,9 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] Trouve-moi un endroit à Paris où boire un verre ce soir et voir un concert
+PHASE A PRETE : resultats=0 inconnus=56 latence=2104ms
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=43
+RESULTAT CONFIRME PAR LE WEB : Ground Control 97/100

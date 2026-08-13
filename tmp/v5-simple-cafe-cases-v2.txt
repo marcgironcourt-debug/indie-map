@@ -1,0 +1,190 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: ⚙️  override existing env vars with { override: true }
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 2
+
+==================================================
+[1/2] Trouve-moi un endroit à Paris pour boire un café
+PHASE A PRETE : resultats=8 inconnus=23 latence=1706ms
+RESULTATS IMMEDIATS :
+- Le Moulin à Café 100/100
+- Le Pavillon des Canaux 94/100
+- Les Fanés 80/100
+- La Trockette 80/100
+- La Recyclerie 80/100
+- La Textilerie 80/100
+- MÛRE Trinité 80/100
+- La Maison du Zéro Déchet 80/100
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=30
+WEB NON NECESSAIRE : 8 résultat(s) complet(s) déjà trouvé(s) dans Indie Map + mémoire
+WEB INUTILE POUR :
+- Le Hasard Ludique → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Ground Control → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le TLM Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Patoche - Microbrasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Bistro Les Artizans → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Cop1ne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La cantine Champ Libre → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie de l’Être → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Jourdan → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Bellanger → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Martin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Frame Brasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Châtelet Les Halles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Petites Cantines Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie des Prés → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Mode → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Dubillot → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Baskets → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Bonne Nouvelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - St Michel → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=0 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=0ms
+V5 SIMPLE : univers=76 candidats=31 faitsMemoire=30 confirmes=8 inconnus=23 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=1652ms retrieval=44ms premiersResultats=1706ms memoireTotal=4277ms attenteMemoireApresPhaseA=2571ms evaluationMemoire=10ms total=4288ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- Le Hasard Ludique 77/100 → boire un café
+- Ground Control 77/100 → boire un café
+- Le TLM Paris 76/100 → boire un café
+- Patoche - Microbrasserie 76/100 → boire un café
+- Bistro Les Artizans 75/100 → boire un café
+- La Cop1ne 74/100 → boire un café
+- La cantine Champ Libre 73/100 → boire un café
+- Brasserie de l’Être 72/100 → boire un café
+- Boulinier - Jourdan 72/100 → boire un café
+- Brasserie Bellanger 72/100 → boire un café
+- Brasserie Martin 72/100 → boire un café
+- Frame Brasserie 72/100 → boire un café
+- Boulinier - Châtelet Les Halles 72/100 → boire un café
+- Les Petites Cantines Paris 72/100 → boire un café
+- Brasserie des Prés 71/100 → boire un café
+- L'Appartement Français - Mode 71/100 → boire un café
+- Brasserie Dubillot 71/100 → boire un café
+- L'Appartement Français - Baskets 70/100 → boire un café
+- Boulinier - Bonne Nouvelle 70/100 → boire un café
+- Boulinier - St Michel 69/100 → boire un café
+- Farinez'vous 68/100 → boire un café
+- Farinez'vous 68/100 → boire un café
+- Farinez'vous 68/100 → boire un café
+COMPRIS : Trouver un endroit à Paris pour boire un café.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : boire un café
+PREF : —
+TEMPS : —
+CANDIDATS : 31
+PREJUDGE : confirmed=8 verify=23 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. Le Moulin à Café [Paris] — 100/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 2. Le Pavillon des Canaux [Paris] — 94/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 3. Les Fanés [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 4. La Trockette [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 5. La Recyclerie [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 6. La Textilerie [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 7. MÛRE Trinité [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+ 8. La Maison du Zéro Déchet [Paris] — 80/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+[2/2] Trouve-moi un endroit à Paris pour boire un café dimanche soir
+PHASE A PRETE : resultats=0 inconnus=36 latence=1045ms
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=30
+WEB INUTILE POUR :
+- Le Hasard Ludique → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le TLM Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Bistro Les Artizans → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Ground Control → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Patoche - Microbrasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Cop1ne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La cantine Champ Libre → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Frame Brasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Martin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Petites Cantines Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie des Prés → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Bellanger → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Dubillot → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Jourdan → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Bonne Nouvelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie de l’Être → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Activ’18 → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - St Michel → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Châtelet Les Halles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Mode → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Résistants → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Vivide → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Baskets → aucun signal Indie Map suffisant pour justifier une consultation du site
+- MÛRE Poissonnière → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Pristine → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=8 checks=8 confirmes=0 contradits=0 nonTrouves=8 erreurs=0 nouveauxResultats=0 latence=190524ms
+V5 SIMPLE : univers=76 candidats=36 faitsMemoire=30 confirmes=0 inconnus=36 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=1002ms retrieval=34ms premiersResultats=1045ms memoireTotal=1045ms attenteMemoireApresPhaseA=0ms evaluationMemoire=10ms total=191580ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- Le Hasard Ludique 83/100 → disponible dimanche soir | pour boire un café
+- Le TLM Paris 82/100 → disponible dimanche soir | pour boire un café
+- Bistro Les Artizans 81/100 → disponible dimanche soir | pour boire un café
+- Ground Control 80/100 → disponible dimanche soir | pour boire un café
+- Patoche - Microbrasserie 79/100 → disponible dimanche soir | pour boire un café
+- La Cop1ne 78/100 → disponible dimanche soir | pour boire un café
+- La cantine Champ Libre 78/100 → disponible dimanche soir | pour boire un café
+- Frame Brasserie 76/100 → disponible dimanche soir | pour boire un café
+- Brasserie Martin 75/100 → disponible dimanche soir | pour boire un café
+- Les Petites Cantines Paris 75/100 → disponible dimanche soir | pour boire un café
+- Brasserie des Prés 74/100 → disponible dimanche soir | pour boire un café
+- Brasserie Bellanger 74/100 → disponible dimanche soir | pour boire un café
+- Brasserie Dubillot 74/100 → disponible dimanche soir | pour boire un café
+- Boulinier - Jourdan 73/100 → disponible dimanche soir | pour boire un café
+- Boulinier - Bonne Nouvelle 73/100 → disponible dimanche soir | pour boire un café
+- Brasserie de l’Être 73/100 → disponible dimanche soir | pour boire un café
+- Activ’18 71/100 → disponible dimanche soir | pour boire un café
+- Farinez'vous 71/100 → disponible dimanche soir | pour boire un café
+- Farinez'vous 71/100 → disponible dimanche soir | pour boire un café
+- Boulinier - St Michel 71/100 → disponible dimanche soir | pour boire un café
+- Boulinier - Châtelet Les Halles 71/100 → disponible dimanche soir | pour boire un café
+- Farinez'vous 71/100 → disponible dimanche soir | pour boire un café
+- L'Appartement Français - Mode 70/100 → disponible dimanche soir | pour boire un café
+- Les Résistants 70/100 → disponible dimanche soir | pour boire un café
+- Vivide 69/100 → disponible dimanche soir | pour boire un café
+- L'Appartement Français - Baskets 69/100 → disponible dimanche soir | pour boire un café
+- MÛRE Poissonnière 68/100 → disponible dimanche soir | pour boire un café
+- Pristine 68/100 → disponible dimanche soir | pour boire un café
+- Le Moulin à Café 100/100 → disponible dimanche soir
+- Le Pavillon des Canaux 99/100 → disponible dimanche soir
+- Les Fanés 84/100 → disponible dimanche soir
+- La Trockette 80/100 → disponible dimanche soir
+- La Textilerie 79/100 → disponible dimanche soir
+- La Recyclerie 79/100 → disponible dimanche soir
+- MÛRE Trinité 73/100 → disponible dimanche soir
+- La Maison du Zéro Déchet 70/100 → disponible dimanche soir
+COMPRIS : Un endroit à Paris pour boire un café dimanche soir.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : disponible dimanche soir | pour boire un café
+PREF : —
+TEMPS : dimanche soir
+CANDIDATS : 36
+PREJUDGE : confirmed=0 verify=36 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTAT : AUCUN BON MATCH
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 27402
+LLM INPUT TOKENS : 54661
+LLM OUTPUT TOKENS : 1165
+HTTP OFFICIEL : 60
+COÛT ESTIMÉ TOTAL : $ 0.012936
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

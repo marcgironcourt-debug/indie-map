@@ -1,0 +1,3780 @@
+[
+  {
+    "id": "21b9487b-57ce-46a0-9a91-8f12e50617f3",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-21T23:47:40.389Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "cc23d1d3-4f4c-4e19-a824-ac177e120ac7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-21T23:48:17.317Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "427689ae-468c-455f-baf3-7c852ff1c07d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-21T23:48:26.192Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ac129af0-401f-49c4-acb7-af302b0d40ef",
+    "city": "Portland",
+    "country": null,
+    "category": "Atelier",
+    "metadata": {
+      "name": "ReClaim It",
+      "source": "discovery_of_day"
+    }
+  },
+  {
+    "id": "e6a5ea0e-f1e2-4ddd-adf1-4518e77a3972",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-21T23:49:55.269Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e1af7972-97f7-4b98-a0e4-a83da2fe7591",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-21T23:50:46.923Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "2989e1ee-efe5-449d-8942-38094fa83431",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Bondi Markets",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "ed490c87-7c8e-456b-a27c-743ac31fb04a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-22T07:11:21.482Z",
+    "sessionId": "58ecd727-fff3-4749-b53c-202073772ed9",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "fc641679-f31f-4193-8896-1f650c2c457e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-22T14:59:31.555Z",
+    "sessionId": "5b9f7b5b-9100-40ec-b12c-75bc2e56ac94",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "MÛRE Trinité",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "80aaca88-3c4e-4554-8f86-488720788fd7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-22T22:54:10.197Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "af8859a8-a8f4-4410-8c83-8885f83fdd86",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-05-23T04:45:51.377Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "je veut manger vers coogee",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 250,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "veut",
+        "vers",
+        "coogee"
+      ],
+      "targetCategories": [
+        "restaurant",
+        "brunch",
+        "cafe"
+      ]
+    }
+  },
+  {
+    "id": "d80c9cd4-9864-418f-b5fb-3af42d1c597b",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-05-23T04:46:26.636Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "je veut manger vers coogee en australie",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 250,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "veut",
+        "vers",
+        "coogee",
+        "australie"
+      ],
+      "targetCategories": [
+        "restaurant",
+        "brunch",
+        "cafe"
+      ]
+    }
+  },
+  {
+    "id": "74b486aa-243f-4a3c-b407-8a369fef3ab2",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-05-23T04:46:57.629Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Sydney",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "ou boire un coup à sydney",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": "Sydney",
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "coup"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "3f0014de-af3b-4655-a51a-36c5dd78d0f1",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-05-23T04:47:06.669Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Sydney",
+    "country": null,
+    "category": "bar",
+    "metadata": {
+      "mode": "fallback",
+      "query": "ou boire un verre à sydney",
+      "hasResults": true,
+      "searchMode": "full_pool",
+      "detectedCity": "Sydney",
+      "resultsCount": 3,
+      "explicitCategory": null,
+      "meaningfulTokens": [],
+      "targetCategories": [
+        "bar"
+      ]
+    }
+  },
+  {
+    "id": "9ea2fb13-e531-412d-97df-56b350aa7642",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-05-23T04:47:18.254Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Sydney",
+    "country": null,
+    "category": "marche",
+    "metadata": {
+      "mode": "fallback",
+      "query": "marche à sydney",
+      "hasResults": true,
+      "searchMode": "full_pool",
+      "detectedCity": "Sydney",
+      "resultsCount": 1,
+      "explicitCategory": "marche",
+      "meaningfulTokens": [],
+      "targetCategories": [
+        "marche"
+      ]
+    }
+  },
+  {
+    "id": "5daddeea-bcd3-47b8-b08b-f98b1b5370ec",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-23T12:47:10.100Z",
+    "sessionId": "d644cc2e-3abe-401b-a27e-e1ba8f507c49",
+    "userId": "dfca7616-8838-4e36-a378-c187b23e8e99",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "2989e1ee-efe5-449d-8942-38094fa83431",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Bondi Markets",
+      "source": "personal_space_saved_place"
+    }
+  },
+  {
+    "id": "466551dc-4a13-445d-98c9-1df66d928588",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-23T12:51:18.406Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "dd706975-224c-4061-aabb-550836d5e42e",
+    "city": "Sydney",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Maloney’s Grocer Coogee",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "355b223a-9c66-4ee1-a484-2f2d57a961f6",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-23T12:52:37.726Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "6a241387-f480-431f-86c7-b3dcbf583896",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-24T08:29:06.389Z",
+    "sessionId": "cf4ff172-045a-4fc1-93a8-6f4163e859f0",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "dbc4d4c5-84e7-4ef4-90b6-575867ecbae0",
+    "city": "Bogotá",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Leo",
+      "source": "discovery_of_day"
+    }
+  },
+  {
+    "id": "dd81d572-68b6-4af2-8bae-7f477780a5a3",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-27T08:40:38.031Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "d9d0ee66-fa36-49d2-9770-476bf997c525",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-27T08:40:47.915Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "20faec79-36f1-4f64-8157-b0488358c704",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-27T08:41:00.265Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "9b21c59f-09a5-42dd-b992-aa23ad36d1d8",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-27T12:47:46.790Z",
+    "sessionId": "a9ae6931-1df7-4286-9ccc-e3782296e148",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "cfc52f73-6b30-4faf-9515-e8c5426547df",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-30T03:22:52.712Z",
+    "sessionId": "7850c9b2-15f2-403d-898e-2b572766def0",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "95dc0a19-fbc7-4f19-b49a-94f2993a268f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-30T03:22:55.815Z",
+    "sessionId": "7850c9b2-15f2-403d-898e-2b572766def0",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "80bdce54-bdc3-4293-a954-02e6cc6bb934",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-30T03:24:01.928Z",
+    "sessionId": "7850c9b2-15f2-403d-898e-2b572766def0",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e2a48d25-a830-42ec-b3c7-847a5eba2ead",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-05-30T04:00:50.901Z",
+    "sessionId": "eab0acd1-8d18-442e-9218-f47e78a5046e",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "77451349-8d3f-48d1-829d-dac90680e85d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-01T14:59:27.315Z",
+    "sessionId": "085d6449-4c6e-449f-b352-756031a9d32d",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "f9ff1a74-0ebb-4fd0-9645-7624c71a1ac7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-03T15:12:04.678Z",
+    "sessionId": "3cd6ccaa-33d5-4aec-9a2c-fc348ee2d073",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "MÛRE Trinité",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "6e626324-74e7-4d02-876a-e5989e57ef9e",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-03T15:13:54.027Z",
+    "sessionId": "3cd6ccaa-33d5-4aec-9a2c-fc348ee2d073",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": "Paris",
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "Je veux manger sur le pouce à Paris",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": "Paris",
+      "resultsCount": 12,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "pouce"
+      ],
+      "targetCategories": [
+        "restaurant",
+        "brunch",
+        "cafe"
+      ]
+    }
+  },
+  {
+    "id": "0c0bd660-45e8-4201-9aaf-5be99491e26f",
+    "eventType": "click_search_results_map",
+    "createdAt": "2026-06-03T15:14:17.391Z",
+    "sessionId": "3cd6ccaa-33d5-4aec-9a2c-fc348ee2d073",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "ids": "676f2a3d-437d-4eb6-abce-5d1d99a10c64,a4dc2350-c2b9-4eb6-a546-dac0a755b5b2,9d55e70a-ca9b-42cd-9b43-0920a2514e64,9e634ad1-aa8c-4fb4-b396-df94374e8266,88410024-3379-4eac-9826-6fdc74879e3a,4a2c9194-13bc-414a-977a-9f44c388f5c6,462b80ae-f32b-4c9f-9139-541481817b45,df69fde7-a2ef-435e-9a4c-a13d94bfb20f,2bc1b740-220b-41dc-8a5e-9ea28bb5030f,98ce3443-2512-4285-9b47-535d2a369cb4,647e2a9e-510e-4e49-bc32-1411bb9fbd3d,36fc783b-00f8-4dc5-8892-ce23b30f9a55",
+      "query": "Je veux manger sur le pouce à Paris",
+      "resultCount": 12
+    }
+  },
+  {
+    "id": "a53dbf63-5bde-4398-bbfb-661835cfbe16",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-03T23:33:00.532Z",
+    "sessionId": "db5978cf-afc9-45b2-97a2-93938586459c",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "828bddab-49f6-4319-a8de-c303241db9de",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "MURE épicerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "17a5008f-e28e-4257-bf14-94d14603a0cd",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-03T23:34:35.364Z",
+    "sessionId": "db5978cf-afc9-45b2-97a2-93938586459c",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Les araynes",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "araynes"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "11cabc73-f792-4dfc-a4a3-222ab5996f11",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-04T14:41:18.468Z",
+    "sessionId": "3cd6ccaa-33d5-4aec-9a2c-fc348ee2d073",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": "Paris",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "trouve moi un Snack porte maillot paris",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": "Paris",
+      "resultsCount": 6,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "snack",
+        "porte",
+        "maillot"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "237ea59e-76a8-4038-ad88-e687c9a11e07",
+    "eventType": "click_search_results_map",
+    "createdAt": "2026-06-04T14:41:36.713Z",
+    "sessionId": "3cd6ccaa-33d5-4aec-9a2c-fc348ee2d073",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "ids": "7a578e28-b1b2-464e-af2f-baa37bc537b6,af6c815e-4e45-4bd7-9bd3-1a343041072f,f979c7b1-7983-48b2-99ca-acc0de91630d,9d55e70a-ca9b-42cd-9b43-0920a2514e64,676f2a3d-437d-4eb6-abce-5d1d99a10c64,36fc783b-00f8-4dc5-8892-ce23b30f9a55",
+      "query": "trouve moi un Snack porte maillot paris",
+      "resultCount": 6
+    }
+  },
+  {
+    "id": "7fc4050a-0837-4ee9-a4b6-71d2a59c1a5f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-04T22:33:31.140Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "2efbf49d-fffb-444a-89b1-b3399fe12d74",
+    "city": "Tokyo",
+    "country": null,
+    "category": "Librairie",
+    "metadata": {
+      "name": "Kitazawa Bookstore",
+      "source": "discovery_of_day"
+    }
+  },
+  {
+    "id": "10577398-7443-417d-8657-467a9221ebcc",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-05T10:24:01.557Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Sydney",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "roof top in sydney",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": "Sydney",
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "roof",
+        "top"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "aae89612-34eb-4461-a368-cf3598c77afb",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-05T10:24:16.299Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": "46298121-d9e4-4a71-a6e1-f927f051d522",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "5a85860e-2c2f-412f-b880-343594b0b9b0",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boutique",
+    "metadata": {
+      "name": "Ïkos",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "6874c604-38f8-46ca-8f87-72ebf108070a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-06T07:43:46.134Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "33ea4641-6ec7-48f5-897d-31fb60c875fb",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Aux Petits Poids",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "b61d7b53-a1e0-4dab-99e7-4e416af081bd",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-06T07:44:13.438Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "4e8a3056-8075-4046-a890-c8d1cd1326fc",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Vie de Quartier - Cocagne",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "9fdd2a02-01b2-42cd-a107-a3d9f7190489",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-06T07:44:23.984Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "4e8a3056-8075-4046-a890-c8d1cd1326fc",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Vie de Quartier - Cocagne",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "010a0b88-39c7-438b-90e8-757fb5d1cb1d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T07:29:39.608Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "29208605-a7e5-4a88-ab7a-34fc2e59b9f3",
+    "city": "Sydney",
+    "country": null,
+    "category": "Café",
+    "metadata": {
+      "name": "The Nine",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "d26971f4-6b40-451a-b102-547a7c654f6e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T07:30:00.114Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "06d5757c-d9a6-4310-b4ab-b53bf16eb7f7",
+    "city": "Sydney",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Chiswick Woollahra",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "f42ccadf-3461-4141-a484-2d37521acb97",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T07:30:12.528Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "965dc23c-f860-44e1-aba2-7338919e871d",
+    "city": "Sydney",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Warrah Organic Farm Shop",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "c204f97f-341e-40f0-bf66-3117f1d5cebd",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T07:30:16.701Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "0c9f0833-7b0f-40ae-96cf-f2517fd510dd",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Marrickville Organic Food Market",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e1678b06-270a-4252-b154-af04e0663862",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T09:22:02.778Z",
+    "sessionId": "76414c21-6103-4172-a765-bac57fc9e8f1",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "1ad7b9df-686d-4af7-9882-ae7b8bf44e4d",
+    "city": "Fontvieille",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Jardins de Cidamos",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "32e8a753-b591-4582-a0af-1391c2a7f977",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-07T15:07:53.356Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "965dc23c-f860-44e1-aba2-7338919e871d",
+    "city": "Sydney",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Warrah Organic Farm Shop",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e51476d0-4d1e-4bc7-b0c4-13e4d164543a",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-09T08:11:23.453Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "Restaurant",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 179,
+      "explicitCategory": "restaurant",
+      "meaningfulTokens": [],
+      "targetCategories": [
+        "restaurant"
+      ]
+    }
+  },
+  {
+    "id": "d1506591-9267-4049-bcc2-c86f241b7d80",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-09T08:14:46.796Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "0c9f0833-7b0f-40ae-96cf-f2517fd510dd",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Marrickville Organic Food Market",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e6d130f5-d8b0-437b-ab08-10ab034dfe3d",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-09T08:15:13.753Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Bondai",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "bondai"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "54cfdd51-40c6-413f-97b0-8f124a509376",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-09T08:15:41.396Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "marche",
+    "metadata": {
+      "mode": "fallback",
+      "query": "Bondai market",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 23,
+      "explicitCategory": "marche",
+      "meaningfulTokens": [
+        "bondai"
+      ],
+      "targetCategories": [
+        "marche"
+      ]
+    }
+  },
+  {
+    "id": "555e4e35-6ea4-4667-8ca0-caf7e3acdc71",
+    "eventType": "click_search_result_detail",
+    "createdAt": "2026-06-09T08:16:09.798Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "2989e1ee-efe5-449d-8942-38094fa83431",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Bondi Markets"
+    }
+  },
+  {
+    "id": "508217a6-366e-4d52-b87c-e8232f7d58a8",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-09T08:16:09.889Z",
+    "sessionId": "f94a3529-b1eb-4abe-9ea5-6b5635ce44ac",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "2989e1ee-efe5-449d-8942-38094fa83431",
+    "city": "Sydney",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Bondi Markets",
+      "source": "search_result"
+    }
+  },
+  {
+    "id": "b7ecb982-fc85-445e-867c-d4f28930a961",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-19T03:33:21.692Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7b3e95c8-da59-4a04-a954-40f0f778084f",
+    "city": "Hoi An",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "The Field",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "9fa6ed37-021b-4a72-abb9-d8d496d2ca94",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-19T04:54:12.411Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Hoi An",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Hoi an",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": "Hoi An",
+      "resultsCount": 5,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "hoi"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "1b7b55fc-45ba-4e4d-98b8-193486e6a67f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-19T04:54:50.748Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "3ab3be40-a14c-4def-a188-3717a8d32823",
+    "city": "Hội An",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Tuấn Family Organic Farm",
+      "source": "search_result"
+    }
+  },
+  {
+    "id": "c2c7ebad-fadb-488a-814b-4f903053f1ca",
+    "eventType": "click_search_result_detail",
+    "createdAt": "2026-06-19T04:54:50.749Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "3ab3be40-a14c-4def-a188-3717a8d32823",
+    "city": "Hội An",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Tuấn Family Organic Farm"
+    }
+  },
+  {
+    "id": "0d9a95e5-2de7-48a8-906e-20d891370346",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-19T09:52:34.908Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7b3e95c8-da59-4a04-a954-40f0f778084f",
+    "city": "Hoi An",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "The Field",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "0a5c5e42-af97-44cf-b121-87f4901ebaf1",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-20T00:05:38.241Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "27e3128e-eef7-45eb-9b2e-4b611a285a39",
+    "city": "Ubud",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Locavore NXT",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "ce6cc398-d46c-4204-bdf5-021d1dd99136",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-21T06:28:11.127Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "5b8047bf-1a3f-4a8d-af62-ae92857207d9",
+    "city": "Apt",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "L'Épicerie Verte",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "6ab45e7b-7217-44a9-946b-f176c698e6dc",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-22T04:20:17.910Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "257aaa3a-51d1-40b8-9748-fd4623290148",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Récolte – Chardon Lagache",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "ff4a3f26-c0e2-4d62-abb4-13f34624c92b",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-22T04:20:39.043Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Paris",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Paris",
+      "hasResults": true,
+      "searchMode": "full_pool",
+      "detectedCity": "Paris",
+      "resultsCount": 36,
+      "explicitCategory": null,
+      "meaningfulTokens": [],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "7384547c-12c6-41bd-95aa-4a9f23bb0bb6",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-22T04:20:44.382Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "0057497c-3fe3-49ba-8bbf-53698127efdd",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Boulangerie Chambelland",
+      "source": "search_result"
+    }
+  },
+  {
+    "id": "f7ef8842-39ae-45f5-b43e-61397e5eb6dd",
+    "eventType": "click_search_result_detail",
+    "createdAt": "2026-06-22T04:20:44.415Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "0057497c-3fe3-49ba-8bbf-53698127efdd",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Boulangerie Chambelland"
+    }
+  },
+  {
+    "id": "c237b74c-4ea0-4b0e-8a57-30992baa722e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-23T08:44:50.398Z",
+    "sessionId": "im_mqqaqm37_wsmq1inenk",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "045e7399-eeb3-4414-85b0-295866a210d8",
+    "city": "Floirac",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Jardins Garonnais - Vente à la ferme",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "2b975c19-4f71-41c1-9b53-e594ac142a3a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-23T08:44:58.611Z",
+    "sessionId": "im_mqqaqm37_wsmq1inenk",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "d43043ad-41de-4a7e-bcc8-a9acf18e21a5",
+    "city": "Cadillac-sur-Garonne",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "BioEthik",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "ac5ccd3a-8c7e-42a4-8408-bf0c2d7e62d2",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-23T08:45:04.544Z",
+    "sessionId": "im_mqqaqm37_wsmq1inenk",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "2daf7dbd-ba02-4f52-a201-39656dc7dc87",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Hortus",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "dd86187a-f06b-4dfb-9c3a-bb44596cdb72",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-06-24T03:25:44.269Z",
+    "sessionId": "ddde18b6-46c9-443d-9735-81727f56ea9f",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": null,
+    "city": "Chiang Mai",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Chiang mai",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": "Chiang Mai",
+      "resultsCount": 7,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "chiang",
+        "mai"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "ba39a39d-66b4-483b-943b-12384a0a0bd1",
+    "eventType": "click_search_result_detail",
+    "createdAt": "2026-06-24T03:25:57.564Z",
+    "sessionId": "ddde18b6-46c9-443d-9735-81727f56ea9f",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
+    "city": "Chiang Mai",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Jing Jai Market Chiang Mai"
+    }
+  },
+  {
+    "id": "daed8928-8b2c-43c0-9658-9518bcdac728",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-24T03:25:57.790Z",
+    "sessionId": "ddde18b6-46c9-443d-9735-81727f56ea9f",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "7806ab82-c7e1-44c0-a416-cf48a470eceb",
+    "city": "Chiang Mai",
+    "country": null,
+    "category": "Marché",
+    "metadata": {
+      "name": "Jing Jai Market Chiang Mai",
+      "source": "search_result"
+    }
+  },
+  {
+    "id": "018dbb94-abb5-47f1-ad29-41d02dfc6a0d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-26T21:44:06.774Z",
+    "sessionId": "fa8d4244-b56f-4372-9ec0-55d27d178847",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "52b04a39-b041-4d86-9035-764a5fcebe42",
+    "city": "Montréal",
+    "country": null,
+    "category": "Mode",
+    "metadata": {
+      "name": "L’Empire de l’échange – Mile End",
+      "source": "discovery_of_day"
+    }
+  },
+  {
+    "id": "f7dc7d04-a76c-4c45-89d1-109f6ee62453",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-26T21:44:52.897Z",
+    "sessionId": "fa8d4244-b56f-4372-9ec0-55d27d178847",
+    "userId": null,
+    "locale": "fr",
+    "platform": "android",
+    "placeId": "23ab39a4-961c-4aac-be84-a2755bbaaa0d",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "La Fabrique Pains et Bricoles",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e7766283-6234-426a-a249-f2f9afb9e18d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-27T13:13:30.475Z",
+    "sessionId": "0a6b87d3-9bb9-4619-963c-d5e127aecc17",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "045e7399-eeb3-4414-85b0-295866a210d8",
+    "city": "Floirac",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Jardins Garonnais - Vente à la ferme",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "02658ab4-84f8-4b4f-910e-42037a480668",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-06-27T13:30:09.624Z",
+    "sessionId": "a775e32f-bbe7-4d5c-b05e-ad4dd6208c6b",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "d43043ad-41de-4a7e-bcc8-a9acf18e21a5",
+    "city": "Cadillac-sur-Garonne",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "BioEthik",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "74facaea-06e4-4ebf-b393-a84bac7decef",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-01T22:03:54.947Z",
+    "sessionId": "57c1477c-6ebb-467e-856d-7be242063fe1",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "2daf7dbd-ba02-4f52-a201-39656dc7dc87",
+    "city": "Bordeaux",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Hortus",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "800be6d0-a72a-4023-83bb-29f764b6f180",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-04T20:32:45.696Z",
+    "sessionId": "4a387c83-6bb9-4ef8-a796-efa73bce28c4",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "1601 oxfored st",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "1601",
+        "oxfored"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "e7187bc3-4ef0-4012-be08-291958133c58",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-04T20:32:57.362Z",
+    "sessionId": "4a387c83-6bb9-4ef8-a796-efa73bce28c4",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "1601 oxford st",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 1,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "1601",
+        "oxford"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "108e3055-ae8c-46a9-a51e-b7b7fdf7f63c",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-04T20:33:32.388Z",
+    "sessionId": "4a387c83-6bb9-4ef8-a796-efa73bce28c4",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Canada SK Regina 1601 Oxford St",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 36,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "canada",
+        "regina",
+        "1601",
+        "oxford"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "4e97684f-7bd3-4946-bbc5-ecbeb46c41b8",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-05T04:10:58.048Z",
+    "sessionId": "bb519729-350f-4c89-8306-c87129545aee",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Mahalaxmi Sra",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 3,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "mahalaxmi",
+        "sra"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "f81becc9-7008-4f87-ad52-983ff4b67469",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-12T10:37:49.818Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "cf0dc4d6-d64b-4f88-8634-0bd64c927d9e",
+    "city": "Paris",
+    "country": null,
+    "category": "lieu alternatif",
+    "metadata": {
+      "name": "Ground Control",
+      "source": "shared_list"
+    }
+  },
+  {
+    "id": "4bf19e55-ea86-4f8d-b9d4-46905ef2212d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-12T10:42:46.518Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "745246d9-7f2f-47da-8369-55017d3cd24f",
+    "city": "Kuala Lumpur",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Dewakan",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "08910f4a-0644-481b-a058-047c8863f023",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-12T10:48:18.939Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "f106a6c6-28fd-4e44-a49f-fd3f642a53a1",
+    "city": "Paris",
+    "country": null,
+    "category": "Brasserie / bar / pub",
+    "metadata": {
+      "name": "Brasserie des Prés",
+      "source": "shared_list_search"
+    }
+  },
+  {
+    "id": "9450af9e-c21a-44af-a4cf-96e0a70e62fe",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-12T10:57:44.771Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Pristine",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "a384299d-2b9b-4427-82e0-54b6be45e07f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-12T10:58:00.319Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "deab2f94-5e38-4f2d-afb5-173016be4740",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Vivide",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "256fb37d-6daf-4cf4-8488-3e9fb259835a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-13T07:15:48.313Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Pristine",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "675b4802-0231-4af0-8643-6a8cb8b8ad15",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-13T07:16:07.312Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "41e78823-4105-4672-878c-5b74441d8419",
+    "city": "Les Mureaux",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Ferme de la Haye",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "dfd2ef98-8cbe-4d8d-8196-da6f15e2489a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-13T07:16:14.095Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Pristine",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "b86318cc-13e1-4896-8f3e-897b07179107",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T01:11:10.506Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "La borie",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 1,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "borie"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "26c050c4-048d-417d-be6c-10441def973e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-14T01:32:15.824Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "257aaa3a-51d1-40b8-9748-fd4623290148",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Récolte – Chardon Lagache",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "b1a4666c-df16-4a90-b14f-d06227ff0e5f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-14T01:32:51.009Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "647e2a9e-510e-4e49-bc32-1411bb9fbd3d",
+    "city": "Paris",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "Le Moulin à Café",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "73dcced4-493f-4958-aefa-0fa746f69d3f",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:28:02.655Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Sapid",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "sapid"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "5244f597-54ec-4637-9307-03f1b40bca67",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:28:48.188Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Maison nouvelle",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 49,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "maison",
+        "nouvelle"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "9f1e5e91-5b02-4d2c-a728-e824781d9bd2",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:32:45.641Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Plantxa",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "plantxa"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "1280eb29-0fda-4633-b63a-ff0c7d36285d",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:33:01.965Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": "Darwin",
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Darwin",
+      "hasResults": true,
+      "searchMode": "full_pool",
+      "detectedCity": "Darwin",
+      "resultsCount": 1,
+      "explicitCategory": null,
+      "meaningfulTokens": [],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "959696e0-9992-4d7b-b393-4433c23d66f2",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:33:31.065Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Résistant",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 1,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "resistant"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "f7909b79-3781-4a84-8ec6-1c56f8c85c60",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-14T02:33:54.633Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Boulogne",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "boulogne"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "8f2842a1-2de9-402d-ad35-9dc618ad67a1",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-14T02:34:21.490Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "257aaa3a-51d1-40b8-9748-fd4623290148",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Récolte – Chardon Lagache",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "957b8c8a-cd49-4718-b89e-438e9b59b06f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-15T12:25:26.347Z",
+    "sessionId": "56b58158-1eeb-4380-9086-6c3755fcd4c0",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "b00517cd-9034-461c-b412-ab9c3582208c",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Les Petites Cantines Paris",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "fc3b2892-b2a0-49ee-bade-cd6abdc42262",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-15T12:37:59.389Z",
+    "sessionId": "56b58158-1eeb-4380-9086-6c3755fcd4c0",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "73e99ece-b08c-4ef2-9c41-0c7992e09140",
+    "city": "Tarrytown",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Blue Hill at Stone Barns",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "89ce1ba5-ff04-4602-9ccd-d8163da66f0a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-15T12:41:10.556Z",
+    "sessionId": "56b58158-1eeb-4380-9086-6c3755fcd4c0",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "27e3128e-eef7-45eb-9b2e-4b611a285a39",
+    "city": "Ubud",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Locavore NXT",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "91153ff1-517a-4a4b-b79b-eee0a41bf8dd",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-17T04:54:05.008Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Cocottes",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "cocottes"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "977e8048-10f7-4f57-a08e-4768e30f01b9",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-17T05:09:35.728Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Sélune",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "selune"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "dd6a034d-131f-43e8-ae25-cc8e6bd53c05",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-17T05:17:03.658Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Sapid",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "sapid"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "deb65416-ea26-4911-9079-69748609e7c4",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-17T05:30:14.425Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "La borie",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 1,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "borie"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "09384b24-668c-48a3-81ec-31cc0697fea7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T05:30:18.842Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "045e7399-eeb3-4414-85b0-295866a210d8",
+    "city": "Floirac",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Jardins Garonnais - Vente à la ferme",
+      "source": "search_result"
+    }
+  },
+  {
+    "id": "6f7ab77b-ddf3-45dc-974b-9421fcb18840",
+    "eventType": "click_search_result_detail",
+    "createdAt": "2026-07-17T05:30:18.876Z",
+    "sessionId": "e1546666-d58f-4e4e-aaaa-9f694158c889",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "045e7399-eeb3-4414-85b0-295866a210d8",
+    "city": "Floirac",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Jardins Garonnais - Vente à la ferme"
+    }
+  },
+  {
+    "id": "2de298e3-5540-40ca-b479-93c91e1fe472",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T09:25:07.295Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "dea516b3-cd73-48c0-8ed2-3af546e258a1",
+    "city": "Saint-Malo",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Les Fermiers de la Baie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "a7b182e9-19e1-423b-bc4f-0b9f5e283bbc",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T09:25:15.919Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "75e1fc67-798c-471c-a1cf-4c371282affa",
+    "city": "Peaugres",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "À Deux Pas des Champs",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e8e9686c-3ed2-4ffc-b798-d60af94b67e6",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T09:25:21.882Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "bc87db3a-73df-4d2e-9814-c6ce81faee4d",
+    "city": "Montélier",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Ferme du Grand Laval",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "3e71332a-c155-4565-b231-7d926725dd1b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T09:25:26.452Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "8aeb909e-6bc8-4f9d-aea9-7e370b2ee165",
+    "city": "Bois-Héroult",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Quesne, Ferme et Fromagerie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "7bf6aa62-8573-4ad5-a6a6-baabfa42cc08",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-17T09:25:30.769Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "e3f16391-0ffd-46cf-949f-0992090bf30c",
+    "city": "Bonneuil-sur-Marne",
+    "country": null,
+    "category": "Brasserie / bar / pub",
+    "metadata": {
+      "name": "Deck & Donohue",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "5d290056-d5ed-48a3-b1fe-2e0298297d25",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-22T20:16:19.127Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "bc87db3a-73df-4d2e-9814-c6ce81faee4d",
+    "city": "Montélier",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Ferme du Grand Laval",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "d9440074-0ba0-4f1d-9218-6493981b53c9",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-22T20:19:00.562Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "cdb17baf-8d6b-4b38-9a44-90ab8906b3cd",
+    "city": "Montréal",
+    "country": null,
+    "category": "Café / brunch",
+    "metadata": {
+      "name": "Super Condiments",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "b2c044d1-ec14-45d5-b774-c6472b0d3921",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-07-22T20:22:12.364Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Billy",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "billy"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "03fc4820-2b3d-4097-b57b-d060cc0be086",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-28T21:08:50.067Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "8ae99410-455b-41fc-84b5-21d69a183a46",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Irwin",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "841fec1c-7dd0-4f1a-a5cc-2ff0ca2c9934",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-28T21:11:04.286Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "9e634ad1-aa8c-4fb4-b396-df94374e8266",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "MÛRE Trinité",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "003d6ac9-fd1c-4670-beae-22cff9810a74",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-28T21:12:07.774Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "05c0dd83-1520-4924-9abc-b53f44298fc0",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Récolte – Batignolles",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "2c401abb-b3f7-49f9-a90e-9ecdbc86a3a6",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-30T06:10:47.339Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "0a88cf1a-b3a6-4bfc-a16b-8c33e2b4dc1d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-31T18:42:04.234Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "257aaa3a-51d1-40b8-9748-fd4623290148",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Récolte – Chardon Lagache",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "0be9e017-191f-4c57-9946-d986b11e12f6",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-31T18:42:43.463Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "deab2f94-5e38-4f2d-afb5-173016be4740",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Vivide",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "3180e07f-8c7f-4ea2-a097-af450a49ac6d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-07-31T18:43:19.078Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Pristine",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "b1ee8361-a9f2-4267-8d76-841293f7d194",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-03T21:56:13.800Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "75e1fc67-798c-471c-a1cf-4c371282affa",
+    "city": "Peaugres",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "À Deux Pas des Champs",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "8b34ad75-3bab-435b-a85e-23f5678424da",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-03T21:56:23.091Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "75e1fc67-798c-471c-a1cf-4c371282affa",
+    "city": "Peaugres",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "À Deux Pas des Champs",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "f02042c9-b11a-485c-8cb7-5bc4054bd744",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-04T05:49:15.371Z",
+    "sessionId": "im_msdzup1f_b7ru3tt4cl",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "1b48a48e-1235-44fb-b795-3c0461ba271a",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Farinez'vous",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "23be8cc4-25b6-4ab4-b146-7bdfd91b7b8f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-04T05:49:32.440Z",
+    "sessionId": "im_msdzup1f_b7ru3tt4cl",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "472d23b5-f723-4586-a8fd-34522b401ed2",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Laiterie La Chapelle",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "5dcbdde2-1129-41e2-b966-97be67bbd73b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T00:13:55.503Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "472d23b5-f723-4586-a8fd-34522b401ed2",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Laiterie La Chapelle",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "4b1a80c2-2ecf-40ee-8125-aede065eaf7c",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T00:14:17.891Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "1b48a48e-1235-44fb-b795-3c0461ba271a",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Farinez'vous",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "afdd975d-2c4b-463d-bbd8-ceb1f78148ac",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T00:14:28.357Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "110e9dab-2269-40cf-970e-83d5754103b9",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Farinez'vous",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "abe09942-49d9-4ca3-af2e-233a624bbd99",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T00:14:30.274Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "cfa7e1ba-7496-408f-b236-4a577cd92cef",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Farinez'vous",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "58eaba6d-1430-4ce6-954b-4d51a04bfec0",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T00:14:33.064Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "e76e0436-0eef-405d-abff-b1a24591c62f",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Producteur Local",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "a8df1c39-5fe8-4df7-8466-ddf7a6043088",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T02:44:07.005Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "84593695-4f06-42ad-aba1-839e842e2d14",
+    "city": "Ubud",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "KAFE",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "c54fa212-f946-4be7-9ba2-bfb107b1681a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T02:54:27.585Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "27e3128e-eef7-45eb-9b2e-4b611a285a39",
+    "city": "Ubud",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Locavore NXT",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "54db1a78-b5ae-4579-ac50-d8316df01c6c",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T07:03:00.444Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "2db16758-a4da-474f-a5e6-946f8009a941",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T10:18:31.823Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "84593695-4f06-42ad-aba1-839e842e2d14",
+    "city": "Ubud",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "KAFE",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "92d338ec-5f24-4bb3-aeff-526280b925ad",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T11:30:23.145Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "e2e1b04e-e0bc-408d-9962-d92f837ed239",
+    "city": "Berlin",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "Holzmarkt 25",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "f3e30d77-8306-4693-924b-9ef475d8cb6c",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T11:47:12.626Z",
+    "sessionId": "c9fd2a27-6031-468e-b3df-b75f4b4439df",
+    "userId": null,
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "1b48a48e-1235-44fb-b795-3c0461ba271a",
+    "city": "Paris",
+    "country": null,
+    "category": "Boulangerie",
+    "metadata": {
+      "name": "Farinez'vous",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "541f57d0-ceab-4014-8cbd-575d28f2ac5a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T11:55:12.962Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "c93e58d8-8aaa-4499-b9b6-d3f60edf9971",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T11:55:23.265Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "684aceb3-6846-4ae5-ad29-e6ccfb2cfd38",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T11:55:44.847Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "462b80ae-f32b-4c9f-9139-541481817b45",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La cantine Champ Libre",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "d736b0d9-53f3-4a4e-be21-9befb58226cf",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-05T13:49:47.405Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "4a2c9194-13bc-414a-977a-9f44c388f5c6",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Frame Brasserie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "07cee5ca-b98e-4a37-b546-058959f8e61b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-06T03:24:44.848Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "375664c7-0f6e-4a5b-ad38-0d917a583b67",
+    "city": "Darwin",
+    "country": null,
+    "category": "Brasserie / bar / pub",
+    "metadata": {
+      "name": "One Mile Brewery",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "cb2c6e8e-9207-4019-9543-8e32fc18bc9d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:38:48.757Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "personal_space_saved_place"
+    }
+  },
+  {
+    "id": "fd030481-df1b-4de9-9be4-174a3c89259d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:39:16.564Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "4a2c9194-13bc-414a-977a-9f44c388f5c6",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Frame Brasserie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "69c287d4-6ee6-4a1e-9f80-df965681c4eb",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:40:02.971Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "aee104da-dc5b-47d1-8d0c-1fda07ac5187",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Cop1ne",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "b438560e-9c2d-4285-afd6-addb344e18b7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:40:56.625Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "8ae99410-455b-41fc-84b5-21d69a183a46",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Irwin",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "75a31cf2-9139-4d31-a2b4-a06f64c19bef",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:41:27.834Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "b7f49a2b-fb25-4f43-97f8-090a00c08d8b",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "La Borie",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "15ba8349-b3fb-4341-af7a-3a8ec3f44467",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-07T11:41:57.388Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "c1eb3f8b-c325-41b4-8937-e9b27c4b879a",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Pristine",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "49c0200f-5211-4822-a0d5-41a1d3e3e749",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T07:31:06.950Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "c8481f91-b18b-48a0-82ec-4804d77943ca",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Altrimenti",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "d5ea800d-1095-4c9d-a070-6787e6b77681",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T07:31:13.079Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "880f2223-6584-4b2e-908a-f9d4fb0a7ccf",
+    "city": "Paris",
+    "country": null,
+    "category": "Brasserie",
+    "metadata": {
+      "name": "Brasserie de l’Être",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "a6ea7021-545c-4165-b9b8-7493578d204d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T07:31:17.848Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "86315e11-bb94-42a9-843a-d1b6fd68591e",
+    "city": "Paris",
+    "country": null,
+    "category": "Brasserie",
+    "metadata": {
+      "name": "Patoche - Microbrasserie",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "8f879970-55bf-423a-8b91-ee634480500f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T07:31:20.642Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "cd843b3e-1b78-4f01-892e-6b090ebc4a0f",
+    "city": "Le Thil-en-Vexin",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Ferme du Thil",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "b1d6c14a-da54-4034-8e07-5767d9ed57cf",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T07:31:23.203Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "246e6bf8-5a20-45c7-80dd-e2a4f0dcbae6",
+    "city": "Bois-Colombes",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Cocottes",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "7feeb47d-5b16-49f6-b0aa-d6c770fedde7",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T08:38:47.571Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "cd843b3e-1b78-4f01-892e-6b090ebc4a0f",
+    "city": "Le Thil-en-Vexin",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Ferme du Thil",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "9892acca-185d-4a38-9418-eee40d08ec12",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T08:52:05.288Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "03da9d35-996c-41a5-bcee-df65961d05ec",
+    "city": "Bougival",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Le Camélia",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "b4bbdb35-def3-4fee-9e09-484b20aa332b",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-08-08T09:03:41.772Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "Food breizh",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 274,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "breizh"
+      ],
+      "targetCategories": [
+        "restaurant",
+        "brunch",
+        "cafe"
+      ]
+    }
+  },
+  {
+    "id": "584ee30c-0ac0-457e-bf6b-1035e28fe074",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T09:03:48.093Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "880f2223-6584-4b2e-908a-f9d4fb0a7ccf",
+    "city": "Paris",
+    "country": null,
+    "category": "Brasserie",
+    "metadata": {
+      "name": "Brasserie de l’Être",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "0063bc1a-2dd7-48f0-bbd0-e190b83e183b",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-08-08T09:03:59.253Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": "restaurant",
+    "metadata": {
+      "mode": "fallback",
+      "query": "Food",
+      "hasResults": true,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 274,
+      "explicitCategory": null,
+      "meaningfulTokens": [],
+      "targetCategories": [
+        "restaurant",
+        "brunch",
+        "cafe"
+      ]
+    }
+  },
+  {
+    "id": "d5319721-2586-474b-a147-b62f42734c02",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-08-08T09:04:09.175Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Breizh",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "breizh"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "de63d51b-0262-4742-9f3a-215b0870d9ea",
+    "eventType": "search_ai_used",
+    "createdAt": "2026-08-08T09:07:18.037Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": null,
+    "city": null,
+    "country": null,
+    "category": null,
+    "metadata": {
+      "mode": "fallback",
+      "query": "Bretagne",
+      "hasResults": false,
+      "searchMode": "scored",
+      "detectedCity": null,
+      "resultsCount": 0,
+      "explicitCategory": null,
+      "meaningfulTokens": [
+        "bretagne"
+      ],
+      "targetCategories": []
+    }
+  },
+  {
+    "id": "8a802769-d40b-490c-9db5-06c7edc65587",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-08T09:07:43.194Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "4a2c9194-13bc-414a-977a-9f44c388f5c6",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Frame Brasserie",
+      "source": "personal_space_saved_place"
+    }
+  },
+  {
+    "id": "117a1eda-9e75-4a62-948d-a4b47e5403c1",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T06:49:17.913Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "d232f9ae-a8ed-4701-927f-ad027050b930",
+    "city": "Arnouville-lès-Mantes",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "La Ferme d’Heurteloup",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "db59f0b8-7af3-4999-851f-72b9efe29118",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:45:46.581Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Clayette Meudon",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "4125fa68-42b0-4bd0-9f1d-36c83872bd7d",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:45:55.791Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "506f01ef-cf78-4c5a-bf0c-4f82bd68076c",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Simply Best Food",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "ad600e6c-0b14-4431-b911-3a6a06fc27b0",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:46:12.128Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Clayette Meudon",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "a5772fa2-228c-4826-821b-dbebb20677a2",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:46:43.787Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "506f01ef-cf78-4c5a-bf0c-4f82bd68076c",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Simply Best Food",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "397e9a2e-4bc7-4c51-8087-9e9cfd5142a5",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:47:22.373Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "506f01ef-cf78-4c5a-bf0c-4f82bd68076c",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Simply Best Food",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "c33a57ce-1f3a-4895-9dae-e46b612dc762",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:48:06.522Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Clayette Meudon",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "0801ec3f-334d-4009-9377-27678b83ed71",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:49:37.482Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "6c66b874-a483-4292-825a-761f3a4a9064",
+    "city": "Saint-Cloud",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Clayette Saint-Cloud",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "2d2566fb-c213-4010-a408-599aa42c3908",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:50:34.003Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "2e378065-c4f0-46fe-ab31-757929fcce1a",
+    "city": "Asnières-sur-Seine",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Berrie Bécon",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "cfea8d42-26a8-4e4c-8c90-2299de0a9809",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:53:34.519Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "537c2767-4e4f-4c17-bc52-da2a7aeb8d29",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Main Verte Brézin",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "ae415880-7f72-4c8d-911c-e9cc59ced13b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T15:53:39.952Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "537c2767-4e4f-4c17-bc52-da2a7aeb8d29",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Main Verte Brézin",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "9159567e-acba-4d3b-871d-b6ee58a31943",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T19:14:50.042Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "476eafff-af02-45e7-b610-0a1f7ee7834b",
+    "city": "Meudon",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "La Clayette Meudon",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "4d98efcf-81d4-4f08-a718-525fd065de8b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-09T19:15:09.636Z",
+    "sessionId": "3faab5c1-b644-4650-9e41-4c5a7b4e86c7",
+    "userId": "461b3ccf-9a72-4f64-bfc4-cc0dd0fd3c0c",
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "8ae99410-455b-41fc-84b5-21d69a183a46",
+    "city": "Paris",
+    "country": null,
+    "category": "Restaurant",
+    "metadata": {
+      "name": "Irwin",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "69f63e10-50e5-4fe3-92c1-3380f9daa67e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-11T07:07:37.966Z",
+    "sessionId": "76858fbb-d55d-4a5a-8dbe-a36ba708e02c",
+    "userId": "5404f6a2-4b6e-4ebe-84fb-422462755da0",
+    "locale": "en",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "8a1fe5bd-2a6e-4ca7-81c1-85a5001e064f",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T01:53:56.414Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "3c67a2aa-3f56-4272-91bd-45c6bb17a389",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:05:17.650Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "c17ecba6-a382-402e-ba67-a4248dd606de",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:05:23.863Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "53c4ea4c-f6a0-453c-b668-32a35cfeab87",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Clairière Paysanne",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "19888792-dc7c-48b8-97b7-d7ff5a9279f8",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:10:47.427Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "547a370e-e82e-4ea5-a4e2-b9bd46fddfdc",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:11:15.581Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "a0fbcb9f-b28f-4d28-afde-e1c3c5707414",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:11:15.608Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "6ba945f3-4b98-41fd-9243-4f0bf545fe8e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:11:35.473Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "799ed161-2780-4181-88ba-f43d5400dec6",
+    "city": "Vitry-sur-Seine",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Les Mains Dans la Terre",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "17853d00-d9f7-4e04-a869-7ce698a16c3c",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:11:35.487Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "799ed161-2780-4181-88ba-f43d5400dec6",
+    "city": "Vitry-sur-Seine",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Les Mains Dans la Terre",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "72677969-b015-478d-a593-c311c0bd6911",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:26:37.724Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "53c4ea4c-f6a0-453c-b668-32a35cfeab87",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Clairière Paysanne",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "e08de660-eedc-4238-85d1-12541c76125e",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:29:20.927Z",
+    "sessionId": "im_mspf85ma_hpaxkiv6xt",
+    "userId": null,
+    "locale": "fr",
+    "platform": "web",
+    "placeId": "53c4ea4c-f6a0-453c-b668-32a35cfeab87",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Clairière Paysanne",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "ed2b2726-5676-404b-8975-628c07f4969a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:32:27.208Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "f61d549e-22e7-4b75-8966-70d23d58efdd",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:32:27.208Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "2e39f38c-bfb3-44ef-9b41-6a6b512e3505",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:34:37.629Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7ade6cca-e1c5-4d2b-8474-69018064bf84",
+    "city": "Créteil",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Couleur Vrac",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "f6c4684f-7e64-465e-bfa1-ea22d67fca92",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:34:37.674Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7ade6cca-e1c5-4d2b-8474-69018064bf84",
+    "city": "Créteil",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Couleur Vrac",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "4b9a9f5e-0b23-401a-bc27-34cec842ac33",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:36:49.687Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "57c00f41-3458-43ea-9ca8-4ac398262e01",
+    "city": "Cergy",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Plaisirs du Jardin",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "21412348-7d6f-4a7a-9506-afcd97dbd2c5",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:36:49.702Z",
+    "sessionId": "a18b00b3-5b47-43d9-8551-9ca48cc77589",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "57c00f41-3458-43ea-9ca8-4ac398262e01",
+    "city": "Cergy",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "Les Plaisirs du Jardin",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "d6b6f5f2-6a55-4331-9c2b-a4d3e8fdad22",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:39:06.432Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "bb9ef669-c4c9-4bf8-adb4-5323af4ad997",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:39:51.332Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "mini_window"
+    }
+  },
+  {
+    "id": "48919ee8-bfa9-4c59-aad1-d58b3c0f08e2",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:40:03.223Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7f348df1-c39b-410e-b1ec-850cd44b9a2e",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Miyam Beaubourg",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "063b4a83-a63f-47f6-94c5-08af7f4dcee3",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:40:03.260Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7f348df1-c39b-410e-b1ec-850cd44b9a2e",
+    "city": "Paris",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Miyam Beaubourg",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "a9397a07-452e-4e25-a87f-d79f9dc5d047",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:40:45.932Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7ade6cca-e1c5-4d2b-8474-69018064bf84",
+    "city": "Créteil",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Couleur Vrac",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "bf433e05-75fc-4562-b9be-3f6a75f14c25",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:40:47.109Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "7ade6cca-e1c5-4d2b-8474-69018064bf84",
+    "city": "Créteil",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Couleur Vrac",
+      "source": "recent_additions_all"
+    }
+  },
+  {
+    "id": "4ae7d7e4-7c9e-4faf-bd4d-596bd2831249",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:43:53.084Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "5b8047bf-1a3f-4a8d-af62-ae92857207d9",
+    "city": "Apt",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "L'Épicerie Verte",
+      "source": "discovery_of_day"
+    }
+  },
+  {
+    "id": "0668f960-b00d-44b1-b56c-4047794577ac",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:43:57.482Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "3ccc604c-e9ef-457e-8770-f6e0f6a40c5b",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:44:54.226Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "799ed161-2780-4181-88ba-f43d5400dec6",
+    "city": "Vitry-sur-Seine",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Les Mains Dans la Terre",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "4577cd15-f946-45c2-971c-bb186f939de2",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:46:56.797Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "d232f9ae-a8ed-4701-927f-ad027050b930",
+    "city": "Arnouville-lès-Mantes",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "La Ferme d’Heurteloup",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "0141d7c3-7044-4e34-849b-848932bc1293",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:47:12.672Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "d232f9ae-a8ed-4701-927f-ad027050b930",
+    "city": "Arnouville-lès-Mantes",
+    "country": null,
+    "category": "Lieu alternatif",
+    "metadata": {
+      "name": "La Ferme d’Heurteloup",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "90fec570-1ce8-419f-90a3-7513e71e8928",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:47:18.137Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "53c4ea4c-f6a0-453c-b668-32a35cfeab87",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Ferme",
+    "metadata": {
+      "name": "La Clairière Paysanne",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "b2c487b0-c91a-4d29-8f12-42cc2566746a",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T02:47:29.897Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions"
+    }
+  },
+  {
+    "id": "ef73e824-c915-41a4-a825-f8e98c0a6b74",
+    "eventType": "view_place_detail",
+    "createdAt": "2026-08-12T03:03:27.792Z",
+    "sessionId": "39c68a8b-4cb7-41f3-b764-4c8e41b81a1a",
+    "userId": null,
+    "locale": "fr",
+    "platform": "ios",
+    "placeId": "ef9df659-f932-4967-8c34-ce3d897ea955",
+    "city": "Magny-les-Hameaux",
+    "country": null,
+    "category": "Épicerie",
+    "metadata": {
+      "name": "Le Garde-Manger",
+      "source": "recent_additions"
+    }
+  }
+]

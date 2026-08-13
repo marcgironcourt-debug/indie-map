@@ -1,0 +1,58 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] trouve moi un endroit pour boire un café a bordeaux
+PHASE A PRETE : resultats=0 inconnus=16 latence=1955ms
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=0
+CANDIDATS WEB ELIGIBLES : 9
+- Brasserie Vinatier → servir du café
+- Darwin Eco-système → servir du café
+- Les Récoltants → servir du café
+- L'abeille gourmande → servir du café
+- La Fabrique Pains et Bricoles → servir du café
+- Racines → servir du café
+- CASA GAÏA → servir du café
+- Hortus → servir du café
+- Symbiose → servir du café
+WEB INUTILE POUR :
+- La Cité Bleue → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Échoppe de la Lune → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Vie de Quartier - Cocagne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Ïkos → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Recharge → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Aux Petits Poids → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Local'Attitude → aucun signal Indie Map suffisant pour justifier une consultation du site
+WEB DRY RUN : aucune consultation officielle exécutée
+PHASE C WEB : candidats=9 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=7ms
+V5 SIMPLE : univers=16 candidats=16 faitsMemoire=0 confirmes=0 inconnus=7 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=1927ms retrieval=16ms premiersResultats=1955ms memoireTotal=3916ms attenteMemoireApresPhaseA=1960ms evaluationMemoire=7ms total=3931ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- La Cité Bleue 100/100 → servir du café
+- Échoppe de la Lune 96/100 → servir du café
+- La Vie de Quartier - Cocagne 95/100 → servir du café
+- Ïkos 93/100 → servir du café
+- La Recharge 90/100 → servir du café
+- Aux Petits Poids 88/100 → servir du café
+- Local'Attitude 85/100 → servir du café
+COMPRIS : Un endroit pour boire un café à Bordeaux.
+VILLE : Bordeaux
+ZONE : —
+ENTITÉ : —
+MUST : servir du café
+PREF : —
+TEMPS : —
+CANDIDATS : 16
+PREJUDGE : confirmed=0 verify=7 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTAT : AUCUN BON MATCH
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 14
+LLM INPUT TOKENS : 623
+LLM OUTPUT TOKENS : 67
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000209
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

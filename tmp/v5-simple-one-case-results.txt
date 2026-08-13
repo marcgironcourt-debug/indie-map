@@ -1,0 +1,36 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] Je cherche à Paris un endroit où apprendre à réparer mes vêtements
+V5 SIMPLE : univers=76 candidats=6 faitsMemoire=32 confirmes=1 inconnus=5 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=2238ms retrieval=44ms memoire+evaluation=3970ms total=6253ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- FabBRICK 77/100 → L’apprentissage pour réparer des vêtements
+- Activ’18 72/100 → L’apprentissage pour réparer des vêtements
+- L'Appartement Français - Mode 70/100 → L’apprentissage pour réparer des vêtements
+- La Recyclerie 69/100 → L’apprentissage pour réparer des vêtements
+- L'Appartement Français - Baskets 68/100 → L’apprentissage pour réparer des vêtements
+COMPRIS : Un endroit à Paris pour apprendre à réparer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : L’apprentissage pour réparer des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 6
+PREJUDGE : confirmed=1 verify=5 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 100/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 19
+LLM INPUT TOKENS : 623
+LLM OUTPUT TOKENS : 70
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000212
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

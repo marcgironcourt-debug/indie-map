@@ -1,0 +1,74 @@
+[
+  {
+    "query": "ou boire un coup à sydney",
+    "expect": "semantic_bar_sydney"
+  },
+  {
+    "query": "ou boire un verre à sydney",
+    "expect": "semantic_bar_sydney"
+  },
+  {
+    "query": "Bondai",
+    "expect": "bondi_area_typo"
+  },
+  {
+    "query": "Bondai market",
+    "expect": "bondi_markets"
+  },
+  {
+    "query": "Bretagne",
+    "expect": "brittany_content"
+  },
+  {
+    "query": "Food breizh",
+    "expect": "must_not_ignore_breizh"
+  },
+  {
+    "query": "Breizh",
+    "expect": "semantic_brittany"
+  },
+  {
+    "query": "je veut manger vers coogee",
+    "expect": "food_near_coogee"
+  },
+  {
+    "query": "je veut manger vers coogee en australie",
+    "expect": "food_near_coogee"
+  },
+  {
+    "query": "Je veux manger sur le pouce à Paris",
+    "expect": "quick_food_paris"
+  },
+  {
+    "query": "trouve moi un Snack porte maillot paris",
+    "expect": "snack_near_porte_maillot"
+  },
+  {
+    "query": "Hoi an",
+    "expect": "city_hoi_an"
+  },
+  {
+    "query": "Chiang mai",
+    "expect": "city_chiang_mai"
+  },
+  {
+    "query": "Paris",
+    "expect": "city_paris"
+  },
+  {
+    "query": "La borie",
+    "expect": "bories_address_fuzzy"
+  },
+  {
+    "query": "Maison nouvelle",
+    "expect": "do_not_match_random_partial_places"
+  },
+  {
+    "query": "1601 oxford st",
+    "expect": "do_not_return_wrong_oxford_address"
+  },
+  {
+    "query": "Canada SK Regina 1601 Oxford St",
+    "expect": "do_not_ignore_regina_canada"
+  }
+]

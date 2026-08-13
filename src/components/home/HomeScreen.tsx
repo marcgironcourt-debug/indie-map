@@ -867,6 +867,7 @@ export default function HomeScreen({
   const [searchFocused, setSearchFocused] = React.useState(false);
   const [searchLoading, setSearchLoading] = React.useState(false);
   const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
+  const searchAbortRef = React.useRef<AbortController | null>(null);
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
   const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
@@ -1838,7 +1839,7 @@ export default function HomeScreen({
                 {isFr ? "Que cherches-tu ?" : "What are you looking for?"}
               </p>
               <p className="mt-0.5 text-[11px] leading-snug text-white/45">
-                {isFr ? "Un lieu, une envie, une ville." : "A place, a mood, a city."}
+                {isFr ? "Un lieu, une catégorie, une ville." : "A place, a category, a city."}
               </p>
             </div>
 
@@ -1848,55 +1849,445 @@ export default function HomeScreen({
                 const query = searchQuery.trim();
                 if (!query) return;
 
+                searchAbortRef.current?.abort();
+
+                const controller =
+                  new AbortController();
+
+                searchAbortRef.current =
+                  controller;
+
                 setSearchResults(null);
                 setSearchLoading(true);
 
+                /*
+                 * V5 n'est utilisé QUE sur le serveur Next
+                 * lancé en development.
+                 *
+                 * En production, HomeScreen continue
+                 * d'appeler exactement la route V2.2 actuelle.
+                 */
+                /*
+                 * V5 avancée est conservée dans le projet
+                 * pour plus tard.
+                 *
+                 * La recherche active utilise désormais
+                 * uniquement les données Indie Map.
+                 */
+                const useLocalV5 =
+                  false;
+
                 try {
-                  const res = await fetch("/api/v1/ai/search", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ query, locale }),
-                  });
+                  if (useLocalV5) {
+                    const res =
+                      await fetch(
+                        "/api/v1/ai/search-v5-local",
+                        {
+                          method:
+                            "POST",
 
-                  const data = await res.json().catch(() => null);
-                  const results = Array.isArray(data?.results) ? data.results : [];
+                          headers: {
+                            "Content-Type":
+                              "application/json",
+                          },
 
-                  trackEvent({
-                    eventType: "search_ai_used",
-                    locale,
-                    city: data?.detectedCity || null,
-                    category: Array.isArray(data?.targetCategories) ? data.targetCategories[0] || null : data?.explicitCategory || null,
-                    metadata: {
-                      query,
-                      mode: data?.mode || "unknown",
-                      detectedCity: data?.detectedCity || null,
-                      explicitCategory: data?.explicitCategory || null,
-                      targetCategories: Array.isArray(data?.targetCategories) ? data.targetCategories : [],
-                      resultsCount: results.length,
-                      hasResults: results.length > 0,
-                      meaningfulTokens: Array.isArray(data?.meaningfulTokens) ? data.meaningfulTokens : [],
-                      searchMode: data?.searchMode || "api",
-                    },
-                  });
+                          body:
+                            JSON.stringify({
+                              query,
+                              locale,
+                            }),
 
-                  setSearchResults(results);
+                          signal:
+                            controller.signal,
+                        }
+                      );
+
+                    if (
+                      !res.ok ||
+                      !res.body
+                    ) {
+                      throw new Error(
+                        `V5 local HTTP ${res.status}`
+                      );
+                    }
+
+                    let latestResults:
+                      DiscoverPlace[] =
+                        [];
+
+                    const mergeResults =
+                      (
+                        incoming:
+                          unknown[]
+                      ) => {
+                        const byId =
+                          new Map(
+                            latestResults.map(
+                              (item) => [
+                                item.id,
+                                item,
+                              ]
+                            )
+                          );
+
+                        for (
+                          const raw of
+                          incoming
+                        ) {
+                          const item =
+                            raw as
+                              DiscoverPlace;
+
+                          if (
+                            !item ||
+                            !item.id
+                          ) {
+                            continue;
+                          }
+
+                          const previous =
+                            byId.get(
+                              item.id
+                            );
+
+                          byId.set(
+                            item.id,
+                            previous
+                              ? {
+                                  ...previous,
+                                  ...item,
+                                }
+                              : item
+                          );
+                        }
+
+                        latestResults =
+                          Array.from(
+                            byId.values()
+                          );
+
+                        setSearchResults(
+                          latestResults
+                        );
+                      };
+
+                    const reader =
+                      res.body
+                        .getReader();
+
+                    const decoder =
+                      new TextDecoder();
+
+                    let buffer =
+                      "";
+
+                    let receivedDone =
+                      false;
+
+                    while (true) {
+                      const {
+                        value,
+                        done,
+                      } =
+                        await reader.read();
+
+                      if (done) {
+                        break;
+                      }
+
+                      buffer +=
+                        decoder.decode(
+                          value,
+                          {
+                            stream:
+                              true,
+                          }
+                        );
+
+                      const lines =
+                        buffer.split(
+                          "\n"
+                        );
+
+                      buffer =
+                        lines.pop() ??
+                        "";
+
+                      for (
+                        const line of
+                        lines
+                      ) {
+                        const trimmed =
+                          line.trim();
+
+                        if (!trimmed) {
+                          continue;
+                        }
+
+                        const eventData =
+                          JSON.parse(
+                            trimmed
+                          );
+
+                        if (
+                          eventData?.type ===
+                            "results" &&
+                          Array.isArray(
+                            eventData.results
+                          )
+                        ) {
+                          mergeResults(
+                            eventData.results
+                          );
+
+                          continue;
+                        }
+
+                        if (
+                          eventData?.type ===
+                            "done"
+                        ) {
+                          if (
+                            Array.isArray(
+                              eventData.results
+                            )
+                          ) {
+                            mergeResults(
+                              eventData.results
+                            );
+                          }
+
+                          receivedDone =
+                            true;
+
+                          continue;
+                        }
+
+                        if (
+                          eventData?.type ===
+                            "error"
+                        ) {
+                          throw new Error(
+                            String(
+                              eventData.error ||
+                                "v5_local_error"
+                            )
+                          );
+                        }
+                      }
+                    }
+
+                    /*
+                     * Si aucune phase n'a produit de lieu,
+                     * on passe explicitement à [] afin
+                     * d'afficher "Aucun lieu trouvé".
+                     */
+                    if (
+                      latestResults.length ===
+                        0
+                    ) {
+                      setSearchResults(
+                        []
+                      );
+                    }
+
+                    trackEvent({
+                      eventType:
+                        "search_ai_used",
+
+                      locale,
+
+                      metadata: {
+                        query,
+
+                        mode:
+                          "v5_simple_local_stream",
+
+                        resultsCount:
+                          latestResults.length,
+
+                        hasResults:
+                          latestResults.length >
+                          0,
+
+                        engineVersion:
+                          "search-v5-simple-local",
+
+                        searchMode:
+                          receivedDone
+                            ? "local_stream_complete"
+                            : "local_stream_closed",
+                      },
+                    });
+                  } else {
+                    /*
+                     * Production : comportement existant
+                     * strictement conservé.
+                     */
+                    const res =
+                      await fetch(
+                        "/api/v1/ai/search",
+                        {
+                          method:
+                            "POST",
+
+                          headers: {
+                            "Content-Type":
+                              "application/json",
+                          },
+
+                          body:
+                            JSON.stringify({
+                              query,
+                              locale,
+                            }),
+
+                          signal:
+                            controller.signal,
+                        }
+                      );
+
+                    const data =
+                      await res
+                        .json()
+                        .catch(
+                          () => null
+                        );
+
+                    const results =
+                      Array.isArray(
+                        data?.results
+                      )
+                        ? data.results
+                        : [];
+
+                    trackEvent({
+                      eventType:
+                        "search_ai_used",
+
+                      locale,
+
+                      city:
+                        data?.detectedCity ||
+                        null,
+
+                      category:
+                        Array.isArray(
+                          data?.targetCategories
+                        )
+                          ? data
+                              .targetCategories[0] ||
+                            null
+                          : data?.explicitCategory ||
+                            null,
+
+                      metadata: {
+                        query,
+
+                        mode:
+                          data?.mode ||
+                          "unknown",
+
+                        detectedCity:
+                          data?.detectedCity ||
+                          null,
+
+                        explicitCategory:
+                          data?.explicitCategory ||
+                          null,
+
+                        targetCategories:
+                          Array.isArray(
+                            data?.targetCategories
+                          )
+                            ? data.targetCategories
+                            : [],
+
+                        resultsCount:
+                          results.length,
+
+                        hasResults:
+                          results.length >
+                          0,
+
+                        meaningfulTokens:
+                          Array.isArray(
+                            data?.meaningfulTokens
+                          )
+                            ? data.meaningfulTokens
+                            : [],
+
+                        detectedConcepts:
+                          Array.isArray(
+                            data?.detectedConcepts
+                          )
+                            ? data.detectedConcepts
+                            : [],
+
+                        engineVersion:
+                          data?.engineVersion ||
+                          "unknown",
+
+                        searchMode:
+                          data?.searchMode ||
+                          "api",
+                      },
+                    });
+
+                    setSearchResults(
+                      results
+                    );
+                  }
                 } catch (err) {
-                  console.error("[HomeScreen search] API error", err);
+                  if (
+                    controller.signal
+                      .aborted
+                  ) {
+                    return;
+                  }
+
+                  console.error(
+                    "[HomeScreen search] API error",
+                    err
+                  );
 
                   trackEvent({
-                    eventType: "search_ai_used",
+                    eventType:
+                      "search_ai_used",
+
                     locale,
+
                     metadata: {
                       query,
-                      mode: "client_error",
-                      resultsCount: 0,
-                      hasResults: false,
+
+                      mode:
+                        useLocalV5
+                          ? "v5_local_client_error"
+                          : "client_error",
+
+                      resultsCount:
+                        0,
+
+                      hasResults:
+                        false,
                     },
                   });
 
-                  setSearchResults([]);
+                  setSearchResults(
+                    []
+                  );
                 } finally {
-                  setSearchLoading(false);
+                  if (
+                    searchAbortRef.current ===
+                    controller
+                  ) {
+                    searchAbortRef.current =
+                      null;
+
+                    setSearchLoading(
+                      false
+                    );
+                  }
                 }
               }}
               className={`flex w-full border border-white/10 bg-black/75 px-4 text-left text-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_10px_26px_rgba(0,0,0,0.28)] backdrop-blur-sm transition-all duration-300 ${
@@ -1920,7 +2311,7 @@ export default function HomeScreen({
                   onBlur={() => setSearchFocused(false)}
                   placeholder={
                     searchFocused
-                      ? (isFr ? "Je veux boire un verre à Paris..." : "I want to have a drink in Paris...")
+                      ? (isFr ? "Un café à Tokyo..." : "A café in Tokyo...")
                       : (isFr ? "Un café, une épicerie, un lieu à Paris..." : "A café, a grocery store, a place in Paris...")
                   }
                   className="w-full min-w-0 bg-transparent text-[15px] leading-none text-white placeholder:text-white/42 outline-none"
@@ -1930,8 +2321,8 @@ export default function HomeScreen({
                 {searchFocused ? (
                   <div className="mt-3 text-[12px] leading-snug text-white/45">
                     {isFr
-                      ? "Exemple : trouve-moi des cafés à Montréal, ou des épiceries à Paris."
-                      : "Example: find cafés in Montreal, or grocery stores in Paris."}
+                      ? "Exemple : un café à Tokyo, une boulangerie à Paris, le nom d’un lieu."
+                      : "Example: a café in Tokyo, a bakery in Paris, the name of a place."}
                   </div>
                 ) : null}
               </div>
@@ -2754,6 +3145,8 @@ export default function HomeScreen({
           <button
             type="button"
             onClick={() => {
+              searchAbortRef.current?.abort();
+              searchAbortRef.current = null;
               setSearchLoading(false);
               setSearchResults(null);
             }}
@@ -2778,13 +3171,9 @@ export default function HomeScreen({
           </button>
 
           <div className="mx-auto flex h-full w-full max-w-md flex-col pt-[calc(env(safe-area-inset-top)+78px)] pb-[calc(env(safe-area-inset-bottom)+24px)]">
-            {searchLoading ? (
+            {searchLoading && searchResults === null ? (
               <div className="flex flex-1 flex-col items-center justify-center text-center">
-                <div className="mb-5 flex items-center justify-center gap-2">
-                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "0ms" }} />
-                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "120ms" }} />
-                  <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-white" style={{ animationDelay: "240ms" }} />
-                </div>
+                <div className="mb-5 h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white/90" />
 
                 <div className="max-w-[280px]">
                   <div className="font-serif text-[22px] leading-tight">
@@ -2805,6 +3194,17 @@ export default function HomeScreen({
                     <div className="mt-2 text-[14px] leading-relaxed text-white/60">
                       “{searchQuery.trim()}”
                     </div>
+
+                    {searchLoading ? (
+                      <div className="mt-4 flex items-center gap-2 text-[12px] text-white/55">
+                        <span className="h-3.5 w-3.5 shrink-0 animate-spin rounded-full border border-white/20 border-t-white/80" />
+                        <span>
+                          {isFr
+                            ? "Recherche de lieux supplémentaires…"
+                            : "Looking for more places…"}
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
 
                 <div className="mt-7 space-y-3">
@@ -2865,6 +3265,17 @@ export default function HomeScreen({
                         </div>
                       </div>
                     ))
+                  ) : searchLoading ? (
+                    <div className="rounded-2xl border border-white/10 bg-white/8 p-5 text-[14px] leading-relaxed text-white/60">
+                      <div className="flex items-center gap-3">
+                        <span className="h-4 w-4 shrink-0 animate-spin rounded-full border border-white/20 border-t-white/80" />
+                        <span>
+                          {isFr
+                            ? "Vérification des lieux pertinents…"
+                            : "Checking relevant places…"}
+                        </span>
+                      </div>
+                    </div>
                   ) : (
                     <div className="rounded-2xl border border-white/10 bg-white/8 p-5 text-[15px] leading-relaxed text-white/70">
                       {isFr ? "Aucun lieu trouvé pour cette recherche pour le moment." : "No places found for this search yet."}

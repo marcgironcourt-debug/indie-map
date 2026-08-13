@@ -2,30 +2,11 @@ import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { applyPrivateHomeSuggestionPatches } from "@/lib/privateHomeSuggestions";
-import { normalizeContextCategory } from "@/lib/contextSuggestions";
 import { normalizePlace } from "../../places/_normalize";
 import { locales, defaultLocale } from "../../../../../../i18n";
+import { type SearchPlace } from "@/lib/placeSearch";
 
 type Obj = Record<string, unknown>;
-
-type SearchPlace = {
-  id: string;
-  name: string;
-  city?: string;
-  address?: string;
-  category?: string;
-  miniText?: string;
-  lat?: number;
-  lng?: number;
-  panoramaImage?: string;
-  website?: string;
-  phone?: string;
-  openingHours?: string;
-  timeZone?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  tags?: string[];
-};
 
 const HEADERS = {
   "X-API-Version": "1",
@@ -34,22 +15,6 @@ const HEADERS = {
 
 function isObj(value: unknown): value is Obj {
   return !!value && typeof value === "object" && !Array.isArray(value);
-}
-
-function normalizeText(value: unknown) {
-  return String(value ?? "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function containsNormalizedTerm(text: string, term: string) {
-  const haystack = ` ${normalizeText(text)} `;
-  const needle = ` ${normalizeText(term)} `;
-  return haystack.includes(needle);
 }
 
 async function readPlaces(locale: string): Promise<SearchPlace[]> {
@@ -89,241 +54,876 @@ async function readPlaces(locale: string): Promise<SearchPlace[]> {
     return next;
   });
 
-  return applyPrivateHomeSuggestionPatches(normalized.map(normalizePlace)) as SearchPlace[];
+  return applyPrivateHomeSuggestionPatches(
+    normalized.map(normalizePlace)
+  ) as SearchPlace[];
 }
 
-function getPlaceSearchCategories(placeOrCategory: SearchPlace | string | undefined) {
-  const category = typeof placeOrCategory === "string" ? placeOrCategory : placeOrCategory?.category;
-  const text = typeof placeOrCategory === "string"
-    ? category
-    : [
-        placeOrCategory?.category,
-        placeOrCategory?.miniText,
-        placeOrCategory?.name,
-        ...(Array.isArray(placeOrCategory?.tags) ? placeOrCategory.tags : []),
-      ].filter(Boolean).join(" ");
 
-  const raw = normalizeText(text || "");
-  const normalized = normalizeContextCategory(category);
-  const categories = new Set<string>();
+function normalizeSearchText(
+  value: unknown
+) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .replace(
+      /[^a-z0-9\s]/g,
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+}
 
-  if (normalized) categories.add(normalized);
+function containsSearchPhrase(
+  text: unknown,
+  phrase: unknown
+) {
+  const haystack =
+    ` ${normalizeSearchText(text)} `;
 
-  const aliases: Array<[string, string[]]> = [
-    ["cafe", ["cafe", "coffee", "espresso", "cappuccino", "latte", "pause cafe"]],
-    ["brunch", ["brunch"]],
-    ["bar", ["bar", "pub", "brasserie", "biere", "bieres", "microbrasserie", "boisson", "boissons", "cocktail", "aperitif", "apero", "buvette", "vin", "vins", "verre", "terrasse"]],
-    ["epicerie", ["epicerie", "grocery", "magasin bio", "vrac", "courses", "produits alimentaires"]],
-    ["restaurant", ["restaurant", "resto", "repas", "plat", "plats", "menu", "diner", "dejeuner", "souper", "table", "assiette", "gastronomie", "brunch", "service", "convives"]],
-    ["boutique", ["boutique", "mode", "shop", "artisanat", "createurs locaux", "objet", "objets", "cadeau", "decoration"]],
-    ["librairie", ["librairie", "bookstore", "bouquinerie", "livres", "livre"]],
-    ["boulangerie", ["boulangerie", "bakery", "pain", "viennoiserie", "patisserie", "patisseries", "croissant"]],
-    ["ferme", ["ferme", "farm", "producteur", "producteurs", "agriculture"]],
-    ["marche", ["marche", "market"]],
-    ["atelier", ["atelier", "workshop", "artisanat", "createurs locaux"]],
-    ["alternatif", ["alternatif", "alternative", "lieu alternatif", "lieu de vie", "tiers lieu"]],
-  ];
+  const needle =
+    ` ${normalizeSearchText(phrase)} `;
 
-  for (const [target, values] of aliases) {
-    if (values.some((value) => containsNormalizedTerm(raw, value))) {
-      categories.add(target);
+  return (
+    needle.trim().length > 0 &&
+    haystack.includes(needle)
+  );
+}
+
+function levenshteinSearch(
+  a: string,
+  b: string
+) {
+  if (a === b) return 0;
+
+  if (!a.length) {
+    return b.length;
+  }
+
+  if (!b.length) {
+    return a.length;
+  }
+
+  const previous =
+    Array.from(
+      {
+        length:
+          b.length + 1,
+      },
+      (_, index) =>
+        index
+    );
+
+  const current =
+    new Array<number>(
+      b.length + 1
+    );
+
+  for (
+    let i = 1;
+    i <= a.length;
+    i += 1
+  ) {
+    current[0] = i;
+
+    for (
+      let j = 1;
+      j <= b.length;
+      j += 1
+    ) {
+      current[j] =
+        Math.min(
+          current[j - 1] + 1,
+          previous[j] + 1,
+          previous[j - 1] +
+            (
+              a[i - 1] ===
+              b[j - 1]
+                ? 0
+                : 1
+            )
+        );
+    }
+
+    for (
+      let j = 0;
+      j <= b.length;
+      j += 1
+    ) {
+      previous[j] =
+        current[j];
     }
   }
 
-  return [...categories];
+  return previous[b.length];
 }
 
+const SIMPLE_SEARCH_CATEGORIES = {
+  restaurant: {
+    aliases: [
+      "restaurant",
+      "restaurants",
+      "resto",
+      "restos",
+    ],
 
-function getStrictPlaceCategories(category: string | undefined) {
-  const raw = normalizeText(category || "");
-  const normalized = normalizeContextCategory(category);
-  const categories = new Set<string>();
+    markers: [
+      "restaurant",
+    ],
+  },
 
-  if (normalized) categories.add(normalized);
-  if (raw.includes("cafe")) categories.add("cafe");
-  if (raw.includes("brunch")) categories.add("brunch");
-  if (raw.includes("bar") || raw.includes("pub") || raw.includes("brasserie")) categories.add("bar");
-  if (raw.includes("mode")) categories.add("boutique");
+  cafe: {
+    aliases: [
+      "cafe",
+      "cafes",
+      "coffee",
+      "coffee shop",
+    ],
 
-  return [...categories];
-}
+    markers: [
+      "cafe",
+    ],
+  },
 
-function localSearch(query: string, places: SearchPlace[]) {
-  const normalizedQuery = normalizeText(query);
+  brunch: {
+    aliases: [
+      "brunch",
+      "brunchs",
+    ],
 
-  const knownCities = [...new Set(places.map((place) => place.city).filter(Boolean) as string[])]
-    .sort((a, b) => b.length - a.length);
+    markers: [
+      "brunch",
+    ],
+  },
 
-  const detectedCity = knownCities.find((city) => normalizedQuery.includes(normalizeText(city))) || null;
-  const normalizedDetectedCity = detectedCity ? normalizeText(detectedCity) : "";
+  brasserie: {
+    aliases: [
+      "brasserie",
+      "brasseries",
+      "microbrasserie",
+      "microbrasseries",
+    ],
 
-  const includesAny = (values: string[]) => values.some((value) => normalizedQuery.includes(normalizeText(value)));
+    markers: [
+      "brasserie",
+      "microbrasserie",
+    ],
+  },
 
-  const explicitCategoryAliases: Record<string, string[]> = {
-    epicerie: ["epicerie", "epiceries", "grocery", "groceries", "magasin bio"],
-    restaurant: ["restaurant", "restaurants", "resto", "restos"],
-    brunch: ["brunch", "brunchs"],
-    cafe: ["cafe", "cafes", "coffee", "coffees"],
-    bar: ["bar", "bars", "pub", "pubs", "brasserie", "brasseries"],
-    boutique: ["boutique", "boutiques", "mode", "shopping"],
-    librairie: ["librairie", "librairies", "bookstore"],
-    boulangerie: ["boulangerie", "boulangeries", "bakery"],
-    ferme: ["ferme", "fermes", "producteur", "producteurs", "farm", "farms"],
-    marche: ["marche", "marches", "market", "markets"],
-    atelier: ["atelier", "ateliers", "artisan", "artisans"],
-    alternatif: ["alternatif", "alternative", "lieu alternatif"],
-  };
+  bar: {
+    aliases: [
+      "bar",
+      "bars",
+      "pub",
+      "pubs",
+    ],
 
-  const explicitCategory = Object.entries(explicitCategoryAliases).find(([, aliases]) =>
-    aliases.some((alias) => normalizedQuery.includes(normalizeText(alias)))
-  )?.[0] || null;
+    markers: [
+      "bar",
+      "pub",
+    ],
+  },
 
-  const intentCategories =
-    includesAny(["boire un verre", "prendre un verre", "sortir boire", "aller boire", "un verre", "biere", "beer", "drink", "cocktail", "aperitif", "apero"])
-      ? ["bar"]
-      : includesAny(["faire les courses", "faire mes courses", "acheter a manger", "ingredients", "ingredient", "repas maison", "cuisiner", "produits locaux", "local food", "organic food", "grocery"])
-        ? ["epicerie", "marche", "ferme"]
-        : includesAny(["manger", "dejeuner", "diner", "souper", "bon repas", "lunch", "dinner", "eat", "food"])
-          ? ["restaurant", "brunch", "cafe"]
-          : includesAny(["boire un cafe", "prendre un cafe", "travailler", "lire", "pause cafe", "gouter", "coffee", "work", "read"])
-            ? ["cafe"]
-            : includesAny(["cadeau", "cadeaux", "gift", "gifts", "pour ma niece", "pour mon neveu", "pour un enfant", "objet", "objets", "souvenir", "decoration", "deco"])
-              ? ["boutique", "librairie"]
-              : includesAny(["pain", "viennoiserie", "croissant", "baguette", "bread"])
-                ? ["boulangerie"]
-                : includesAny(["expo", "exposition", "art", "culture", "galerie", "gallery"])
-                  ? ["alternatif", "atelier"]
-                  : [];
+  epicerie: {
+    aliases: [
+      "epicerie",
+      "epiceries",
+      "grocery",
+      "groceries",
+    ],
 
-  const targetCategories = [...new Set([...(explicitCategory ? [explicitCategory] : []), ...intentCategories])];
-  const hasMixedIntent = Boolean(explicitCategory && intentCategories.some((category) => category !== explicitCategory));
+    markers: [
+      "epicerie",
+    ],
+  },
 
-  const stopWords = new Set([
-    "je", "j", "me", "mes", "moi", "tu", "te", "le", "la", "les", "un", "une", "des", "de", "du", "d", "a", "au", "aux",
-    "en", "sur", "pour", "dans", "avec", "trouve", "trouver", "montre", "montrez", "voir", "veux", "voudrais",
-    "besoin", "cherche", "chercher", "peux", "peut", "aller", "faire", "bientot", "quelques", "jours", "place",
-    "lieu", "lieux", "ville", "city", "near", "nearby", "show", "find", "for", "where", "need", "want", "ce", "soir",
+  librairie: {
+    aliases: [
+      "librairie",
+      "librairies",
+      "bookstore",
+      "bookstores",
+      "bookshop",
+      "bookshops",
+    ],
+
+    markers: [
+      "librairie",
+    ],
+  },
+
+  boulangerie: {
+    aliases: [
+      "boulangerie",
+      "boulangeries",
+      "bakery",
+      "bakeries",
+    ],
+
+    markers: [
+      "boulangerie",
+    ],
+  },
+
+  ferme: {
+    aliases: [
+      "ferme",
+      "fermes",
+      "farm",
+      "farms",
+    ],
+
+    markers: [
+      "ferme",
+    ],
+  },
+
+  marche: {
+    aliases: [
+      "marche",
+      "marches",
+      "market",
+      "markets",
+    ],
+
+    markers: [
+      "marche",
+    ],
+  },
+
+  boutique: {
+    aliases: [
+      "boutique",
+      "boutiques",
+      "shop",
+      "shops",
+    ],
+
+    markers: [
+      "boutique",
+    ],
+  },
+
+  mode: {
+    aliases: [
+      "mode",
+      "fashion",
+    ],
+
+    markers: [
+      "mode",
+    ],
+  },
+
+  atelier: {
+    aliases: [
+      "atelier",
+      "ateliers",
+      "workshop",
+      "workshops",
+    ],
+
+    markers: [
+      "atelier",
+    ],
+  },
+
+  alternatif: {
+    aliases: [
+      "lieu alternatif",
+      "lieux alternatifs",
+      "tiers lieu",
+      "tiers lieux",
+    ],
+
+    markers: [
+      "lieu alternatif",
+      "alternatif",
+    ],
+  },
+} as const;
+
+type SimpleSearchCategory =
+  keyof typeof SIMPLE_SEARCH_CATEGORIES;
+
+const SIMPLE_QUERY_WORDS =
+  new Set([
+    "un",
+    "une",
+    "des",
+    "le",
+    "la",
+    "les",
+    "du",
+    "de",
+    "d",
+    "a",
+    "au",
+    "aux",
+    "dans",
+    "sur",
+
+    "je",
+    "cherche",
+    "chercher",
+    "recherche",
+    "trouve",
+    "trouver",
+    "moi",
+
+    "lieu",
+    "lieux",
+    "place",
+    "places",
+
+    "the",
+    "a",
+    "an",
+    "in",
+    "at",
+    "find",
+    "search",
+    "looking",
+    "for",
   ]);
 
-  const tokens = normalizedQuery
+function queryWords(
+  value: unknown
+) {
+  return normalizeSearchText(
+    value
+  )
     .split(/\s+/)
-    .map((token) => token.trim())
-    .filter((token) => token.length > 2 && !stopWords.has(token) && token !== normalizedDetectedCity);
+    .filter(Boolean);
+}
 
-  const ignoredSearchTokens = new Set([
-    ...Object.values(explicitCategoryAliases)
-      .flatMap((aliases) => aliases)
-      .flatMap((alias) => normalizeText(alias).split(/\s+/)),
-    "boire", "prendre", "verre", "sortir", "biere", "beer", "drink", "cocktail", "aperitif", "apero",
-    "manger", "dejeuner", "diner", "souper", "repas", "lunch", "dinner", "eat", "food",
-    "cafe", "coffee", "travailler", "lire", "pause", "gouter", "work", "read",
-    "courses", "acheter", "ingredients", "ingredient", "cuisiner", "produits", "locaux", "local", "organic",
-    "cadeau", "cadeaux", "gift", "gifts", "niece", "neveu", "enfant", "objet", "objets", "souvenir",
-    "pain", "viennoiserie", "croissant", "baguette", "bread",
-    "expo", "exposition", "art", "culture", "galerie", "gallery",
-  ].filter((token) => token.length > 2));
+function detectSimpleCity(
+  query: string,
+  places: SearchPlace[]
+) {
+  const cities = [
+    ...new Set(
+      places
+        .map(
+          (place) =>
+            String(
+              place.city ?? ""
+            ).trim()
+        )
+        .filter(Boolean)
+    ),
+  ].sort(
+    (a, b) =>
+      normalizeSearchText(b)
+        .length -
+      normalizeSearchText(a)
+        .length
+  );
 
-  const meaningfulTokens = tokens.filter((token) => !ignoredSearchTokens.has(token));
+  return (
+    cities.find(
+      (city) =>
+        containsSearchPhrase(
+          query,
+          city
+        )
+    ) || null
+  );
+}
 
-  const cityPool = detectedCity
-    ? places.filter((place) => normalizeText(place.city || "") === normalizedDetectedCity)
-    : places;
+function detectSimpleCategory(
+  query: string
+): {
+  key: SimpleSearchCategory;
+  alias: string;
+} | null {
+  const matches:
+    Array<{
+      key: SimpleSearchCategory;
+      alias: string;
+    }> =
+      [];
 
-  const categoryPool = targetCategories.length > 0
-    ? cityPool.filter((place) => {
-        const miniText = normalizeText(place.miniText || "");
-        const searchCategories = getPlaceSearchCategories(place);
+  for (
+    const [
+      key,
+      config,
+    ] of Object.entries(
+      SIMPLE_SEARCH_CATEGORIES
+    ) as Array<
+      [
+        SimpleSearchCategory,
+        {
+          aliases:
+            readonly string[];
+          markers:
+            readonly string[];
+        }
+      ]
+    >
+  ) {
+    for (
+      const alias of
+        config.aliases
+    ) {
+      if (
+        containsSearchPhrase(
+          query,
+          alias
+        )
+      ) {
+        matches.push({
+          key,
+          alias,
+        });
+      }
+    }
+  }
 
-        if (explicitCategory && intentCategories.length === 0) {
-          const baseCategories = getStrictPlaceCategories(place.category);
-          return baseCategories.includes(explicitCategory);
+  matches.sort(
+    (a, b) =>
+      normalizeSearchText(
+        b.alias
+      ).length -
+      normalizeSearchText(
+        a.alias
+      ).length
+  );
+
+  return matches[0] || null;
+}
+
+function placeMatchesSimpleCategory(
+  place: SearchPlace,
+  category:
+    SimpleSearchCategory
+) {
+  const value =
+    normalizeSearchText(
+      place.category
+    );
+
+  const config =
+    SIMPLE_SEARCH_CATEGORIES[
+      category
+    ];
+
+  return config.markers.some(
+    (marker) =>
+      containsSearchPhrase(
+        value,
+        marker
+      )
+  );
+}
+
+function simpleNameQuery(
+  query: string
+) {
+  return queryWords(query)
+    .filter(
+      (word) =>
+        !SIMPLE_QUERY_WORDS.has(
+          word
+        )
+    )
+    .join(" ");
+}
+
+function strongExactNameResults(
+  query: string,
+  places: SearchPlace[]
+) {
+  const nameQuery =
+    simpleNameQuery(query);
+
+  if (!nameQuery) {
+    return [];
+  }
+
+  return places.filter(
+    (place) => {
+      const name =
+        normalizeSearchText(
+          place.name
+        );
+
+      return (
+        name === nameQuery ||
+        (
+          nameQuery.length >= 5 &&
+          containsSearchPhrase(
+            name,
+            nameQuery
+          )
+        )
+      );
+    }
+  );
+}
+
+function simpleNameResults(
+  query: string,
+  places: SearchPlace[]
+) {
+  const value =
+    simpleNameQuery(
+      query
+    );
+
+  if (!value) {
+    return [];
+  }
+
+  const valueWords =
+    queryWords(value);
+
+  return places
+    .map(
+      (place) => {
+        const name =
+          normalizeSearchText(
+            place.name
+          );
+
+        if (name === value) {
+          return {
+            place,
+            score: 1000,
+          };
         }
 
-        if (targetCategories.some((category) => searchCategories.includes(category))) return true;
-        if (targetCategories.includes("brunch") && miniText.includes("brunch")) return true;
+        if (
+          containsSearchPhrase(
+            name,
+            value
+          )
+        ) {
+          return {
+            place,
+            score: 800,
+          };
+        }
 
-        return false;
-      })
-    : cityPool;
+        const nameWords =
+          queryWords(name);
 
-  const shouldReturnFullPool = Boolean(detectedCity) && !hasMixedIntent && (targetCategories.length > 0 || tokens.length === 0) && meaningfulTokens.length === 0;
+        const allMatched =
+          valueWords.every(
+            (word) =>
+              nameWords.some(
+                (candidate) => {
+                  if (
+                    candidate ===
+                    word
+                  ) {
+                    return true;
+                  }
 
-  const results = shouldReturnFullPool
-    ? categoryPool.sort((a, b) => a.name.localeCompare(b.name))
-    : categoryPool
-        .map((place) => {
-          const placeCity = normalizeText(place.city || "");
-          const placeCategories = getPlaceSearchCategories(place);
-          const name = normalizeText(place.name || "");
-          const address = normalizeText(place.address || "");
-          const category = normalizeText(place.category || "");
-          const miniText = normalizeText(place.miniText || "");
-          const haystack = [name, placeCity, address, category, miniText].filter(Boolean).join(" ");
+                  if (
+                    word.length < 5 ||
+                    candidate.length <
+                      5
+                  ) {
+                    return false;
+                  }
 
-          let score = 0;
-          let relevance = 0;
+                  const maxDistance =
+                    Math.max(
+                      word.length,
+                      candidate.length
+                    ) >= 8
+                      ? 2
+                      : 1;
 
-          if (detectedCity && placeCity === normalizedDetectedCity) score += 80;
+                  return (
+                    levenshteinSearch(
+                      word,
+                      candidate
+                    ) <=
+                    maxDistance
+                  );
+                }
+              )
+          );
 
-          if (explicitCategory && placeCategories.includes(explicitCategory)) {
-            const value = intentCategories.length > 0 ? 25 : 90;
-            score += value;
-            relevance += value;
-          }
+        if (!allMatched) {
+          return null;
+        }
 
-          for (const category of intentCategories) {
-            if (placeCategories.includes(category)) {
-              const value = explicitCategory ? 90 : 70;
-              score += value;
-              relevance += value;
-            }
-          }
+        return {
+          place,
+          score: 500,
+        };
+      }
+    )
+    .filter(
+      (
+        item
+      ): item is {
+        place: SearchPlace;
+        score: number;
+      } =>
+        item !== null
+    )
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        a.place.name.localeCompare(
+          b.place.name
+        )
+    )
+    .map(
+      (item) =>
+        item.place
+    );
+}
 
-          if (!explicitCategory && targetCategories.some((category) => placeCategories.includes(category))) {
-            score += 20;
-            relevance += 20;
-          }
+function simpleStructuredSearch(
+  query: string,
+  places: SearchPlace[]
+) {
+  /*
+   * Un vrai nom de lieu exact reste prioritaire.
+   *
+   * Exemple :
+   * "Café Bloom" ne doit pas être interprété
+   * comme la catégorie Café.
+   */
+  const exactNameResults =
+    strongExactNameResults(
+      query,
+      places
+    );
 
-          for (const token of meaningfulTokens) {
-            if (name.includes(token)) {
-              score += 18;
-              relevance += 18;
-            }
-            if (category.includes(token)) {
-              score += 14;
-              relevance += 14;
-            }
-            if (placeCity.includes(token)) score += 12;
-            if (address.includes(token)) {
-              score += 8;
-              relevance += 8;
-            }
-            if (miniText.includes(token)) {
-              score += 10;
-              relevance += 10;
-            }
-            if (haystack.includes(token)) {
-              score += 3;
-              relevance += 3;
-            }
-          }
+  if (
+    exactNameResults.length === 1
+  ) {
+    return {
+      detectedCity: null,
+      explicitCategory: null,
+      targetCategories: [],
+      intentCategories: [],
+      meaningfulTokens: [],
+      detectedConcepts: [],
+      searchMode:
+        "simple_name",
+      results:
+        exactNameResults,
+    };
+  }
 
-          return { place, score, relevance };
-        })
-        .filter((entry) => entry.relevance > 0)
-        .sort((a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name))
-        .map((entry) => entry.place);
+  const detectedCity =
+    detectSimpleCity(
+      query,
+      places
+    );
+
+  const detectedCategory =
+    detectSimpleCategory(
+      query
+    );
+
+  /*
+   * On vérifie qu'il ne reste pas de critère
+   * que cette barre simple ne sait pas traiter.
+   *
+   * Exemple :
+   * "café ouvert samedi Paris"
+   * contient encore "ouvert", "samedi".
+   *
+   * On ne prétend donc PAS avoir compris
+   * ces critères.
+   */
+  const recognizedWords =
+    new Set<string>(
+      SIMPLE_QUERY_WORDS
+    );
+
+  if (detectedCity) {
+    for (
+      const word of
+        queryWords(
+          detectedCity
+        )
+    ) {
+      recognizedWords.add(
+        word
+      );
+    }
+  }
+
+  if (detectedCategory) {
+    for (
+      const word of
+        queryWords(
+          detectedCategory.alias
+        )
+    ) {
+      recognizedWords.add(
+        word
+      );
+    }
+  }
+
+  const unsupportedWords =
+    queryWords(query)
+      .filter(
+        (word) =>
+          !recognizedWords.has(
+            word
+          )
+      );
+
+  if (
+    detectedCity ||
+    detectedCategory
+  ) {
+    /*
+     * Un mot restant peut correspondre à un vrai
+     * nom de lieu contenant une catégorie.
+     * On donne alors encore une chance au nom exact.
+     */
+    if (
+      unsupportedWords.length >
+        0
+    ) {
+      if (
+        exactNameResults.length >
+        0
+      ) {
+        return {
+          detectedCity: null,
+          explicitCategory: null,
+          targetCategories: [],
+          intentCategories: [],
+          meaningfulTokens: [],
+          detectedConcepts: [],
+          searchMode:
+            "simple_name",
+          results:
+            exactNameResults,
+        };
+      }
+
+      return {
+        detectedCity,
+        explicitCategory:
+          detectedCategory?.key ??
+          null,
+
+        targetCategories:
+          detectedCategory
+            ? [
+                detectedCategory.key,
+              ]
+            : [],
+
+        intentCategories: [],
+        meaningfulTokens:
+          unsupportedWords,
+        detectedConcepts: [],
+        searchMode:
+          "simple_unsupported",
+        results: [],
+      };
+    }
+
+    let results =
+      [...places];
+
+    if (detectedCity) {
+      const city =
+        normalizeSearchText(
+          detectedCity
+        );
+
+      results =
+        results.filter(
+          (place) =>
+            normalizeSearchText(
+              place.city
+            ) === city
+        );
+    }
+
+    if (detectedCategory) {
+      results =
+        results.filter(
+          (place) =>
+            placeMatchesSimpleCategory(
+              place,
+              detectedCategory.key
+            )
+        );
+    }
+
+    results.sort(
+      (a, b) =>
+        a.name.localeCompare(
+          b.name
+        )
+    );
+
+    return {
+      detectedCity,
+
+      explicitCategory:
+        detectedCategory?.key ??
+        null,
+
+      targetCategories:
+        detectedCategory
+          ? [
+              detectedCategory.key,
+            ]
+          : [],
+
+      intentCategories: [],
+      meaningfulTokens: [],
+      detectedConcepts: [],
+
+      searchMode:
+        detectedCity &&
+        detectedCategory
+          ? "simple_category_city"
+          : detectedCity
+            ? "simple_city"
+            : "simple_category",
+
+      results,
+    };
+  }
 
   return {
-    detectedCity,
-    explicitCategory,
-    targetCategories,
-    intentCategories,
-    meaningfulTokens,
-    searchMode: shouldReturnFullPool ? "full_pool" : "scored",
-    results,
+    detectedCity: null,
+    explicitCategory: null,
+    targetCategories: [],
+    intentCategories: [],
+    meaningfulTokens:
+      queryWords(
+        simpleNameQuery(
+          query
+        )
+      ),
+    detectedConcepts: [],
+    searchMode:
+      "simple_name",
+    results:
+      simpleNameResults(
+        query,
+        places
+      ),
   };
 }
+
 
 export async function POST(req: Request) {
   try {
@@ -337,17 +937,23 @@ export async function POST(req: Request) {
 
     const locale = (locales as readonly string[]).includes(requestedLocale) ? requestedLocale : defaultLocale;
     const places = await readPlaces(locale);
-    const local = localSearch(query, places);
+    const local =
+      simpleStructuredSearch(
+        query,
+        places
+      );
 
     return NextResponse.json({
       ok: true,
-      mode: process.env.OPENAI_API_KEY ? "fallback_ready_for_ai" : "fallback",
+      mode: "simple_name_city_category",
+      engineVersion: "search-simple-v1",
       query,
       detectedCity: local.detectedCity,
       explicitCategory: local.explicitCategory,
       targetCategories: local.targetCategories,
       intentCategories: local.intentCategories,
       meaningfulTokens: local.meaningfulTokens,
+      detectedConcepts: local.detectedConcepts,
       searchMode: local.searchMode,
       resultsCount: local.results.length,
       results: local.results,

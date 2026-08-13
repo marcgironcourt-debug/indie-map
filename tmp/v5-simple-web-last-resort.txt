@@ -1,0 +1,46 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] Je cherche à Paris un endroit où apprendre à réparer mes vêtements
+PHASE A PRETE : resultats=1 inconnus=5 latence=2099ms
+RESULTATS IMMEDIATS :
+- La Textilerie 100/100
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=32
+WEB INUTILE POUR :
+- FabBRICK → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Activ’18 → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Mode → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Baskets → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=1 checks=1 confirmes=0 contradits=0 nonTrouves=1 erreurs=0 nouveauxResultats=0 latence=48398ms
+V5 SIMPLE : univers=76 candidats=6 faitsMemoire=32 confirmes=1 inconnus=5 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=2054ms retrieval=43ms premiersResultats=2099ms memoireTotal=9110ms attenteMemoireApresPhaseA=7010ms evaluationMemoire=4ms total=57512ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- FabBRICK 77/100 → un endroit pour apprendre à réparer des vêtements
+- Activ’18 72/100 → un endroit pour apprendre à réparer des vêtements
+- L'Appartement Français - Mode 70/100 → un endroit pour apprendre à réparer des vêtements
+- L'Appartement Français - Baskets 68/100 → un endroit pour apprendre à réparer des vêtements
+- La Recyclerie 69/100 → un endroit pour apprendre à réparer des vêtements
+COMPRIS : Trouver à Paris un endroit pour apprendre à réparer ses vêtements (atelier/cours de réparation textile).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : un endroit pour apprendre à réparer des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 6
+PREJUDGE : confirmed=1 verify=5 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 100/100
+    1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 5563
+LLM INPUT TOKENS : 10353
+LLM OUTPUT TOKENS : 413
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.002698
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

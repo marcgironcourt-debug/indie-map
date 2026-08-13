@@ -1,0 +1,147 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: ⚙️  override existing env vars with { override: true }
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] Trouve-moi un endroit à Paris où boire un verre ce soir et voir un concert
+PHASE A PRETE : resultats=0 inconnus=56 latence=1378ms
+PHASE B MEMOIRE : nouveauxResultats=1 faitsMemoire=76
+RESULTATS AJOUTES PAR LA MEMOIRE :
+- Ground Control 97/100
+CANDIDATS WEB ELIGIBLES : 2
+- La Recyclerie → voir un concert
+- Vivide → voir un concert
+WEB INUTILE POUR :
+- Le TLM Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Hasard Ludique → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Moulin à Café → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie de l’Être → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Pavillon des Canaux → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Martin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Bistro Les Artizans → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Dubillot → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Frame Brasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Trockette → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Bellanger → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Patoche - Microbrasserie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie des Prés → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Textilerie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Jourdan → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Cop1ne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Bonne Nouvelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La cantine Champ Libre → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - St Michel → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Boulinier - Châtelet Les Halles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Petites Cantines Paris → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Maison du Zéro Déchet → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Irwin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Mode → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Ferme de Viltain → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Glaneuses → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Farinez'vous → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'Appartement Français - Baskets → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Récolte – Beaubourg → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Pristine → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Le Zingam → aucun signal Indie Map suffisant pour justifier une consultation du site
+- MURE épicerie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Récolte – Chemin Vert → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Berrie Saint-Lazare → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Récolte – Batignolles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Borie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Main Verte Glacière → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Datil → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Laiterie La Chapelle → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Laiterie de la Main Verte → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Berrie Moines → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Maison Bretonne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kelbongoo → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Main Verte Ledru-Rollin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Récolte – Chardon Lagache → aucun signal Indie Map suffisant pour justifier une consultation du site
+- EMPREINTES → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Main Verte Place d’Italie → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Kilogramme → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Main Verte Brézin → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Clayette Denfert-Rochereau → aucun signal Indie Map suffisant pour justifier une consultation du site
+WEB DRY RUN : aucune consultation officielle exécutée
+PHASE C WEB : candidats=2 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=1ms
+V5 SIMPLE : univers=76 candidats=64 faitsMemoire=76 confirmes=1 inconnus=53 contradits=8
+LATENCE V5 SIMPLE : parse+embedding=1294ms retrieval=42ms premiersResultats=1378ms memoireTotal=3644ms attenteMemoireApresPhaseA=2267ms evaluationMemoire=30ms total=3676ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- Le TLM Paris 100/100 → boire un verre
+- Le Hasard Ludique 97/100 → boire un verre
+- Le Moulin à Café 95/100 → boire un verre
+- Brasserie de l’Être 93/100 → boire un verre
+- Le Pavillon des Canaux 92/100 → boire un verre | voir un concert
+- Brasserie Martin 91/100 → boire un verre | voir un concert
+- Bistro Les Artizans 90/100 → boire un verre | voir un concert
+- Brasserie Dubillot 89/100 → boire un verre | voir un concert
+- Frame Brasserie 88/100 → voir un concert
+- La Trockette 87/100 → boire un verre
+- Brasserie Bellanger 87/100 → boire un verre | voir un concert
+- Patoche - Microbrasserie 86/100 → boire un verre | voir un concert
+- Brasserie des Prés 86/100 → boire un verre | voir un concert
+- La Textilerie 86/100 → boire un verre | voir un concert
+- Boulinier - Jourdan 83/100 → boire un verre | voir un concert
+- La Cop1ne 83/100 → boire un verre | voir un concert
+- Boulinier - Bonne Nouvelle 83/100 → boire un verre | voir un concert
+- La cantine Champ Libre 83/100 → boire un verre | voir un concert
+- Boulinier - St Michel 82/100 → boire un verre | voir un concert
+- Boulinier - Châtelet Les Halles 81/100 → boire un verre | voir un concert
+- Les Petites Cantines Paris 81/100 → boire un verre | voir un concert
+- La Maison du Zéro Déchet 80/100 → boire un verre | voir un concert
+- Irwin 77/100 → boire un verre | voir un concert
+- L'Appartement Français - Mode 77/100 → boire un verre | voir un concert
+- La Ferme de Viltain 76/100 → boire un verre | voir un concert
+- Les Glaneuses 76/100 → boire un verre | voir un concert
+- Farinez'vous 76/100 → boire un verre | voir un concert
+- Farinez'vous 76/100 → boire un verre | voir un concert
+- L'Appartement Français - Baskets 75/100 → boire un verre | voir un concert
+- La Récolte – Beaubourg 75/100 → boire un verre | voir un concert
+- Pristine 74/100 → boire un verre | voir un concert
+- Le Zingam 74/100 → boire un verre | voir un concert
+- MURE épicerie 73/100 → boire un verre | voir un concert
+- La Récolte – Chemin Vert 72/100 → boire un verre | voir un concert
+- Berrie Saint-Lazare 72/100 → boire un verre | voir un concert
+- La Récolte – Batignolles 71/100 → boire un verre | voir un concert
+- La Borie 71/100 → boire un verre | voir un concert
+- La Main Verte Glacière 71/100 → boire un verre | voir un concert
+- Datil 70/100 → boire un verre | voir un concert
+- Laiterie La Chapelle 70/100 → boire un verre | voir un concert
+- Kelbongoo 70/100 → boire un verre | voir un concert
+- La Laiterie de la Main Verte 69/100 → boire un verre | voir un concert
+- Berrie Moines 69/100 → boire un verre | voir un concert
+- Maison Bretonne 69/100 → boire un verre | voir un concert
+- Kelbongoo 69/100 → boire un verre | voir un concert
+- Kelbongoo 69/100 → boire un verre | voir un concert
+- La Main Verte Ledru-Rollin 69/100 → boire un verre | voir un concert
+- La Récolte – Chardon Lagache 69/100 → boire un verre | voir un concert
+- EMPREINTES 68/100 → boire un verre | voir un concert
+- La Main Verte Place d’Italie 68/100 → boire un verre | voir un concert
+- Kilogramme 68/100 → boire un verre | voir un concert
+- La Main Verte Brézin 68/100 → boire un verre | voir un concert
+- La Clayette Denfert-Rochereau 68/100 → boire un verre | voir un concert
+COMPRIS : Un endroit à Paris pour boire un verre et assister à un concert ce soir.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : boire un verre | voir un concert
+PREF : —
+TEMPS : ce soir
+CANDIDATS : 64
+PREJUDGE : confirmed=1 verify=53 rejected=8
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. Ground Control [Paris] — 97/100
+    3/3 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s).
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 21
+LLM INPUT TOKENS : 628
+LLM OUTPUT TOKENS : 80
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000226
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

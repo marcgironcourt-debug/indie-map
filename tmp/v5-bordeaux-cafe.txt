@@ -1,0 +1,66 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+=== INDIE MAP AI SEARCH V5 SIMPLE ===
+REQUÊTES : 1
+
+==================================================
+[1/1] trouve moi un endroit pour boire un café a bordeaux
+PHASE A PRETE : resultats=0 inconnus=16 latence=3573ms
+PHASE B MEMOIRE : nouveauxResultats=0 faitsMemoire=0
+CANDIDATS WEB ELIGIBLES : 0
+WEB INUTILE POUR :
+- La Cité Bleue → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Brasserie Vinatier → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Échoppe de la Lune → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Darwin Eco-système → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Les Récoltants → aucun signal Indie Map suffisant pour justifier une consultation du site
+- L'abeille gourmande → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Vie de Quartier - Cocagne → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Fabrique Pains et Bricoles → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Ïkos → aucun signal Indie Map suffisant pour justifier une consultation du site
+- La Recharge → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Racines → aucun signal Indie Map suffisant pour justifier une consultation du site
+- CASA GAÏA → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Hortus → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Symbiose → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Aux Petits Poids → aucun signal Indie Map suffisant pour justifier une consultation du site
+- Local'Attitude → aucun signal Indie Map suffisant pour justifier une consultation du site
+PHASE C WEB : candidats=0 checks=0 confirmes=0 contradits=0 nonTrouves=0 erreurs=0 nouveauxResultats=0 latence=1ms
+V5 SIMPLE : univers=16 candidats=16 faitsMemoire=0 confirmes=0 inconnus=16 contradits=0
+LATENCE V5 SIMPLE : parse+embedding=3551ms retrieval=14ms premiersResultats=3573ms memoireTotal=3796ms attenteMemoireApresPhaseA=223ms evaluationMemoire=6ms total=3802ms
+INCONNUS POTENTIELLEMENT A VERIFIER SUR LE WEB :
+- La Cité Bleue 100/100 → cafe
+- Brasserie Vinatier 100/100 → cafe
+- Échoppe de la Lune 96/100 → cafe
+- Darwin Eco-système 96/100 → cafe
+- Les Récoltants 96/100 → cafe
+- L'abeille gourmande 95/100 → cafe
+- La Vie de Quartier - Cocagne 95/100 → cafe
+- La Fabrique Pains et Bricoles 93/100 → cafe
+- Ïkos 93/100 → cafe
+- La Recharge 90/100 → cafe
+- Racines 90/100 → cafe
+- CASA GAÏA 89/100 → cafe
+- Hortus 88/100 → cafe
+- Symbiose 88/100 → cafe
+- Aux Petits Poids 88/100 → cafe
+- Local'Attitude 85/100 → cafe
+COMPRIS : Trouver un endroit où boire un café.
+VILLE : Bordeaux
+ZONE : —
+ENTITÉ : —
+MUST : —
+PREF : —
+TEMPS : —
+CANDIDATS : 16
+PREJUDGE : confirmed=0 verify=16 rejected=0
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTAT : AUCUN BON MATCH
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 14
+LLM INPUT TOKENS : 623
+LLM OUTPUT TOKENS : 62
+HTTP OFFICIEL : 0
+COÛT ESTIMÉ TOTAL : $ 0.000202
+RÉSULTATS JSON : tmp/search-v5-simple-results.json

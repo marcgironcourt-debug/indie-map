@@ -134,7 +134,7 @@ model User {
   lastKnownLocationAt           DateTime?
   lastSeenAt                    DateTime?
   createdAt                     DateTime  @default(now())
-  updatedAt                     DateTime  @updatedAt
+  updatedAt                     DateTime  @default(now()) @updatedAt
 
   submissions                Submission[]
   sentFriendships            Friendship[]                @relation("FriendshipRequester")
@@ -161,7 +161,7 @@ model Friendship {
   receiverId  String
   status      String   @default("pending")
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime @default(now()) @updatedAt
 
   requester User @relation("FriendshipRequester", fields: [requesterId], references: [id], onDelete: Cascade)
   receiver  User @relation("FriendshipReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
@@ -195,7 +195,7 @@ model UserPlace {
   visited    Boolean   @default(false)
   visitedAt  DateTime?
   createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  updatedAt  DateTime  @default(now()) @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -211,7 +211,7 @@ model PlaceComment {
   body       String
   visibility String   @default("private")
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  updatedAt  DateTime @default(now()) @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -225,7 +225,7 @@ model SharedList {
   ownerId   String
   title     String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   owner   User               @relation("SharedListOwner", fields: [ownerId], references: [id], onDelete: Cascade)
   members SharedListMember[]
@@ -386,4 +386,128 @@ model AppUpdateNotificationLog {
   @@index([userId, sentAt])
   @@index([version])
   @@index([platform])
+}
+
+//
+// INDIE MAP AI V5 — MEMORY FIRST
+//
+// Règle fondamentale :
+// - AiVerifiedFact = connaissance factuelle vérifiée.
+// - AiOfficialPageCache = cache technique, pas une vérité en soi.
+// - AiSearchSignal = apprentissage de recherche, jamais une preuve factuelle.
+//
+
+model AiVerifiedFact {
+  id String @id @default(uuid())
+
+  // Lieu Indie Map auquel la preuve a été rattachée.
+  // Pas de relation Prisma volontairement :
+  // le catalogue de recherche provient actuellement de places.json.
+  placeId String
+
+  // Permet d'auditer l'identité utilisée lors de la vérification.
+  placeName    String?
+  placeAddress String?
+
+  // target_place | brand_general
+  scope String
+
+  // Domaine et page officielle d'origine.
+  sourceDomain String
+  sourceUrl    String
+
+  // Extrait EXACT déjà vérifié dans la page officielle.
+  evidenceText String
+  evidenceHash String
+
+  // Question qui avait déclenché la découverte de cette preuve.
+  // Elle est conservée pour audit mais n'est pas elle-même une vérité.
+  verificationQuestion String?
+
+  // Hash de la page au moment de la vérification.
+  sourceContentHash String?
+
+  verifierVersion String?
+
+  verifiedAt DateTime @default(now())
+
+  // Toute connaissance doit avoir une politique de fraîcheur.
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([placeId, sourceUrl, evidenceHash])
+  @@index([placeId, expiresAt])
+  @@index([sourceDomain])
+  @@index([expiresAt])
+}
+
+model AiOfficialPageCache {
+  id String @id @default(uuid())
+
+  // URL normalisée demandée.
+  url String @unique
+
+  // URL obtenue après éventuelles redirections.
+  finalUrl String?
+
+  contentType String?
+  httpStatus  Int?
+
+  // HTML/XML/texte brut : nécessaire pour pouvoir
+  // refaire discovery/extraction sans nouvel appel réseau.
+  body String
+
+  contentHash String
+
+  etag         String?
+  lastModified String?
+
+  fetchedAt DateTime @default(now())
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([expiresAt])
+  @@index([contentHash])
+}
+
+model AiSearchSignal {
+  id String @id @default(uuid())
+
+  // On conserve la formulation : les faux négatifs observés
+  // dépendent précisément de la façon dont la demande est écrite.
+  queryText       String
+  normalizedQuery String
+  queryHash       String
+
+  // Facultatif : certains signaux concernent une requête entière.
+  placeId String?
+
+  // Exemples futurs :
+  // result_shown, result_clicked, result_saved,
+  // regression_expected, regression_missed,
+  // autonomous_pass, autonomous_fail.
+  signal String
+
+  // user_behavior | manual_regression | autonomous_test
+  source String
+
+  // Métadonnées non factuelles :
+  // rang, moteur, score, formulation, résultat attendu, etc.
+  payload Json?
+
+  // Influence future sur retrieval/ranking uniquement.
+  weight Float @default(1)
+
+  observedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  @@index([queryHash])
+  @@index([placeId])
+  @@index([signal])
+  @@index([source])
+  @@index([observedAt])
 }

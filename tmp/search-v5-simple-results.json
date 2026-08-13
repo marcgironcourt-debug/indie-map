@@ -1,0 +1,59 @@
+[
+  {
+    "query": "Trouve-moi un endroit pour boire une bière à Paris",
+    "parsed": {
+      "need": "Trouver un endroit où boire une bière à Paris.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "entityIsSpecific": false,
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 45,
+    "debug": {
+      "confirmed": 3,
+      "needsVerification": 42,
+      "rejected": 0,
+      "officialChecks": 0,
+      "officialConfirmed": 0,
+      "officialNotFound": 0,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "86315e11-bb94-42a9-843a-d1b6fd68591e",
+        "name": "Patoche - Microbrasserie",
+        "city": "Paris",
+        "category": "Brasserie",
+        "fit": 100,
+        "reason": "1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s)."
+      },
+      {
+        "id": "880f2223-6584-4b2e-908a-f9d4fb0a7ccf",
+        "name": "Brasserie de l’Être",
+        "city": "Paris",
+        "category": "Brasserie",
+        "fit": 99,
+        "reason": "1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s)."
+      },
+      {
+        "id": "8f65fcf7-c072-4897-8aa3-724287ead580",
+        "name": "La Laiterie de la Main Verte",
+        "city": "Paris",
+        "category": "Épicerie",
+        "fit": 80,
+        "reason": "1/1 critère(s) confirmé(s) localement, 0 inconnu(s), 0 contradit(s)."
+      }
+    ]
+  }
+]

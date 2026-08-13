@@ -1,0 +1,104 @@
+[dotenv@17.2.3] injecting env (14) from .env.local -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+=== INDIE MAP AI SEARCH V4 ===
+REQUÊTES : 6
+
+==================================================
+[1/6] Je cherche à Paris un endroit où apprendre à réparer mes vêtements
+COMPRIS : Trouver à Paris un endroit où apprendre à réparer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Un lieu pour apprendre à réparer des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=0 verify=0 rejected=24
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTAT : AUCUN BON MATCH
+
+==================================================
+[2/6] Où à Paris puis-je participer à des ateliers pour réparer ou transformer mes vêtements ?
+COMPRIS : Trouver à Paris des ateliers où participer pour réparer ou transformer ses vêtements (atelier de réparation / upcycling / retouches).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : atelier pour réparer des vêtements | atelier pour transformer/upcycler des vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=0 verify=1 rejected=23
+OFFICIEL : checks=1 confirmed=1 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 95/100
+    Correspond directement au besoin à Paris : le site officiel indique que les ateliers permettent de « réparer » et de « transformer » les vêtements, avec aussi un repair café textile pour transmettre les gestes de réparation. Le lieu est situé à Paris (22 Rue du Château Landon, 75010).
+
+==================================================
+[3/6] Un lieu à Paris pour apprendre à modifier et réparer ses vêtements
+COMPRIS : Trouver un lieu à Paris pour apprendre à modifier et réparer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Lieu à Paris pour apprendre la modification et la réparation de vêtements
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=0 rejected=23
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    À Paris, La Textilerie est un lieu dédié au réemploi textile (friperie solidaire/recyclerie) avec des ateliers de couture. La description indique explicitement qu’on y apprend à « réparer et transformer » des vêtements, ce qui répond directement au besoin de modifier et réparer ses vêtements.
+
+==================================================
+[4/6] Je cherche un endroit à Paris avec des ateliers de couture orientés réparation et transformation
+COMPRIS : Un endroit à Paris proposant des ateliers de couture orientés réparation et transformation (retouches, réparation, transformation de vêtements).
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : Ateliers de couture | Orientés réparation | Orientés transformation (retouches/transformations)
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=0 rejected=23
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    Correspond directement au besoin : le lieu est dédié au réemploi textile et mentionne explicitement des ateliers de couture, avec l’apprentissage de la réparation (« apprendre à les réparer ») et de la transformation des vêtements (« apprendre à les réparer et transformer »), à Paris (22 Rue du Château Landon, 75010).
+
+==================================================
+[5/6] Où apprendre soi-même les gestes pour réparer ses vêtements à Paris ?
+COMPRIS : Trouver où apprendre soi-même (cours/ressources/ateliers) les gestes pour réparer ses vêtements à Paris.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : —
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=0 verify=0 rejected=24
+OFFICIEL : checks=0 confirmed=0 not_found=0 contradicted=0
+RÉSULTAT : AUCUN BON MATCH
+
+==================================================
+[6/6] Un lieu de mode circulaire à Paris où je peux apprendre à réparer et transformer mes vêtements
+COMPRIS : Trouver un lieu de mode circulaire à Paris où apprendre à réparer et transformer ses vêtements.
+VILLE : Paris
+ZONE : —
+ENTITÉ : —
+MUST : apprendre à réparer des vêtements | apprendre à transformer des vêtements | lieu de mode circulaire
+PREF : —
+TEMPS : —
+CANDIDATS : 24
+PREJUDGE : confirmed=1 verify=1 rejected=22
+OFFICIEL : checks=1 confirmed=0 not_found=1 contradicted=0
+RÉSULTATS :
+ 1. La Textilerie [Paris] — 92/100
+    Correspond très bien au besoin : La Textilerie est un lieu dédié au réemploi textile (friperie solidaire/recyclerie) et propose explicitement des ateliers de couture permettant d’apprendre à réparer et à transformer des vêtements à Paris.
+
+==================================================
+=== USAGE ===
+EMBEDDING TOKENS : 1340
+LLM INPUT TOKENS : 67065
+LLM OUTPUT TOKENS : 22699
+HTTP OFFICIEL : 9
+COÛT ESTIMÉ TOTAL : $ 0.041814
+RÉSULTATS JSON : tmp/search-v4.2-blind-results.json

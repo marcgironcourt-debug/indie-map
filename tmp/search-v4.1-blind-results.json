@@ -1,0 +1,458 @@
+[
+  {
+    "query": "je voudrais dîner quelque part à Sydney avec une vraie option sans gluten et une ambiance indépendante",
+    "parsed": {
+      "need": "Trouver un endroit pour dîner à Sydney avec une vraie option sans gluten et une ambiance indépendante.",
+      "city": "Sydney",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "une option sans gluten fiable"
+      ],
+      "prefer": [
+        "ambiance indépendante"
+      ],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 10,
+      "rejected": 14,
+      "officialChecks": 4,
+      "officialConfirmed": 0,
+      "officialNotFound": 4,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "une boutique parisienne pour offrir quelque chose réellement fabriqué à la main",
+    "parsed": {
+      "need": "Trouver une boutique à Paris pour offrir un cadeau réellement fabriqué à la main",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Une boutique parisienne",
+        "Proposer des objets réellement fabriqués à la main (fait main)"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 3,
+      "rejected": 20,
+      "officialChecks": 3,
+      "officialConfirmed": 0,
+      "officialNotFound": 3,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "7a578e28-b1b2-464e-af2f-baa37bc537b6",
+        "name": "EMPREINTES",
+        "city": "Paris",
+        "category": "Boutique",
+        "fit": 90,
+        "reason": "Boutique parisienne dédiée aux métiers d’art : propose des objets (bijoux/pièces de création) réalisés en France par des artisans et artisanes, avec un accent sur le savoir-faire et des pièces uniques ou produites en petites séries, ce qui correspond directement à une offre réellement fabriquée à la main."
+      }
+    ]
+  },
+  {
+    "query": "je cherche un café à Paris où aller dimanche vers 11h30",
+    "parsed": {
+      "need": "Trouver un café à Paris pour y aller dimanche vers 11h30.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "café",
+      "dateTime": "dimanche vers 11h30",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 0,
+      "rejected": 24,
+      "officialChecks": 0,
+      "officialConfirmed": 0,
+      "officialNotFound": 0,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "un endroit pour déjeuner à Paris dont l'accessibilité fauteuil roulant est confirmée",
+    "parsed": {
+      "need": "Trouver un endroit pour déjeuner à Paris avec une accessibilité fauteuil roulant confirmée.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "Accessibilité fauteuil roulant confirmée.",
+      "mustHave": [
+        "Accessibilité fauteuil roulant confirmée"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 24,
+      "rejected": 0,
+      "officialChecks": 4,
+      "officialConfirmed": 1,
+      "officialNotFound": 3,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "9d55e70a-ca9b-42cd-9b43-0920a2514e64",
+        "name": "Le Hasard Ludique",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 88,
+        "reason": "Accessibilité fauteuil roulant confirmée via le site officiel : accès côté rue Belliard avec ouverture de porte par l’équipe/agents, ascenseur pour accéder à l’étage et aux toilettes PMR, présence de toilettes PMR et indication d’une place PMR proche. Des éléments comme le quai et les rails ne sont pas accessibles, mais l’accessibilité PMR est bien documentée."
+      }
+    ]
+  },
+  {
+    "query": "une bière brassée directement par l'établissement à Sydney",
+    "parsed": {
+      "need": "Trouver un lieu à Sydney qui brasse sa bière directement sur place (bière brassée par l’établissement).",
+      "city": "Sydney",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Bière brassée directement sur place par l’établissement"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 2,
+      "needsVerification": 0,
+      "rejected": 22,
+      "officialChecks": 0,
+      "officialConfirmed": 0,
+      "officialNotFound": 0,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "ce15d994-186a-4c13-bbb7-ab108a1363ca",
+        "name": "Batch Brewing Company",
+        "city": "Sydney",
+        "category": "Brasserie",
+        "fit": 95,
+        "reason": "Brasserie artisanale spécialisée dans la production de bières craft brassées sur place par l’établissement, ce qui répond directement au besoin principal (bière brassée directement sur place à Sydney)."
+      },
+      {
+        "id": "b6c76af7-fbcb-48ff-85ad-27d96212bebe",
+        "name": "Young Henrys",
+        "city": "Sydney",
+        "category": "Brasserie",
+        "fit": 80,
+        "reason": "Candidat décrit comme une brasserie artisanale brassant des bières à Sydney. Les informations fournies ne précisent pas explicitement “sur place” comme pour le premier, mais le statut de brasserie rend la demande plausible."
+      }
+    ]
+  },
+  {
+    "query": "un atelier parisien où apprendre à réparer des vêtements",
+    "parsed": {
+      "need": "Trouver un atelier parisien pour apprendre à réparer des vêtements.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "atelier pour apprendre à réparer des vêtements"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 1,
+      "needsVerification": 1,
+      "rejected": 22,
+      "officialChecks": 1,
+      "officialConfirmed": 0,
+      "officialNotFound": 1,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "98ce3443-2512-4285-9b47-535d2a369cb4",
+        "name": "La Textilerie",
+        "city": "Paris",
+        "category": "Mode",
+        "fit": 92,
+        "reason": "La Textilerie est explicitement décrite comme un atelier de réemploi textile où l’on apprend à réparer et transformer des vêtements, à Paris (adresse 22 Rue du Château Landon, 75010). Cela répond directement au mustHave « atelier pour apprendre à réparer des vêtements ». Aucun élément fourni ne contredit les exigences."
+      }
+    ]
+  },
+  {
+    "query": "je veux manger dehors sur une terrasse avec une option végétale à Sydney",
+    "parsed": {
+      "need": "Manger dehors sur une terrasse à Sydney, avec une option végétale.",
+      "city": "Sydney",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "terrasse",
+        "option végétale"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Sydney",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 9,
+      "rejected": 15,
+      "officialChecks": 4,
+      "officialConfirmed": 0,
+      "officialNotFound": 4,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "une épicerie à Paris ouverte dimanche matin où je peux acheter sans trop d'emballages",
+    "parsed": {
+      "need": "Trouver une épicerie à Paris ouverte dimanche matin où acheter avec le moins d’emballages possible.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "épicerie",
+      "dateTime": "dimanche matin",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "épicerie",
+        "ouverte dimanche matin",
+        "acheter avec le moins d’emballages possible"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 1,
+      "rejected": 23,
+      "officialChecks": 1,
+      "officialConfirmed": 0,
+      "officialNotFound": 1,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "un lieu sympa à Paris pour passer l'après-midi avec deux enfants",
+    "parsed": {
+      "need": "Trouver un lieu sympa à Paris pour passer l’après-midi avec deux enfants.",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "",
+      "partySize": "2 enfants",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Lieu adapté aux enfants",
+        "Passer l’après-midi"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 20,
+      "rejected": 4,
+      "officialChecks": 4,
+      "officialConfirmed": 1,
+      "officialNotFound": 3,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": false,
+    "results": [
+      {
+        "id": "2bc1b740-220b-41dc-8a5e-9ea28bb5030f",
+        "name": "La Recyclerie",
+        "city": "Paris",
+        "category": "Lieu de vie",
+        "fit": 93,
+        "reason": "Lieu adapté pour une après-midi avec deux enfants : sur le site officiel, « Les enfants sont les bienvenus », avec « des ateliers pour enfants », « des portions de nourriture pour enfants » et « des coloriages à disposition ». Les horaires indiqués permettent aussi de planifier une visite l’après-midi (ex. lundi 11h–23h, mardi 11h–00h, mercredi 11h–00h, etc.)."
+      }
+    ]
+  },
+  {
+    "query": "je cherche un restaurant à Bois-Colombes qui a une démarche sociale ou inclusive",
+    "parsed": {
+      "need": "Trouver un restaurant à Bois-Colombes avec une démarche sociale ou inclusive.",
+      "city": "Bois-Colombes",
+      "country": "",
+      "location": "",
+      "entity": "restaurant",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "démarche sociale ou inclusive"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Bois-Colombes",
+    "resolvedCountry": "",
+    "retrievalCount": 1,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 0,
+      "rejected": 1,
+      "officialChecks": 0,
+      "officialConfirmed": 0,
+      "officialNotFound": 0,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "un événement musical annoncé le 12 août 2026 dans un lieu alternatif parisien",
+    "parsed": {
+      "need": "Trouver un événement musical annoncé le 12 août 2026 dans un lieu alternatif à Paris",
+      "city": "Paris",
+      "country": "",
+      "location": "",
+      "entity": "",
+      "dateTime": "12 août 2026",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Événement musical",
+        "Date : 12 août 2026",
+        "Lieu alternatif à Paris"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "Paris",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 5,
+      "rejected": 19,
+      "officialChecks": 4,
+      "officialConfirmed": 0,
+      "officialNotFound": 4,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  },
+  {
+    "query": "je cherche un restaurant qui s'appellerait peut-être Plantxa ou quelque chose de très proche",
+    "parsed": {
+      "need": "Trouver un restaurant dont le nom pourrait être « Plantxa » ou très proche.",
+      "city": "",
+      "country": "",
+      "location": "",
+      "entity": "Plantxa (ou nom très proche)",
+      "dateTime": "",
+      "partySize": "",
+      "budget": "",
+      "mobility": "",
+      "mustHave": [
+        "Nom du restaurant : « Plantxa » ou très proche (orthographe/variation possible)"
+      ],
+      "prefer": [],
+      "avoid": []
+    },
+    "resolvedCity": "",
+    "resolvedCountry": "",
+    "retrievalCount": 24,
+    "debug": {
+      "confirmed": 0,
+      "needsVerification": 0,
+      "rejected": 24,
+      "officialChecks": 0,
+      "officialConfirmed": 0,
+      "officialNotFound": 0,
+      "officialContradicted": 0
+    },
+    "noGoodMatch": true,
+    "results": []
+  }
+]
