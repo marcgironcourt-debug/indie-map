@@ -19445,5 +19445,107 @@
     "homeTextNear": "Cette épicerie fermière permet de faire ses courses en circuit court avec les produits de la ferme et ceux de nombreux producteurs français.",
     "homeTextFar": "À Magny-les-Hameaux, Le Garde-Manger propose une autre manière de faire ses courses, entre productions de la ferme, produits fermiers et savoir-faire artisanaux français.",
     "panoramaImage": "/downloads/legardemangeryvelines.webp"
+  },
+  {
+    "id": "9cbb4d36-21ed-49b2-bdd6-909a7a32b4bf",
+    "name": "Terroirs",
+    "city": "Montréal",
+    "address": "2600 Rue William-Tremblay, local 120, Montréal, QC H1Y 3J2, Canada",
+    "website": "https://terroirsrestaurant.ca",
+    "openingHours": "Lundi Fermé\nMardi Fermé\nMercredi 17h00-22h00\nJeudi 17h00-22h00\nVendredi 17h00-22h00\nSamedi 17h00-22h00\nDimanche Fermé",
+    "lat": 45.54303,
+    "lng": -73.56425,
+    "category": "Restaurant",
+    "createdAt": "2026-08-15T06:30:05.868Z",
+    "updatedAt": "2026-08-15T06:30:05.868Z",
+    "timeZone": "America/Toronto",
+    "phone": "+1 438 793-6792",
+    "miniText": "Restaurant montréalais consacré aux produits du Québec, aux savoir-faire régionaux et à une cuisine locale qui suit les saisons. Les ingrédients sont obtenus en relation directe, sans intermédiaire, auprès d’une communauté de producteurs et d’artisans. Le menu explore les identités culinaires québécoises à travers l’agriculture, la pêche et la cueillette responsables, avec une attention particulière portée à l’origine des produits, aux techniques de transformation et au lien entre cuisine et territoire.",
+    "tags": [
+      "Cuisine québécoise",
+      "Produits locaux",
+      "Circuit court"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Montréal restaurant dedicated to Québec products, regional food traditions and local cuisine shaped by the seasons. Ingredients are sourced through direct relationships, without intermediaries, from a community of producers and artisans. The menu explores Québec’s regional food cultures through responsible farming, fishing and foraging, with particular attention to product origins, transformation techniques and the relationship between food and place.",
+        "homeTextNear": "This restaurant serves seasonal Québec cuisine prepared with products sourced directly, without intermediaries, from a community of local producers and artisans.",
+        "homeTextFar": "In Montréal, this restaurant offers another way to eat through seasonal cuisine built around Québec products, responsible sourcing, regional food traditions and direct relationships with producers."
+      }
+    },
+    "country": "CA",
+    "homeTextDone": true,
+    "homeTextNear": "Ce restaurant permet de découvrir une cuisine québécoise locale et saisonnière, élaborée sans intermédiaire avec des produits provenant directement d’une communauté de producteurs et d’artisans.",
+    "homeTextFar": "À Montréal, ce restaurant propose une autre manière de manger, avec une cuisine de saison construite autour des produits du Québec, des savoir-faire régionaux et de relations directes avec les producteurs.",
+    "panoramaImage": "/downloads/terroirsrestaurant.webp"
+  },
+  {
+    "id": "d576a8ad-125c-4d6f-a0bd-7d82ae8c4cf8",
+    "name": "Anémone",
+    "city": "Montréal",
+    "address": "271 Rue Saint-Zotique Ouest, Montréal, QC H2V 1A4, Canada",
+    "website": "https://anemonemtl.com",
+    "openingHours": "Lundi Fermé\nMardi 17h30-22h30\nMercredi 17h30-22h30\nJeudi 17h30-22h30\nVendredi 17h30-22h30\nSamedi 17h30-22h30\nDimanche Fermé",
+    "lat": 45.5288804,
+    "lng": -73.6162384,
+    "category": "Restaurant",
+    "createdAt": "2026-08-15T06:30:05.868Z",
+    "updatedAt": "2026-08-15T06:30:05.868Z",
+    "timeZone": "America/Toronto",
+    "phone": "+1 514 270-8000",
+    "miniText": "Restaurant du Mile-Ex où une cuisine locale, libre et évolutive se construit à partir de produits de saison et des arrivages disponibles. Le menu court change régulièrement et mêle influences québécoises et internationales, cueillette sauvage, fermentation, marinades et techniques de conservation. L’approche privilégie la créativité, le partage et une lecture contemporaine du garde-manger local, accompagnée d’une carte de vins nature et de cuvées issues de l’importation privée.",
+    "tags": [
+      "Cuisine locale",
+      "Produits de saison",
+      "Fermentation"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Mile-Ex restaurant where a free-flowing, evolving local cuisine is shaped by seasonal products and current availability. The short menu changes regularly and combines Québec and international influences with wild ingredients, fermentation, marinades and preservation techniques. Its approach emphasizes creativity, sharing and a contemporary interpretation of the local pantry, accompanied by natural wines and privately imported bottles.",
+        "homeTextNear": "This restaurant serves an evolving local cuisine guided by seasonal availability, wild ingredients, fermentation, marinades and preservation techniques.",
+        "homeTextFar": "In Montréal, this restaurant offers another way to eat through a short local menu that changes with the seasons, available products and the kitchen’s creative influences."
+      }
+    },
+    "country": "CA",
+    "homeTextDone": true,
+    "homeTextNear": "Ce restaurant permet de manger une cuisine locale et changeante, guidée par les saisons, les arrivages, la cueillette sauvage et des techniques de fermentation et de conservation.",
+    "homeTextFar": "À Montréal, ce restaurant propose une autre manière de manger, avec un menu court de produits locaux qui évolue selon les saisons, les arrivages et les inspirations de la cuisine.",
+    "panoramaImage": "/downloads/anemonesmontr.webp"
+  },
+  {
+    "id": "02780af5-42af-47b7-99d0-4f5fc1810d5f",
+    "name": "Cabaret l’Enfer",
+    "city": "Montréal",
+    "address": "4094 Rue Saint-Denis, Montréal, QC H2W 2M5, Canada",
+    "website": "https://www.cabaretlenfer.com",
+    "openingHours": "Lundi Fermé\nMardi 18h00-22h00\nMercredi 18h00-22h00\nJeudi 18h00-22h00\nVendredi 18h00-22h30\nSamedi 18h00-22h30\nDimanche Fermé",
+    "lat": 45.5209551,
+    "lng": -73.5767696,
+    "category": "Restaurant",
+    "createdAt": "2026-08-15T06:30:05.868Z",
+    "updatedAt": "2026-08-15T06:30:05.868Z",
+    "timeZone": "America/Toronto",
+    "phone": "+1 514 419-1090",
+    "miniText": "Restaurant gastronomique montréalais dont le menu dégustation évolue au rythme des saisons du Québec. La cuisine travaille des ingrédients locaux avec une attention portée à leur provenance, au respect des producteurs et à la réduction du gaspillage. L’approche s’inspire du mouvement Slow Food, de la fermentation et du garde-manger québécois, tout en associant techniques françaises, influences italiennes et recherche contemporaine autour des textures, des maturations et des conservations.",
+    "tags": [
+      "Menu dégustation",
+      "Produits québécois",
+      "Slow Food"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Montréal fine-dining restaurant whose tasting menu evolves with Québec’s seasons. The cuisine works with local ingredients while paying close attention to their origins, respect for producers and waste reduction. Its approach draws on the Slow Food movement, fermentation and the Québec pantry while combining French techniques, Italian influences and contemporary research into textures, maturation and preservation.",
+        "homeTextNear": "This restaurant serves a tasting menu shaped by Québec’s seasons, locally sourced ingredients, fermentation and close relationships with producers.",
+        "homeTextFar": "In Montréal, this restaurant offers another way to eat through a fine-dining experience inspired by Québec’s seasons, Slow Food, fermentation and local producers."
+      }
+    },
+    "country": "CA",
+    "homeTextDone": true,
+    "homeTextNear": "Ce restaurant permet de découvrir un menu dégustation construit autour des saisons du Québec, des ingrédients locaux, de la fermentation et du travail mené avec les producteurs.",
+    "homeTextFar": "À Montréal, ce restaurant propose une autre manière de manger, avec une expérience gastronomique inspirée des saisons québécoises, du mouvement Slow Food, de la fermentation et des producteurs locaux.",
+    "panoramaImage": "/downloads/cabaretlenfer.webp"
   }
 ]
