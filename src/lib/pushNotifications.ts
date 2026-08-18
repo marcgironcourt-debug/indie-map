@@ -3,7 +3,14 @@ import { createSign } from "node:crypto";
 import webpush from "web-push";
 import { prisma } from "@/lib/prisma";
 
-type PushKind = "friend_request" | "shared_list_invite" | "context_suggestion" | "reactivation" | "app_update";
+type PushKind =
+  | "friend_request"
+  | "shared_list_invite"
+  | "shared_list_place_added"
+  | "shared_list_renamed"
+  | "context_suggestion"
+  | "reactivation"
+  | "app_update";
 
 type PushPayload = {
   kind: PushKind;
@@ -192,6 +199,60 @@ function buildSharedListInvitePayload(params: {
     body: isFr
       ? `${name} t’a ajouté à « ${title} ».`
       : `${name} added you to “${title}”.`,
+    url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=sharedLists&sharedListId=${encodeURIComponent(params.listId)}`,
+    target: "shared_list",
+    badge: params.badge,
+  };
+}
+
+function buildSharedListPlaceAddedPayload(params: {
+  actorDisplayName: string;
+  listTitle: string;
+  listId: string;
+  placeName: string;
+  locale?: string | null;
+  badge: number;
+}): PushPayload {
+  const isFr = params.locale !== "en";
+  const name = params.actorDisplayName.trim() || (isFr ? "Un ami" : "A friend");
+  const listTitle = params.listTitle.trim() || (isFr ? "une liste partagée" : "a shared list");
+  const placeName = params.placeName.trim();
+
+  return {
+    kind: "shared_list_place_added",
+    title: isFr ? "Nouveau lieu ajouté" : "New place added",
+    body: placeName
+      ? isFr
+        ? `${name} a ajouté « ${placeName} » à « ${listTitle} ».`
+        : `${name} added “${placeName}” to “${listTitle}”.`
+      : isFr
+        ? `${name} a ajouté un nouveau lieu à « ${listTitle} ».`
+        : `${name} added a new place to “${listTitle}”.`,
+    url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=sharedLists&sharedListId=${encodeURIComponent(params.listId)}`,
+    target: "shared_list",
+    badge: params.badge,
+  };
+}
+
+function buildSharedListRenamedPayload(params: {
+  actorDisplayName: string;
+  oldTitle: string;
+  newTitle: string;
+  listId: string;
+  locale?: string | null;
+  badge: number;
+}): PushPayload {
+  const isFr = params.locale !== "en";
+  const name = params.actorDisplayName.trim() || (isFr ? "Un ami" : "A friend");
+  const oldTitle = params.oldTitle.trim() || (isFr ? "une liste partagée" : "a shared list");
+  const newTitle = params.newTitle.trim() || (isFr ? "une liste partagée" : "a shared list");
+
+  return {
+    kind: "shared_list_renamed",
+    title: isFr ? "Liste renommée" : "List renamed",
+    body: isFr
+      ? `${name} a renommé « ${oldTitle} » en « ${newTitle} ».`
+      : `${name} renamed “${oldTitle}” to “${newTitle}”.`,
     url: `${getBaseUrl()}/${isFr ? "fr" : "en"}?panel=sharedLists&sharedListId=${encodeURIComponent(params.listId)}`,
     target: "shared_list",
     badge: params.badge,
@@ -393,6 +454,106 @@ export async function notifySharedListInvite(params: {
   };
 }
 
+
+export async function notifySharedListPlaceAdded(params: {
+  receiverId: string;
+  actorDisplayName: string;
+  listTitle: string;
+  listId: string;
+  placeName: string;
+  locale?: string | null;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.receiverId);
+
+  const payload = buildSharedListPlaceAddedPayload({
+    actorDisplayName: params.actorDisplayName,
+    listTitle: params.listTitle,
+    listId: params.listId,
+    placeName: params.placeName,
+    locale: params.locale,
+    badge,
+  });
+
+  const devices = await prisma.pushDevice.findMany({
+    where: { userId: params.receiverId },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+      subscription: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if ((device.platform === "android" || device.platform === "web") && device.subscription) {
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
+      }
+
+      if (device.platform === "ios" && device.token) {
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
+      }
+
+      return false;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
+  };
+}
+
+export async function notifySharedListRenamed(params: {
+  receiverId: string;
+  actorDisplayName: string;
+  oldTitle: string;
+  newTitle: string;
+  listId: string;
+  locale?: string | null;
+}) {
+  const badge = await getUnreadNotificationBadgeCount(params.receiverId);
+
+  const payload = buildSharedListRenamedPayload({
+    actorDisplayName: params.actorDisplayName,
+    oldTitle: params.oldTitle,
+    newTitle: params.newTitle,
+    listId: params.listId,
+    locale: params.locale,
+    badge,
+  });
+
+  const devices = await prisma.pushDevice.findMany({
+    where: { userId: params.receiverId },
+    select: {
+      id: true,
+      platform: true,
+      token: true,
+      subscription: true,
+    },
+  });
+
+  const results = await Promise.allSettled(
+    devices.map(async (device) => {
+      if ((device.platform === "android" || device.platform === "web") && device.subscription) {
+        return sendWebPush(device.subscription, withPlatformUrl(payload, device.platform));
+      }
+
+      if (device.platform === "ios" && device.token) {
+        return sendApns(device.token, withPlatformUrl(payload, device.platform));
+      }
+
+      return false;
+    })
+  );
+
+  return {
+    attempted: devices.length,
+    sent: results.filter((result) => result.status === "fulfilled" && result.value === true).length,
+    badge,
+  };
+}
 
 export async function notifyContextSuggestion(params: {
   userId: string;

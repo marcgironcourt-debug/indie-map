@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { notifySharedListRenamed } from "@/lib/pushNotifications";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -43,6 +44,14 @@ export async function PATCH(req: Request, context: { params: Promise<{ listId: s
       },
       select: {
         id: true,
+        title: true,
+        updatedAt: true,
+        members: {
+          select: {
+            userId: true,
+            role: true,
+          },
+        },
       },
     });
 
@@ -50,6 +59,17 @@ export async function PATCH(req: Request, context: { params: Promise<{ listId: s
       return NextResponse.json(
         { ok: false },
         { status: 404, headers: V1_HEADERS }
+      );
+    }
+
+    if (list.title === title) {
+      return NextResponse.json(
+        {
+          ok: true,
+          title: list.title,
+          updatedAt: list.updatedAt,
+        },
+        { headers: V1_HEADERS }
       );
     }
 
@@ -65,6 +85,62 @@ export async function PATCH(req: Request, context: { params: Promise<{ listId: s
         updatedAt: true,
       },
     });
+
+    try {
+      const receiverIds = Array.from(
+        new Set(
+          list.members
+            .filter(
+              (member) =>
+                member.userId !== currentUser.id &&
+                member.role !== "owner"
+            )
+            .map((member) => member.userId)
+        )
+      );
+
+      if (receiverIds.length > 0) {
+        await prisma.sharedListMember.updateMany({
+          where: {
+            listId: cleanListId,
+            userId: { in: receiverIds },
+            role: { not: "owner" },
+          },
+          data: {
+            seenAt: null,
+          },
+        });
+
+        const receivers = await prisma.user.findMany({
+          where: {
+            id: { in: receiverIds },
+          },
+          select: {
+            id: true,
+            preferredLocale: true,
+          },
+        });
+
+        await Promise.allSettled(
+          receivers.map((receiver) =>
+            notifySharedListRenamed({
+              receiverId: receiver.id,
+              actorDisplayName:
+                currentUser.displayName || currentUser.username,
+              oldTitle: list.title,
+              newTitle: updated.title,
+              listId: cleanListId,
+              locale: receiver.preferredLocale,
+            })
+          )
+        );
+      }
+    } catch (error) {
+      console.error(
+        "[/api/v1/me/shared-lists/[listId]] rename notification error",
+        error
+      );
+    }
 
     return NextResponse.json(
       {
@@ -95,7 +171,10 @@ export async function DELETE(_req: Request, context: { params: Promise<{ listId:
     const cleanListId = normId(listId);
 
     if (!cleanListId) {
-      return NextResponse.json({ ok: false, error: "invalid_request" }, { status: 400, headers: V1_HEADERS });
+      return NextResponse.json(
+        { ok: false, error: "invalid_request" },
+        { status: 400, headers: V1_HEADERS }
+      );
     }
 
     const list = await prisma.sharedList.findFirst({
@@ -109,7 +188,10 @@ export async function DELETE(_req: Request, context: { params: Promise<{ listId:
     });
 
     if (!list) {
-      return NextResponse.json({ ok: false }, { status: 404, headers: V1_HEADERS });
+      return NextResponse.json(
+        { ok: false },
+        { status: 404, headers: V1_HEADERS }
+      );
     }
 
     await prisma.sharedList.delete({
@@ -121,6 +203,9 @@ export async function DELETE(_req: Request, context: { params: Promise<{ listId:
     return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {
     console.error("[/api/v1/me/shared-lists/[listId]] DELETE error", err);
-    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+    return NextResponse.json(
+      { ok: false },
+      { status: 500, headers: V1_HEADERS }
+    );
   }
 }
