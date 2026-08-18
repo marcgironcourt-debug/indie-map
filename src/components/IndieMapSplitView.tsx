@@ -2766,27 +2766,30 @@ const filtered = source.filter((b) => {
                           setSelectedDetailPlace(null);
                           setSelectedPlaceCommentsOpen(false);
                         }}
-                        className="relative mt-6 block h-[190px] w-full overflow-hidden rounded-2xl bg-[#101510]"
+                        className="relative mt-6 block h-[108px] w-full overflow-hidden rounded-2xl bg-[#101510] text-white"
                       >
-                        <div className="absolute inset-0 pointer-events-none">
+                        <div
+                          className="absolute -inset-1 pointer-events-none scale-[1.03]"
+                          style={{ filter: "blur(1.4px)" }}
+                        >
                           <MapPanel
                             items={[selectedDetailPlace]}
-                            selectedId={selectedDetailPlace.id}
                             overlaysReady={true}
                             hideGeolocate={true}
+                              searchMode={true}
                           />
                         </div>
 
-                        <div className="absolute inset-0 bg-black/10" />
+                        <div className="absolute inset-0 bg-black/25" />
 
-                        <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-white">
+                        <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-4 pt-9">
                           <div className="text-left">
-                            <div className="text-[20px] font-serif">
+                            <div className="font-serif text-[20px] font-medium tracking-[0.01em]">
                               {isFr ? "Voir sur la carte" : "View on map"}
                             </div>
                           </div>
 
-                          <div className="text-[24px] leading-none">→</div>
+                          <div className="pb-[1px] text-[24px] leading-none">→</div>
                         </div>
                       </button>
                     ) : null}

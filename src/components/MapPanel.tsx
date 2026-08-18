@@ -27,6 +27,7 @@ export default function MapPanel(props: {
   homeOverlay?: React.ReactNode;
   topOverlay?: React.ReactNode;
   hideGeolocate?: boolean;
+  hidePlacePins?: boolean;
   searchMode?: boolean;
 }) {
   const {
@@ -37,6 +38,7 @@ export default function MapPanel(props: {
     homeOverlay,
     topOverlay,
     hideGeolocate = false,
+    hidePlacePins = false,
     searchMode = false
   } = props;
 
@@ -56,6 +58,7 @@ export default function MapPanel(props: {
           onSelect={onSelect}
           overlaysReady={overlaysReady}
           hideGeolocate={hideGeolocate}
+          hidePlacePins={hidePlacePins}
           searchMode={searchMode}
         />
       </div>

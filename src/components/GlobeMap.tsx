@@ -875,6 +875,7 @@ export default function GlobeMap({
   darkMap = false,
   overlaysReady = true,
   hideGeolocate = false,
+  hidePlacePins = false,
   searchMode = false,
 }: {
   items?: Biz[];
@@ -883,6 +884,7 @@ export default function GlobeMap({
   darkMap?: boolean;
   overlaysReady?: boolean;
   hideGeolocate?: boolean;
+  hidePlacePins?: boolean;
   searchMode?: boolean;
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -912,6 +914,7 @@ export default function GlobeMap({
         const lat = Number(e?.detail?.lat);
         const lng = Number(e?.detail?.lng);
         if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        if (hidePlacePins) return;
         if (suppressInitialNativeLocationRef.current) {
           suppressInitialNativeLocationRef.current = false;
           try { pendingNativeLocationRef.current = null; } catch {}
@@ -993,12 +996,6 @@ export default function GlobeMap({
           } catch {}
 
           try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
-
-          try {
-            const targetCenter: [number, number] = [Number(lng), Number(lat)];
-            const targetZoom = 11.0;
-            m.jumpTo({ center: targetCenter, zoom: targetZoom });
-          } catch {}
         };
 
         try {
@@ -1028,6 +1025,41 @@ export default function GlobeMap({
   const PRIORITY_LABEL_LAYER_ID = "indie-places-label-priority";
 const GLOW_LAYER_ID = "indie-places-pin-glow";
   const SELECT_LAYER_ID = "indie-places-pin-selected";
+
+  React.useEffect(() => {
+    if (!hidePlacePins) return;
+
+    const map = mapRef.current;
+    if (!map || !readyRef.current) return;
+
+    const hideLayers = () => {
+      for (const layerId of [
+        LAYER_ID,
+        LABEL_LAYER_ID,
+        PRIORITY_LABEL_LAYER_ID,
+        GLOW_LAYER_ID,
+        SELECT_LAYER_ID
+      ]) {
+        try {
+          if (map.getLayer(layerId)) {
+            map.setLayoutProperty(layerId, "visibility", "none");
+          }
+        } catch {}
+      }
+    };
+
+    hideLayers();
+
+    try {
+      map.on("style.load", hideLayers);
+    } catch {}
+
+    return () => {
+      try {
+        map.off("style.load", hideLayers);
+      } catch {}
+    };
+  }, [hidePlacePins, mapReadyTick]);
   const ROUTE_SOURCE_ID = "indie-route";
   const ROUTE_LAYER_ID = "indie-route-line";
 
