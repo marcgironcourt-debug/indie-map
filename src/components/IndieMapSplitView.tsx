@@ -2005,7 +2005,6 @@ const filtered = source.filter((b) => {
                   unseenSharedListCount={unseenSharedListCount}
                   onSharedListsSeen={() => {
                     setUnseenSharedListCount(0);
-                    refreshPersonalNotificationCounts();
                   }}
                         authLoading={authLoading}
                         authProfile={authProfile}

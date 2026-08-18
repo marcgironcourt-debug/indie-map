@@ -3437,7 +3437,6 @@ export default function HomeScreen({
                   unseenSharedListCount={unseenSharedListCount}
                   onSharedListsSeen={() => {
                     setUnseenSharedListCount(0);
-                    refreshPersonalNotificationCounts();
                   }}
                   authLoading={authLoading}
                   authProfile={authProfile}

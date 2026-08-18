@@ -277,11 +277,18 @@ export default function PersonalSpacePanel({
   const [newSharedListTitle, setNewSharedListTitle] = React.useState("");
   const [sharedListSaving, setSharedListSaving] = React.useState(false);
   const [sharedListMessage, setSharedListMessage] = React.useState("");
+  const [sharedListRenameOpen, setSharedListRenameOpen] = React.useState(false);
+  const [sharedListRenameTitle, setSharedListRenameTitle] = React.useState("");
   const [pendingDeleteSharedListId, setPendingDeleteSharedListId] = React.useState("");
   const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
   const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
   const friendsLoadingRef = React.useRef(false);
   const sharedListsLoadingRef = React.useRef(false);
+  const onSharedListsSeenRef = React.useRef(onSharedListsSeen);
+
+  React.useEffect(() => {
+    onSharedListsSeenRef.current = onSharedListsSeen;
+  }, [onSharedListsSeen]);
 
   function findPlace(placeId: string) {
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
@@ -296,6 +303,11 @@ export default function PersonalSpacePanel({
   }
 
   const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
+
+  React.useEffect(() => {
+    setSharedListRenameOpen(false);
+    setSharedListRenameTitle("");
+  }, [selectedSharedListId]);
 
   function isUnseenSharedList(list: SharedList) {
     if (!authProfile) return false;
@@ -331,39 +343,48 @@ export default function PersonalSpacePanel({
   }, [places, sharedPlaceQuery, locale]);
 
   const reloadSharedLists = React.useCallback(async (force = false) => {
-    if (!authProfile) return;
+    const currentUserId = authProfile?.id;
+    if (!currentUserId) return;
     if (sharedListsLoadingRef.current) return;
 
     sharedListsLoadingRef.current = true;
-    setSharedListsLoading((current) => sharedLists.length === 0 ? true : current);
+    setSharedListsLoading(sharedListsCache === null);
     setSharedListsError("");
 
     try {
       const markSeen = mode === "sharedLists";
       const nextLists = await fetchSharedListsOnce(force || markSeen, markSeen);
-      const normalizedLists = markSeen && authProfile
+      const normalizedLists = markSeen
         ? nextLists.map((list: SharedList) => ({
             ...list,
             members: list.members.map((member) =>
-              member.userId === authProfile.id && member.role !== "owner" && !member.seenAt
+              member.userId === currentUserId && member.role !== "owner" && !member.seenAt
                 ? { ...member, seenAt: new Date().toISOString() }
                 : member
             ),
           }))
         : nextLists;
+
       setSharedLists(normalizedLists);
-      if (markSeen) onSharedListsSeen?.();
+
+      if (markSeen) {
+        onSharedListsSeenRef.current?.();
+      }
 
       setSelectedSharedListId((current) =>
         current && !normalizedLists.some((list: SharedList) => list.id === current) ? null : current
       );
     } catch {
-      setSharedListsError(isFr ? "Impossible de charger tes listes partagées pour le moment." : "Unable to load your shared lists right now.");
+      setSharedListsError(
+        isFr
+          ? "Impossible de charger tes listes partagées pour le moment."
+          : "Unable to load your shared lists right now."
+      );
     } finally {
       sharedListsLoadingRef.current = false;
       setSharedListsLoading(false);
     }
-  }, [authProfile, authProfile?.id, isFr, mode, onSharedListsSeen, sharedLists.length]);
+  }, [authProfile?.id, isFr, mode]);
 
   async function createSharedList() {
     const title = newSharedListTitle.trim();
@@ -590,6 +611,80 @@ export default function PersonalSpacePanel({
       setFriendsError(isFr ? "Impossible de supprimer cet ami." : "Unable to remove this friend.");
     } finally {
       setFriendsLoading(false);
+    }
+  }
+
+  async function renameSharedList() {
+    if (!selectedSharedList || !authProfile) return;
+    if (selectedSharedList.ownerId !== authProfile.id) return;
+
+    const listId = selectedSharedList.id;
+    const title = sharedListRenameTitle.trim();
+
+    if (!title) {
+      setSharedListMessage(
+        isFr ? "Le titre de la liste ne peut pas être vide." : "The list title cannot be empty."
+      );
+      return;
+    }
+
+    if (title === selectedSharedList.title) {
+      setSharedListRenameOpen(false);
+      setSharedListRenameTitle("");
+      return;
+    }
+
+    setSharedListSaving(true);
+    setSharedListMessage("");
+
+    try {
+      const res = await fetch(
+        `/api/v1/me/shared-lists/${encodeURIComponent(listId)}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title }),
+        }
+      );
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok || typeof data.title !== "string") {
+        throw new Error("shared_list_rename_failed");
+      }
+
+      clearSharedListsCache();
+
+      setSharedLists((current) =>
+        current.map((list) =>
+          list.id === listId
+            ? {
+                ...list,
+                title: data.title,
+                updatedAt:
+                  typeof data.updatedAt === "string"
+                    ? data.updatedAt
+                    : list.updatedAt,
+              }
+            : list
+        )
+      );
+
+      setSharedListRenameOpen(false);
+      setSharedListRenameTitle("");
+      setSharedListMessage(
+        isFr ? "Liste renommée." : "List renamed."
+      );
+    } catch {
+      setSharedListMessage(
+        isFr
+          ? "Impossible de renommer cette liste."
+          : "Unable to rename this list."
+      );
+    } finally {
+      setSharedListSaving(false);
     }
   }
 
@@ -1349,9 +1444,92 @@ export default function PersonalSpacePanel({
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
               {isFr ? "Avec mes amis" : "With friends"}
             </p>
-            <h2 className="mt-0.5 truncate font-serif text-[23px] font-semibold leading-tight text-white">
-              {selectedSharedList ? selectedSharedList.title : (isFr ? "Listes partagées" : "Shared lists")}
-            </h2>
+            {selectedSharedList && authProfile?.id === selectedSharedList.ownerId ? (
+              sharedListRenameOpen ? (
+                <div className="mt-1 flex items-center justify-center gap-2">
+                  <input
+                    autoFocus
+                    value={sharedListRenameTitle}
+                    onChange={(event) => setSharedListRenameTitle(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        renameSharedList();
+                      }
+
+                      if (event.key === "Escape") {
+                        event.preventDefault();
+                        setSharedListRenameOpen(false);
+                        setSharedListRenameTitle("");
+                        setSharedListMessage("");
+                      }
+                    }}
+                    disabled={sharedListSaving}
+                    className="min-w-0 max-w-[220px] flex-1 rounded-xl border border-white/15 bg-black/35 px-3 py-1.5 text-center font-serif text-[19px] font-semibold text-white outline-none focus:border-white/35 disabled:opacity-50"
+                    aria-label={isFr ? "Nouveau nom de la liste" : "New list name"}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={renameSharedList}
+                    disabled={sharedListSaving}
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[15px] font-bold text-black disabled:opacity-50"
+                    aria-label={isFr ? "Enregistrer le nouveau nom" : "Save new name"}
+                  >
+                    ✓
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSharedListRenameOpen(false);
+                      setSharedListRenameTitle("");
+                      setSharedListMessage("");
+                    }}
+                    disabled={sharedListSaving}
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-[15px] text-white/75 disabled:opacity-50"
+                    aria-label={isFr ? "Annuler" : "Cancel"}
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-0.5 flex min-w-0 items-center justify-center gap-2">
+                  <h2 className="min-w-0 truncate font-serif text-[23px] font-semibold leading-tight text-white">
+                    {selectedSharedList.title}
+                  </h2>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSharedListRenameTitle(selectedSharedList.title);
+                      setSharedListRenameOpen(true);
+                      setSharedListMessage("");
+                    }}
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/45 transition hover:bg-white/8 hover:text-white/80 active:bg-white/12"
+                    aria-label={isFr ? "Renommer la liste" : "Rename list"}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 20h9" />
+                      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z" />
+                    </svg>
+                  </button>
+                </div>
+              )
+            ) : (
+              <h2 className="mt-0.5 truncate font-serif text-[23px] font-semibold leading-tight text-white">
+                {selectedSharedList ? selectedSharedList.title : (isFr ? "Listes partagées" : "Shared lists")}
+              </h2>
+            )}
           </div>
           <div className="h-10 w-10" />
         </div>
