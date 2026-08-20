@@ -21,9 +21,11 @@ type SearchParams = {
   date?: string;
   month?: string;
   year?: string;
+  traffic?: string;
 };
 
 const EVENT_LABELS: Record<string, string> = {
+  launch_started: "Ouverture Indie Map",
   click_explore_world: "Explorer le monde",
   click_recent_additions: "Ajouts récents",
   click_discovery_of_day: "Découverte du jour",
@@ -365,6 +367,7 @@ function dashboardHref(
     date?: string;
     month?: string | number;
     year?: string | number;
+    traffic?: string;
   },
   token: string,
 ) {
@@ -376,6 +379,7 @@ function dashboardHref(
   if (params.date) query.set("date", params.date);
   if (params.month) query.set("month", String(params.month));
   if (params.year) query.set("year", String(params.year));
+  if (params.traffic) query.set("traffic", params.traffic);
   if (token) query.set("token", token);
 
   const suffix = query.toString();
@@ -398,6 +402,20 @@ export default async function IndieAnalyticsPage({
   const selectedSessionId = String(
     resolvedSearchParams?.sessionId ?? "",
   ).trim();
+
+  const requestedTraffic = String(
+    resolvedSearchParams?.traffic ?? "",
+  ).trim();
+
+  const trafficFilter:
+    | "external"
+    | "test"
+    | "all" =
+    requestedTraffic === "test"
+      ? "test"
+      : requestedTraffic === "all"
+        ? "all"
+        : "external";
 
   const selectedDate =
     normalizeDashboardDate(
@@ -608,10 +626,37 @@ export default async function IndieAnalyticsPage({
     createdAt: string | Date;
   };
 
+  type DailyRawInstallation = {
+    sessionId: string;
+    userId: string | null;
+    accountName: string | null;
+    label: string | null;
+    trafficClass: string;
+    platform: string | null;
+    deviceType: string | null;
+    os: string | null;
+    browser: string | null;
+    clientTimeZone: string | null;
+    firstSeenAt: string | Date;
+    lastSeenAt: string | Date;
+    firstSeenDate: string | null;
+    totalActions: number;
+    totalOpenings: number;
+    totalViews: number;
+    totalSearches: number;
+    totalSaves: number;
+    totalLists: number;
+    totalWebsites: number;
+    totalItineraries: number;
+    totalShares: number;
+    totalVisits: number;
+  };
+
   const dailyRawRows = needDaily
     ? await prisma.$queryRaw<Array<{
         events: unknown;
         launches: unknown;
+        installations: unknown;
         activeCount: number;
       }>>`
         SELECT
@@ -636,12 +681,23 @@ export default async function IndieAnalyticsPage({
                 ORDER BY e."createdAt" ASC
               )
               FROM "Event" e
+              LEFT JOIN "AnalyticsInstallation" ai
+                ON ai."sessionId" = e."sessionId"
               WHERE
-                e."clientLocalDate" = ${selectedDate}
-                OR (
-                  e."clientLocalDate" IS NULL
-                  AND e."createdAt" >= ${legacyStart}
-                  AND e."createdAt" < ${legacyEnd}
+                (
+                  e."clientLocalDate" = ${selectedDate}
+                  OR (
+                    e."clientLocalDate" IS NULL
+                    AND e."createdAt" >= ${legacyStart}
+                    AND e."createdAt" < ${legacyEnd}
+                  )
+                )
+                AND (
+                  ${trafficFilter} = 'all'
+                  OR COALESCE(
+                    ai."trafficClass",
+                    'external'
+                  ) = ${trafficFilter}
                 )
             ),
             '[]'::jsonb
@@ -663,15 +719,182 @@ export default async function IndieAnalyticsPage({
                 ORDER BY s."createdAt" ASC
               )
               FROM "DailySession" s
-              WHERE s."day" = ${selectedDate}
+              LEFT JOIN "AnalyticsInstallation" ai
+                ON ai."sessionId" = s."sessionId"
+              WHERE
+                s."day" = ${selectedDate}
+                AND (
+                  ${trafficFilter} = 'all'
+                  OR COALESCE(
+                    ai."trafficClass",
+                    'external'
+                  ) = ${trafficFilter}
+                )
             ),
             '[]'::jsonb
           ) AS "launches",
 
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'sessionId', ai."sessionId",
+                  'userId', ai."userId",
+                  'accountName',
+                    (
+                      SELECT COALESCE(
+                        NULLIF(
+                          TRIM(u."displayName"),
+                          ''
+                        ),
+                        u."username"
+                      )
+                      FROM "User" u
+                      WHERE u."id" = ai."userId"
+                      LIMIT 1
+                    ),
+                  'label', ai."label",
+                  'trafficClass', ai."trafficClass",
+                  'platform', ai."platform",
+                  'deviceType', ai."deviceType",
+                  'os', ai."os",
+                  'browser', ai."browser",
+                  'clientTimeZone', ai."clientTimeZone",
+                  'firstSeenAt', ai."firstSeenAt",
+                  'lastSeenAt', ai."lastSeenAt",
+                  'firstSeenDate',
+                    COALESCE(
+                      stats."firstLocalDate",
+                      TO_CHAR(
+                        COALESCE(
+                          stats."firstEventAt",
+                          ai."firstSeenAt"
+                        ) AT TIME ZONE 'UTC',
+                        'YYYY-MM-DD'
+                      )
+                    ),
+                  'totalActions',
+                    COALESCE(stats."totalActions", 0),
+                  'totalOpenings',
+                    COALESCE(stats."totalOpenings", 0),
+                  'totalViews',
+                    COALESCE(stats."totalViews", 0),
+                  'totalSearches',
+                    COALESCE(stats."totalSearches", 0),
+                  'totalSaves',
+                    COALESCE(stats."totalSaves", 0),
+                  'totalLists',
+                    COALESCE(stats."totalLists", 0),
+                  'totalWebsites',
+                    COALESCE(stats."totalWebsites", 0),
+                  'totalItineraries',
+                    COALESCE(stats."totalItineraries", 0),
+                  'totalShares',
+                    COALESCE(stats."totalShares", 0),
+                  'totalVisits',
+                    COALESCE(stats."totalVisits", 0)
+                )
+                ORDER BY ai."lastSeenAt" DESC
+              )
+              FROM "AnalyticsInstallation" ai
+
+              LEFT JOIN LATERAL (
+                SELECT
+                  MIN(e2."clientLocalDate")
+                    FILTER (
+                      WHERE e2."clientLocalDate" IS NOT NULL
+                    ) AS "firstLocalDate",
+
+                  MIN(e2."createdAt")
+                    AS "firstEventAt",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" <> 'launch_started'
+                  )::int AS "totalActions",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'launch_started'
+                  )::int AS "totalOpenings",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'view_place_detail'
+                  )::int AS "totalViews",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'search_ai_used'
+                  )::int AS "totalSearches",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'save_place'
+                  )::int AS "totalSaves",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'add_place_to_shared_list'
+                  )::int AS "totalLists",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'click_detail_website'
+                  )::int AS "totalWebsites",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'click_detail_itinerary'
+                  )::int AS "totalItineraries",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'click_detail_share'
+                  )::int AS "totalShares",
+
+                  COUNT(*) FILTER (
+                    WHERE e2."eventType" = 'mark_place_visited'
+                  )::int AS "totalVisits"
+
+                FROM "Event" e2
+                WHERE e2."sessionId" = ai."sessionId"
+              ) stats ON TRUE
+
+              WHERE
+                (
+                  ${trafficFilter} = 'all'
+                  OR ai."trafficClass" = ${trafficFilter}
+                )
+                AND ai."sessionId" IN (
+                  SELECT d2."sessionId"
+                  FROM "DailyActiveUser" d2
+                  WHERE d2."day" = ${selectedDate}
+
+                  UNION
+
+                  SELECT e3."sessionId"
+                  FROM "Event" e3
+                  WHERE
+                    e3."sessionId" IS NOT NULL
+                    AND (
+                      e3."clientLocalDate" = ${selectedDate}
+                      OR (
+                        e3."clientLocalDate" IS NULL
+                        AND e3."createdAt" >= ${legacyStart}
+                        AND e3."createdAt" < ${legacyEnd}
+                      )
+                    )
+                )
+            ),
+            '[]'::jsonb
+          ) AS "installations",
+
           (
             SELECT COUNT(*)::int
             FROM "DailyActiveUser" d
-            WHERE d."day" = ${selectedDate}
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = d."sessionId"
+            WHERE
+              d."day" = ${selectedDate}
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
           ) AS "activeCount"
       `
     : [];
@@ -694,6 +917,47 @@ export default async function IndieAnalyticsPage({
 
   const dailyActiveInstallations =
     rawInt(dailyRaw?.activeCount);
+
+  const dailyInstallations =
+    rawRows<DailyRawInstallation>(
+      dailyRaw?.installations,
+    ).map((installation) => ({
+      ...installation,
+      firstSeenAt:
+        new Date(installation.firstSeenAt),
+      lastSeenAt:
+        new Date(installation.lastSeenAt),
+      totalActions:
+        rawInt(installation.totalActions),
+      totalOpenings:
+        rawInt(installation.totalOpenings),
+      totalViews:
+        rawInt(installation.totalViews),
+      totalSearches:
+        rawInt(installation.totalSearches),
+      totalSaves:
+        rawInt(installation.totalSaves),
+      totalLists:
+        rawInt(installation.totalLists),
+      totalWebsites:
+        rawInt(installation.totalWebsites),
+      totalItineraries:
+        rawInt(installation.totalItineraries),
+      totalShares:
+        rawInt(installation.totalShares),
+      totalVisits:
+        rawInt(installation.totalVisits),
+    }));
+
+  const dailyInstallationById =
+    new Map(
+      dailyInstallations.map(
+        (installation) => [
+          installation.sessionId,
+          installation,
+        ],
+      ),
+    );
 
   const dailyInstallationIds =
     new Set(
@@ -846,13 +1110,23 @@ export default async function IndieAnalyticsPage({
   type DailyActor = {
     sessionId: string;
     events: number;
+    openings: number;
     views: number;
     searches: number;
+    saves: number;
+    lists: number;
+    websites: number;
+    itineraries: number;
+    shares: number;
+    visits: number;
     userId: string | null;
     platform: string | null;
     city: string | null;
     country: string | null;
     lastAt: Date;
+    installation:
+      | (typeof dailyInstallations)[number]
+      | null;
   };
 
   const dailyActorMap =
@@ -864,31 +1138,56 @@ export default async function IndieAnalyticsPage({
     const previous =
       dailyActorMap.get(launch.sessionId);
 
+    const installation =
+      dailyInstallationById.get(
+        launch.sessionId,
+      ) ?? null;
+
     dailyActorMap.set(
       launch.sessionId,
       {
         sessionId: launch.sessionId,
         events: previous?.events ?? 0,
+        openings: previous?.openings ?? 0,
         views: previous?.views ?? 0,
         searches: previous?.searches ?? 0,
-        userId: previous?.userId ?? null,
+        saves: previous?.saves ?? 0,
+        lists: previous?.lists ?? 0,
+        websites: previous?.websites ?? 0,
+        itineraries: previous?.itineraries ?? 0,
+        shares: previous?.shares ?? 0,
+        visits: previous?.visits ?? 0,
+
+        userId:
+          previous?.userId ??
+          installation?.userId ??
+          null,
+
         platform:
           previous?.platform ??
           launch.platform ??
+          installation?.platform ??
           null,
+
         city:
           previous?.city ??
           launch.city ??
           null,
+
         country:
           previous?.country ??
           launch.country ??
           null,
+
         lastAt:
           previous &&
           previous.lastAt > launch.createdAt
             ? previous.lastAt
             : launch.createdAt,
+
+        installation:
+          previous?.installation ??
+          installation,
       },
     );
   }
@@ -899,12 +1198,34 @@ export default async function IndieAnalyticsPage({
     const previous =
       dailyActorMap.get(event.sessionId);
 
+    const installation =
+      dailyInstallationById.get(
+        event.sessionId,
+      ) ?? null;
+
     dailyActorMap.set(
       event.sessionId,
       {
         sessionId: event.sessionId,
+
         events:
-          (previous?.events ?? 0) + 1,
+          (previous?.events ?? 0) +
+          (
+            event.eventType ===
+            "launch_started"
+              ? 0
+              : 1
+          ),
+
+        openings:
+          (previous?.openings ?? 0) +
+          (
+            event.eventType ===
+            "launch_started"
+              ? 1
+              : 0
+          ),
+
         views:
           (previous?.views ?? 0) +
           (
@@ -913,6 +1234,7 @@ export default async function IndieAnalyticsPage({
               ? 1
               : 0
           ),
+
         searches:
           (previous?.searches ?? 0) +
           (
@@ -921,23 +1243,89 @@ export default async function IndieAnalyticsPage({
               ? 1
               : 0
           ),
+
+        saves:
+          (previous?.saves ?? 0) +
+          (
+            event.eventType ===
+            "save_place"
+              ? 1
+              : 0
+          ),
+
+        lists:
+          (previous?.lists ?? 0) +
+          (
+            event.eventType ===
+            "add_place_to_shared_list"
+              ? 1
+              : 0
+          ),
+
+        websites:
+          (previous?.websites ?? 0) +
+          (
+            event.eventType ===
+            "click_detail_website"
+              ? 1
+              : 0
+          ),
+
+        itineraries:
+          (previous?.itineraries ?? 0) +
+          (
+            event.eventType ===
+            "click_detail_itinerary"
+              ? 1
+              : 0
+          ),
+
+        shares:
+          (previous?.shares ?? 0) +
+          (
+            event.eventType ===
+            "click_detail_share"
+              ? 1
+              : 0
+          ),
+
+        visits:
+          (previous?.visits ?? 0) +
+          (
+            event.eventType ===
+            "mark_place_visited"
+              ? 1
+              : 0
+          ),
+
         userId:
           event.userId ??
           previous?.userId ??
+          installation?.userId ??
           null,
+
         platform:
           event.platform ??
           previous?.platform ??
+          installation?.platform ??
           null,
+
         city:
           previous?.city ?? null,
+
         country:
           previous?.country ?? null,
+
         lastAt:
           previous &&
           previous.lastAt > event.createdAt
             ? previous.lastAt
             : event.createdAt,
+
+        installation:
+          installation ??
+          previous?.installation ??
+          null,
       },
     );
   }
@@ -949,6 +1337,40 @@ export default async function IndieAnalyticsPage({
       (a, b) =>
         b.lastAt.getTime() -
         a.lastAt.getTime(),
+    );
+
+  const dailyNewInstallations =
+    dailyActors.filter(
+      (actor) =>
+        actor.installation?.firstSeenDate ===
+        selectedDate,
+    ).length;
+
+  const dailyReturningInstallations =
+    dailyActors.length -
+    dailyNewInstallations;
+
+  const dailyWithAccount =
+    dailyActors.filter(
+      (actor) => Boolean(actor.userId),
+    ).length;
+
+  const dailyWithoutAccount =
+    dailyActors.length -
+    dailyWithAccount;
+
+  const dailyExactOpenings =
+    dailyActors.reduce(
+      (sum, actor) =>
+        sum + actor.openings,
+      0,
+    );
+
+  const dailyActionCount =
+    dailyActors.reduce(
+      (sum, actor) =>
+        sum + actor.events,
+      0,
     );
 
   const dailyPlaceCounts =
@@ -1920,12 +2342,16 @@ export default async function IndieAnalyticsPage({
   const sessionRawRows = selectedSessionId
     ? await prisma.$queryRaw<Array<{
         presence: unknown;
+        installation: unknown;
         eventCount: number;
         eventTypes: unknown;
         views: unknown;
         searches: unknown;
         recentEvents: unknown;
         linkedUser: unknown;
+        dayStats: unknown;
+        totalStats: unknown;
+        history: unknown;
       }>>`
         SELECT
           (
@@ -1944,9 +2370,31 @@ export default async function IndieAnalyticsPage({
           ) AS "presence",
 
           (
+            SELECT jsonb_build_object(
+              'sessionId', ai."sessionId",
+              'userId', ai."userId",
+              'label', ai."label",
+              'trafficClass', ai."trafficClass",
+              'platform', ai."platform",
+              'deviceType', ai."deviceType",
+              'os', ai."os",
+              'browser', ai."browser",
+              'clientTimeZone', ai."clientTimeZone",
+              'utcOffsetMinutes', ai."utcOffsetMinutes",
+              'firstSeenAt', ai."firstSeenAt",
+              'lastSeenAt', ai."lastSeenAt"
+            )
+            FROM "AnalyticsInstallation" ai
+            WHERE ai."sessionId" = ${selectedSessionId}
+            LIMIT 1
+          ) AS "installation",
+
+          (
             SELECT COUNT(*)::int
             FROM "Event"
-            WHERE "sessionId" = ${selectedSessionId}
+            WHERE
+              "sessionId" = ${selectedSessionId}
+              AND "eventType" <> 'launch_started'
           ) AS "eventCount",
 
           COALESCE(
@@ -1963,7 +2411,9 @@ export default async function IndieAnalyticsPage({
                   "eventType",
                   COUNT(*)::int AS "count"
                 FROM "Event"
-                WHERE "sessionId" = ${selectedSessionId}
+                WHERE
+                  "sessionId" = ${selectedSessionId}
+                  AND "eventType" <> 'launch_started'
                 GROUP BY "eventType"
               ) q
             ),
@@ -2058,21 +2508,347 @@ export default async function IndieAnalyticsPage({
               'email', u."email"
             )
             FROM "User" u
-            WHERE u."id" = (
-              SELECT e."userId"
-              FROM "Event" e
-              WHERE
-                e."sessionId" = ${selectedSessionId}
-                AND e."userId" IS NOT NULL
-              ORDER BY e."createdAt" DESC
-              LIMIT 1
+            WHERE u."id" = COALESCE(
+              (
+                SELECT ai."userId"
+                FROM "AnalyticsInstallation" ai
+                WHERE
+                  ai."sessionId" = ${selectedSessionId}
+                  AND ai."userId" IS NOT NULL
+                LIMIT 1
+              ),
+              (
+                SELECT e."userId"
+                FROM "Event" e
+                WHERE
+                  e."sessionId" = ${selectedSessionId}
+                  AND e."userId" IS NOT NULL
+                ORDER BY e."createdAt" DESC
+                LIMIT 1
+              )
             )
             LIMIT 1
-          ) AS "linkedUser"
+          ) AS "linkedUser",
+
+          (
+            SELECT jsonb_build_object(
+              'actions',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" <> 'launch_started'
+                )::int,
+
+              'openings',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'launch_started'
+                )::int,
+
+              'views',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'view_place_detail'
+                )::int,
+
+              'searches',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'search_ai_used'
+                )::int,
+
+              'saves',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'save_place'
+                )::int,
+
+              'lists',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'add_place_to_shared_list'
+                )::int,
+
+              'websites',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_website'
+                )::int,
+
+              'itineraries',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_itinerary'
+                )::int,
+
+              'shares',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_share'
+                )::int,
+
+              'visits',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'mark_place_visited'
+                )::int
+            )
+            FROM "Event" e
+            WHERE
+              e."sessionId" = ${selectedSessionId}
+              AND (
+                e."clientLocalDate" = ${selectedDate}
+                OR (
+                  e."clientLocalDate" IS NULL
+                  AND e."createdAt" >= ${legacyStart}
+                  AND e."createdAt" < ${legacyEnd}
+                )
+              )
+          ) AS "dayStats",
+
+          (
+            SELECT jsonb_build_object(
+              'actions',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" <> 'launch_started'
+                )::int,
+
+              'openings',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'launch_started'
+                )::int,
+
+              'views',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'view_place_detail'
+                )::int,
+
+              'searches',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'search_ai_used'
+                )::int,
+
+              'saves',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'save_place'
+                )::int,
+
+              'lists',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'add_place_to_shared_list'
+                )::int,
+
+              'websites',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_website'
+                )::int,
+
+              'itineraries',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_itinerary'
+                )::int,
+
+              'shares',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'click_detail_share'
+                )::int,
+
+              'visits',
+                COUNT(*) FILTER (
+                  WHERE e."eventType" = 'mark_place_visited'
+                )::int
+            )
+            FROM "Event" e
+            WHERE e."sessionId" = ${selectedSessionId}
+          ) AS "totalStats",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'date', q."date",
+                  'actions', q."actions",
+                  'openings', q."openings",
+                  'views', q."views",
+                  'searches', q."searches",
+                  'saves', q."saves",
+                  'lists', q."lists",
+                  'websites', q."websites",
+                  'itineraries', q."itineraries",
+                  'shares', q."shares",
+                  'visits', q."visits"
+                )
+                ORDER BY q."date" DESC
+              )
+              FROM (
+                SELECT
+                  COALESCE(
+                    e."clientLocalDate",
+                    TO_CHAR(
+                      e."createdAt" AT TIME ZONE 'UTC',
+                      'YYYY-MM-DD'
+                    )
+                  ) AS "date",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" <> 'launch_started'
+                  )::int AS "actions",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'launch_started'
+                  )::int AS "openings",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'view_place_detail'
+                  )::int AS "views",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'search_ai_used'
+                  )::int AS "searches",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'save_place'
+                  )::int AS "saves",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'add_place_to_shared_list'
+                  )::int AS "lists",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'click_detail_website'
+                  )::int AS "websites",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'click_detail_itinerary'
+                  )::int AS "itineraries",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'click_detail_share'
+                  )::int AS "shares",
+
+                  COUNT(*) FILTER (
+                    WHERE e."eventType" = 'mark_place_visited'
+                  )::int AS "visits"
+
+                FROM "Event" e
+                WHERE e."sessionId" = ${selectedSessionId}
+
+                GROUP BY COALESCE(
+                  e."clientLocalDate",
+                  TO_CHAR(
+                    e."createdAt" AT TIME ZONE 'UTC',
+                    'YYYY-MM-DD'
+                  )
+                )
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "history"
       `
     : [];
 
   const sessionRaw = sessionRawRows[0];
+
+  type SessionStats = {
+    actions: number;
+    openings: number;
+    views: number;
+    searches: number;
+    saves: number;
+    lists: number;
+    websites: number;
+    itineraries: number;
+    shares: number;
+    visits: number;
+  };
+
+  function parseSessionStats(
+    value: unknown,
+  ): SessionStats {
+    const raw =
+      value &&
+      typeof value === "object" &&
+      !Array.isArray(value)
+        ? value as Record<string, unknown>
+        : {};
+
+    return {
+      actions: rawInt(raw.actions),
+      openings: rawInt(raw.openings),
+      views: rawInt(raw.views),
+      searches: rawInt(raw.searches),
+      saves: rawInt(raw.saves),
+      lists: rawInt(raw.lists),
+      websites: rawInt(raw.websites),
+      itineraries: rawInt(raw.itineraries),
+      shares: rawInt(raw.shares),
+      visits: rawInt(raw.visits),
+    };
+  }
+
+  const selectedSessionInstallation =
+    sessionRaw?.installation &&
+    typeof sessionRaw.installation === "object" &&
+    !Array.isArray(sessionRaw.installation)
+      ? {
+          ...(sessionRaw.installation as {
+            sessionId: string;
+            userId: string | null;
+            label: string | null;
+            trafficClass: string;
+            platform: string | null;
+            deviceType: string | null;
+            os: string | null;
+            browser: string | null;
+            clientTimeZone: string | null;
+            utcOffsetMinutes: number | null;
+            firstSeenAt: string | Date;
+            lastSeenAt: string | Date;
+          }),
+          firstSeenAt: new Date(
+            (
+              sessionRaw.installation as {
+                firstSeenAt: string | Date;
+              }
+            ).firstSeenAt,
+          ),
+          lastSeenAt: new Date(
+            (
+              sessionRaw.installation as {
+                lastSeenAt: string | Date;
+              }
+            ).lastSeenAt,
+          ),
+        }
+      : null;
+
+  const selectedSessionDayStats =
+    parseSessionStats(
+      sessionRaw?.dayStats,
+    );
+
+  const selectedSessionTotalStats =
+    parseSessionStats(
+      sessionRaw?.totalStats,
+    );
+
+  const selectedSessionHistory =
+    rawRows<{
+      date: string;
+      actions: number;
+      openings: number;
+      views: number;
+      searches: number;
+      saves: number;
+      lists: number;
+      websites: number;
+      itineraries: number;
+      shares: number;
+      visits: number;
+    }>(sessionRaw?.history).map(
+      (row) => ({
+        date: row.date,
+        actions: rawInt(row.actions),
+        openings: rawInt(row.openings),
+        views: rawInt(row.views),
+        searches: rawInt(row.searches),
+        saves: rawInt(row.saves),
+        lists: rawInt(row.lists),
+        websites: rawInt(row.websites),
+        itineraries: rawInt(row.itineraries),
+        shares: rawInt(row.shares),
+        visits: rawInt(row.visits),
+      }),
+    );
 
   const selectedSessionPresence =
     sessionRaw?.presence &&
@@ -2246,6 +3022,7 @@ export default async function IndieAnalyticsPage({
                               previousCalendarMonth.month,
                             year:
                               previousCalendarMonth.year,
+                            traffic: trafficFilter,
                           },
                           providedToken,
                         )}
@@ -2268,6 +3045,7 @@ export default async function IndieAnalyticsPage({
                               nextCalendarMonth.month,
                             year:
                               nextCalendarMonth.year,
+                            traffic: trafficFilter,
                           },
                           providedToken,
                         )}
@@ -2299,6 +3077,12 @@ export default async function IndieAnalyticsPage({
                         type="hidden"
                         name="token"
                         value={providedToken}
+                      />
+
+                      <input
+                        type="hidden"
+                        name="traffic"
+                        value={trafficFilter}
                       />
 
                       <select
@@ -2408,6 +3192,7 @@ export default async function IndieAnalyticsPage({
                                     calendarMonth,
                                   year:
                                     calendarYear,
+                                  traffic: trafficFilter,
                                 },
                                 providedToken,
                               )}
@@ -2443,7 +3228,14 @@ export default async function IndieAnalyticsPage({
                 {TABS.map((tab) => (
                   <a
                     key={tab.key}
-                    href={dashboardHref({ tab: tab.key, date: selectedDate }, providedToken)}
+                    href={dashboardHref(
+                      {
+                        tab: tab.key,
+                        date: selectedDate,
+                        traffic: trafficFilter,
+                      },
+                      providedToken,
+                    )}
                     className={activeTab === tab.key ? "shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black" : "shrink-0 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-sm font-semibold text-white/60"}
                   >
                     {tab.label}
@@ -2451,7 +3243,16 @@ export default async function IndieAnalyticsPage({
                 ))}
               </nav>
             ) : (
-              <a href={dashboardHref({ date: selectedDate }, providedToken)} className="mt-7 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
+              <a
+                href={dashboardHref(
+                  {
+                    date: selectedDate,
+                    traffic: trafficFilter,
+                  },
+                  providedToken,
+                )}
+                className="mt-7 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-black"
+              >
                 Retour au dashboard
               </a>
             )}
@@ -2467,17 +3268,70 @@ export default async function IndieAnalyticsPage({
                     Installation / navigateur
                   </div>
 
-                  <h2 className="mt-1 text-2xl font-semibold">
-                    {maskAnalyticsId(
-                      selectedSessionId,
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <h2 className="text-2xl font-semibold">
+                      {selectedSessionInstallation?.label ||
+                        maskAnalyticsId(
+                          selectedSessionId,
+                        )}
+                    </h2>
+
+                    {selectedSessionInstallation?.trafficClass ===
+                    "test" ? (
+                      <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-amber-800">
+                        Test
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-[#f3eee5] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-black/45">
+                        Réel
+                      </span>
                     )}
-                  </h2>
+                  </div>
 
                   <p className="mt-2 text-sm text-black/50">
                     {selectedSessionUser
                       ? `Compte associé : ${selectedSessionUser.displayName || selectedSessionUser.username}`
                       : "Utilisation anonyme · aucun compte associé"}
                   </p>
+
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                    {[
+                      selectedSessionInstallation?.platform ||
+                        selectedSessionPresence?.platform,
+                      selectedSessionInstallation?.deviceType,
+                      selectedSessionInstallation?.os,
+                      selectedSessionInstallation?.browser,
+                      selectedSessionInstallation?.clientTimeZone ||
+                        selectedSessionPresence?.clientTimeZone,
+                    ]
+                      .filter(Boolean)
+                      .map((value) => (
+                        <span
+                          key={String(value)}
+                          className="rounded-full bg-[#f3eee5] px-3 py-1 text-black/55"
+                        >
+                          {value}
+                        </span>
+                      ))}
+                  </div>
+
+                  {selectedSessionInstallation ? (
+                    <div className="mt-4 text-xs leading-relaxed text-black/40">
+                      Première utilisation :{" "}
+                      <strong className="text-black/60">
+                        {selectedSessionInstallation.firstSeenAt
+                          .toISOString()
+                          .slice(0, 10)}
+                      </strong>
+                      {" · "}
+                      Dernière utilisation :{" "}
+                      <strong className="text-black/60">
+                        {selectedSessionInstallation.lastSeenAt
+                          .toISOString()
+                          .slice(0, 10)}
+                      </strong>
+                    </div>
+                  ) : null}
                 </div>
 
                 <a
@@ -2485,6 +3339,7 @@ export default async function IndieAnalyticsPage({
                     {
                       tab: "daily",
                       date: selectedDate,
+                      traffic: trafficFilter,
                     },
                     providedToken,
                   )}
@@ -2494,37 +3349,165 @@ export default async function IndieAnalyticsPage({
                 </a>
               </div>
 
-              <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                {metric(
-                  "Actions",
-                  selectedSessionEventCount,
-                  "historique enregistré",
-                  "dark",
-                )}
+              <div className="mt-6 overflow-hidden rounded-[24px] border border-black/10">
+                <div className="grid grid-cols-[1fr_90px_90px] gap-3 bg-black px-4 py-3 text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
+                  <div>Activité</div>
+                  <div className="text-right">
+                    {selectedDate.slice(8, 10)}/
+                    {selectedDate.slice(5, 7)}
+                  </div>
+                  <div className="text-right">
+                    Total
+                  </div>
+                </div>
 
-                {metric(
-                  "Lieux consultés",
-                  selectedSessionPlaces.length,
-                  `${selectedSessionViewEvents.length} ouverture(s) de fiche`,
-                )}
+                {[
+                  {
+                    label: "Ouvertures exactes",
+                    day: selectedSessionDayStats.openings,
+                    total: selectedSessionTotalStats.openings,
+                  },
+                  {
+                    label: "Actions",
+                    day: selectedSessionDayStats.actions,
+                    total: selectedSessionTotalStats.actions,
+                  },
+                  {
+                    label: "Fiches consultées",
+                    day: selectedSessionDayStats.views,
+                    total: selectedSessionTotalStats.views,
+                  },
+                  {
+                    label: "Recherches",
+                    day: selectedSessionDayStats.searches,
+                    total: selectedSessionTotalStats.searches,
+                  },
+                  {
+                    label: "Favoris ajoutés",
+                    day: selectedSessionDayStats.saves,
+                    total: selectedSessionTotalStats.saves,
+                  },
+                  {
+                    label: "Ajouts en liste",
+                    day: selectedSessionDayStats.lists,
+                    total: selectedSessionTotalStats.lists,
+                  },
+                  {
+                    label: "Sites ouverts",
+                    day: selectedSessionDayStats.websites,
+                    total: selectedSessionTotalStats.websites,
+                  },
+                  {
+                    label: "Itinéraires",
+                    day: selectedSessionDayStats.itineraries,
+                    total: selectedSessionTotalStats.itineraries,
+                  },
+                  {
+                    label: "Partages initiés",
+                    day: selectedSessionDayStats.shares,
+                    total: selectedSessionTotalStats.shares,
+                  },
+                  {
+                    label: "Visites déclarées",
+                    day: selectedSessionDayStats.visits,
+                    total: selectedSessionTotalStats.visits,
+                  },
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    className="grid grid-cols-[1fr_90px_90px] gap-3 border-b border-black/7 px-4 py-3 text-sm last:border-b-0"
+                  >
+                    <div className="text-black/60">
+                      {row.label}
+                    </div>
 
-                {metric(
-                  "Recherches",
-                  selectedSessionSearchEvents.length,
-                  "requêtes enregistrées",
-                )}
+                    <div className="text-right font-semibold">
+                      {row.day}
+                    </div>
 
-                {metric(
-                  "Plateforme",
-                  selectedSessionPresence?.platform ||
-                    selectedSessionRecentEvents[0]?.platform ||
-                    "—",
-                  selectedSessionPresence?.clientTimeZone ||
-                    selectedSessionRecentEvents[0]?.clientTimeZone ||
-                    "fuseau inconnu",
-                )}
+                    <div className="text-right font-semibold text-black/45">
+                      {row.total}
+                    </div>
+                  </div>
+                ))}
               </div>
+
+              <p className="mt-3 text-xs leading-relaxed text-black/35">
+                Les ouvertures exactes sont comptées avec
+                launch_started et commencent donc à partir de
+                l’activation de ce nouveau suivi. Les autres
+                actions conservent leur historique antérieur.
+              </p>
             </section>
+
+            {panel(
+              "Historique par journée",
+              selectedSessionHistory.length === 0
+                ? empty(
+                    "Aucune activité quotidienne enregistrée.",
+                  )
+                : (
+                  <div className="overflow-x-auto rounded-2xl border border-black/10">
+                    <div className="min-w-[800px]">
+                      <div className="grid grid-cols-[110px_repeat(6,1fr)] gap-2 bg-black px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/55">
+                        <div>Date</div>
+                        <div className="text-right">Ouvertures</div>
+                        <div className="text-right">Actions</div>
+                        <div className="text-right">Fiches</div>
+                        <div className="text-right">Recherches</div>
+                        <div className="text-right">Favoris</div>
+                        <div className="text-right">Visites</div>
+                      </div>
+
+                      {selectedSessionHistory.map(
+                        (row) => (
+                          <a
+                            key={row.date}
+                            href={dashboardHref(
+                              {
+                                sessionId:
+                                  selectedSessionId,
+                                date: row.date,
+                                traffic:
+                                  trafficFilter,
+                              },
+                              providedToken,
+                            )}
+                            className={
+                              row.date === selectedDate
+                                ? "grid grid-cols-[110px_repeat(6,1fr)] gap-2 border-b border-black/7 bg-[#f3eee5] px-4 py-3 text-sm last:border-b-0"
+                                : "grid grid-cols-[110px_repeat(6,1fr)] gap-2 border-b border-black/7 px-4 py-3 text-sm transition last:border-b-0 hover:bg-[#faf7f0]"
+                            }
+                          >
+                            <div className="font-semibold">
+                              {row.date}
+                            </div>
+                            <div className="text-right">
+                              {row.openings}
+                            </div>
+                            <div className="text-right">
+                              {row.actions}
+                            </div>
+                            <div className="text-right">
+                              {row.views}
+                            </div>
+                            <div className="text-right">
+                              {row.searches}
+                            </div>
+                            <div className="text-right">
+                              {row.saves}
+                            </div>
+                            <div className="text-right">
+                              {row.visits}
+                            </div>
+                          </a>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                ),
+              "Clique sur une journée pour comparer son activité avec le total historique de cette installation.",
+            )}
 
             {panel(
               "Tout ce que cette installation a consulté",
@@ -2833,30 +3816,102 @@ export default async function IndieAnalyticsPage({
                   </div>
                 ) : null}
 
+                <section className="rounded-[28px] border border-black/10 bg-white p-5 shadow-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/35">
+                        Trafic analysé
+                      </div>
+
+                      <div className="mt-1 text-lg font-semibold">
+                        {trafficFilter === "external"
+                          ? "Trafic réel"
+                          : trafficFilter === "test"
+                            ? "Tests / interne"
+                            : "Tout le trafic"}
+                      </div>
+                    </div>
+
+                    <div className="flex rounded-full bg-[#f3eee5] p-1">
+                      {[
+                        {
+                          key: "external",
+                          label: "Réel",
+                        },
+                        {
+                          key: "test",
+                          label: "Tests",
+                        },
+                        {
+                          key: "all",
+                          label: "Tout",
+                        },
+                      ].map((option) => (
+                        <a
+                          key={option.key}
+                          href={dashboardHref(
+                            {
+                              tab: "daily",
+                              date: selectedDate,
+                              traffic: option.key,
+                            },
+                            providedToken,
+                          )}
+                          className={
+                            trafficFilter === option.key
+                              ? "rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+                              : "rounded-full px-4 py-2 text-xs font-semibold text-black/45 transition hover:text-black"
+                          }
+                        >
+                          {option.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   {metric(
-                    "Actifs",
-                    dailyActiveInstallations,
-                    "identifiants actifs ce jour",
+                    "Installations actives",
+                    dailyActors.length,
+                    "avec ou sans compte",
                     "dark",
                   )}
 
                   {metric(
-                    "Ouvertures",
-                    dailyLaunchRows.length,
-                    "launches enregistrés",
+                    "Nouvelles",
+                    dailyNewInstallations,
+                    "première utilisation ce jour",
                   )}
 
                   {metric(
-                    "Avec action",
-                    dailyInstallationIds.size,
-                    "installations ayant déclenché un événement",
+                    "De retour",
+                    dailyReturningInstallations,
+                    "déjà vues avant cette journée",
                   )}
 
                   {metric(
-                    "Comptes actifs",
-                    dailyUserIds.size,
-                    "utilisateurs connectés avec action",
+                    "Ouvertures exactes",
+                    dailyExactOpenings,
+                    "depuis le nouveau suivi",
+                  )}
+
+                  {metric(
+                    "Avec compte",
+                    dailyWithAccount,
+                    "installations associées à un compte",
+                  )}
+
+                  {metric(
+                    "Sans compte",
+                    dailyWithoutAccount,
+                    "installations anonymes",
+                  )}
+
+                  {metric(
+                    "Actions",
+                    dailyActionCount,
+                    "hors ouvertures Indie Map",
                   )}
 
                   {metric(
@@ -2880,19 +3935,13 @@ export default async function IndieAnalyticsPage({
                   {metric(
                     "Visites déclarées",
                     dailyVisitedEvents.length,
-                    "suivies depuis Analytics V2",
+                    "déclarations explicites",
                   )}
 
                   {metric(
                     "Intentions fortes",
                     dailyStrongIntentEvents.length,
                     "site · itinéraire · téléphone · adresse",
-                  )}
-
-                  {metric(
-                    "Actions totales",
-                    dailyEvents.length,
-                    "événements de la journée",
                   )}
                 </div>
 
@@ -2997,69 +4046,91 @@ export default async function IndieAnalyticsPage({
                         "Aucune installation enregistrée cette journée.",
                       )
                     : (
-                      <div className="grid gap-3 md:grid-cols-2">
-                        {dailyActors.map((actor) => (
-                          <a
-                            key={actor.sessionId}
-                            href={dashboardHref(
-                              {
-                                sessionId:
-                                  actor.sessionId,
-                                date: selectedDate,
-                              },
-                              providedToken,
-                            )}
-                            className="block rounded-2xl border border-black/10 bg-[#faf7f0] p-4 transition hover:bg-white"
-                          >
-                            <div className="flex items-start justify-between gap-3">
-                              <div>
-                                <div className="font-semibold">
+                      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                        {dailyActors.map((actor) => {
+                          const installation =
+                            actor.installation;
+
+                          const isNew =
+                            installation?.firstSeenDate ===
+                            selectedDate;
+
+                          const title =
+                            installation?.accountName ||
+                            installation?.label ||
+                            (
+                              actor.userId
+                                ? "Compte connecté"
+                                : "Utilisateur sans compte"
+                            );
+
+                          const secondary = [
+                            actor.userId
+                              ? "Compte"
+                              : "Sans compte",
+                            installation?.deviceType ||
+                              actor.platform,
+                            installation?.os,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ");
+
+                          return (
+                            <a
+                              key={actor.sessionId}
+                              href={dashboardHref(
+                                {
+                                  sessionId:
+                                    actor.sessionId,
+                                  date:
+                                    selectedDate,
+                                  traffic:
+                                    trafficFilter,
+                                },
+                                providedToken,
+                              )}
+                              className="group flex min-h-[86px] items-center justify-between gap-4 rounded-[20px] border border-black/10 bg-[#faf7f0] px-4 py-4 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-sm"
+                            >
+                              <div className="min-w-0">
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <div className="truncate font-semibold text-black">
+                                    {title}
+                                  </div>
+
+                                  {installation?.trafficClass ===
+                                  "test" ? (
+                                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-amber-800">
+                                      Test
+                                    </span>
+                                  ) : null}
+                                </div>
+
+                                <div className="mt-1 truncate text-xs text-black/40">
+                                  {secondary || "—"}
+                                  {" · "}
                                   {maskAnalyticsId(
                                     actor.sessionId,
                                   )}
                                 </div>
-
-                                <div className="mt-1 text-xs text-black/45">
-                                  {actor.userId
-                                    ? "Compte connecté"
-                                    : "Sans compte"}
-                                  {" · "}
-                                  {actor.platform || "—"}
-                                </div>
                               </div>
 
-                              <div className="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white">
-                                Voir tout
+                              <div
+                                className={
+                                  isNew
+                                    ? "shrink-0 rounded-full bg-black px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-white"
+                                    : "shrink-0 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-black/45"
+                                }
+                              >
+                                {isNew
+                                  ? "Nouveau"
+                                  : "De retour"}
                               </div>
-                            </div>
-
-                            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                              <span className="rounded-full bg-white px-3 py-1">
-                                {actor.events} actions
-                              </span>
-
-                              <span className="rounded-full bg-white px-3 py-1">
-                                {actor.views} fiches
-                              </span>
-
-                              <span className="rounded-full bg-white px-3 py-1">
-                                {actor.searches} recherches
-                              </span>
-
-                              {(actor.city ||
-                                actor.country) ? (
-                                <span className="rounded-full bg-white px-3 py-1">
-                                  {[actor.city, actor.country]
-                                    .filter(Boolean)
-                                    .join(" · ")}
-                                </span>
-                              ) : null}
-                            </div>
-                          </a>
-                        ))}
+                            </a>
+                          );
+                        })}
                       </div>
                     ),
-                  "Clique sur une installation pour voir tout ce qu'elle a consulté, qu'un compte soit connecté ou non.",
+                  "Clique sur un utilisateur pour afficher toute son activité, ses ouvertures et son historique détaillé.",
                 )}
 
                 <div className="grid gap-6 xl:grid-cols-2">

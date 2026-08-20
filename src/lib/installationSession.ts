@@ -1,4 +1,3 @@
-
 "use client";
 
 const SESSION_KEY = "im_session_id";
@@ -32,6 +31,7 @@ export function getOrCreateInstallationSessionId() {
 
     if (!sessionId) {
       sessionId = makeId();
+
       window.localStorage.setItem(
         SESSION_KEY,
         sessionId,
@@ -53,6 +53,7 @@ export function getOrCreateLaunchId() {
 
     if (!launchId) {
       launchId = makeId();
+
       window.sessionStorage.setItem(
         LAUNCH_KEY,
         launchId,
@@ -87,6 +88,98 @@ export function getUtcOffsetMinutes() {
   }
 }
 
+export function getInstallationLocale() {
+  if (typeof window === "undefined") return "fr";
+
+  return /^\/en(?:\/|$)/.test(
+    window.location.pathname,
+  )
+    ? "en"
+    : "fr";
+}
+
+export function getAnalyticsDeviceContext() {
+  if (typeof navigator === "undefined") {
+    return {
+      platform: "web",
+      deviceType: "desktop",
+      os: "unknown",
+      browser: "unknown",
+    };
+  }
+
+  const ua = navigator.userAgent || "";
+
+  const isIPad =
+    /iPad/i.test(ua) ||
+    (
+      /Macintosh/i.test(ua) &&
+      Number(navigator.maxTouchPoints || 0) > 1
+    );
+
+  const isIPhone =
+    /iPhone|iPod/i.test(ua);
+
+  const isAndroid =
+    /Android/i.test(ua);
+
+  let platform = "web";
+
+  if (isIPad || isIPhone) {
+    platform = "ios";
+  } else if (isAndroid) {
+    platform = "android";
+  }
+
+  let deviceType = "desktop";
+
+  if (isIPad || /Tablet/i.test(ua)) {
+    deviceType = "tablet";
+  } else if (
+    isIPhone ||
+    isAndroid ||
+    /Mobile/i.test(ua)
+  ) {
+    deviceType = "mobile";
+  }
+
+  let os = "unknown";
+
+  if (isIPad || isIPhone) {
+    os = "ios";
+  } else if (isAndroid) {
+    os = "android";
+  } else if (/Macintosh|Mac OS X/i.test(ua)) {
+    os = "macos";
+  } else if (/Windows/i.test(ua)) {
+    os = "windows";
+  } else if (/Linux/i.test(ua)) {
+    os = "linux";
+  }
+
+  let browser = "other";
+
+  if (/Edg\//i.test(ua)) {
+    browser = "edge";
+  } else if (/Firefox|FxiOS/i.test(ua)) {
+    browser = "firefox";
+  } else if (/Chrome|CriOS/i.test(ua)) {
+    browser = "chrome";
+  } else if (
+    /Safari/i.test(ua) &&
+    !/Chrome|CriOS|Chromium|Edg\//i.test(ua)
+  ) {
+    browser = "safari";
+  }
+
+  return {
+    platform,
+    deviceType,
+    os,
+    browser,
+  };
+}
+
 export function rememberInstallationPushToken(
   token: string,
 ) {
@@ -105,20 +198,12 @@ export function readInstallationPushToken() {
 
   try {
     const token =
-      window.localStorage.getItem(PUSH_TOKEN_KEY);
+      window.localStorage.getItem(
+        PUSH_TOKEN_KEY,
+      );
 
     return token?.trim() || null;
   } catch {
     return null;
   }
-}
-
-export function getInstallationLocale() {
-  if (typeof window === "undefined") return "fr";
-
-  return /^\/en(?:\/|$)/.test(
-    window.location.pathname,
-  )
-    ? "en"
-    : "fr";
 }

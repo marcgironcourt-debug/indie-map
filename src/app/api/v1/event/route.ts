@@ -158,6 +158,21 @@ export async function POST(req: Request) {
       40,
     );
 
+    const deviceType = cleanString(
+      req.headers.get("x-device-type"),
+      40,
+    );
+
+    const deviceOs = cleanString(
+      req.headers.get("x-device-os"),
+      40,
+    );
+
+    const deviceBrowser = cleanString(
+      req.headers.get("x-device-browser"),
+      40,
+    );
+
     const bodyTimeZone =
       normalizeTimeZone(
         body.clientTimeZone,
@@ -187,6 +202,23 @@ export async function POST(req: Request) {
 
     const utcOffsetMinutes =
       bodyOffset ?? headerOffset;
+
+    const finalSessionId =
+      cleanString(
+        body.sessionId,
+        120,
+      ) || headerSessionId;
+
+    const finalLaunchId =
+      cleanString(
+        body.launchId,
+        120,
+      ) || headerLaunchId;
+
+    const defaultTrafficClass =
+      process.env.NODE_ENV === "production"
+        ? "external"
+        : "test";
 
     const now = new Date();
 
@@ -247,7 +279,77 @@ export async function POST(req: Request) {
             OR "lastSeenAt" < ${staleUserCutoff}
           )
         RETURNING "id"
+      ),
+
+      upsert_installation AS (
+        INSERT INTO "AnalyticsInstallation" (
+          "sessionId",
+          "userId",
+          "trafficClass",
+          "platform",
+          "deviceType",
+          "os",
+          "browser",
+          "clientTimeZone",
+          "utcOffsetMinutes",
+          "firstSeenAt",
+          "lastSeenAt",
+          "createdAt",
+          "updatedAt"
+        )
+        SELECT
+          ${finalSessionId},
+          (
+            SELECT "userId"
+            FROM valid_session
+          ),
+          ${defaultTrafficClass},
+          ${cleanString(body.platform, 40) || headerPlatform},
+          ${deviceType},
+          ${deviceOs},
+          ${deviceBrowser},
+          ${clientTimeZone},
+          ${utcOffsetMinutes},
+          ${now},
+          ${now},
+          ${now},
+          ${now}
+        WHERE ${finalSessionId} IS NOT NULL
+        ON CONFLICT ("sessionId")
+        DO UPDATE SET
+          "userId" = COALESCE(
+            EXCLUDED."userId",
+            "AnalyticsInstallation"."userId"
+          ),
+          "platform" = COALESCE(
+            EXCLUDED."platform",
+            "AnalyticsInstallation"."platform"
+          ),
+          "deviceType" = COALESCE(
+            EXCLUDED."deviceType",
+            "AnalyticsInstallation"."deviceType"
+          ),
+          "os" = COALESCE(
+            EXCLUDED."os",
+            "AnalyticsInstallation"."os"
+          ),
+          "browser" = COALESCE(
+            EXCLUDED."browser",
+            "AnalyticsInstallation"."browser"
+          ),
+          "clientTimeZone" = COALESCE(
+            EXCLUDED."clientTimeZone",
+            "AnalyticsInstallation"."clientTimeZone"
+          ),
+          "utcOffsetMinutes" = COALESCE(
+            EXCLUDED."utcOffsetMinutes",
+            "AnalyticsInstallation"."utcOffsetMinutes"
+          ),
+          "lastSeenAt" = EXCLUDED."lastSeenAt",
+          "updatedAt" = EXCLUDED."updatedAt"
+        RETURNING "sessionId"
       )
+
       INSERT INTO "Event" (
         "id",
         "eventType",
@@ -274,8 +376,8 @@ export async function POST(req: Request) {
         ${cleanString(body.city, 120)},
         ${cleanString(body.country, 120)},
         ${cleanString(body.category, 120)},
-        ${cleanString(body.sessionId, 120) || headerSessionId},
-        ${cleanString(body.launchId, 120) || headerLaunchId},
+        ${finalSessionId},
+        ${finalLaunchId},
         (SELECT "userId" FROM valid_session),
         ${cleanString(body.locale, 12) || headerLocale},
         ${cleanString(body.platform, 40) || headerPlatform},

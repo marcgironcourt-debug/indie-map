@@ -1,25 +1,10 @@
-
 "use client";
 
 import React from "react";
 import { usePathname } from "next/navigation";
 import {
-  getClientTimeZone,
-  getOrCreateInstallationSessionId,
-  getOrCreateLaunchId,
-  getUtcOffsetMinutes,
-} from "@/lib/installationSession";
-
-function getPlatform() {
-  if (typeof navigator === "undefined") return "web";
-
-  const ua = navigator.userAgent || "";
-
-  if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
-  if (/Android/i.test(ua)) return "android";
-
-  return "web";
-}
+  getAnalyticsHeaders,
+} from "@/lib/analytics";
 
 export default function PresenceHeartbeat() {
   const pathname = usePathname();
@@ -27,29 +12,26 @@ export default function PresenceHeartbeat() {
   React.useEffect(() => {
     const isAnalyticsPage =
       pathname === "/indie-analytics" ||
-      pathname.startsWith("/indie-analytics/");
+      pathname.startsWith(
+        "/indie-analytics/",
+      );
 
     if (isAnalyticsPage) return;
+
+    const headers =
+      getAnalyticsHeaders();
+
+    const launchId =
+      headers["x-launch-id"];
 
     const heartbeatLockKey =
       "im_presence_heartbeat_at";
 
-    /*
-     * Plusieurs onglets partagent localStorage.
-     * Cette fenêtre empêche leurs heartbeats
-     * de partir simultanément.
-     */
-    const heartbeatLockMs = 60_000;
+    const launchHeartbeatKey =
+      "im_launch_heartbeat_sent";
 
-    const sessionId =
-      getOrCreateInstallationSessionId();
-
-    const launchId = getOrCreateLaunchId();
-    const clientTimeZone = getClientTimeZone();
-    const utcOffsetMinutes =
-      getUtcOffsetMinutes();
-
-    const platform = getPlatform();
+    const heartbeatLockMs =
+      60_000;
 
     let inFlight = false;
 
@@ -57,15 +39,17 @@ export default function PresenceHeartbeat() {
       const now = Date.now();
 
       try {
-        const previous = Number(
-          window.localStorage.getItem(
-            heartbeatLockKey,
-          ) || "0",
-        );
+        const previous =
+          Number(
+            window.localStorage.getItem(
+              heartbeatLockKey,
+            ) || "0",
+          );
 
         if (
           Number.isFinite(previous) &&
-          now - previous < heartbeatLockMs
+          now - previous <
+            heartbeatLockMs
         ) {
           return false;
         }
@@ -81,30 +65,66 @@ export default function PresenceHeartbeat() {
       }
     };
 
-    const send = () => {
+    const launchAlreadySent = () => {
+      try {
+        return (
+          window.sessionStorage.getItem(
+            launchHeartbeatKey,
+          ) === launchId
+        );
+      } catch {
+        return false;
+      }
+    };
+
+    const rememberLaunchSent = () => {
+      try {
+        window.sessionStorage.setItem(
+          launchHeartbeatKey,
+          launchId,
+        );
+      } catch {}
+    };
+
+    const send = (
+      forceForLaunch = false,
+    ) => {
       if (inFlight) return;
-      if (document.visibilityState !== "visible") {
+
+      if (
+        document.visibilityState !==
+        "visible"
+      ) {
         return;
       }
-      if (!reserveHeartbeat()) return;
+
+      if (
+        !forceForLaunch &&
+        !reserveHeartbeat()
+      ) {
+        return;
+      }
 
       inFlight = true;
 
       try {
-        fetch("/api/presence/heartbeat", {
-          method: "POST",
-          headers: {
-            "x-session-id": sessionId,
-            "x-launch-id": launchId,
-            "x-platform": platform,
-            "x-client-time-zone":
-              clientTimeZone,
-            "x-utc-offset-minutes":
-              String(utcOffsetMinutes),
+        fetch(
+          "/api/presence/heartbeat",
+          {
+            method: "POST",
+            headers,
+            keepalive: true,
+            cache: "no-store",
           },
-          keepalive: true,
-          cache: "no-store",
-        })
+        )
+          .then((response) => {
+            if (
+              response.ok &&
+              forceForLaunch
+            ) {
+              rememberLaunchSent();
+            }
+          })
           .catch(() => {})
           .finally(() => {
             inFlight = false;
@@ -114,18 +134,28 @@ export default function PresenceHeartbeat() {
       }
     };
 
-    const handleVisibilityChange = () => {
-      if (
-        document.visibilityState === "visible"
-      ) {
-        send();
-      }
-    };
+    const handleVisibilityChange =
+      () => {
+        if (
+          document.visibilityState ===
+          "visible"
+        ) {
+          send(false);
+        }
+      };
 
-    send();
+    /*
+     * Chaque launchId doit envoyer au moins
+     * un heartbeat. Les changements de page
+     * suivants restent protégés par le verrou.
+     */
+    send(!launchAlreadySent());
 
     const intervalId =
-      window.setInterval(send, 90_000);
+      window.setInterval(
+        () => send(false),
+        90_000,
+      );
 
     document.addEventListener(
       "visibilitychange",
@@ -133,7 +163,9 @@ export default function PresenceHeartbeat() {
     );
 
     return () => {
-      window.clearInterval(intervalId);
+      window.clearInterval(
+        intervalId,
+      );
 
       document.removeEventListener(
         "visibilitychange",

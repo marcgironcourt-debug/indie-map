@@ -1,5 +1,6 @@
 
 import {
+  getAnalyticsDeviceContext,
   getClientTimeZone,
   getOrCreateInstallationSessionId,
   getOrCreateLaunchId,
@@ -53,11 +54,19 @@ function getPlatform() {
 }
 
 export function getAnalyticsContext() {
+  const device =
+    getAnalyticsDeviceContext();
+
   return {
-    sessionId: getOrCreateInstallationSessionId(),
-    launchId: getOrCreateLaunchId(),
-    clientTimeZone: getClientTimeZone(),
-    utcOffsetMinutes: getUtcOffsetMinutes(),
+    sessionId:
+      getOrCreateInstallationSessionId(),
+    launchId:
+      getOrCreateLaunchId(),
+    clientTimeZone:
+      getClientTimeZone(),
+    utcOffsetMinutes:
+      getUtcOffsetMinutes(),
+    ...device,
   };
 }
 
@@ -76,7 +85,10 @@ export function getAnalyticsHeaders() {
     "x-client-time-zone": context.clientTimeZone,
     "x-utc-offset-minutes":
       String(context.utcOffsetMinutes),
-    "x-platform": getPlatform(),
+    "x-platform": context.platform,
+    "x-device-type": context.deviceType,
+    "x-device-os": context.os,
+    "x-device-browser": context.browser,
     "x-locale": locale,
   };
 }
@@ -96,7 +108,7 @@ export function trackEvent(
         : "fr");
 
     const platform =
-      payload.platform || getPlatform();
+      payload.platform || context.platform;
 
     const body = {
       ...payload,
@@ -117,6 +129,12 @@ export function trackEvent(
           String(context.utcOffsetMinutes),
         "x-locale": locale,
         "x-platform": platform,
+        "x-device-type":
+          context.deviceType,
+        "x-device-os":
+          context.os,
+        "x-device-browser":
+          context.browser,
       },
       body: JSON.stringify(body),
       keepalive: true,
