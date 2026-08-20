@@ -1,51 +1,80 @@
+
 import { randomUUID } from "node:crypto";
 import { geolocation } from "@vercel/functions";
+import {
+  localDateAndHour,
+  normalizeTimeZone,
+  parseUtcOffsetMinutes,
+} from "@/lib/analyticsTime";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    const sessionId = req.headers.get("x-session-id") || "unknown";
-    const launchId = req.headers.get("x-launch-id") || "unknown";
+    const sessionId =
+      req.headers.get("x-session-id") ||
+      "unknown";
+
+    const launchId =
+      req.headers.get("x-launch-id") ||
+      "unknown";
+
     const now = new Date();
 
-    const day = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Ho_Chi_Minh",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(now);
+    const clientTimeZone =
+      normalizeTimeZone(
+        req.headers.get(
+          "x-client-time-zone",
+        ),
+      );
+
+    const utcOffsetMinutes =
+      parseUtcOffsetMinutes(
+        req.headers.get(
+          "x-utc-offset-minutes",
+        ),
+      );
+
+    const { localDate: day } =
+      localDateAndHour(
+        now,
+        clientTimeZone,
+      );
 
     const geo = geolocation(req);
 
     const city =
       geo.city ||
-      req.headers.get("x-vercel-ip-city") ||
+      req.headers.get(
+        "x-vercel-ip-city",
+      ) ||
       null;
 
     const country =
       geo.country ||
-      req.headers.get("x-vercel-ip-country") ||
+      req.headers.get(
+        "x-vercel-ip-country",
+      ) ||
       null;
 
-    const userAgent = req.headers.get("user-agent") || "";
+    const userAgent =
+      req.headers.get("user-agent") || "";
 
     const platform =
       req.headers.get("x-platform") ||
       (userAgent.includes("Android")
         ? "android"
-        : /iPhone|iPad|iPod/i.test(userAgent)
+        : /iPhone|iPad|iPod/i.test(
+              userAgent,
+            )
           ? "ios"
           : "web");
 
-    const dailyActiveUserId = randomUUID();
-    const dailySessionId = randomUUID();
+    const dailyActiveUserId =
+      randomUUID();
 
-    /*
-     * Une seule requête et un seul aller-retour PostgreSQL pour :
-     * - actualiser la présence ;
-     * - compter l'utilisateur actif du jour ;
-     * - compter le lancement du jour.
-     */
+    const dailySessionId =
+      randomUUID();
+
     await prisma.$executeRaw`
       WITH upsert_active_session AS (
         INSERT INTO "ActiveSession" (
@@ -53,6 +82,8 @@ export async function POST(req: Request) {
           "city",
           "country",
           "platform",
+          "clientTimeZone",
+          "utcOffsetMinutes",
           "lastSeenAt",
           "createdAt",
           "updatedAt"
@@ -62,6 +93,8 @@ export async function POST(req: Request) {
           ${city},
           ${country},
           ${platform},
+          ${clientTimeZone},
+          ${utcOffsetMinutes},
           ${now},
           ${now},
           ${now}
@@ -71,8 +104,14 @@ export async function POST(req: Request) {
           "city" = EXCLUDED."city",
           "country" = EXCLUDED."country",
           "platform" = EXCLUDED."platform",
-          "lastSeenAt" = EXCLUDED."lastSeenAt",
-          "updatedAt" = EXCLUDED."updatedAt"
+          "clientTimeZone" =
+            EXCLUDED."clientTimeZone",
+          "utcOffsetMinutes" =
+            EXCLUDED."utcOffsetMinutes",
+          "lastSeenAt" =
+            EXCLUDED."lastSeenAt",
+          "updatedAt" =
+            EXCLUDED."updatedAt"
         RETURNING "sessionId"
       ),
       update_push_installation AS (
@@ -92,6 +131,8 @@ export async function POST(req: Request) {
           "city",
           "country",
           "platform",
+          "clientTimeZone",
+          "utcOffsetMinutes",
           "createdAt",
           "updatedAt"
         )
@@ -102,6 +143,8 @@ export async function POST(req: Request) {
           ${city},
           ${country},
           ${platform},
+          ${clientTimeZone},
+          ${utcOffsetMinutes},
           ${now},
           ${now}
         )
@@ -117,6 +160,8 @@ export async function POST(req: Request) {
         "city",
         "country",
         "platform",
+        "clientTimeZone",
+        "utcOffsetMinutes",
         "createdAt",
         "updatedAt"
       )
@@ -128,6 +173,8 @@ export async function POST(req: Request) {
         ${city},
         ${country},
         ${platform},
+        ${clientTimeZone},
+        ${utcOffsetMinutes},
         ${now},
         ${now}
       )
@@ -143,9 +190,18 @@ export async function POST(req: Request) {
       city,
       country,
       platform,
+      clientTimeZone,
+      utcOffsetMinutes,
     });
   } catch (error) {
-    console.error("presence heartbeat failed", error);
-    return Response.json({ ok: false }, { status: 500 });
+    console.error(
+      "presence heartbeat failed",
+      error,
+    );
+
+    return Response.json(
+      { ok: false },
+      { status: 500 },
+    );
   }
 }

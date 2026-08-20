@@ -1,26 +1,14 @@
+
 "use client";
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { getOrCreateInstallationSessionId } from "@/lib/installationSession";
-
-function makeId() {
-  try {
-    if (
-      typeof globalThis.crypto !== "undefined" &&
-      typeof globalThis.crypto.randomUUID === "function"
-    ) {
-      return globalThis.crypto.randomUUID();
-    }
-  } catch {}
-
-  return (
-    "im_" +
-    Date.now().toString(36) +
-    "_" +
-    Math.random().toString(36).slice(2, 12)
-  );
-}
+import {
+  getClientTimeZone,
+  getOrCreateInstallationSessionId,
+  getOrCreateLaunchId,
+  getUtcOffsetMinutes,
+} from "@/lib/installationSession";
 
 function getPlatform() {
   if (typeof navigator === "undefined") return "web";
@@ -35,6 +23,7 @@ function getPlatform() {
 
 export default function PresenceHeartbeat() {
   const pathname = usePathname();
+
   React.useEffect(() => {
     const isAnalyticsPage =
       pathname === "/indie-analytics" ||
@@ -42,30 +31,23 @@ export default function PresenceHeartbeat() {
 
     if (isAnalyticsPage) return;
 
-    const launchKey = "im_launch_id";
-    const heartbeatLockKey = "im_presence_heartbeat_at";
+    const heartbeatLockKey =
+      "im_presence_heartbeat_at";
 
     /*
      * Plusieurs onglets partagent localStorage.
-     * Cette fenêtre empêche leurs heartbeats de partir simultanément.
+     * Cette fenêtre empêche leurs heartbeats
+     * de partir simultanément.
      */
     const heartbeatLockMs = 60_000;
 
     const sessionId =
       getOrCreateInstallationSessionId();
 
-    let launchId = "";
-
-    try {
-      launchId = window.sessionStorage.getItem(launchKey) || "";
-
-      if (!launchId) {
-        launchId = makeId();
-        window.sessionStorage.setItem(launchKey, launchId);
-      }
-    } catch {
-      launchId = makeId();
-    }
+    const launchId = getOrCreateLaunchId();
+    const clientTimeZone = getClientTimeZone();
+    const utcOffsetMinutes =
+      getUtcOffsetMinutes();
 
     const platform = getPlatform();
 
@@ -76,27 +58,34 @@ export default function PresenceHeartbeat() {
 
       try {
         const previous = Number(
-          window.localStorage.getItem(heartbeatLockKey) || "0",
+          window.localStorage.getItem(
+            heartbeatLockKey,
+          ) || "0",
         );
 
-        if (Number.isFinite(previous) && now - previous < heartbeatLockMs) {
+        if (
+          Number.isFinite(previous) &&
+          now - previous < heartbeatLockMs
+        ) {
           return false;
         }
 
-        window.localStorage.setItem(heartbeatLockKey, String(now));
+        window.localStorage.setItem(
+          heartbeatLockKey,
+          String(now),
+        );
+
         return true;
       } catch {
-        /*
-         * Si localStorage est indisponible, le verrou local inFlight
-         * continue au moins à protéger cette instance.
-         */
         return true;
       }
     };
 
     const send = () => {
       if (inFlight) return;
-      if (document.visibilityState !== "visible") return;
+      if (document.visibilityState !== "visible") {
+        return;
+      }
       if (!reserveHeartbeat()) return;
 
       inFlight = true;
@@ -108,6 +97,10 @@ export default function PresenceHeartbeat() {
             "x-session-id": sessionId,
             "x-launch-id": launchId,
             "x-platform": platform,
+            "x-client-time-zone":
+              clientTimeZone,
+            "x-utc-offset-minutes":
+              String(utcOffsetMinutes),
           },
           keepalive: true,
           cache: "no-store",
@@ -122,19 +115,26 @@ export default function PresenceHeartbeat() {
     };
 
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
+      if (
+        document.visibilityState === "visible"
+      ) {
         send();
       }
     };
 
     send();
 
-    const intervalId = window.setInterval(send, 90_000);
+    const intervalId =
+      window.setInterval(send, 90_000);
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange,
+    );
 
     return () => {
       window.clearInterval(intervalId);
+
       document.removeEventListener(
         "visibilitychange",
         handleVisibilityChange,

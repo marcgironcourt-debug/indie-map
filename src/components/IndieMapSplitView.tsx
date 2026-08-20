@@ -5,7 +5,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ContributeForm from "@/components/ContributeForm";
-import { trackEvent } from "@/lib/analytics";
+import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
 import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberInstallationPushToken } from "@/lib/installationSession";
@@ -1367,7 +1367,8 @@ React.useEffect(() => {
       await fetch("/api/v1/me/place-notes", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          ...getAnalyticsHeaders(),
         },
         body: JSON.stringify({
           placeId,
@@ -1401,7 +1402,8 @@ React.useEffect(() => {
       const res = await fetch("/api/v1/me/place-notes", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          ...getAnalyticsHeaders(),
         },
         body: JSON.stringify({
           placeId,

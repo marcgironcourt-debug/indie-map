@@ -1,3 +1,11 @@
+
+import {
+  getClientTimeZone,
+  getOrCreateInstallationSessionId,
+  getOrCreateLaunchId,
+  getUtcOffsetMinutes,
+} from "@/lib/installationSession";
+
 export type IndieEventType =
   | "click_explore_world"
   | "click_recent_additions"
@@ -18,7 +26,9 @@ export type IndieEventType =
   | "click_detail_share"
   | "click_detail_view_on_map"
   | "click_detail_phone"
-  | "view_place_detail";
+  | "view_place_detail"
+  | "mark_place_visited"
+  | "unmark_place_visited";
 
 type TrackEventPayload = {
   eventType: IndieEventType;
@@ -31,51 +41,66 @@ type TrackEventPayload = {
   metadata?: Record<string, unknown>;
 };
 
-function makeId() {
-  try {
-    if (typeof globalThis.crypto !== "undefined" && typeof globalThis.crypto.randomUUID === "function") {
-      return globalThis.crypto.randomUUID();
-    }
-  } catch {}
-  return "im_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
-}
-
-function getSessionId() {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const key = "im_session_id";
-    let sessionId = window.localStorage.getItem(key) || "";
-    if (!sessionId) {
-      sessionId = makeId();
-      window.localStorage.setItem(key, sessionId);
-    }
-    return sessionId;
-  } catch {
-    return makeId();
-  }
-}
-
 function getPlatform() {
   if (typeof navigator === "undefined") return "web";
 
   const ua = navigator.userAgent || "";
+
   if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
   if (/Android/i.test(ua)) return "android";
+
   return "web";
 }
 
-export function trackEvent(payload: TrackEventPayload) {
+export function getAnalyticsContext() {
+  return {
+    sessionId: getOrCreateInstallationSessionId(),
+    launchId: getOrCreateLaunchId(),
+    clientTimeZone: getClientTimeZone(),
+    utcOffsetMinutes: getUtcOffsetMinutes(),
+  };
+}
+
+export function getAnalyticsHeaders() {
+  const context = getAnalyticsContext();
+
+  const locale =
+    typeof window !== "undefined" &&
+    window.location.pathname.startsWith("/en")
+      ? "en"
+      : "fr";
+
+  return {
+    "x-session-id": context.sessionId,
+    "x-launch-id": context.launchId,
+    "x-client-time-zone": context.clientTimeZone,
+    "x-utc-offset-minutes":
+      String(context.utcOffsetMinutes),
+    "x-platform": getPlatform(),
+    "x-locale": locale,
+  };
+}
+
+export function trackEvent(
+  payload: TrackEventPayload,
+) {
   if (typeof window === "undefined") return;
 
   try {
-    const sessionId = getSessionId();
-    const locale = payload.locale || (window.location.pathname.startsWith("/en") ? "en" : "fr");
-    const platform = payload.platform || getPlatform();
+    const context = getAnalyticsContext();
+
+    const locale =
+      payload.locale ||
+      (window.location.pathname.startsWith("/en")
+        ? "en"
+        : "fr");
+
+    const platform =
+      payload.platform || getPlatform();
 
     const body = {
       ...payload,
-      sessionId,
+      ...context,
       locale,
       platform,
     };
@@ -84,7 +109,12 @@ export function trackEvent(payload: TrackEventPayload) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-session-id": sessionId || "",
+        "x-session-id": context.sessionId,
+        "x-launch-id": context.launchId,
+        "x-client-time-zone":
+          context.clientTimeZone,
+        "x-utc-offset-minutes":
+          String(context.utcOffsetMinutes),
         "x-locale": locale,
         "x-platform": platform,
       },

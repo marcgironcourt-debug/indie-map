@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
+import {
+  localDateAndHour,
+  normalizeTimeZone,
+  parseUtcOffsetMinutes,
+} from "@/lib/analyticsTime";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -173,6 +178,50 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
     }
 
+    const analyticsSessionId =
+      (req.headers.get("x-session-id") || "")
+        .trim()
+        .slice(0, 120) || null;
+
+    const analyticsLaunchId =
+      (req.headers.get("x-launch-id") || "")
+        .trim()
+        .slice(0, 120) || null;
+
+    const analyticsPlatform =
+      (req.headers.get("x-platform") || "")
+        .trim()
+        .slice(0, 40) || null;
+
+    const analyticsLocale =
+      (req.headers.get("x-locale") || "")
+        .trim()
+        .slice(0, 12) || null;
+
+    const clientTimeZone =
+      normalizeTimeZone(
+        req.headers.get(
+          "x-client-time-zone",
+        ),
+      );
+
+    const utcOffsetMinutes =
+      parseUtcOffsetMinutes(
+        req.headers.get(
+          "x-utc-offset-minutes",
+        ),
+      );
+
+    const analyticsNow = new Date();
+
+    const {
+      localDate: clientLocalDate,
+      localHour: clientLocalHour,
+    } = localDateAndHour(
+      analyticsNow,
+      clientTimeZone,
+    );
+
     const body = await req.json().catch(() => null);
     const placeId = normId(body?.placeId);
 
@@ -187,6 +236,19 @@ export async function POST(req: Request) {
         ? new Date()
         : null;
     const comment = normComment(body?.comment);
+
+    const previousUserPlace =
+      await prisma.userPlace.findUnique({
+        where: {
+          userId_placeId: {
+            userId: currentUser.id,
+            placeId,
+          },
+        },
+        select: {
+          visited: true,
+        },
+      });
 
     const userPlace = await prisma.userPlace.upsert({
       where: {
@@ -208,6 +270,35 @@ export async function POST(req: Request) {
         visibility: visited ? "friends" : "private",
       },
     });
+
+    const previousVisited =
+      previousUserPlace?.visited === true;
+
+    if (previousVisited !== userPlace.visited) {
+      await prisma.event.create({
+        data: {
+          eventType: userPlace.visited
+            ? "mark_place_visited"
+            : "unmark_place_visited",
+          placeId,
+          sessionId: analyticsSessionId,
+          launchId: analyticsLaunchId,
+          userId: currentUser.id,
+          locale: analyticsLocale,
+          platform: analyticsPlatform,
+          clientTimeZone,
+          utcOffsetMinutes,
+          clientLocalDate,
+          clientLocalHour,
+          metadata: {
+            visitedAt:
+              userPlace.visitedAt
+                ? userPlace.visitedAt.toISOString()
+                : null,
+          },
+        },
+      });
+    }
 
     const existingComment = await prisma.placeComment.findFirst({
       where: {

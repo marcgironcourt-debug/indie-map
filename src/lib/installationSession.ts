@@ -1,6 +1,8 @@
+
 "use client";
 
 const SESSION_KEY = "im_session_id";
+const LAUNCH_KEY = "im_launch_id";
 const PUSH_TOKEN_KEY = "im_push_token";
 
 function makeId() {
@@ -39,6 +41,49 @@ export function getOrCreateInstallationSessionId() {
     return sessionId;
   } catch {
     return makeId();
+  }
+}
+
+export function getOrCreateLaunchId() {
+  if (typeof window === "undefined") return "";
+
+  try {
+    let launchId =
+      window.sessionStorage.getItem(LAUNCH_KEY) || "";
+
+    if (!launchId) {
+      launchId = makeId();
+      window.sessionStorage.setItem(
+        LAUNCH_KEY,
+        launchId,
+      );
+    }
+
+    return launchId;
+  } catch {
+    return makeId();
+  }
+}
+
+export function getClientTimeZone() {
+  if (typeof window === "undefined") return "";
+
+  try {
+    return (
+      Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone || ""
+    );
+  } catch {
+    return "";
+  }
+}
+
+export function getUtcOffsetMinutes() {
+  try {
+    return -new Date().getTimezoneOffset();
+  } catch {
+    return 0;
   }
 }
 

@@ -34,18 +34,23 @@ model Business {
 }
 
 model Event {
-  id        String   @id @default(uuid())
-  eventType String
-  placeId   String?
-  city      String?
-  country   String?
-  category  String?
-  sessionId String?
-  userId    String?
-  locale    String?
-  platform  String?
-  metadata  Json?
-  createdAt DateTime @default(now())
+  id               String   @id @default(uuid())
+  eventType        String
+  placeId          String?
+  city             String?
+  country          String?
+  category         String?
+  sessionId        String?
+  launchId         String?
+  userId           String?
+  locale           String?
+  platform         String?
+  clientTimeZone   String?
+  utcOffsetMinutes Int?
+  clientLocalDate  String?
+  clientLocalHour  Int?
+  metadata         Json?
+  createdAt        DateTime @default(now())
 
   user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
@@ -53,7 +58,12 @@ model Event {
   @@index([createdAt])
   @@index([userId])
   @@index([sessionId])
+  @@index([sessionId, createdAt])
+  @@index([launchId])
   @@index([placeId])
+  @@index([clientLocalDate])
+  @@index([clientLocalDate, createdAt])
+  @@index([clientLocalDate, eventType])
 }
 
 model Submission {
@@ -77,39 +87,45 @@ model Submission {
 }
 
 model ActiveSession {
-  sessionId  String   @id
-  city       String?
-  country    String?
-  platform   String?
-  lastSeenAt DateTime @default(now())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  sessionId        String   @id
+  city             String?
+  country          String?
+  platform         String?
+  clientTimeZone   String?
+  utcOffsetMinutes Int?
+  lastSeenAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 model DailyActiveUser {
-  id        String   @id @default(uuid())
-  day       String
-  sessionId String
-  city      String?
-  country   String?
-  platform  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String   @id @default(uuid())
+  day              String
+  sessionId        String
+  city             String?
+  country          String?
+  platform         String?
+  clientTimeZone   String?
+  utcOffsetMinutes Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@unique([day, sessionId])
   @@index([day])
 }
 
 model DailySession {
-  id        String   @id @default(uuid())
-  day       String
-  launchId  String
-  sessionId String
-  city      String?
-  country   String?
-  platform  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String   @id @default(uuid())
+  day              String
+  launchId         String
+  sessionId        String
+  city             String?
+  country          String?
+  platform         String?
+  clientTimeZone   String?
+  utcOffsetMinutes Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   @@unique([day, launchId])
   @@index([day])

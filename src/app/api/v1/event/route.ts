@@ -1,8 +1,14 @@
+
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { randomUUID } from "node:crypto";
 import { Prisma } from "@prisma/client";
 import { AUTH_COOKIE, hashToken } from "@/lib/auth";
+import {
+  localDateAndHour,
+  normalizeTimeZone,
+  parseUtcOffsetMinutes,
+} from "@/lib/analyticsTime";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -29,7 +35,9 @@ const ALLOWED = new Set([
   "click_detail_share",
   "click_detail_view_on_map",
   "click_detail_phone",
-  "view_place_detail"
+  "view_place_detail",
+  "mark_place_visited",
+  "unmark_place_visited",
 ]);
 
 type EventPayload = {
@@ -39,30 +47,51 @@ type EventPayload = {
   country?: unknown;
   category?: unknown;
   sessionId?: unknown;
+  launchId?: unknown;
   locale?: unknown;
   platform?: unknown;
+  clientTimeZone?: unknown;
+  utcOffsetMinutes?: unknown;
   metadata?: unknown;
 };
 
-function isObject(v: unknown): v is Record<string, unknown> {
-  return !!v && typeof v === "object" && !Array.isArray(v);
+function isObject(
+  v: unknown,
+): v is Record<string, unknown> {
+  return (
+    !!v &&
+    typeof v === "object" &&
+    !Array.isArray(v)
+  );
 }
 
-function cleanString(value: unknown, max = 200) {
+function cleanString(
+  value: unknown,
+  max = 200,
+) {
   if (typeof value !== "string") return null;
+
   const clean = value.trim();
   if (!clean) return null;
+
   return clean.slice(0, max);
 }
 
-function cleanMetadata(value: unknown): Prisma.InputJsonValue | undefined {
+function cleanMetadata(
+  value: unknown,
+): Prisma.InputJsonValue | undefined {
   if (!isObject(value)) return undefined;
-  return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+
+  return JSON.parse(
+    JSON.stringify(value),
+  ) as Prisma.InputJsonValue;
 }
 
 export async function POST(req: Request) {
   try {
-    const raw = await req.text().catch(() => "");
+    const raw =
+      await req.text().catch(() => "");
+
     const bodyUnknown: unknown = (() => {
       try {
         return JSON.parse(raw);
@@ -72,29 +101,116 @@ export async function POST(req: Request) {
     })();
 
     if (!isObject(bodyUnknown)) {
-      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
+      return NextResponse.json(
+        { ok: false },
+        {
+          status: 400,
+          headers: V1_HEADERS,
+        },
+      );
     }
 
-    const body = bodyUnknown as EventPayload;
-    const eventType = cleanString(body.eventType, 80);
+    const body =
+      bodyUnknown as EventPayload;
 
-    if (!eventType || !ALLOWED.has(eventType)) {
-      return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
+    const eventType =
+      cleanString(body.eventType, 80);
+
+    if (
+      !eventType ||
+      !ALLOWED.has(eventType)
+    ) {
+      return NextResponse.json(
+        { ok: false },
+        {
+          status: 400,
+          headers: V1_HEADERS,
+        },
+      );
     }
 
     const jar = await cookies();
-    const rawAuthToken = jar.get(AUTH_COOKIE)?.value ?? null;
-    const authToken = rawAuthToken ? hashToken(rawAuthToken) : null;
 
-    const headerSessionId = cleanString(req.headers.get("x-session-id"), 120);
-    const headerLocale = cleanString(req.headers.get("x-locale"), 12);
-    const headerPlatform = cleanString(req.headers.get("x-platform"), 40);
+    const rawAuthToken =
+      jar.get(AUTH_COOKIE)?.value ?? null;
+
+    const authToken = rawAuthToken
+      ? hashToken(rawAuthToken)
+      : null;
+
+    const headerSessionId = cleanString(
+      req.headers.get("x-session-id"),
+      120,
+    );
+
+    const headerLaunchId = cleanString(
+      req.headers.get("x-launch-id"),
+      120,
+    );
+
+    const headerLocale = cleanString(
+      req.headers.get("x-locale"),
+      12,
+    );
+
+    const headerPlatform = cleanString(
+      req.headers.get("x-platform"),
+      40,
+    );
+
+    const bodyTimeZone =
+      normalizeTimeZone(
+        body.clientTimeZone,
+      );
+
+    const headerTimeZone =
+      normalizeTimeZone(
+        req.headers.get(
+          "x-client-time-zone",
+        ),
+      );
+
+    const clientTimeZone =
+      bodyTimeZone || headerTimeZone;
+
+    const bodyOffset =
+      parseUtcOffsetMinutes(
+        body.utcOffsetMinutes,
+      );
+
+    const headerOffset =
+      parseUtcOffsetMinutes(
+        req.headers.get(
+          "x-utc-offset-minutes",
+        ),
+      );
+
+    const utcOffsetMinutes =
+      bodyOffset ?? headerOffset;
 
     const now = new Date();
-    const staleUserCutoff = new Date(now.getTime() - 5 * 60 * 1000);
-    const metadata = cleanMetadata(body.metadata);
+
+    const {
+      localDate: clientLocalDate,
+      localHour: clientLocalHour,
+    } = localDateAndHour(
+      now,
+      clientTimeZone,
+    );
+
+    const staleUserCutoff =
+      new Date(
+        now.getTime() -
+          5 * 60 * 1000,
+      );
+
+    const metadata =
+      cleanMetadata(body.metadata);
+
     const metadataJson =
-      metadata === undefined ? null : JSON.stringify(metadata);
+      metadata === undefined
+        ? null
+        : JSON.stringify(metadata);
 
     await prisma.$executeRaw`
       WITH session_match AS (
@@ -122,7 +238,10 @@ export async function POST(req: Request) {
         SET
           "lastSeenAt" = ${now},
           "updatedAt" = ${now}
-        WHERE "id" = (SELECT "userId" FROM valid_session)
+        WHERE "id" = (
+          SELECT "userId"
+          FROM valid_session
+        )
           AND (
             "lastSeenAt" IS NULL
             OR "lastSeenAt" < ${staleUserCutoff}
@@ -137,9 +256,14 @@ export async function POST(req: Request) {
         "country",
         "category",
         "sessionId",
+        "launchId",
         "userId",
         "locale",
         "platform",
+        "clientTimeZone",
+        "utcOffsetMinutes",
+        "clientLocalDate",
+        "clientLocalHour",
         "metadata",
         "createdAt"
       )
@@ -151,17 +275,35 @@ export async function POST(req: Request) {
         ${cleanString(body.country, 120)},
         ${cleanString(body.category, 120)},
         ${cleanString(body.sessionId, 120) || headerSessionId},
+        ${cleanString(body.launchId, 120) || headerLaunchId},
         (SELECT "userId" FROM valid_session),
         ${cleanString(body.locale, 12) || headerLocale},
         ${cleanString(body.platform, 40) || headerPlatform},
+        ${clientTimeZone},
+        ${utcOffsetMinutes},
+        ${clientLocalDate},
+        ${clientLocalHour},
         CAST(${metadataJson} AS jsonb),
         ${now}
       )
     `;
 
-    return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
+    return NextResponse.json(
+      { ok: true },
+      { headers: V1_HEADERS },
+    );
   } catch (err) {
-    console.error("[/api/v1/event] error", err);
-    return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });
+    console.error(
+      "[/api/v1/event] error",
+      err,
+    );
+
+    return NextResponse.json(
+      { ok: false },
+      {
+        status: 500,
+        headers: V1_HEADERS,
+      },
+    );
   }
 }
