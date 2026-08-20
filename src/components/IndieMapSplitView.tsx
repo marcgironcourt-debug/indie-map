@@ -495,6 +495,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
   const [incomingFriendRequestCount, setIncomingFriendRequestCount] = React.useState(0);
   const [unseenSharedListCount, setUnseenSharedListCount] = React.useState(0);
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
+  const [serverSavedPlaceIds, setServerSavedPlaceIds] = React.useState<string[]>([]);
   const savedPlaceMutationIdsRef = React.useRef<Set<string>>(new Set());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
@@ -536,11 +537,34 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
       const data = await res.json().catch(() => null);
       const user = data?.user ?? null;
       if (data?.ok && user) {
+        setIncomingFriendRequestCount(
+          Number(data?.notifications?.incomingFriendRequestCount) || 0,
+        );
+        setUnseenSharedListCount(
+          Number(data?.notifications?.unseenSharedListCount) || 0,
+        );
+
         const migratedSavedPlaces =
           await migrateLegacySavedPlacesToUser<SavedPlace>(
             user.id,
           );
 
+        const profileSavedPlaceIds = Array.isArray(data?.savedPlaceIds)
+          ? data.savedPlaceIds
+              .map((value: unknown) => String(value ?? "").trim())
+              .filter(Boolean)
+          : [];
+
+        const mergedSavedPlaceIds = Array.from(
+          new Set([
+            ...profileSavedPlaceIds,
+            ...migratedSavedPlaces
+              .map((place) => String(place?.id ?? "").trim())
+              .filter(Boolean),
+          ]),
+        );
+
+        setServerSavedPlaceIds(mergedSavedPlaceIds);
         setAuthProfile(user);
         setSavedPlacesUserId(user.id);
         setSavedPlaces(migratedSavedPlaces);
@@ -570,45 +594,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     }
   }, [locale, router]);
 
-  const refreshPersonalNotificationCounts = React.useCallback(async () => {
-    if (!authProfile) {
-      setIncomingFriendRequestCount(0);
-      setUnseenSharedListCount(0);
-      return;
-    }
-
-    try {
-      const [friendsRes, sharedListsRes] = await Promise.all([
-        fetch("/api/v1/me/friends", { cache: "no-store" }),
-        fetch("/api/v1/me/shared-lists", { cache: "no-store" }),
-      ]);
-
-      if (friendsRes.ok) {
-        const friendsData = await friendsRes.json().catch(() => null);
-        setIncomingFriendRequestCount(Array.isArray(friendsData?.incomingRequests) ? friendsData.incomingRequests.length : 0);
-      } else {
-        setIncomingFriendRequestCount(0);
-      }
-
-      if (sharedListsRes.ok) {
-        const sharedListsData = await sharedListsRes.json().catch(() => null);
-        const lists = Array.isArray(sharedListsData?.lists) ? sharedListsData.lists : [];
-        const unseenCount = lists.filter((list: { ownerId?: string; members?: { userId?: string; role?: string; seenAt?: string | null }[] }) =>
-          list.ownerId !== authProfile.id &&
-          Array.isArray(list.members) &&
-          list.members.some((member: { userId?: string; role?: string; seenAt?: string | null }) => member.userId === authProfile.id && member.role !== "owner" && !member.seenAt)
-        ).length;
-        setUnseenSharedListCount(unseenCount);
-      } else {
-        setUnseenSharedListCount(0);
-      }
-    } catch {
-      setIncomingFriendRequestCount(0);
-      setUnseenSharedListCount(0);
-    }
-  }, [authProfile?.id]);
-
-  React.useEffect(() => {
+React.useEffect(() => {
     const onAuthExpired = () => {
       setAuthProfile(null);
       setSavedPlacesUserId(null);
@@ -633,10 +619,7 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     refreshAuthProfile();
   }, [refreshAuthProfile]);
 
-  React.useEffect(() => {
-    refreshPersonalNotificationCounts();
-  }, [refreshPersonalNotificationCounts, panel]);
-  React.useEffect(() => {
+React.useEffect(() => {
     window.__IM_REGISTER_PUSH_TOKEN__ = (rawToken: string) => {
       const token = normalizePushToken(rawToken);
       if (!token) return;
@@ -1020,32 +1003,23 @@ export default function IndieMapSplitView({ locale, discoverId, entry, searchIds
     if (!authProfile) return;
     if (businesses.length === 0) return;
 
-    let cancelled = false;
+    const localSavedPlaces = readSavedPlaces(authProfile.id);
+    const ids = new Set([
+      ...serverSavedPlaceIds,
+      ...localSavedPlaces
+        .map((place) => String(place?.id ?? "").trim())
+        .filter(Boolean),
+    ]);
 
-    async function loadSavedPlacesFromServer() {
-      try {
-        const res = await fetch("/api/v1/me/saved-places", { cache: "no-store" });
-        const data = await res.json().catch(() => null);
+    if (savedPlaceMutationIdsRef.current.size > 0) return;
 
-        if (!res.ok || !data?.ok || !Array.isArray(data.places)) return;
+    const next = businesses.filter((place) =>
+      ids.has(String(place.id)),
+    );
 
-        const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
-        const next = businesses.filter((place) => ids.has(String(place.id)));
-
-        if (cancelled || savedPlaceMutationIdsRef.current.size > 0) return;
-
-        setSavedPlaces(next);
-        writeSavedPlacesStorage(next, authProfile?.id ?? null);
-        window.dispatchEvent(new CustomEvent("im:saved-places-updated"));
-      } catch {}
-    }
-
-    void loadSavedPlacesFromServer();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [authProfile?.id, businesses]);
+    setSavedPlaces(next);
+    writeSavedPlacesStorage(next, authProfile.id);
+  }, [authProfile?.id, businesses, serverSavedPlaceIds]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {

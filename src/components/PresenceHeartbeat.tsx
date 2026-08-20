@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { getOrCreateInstallationSessionId } from "@/lib/installationSession";
 
 function makeId() {
@@ -33,7 +34,14 @@ function getPlatform() {
 }
 
 export default function PresenceHeartbeat() {
+  const pathname = usePathname();
   React.useEffect(() => {
+    const isAnalyticsPage =
+      pathname === "/indie-analytics" ||
+      pathname.startsWith("/indie-analytics/");
+
+    if (isAnalyticsPage) return;
+
     const launchKey = "im_launch_id";
     const heartbeatLockKey = "im_presence_heartbeat_at";
 
@@ -132,7 +140,7 @@ export default function PresenceHeartbeat() {
         handleVisibilityChange,
       );
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

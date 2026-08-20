@@ -130,6 +130,7 @@ return bTime - aTime;
       initialDiscoverPlace={initialDiscoverPlace}
       initialContextPlace={initialContextPlace}
       initialNewPlaces={initialNewPlaces}
+      initialAllPlaces={allPlaces}
       initialSelectedHomePlace={initialSelectedHomePlace}
       initialSelectedHomePlaceSource={
         initialSelectedHomePlace ? "recent_additions_all" : "home_detail"

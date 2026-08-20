@@ -409,14 +409,42 @@ export default function HomeScreen({
       const data = await res.json().catch(() => null);
       const user = data?.user ?? null;
       if (data?.ok && user) {
+        setIncomingFriendRequestCount(
+          Number(data?.notifications?.incomingFriendRequestCount) || 0,
+        );
+        setUnseenSharedListCount(
+          Number(data?.notifications?.unseenSharedListCount) || 0,
+        );
+
         const migratedSavedPlaces =
           await migrateLegacySavedPlacesToUser<SavedPlace>(
             user.id,
           );
 
+        const profileSavedPlaceIds = Array.isArray(data?.savedPlaceIds)
+          ? data.savedPlaceIds
+              .map((value: unknown) => String(value ?? "").trim())
+              .filter(Boolean)
+          : [];
+
+        const savedIds = new Set([
+          ...profileSavedPlaceIds,
+          ...migratedSavedPlaces
+            .map((place) => String(place?.id ?? "").trim())
+            .filter(Boolean),
+        ]);
+
+        const syncedSavedPlaces =
+          initialAllPlaces.length > 0
+            ? initialAllPlaces.filter((place) =>
+                savedIds.has(String(place.id)),
+              )
+            : migratedSavedPlaces;
+
         setAuthProfile(user);
         setSavedPlacesUserId(user.id);
-        setSavedPlaces(migratedSavedPlaces);
+        setSavedPlaces(syncedSavedPlaces);
+        writeSavedPlacesStorage(syncedSavedPlaces, user.id);
         setProfileUsername(user.username || "");
         setProfileAvatarUrl(user.avatarUrl || "");
         setProfileAvatarColor(user.avatarColor || "#F97316");
@@ -441,47 +469,9 @@ export default function HomeScreen({
     } finally {
       setAuthLoading(false);
     }
-  }, [locale, router]);
+  }, [locale, router, initialAllPlaces]);
 
-  const refreshPersonalNotificationCounts = React.useCallback(async () => {
-    if (!authProfile) {
-      setIncomingFriendRequestCount(0);
-      setUnseenSharedListCount(0);
-      return;
-    }
-
-    try {
-      const [friendsRes, sharedListsRes] = await Promise.all([
-        fetch("/api/v1/me/friends", { cache: "no-store" }),
-        fetch("/api/v1/me/shared-lists", { cache: "no-store" }),
-      ]);
-
-      if (friendsRes.ok) {
-        const friendsData = await friendsRes.json().catch(() => null);
-        setIncomingFriendRequestCount(Array.isArray(friendsData?.incomingRequests) ? friendsData.incomingRequests.length : 0);
-      } else {
-        setIncomingFriendRequestCount(0);
-      }
-
-      if (sharedListsRes.ok) {
-        const sharedListsData = await sharedListsRes.json().catch(() => null);
-        const lists = Array.isArray(sharedListsData?.lists) ? sharedListsData.lists : [];
-        const unseenCount = lists.filter((list: { ownerId?: string; members?: { userId?: string; role?: string; seenAt?: string | null }[] }) =>
-          list.ownerId !== authProfile.id &&
-          Array.isArray(list.members) &&
-          list.members.some((member: { userId?: string; role?: string; seenAt?: string | null }) => member.userId === authProfile.id && member.role !== "owner" && !member.seenAt)
-        ).length;
-        setUnseenSharedListCount(unseenCount);
-      } else {
-        setUnseenSharedListCount(0);
-      }
-    } catch {
-      setIncomingFriendRequestCount(0);
-      setUnseenSharedListCount(0);
-    }
-  }, [authProfile?.id]);
-
-  React.useEffect(() => {
+React.useEffect(() => {
     const onAuthExpired = () => {
       setAuthProfile(null);
       setSavedPlacesUserId(null);
@@ -506,10 +496,7 @@ export default function HomeScreen({
     refreshAuthProfile();
   }, [refreshAuthProfile]);
 
-  React.useEffect(() => {
-    refreshPersonalNotificationCounts();
-  }, [refreshPersonalNotificationCounts, panel]);
-  React.useEffect(() => {
+React.useEffect(() => {
     window.__IM_REGISTER_PUSH_TOKEN__ = (rawToken: string) => {
       const token = normalizePushToken(rawToken);
       if (!token) return;
@@ -998,6 +985,7 @@ export default function HomeScreen({
 
   React.useEffect(() => {
     if (!authProfile) return;
+    if (initialAllPlaces.length > 0) return;
     if (allPlaces.length === 0) return;
 
     let cancelled = false;
@@ -1025,7 +1013,7 @@ export default function HomeScreen({
     return () => {
       cancelled = true;
     };
-  }, [authProfile?.id, allPlaces]);
+  }, [authProfile?.id, allPlaces, initialAllPlaces]);
 
   React.useEffect(() => {
     const syncPlaceNotes = () => {
@@ -1448,38 +1436,65 @@ export default function HomeScreen({
 
     (async () => {
       try {
-        const r = await fetch("/api/v1/places?locale=" + encodeURIComponent(locale), { cache: "no-store" });
-        if (!r.ok) throw new Error("load failed");
-        const j = await r.json();
-        const arr = Array.isArray(j) ? j : j?.data || [];
-        const all: DiscoverPlace[] = arr
-          .map((item: any) => ({
-            id: String(item?.id ?? ""),
-            name: String(item?.name ?? "").trim(),
-            lat: typeof item?.lat === "number" ? item.lat : undefined,
-            lng: typeof item?.lng === "number" ? item.lng : undefined,
-            panoramaImage: String(item?.panoramaImage ?? "").trim() || undefined,
-            city: String(item?.city ?? "").trim() || undefined,
-            address: String(item?.address ?? "").trim() || undefined,
-            category: String(item?.category ?? "").trim() || undefined,
-            website: String(item?.website ?? "").trim() || undefined,
-            phone: String(item?.phone ?? "").trim() || undefined,
-                        miniText: String(item?.miniText ?? "").trim() || undefined,
-            openingHours: String(item?.openingHours ?? "").trim() || undefined,
-            timeZone: String(item?.timeZone ?? "").trim() || undefined,
-            createdAt: String(item?.createdAt ?? "").trim() || undefined,
-            updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
-            homeTextNear: String(item?.homeTextNear ?? "").trim() || undefined,
-            homeTextFar: String(item?.homeTextFar ?? "").trim() || undefined,
-            homeTextNearEn: String(item?.translations?.en?.homeTextNear ?? item?.homeTextNear ?? "").trim() || undefined,
-            homeTextFarEn: String(item?.translations?.en?.homeTextFar ?? item?.homeTextFar ?? "").trim() || undefined
-          }))
-          .filter((item: DiscoverPlace) =>
-            !!item.id &&
-            !!item.name &&
-            Number.isFinite(item.lat) &&
-            Number.isFinite(item.lng)
+        let all: DiscoverPlace[];
+
+        if (initialAllPlaces.length > 0) {
+          all = initialAllPlaces;
+        } else {
+          const r = await fetch(
+            "/api/v1/places?locale=" + encodeURIComponent(locale),
+            { cache: "no-store" }
           );
+
+          if (!r.ok) throw new Error("load failed");
+
+          const j = await r.json();
+          const arr = Array.isArray(j) ? j : j?.data || [];
+
+          all = arr
+            .map((item: any) => ({
+              id: String(item?.id ?? ""),
+              name: String(item?.name ?? "").trim(),
+              lat: typeof item?.lat === "number" ? item.lat : undefined,
+              lng: typeof item?.lng === "number" ? item.lng : undefined,
+              panoramaImage:
+                String(item?.panoramaImage ?? "").trim() || undefined,
+              city: String(item?.city ?? "").trim() || undefined,
+              address: String(item?.address ?? "").trim() || undefined,
+              category: String(item?.category ?? "").trim() || undefined,
+              website: String(item?.website ?? "").trim() || undefined,
+              phone: String(item?.phone ?? "").trim() || undefined,
+              miniText: String(item?.miniText ?? "").trim() || undefined,
+              openingHours:
+                String(item?.openingHours ?? "").trim() || undefined,
+              timeZone: String(item?.timeZone ?? "").trim() || undefined,
+              createdAt: String(item?.createdAt ?? "").trim() || undefined,
+              updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
+              homeTextNear:
+                String(item?.homeTextNear ?? "").trim() || undefined,
+              homeTextFar:
+                String(item?.homeTextFar ?? "").trim() || undefined,
+              homeTextNearEn:
+                String(
+                  item?.translations?.en?.homeTextNear ??
+                    item?.homeTextNear ??
+                    ""
+                ).trim() || undefined,
+              homeTextFarEn:
+                String(
+                  item?.translations?.en?.homeTextFar ??
+                    item?.homeTextFar ??
+                    ""
+                ).trim() || undefined,
+            }))
+            .filter(
+              (item: DiscoverPlace) =>
+                !!item.id &&
+                !!item.name &&
+                Number.isFinite(item.lat) &&
+                Number.isFinite(item.lng)
+            );
+        }
 
         setAllPlaces(all);
 
@@ -1663,7 +1678,7 @@ export default function HomeScreen({
     return () => {
       cancelled = true;
     };
-  }, [locale, nativeLocationTick]);
+  }, [locale, nativeLocationTick, initialAllPlaces]);
 
   const savedPlacesByCity = React.useMemo(() => {
     const byId = new Map(allPlaces.map((place) => [place.id, place] as const));

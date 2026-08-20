@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { randomUUID } from "node:crypto";
 import { Prisma } from "@prisma/client";
-import { getCurrentUser } from "@/lib/auth";
+import { AUTH_COOKIE, hashToken } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -80,26 +82,82 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });
     }
 
-    const user = await getCurrentUser().catch(() => null);
+    const jar = await cookies();
+    const rawAuthToken = jar.get(AUTH_COOKIE)?.value ?? null;
+    const authToken = rawAuthToken ? hashToken(rawAuthToken) : null;
 
     const headerSessionId = cleanString(req.headers.get("x-session-id"), 120);
     const headerLocale = cleanString(req.headers.get("x-locale"), 12);
     const headerPlatform = cleanString(req.headers.get("x-platform"), 40);
 
-    await prisma.event.create({
-      data: {
-        eventType,
-        placeId: cleanString(body.placeId, 120),
-        city: cleanString(body.city, 120),
-        country: cleanString(body.country, 120),
-        category: cleanString(body.category, 120),
-        sessionId: cleanString(body.sessionId, 120) || headerSessionId,
-        userId: user?.id ?? null,
-        locale: cleanString(body.locale, 12) || headerLocale,
-        platform: cleanString(body.platform, 40) || headerPlatform,
-        metadata: cleanMetadata(body.metadata)
-      },
-    });
+    const now = new Date();
+    const staleUserCutoff = new Date(now.getTime() - 5 * 60 * 1000);
+    const metadata = cleanMetadata(body.metadata);
+    const metadataJson =
+      metadata === undefined ? null : JSON.stringify(metadata);
+
+    await prisma.$executeRaw`
+      WITH session_match AS (
+        SELECT "id", "userId", "expiresAt"
+        FROM "UserSession"
+        WHERE "token" = ${authToken}
+        LIMIT 1
+      ),
+      delete_expired_session AS (
+        DELETE FROM "UserSession"
+        WHERE "id" = (
+          SELECT "id"
+          FROM session_match
+          WHERE "expiresAt" <= ${now}
+        )
+        RETURNING "id"
+      ),
+      valid_session AS (
+        SELECT "userId"
+        FROM session_match
+        WHERE "expiresAt" > ${now}
+      ),
+      touch_user AS (
+        UPDATE "User"
+        SET
+          "lastSeenAt" = ${now},
+          "updatedAt" = ${now}
+        WHERE "id" = (SELECT "userId" FROM valid_session)
+          AND (
+            "lastSeenAt" IS NULL
+            OR "lastSeenAt" < ${staleUserCutoff}
+          )
+        RETURNING "id"
+      )
+      INSERT INTO "Event" (
+        "id",
+        "eventType",
+        "placeId",
+        "city",
+        "country",
+        "category",
+        "sessionId",
+        "userId",
+        "locale",
+        "platform",
+        "metadata",
+        "createdAt"
+      )
+      VALUES (
+        ${randomUUID()},
+        ${eventType},
+        ${cleanString(body.placeId, 120)},
+        ${cleanString(body.city, 120)},
+        ${cleanString(body.country, 120)},
+        ${cleanString(body.category, 120)},
+        ${cleanString(body.sessionId, 120) || headerSessionId},
+        (SELECT "userId" FROM valid_session),
+        ${cleanString(body.locale, 12) || headerLocale},
+        ${cleanString(body.platform, 40) || headerPlatform},
+        CAST(${metadataJson} AS jsonb),
+        ${now}
+      )
+    `;
 
     return NextResponse.json({ ok: true }, { headers: V1_HEADERS });
   } catch (err) {

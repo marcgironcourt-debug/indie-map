@@ -146,17 +146,25 @@ export async function migrateLegacySavedPlacesToUser<
       ),
     );
 
-    const results = await Promise.all(
-      legacyIds.map((placeId) =>
-        syncSavedPlaceToServer(
-          normalizedUserId,
-          placeId,
-          true,
-        ),
-      ),
-    );
+    if (legacyIds.length > 0) {
+      const res = await fetch("/api/v1/me/saved-places", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          placeIds: legacyIds,
+          saved: true,
+        }),
+      });
 
-    if (results.every((result) => result.ok)) {
+      if (res.ok) {
+        window.localStorage.setItem(
+          LEGACY_OWNER_KEY,
+          normalizedUserId,
+        );
+      }
+    } else {
       window.localStorage.setItem(
         LEGACY_OWNER_KEY,
         normalizedUserId,

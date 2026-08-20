@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser, refreshCurrentSession } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 const V1_HEADERS = {
@@ -82,22 +82,73 @@ function serializeUser(user: {
 
 export async function GET() {
   try {
-    const user = await getCurrentUser();
+    const user = await getCurrentUser({ refreshSession: true });
 
     if (!user) {
       return NextResponse.json({ ok: false }, { status: 401, headers: V1_HEADERS });
     }
 
-    await refreshCurrentSession();
+    const [counts] = await prisma.$queryRaw<
+      Array<{
+        contributionsCount: number;
+        incomingFriendRequestCount: number;
+        unseenSharedListCount: number;
+        savedPlaceIds: string[];
+      }>
+    >`
+      SELECT
+        (
+          SELECT COUNT(*)::int
+          FROM "Submission"
+          WHERE "userId" = ${user.id}
+            AND "status" = 'approved'
+        ) AS "contributionsCount",
+        (
+          SELECT COUNT(*)::int
+          FROM "Friendship"
+          WHERE "receiverId" = ${user.id}
+            AND "status" = 'pending'
+        ) AS "incomingFriendRequestCount",
+        (
+          SELECT COUNT(*)::int
+          FROM "SharedListMember" AS member
+          INNER JOIN "SharedList" AS list
+            ON list."id" = member."listId"
+          WHERE member."userId" = ${user.id}
+            AND member."seenAt" IS NULL
+            AND member."role" <> 'owner'
+            AND list."ownerId" <> ${user.id}
+        ) AS "unseenSharedListCount",
+        ARRAY(
+          SELECT "placeId"
+          FROM "UserPlace"
+          WHERE "userId" = ${user.id}
+            AND "saved" = true
+          ORDER BY "updatedAt" DESC
+        ) AS "savedPlaceIds"
+    `;
 
-    const contributionsCount = await prisma.submission.count({
-      where: {
-        userId: user.id,
-        status: "approved",
+    const contributionsCount = counts?.contributionsCount ?? 0;
+    const incomingFriendRequestCount =
+      counts?.incomingFriendRequestCount ?? 0;
+    const unseenSharedListCount =
+      counts?.unseenSharedListCount ?? 0;
+    const savedPlaceIds = Array.isArray(counts?.savedPlaceIds)
+      ? counts.savedPlaceIds
+      : [];
+
+    return NextResponse.json(
+      {
+        ok: true,
+        user: serializeUser({ ...user, contributionsCount }),
+        notifications: {
+          incomingFriendRequestCount,
+          unseenSharedListCount,
+        },
+        savedPlaceIds,
       },
-    });
-
-    return NextResponse.json({ ok: true, user: serializeUser({ ...user, contributionsCount }) }, { headers: V1_HEADERS });
+      { headers: V1_HEADERS },
+    );
   } catch (err) {
     console.error("[/api/v1/me/profile] GET error", err);
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });

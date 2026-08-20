@@ -88,7 +88,7 @@ export async function makeUniqueUsername(email: string) {
   return `${base}_${randomBytes(4).toString("hex")}`;
 }
 
-export async function getCurrentUser() {
+export async function getCurrentUser(options?: { refreshSession?: boolean }) {
   const jar = await cookies();
   const raw = jar.get(AUTH_COOKIE)?.value;
   if (!raw) return null;
@@ -100,12 +100,34 @@ export async function getCurrentUser() {
   });
 
   if (!session) return null;
-  if (session.expiresAt.getTime() <= Date.now()) {
+
+  const now = Date.now();
+
+  if (session.expiresAt.getTime() <= now) {
     await prisma.userSession.delete({ where: { id: session.id } }).catch(() => null);
     return null;
   }
 
-  const now = Date.now();
+  if (
+    options?.refreshSession &&
+    session.expiresAt.getTime() - now <= AUTH_SESSION_REFRESH_THRESHOLD_MS
+  ) {
+    const expiresAt = makeSessionExpiresAt(now);
+
+    await prisma.userSession.update({
+      where: { id: session.id },
+      data: { expiresAt },
+    });
+
+    jar.set(AUTH_COOKIE, raw, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      expires: expiresAt,
+    });
+  }
+
   const lastSeenAt = session.user.lastSeenAt?.getTime() ?? 0;
 
   if (now - lastSeenAt > 5 * 60 * 1000) {

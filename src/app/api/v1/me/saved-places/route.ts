@@ -32,7 +32,6 @@ export async function GET() {
         updatedAt: true,
       },
     });
-
     return NextResponse.json(
       {
         ok: true,
@@ -58,8 +57,54 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json().catch(() => null);
-    const placeId = normId(body?.placeId);
     const saved = body?.saved === true;
+
+    if (Array.isArray(body?.placeIds)) {
+      const placeIds: string[] = Array.from(
+        new Set<string>(
+          body.placeIds
+            .map((value: unknown) => normId(value))
+            .filter((value: string) => value.length > 0),
+        ),
+      );
+
+      if (placeIds.length === 0) {
+        return NextResponse.json(
+          { ok: false },
+          { status: 400, headers: V1_HEADERS },
+        );
+      }
+
+      await prisma.$transaction([
+        prisma.userPlace.updateMany({
+          where: {
+            userId: currentUser.id,
+            placeId: { in: placeIds },
+          },
+          data: { saved },
+        }),
+        ...(saved
+          ? [
+              prisma.userPlace.createMany({
+                data: placeIds.map((placeId) => ({
+                  userId: currentUser.id,
+                  placeId,
+                  saved: true,
+                  visibility: "private",
+                })),
+                skipDuplicates: true,
+              }),
+            ]
+          : []),
+      ]);
+
+      return NextResponse.json(
+        { ok: true, placeIds, saved },
+        { headers: V1_HEADERS },
+      );
+    }
+
+    const placeId = normId(body?.placeId);
 
     if (!placeId) {
       return NextResponse.json({ ok: false }, { status: 400, headers: V1_HEADERS });

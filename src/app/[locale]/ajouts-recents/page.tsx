@@ -58,6 +58,7 @@ export default async function RecentAdditionsPage({ params }: Props) {
           <div className="flex items-center">
             <Link
               href={`/${locale}`}
+              prefetch={false}
               aria-label={isFr ? "Retour" : "Back"}
               className="mr-2 flex h-8 w-8 shrink-0 items-center justify-start text-[22px] leading-none text-white/75 active:opacity-50"
             >
