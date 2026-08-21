@@ -1,7 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { getProfessionalAccessForUser } from "@/lib/professionalAccess";
 
 export type ProfessionalAnalyticsRange =
   | "7d"
@@ -9,15 +8,6 @@ export type ProfessionalAnalyticsRange =
   | "all";
 
 export const PROFESSIONAL_AUDIENCE_MIN_SAMPLE = 10;
-
-type CataloguePlace = {
-  id: string;
-  name: string;
-  city: string | null;
-  country: string | null;
-  category: string | null;
-  timeZone: string | null;
-};
 
 type RawAnalyticsPayload = {
   summary?: Record<string, unknown>;
@@ -57,60 +47,6 @@ function safeTimeZone(
   } catch {
     return "UTC";
   }
-}
-
-function readCataloguePlaces() {
-  const filePath =
-    path.join(
-      process.cwd(),
-      "data",
-      "places.json",
-    );
-
-  const parsed: unknown =
-    JSON.parse(
-      fs.readFileSync(
-        filePath,
-        "utf8",
-      ),
-    );
-
-  if (!Array.isArray(parsed)) {
-    return [] as CataloguePlace[];
-  }
-
-  return parsed
-    .filter(
-      (
-        item,
-      ): item is Record<string, unknown> =>
-        Boolean(
-          item &&
-          typeof item === "object" &&
-          !Array.isArray(item),
-        ),
-    )
-    .map(
-      (item): CataloguePlace => ({
-        id:
-          cleanText(item.id) || "",
-        name:
-          cleanText(item.name) ||
-          "Lieu Indie Map",
-        city:
-          cleanText(item.city),
-        country:
-          cleanText(item.country),
-        category:
-          cleanText(item.category),
-        timeZone:
-          cleanText(item.timeZone),
-      }),
-    )
-    .filter(
-      (place) =>
-        Boolean(place.id),
-    );
 }
 
 export function normalizeProfessionalAnalyticsRange(
@@ -292,162 +228,57 @@ export async function getProfessionalPlaceAnalyticsForUser(
 ) {
   const now = new Date();
 
-  const memberships =
-    await prisma.professionalPlaceMember.findMany(
+  const access =
+    await getProfessionalAccessForUser(
       {
-        where: {
-          userId: options.userId,
-        },
-        include: {
-          professionalPlace: true,
-        },
-        orderBy: {
-          createdAt: "asc",
-        },
+        userId:
+          options.userId,
+
+        requestedPlaceId:
+          options.requestedPlaceId,
+
+        capability:
+          "analytics",
+
+        now,
       },
     );
 
-  const accessibleMemberships =
-    memberships.filter(
-      ({ professionalPlace }) => {
-        if (
-          professionalPlace.status !==
-          "verified"
-        ) {
-          return false;
-        }
-
-        if (
-          ![
-            "active",
-            "trial",
-          ].includes(
-            professionalPlace.accessStatus,
-          )
-        ) {
-          return false;
-        }
-
-        if (
-          professionalPlace.accessStartsAt &&
-          professionalPlace.accessStartsAt >
-            now
-        ) {
-          return false;
-        }
-
-        if (
-          professionalPlace.accessEndsAt &&
-          professionalPlace.accessEndsAt <
-            now
-        ) {
-          return false;
-        }
-
-        return true;
-      },
-    );
+  if (!access) {
+    return null;
+  }
 
   if (
-    accessibleMemberships.length === 0
+    !access.selectedMembership ||
+    !access.professionalPlace
   ) {
     return {
-      places: [],
+      places:
+        access.places,
+
       selected: null,
+
       stats: null,
     };
   }
 
-  const requestedPlaceId =
-    cleanText(
-      options.requestedPlaceId,
+  if (!access.cataloguePlace) {
+    throw new Error(
+      `professional_place_missing_from_catalogue:${access.professionalPlace.placeId}`,
     );
-
-  const selectedMembership =
-    requestedPlaceId
-      ? accessibleMemberships.find(
-          ({ professionalPlace }) =>
-            professionalPlace.placeId ===
-            requestedPlaceId,
-        ) ?? null
-      : accessibleMemberships[0] ??
-        null;
-
-  if (!selectedMembership) {
-    return null;
   }
-
-  const catalogue =
-    readCataloguePlaces();
-
-  const catalogueById =
-    new Map(
-      catalogue.map(
-        (place) => [
-          place.id,
-          place,
-        ],
-      ),
-    );
 
   const places =
-    accessibleMemberships.map(
-      ({
-        professionalPlace,
-        role,
-      }) => {
-        const place =
-          catalogueById.get(
-            professionalPlace.placeId,
-          );
+    access.places;
 
-        return {
-          id:
-            professionalPlace.id,
-
-          placeId:
-            professionalPlace.placeId,
-
-          role,
-
-          plan:
-            professionalPlace.plan,
-
-          accessStatus:
-            professionalPlace.accessStatus,
-
-          name:
-            place?.name ||
-            "Lieu Indie Map",
-
-          city:
-            place?.city ??
-            null,
-
-          country:
-            place?.country ??
-            null,
-
-          category:
-            place?.category ??
-            null,
-        };
-      },
-    );
+  const selectedMembership =
+    access.selectedMembership;
 
   const professionalPlace =
-    selectedMembership.professionalPlace;
+    access.professionalPlace;
 
   const cataloguePlace =
-    catalogueById.get(
-      professionalPlace.placeId,
-    );
-
-  if (!cataloguePlace) {
-    throw new Error(
-      `professional_place_missing_from_catalogue:${professionalPlace.placeId}`,
-    );
-  }
+    access.cataloguePlace;
 
   const range =
     options.range ?? "30d";

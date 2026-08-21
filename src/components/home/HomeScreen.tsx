@@ -7,6 +7,7 @@ import BottomNavBar from "@/components/BottomNavBar";
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
+import ProfessionalSpacePanel from "@/components/ProfessionalSpacePanel";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { isContextSuggestionCandidateOpen, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
@@ -27,6 +28,8 @@ type AuthProfile = {
   ageRange: string | null;
   profileCompleted: boolean;
   contributionsCount?: number;
+  hasProfessionalAccess?: boolean;
+  professionalPlaceId?: string | null;
 };
 
 type DiscoverPlace = {
@@ -762,7 +765,7 @@ React.useEffect(() => {
   }
 
 
-  async function logoutAuth() {
+  async function logoutAuth(): Promise<boolean> {
     setAuthError("");
     setAuthSending(true);
 
@@ -773,7 +776,7 @@ React.useEffect(() => {
 
       if (!res.ok) {
         setAuthError(isFr ? "Impossible de se déconnecter pour l’instant." : "Unable to sign out right now.");
-        return;
+        return false;
       }
 
       setAuthProfile(null);
@@ -793,8 +796,10 @@ React.useEffect(() => {
       setProfileLocale(locale);
       setCommentsVisibleToFriends(false);
       setVisitedPlacesVisibleToFriends(false);
+      return true;
     } catch {
       setAuthError(isFr ? "Impossible de se déconnecter pour l’instant." : "Unable to sign out right now.");
+      return false;
     } finally {
       setAuthSending(false);
     }
@@ -3510,6 +3515,13 @@ React.useEffect(() => {
       <BottomNavBar
         isFr={isFr}
         authProfile={authProfile}
+        professionalPlace={
+          allPlaces.find(
+            (item) =>
+              String(item.id) ===
+              String(authProfile?.professionalPlaceId || "")
+          ) ?? null
+        }
         hasPersonalNotification={incomingFriendRequestCount > 0 || unseenSharedListCount > 0}
         onOpenPersonal={() => setPanel("personalSpace")}
         onOpenContrib={() => setPanel("contrib")}
@@ -3536,71 +3548,13 @@ React.useEffect(() => {
 
             <div ref={panelScrollRef} className="px-5 pb-6 flex-1 min-h-0 overflow-auto">
               {panel === "pros" ? (
-                isFr ? (
-                  <>
-                    <p className="mb-4 text-white/80">
-                      Indie Map met en avant des lieux indépendants qui privilégient le local, la réparation, le réemploi, l’agriculture respectueuse, et plus largement une économie plus sobre et plus humaine.
-                    </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Ce que nous faisons</h2>
-                    <ul className="list-disc pl-5 space-y-1 text-white/80">
-                      <li>Rendre votre lieu visible dans une carte claire, centrée sur la découverte.</li>
-                      <li>Présenter l’essentiel : histoire du lieu, démarche, informations pratiques.</li>
-                      <li>Améliorer le produit à partir de statistiques d’usage globales et anonymes.</li>
-                    </ul>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Pour qui ?</h2>
-                    <p className="text-white/80">
-                      Pour les commerces et lieux qui assument une démarche cohérente : sourcing local, fabrication responsable, économie circulaire, indépendance, utilité sociale, ou contribution concrète à la vie du territoire.
-                    </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Devenir partenaire</h2>
-                    <p className="text-white/80">
-                      Le partenariat vise à construire quelque chose de durable : un produit utile, éthique, et crédible sur le long terme. Si vous souhaitez rejoindre Indie Map, contactez-nous .
-                    </p>
-
-                    <a
-                      href="mailto:pro@indie-map.com?subject=Partenariat%20%E2%80%94%20Indie%20Map"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
-                    >
-                      Contact
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <p className="mb-4 text-white/80">
-                      Indie Map highlights independent places that prioritize local sourcing, repair, reuse, regenerative or respectful farming, and more broadly a simpler and more human economy.
-                    </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">What we do</h2>
-                    <ul className="list-disc pl-5 space-y-1 text-white/80">
-                      <li>Make your place visible on a clear map designed for discovery.</li>
-                      <li>Show the essentials: the place, the approach, and practical info.</li>
-                      <li>Improve the product using aggregated and anonymous usage statistics.</li>
-                    </ul>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Who is it for?</h2>
-                    <p className="text-white/80">
-                      For businesses and places with a consistent approach: local sourcing, responsible making, circular economy, independence, social utility, or a tangible positive impact on their territory.
-                    </p>
-
-                    <h2 className="mt-6 mb-2 text-sm font-semibold tracking-wide text-white/80">Become a partner</h2>
-                    <p className="text-white/80">
-                      Partnership is about building something durable: a useful, ethical, and long-term credible product. If you want to join Indie Map, please reach out .
-                    </p>
-
-                    <a
-                      href="mailto:pro@indie-map.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block mt-1 px-5 py-3 rounded-2xl bg-[hsl(var(--brand))] text-white font-medium no-underline hover:bg-[hsl(var(--brand-600))]"
-                    >
-                      Contact
-                    </a>
-                  </>
-                )
+                <ProfessionalSpacePanel
+                  isFr={isFr}
+                  onOpenPersonalSpace={() => setPanel("personalSpace")}
+                  onAuthenticated={refreshAuthProfile}
+                  canOpenPersonalSpace={Boolean(authProfile)}
+                  onLogout={logoutAuth}
+                />
               ) : panel === "contrib" ? (
                 isFr ? (
                   <>
@@ -3696,6 +3650,14 @@ React.useEffect(() => {
                   onRequestPasswordReset={requestPasswordReset}
                   onConfirmPasswordReset={confirmPasswordReset}
                   onSaveProfile={saveProfile}
+                  hasProfessionalAccess={Boolean(
+                    (
+                      authProfile as
+                        | { hasProfessionalAccess?: boolean }
+                        | null
+                    )?.hasProfessionalAccess
+                  )}
+                  onOpenProfessionalSpace={() => setPanel("pros")}
                   onLogout={logoutAuth}
                 />
               ) : panel === "myPlacesList" ? (

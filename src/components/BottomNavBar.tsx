@@ -7,9 +7,15 @@ type BottomNavBarProfile = {
   avatarColor: string | null;
 };
 
+type BottomNavBarProfessionalPlace = {
+  name?: string;
+  panoramaImage?: string | null;
+};
+
 type BottomNavBarProps = {
   isFr: boolean;
   authProfile: BottomNavBarProfile | null;
+  professionalPlace?: BottomNavBarProfessionalPlace | null;
   hasPersonalNotification?: boolean;
   onOpenPersonal: () => void;
   onOpenContrib: () => void;
@@ -20,6 +26,7 @@ type BottomNavBarProps = {
 export default function BottomNavBar({
   isFr,
   authProfile,
+  professionalPlace = null,
   hasPersonalNotification = false,
   onOpenPersonal,
   onOpenContrib,
@@ -80,12 +87,24 @@ export default function BottomNavBar({
           className={`flex ${minHeightClassName} flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10`}
         >
           <span className="flex h-6 w-6 items-center justify-center">
-            <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10 6h4" />
-              <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
-              <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
-              <path d="M9 14h6" />
-            </svg>
+            {professionalPlace?.panoramaImage ? (
+              <img
+                src={professionalPlace.panoramaImage}
+                alt=""
+                className="h-5.5 w-5.5 rounded-full border border-white/20 object-cover"
+              />
+            ) : professionalPlace ? (
+              <span className="flex h-5.5 w-5.5 items-center justify-center rounded-full border border-white/20 bg-[#5C6E3B] text-[10px] font-semibold uppercase text-white">
+                {String(professionalPlace.name || "?").trim().slice(0, 1)}
+              </span>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 6h4" />
+                <path d="M10 6a2 2 0 0 0-2 2v1h8V8a2 2 0 0 0-2-2" />
+                <path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" />
+                <path d="M9 14h6" />
+              </svg>
+            )}
           </span>
           <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace pro" : "Pros"}</span>
         </button>

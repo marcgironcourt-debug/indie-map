@@ -48,6 +48,33 @@ function normLocale(value: unknown) {
   return locale;
 }
 
+
+async function hasProfessionalAccessForUser(
+  userId: string,
+) {
+  const membership =
+    await prisma.professionalPlaceMember.findFirst({
+      where: {
+        userId,
+        role: "owner",
+        professionalPlace: {
+          is: {
+            status: "verified",
+          },
+        },
+      },
+      select: {
+        professionalPlace: {
+          select: {
+            placeId: true,
+          },
+        },
+      },
+    });
+
+  return membership?.professionalPlace.placeId ?? null;
+}
+
 function serializeUser(user: {
   id: string;
   email: string | null;
@@ -62,6 +89,8 @@ function serializeUser(user: {
   visitedPlacesVisibleToFriends: boolean;
   profileCompletedAt: Date | null;
   contributionsCount?: number;
+  hasProfessionalAccess?: boolean;
+  professionalPlaceId?: string | null;
 }) {
   return {
     id: user.id,
@@ -77,6 +106,8 @@ function serializeUser(user: {
     visitedPlacesVisibleToFriends: user.visitedPlacesVisibleToFriends,
     profileCompleted: Boolean(user.profileCompletedAt),
     contributionsCount: user.contributionsCount ?? 0,
+    hasProfessionalAccess: user.hasProfessionalAccess === true,
+    professionalPlaceId: user.professionalPlaceId ?? null,
   };
 }
 
@@ -137,10 +168,16 @@ export async function GET() {
       ? counts.savedPlaceIds
       : [];
 
+    const professionalPlaceId =
+      await hasProfessionalAccessForUser(user.id);
+
+    const hasProfessionalAccess =
+      Boolean(professionalPlaceId);
+
     return NextResponse.json(
       {
         ok: true,
-        user: serializeUser({ ...user, contributionsCount }),
+        user: serializeUser({ ...user, contributionsCount, hasProfessionalAccess, professionalPlaceId }),
         notifications: {
           incomingFriendRequestCount,
           unseenSharedListCount,
@@ -211,7 +248,24 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, user: serializeUser({ ...user, contributionsCount }) }, { headers: V1_HEADERS });
+    const professionalPlaceId =
+      await hasProfessionalAccessForUser(user.id);
+
+    const hasProfessionalAccess =
+      Boolean(professionalPlaceId);
+
+    return NextResponse.json(
+      {
+        ok: true,
+        user: serializeUser({
+          ...user,
+          contributionsCount,
+          hasProfessionalAccess,
+          professionalPlaceId,
+        }),
+      },
+      { headers: V1_HEADERS },
+    );
   } catch (err) {
     console.error("[/api/v1/me/profile] POST error", err);
     return NextResponse.json({ ok: false }, { status: 500, headers: V1_HEADERS });

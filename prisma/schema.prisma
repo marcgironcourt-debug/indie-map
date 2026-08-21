@@ -184,25 +184,27 @@ model User {
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @default(now()) @updatedAt
 
-  submissions                  Submission[]
-  sentFriendships              Friendship[]                @relation("FriendshipRequester")
-  receivedFriendships          Friendship[]                @relation("FriendshipReceiver")
-  sentInvites                  Invite[]
-  places                       UserPlace[]
-  comments                     PlaceComment[]
-  ownedLists                   SharedList[]                @relation("SharedListOwner")
-  listMemberships              SharedListMember[]
-  recommendationsSent          PlaceRecommendation[]       @relation("RecommendationSender")
-  recommendationsInbox         PlaceRecommendation[]       @relation("RecommendationReceiver")
-  sessions                     UserSession[]
-  passwordResetTokens          PasswordResetToken[]
-  pushDevices                  PushDevice[]
-  pushInstallations            PushInstallation[]
-  contextualNotificationLogs   ContextualNotificationLog[]
-  appUpdateNotificationLogs    AppUpdateNotificationLog[]
-  events                       Event[]
-  analyticsInstallations       AnalyticsInstallation[]
-  professionalPlaceMemberships ProfessionalPlaceMember[]
+  submissions                     Submission[]
+  sentFriendships                 Friendship[]                     @relation("FriendshipRequester")
+  receivedFriendships             Friendship[]                     @relation("FriendshipReceiver")
+  sentInvites                     Invite[]
+  places                          UserPlace[]
+  comments                        PlaceComment[]
+  ownedLists                      SharedList[]                     @relation("SharedListOwner")
+  listMemberships                 SharedListMember[]
+  recommendationsSent             PlaceRecommendation[]            @relation("RecommendationSender")
+  recommendationsInbox            PlaceRecommendation[]            @relation("RecommendationReceiver")
+  sessions                        UserSession[]
+  passwordResetTokens             PasswordResetToken[]
+  pushDevices                     PushDevice[]
+  pushInstallations               PushInstallation[]
+  contextualNotificationLogs      ContextualNotificationLog[]
+  appUpdateNotificationLogs       AppUpdateNotificationLog[]
+  events                          Event[]
+  analyticsInstallations          AnalyticsInstallation[]
+  professionalPlaceMemberships    ProfessionalPlaceMember[]
+  professionalPlaceChangeRequests ProfessionalPlaceChangeRequest[]
+  professionalEventPromotions     ProfessionalEventPromotion[]
 }
 
 model Friendship {
@@ -574,7 +576,9 @@ model ProfessionalPlace {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
-  members ProfessionalPlaceMember[]
+  members         ProfessionalPlaceMember[]
+  changeRequests  ProfessionalPlaceChangeRequest[]
+  eventPromotions ProfessionalEventPromotion[]
 
   @@index([status])
   @@index([accessStatus])
@@ -594,4 +598,53 @@ model ProfessionalPlaceMember {
   @@unique([professionalPlaceId, userId])
   @@index([userId])
   @@index([professionalPlaceId, role])
+}
+
+model ProfessionalPlaceChangeRequest {
+  id                  String    @id @default(uuid())
+  professionalPlaceId String
+  userId              String
+  kind                String
+  value               Json
+  note                String?
+  status              String    @default("pending")
+  billingMode         String    @default("included")
+  reviewedAt          DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  professionalPlace ProfessionalPlace @relation(fields: [professionalPlaceId], references: [id], onDelete: Cascade)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([professionalPlaceId, status])
+  @@index([userId, createdAt])
+  @@index([kind, status])
+}
+
+model ProfessionalEventPromotion {
+  id                  String    @id @default(uuid())
+  professionalPlaceId String
+  userId              String
+  title               String
+  eventType           String
+  description         String?
+  eventStartsAt       DateTime
+  eventEndsAt         DateTime?
+  promotionDays       Int
+  imageUrl            String?
+  linkUrl             String?
+  status              String    @default("pending")
+  billingMode         String    @default("one_time")
+  priceCents          Int?
+  currency            String?
+  reviewedAt          DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  professionalPlace ProfessionalPlace @relation(fields: [professionalPlaceId], references: [id], onDelete: Cascade)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([professionalPlaceId, status])
+  @@index([userId, createdAt])
+  @@index([eventStartsAt])
 }

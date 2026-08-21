@@ -149,6 +149,8 @@ type PersonalSpacePanelProps = {
   onConfirmPasswordReset: () => void;
   onSaveProfile: () => void;
   onSharedListsSeen?: () => void;
+  hasProfessionalAccess?: boolean;
+  onOpenProfessionalSpace?: () => void;
   onLogout: () => void;
 };
 
@@ -248,6 +250,8 @@ export default function PersonalSpacePanel({
   onConfirmPasswordReset,
   onSaveProfile,
   onSharedListsSeen,
+  hasProfessionalAccess,
+  onOpenProfessionalSpace,
   onLogout,
 }: PersonalSpacePanelProps) {
   const locale = isFr ? "fr" : "en";
@@ -2338,7 +2342,34 @@ export default function PersonalSpacePanel({
         </div>
       </section>
 
-      <button
+      <div className="mt-5 border-t border-white/[0.07] pt-5">
+        {hasProfessionalAccess && onOpenProfessionalSpace ? (
+          <button
+            type="button"
+            onClick={onOpenProfessionalSpace}
+            className="mb-2 flex w-full items-center justify-between rounded-2xl border border-[#5C6E3B]/25 bg-[#5C6E3B]/10 px-4 py-3.5 text-left hover:bg-[#5C6E3B]/15"
+          >
+            <span>
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#B8C69F]">
+                {isFr
+                  ? "Espace professionnel"
+                  : "Professional space"}
+              </span>
+
+              <span className="mt-1 block text-[10px] text-white/35">
+                {isFr
+                  ? "Basculer vers mon espace pro"
+                  : "Switch to professional space"}
+              </span>
+            </span>
+
+            <span className="text-[17px] text-[#9AAA7D]">
+              ⇄
+            </span>
+          </button>
+        ) : null}
+
+        <button
         type="button"
         onClick={onLogout}
         disabled={authSending}
@@ -2346,6 +2377,7 @@ export default function PersonalSpacePanel({
       >
         {authSending ? (isFr ? "Déconnexion..." : "Signing out...") : (isFr ? "Déconnexion" : "Sign out")}
       </button>
+        </div>
     </>
   );
 
