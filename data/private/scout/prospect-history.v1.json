@@ -1,6 +1,6 @@
 {
   "version": "scout-prospect-history-v1",
-  "updatedAt": "2026-08-13T10:18:00.186Z",
+  "updatedAt": "2026-08-15T05:36:02.210Z",
   "proposals": [
     {
       "name": "Barbacoa",
@@ -120,6 +120,136 @@
         "category": "Restaurant",
         "area": "Hauts-de-Seine (92)",
         "requestedCandidates": 10
+      }
+    },
+    {
+      "name": "Le Potager de Charlotte",
+      "municipality": "Paris",
+      "website": "https://lepotagerdecharlotte.fr/",
+      "firstProposedAt": "2026-08-15T05:11:50.237Z",
+      "sourceSessionId": "restaurant-paris-2026-08-15T05-11-50-237Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Apéti",
+      "municipality": "Paris",
+      "website": "https://apeti.fr/",
+      "firstProposedAt": "2026-08-15T05:11:50.237Z",
+      "sourceSessionId": "restaurant-paris-2026-08-15T05-11-50-237Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Bombance",
+      "municipality": "Paris",
+      "website": "https://bombanceparis.fr/carte",
+      "firstProposedAt": "2026-08-15T05:11:50.237Z",
+      "sourceSessionId": "restaurant-paris-2026-08-15T05-11-50-237Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "FIEF",
+      "municipality": "Paris",
+      "website": "https://fiefrestaurant.fr/fr/produits",
+      "firstProposedAt": "2026-08-15T05:11:50.237Z",
+      "sourceSessionId": "restaurant-paris-2026-08-15T05-11-50-237Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Soya Cantine Bio",
+      "municipality": "Paris",
+      "website": "https://soya-cantine-bio.fr/menus",
+      "firstProposedAt": "2026-08-15T05:11:50.237Z",
+      "sourceSessionId": "restaurant-paris-2026-08-15T05-11-50-237Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Sabayon",
+      "municipality": "Montréal",
+      "website": "https://sabayon.ca/",
+      "firstProposedAt": "2026-08-15T05:36:02.210Z",
+      "sourceSessionId": "restaurant-montreal-2026-08-15T05-36-02-210Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Terroirs",
+      "municipality": "Montréal",
+      "website": "https://terroirsrestaurant.ca/",
+      "firstProposedAt": "2026-08-15T05:36:02.210Z",
+      "sourceSessionId": "restaurant-montreal-2026-08-15T05-36-02-210Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Anémone",
+      "municipality": "Montréal",
+      "website": "https://anemonemtl.com/",
+      "firstProposedAt": "2026-08-15T05:36:02.210Z",
+      "sourceSessionId": "restaurant-montreal-2026-08-15T05-36-02-210Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Cabaret l’Enfer",
+      "municipality": "Montréal",
+      "website": "https://cabaretlenfer.com/",
+      "firstProposedAt": "2026-08-15T05:36:02.210Z",
+      "sourceSessionId": "restaurant-montreal-2026-08-15T05-36-02-210Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
+      }
+    },
+    {
+      "name": "Monsieur Café & Vins",
+      "municipality": "Montréal",
+      "website": "https://monsieurcafevins.com/en",
+      "firstProposedAt": "2026-08-15T05:36:02.210Z",
+      "sourceSessionId": "restaurant-montreal-2026-08-15T05-36-02-210Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
       }
     }
   ]

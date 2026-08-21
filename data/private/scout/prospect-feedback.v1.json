@@ -1,6 +1,6 @@
 {
   "version": "scout-prospect-feedback-v1",
-  "updatedAt": "2026-08-13T10:13:23.479Z",
+  "updatedAt": "2026-08-15T05:54:02.036Z",
   "sessions": [
     {
       "id": "restaurants-hauts-de-seine-2026-08-13-01",
@@ -132,6 +132,164 @@
           "reasonFr": "Aucune information permettant de vérifier la compatibilité avec Indie Map.",
           "learningSignals": [
             "insufficient_verifiable_information"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restaurants-paris-2026-08-15-01",
+      "reviewedAt": "2026-08-15T05:54:02.036Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Paris",
+        "country": "France",
+        "requestedCandidates": 5
+      },
+      "source": "manual_user_review",
+      "summary": {
+        "presented": 5,
+        "accepted": 0,
+        "rejectedEditorial": 2,
+        "rejectedInsufficientEvidence": 3,
+        "excludedInactive": 0
+      },
+      "learningPrinciplesFr": [
+        "Les mentions « bio » et « de saison » ne prouvent pas que les produits viennent du territoire recherché.",
+        "L’origine locale des produits doit être vérifiable. En l’absence de preuve suffisante, le restaurant ne doit pas être proposé.",
+        "Une carte fortement centrée sur la viande, le poisson ou plusieurs produits importés peut être incompatible avec Indie Map.",
+        "Les boissons et les vins non locaux participent aussi à l’évaluation de la cohérence de l’offre."
+      ],
+      "decisions": [
+        {
+          "rank": 1,
+          "name": "Le Potager de Charlotte",
+          "website": "https://lepotagerdecharlotte.fr/",
+          "decision": "rejected_editorial",
+          "reasonFr": "La carte propose notamment des avocats, des bananes, du chocolat et du thé, qui ne poussent pas en France. L’utilisateur refuse le lieu pour cette incohérence avec l’approvisionnement français recherché.",
+          "learningSignals": [
+            "imported_ingredients_too_central",
+            "local_origin_insufficient"
+          ]
+        },
+        {
+          "rank": 2,
+          "name": "Apéti",
+          "website": "https://apeti.fr/",
+          "decision": "rejected_insufficient_evidence",
+          "reasonFr": "Le site indique que les produits sont bio et de saison, mais ne permet pas de vérifier qu’ils viennent de France.",
+          "learningSignals": [
+            "organic_and_seasonal_not_proof_of_local_origin",
+            "local_origin_not_verifiable"
+          ]
+        },
+        {
+          "rank": 3,
+          "name": "Bombance",
+          "website": "https://bombanceparis.fr/carte",
+          "decision": "rejected_editorial",
+          "reasonFr": "L’origine française des produits n’est pas vérifiable. La carte comporte aussi beaucoup trop de viande et de poisson ainsi que des vins non français.",
+          "learningSignals": [
+            "local_origin_not_verifiable",
+            "animal_products_too_central",
+            "imported_products_too_central"
+          ]
+        },
+        {
+          "rank": 4,
+          "name": "FIEF",
+          "website": "https://fiefrestaurant.fr/fr/produits",
+          "decision": "rejected_insufficient_evidence",
+          "reasonFr": "Aucun moyen suffisant de vérifier l’origine réelle des produits.",
+          "learningSignals": [
+            "local_origin_not_verifiable",
+            "insufficient_verifiable_information"
+          ]
+        },
+        {
+          "rank": 5,
+          "name": "Soya Cantine Bio",
+          "website": "https://soya-cantine-bio.fr/menus",
+          "decision": "rejected_insufficient_evidence",
+          "reasonFr": "Les informations disponibles ne permettent pas à l’utilisateur de vérifier la compatibilité du restaurant avec Indie Map.",
+          "learningSignals": [
+            "insufficient_verifiable_information"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restaurants-montreal-2026-08-15-01",
+      "reviewedAt": "2026-08-15T05:54:02.036Z",
+      "mission": {
+        "category": "Restaurant",
+        "area": "Montréal",
+        "country": "Canada",
+        "requestedCandidates": 5
+      },
+      "source": "manual_user_review",
+      "summary": {
+        "presented": 5,
+        "accepted": 3,
+        "rejectedEditorial": 2,
+        "rejectedInsufficientEvidence": 0,
+        "excludedInactive": 0
+      },
+      "learningPrinciplesFr": [
+        "La formulation « majoritairement locaux » reste insuffisante si elle ne permet pas de vérifier concrètement l’origine de l’approvisionnement.",
+        "La présence de plusieurs ingrédients non issus du territoire recherché peut rendre le restaurant incompatible avec Indie Map.",
+        "Une acceptation sans motif détaillé ne permet pas de déduire de nouveaux critères précis."
+      ],
+      "decisions": [
+        {
+          "rank": 1,
+          "name": "Sabayon",
+          "website": "https://sabayon.ca/",
+          "decision": "rejected_editorial",
+          "reasonFr": "L’utilisateur refuse le lieu car le site indique seulement que les produits sont « majoritairement locaux ».",
+          "learningSignals": [
+            "mostly_local_claim_insufficient",
+            "local_origin_insufficiently_established"
+          ]
+        },
+        {
+          "rank": 2,
+          "name": "Terroirs",
+          "website": "https://terroirsrestaurant.ca/",
+          "decision": "accepted",
+          "reasonFr": "Lieu accepté par l’utilisateur lors de la revue manuelle. Aucun motif plus précis n’a été fourni.",
+          "learningSignals": [
+            "manual_acceptance_without_detailed_reason"
+          ]
+        },
+        {
+          "rank": 3,
+          "name": "Anémone",
+          "website": "https://anemonemtl.com/",
+          "decision": "accepted",
+          "reasonFr": "Lieu accepté par l’utilisateur lors de la revue manuelle. Aucun motif plus précis n’a été fourni.",
+          "learningSignals": [
+            "manual_acceptance_without_detailed_reason"
+          ]
+        },
+        {
+          "rank": 4,
+          "name": "Cabaret l’Enfer",
+          "website": "https://cabaretlenfer.com/",
+          "decision": "accepted",
+          "reasonFr": "Lieu accepté par l’utilisateur lors de la revue manuelle. Aucun motif plus précis n’a été fourni.",
+          "learningSignals": [
+            "manual_acceptance_without_detailed_reason"
+          ]
+        },
+        {
+          "rank": 5,
+          "name": "Monsieur Café & Vins",
+          "website": "https://monsieurcafevins.com/en",
+          "decision": "rejected_editorial",
+          "reasonFr": "L’utilisateur refuse le lieu car la carte comprend plusieurs produits qui ne viennent pas du Québec, notamment de la feta, du poulpe et du saumon.",
+          "learningSignals": [
+            "multiple_non_local_ingredients",
+            "local_origin_insufficient"
           ]
         }
       ]

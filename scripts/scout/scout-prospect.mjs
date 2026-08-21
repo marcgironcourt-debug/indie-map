@@ -32,52 +32,91 @@ const HISTORY_LOCK_PATH =
 const HISTORY_VERSION =
   "scout-prospect-history-v1";
 
-const CATEGORY =
-  "Restaurant";
-
-const AREA =
-  "Hauts-de-Seine (92)";
-
-const COUNTRY =
-  "France";
-
-const COMMUNES_92 = [
-  "Antony",
-  "Asnières-sur-Seine",
-  "Bagneux",
-  "Bois-Colombes",
-  "Boulogne-Billancourt",
-  "Bourg-la-Reine",
-  "Châtenay-Malabry",
-  "Châtillon",
-  "Chaville",
-  "Clamart",
-  "Clichy",
-  "Colombes",
-  "Courbevoie",
-  "Fontenay-aux-Roses",
-  "Garches",
-  "Gennevilliers",
-  "Issy-les-Moulineaux",
-  "La Garenne-Colombes",
-  "Le Plessis-Robinson",
-  "Levallois-Perret",
-  "Malakoff",
-  "Marnes-la-Coquette",
-  "Meudon",
-  "Montrouge",
-  "Nanterre",
-  "Neuilly-sur-Seine",
-  "Puteaux",
-  "Rueil-Malmaison",
-  "Saint-Cloud",
-  "Sceaux",
-  "Sèvres",
-  "Suresnes",
-  "Vanves",
-  "Vaucresson",
-  "Ville-d’Avray",
-  "Villeneuve-la-Garenne"
+const INDIE_MAP_CATEGORIES = [
+  {
+    name: "Restaurant",
+    aliases: [
+      "Restaurant"
+    ]
+  },
+  {
+    name: "Lieu alternatif",
+    aliases: [
+      "Lieu alternatif",
+      "Lieu de vie"
+    ]
+  },
+  {
+    name: "Ferme",
+    aliases: [
+      "Ferme"
+    ]
+  },
+  {
+    name: "Marché",
+    aliases: [
+      "Marché"
+    ]
+  },
+  {
+    name: "Épicerie",
+    aliases: [
+      "Épicerie",
+      "grocery"
+    ]
+  },
+  {
+    name: "Café / brunch",
+    aliases: [
+      "Café / brunch",
+      "Café",
+      "cafe",
+      "Brunch"
+    ]
+  },
+  {
+    name: "Boulangerie",
+    aliases: [
+      "Boulangerie"
+    ]
+  },
+  {
+    name: "Librairie",
+    aliases: [
+      "Librairie"
+    ]
+  },
+  {
+    name: "Mode",
+    aliases: [
+      "Mode"
+    ]
+  },
+  {
+    name: "Brasserie / bar / pub",
+    aliases: [
+      "Brasserie / bar / pub",
+      "Brasserie / Bar",
+      "Brasserie",
+      "Brasserie bar",
+      "Bar",
+      "Pub"
+    ]
+  },
+  {
+    name: "Atelier",
+    aliases: [
+      "Atelier"
+    ]
+  },
+  {
+    name: "Boutique",
+    aliases: [
+      "Boutique",
+      "Artisanat / Créateurs locaux",
+      "Artisanat"
+    ]
+  }
 ];
 
 const BLOCKED_DOMAINS = [
@@ -191,6 +230,98 @@ function hasFlag(name) {
   return process.argv
     .slice(2)
     .includes(name);
+}
+
+function categoryDefinition(value) {
+  const normalizedValue =
+    normalize(value);
+
+  return INDIE_MAP_CATEGORIES.find(
+    category =>
+      [
+        category.name,
+        ...category.aliases
+      ].some(
+        alias =>
+          normalize(alias) ===
+            normalizedValue
+      )
+  );
+}
+
+function requestedMission() {
+  const area =
+    argumentValue(
+      "--area",
+      ""
+    );
+
+  const country =
+    argumentValue(
+      "--country",
+      ""
+    );
+
+  const requestedCategory =
+    argumentValue(
+      "--category",
+      ""
+    );
+
+  const allCategories =
+    hasFlag(
+      "--all-categories"
+    );
+
+  if (!area) {
+    throw new Error(
+      "--area est obligatoire"
+    );
+  }
+
+  if (
+    allCategories ===
+      Boolean(requestedCategory)
+  ) {
+    throw new Error(
+      "Utilise soit --category=..., soit --all-categories"
+    );
+  }
+
+  if (allCategories) {
+    return {
+      area,
+      country,
+      categories:
+        INDIE_MAP_CATEGORIES
+    };
+  }
+
+  const category =
+    categoryDefinition(
+      requestedCategory
+    );
+
+  if (!category) {
+    throw new Error(
+      [
+        `Catégorie Indie Map inconnue : ${requestedCategory}`,
+        "Catégories autorisées :",
+        ...INDIE_MAP_CATEGORIES.map(
+          value =>
+            `- ${value.name}`
+        )
+      ].join("\n")
+    );
+  }
+
+  return {
+    area,
+    country,
+    categories: [
+      category
+    ]
+  };
 }
 
 function canonicalWebsite(value) {
@@ -482,7 +613,198 @@ function learningTextOf(profile) {
   ]).join(" — ");
 }
 
-function feedbackData(feedback) {
+function applicableOfficialFindingsOf(
+  profile
+) {
+  return (
+    Array.isArray(
+      profile.officialFindings
+    )
+      ? profile.officialFindings
+      : []
+  ).filter(
+    finding =>
+      finding.scope ===
+        "target_place" ||
+      finding.scope ===
+        "brand_general"
+  );
+}
+
+function compactLearningOf(
+  profiles
+) {
+  const internalSignals =
+    uniqueStrings(
+      profiles.flatMap(
+        profile =>
+          Array.isArray(
+            profile.internalDrivers
+          )
+            ? profile.internalDrivers
+            : []
+      )
+    );
+
+  const officialConcepts =
+    uniqueStrings(
+      profiles.flatMap(
+        profile =>
+          applicableOfficialFindingsOf(
+            profile
+          )
+            .map(
+              finding =>
+                finding.concept
+            )
+            .filter(
+              value =>
+                typeof value ===
+                  "string" &&
+                value.trim()
+            )
+      )
+    );
+
+  const sourceOfficialFindingCount =
+    profiles.reduce(
+      (
+        total,
+        profile
+      ) =>
+        total +
+        applicableOfficialFindingsOf(
+          profile
+        ).length,
+      0
+    );
+
+  const rankedProfiles =
+    [...profiles].sort(
+      (
+        left,
+        right
+      ) =>
+        applicableOfficialFindingsOf(
+          right
+        ).length -
+          applicableOfficialFindingsOf(
+            left
+          ).length ||
+        String(
+          left.siteProfileId || ""
+        ).localeCompare(
+          String(
+            right.siteProfileId || ""
+          )
+        )
+    );
+
+  const representativeProfiles =
+    rankedProfiles
+      .slice(
+        0,
+        12
+      )
+      .map(
+        profile => ({
+          places:
+            uniqueStrings(
+              (
+                Array.isArray(
+                  profile.places
+                )
+                  ? profile.places
+                  : []
+              )
+                .map(
+                  place =>
+                    place.name
+                )
+                .filter(
+                  value =>
+                    typeof value ===
+                      "string" &&
+                    value.trim()
+                )
+            ),
+
+          internalSignals:
+            Array.isArray(
+              profile.internalDrivers
+            )
+              ? profile.internalDrivers
+              : [],
+
+          officialEvidence:
+            applicableOfficialFindingsOf(
+              profile
+            )
+              .slice(
+                0,
+                3
+              )
+              .map(
+                finding => ({
+                  concept:
+                    typeof finding.concept ===
+                      "string"
+                      ? finding.concept
+                      : "",
+
+                  statementFr:
+                    typeof finding.statementFr ===
+                      "string"
+                      ? finding.statementFr
+                      : ""
+                })
+              )
+        })
+      );
+
+  return {
+    sourceProfileCount:
+      profiles.length,
+
+    sourceOfficialFindingCount,
+
+    internalSignals,
+
+    officialConcepts,
+
+    representativeProfiles
+  };
+}
+
+function profileMatchesCategory(
+  profile,
+  category
+) {
+  const aliases =
+    new Set(
+      category.aliases.map(
+        normalize
+      )
+    );
+
+  return (
+    Array.isArray(
+      profile.categories
+    )
+      ? profile.categories
+      : []
+  ).some(
+    value =>
+      aliases.has(
+        normalize(value)
+      )
+  );
+}
+
+function feedbackData(
+  feedback,
+  category
+) {
   const sessions =
     Array.isArray(
       feedback.sessions
@@ -490,9 +812,34 @@ function feedbackData(feedback) {
       ? feedback.sessions
       : [];
 
+  const relevantSessions =
+    sessions.filter(
+      session => {
+        const recordedCategory =
+          session?.mission
+            ?.category ||
+          session?.category ||
+          "";
+
+        if (recordedCategory) {
+          return normalize(
+            recordedCategory
+          ) === normalize(
+            category.name
+          );
+        }
+
+        return normalize(
+          category.name
+        ) === normalize(
+          "Restaurant"
+        );
+      }
+    );
+
   const principles =
     uniqueStrings(
-      sessions.flatMap(
+      relevantSessions.flatMap(
         session =>
           Array.isArray(
             session.learningPrinciplesFr
@@ -503,7 +850,7 @@ function feedbackData(feedback) {
     );
 
   const decisions =
-    sessions.flatMap(
+    relevantSessions.flatMap(
       session =>
         (
           Array.isArray(
@@ -634,13 +981,6 @@ function selectNewCandidates({
   previous,
   limit
 }) {
-  const allowedMunicipalities =
-    new Set(
-      COMMUNES_92.map(
-        normalize
-      )
-    );
-
   const selected = [];
 
   for (
@@ -653,16 +993,6 @@ function selectNewCandidates({
       );
 
     if (!candidate) {
-      continue;
-    }
-
-    if (
-      !allowedMunicipalities.has(
-        normalize(
-          candidate.municipality
-        )
-      )
-    ) {
       continue;
     }
 
@@ -728,6 +1058,9 @@ function finalizeCandidates({
   rawCandidates,
   catalogue,
   feedbackDecisions,
+  category,
+  area,
+  country,
   limit
 }) {
   fs.mkdirSync(
@@ -797,14 +1130,24 @@ function finalizeCandidates({
       const proposedAt =
         new Date().toISOString();
 
+      const missionSlug =
+        normalize(
+          `${category.name}-${area}`
+        )
+          .replace(/\s+/g, "-")
+          .slice(0, 80) ||
+        "bulle";
+
       const runId =
-        `restaurants-hauts-de-seine-${proposedAt.replace(/[:.]/g, "-")}`;
+        `${missionSlug}-${proposedAt.replace(/[:.]/g, "-")}`;
 
       const mission = {
         category:
-          CATEGORY,
+          category.name,
         area:
-          AREA,
+          area,
+        country:
+          country || null,
         requestedCandidates:
           limit
       };
@@ -860,21 +1203,464 @@ function finalizeCandidates({
   }
 }
 
+async function prospectCategory({
+  client,
+  category,
+  area,
+  country,
+  limit,
+  rawLimit,
+  corpus,
+  catalogue,
+  feedback
+}) {
+  const categoryProfiles =
+    corpus.siteProfiles
+      .filter(
+        profile =>
+          profileMatchesCategory(
+            profile,
+            category
+          )
+      );
+
+  if (
+    categoryProfiles.length === 0
+  ) {
+    throw new Error(
+      `Aucun exemple ${category.name} trouvé dans le corpus`
+    );
+  }
+
+  const compactLearning =
+    compactLearningOf(
+      categoryProfiles
+    );
+
+  const {
+    principles,
+    decisions
+  } =
+    feedbackData(
+      feedback,
+      category
+    );
+
+  const history =
+    loadHistory();
+
+  const compactCatalogue =
+    catalogue.map(
+      place => ({
+        name:
+          place.name || "",
+        city:
+          place.city || "",
+        website:
+          place.website || ""
+      })
+    );
+
+  const compactHistory =
+    history.proposals.map(
+      proposal => ({
+        name:
+          proposal.name || "",
+        municipality:
+          proposal.municipality || "",
+        website:
+          proposal.website || ""
+      })
+    );
+
+  const countryInstruction =
+    country
+      ? `- Pays obligatoire : ${country}`
+      : "- Pays : inclus dans la zone indiquée";
+
+  const prompt = `
+MISSION
+
+Recherche sur le Web de nouveaux lieux susceptibles de correspondre
+à Indie Map.
+
+- Zone géographique obligatoire : ${area}
+${countryInstruction}
+- Catégorie Indie Map exacte : ${category.name}
+- Candidats bruts demandés : jusqu'à ${rawLimit}
+- L'utilisateur ne verra finalement que ${limit} lieux maximum.
+
+Tu recherches uniquement des candidats pour la catégorie Indie Map
+indiquée. Tu n'as pas le droit de créer, renommer, subdiviser ou
+remplacer cette catégorie.
+
+Le résultat est une présélection. L'utilisateur vérifiera lui-même
+chaque site. Tu ne dois pas déclarer qu'un lieu est définitivement
+éligible, mais tu dois examiner suffisamment les informations
+publiques pour éviter les faux positifs évidents.
+
+APPRENTISSAGE POSITIF INDIE MAP — SYNTHÈSE LOCALE
+
+La synthèse suivante est construite localement à partir de tous les
+profils audités de cette catégorie.
+
+- internalSignals contient les signaux internes uniques.
+- officialConcepts contient tous les concepts pertinents découverts
+  sur les sites officiels, y compris les concepts rares.
+- representativeProfiles fournit des exemples détaillés reliant
+  signaux internes et preuves officielles.
+
+Ce sont des exemples positifs, pas une liste de critères obligatoires.
+Un signal rare et concret reste important même s'il apparaît peu.
+
+${JSON.stringify(compactLearning)}
+
+APPRENTISSAGE ISSU DE LA REVUE MANUELLE DE CETTE CATÉGORIE
+
+Principes appris :
+
+${JSON.stringify(principles)}
+
+Décisions détaillées :
+
+${JSON.stringify(decisions)}
+
+Applique ces retours uniquement à la catégorie demandée. Une promesse
+générale comme « local », « responsable », « durable », « artisanal »
+ou « fait maison » ne suffit jamais à elle seule. Recherche des
+éléments concrets cohérents avec l'apprentissage Indie Map.
+
+LIEUX DÉJÀ PROPOSÉS — INTERDICTION ABSOLUE
+
+Ne retourne aucun de ces lieux, même s'il paraît pertinent.
+
+${JSON.stringify(compactHistory)}
+
+CATALOGUE INDIE MAP — À EXCLURE
+
+${JSON.stringify(compactCatalogue)}
+
+MÉTHODE OBLIGATOIRE
+
+- Utilise au maximum deux appels à l'outil de recherche Web.
+- Utilise le premier pour découvrir des candidats pertinents dans la
+  zone et le second pour confirmer les pistes les plus solides.
+- Ne poursuis pas la recherche au-delà de ces deux appels.
+- Recherche seulement la catégorie Indie Map exacte indiquée.
+- Vérifie que chaque lieu se trouve réellement dans la zone demandée.
+- Vérifie que le lieu semble encore actif.
+- Les annuaires, médias, cartes et plateformes peuvent servir à
+  découvrir des pistes, mais officialWebsite doit être une page
+  officielle directe du lieu ou de l'organisation qui l'exploite.
+- Exclure Instagram, Facebook, Tripadvisor, TheFork, Google Maps,
+  les plateformes de livraison, de réservation et les annuaires.
+- Exclure tout lieu déjà présent dans Indie Map.
+- Exclure tout lieu déjà proposé lors d'une recherche précédente.
+- Ne jamais inventer un nom, une commune ou une URL.
+- Ne fournis aucune justification dans le JSON.
+- municipality sert uniquement au contrôle géographique interne.
+  `.trim();
+
+  const requestDiagnostics = {
+    category:
+      category.name,
+    webSearchContext:
+      "low",
+    maximumWebToolCalls:
+      2,
+    learningProfiles:
+      categoryProfiles.length,
+    learningOfficialFindings:
+      compactLearning
+        .sourceOfficialFindingCount,
+    learningInternalSignals:
+      compactLearning
+        .internalSignals.length,
+    learningOfficialConcepts:
+      compactLearning
+        .officialConcepts.length,
+    learningRepresentativeProfiles:
+      compactLearning
+        .representativeProfiles.length,
+    learningBytes:
+      Buffer.byteLength(
+        JSON.stringify(
+          compactLearning
+        ),
+        "utf8"
+      ),
+    cataloguePlaces:
+      compactCatalogue.length,
+    catalogueBytes:
+      Buffer.byteLength(
+        JSON.stringify(
+          compactCatalogue
+        ),
+        "utf8"
+      ),
+    historyProposals:
+      compactHistory.length,
+    historyBytes:
+      Buffer.byteLength(
+        JSON.stringify(
+          compactHistory
+        ),
+        "utf8"
+      ),
+    promptCharacters:
+      prompt.length,
+    promptBytes:
+      Buffer.byteLength(
+        prompt,
+        "utf8"
+      )
+  };
+
+  console.error(
+    `Diagnostic requête : ${JSON.stringify(requestDiagnostics)}`
+  );
+
+  if (
+    hasFlag(
+      "--diagnose-request"
+    )
+  ) {
+    return limit;
+  }
+
+  console.error(
+    `Recherche Bulle : ${category.name} — ${area}…`
+  );
+
+  let response =
+    await client.responses.create({
+      model:
+        MODEL,
+
+      reasoning: {
+        effort:
+          "high"
+      },
+
+      background:
+        true,
+
+      store:
+        false,
+
+      tools: [
+        {
+          type:
+            "web_search",
+          search_context_size:
+            "low"
+        }
+      ],
+
+      tool_choice:
+        "required",
+
+      max_tool_calls:
+        2,
+
+      max_output_tokens:
+        8000,
+
+      text: {
+        format: {
+          type:
+            "json_schema",
+          name:
+            "indie_map_prospects",
+          strict:
+            true,
+          schema:
+            responseSchema(
+              rawLimit
+            )
+        }
+      },
+
+      input:
+        prompt
+    });
+
+  let previousStatus =
+    response.status;
+
+  let pollingCount =
+    0;
+
+  console.error(
+    `Réponse Bulle ${response.id} : ${response.status}`
+  );
+
+  while (
+    response.status === "queued" ||
+    response.status === "in_progress"
+  ) {
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          5000
+        )
+    );
+
+    response =
+      await client.responses.retrieve(
+        response.id
+      );
+
+    pollingCount += 1;
+
+    if (
+      response.status !== previousStatus ||
+      pollingCount % 6 === 0
+    ) {
+      console.error(
+        `Réponse Bulle ${response.id} : ${response.status}`
+      );
+
+      previousStatus =
+        response.status;
+    }
+  }
+
+  if (
+    response.status !== "completed"
+  ) {
+    const finalDetails =
+      response.error ??
+      response.incomplete_details ??
+      null;
+
+    const terminalError =
+      new Error(
+        `Réponse Bulle ${response.id} terminée avec le statut ${response.status} : ${JSON.stringify(finalDetails)}`
+      );
+
+    terminalError.code =
+      finalDetails?.code ?? null;
+
+    terminalError.type =
+      "background_response_failed";
+
+    terminalError.request_id =
+      response.id;
+
+    throw terminalError;
+  }
+
+  if (
+    !response.output_text
+  ) {
+    throw new Error(
+      `Réponse de prospection vide pour ${category.name}`
+    );
+  }
+
+  const parsed =
+    JSON.parse(
+      response.output_text
+        .replace(
+          /^```(?:json)?\s*/i,
+          ""
+        )
+        .replace(
+          /\s*```$/,
+          ""
+        )
+        .trim()
+    );
+
+  const rawCandidates =
+    Array.isArray(
+      parsed.candidates
+    )
+      ? parsed.candidates
+      : [];
+
+  const selected =
+    finalizeCandidates({
+      rawCandidates,
+      catalogue,
+      feedbackDecisions:
+        decisions,
+      category,
+      area,
+      country,
+      limit
+    });
+
+  console.log(
+    `\n=== ${category.name.toUpperCase()} — LIEUX À VÉRIFIER ===\n`
+  );
+
+  for (
+    let index = 0;
+    index < selected.length;
+    index += 1
+  ) {
+    console.log(
+      `${index + 1}. ${selected[index].name}`
+    );
+
+    console.log(
+      `   ${selected[index].officialWebsite}`
+    );
+  }
+
+  if (
+    selected.length < limit
+  ) {
+    console.error(
+      `\nSeulement ${selected.length} nouveau(x) lieu(x) valide(s) obtenu(s) pour ${category.name}.`
+    );
+  }
+
+  return selected.length;
+}
+
 async function main() {
+  if (
+    hasFlag(
+      "--list-categories"
+    )
+  ) {
+    for (
+      const category of
+      INDIE_MAP_CATEGORIES
+    ) {
+      console.log(
+        category.name
+      );
+    }
+
+    return;
+  }
+
+  const {
+    area,
+    country,
+    categories
+  } =
+    requestedMission();
+
   const limit =
     positiveIntegerArgument(
       "--limit",
       10
     );
 
-  const rawLimit =
-    Math.min(
-      50,
-      Math.max(
-        30,
-        limit * 4
-      )
+  if (limit > 10) {
+    throw new Error(
+      "--limit ne peut pas dépasser 10"
     );
+  }
+
+  const rawLimit =
+    10;
 
   const corpus =
     readJson(
@@ -914,42 +1700,52 @@ async function main() {
     );
   }
 
-  const positiveExamples =
-    uniqueStrings(
-      corpus.siteProfiles
-        .filter(
-          profile =>
-            (
-              Array.isArray(
-                profile.categories
+  const missionSummaries =
+    categories.map(
+      category => {
+        const positiveExamples =
+          uniqueStrings(
+            corpus.siteProfiles
+              .filter(
+                profile =>
+                  profileMatchesCategory(
+                    profile,
+                    category
+                  )
               )
-                ? profile.categories
-                : []
-            ).some(
-              category =>
-                normalize(category) ===
-                normalize(CATEGORY)
-            )
-        )
-        .map(
-          learningTextOf
-        )
-    );
+              .map(
+                learningTextOf
+              )
+          );
 
-  if (
-    positiveExamples.length === 0
-  ) {
-    throw new Error(
-      "Aucun exemple Restaurant trouvé dans le corpus"
-    );
-  }
+        if (
+          positiveExamples.length === 0
+        ) {
+          throw new Error(
+            `Aucun exemple ${category.name} trouvé dans le corpus`
+          );
+        }
 
-  const {
-    principles,
-    decisions
-  } =
-    feedbackData(
-      feedback
+        const {
+          principles,
+          decisions
+        } =
+          feedbackData(
+            feedback,
+            category
+          );
+
+        return {
+          category:
+            category.name,
+          positiveExamples:
+            positiveExamples.length,
+          feedbackPrinciples:
+            principles.length,
+          feedbackDecisions:
+            decisions.length
+        };
+      }
     );
 
   if (
@@ -964,23 +1760,18 @@ async function main() {
             "VALIDATION LOCALE",
           model:
             MODEL,
-          category:
-            CATEGORY,
-          area:
-            AREA,
-          positiveExamples:
-            positiveExamples.length,
-          feedbackPrinciples:
-            principles.length,
-          feedbackDecisions:
-            decisions.length,
+          area,
+          country:
+            country || null,
+          categories:
+            missionSummaries,
           previousProposals:
             history.proposals.length,
           cataloguePlaces:
             catalogue.length,
-          requestedCandidates:
+          requestedCandidatesPerCategory:
             limit,
-          rawCandidateLimit:
+          rawCandidateLimitPerCategory:
             rawLimit
         },
         null,
@@ -1000,121 +1791,6 @@ async function main() {
     );
   }
 
-  const compactCatalogue =
-    catalogue.map(
-      place => ({
-        name:
-          place.name || "",
-        city:
-          place.city || "",
-        website:
-          place.website || ""
-      })
-    );
-
-  const compactHistory =
-    history.proposals.map(
-      proposal => ({
-        name:
-          proposal.name || "",
-        municipality:
-          proposal.municipality || "",
-        website:
-          proposal.website || ""
-      })
-    );
-
-  const prompt = `
-MISSION
-
-Recherche sur le Web de nouveaux restaurants susceptibles
-de correspondre à Indie Map.
-
-- Zone obligatoire : ${AREA}
-- Pays : ${COUNTRY}
-- Catégorie : ${CATEGORY}
-- Candidats bruts demandés : jusqu'à ${rawLimit}
-- L'utilisateur ne verra finalement que ${limit} lieux maximum.
-
-Le résultat est une présélection. L'utilisateur vérifiera lui-même
-chaque site. Tu ne dois pas déclarer qu'un lieu est définitivement
-éligible, mais tu dois examiner suffisamment les informations
-publiques et la carte pour éviter les faux positifs évidents.
-
-APPRENTISSAGE POSITIF INDIE MAP
-
-Les textes suivants sont issus des restaurants déjà sélectionnés
-dans Indie Map. Ils fusionnent les anciens signaux internes et les
-caractéristiques découvertes sur leurs sites officiels.
-
-Ce sont des exemples positifs, pas une liste de critères obligatoires.
-Un signal rare et concret reste important même s'il apparaît peu.
-
-${JSON.stringify(positiveExamples)}
-
-APPRENTISSAGE NÉGATIF ISSU DE LA REVUE MANUELLE
-
-Principes appris :
-
-${JSON.stringify(principles)}
-
-Décisions détaillées :
-
-${JSON.stringify(decisions)}
-
-Applique réellement ces retours :
-
-- une promesse générale « locale », « responsable » ou « fait maison »
-  ne suffit pas ;
-- cherche une cohérence concrète entre le discours, les producteurs,
-  la saisonnalité et la composition réelle de la carte ;
-- une carte très centrée sur viande, poisson, fruits de mer ou
-  ingrédients importés est un signal négatif important ;
-- « fait maison » ne signifie ni local ni saisonnier ;
-- des ingrédients importés centraux comme lait de coco, tahini,
-  halloumi, café ou chocolat ne prouvent pas une démarche locale ;
-- vérifie que le restaurant semble encore actif ;
-- ne transforme pas ces retours en interdictions mécaniques isolées :
-  évalue la place réelle de ces éléments dans l'ensemble du projet.
-
-LIEUX DÉJÀ PROPOSÉS — INTERDICTION ABSOLUE
-
-Ne retourne aucun de ces lieux, même s'il paraît finalement pertinent.
-
-${JSON.stringify(compactHistory)}
-
-CATALOGUE INDIE MAP — À EXCLURE
-
-${JSON.stringify(compactCatalogue)}
-
-COMMUNES AUTORISÉES
-
-${JSON.stringify(COMMUNES_92)}
-
-MÉTHODE OBLIGATOIRE
-
-- Effectue plusieurs recherches Web complémentaires en français.
-- Cherche des restaurants indépendants, locavores, saisonniers,
-  reliés à des producteurs, à une agriculture de proximité ou à
-  une cuisine végétale réellement cohérente.
-- Varie les requêtes et les communes.
-- Les annuaires, médias et plateformes peuvent servir à découvrir
-  des pistes, mais officialWebsite doit être le site officiel direct.
-- Exclure Instagram, Facebook, Tripadvisor, TheFork, Google Maps,
-  les plateformes de livraison, de réservation et les annuaires.
-- Exclure tout lieu déjà présent dans Indie Map.
-- Exclure tout lieu déjà proposé lors d'une recherche précédente.
-- Ne jamais inventer un nom, une commune ou une URL.
-- Retourner uniquement des restaurants physiques situés dans une
-  commune autorisée des Hauts-de-Seine.
-- Ne fournis aucune justification dans le JSON.
-- municipality sert uniquement au contrôle géographique interne.
-  `.trim();
-
-  console.error(
-    "Recherche de nouveaux restaurants dans les Hauts-de-Seine…"
-  );
-
   const client =
     new OpenAI({
       apiKey:
@@ -1122,129 +1798,122 @@ MÉTHODE OBLIGATOIRE
           .OPENAI_API_KEY
     });
 
-  const response =
-    await client.responses.create({
-      model:
-        MODEL,
-
-      reasoning: {
-        effort:
-          "high"
-      },
-
-      store:
-        false,
-
-      tools: [
-        {
-          type:
-            "web_search",
-          search_context_size:
-            "high"
-        }
-      ],
-
-      tool_choice:
-        "required",
-
-      max_output_tokens:
-        8000,
-
-      text: {
-        format: {
-          type:
-            "json_schema",
-          name:
-            "indie_map_restaurant_prospects",
-          strict:
-            true,
-          schema:
-            responseSchema(
-              rawLimit
-            )
-        }
-      },
-
-      input:
-        prompt
-    });
-
-  if (
-    !response.output_text
-  ) {
-    throw new Error(
-      "Réponse de prospection vide"
-    );
-  }
-
-  const parsed =
-    JSON.parse(
-      response.output_text
-        .replace(
-          /^```(?:json)?\s*/i,
-          ""
-        )
-        .replace(
-          /\s*```$/,
-          ""
-        )
-        .trim()
-    );
-
-  const rawCandidates =
-    Array.isArray(
-      parsed.candidates
-    )
-      ? parsed.candidates
-      : [];
-
-  const selected =
-    finalizeCandidates({
-      rawCandidates,
-      catalogue,
-      feedbackDecisions:
-        decisions,
-      limit
-    });
-
-  console.log(
-    "\n=== NOUVEAUX RESTAURANTS À VÉRIFIER ===\n"
-  );
+  let incompleteMission =
+    false;
 
   for (
-    let index = 0;
-    index < selected.length;
-    index += 1
+    const category of
+    categories
   ) {
-    console.log(
-      `${index + 1}. ${selected[index].name}`
-    );
+    const selectedCount =
+      await prospectCategory({
+        client,
+        category,
+        area,
+        country,
+        limit,
+        rawLimit,
+        corpus,
+        catalogue,
+        feedback
+      });
 
-    console.log(
-      `   ${selected[index].officialWebsite}`
-    );
+    if (
+      selectedCount < limit
+    ) {
+      incompleteMission =
+        true;
+    }
   }
 
-  if (
-    selected.length < limit
-  ) {
+  if (incompleteMission) {
     console.error(
-      `\nSeulement ${selected.length} nouveau(x) lieu(x) valide(s) obtenu(s).`
+      "\nMission terminée : certaines catégories ont fourni moins de lieux que le maximum demandé."
     );
-
-    process.exitCode = 1;
   }
 }
-
 main().catch(error => {
+  const isObject =
+    error !== null &&
+    typeof error === "object";
+
+  const cause =
+    isObject &&
+    error.cause !== null &&
+    typeof error.cause === "object"
+      ? error.cause
+      : null;
+
+  const nestedCause =
+    cause &&
+    cause.cause !== null &&
+    typeof cause.cause === "object"
+      ? cause.cause
+      : null;
+
+  const details =
+    isObject
+      ? {
+          name:
+            error.name || null,
+          message:
+            error.message || String(error),
+          status:
+            error.status ?? null,
+          code:
+            error.code ?? null,
+          type:
+            error.type ?? null,
+          requestId:
+            error.request_id ??
+            error.requestId ??
+            null,
+          cause:
+            cause
+              ? {
+                  name:
+                    cause.name || null,
+                  message:
+                    cause.message || null,
+                  code:
+                    cause.code || null,
+                  errno:
+                    cause.errno || null,
+                  syscall:
+                    cause.syscall || null
+                }
+              : null,
+          nestedCause:
+            nestedCause
+              ? {
+                  name:
+                    nestedCause.name || null,
+                  message:
+                    nestedCause.message || null,
+                  code:
+                    nestedCause.code || null,
+                  errno:
+                    nestedCause.errno || null,
+                  syscall:
+                    nestedCause.syscall || null
+                }
+              : null
+        }
+      : {
+          message:
+            String(error)
+        };
+
   console.error(
     "\nERREUR DE PROSPECTION"
   );
 
   console.error(
-    error instanceof Error
-      ? error.message
-      : error
+    JSON.stringify(
+      details,
+      null,
+      2
+    )
   );
 
   process.exitCode = 1;

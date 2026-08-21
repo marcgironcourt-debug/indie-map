@@ -17,7 +17,8 @@
     "scout:dna": "tsx scripts/scout/scout-category-dna.ts",
     "scout:rules:test": "tsx scripts/scout/scout-test-category-rules.ts",
     "scout:web:learn": "tsx scripts/scout/scout-web-learn.ts",
-    "scout:learning:build": "node scripts/scout/scout-build-learning-corpus.mjs"
+    "scout:learning:build": "node scripts/scout/scout-build-learning-corpus.mjs",
+    "bulle:prospect": "node scripts/scout/scout-prospect.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
