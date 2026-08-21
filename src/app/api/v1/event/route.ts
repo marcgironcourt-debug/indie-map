@@ -2,7 +2,10 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { randomUUID } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 import { Prisma } from "@prisma/client";
+import { geolocation } from "@vercel/functions";
 import { AUTH_COOKIE, hashToken } from "@/lib/auth";
 import {
   localDateAndHour,
@@ -20,6 +23,7 @@ const ALLOWED = new Set([
   "click_recent_additions",
   "click_discovery_of_day",
   "search_ai_used",
+  "search_result_impression",
   "click_search_result_detail",
   "click_search_results_map",
   "click_mini_immersion",
@@ -46,12 +50,15 @@ type EventPayload = {
   city?: unknown;
   country?: unknown;
   category?: unknown;
+  searchId?: unknown;
+  searchRank?: unknown;
   sessionId?: unknown;
   launchId?: unknown;
   locale?: unknown;
   platform?: unknown;
   clientTimeZone?: unknown;
   utcOffsetMinutes?: unknown;
+  viewerLocation?: unknown;
   metadata?: unknown;
 };
 
@@ -75,6 +82,242 @@ function cleanString(
   if (!clean) return null;
 
   return clean.slice(0, max);
+}
+
+type PlaceCoordinates = {
+  lat: number;
+  lng: number;
+};
+
+let placeCoordinatesCache:
+  Map<string, PlaceCoordinates> | null =
+    null;
+
+function cleanCoordinate(
+  value: unknown,
+  min: number,
+  max: number,
+) {
+  const number =
+    Number(value);
+
+  if (
+    !Number.isFinite(number) ||
+    number < min ||
+    number > max
+  ) {
+    return null;
+  }
+
+  return number;
+}
+
+function cleanPositiveInt(
+  value: unknown,
+  max = 1000,
+) {
+  const number = Number(value);
+
+  if (
+    !Number.isInteger(number) ||
+    number < 1 ||
+    number > max
+  ) {
+    return null;
+  }
+
+  return number;
+}
+
+function viewerCoordinates(
+  value: unknown,
+) {
+  if (!isObject(value)) {
+    return null;
+  }
+
+  const lat =
+    cleanCoordinate(
+      value.lat,
+      -90,
+      90,
+    );
+
+  const lng =
+    cleanCoordinate(
+      value.lng,
+      -180,
+      180,
+    );
+
+  if (
+    lat === null ||
+    lng === null
+  ) {
+    return null;
+  }
+
+  return {
+    lat,
+    lng,
+  };
+}
+
+function getPlaceCoordinates(
+  placeId: string | null,
+) {
+  if (!placeId) {
+    return null;
+  }
+
+  if (!placeCoordinatesCache) {
+    placeCoordinatesCache =
+      new Map();
+
+    try {
+      const filePath =
+        path.join(
+          process.cwd(),
+          "data",
+          "places.json",
+        );
+
+      const parsed =
+        JSON.parse(
+          fs.readFileSync(
+            filePath,
+            "utf8",
+          ),
+        );
+
+      if (Array.isArray(parsed)) {
+        for (const item of parsed) {
+          if (
+            !item ||
+            typeof item !==
+              "object"
+          ) {
+            continue;
+          }
+
+          const id =
+            cleanString(
+              item.id,
+              120,
+            );
+
+          const lat =
+            cleanCoordinate(
+              item.lat,
+              -90,
+              90,
+            );
+
+          const lng =
+            cleanCoordinate(
+              item.lng,
+              -180,
+              180,
+            );
+
+          if (
+            id &&
+            lat !== null &&
+            lng !== null
+          ) {
+            placeCoordinatesCache.set(
+              id,
+              {
+                lat,
+                lng,
+              },
+            );
+          }
+        }
+      }
+    } catch (error) {
+      console.error(
+        "[/api/v1/event] place coordinates error",
+        error,
+      );
+    }
+  }
+
+  return (
+    placeCoordinatesCache.get(
+      placeId,
+    ) ?? null
+  );
+}
+
+function haversineKm(
+  lat1: number,
+  lng1: number,
+  lat2: number,
+  lng2: number,
+) {
+  const radians =
+    (degrees: number) =>
+      degrees *
+      (Math.PI / 180);
+
+  const dLat =
+    radians(
+      lat2 - lat1,
+    );
+
+  const dLng =
+    radians(
+      lng2 - lng1,
+    );
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(
+      radians(lat1),
+    ) *
+      Math.cos(
+        radians(lat2),
+      ) *
+      Math.sin(
+        dLng / 2,
+      ) ** 2;
+
+  const c =
+    2 *
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1 - a),
+    );
+
+  return 6371 * c;
+}
+
+function distanceBucket(
+  distanceKm: number | null,
+) {
+  if (
+    distanceKm === null ||
+    !Number.isFinite(
+      distanceKm,
+    )
+  ) {
+    return null;
+  }
+
+  if (distanceKm < 5) {
+    return "lt_5";
+  }
+
+  if (distanceKm < 25) {
+    return "5_25";
+  }
+
+  if (distanceKm < 100) {
+    return "25_100";
+  }
+
+  return "gte_100";
 }
 
 function cleanMetadata(
@@ -239,6 +482,78 @@ export async function POST(req: Request) {
     const metadata =
       cleanMetadata(body.metadata);
 
+    const placeId =
+      cleanString(
+        body.placeId,
+        120,
+      );
+
+    const searchId =
+      cleanString(
+        body.searchId,
+        120,
+      );
+
+    const searchRank =
+      cleanPositiveInt(
+        body.searchRank,
+      );
+
+    const geo =
+      geolocation(req);
+
+    const viewerCity =
+      cleanString(
+        geo.city ||
+          req.headers.get(
+            "x-vercel-ip-city",
+          ),
+        120,
+      );
+
+    const viewerCountry =
+      cleanString(
+        geo.country ||
+          req.headers.get(
+            "x-vercel-ip-country",
+          ),
+        120,
+      );
+
+    const coordinates =
+      viewerCoordinates(
+        body.viewerLocation,
+      );
+
+    const placeCoordinates =
+      getPlaceCoordinates(
+        placeId,
+      );
+
+    const rawViewerDistanceKm =
+      coordinates &&
+      placeCoordinates
+        ? haversineKm(
+            coordinates.lat,
+            coordinates.lng,
+            placeCoordinates.lat,
+            placeCoordinates.lng,
+          )
+        : null;
+
+    const viewerDistanceKm =
+      rawViewerDistanceKm === null
+        ? null
+        : Math.round(
+            rawViewerDistanceKm *
+              10,
+          ) / 10;
+
+    const viewerDistanceBucket =
+      distanceBucket(
+        viewerDistanceKm,
+      );
+
     const metadataJson =
       metadata === undefined
         ? null
@@ -357,6 +672,12 @@ export async function POST(req: Request) {
         "city",
         "country",
         "category",
+        "searchId",
+        "searchRank",
+        "viewerCity",
+        "viewerCountry",
+        "viewerDistanceKm",
+        "viewerDistanceBucket",
         "sessionId",
         "launchId",
         "userId",
@@ -372,10 +693,16 @@ export async function POST(req: Request) {
       VALUES (
         ${randomUUID()},
         ${eventType},
-        ${cleanString(body.placeId, 120)},
+        ${placeId},
         ${cleanString(body.city, 120)},
         ${cleanString(body.country, 120)},
         ${cleanString(body.category, 120)},
+        ${searchId},
+        ${searchRank},
+        ${viewerCity},
+        ${viewerCountry},
+        ${viewerDistanceKm},
+        ${viewerDistanceBucket},
         ${finalSessionId},
         ${finalLaunchId},
         (SELECT "userId" FROM valid_session),

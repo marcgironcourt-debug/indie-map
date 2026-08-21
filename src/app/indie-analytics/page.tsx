@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { ReactNode } from "react";
+import {
+  AnalyticsBars,
+  AnalyticsDonut,
+  AnalyticsLineChart,
+} from "@/components/analytics/AnalyticsVisuals";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +27,8 @@ type SearchParams = {
   month?: string;
   year?: string;
   traffic?: string;
+  scope?: string;
+  section?: string;
 };
 
 const EVENT_LABELS: Record<string, string> = {
@@ -30,6 +37,7 @@ const EVENT_LABELS: Record<string, string> = {
   click_recent_additions: "Ajouts récents",
   click_discovery_of_day: "Découverte du jour",
   search_ai_used: "Recherche IA",
+  search_result_impression: "Résultat de recherche affiché",
   click_search_result_detail: "Fiche depuis recherche",
   click_search_results_map: "Résultats sur carte",
   click_mini_immersion: "Immersion",
@@ -85,6 +93,42 @@ const TABS = [
   { key: "places", label: "Lieux" },
   { key: "users", label: "Utilisateurs" },
 ] as const;
+
+const SECTION_TABS = {
+  daily: [
+    { key: "summary", label: "Synthèse" },
+    { key: "activity", label: "Activité" },
+    { key: "users", label: "Utilisateurs" },
+    { key: "geography", label: "Connexions" },
+    { key: "details", label: "Détails" },
+  ],
+  overview: [
+    { key: "summary", label: "Synthèse" },
+    { key: "activity", label: "Activité" },
+    { key: "geography", label: "Géographie" },
+    { key: "sources", label: "Sources" },
+  ],
+  actions: [
+    { key: "summary", label: "Synthèse" },
+    { key: "events", label: "Toutes les actions" },
+    { key: "search", label: "Recherche" },
+    { key: "origins", label: "Origines" },
+  ],
+  places: [
+    { key: "summary", label: "Synthèse" },
+    { key: "ranking", label: "Classement" },
+    {
+      key: "commercial",
+      label: "Analyse commerciale",
+    },
+  ],
+  users: [
+    { key: "summary", label: "Synthèse" },
+    { key: "accounts", label: "Comptes" },
+    { key: "connections", label: "Connexions" },
+    { key: "profiles", label: "Profils" },
+  ],
+} as const;
 
 function readPlacesMap() {
   const map = new Map<string, PlaceLite>();
@@ -368,6 +412,8 @@ function dashboardHref(
     month?: string | number;
     year?: string | number;
     traffic?: string;
+    scope?: string;
+    section?: string;
   },
   token: string,
 ) {
@@ -380,6 +426,8 @@ function dashboardHref(
   if (params.month) query.set("month", String(params.month));
   if (params.year) query.set("year", String(params.year));
   if (params.traffic) query.set("traffic", params.traffic);
+  if (params.scope) query.set("scope", params.scope);
+  if (params.section) query.set("section", params.section);
   if (token) query.set("token", token);
 
   const suffix = query.toString();
@@ -416,6 +464,18 @@ export default async function IndieAnalyticsPage({
       : requestedTraffic === "all"
         ? "all"
         : "external";
+
+
+  const requestedScope = String(
+    resolvedSearchParams?.scope ?? "",
+  ).trim();
+
+  const scopeFilter:
+    | "day"
+    | "total" =
+    requestedScope === "day"
+      ? "day"
+      : "total";
 
   const selectedDate =
     normalizeDashboardDate(
@@ -513,6 +573,24 @@ export default async function IndieAnalyticsPage({
     ? String(resolvedSearchParams?.tab)
     : "daily";
 
+
+  const sectionOptions =
+    SECTION_TABS[
+      activeTab as keyof typeof SECTION_TABS
+    ] ?? SECTION_TABS.daily;
+
+  const requestedSection = String(
+    resolvedSearchParams?.section ?? "",
+  ).trim();
+
+  const activeSection =
+    sectionOptions.some(
+      (item) =>
+        item.key === requestedSection,
+    )
+      ? requestedSection
+      : sectionOptions[0].key;
+
   const providedToken = String(
     resolvedSearchParams?.token ?? "",
   ).trim();
@@ -539,7 +617,11 @@ export default async function IndieAnalyticsPage({
     Boolean(selectedUserId || selectedSessionId);
 
   const needDaily =
-    !showingDetail && activeTab === "daily";
+    !showingDetail &&
+    (
+      activeTab === "daily" ||
+      scopeFilter === "day"
+    );
 
   const needOverview =
     !showingDetail && activeTab === "overview";
@@ -605,6 +687,8 @@ export default async function IndieAnalyticsPage({
     placeId: string | null;
     city: string | null;
     category: string | null;
+    viewerCity: string | null;
+    viewerCountry: string | null;
     sessionId: string | null;
     launchId: string | null;
     userId: string | null;
@@ -669,6 +753,8 @@ export default async function IndieAnalyticsPage({
                   'placeId', e."placeId",
                   'city', e."city",
                   'category', e."category",
+                  'viewerCity', e."viewerCity",
+                  'viewerCountry', e."viewerCountry",
                   'sessionId', e."sessionId",
                   'launchId', e."launchId",
                   'userId', e."userId",
@@ -1014,6 +1100,73 @@ export default async function IndieAnalyticsPage({
         "click_detail_phone",
       ].includes(event.eventType),
     );
+
+  const dailyOpeningsByHour =
+    Array.from(
+      { length: 24 },
+      (_, hour) => ({
+        label: `${String(hour).padStart(2, "0")}h`,
+        value: 0,
+      }),
+    );
+
+  const dailyViewsByHour =
+    Array.from(
+      { length: 24 },
+      (_, hour) => ({
+        label: `${String(hour).padStart(2, "0")}h`,
+        value: 0,
+      }),
+    );
+
+  const dailySearchesByHour =
+    Array.from(
+      { length: 24 },
+      (_, hour) => ({
+        label: `${String(hour).padStart(2, "0")}h`,
+        value: 0,
+      }),
+    );
+
+  for (const launch of dailyLaunchRows) {
+    const hour =
+      localHourFromDate(
+        launch.createdAt,
+        launch.clientTimeZone,
+      );
+
+    if (hour >= 0 && hour <= 23) {
+      dailyOpeningsByHour[hour].value += 1;
+    }
+  }
+
+  for (const event of dailyViewEvents) {
+    const hour =
+      typeof event.clientLocalHour === "number"
+        ? event.clientLocalHour
+        : localHourFromDate(
+            event.createdAt,
+            event.clientTimeZone,
+          );
+
+    if (hour >= 0 && hour <= 23) {
+      dailyViewsByHour[hour].value += 1;
+    }
+  }
+
+  for (const event of dailySearchEvents) {
+    const hour =
+      typeof event.clientLocalHour === "number"
+        ? event.clientLocalHour
+        : localHourFromDate(
+            event.createdAt,
+            event.clientTimeZone,
+          );
+
+    if (hour >= 0 && hour <= 23) {
+      dailySearchesByHour[hour].value += 1;
+    }
+  }
 
   const legacyDailyEvents =
     dailyEvents.filter(
@@ -1366,6 +1519,65 @@ export default async function IndieAnalyticsPage({
       0,
     );
 
+
+  const dailyConnectionMap =
+    new Map<
+      string,
+      {
+        city: string;
+        country: string;
+        sessions: Set<string>;
+        openings: number;
+      }
+    >();
+
+  for (const launch of dailyLaunchRows) {
+    const city =
+      launch.city?.trim() ||
+      "Localisation inconnue";
+
+    const country =
+      launch.country?.trim() || "";
+
+    const key =
+      `${city}|||${country}`;
+
+    const previous =
+      dailyConnectionMap.get(key) ?? {
+        city,
+        country,
+        sessions: new Set<string>(),
+        openings: 0,
+      };
+
+    previous.sessions.add(
+      launch.sessionId,
+    );
+
+    previous.openings += 1;
+
+    dailyConnectionMap.set(
+      key,
+      previous,
+    );
+  }
+
+  const dailyConnectionRows =
+    Array.from(
+      dailyConnectionMap.values(),
+    )
+      .map((row) => ({
+        city: row.city,
+        country: row.country,
+        users: row.sessions.size,
+        openings: row.openings,
+      }))
+      .sort(
+        (a, b) =>
+          b.users - a.users ||
+          b.openings - a.openings,
+      );
+
   const dailyActionCount =
     dailyActors.reduce(
       (sum, actor) =>
@@ -1402,6 +1614,194 @@ export default async function IndieAnalyticsPage({
       .sort(
         (a, b) =>
           b.count - a.count,
+      )
+      .slice(0, 20);
+
+
+  const dailyEventTypeCounts =
+    new Map<string, number>();
+
+  const dailyEventsByPlaceCounts =
+    new Map<string, number>();
+
+  type DailyCommercialEntry = {
+    placeId: string;
+    views: number;
+    searchImpressions: number;
+    geo: Map<
+      string,
+      {
+        eventType: string;
+        viewerCity: string;
+        viewerCountry: string | null;
+        source: string;
+        count: number;
+      }
+    >;
+  };
+
+  const dailyCommercialMap =
+    new Map<
+      string,
+      DailyCommercialEntry
+    >();
+
+  for (const event of dailyEvents) {
+    dailyEventTypeCounts.set(
+      event.eventType,
+      (
+        dailyEventTypeCounts.get(
+          event.eventType,
+        ) || 0
+      ) + 1,
+    );
+
+    if (event.placeId) {
+      dailyEventsByPlaceCounts.set(
+        event.placeId,
+        (
+          dailyEventsByPlaceCounts.get(
+            event.placeId,
+          ) || 0
+        ) + 1,
+      );
+    }
+
+    if (
+      !event.placeId ||
+      ![
+        "view_place_detail",
+        "search_result_impression",
+      ].includes(event.eventType)
+    ) {
+      continue;
+    }
+
+    const existing =
+      dailyCommercialMap.get(
+        event.placeId,
+      ) ?? {
+        placeId: event.placeId,
+        views: 0,
+        searchImpressions: 0,
+        geo: new Map(),
+      };
+
+    if (
+      event.eventType ===
+      "view_place_detail"
+    ) {
+      existing.views += 1;
+    } else {
+      existing.searchImpressions += 1;
+    }
+
+    const viewerCity =
+      event.viewerCity?.trim() ||
+      "Localisation inconnue";
+
+    const viewerCountry =
+      event.viewerCountry?.trim() ||
+      null;
+
+    const source =
+      event.eventType ===
+      "view_place_detail"
+        ? metadataSource(
+            event.metadata,
+          )
+        : "search_result";
+
+    const geoKey =
+      [
+        event.eventType,
+        viewerCity,
+        viewerCountry || "",
+        source,
+      ].join("|||");
+
+    const previousGeo =
+      existing.geo.get(geoKey);
+
+    existing.geo.set(
+      geoKey,
+      {
+        eventType:
+          event.eventType,
+        viewerCity,
+        viewerCountry,
+        source,
+        count:
+          (previousGeo?.count || 0) +
+          1,
+      },
+    );
+
+    dailyCommercialMap.set(
+      event.placeId,
+      existing,
+    );
+  }
+
+  const dailyScopedEventTypes =
+    Array.from(
+      dailyEventTypeCounts.entries(),
+    )
+      .map(
+        ([eventType, count]) => ({
+          eventType,
+          _count: {
+            _all: count,
+          },
+        }),
+      )
+      .sort(
+        (a, b) =>
+          b._count._all -
+          a._count._all,
+      );
+
+  const dailyScopedEventsByPlace =
+    Array.from(
+      dailyEventsByPlaceCounts.entries(),
+    )
+      .map(
+        ([placeId, count]) => ({
+          placeId,
+          _count: {
+            _all: count,
+          },
+        }),
+      )
+      .sort(
+        (a, b) =>
+          b._count._all -
+          a._count._all,
+      )
+      .slice(0, 30);
+
+  const dailyScopedPlaceCommercialRows =
+    Array.from(
+      dailyCommercialMap.values(),
+    )
+      .map((row) => ({
+        placeId: row.placeId,
+        views: row.views,
+        searchImpressions:
+          row.searchImpressions,
+        geo:
+          Array.from(
+            row.geo.values(),
+          ).sort(
+            (a, b) =>
+              b.count - a.count,
+          ),
+      }))
+      .sort(
+        (a, b) =>
+          b.views - a.views ||
+          b.searchImpressions -
+            a.searchImpressions,
       )
       .slice(0, 20);
 
@@ -1542,6 +1942,19 @@ export default async function IndieAnalyticsPage({
     _count: { _all: number };
   }> = [];
 
+  let placeCommercialRows: Array<{
+    placeId: string;
+    views: number;
+    searchImpressions: number;
+    geo: Array<{
+      eventType: string;
+      viewerCity: string;
+      viewerCountry: string | null;
+      source: string;
+      count: number;
+    }>;
+  }> = [];
+
   let viewPlaceDetailEvents: Array<{
     metadata: unknown;
   }> = [];
@@ -1603,6 +2016,14 @@ export default async function IndieAnalyticsPage({
   let eventsByUser: Array<{
     userId: string | null;
     _count: { _all: number };
+  }> = [];
+
+
+  let connectionLocations: Array<{
+    city: string;
+    country: string | null;
+    users: number;
+    openings: number;
   }> = [];
 
   if (needOverview) {
@@ -1917,7 +2338,152 @@ export default async function IndieAnalyticsPage({
       savedPlacesCount: number;
       visitedPlacesCount: number;
       eventsByPlace: unknown;
+      placeCommercialRows: unknown;
     }>>`
+      WITH "filteredCommercialPlaceEvents" AS (
+        SELECT
+          e."placeId",
+          e."eventType",
+          e."viewerCity",
+          e."viewerCountry",
+          e."metadata"
+        FROM "Event" e
+        LEFT JOIN "AnalyticsInstallation" ai
+          ON ai."sessionId" = e."sessionId"
+        WHERE
+          e."placeId" IS NOT NULL
+          AND e."eventType" IN (
+            'view_place_detail',
+            'search_result_impression'
+          )
+          AND (
+            ${trafficFilter} = 'all'
+            OR COALESCE(
+              ai."trafficClass",
+              'external'
+            ) = ${trafficFilter}
+          )
+      ),
+
+      "commercialTotals" AS (
+        SELECT
+          "placeId",
+
+          COUNT(*) FILTER (
+            WHERE "eventType" = 'view_place_detail'
+          )::int AS "views",
+
+          COUNT(*) FILTER (
+            WHERE "eventType" = 'search_result_impression'
+          )::int AS "searchImpressions"
+
+        FROM "filteredCommercialPlaceEvents"
+        GROUP BY "placeId"
+      ),
+
+      "commercialGeo" AS (
+        SELECT
+          "placeId",
+          "eventType",
+
+          COALESCE(
+            NULLIF(
+              TRIM("viewerCity"),
+              ''
+            ),
+            'Localisation inconnue'
+          ) AS "viewerCity",
+
+          NULLIF(
+            TRIM("viewerCountry"),
+            ''
+          ) AS "viewerCountry",
+
+          CASE
+            WHEN "eventType" = 'view_place_detail'
+            THEN COALESCE(
+              NULLIF(
+                TRIM("metadata"->>'source'),
+                ''
+              ),
+              'unknown'
+            )
+            ELSE 'search_result'
+          END AS "source",
+
+          COUNT(*)::int AS "count"
+
+        FROM "filteredCommercialPlaceEvents"
+
+        GROUP BY
+          "placeId",
+          "eventType",
+          COALESCE(
+            NULLIF(
+              TRIM("viewerCity"),
+              ''
+            ),
+            'Localisation inconnue'
+          ),
+          NULLIF(
+            TRIM("viewerCountry"),
+            ''
+          ),
+          CASE
+            WHEN "eventType" = 'view_place_detail'
+            THEN COALESCE(
+              NULLIF(
+                TRIM("metadata"->>'source'),
+                ''
+              ),
+              'unknown'
+            )
+            ELSE 'search_result'
+          END
+      ),
+
+      "commercialPlaces" AS (
+        SELECT
+          totals."placeId",
+          totals."views",
+          totals."searchImpressions",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'eventType',
+                    geo."eventType",
+                  'viewerCity',
+                    geo."viewerCity",
+                  'viewerCountry',
+                    geo."viewerCountry",
+                  'source',
+                    geo."source",
+                  'count',
+                    geo."count"
+                )
+                ORDER BY
+                  geo."count" DESC,
+                  geo."viewerCity" ASC
+              )
+              FROM "commercialGeo" geo
+              WHERE
+                geo."placeId" =
+                totals."placeId"
+            ),
+            '[]'::jsonb
+          ) AS "geo"
+
+        FROM "commercialTotals" totals
+
+        ORDER BY
+          totals."views" DESC,
+          totals."searchImpressions" DESC
+
+        LIMIT 20
+      )
+
       SELECT
         (
           SELECT COUNT(*)::int
@@ -1947,17 +2513,49 @@ export default async function IndieAnalyticsPage({
             )
             FROM (
               SELECT
-                "placeId",
+                e."placeId",
                 COUNT(*)::int AS "count"
-              FROM "Event"
-              WHERE "placeId" IS NOT NULL
-              GROUP BY "placeId"
+              FROM "Event" e
+              LEFT JOIN "AnalyticsInstallation" ai
+                ON ai."sessionId" = e."sessionId"
+              WHERE
+                e."placeId" IS NOT NULL
+                AND (
+                  ${trafficFilter} = 'all'
+                  OR COALESCE(
+                    ai."trafficClass",
+                    'external'
+                  ) = ${trafficFilter}
+                )
+              GROUP BY e."placeId"
               ORDER BY COUNT(*) DESC
               LIMIT 30
             ) q
           ),
           '[]'::jsonb
-        ) AS "eventsByPlace"
+        ) AS "eventsByPlace",
+
+        COALESCE(
+          (
+            SELECT jsonb_agg(
+              jsonb_build_object(
+                'placeId',
+                  p."placeId",
+                'views',
+                  p."views",
+                'searchImpressions',
+                  p."searchImpressions",
+                'geo',
+                  p."geo"
+              )
+              ORDER BY
+                p."views" DESC,
+                p."searchImpressions" DESC
+            )
+            FROM "commercialPlaces" p
+          ),
+          '[]'::jsonb
+        ) AS "placeCommercialRows"
     `;
 
     const row = rows[0];
@@ -1980,6 +2578,50 @@ export default async function IndieAnalyticsPage({
         _all: rawInt(item.count),
       },
     }));
+
+    placeCommercialRows =
+      rawRows<{
+        placeId: string;
+        views: number;
+        searchImpressions: number;
+        geo: unknown;
+      }>(
+        row?.placeCommercialRows,
+      ).map((item) => ({
+        placeId:
+          String(item.placeId || ""),
+        views:
+          rawInt(item.views),
+        searchImpressions:
+          rawInt(item.searchImpressions),
+        geo:
+          rawRows<{
+            eventType: string;
+            viewerCity: string;
+            viewerCountry: string | null;
+            source: string;
+            count: number;
+          }>(item.geo).map((geo) => ({
+            eventType:
+              String(geo.eventType || ""),
+            viewerCity:
+              String(
+                geo.viewerCity ||
+                "Localisation inconnue",
+              ),
+            viewerCountry:
+              geo.viewerCountry
+                ? String(geo.viewerCountry)
+                : null,
+            source:
+              String(
+                geo.source ||
+                "unknown",
+              ),
+            count:
+              rawInt(geo.count),
+          })),
+      }));
   }
 
   if (needUsers) {
@@ -2265,6 +2907,635 @@ export default async function IndieAnalyticsPage({
     }));
   }
 
+  if (
+    !showingDetail &&
+    scopeFilter === "day" &&
+    activeTab !== "daily"
+  ) {
+    eventTypes =
+      dailyScopedEventTypes;
+
+    viewPlaceDetailEvents =
+      dailyViewEvents.map(
+        (event) => ({
+          metadata:
+            event.metadata,
+        }),
+      );
+
+    searchEvents =
+      dailySearchEvents.map(
+        (event) => ({
+          createdAt:
+            event.createdAt,
+          city:
+            event.city,
+          category:
+            event.category,
+          metadata:
+            event.metadata,
+        }),
+      );
+
+    searchDetailClicks =
+      dailyEvents.filter(
+        (event) =>
+          event.eventType ===
+          "click_search_result_detail",
+      ).length;
+
+    searchMapClicks =
+      dailyEvents.filter(
+        (event) =>
+          event.eventType ===
+          "click_search_results_map",
+      ).length;
+
+    eventsByPlace =
+      dailyScopedEventsByPlace;
+
+    placeCommercialRows =
+      dailyScopedPlaceCommercialRows;
+
+    if (
+      activeTab === "overview"
+    ) {
+      dau =
+        dailyActors.length;
+
+      sessions =
+        dailyExactOpenings;
+
+      eventsCount =
+        dailyEvents.length;
+
+      anonymousEventSessions =
+        dailyActors.filter(
+          (actor) =>
+            !actor.userId,
+        );
+
+      const locationCounts =
+        new Map<
+          string,
+          {
+            city: string;
+            country: string;
+            count: number;
+          }
+        >();
+
+      for (
+        const actor of dailyActors
+      ) {
+        const city =
+          actor.city ||
+          "Localisation inconnue";
+
+        const country =
+          actor.country || "";
+
+        const key =
+          `${city}|||${country}`;
+
+        const previous =
+          locationCounts.get(key);
+
+        locationCounts.set(
+          key,
+          {
+            city,
+            country,
+            count:
+              (previous?.count || 0) +
+              1,
+          },
+        );
+      }
+
+      locations =
+        Array.from(
+          locationCounts.values(),
+        )
+          .sort(
+            (a, b) =>
+              b.count - a.count,
+          )
+          .map((row) => ({
+            city: row.city,
+            country:
+              row.country || null,
+            _count: {
+              _all: row.count,
+            },
+          }));
+    }
+  }
+
+  if (
+    !showingDetail &&
+    scopeFilter === "total" &&
+    (
+      activeTab === "overview" ||
+      activeTab === "actions"
+    )
+  ) {
+    const scopedRows =
+      await prisma.$queryRaw<
+        Array<{
+          active5: number;
+          active15: number;
+          installationCount: number;
+          sessionCount: number;
+          eventsCount: number;
+          anonymousCount: number;
+          locations: unknown;
+          eventTypes: unknown;
+          viewMetadata: unknown;
+          searchEvents: unknown;
+          searchDetailClicks: number;
+          searchMapClicks: number;
+        }>
+      >`
+        SELECT
+          (
+            SELECT COUNT(*)::int
+            FROM "ActiveSession" a
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = a."sessionId"
+            WHERE
+              a."lastSeenAt" >= ${fiveMin}
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
+          ) AS "active5",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "ActiveSession" a
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = a."sessionId"
+            WHERE
+              a."lastSeenAt" >= ${fifteenMin}
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
+          ) AS "active15",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "AnalyticsInstallation" ai
+            WHERE
+              ${trafficFilter} = 'all'
+              OR ai."trafficClass" = ${trafficFilter}
+          ) AS "installationCount",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "DailySession" s
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = s."sessionId"
+            WHERE
+              ${trafficFilter} = 'all'
+              OR COALESCE(
+                ai."trafficClass",
+                'external'
+              ) = ${trafficFilter}
+          ) AS "sessionCount",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "Event" e
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = e."sessionId"
+            WHERE
+              ${trafficFilter} = 'all'
+              OR COALESCE(
+                ai."trafficClass",
+                'external'
+              ) = ${trafficFilter}
+          ) AS "eventsCount",
+
+          (
+            SELECT COUNT(
+              DISTINCT e."sessionId"
+            )::int
+            FROM "Event" e
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = e."sessionId"
+            WHERE
+              e."userId" IS NULL
+              AND e."sessionId" IS NOT NULL
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
+          ) AS "anonymousCount",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'city', q."city",
+                  'country', q."country",
+                  'count', q."count"
+                )
+                ORDER BY q."count" DESC
+              )
+              FROM (
+                SELECT
+                  COALESCE(
+                    NULLIF(
+                      TRIM(s."city"),
+                      ''
+                    ),
+                    'Localisation inconnue'
+                  ) AS "city",
+                  NULLIF(
+                    TRIM(s."country"),
+                    ''
+                  ) AS "country",
+                  COUNT(
+                    DISTINCT s."sessionId"
+                  )::int AS "count"
+                FROM "DailySession" s
+                LEFT JOIN "AnalyticsInstallation" ai
+                  ON ai."sessionId" = s."sessionId"
+                WHERE
+                  ${trafficFilter} = 'all'
+                  OR COALESCE(
+                    ai."trafficClass",
+                    'external'
+                  ) = ${trafficFilter}
+                GROUP BY
+                  COALESCE(
+                    NULLIF(
+                      TRIM(s."city"),
+                      ''
+                    ),
+                    'Localisation inconnue'
+                  ),
+                  NULLIF(
+                    TRIM(s."country"),
+                    ''
+                  )
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "locations",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'eventType',
+                    q."eventType",
+                  'count',
+                    q."count"
+                )
+                ORDER BY q."count" DESC
+              )
+              FROM (
+                SELECT
+                  e."eventType",
+                  COUNT(*)::int AS "count"
+                FROM "Event" e
+                LEFT JOIN "AnalyticsInstallation" ai
+                  ON ai."sessionId" = e."sessionId"
+                WHERE
+                  ${trafficFilter} = 'all'
+                  OR COALESCE(
+                    ai."trafficClass",
+                    'external'
+                  ) = ${trafficFilter}
+                GROUP BY e."eventType"
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "eventTypes",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                q."metadata"
+              )
+              FROM (
+                SELECT
+                  e."metadata"
+                FROM "Event" e
+                LEFT JOIN "AnalyticsInstallation" ai
+                  ON ai."sessionId" = e."sessionId"
+                WHERE
+                  e."eventType" =
+                    'view_place_detail'
+                  AND (
+                    ${trafficFilter} = 'all'
+                    OR COALESCE(
+                      ai."trafficClass",
+                      'external'
+                    ) = ${trafficFilter}
+                  )
+                ORDER BY e."createdAt" DESC
+                LIMIT 5000
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "viewMetadata",
+
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'createdAt',
+                    q."createdAt",
+                  'city',
+                    q."city",
+                  'category',
+                    q."category",
+                  'metadata',
+                    q."metadata"
+                )
+                ORDER BY
+                  q."createdAt" DESC
+              )
+              FROM (
+                SELECT
+                  e."createdAt",
+                  e."city",
+                  e."category",
+                  e."metadata"
+                FROM "Event" e
+                LEFT JOIN "AnalyticsInstallation" ai
+                  ON ai."sessionId" = e."sessionId"
+                WHERE
+                  e."eventType" =
+                    'search_ai_used'
+                  AND (
+                    ${trafficFilter} = 'all'
+                    OR COALESCE(
+                      ai."trafficClass",
+                      'external'
+                    ) = ${trafficFilter}
+                  )
+                ORDER BY e."createdAt" DESC
+                LIMIT 5000
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "searchEvents",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "Event" e
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = e."sessionId"
+            WHERE
+              e."eventType" =
+                'click_search_result_detail'
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
+          ) AS "searchDetailClicks",
+
+          (
+            SELECT COUNT(*)::int
+            FROM "Event" e
+            LEFT JOIN "AnalyticsInstallation" ai
+              ON ai."sessionId" = e."sessionId"
+            WHERE
+              e."eventType" =
+                'click_search_results_map'
+              AND (
+                ${trafficFilter} = 'all'
+                OR COALESCE(
+                  ai."trafficClass",
+                  'external'
+                ) = ${trafficFilter}
+              )
+          ) AS "searchMapClicks"
+      `;
+
+    const scoped =
+      scopedRows[0];
+
+    active5 =
+      rawInt(scoped?.active5);
+
+    active15 =
+      rawInt(scoped?.active15);
+
+    if (
+      activeTab === "overview"
+    ) {
+      dau =
+        rawInt(
+          scoped?.installationCount,
+        );
+
+      sessions =
+        rawInt(
+          scoped?.sessionCount,
+        );
+
+      eventsCount =
+        rawInt(
+          scoped?.eventsCount,
+        );
+
+      anonymousEventSessions =
+        Array.from({
+          length:
+            rawInt(
+              scoped?.anonymousCount,
+            ),
+        });
+
+      locations =
+        rawRows<{
+          city: string | null;
+          country: string | null;
+          count: number;
+        }>(
+          scoped?.locations,
+        ).map((row) => ({
+          city: row.city,
+          country: row.country,
+          _count: {
+            _all:
+              rawInt(row.count),
+          },
+        }));
+    }
+
+    eventTypes =
+      rawRows<{
+        eventType: string;
+        count: number;
+      }>(
+        scoped?.eventTypes,
+      ).map((row) => ({
+        eventType:
+          row.eventType,
+        _count: {
+          _all:
+            rawInt(row.count),
+        },
+      }));
+
+    viewPlaceDetailEvents =
+      rawRows<unknown>(
+        scoped?.viewMetadata,
+      ).map((metadata) => ({
+        metadata,
+      }));
+
+    searchEvents =
+      rawRows<{
+        createdAt: string | Date;
+        city: string | null;
+        category: string | null;
+        metadata: unknown;
+      }>(
+        scoped?.searchEvents,
+      ).map((event) => ({
+        ...event,
+        createdAt:
+          new Date(
+            event.createdAt,
+          ),
+      }));
+
+    searchDetailClicks =
+      rawInt(
+        scoped?.searchDetailClicks,
+      );
+
+    searchMapClicks =
+      rawInt(
+        scoped?.searchMapClicks,
+      );
+  }
+
+  if (
+    !showingDetail &&
+    activeTab === "users"
+  ) {
+    const connectionRows =
+      await prisma.$queryRaw<
+        Array<{
+          locations: unknown;
+        }>
+      >`
+        SELECT
+          COALESCE(
+            (
+              SELECT jsonb_agg(
+                jsonb_build_object(
+                  'city', q."city",
+                  'country', q."country",
+                  'users', q."users",
+                  'openings', q."openings"
+                )
+                ORDER BY
+                  q."users" DESC,
+                  q."openings" DESC
+              )
+              FROM (
+                SELECT
+                  COALESCE(
+                    NULLIF(
+                      TRIM(s."city"),
+                      ''
+                    ),
+                    'Localisation inconnue'
+                  ) AS "city",
+
+                  NULLIF(
+                    TRIM(s."country"),
+                    ''
+                  ) AS "country",
+
+                  COUNT(
+                    DISTINCT s."sessionId"
+                  )::int AS "users",
+
+                  COUNT(*)::int
+                    AS "openings"
+
+                FROM "DailySession" s
+
+                LEFT JOIN "AnalyticsInstallation" ai
+                  ON ai."sessionId" =
+                    s."sessionId"
+
+                WHERE
+                  (
+                    ${scopeFilter} = 'total'
+                    OR s."day" =
+                      ${selectedDate}
+                  )
+                  AND (
+                    ${trafficFilter} = 'all'
+                    OR COALESCE(
+                      ai."trafficClass",
+                      'external'
+                    ) = ${trafficFilter}
+                  )
+
+                GROUP BY
+                  COALESCE(
+                    NULLIF(
+                      TRIM(s."city"),
+                      ''
+                    ),
+                    'Localisation inconnue'
+                  ),
+                  NULLIF(
+                    TRIM(s."country"),
+                    ''
+                  )
+              ) q
+            ),
+            '[]'::jsonb
+          ) AS "locations"
+      `;
+
+    connectionLocations =
+      rawRows<{
+        city: string;
+        country: string | null;
+        users: number;
+        openings: number;
+      }>(
+        connectionRows[0]?.locations,
+      ).map((row) => ({
+        city:
+          row.city ||
+          "Localisation inconnue",
+        country:
+          row.country,
+        users:
+          rawInt(row.users),
+        openings:
+          rawInt(row.openings),
+      }));
+  }
+
   const viewSources = countSources(viewPlaceDetailEvents);
   const maxViewSourceCount = Math.max(1, ...viewSources.map((item) => item.count));
 
@@ -2311,18 +3582,255 @@ export default async function IndieAnalyticsPage({
       })
     : null;
 
-  const selectedUserEventTypes = selectedUser
-    ? await prisma.event.groupBy({
-        by: ["eventType"],
-        where: { userId: selectedUser.id },
-        _count: { _all: true },
-        orderBy: { _count: { eventType: "desc" } },
-      })
-    : [];
+  const selectedUserScopedEvents =
+    selectedUser
+      ? await prisma.event.findMany({
+          where:
+            scopeFilter === "day"
+              ? {
+                  userId: selectedUser.id,
+                  OR: [
+                    {
+                      clientLocalDate:
+                        selectedDate,
+                    },
+                    {
+                      clientLocalDate: null,
+                      createdAt: {
+                        gte: legacyStart,
+                        lt: legacyEnd,
+                      },
+                    },
+                  ],
+                }
+              : {
+                  userId: selectedUser.id,
+                },
+          orderBy: {
+            createdAt: "desc",
+          },
+          take: 500,
+        })
+      : [];
+
+  const selectedUserScopedEventCount =
+    selectedUser
+      ? await prisma.event.count({
+          where:
+            scopeFilter === "day"
+              ? {
+                  userId: selectedUser.id,
+                  OR: [
+                    {
+                      clientLocalDate:
+                        selectedDate,
+                    },
+                    {
+                      clientLocalDate: null,
+                      createdAt: {
+                        gte: legacyStart,
+                        lt: legacyEnd,
+                      },
+                    },
+                  ],
+                }
+              : {
+                  userId: selectedUser.id,
+                },
+        })
+      : 0;
+
+  const selectedUserEventTypes =
+    selectedUser
+      ? await prisma.event.groupBy({
+          by: ["eventType"],
+          where:
+            scopeFilter === "day"
+              ? {
+                  userId: selectedUser.id,
+                  OR: [
+                    {
+                      clientLocalDate:
+                        selectedDate,
+                    },
+                    {
+                      clientLocalDate: null,
+                      createdAt: {
+                        gte: legacyStart,
+                        lt: legacyEnd,
+                      },
+                    },
+                  ],
+                }
+              : {
+                  userId: selectedUser.id,
+                },
+          _count: {
+            _all: true,
+          },
+          orderBy: {
+            _count: {
+              eventType: "desc",
+            },
+          },
+        })
+      : [];
 
   const maxEventCount = Math.max(1, ...eventTypes.map((row) => row._count._all));
   const maxPlaceCount = Math.max(1, ...eventsByPlace.map((row) => row._count._all));
-  const selectedUserViewEvents = selectedUser?.events.filter((event) => event.eventType === "view_place_detail") ?? [];
+
+  const eventCountByType =
+    new Map(
+      eventTypes.map(
+        (row) => [
+          row.eventType,
+          row._count._all,
+        ],
+      ),
+    );
+
+  const groupedActionSegments = [
+    {
+      label: "Découverte",
+      value:
+        (eventCountByType.get("click_explore_world") || 0) +
+        (eventCountByType.get("click_recent_additions") || 0) +
+        (eventCountByType.get("click_discovery_of_day") || 0) +
+        (eventCountByType.get("search_ai_used") || 0) +
+        (eventCountByType.get("search_result_impression") || 0),
+    },
+    {
+      label: "Consultation",
+      value:
+        (eventCountByType.get("view_place_detail") || 0) +
+        (eventCountByType.get("click_search_result_detail") || 0) +
+        (eventCountByType.get("click_search_results_map") || 0) +
+        (eventCountByType.get("click_mini_more_info") || 0) +
+        (eventCountByType.get("click_mini_immersion") || 0) +
+        (eventCountByType.get("click_detail_view_on_map") || 0),
+    },
+    {
+      label: "Intérêt",
+      value:
+        (eventCountByType.get("save_place") || 0) +
+        (eventCountByType.get("unsave_place") || 0) +
+        (eventCountByType.get("open_shared_list_picker") || 0) +
+        (eventCountByType.get("add_place_to_shared_list") || 0) +
+        (eventCountByType.get("create_shared_list") || 0) +
+        (eventCountByType.get("click_detail_share") || 0),
+    },
+    {
+      label: "Vers le lieu",
+      value:
+        (eventCountByType.get("click_detail_website") || 0) +
+        (eventCountByType.get("click_detail_itinerary") || 0) +
+        (eventCountByType.get("click_detail_copy_address") || 0) +
+        (eventCountByType.get("click_detail_phone") || 0),
+    },
+    {
+      label: "Visites déclarées",
+      value:
+        (eventCountByType.get("mark_place_visited") || 0) +
+        (eventCountByType.get("unmark_place_visited") || 0),
+    },
+  ];
+
+  const overviewSourceSegments =
+    viewSources.map((row) => ({
+      label: sourceLabel(row.source),
+      value: row.count,
+    }));
+
+  const overviewCityBars =
+    locations
+      .slice(0, 12)
+      .map((row) => ({
+        label:
+          `${row.city || "—"} · ${row.country || "—"}`,
+        value: row._count._all,
+      }));
+
+  const actionTypeBars =
+    eventTypes
+      .slice(0, 12)
+      .map((row) => ({
+        label:
+          eventLabel(row.eventType),
+        value:
+          row._count._all,
+      }));
+
+  const placeViewBars =
+    placeCommercialRows
+      .filter((row) => row.views > 0)
+      .sort((a, b) => b.views - a.views)
+      .slice(0, 12)
+      .map((row) => ({
+        label:
+          placeName(
+            placeMap,
+            row.placeId,
+          ),
+        value:
+          row.views,
+        hint:
+          placeCity(
+            placeMap,
+            row.placeId,
+          ) || undefined,
+      }));
+
+  const placeSearchBars =
+    placeCommercialRows
+      .filter(
+        (row) =>
+          row.searchImpressions > 0,
+      )
+      .sort(
+        (a, b) =>
+          b.searchImpressions -
+          a.searchImpressions,
+      )
+      .slice(0, 12)
+      .map((row) => ({
+        label:
+          placeName(
+            placeMap,
+            row.placeId,
+          ),
+        value:
+          row.searchImpressions,
+        hint:
+          placeCity(
+            placeMap,
+            row.placeId,
+          ) || undefined,
+      }));
+
+  const userAgeSegments =
+    usersByAge.map((row) => ({
+      label:
+        ageLabel(row.ageRange),
+      value:
+        row._count._all,
+    }));
+
+  const userCityBars =
+    usersByHomeCity
+      .slice(0, 12)
+      .map((row) => ({
+        label:
+          row.homeCity ||
+          "Non renseignée",
+        value:
+          row._count._all,
+      }));
+  const selectedUserViewEvents =
+    selectedUserScopedEvents.filter(
+      (event) =>
+        event.eventType ===
+        "view_place_detail",
+    );
   const selectedUserViewSources = countSources(selectedUserViewEvents);
   const maxSelectedUserViewSourceCount = Math.max(1, ...selectedUserViewSources.map((item) => item.count));
 
@@ -2395,6 +3903,20 @@ export default async function IndieAnalyticsPage({
             WHERE
               "sessionId" = ${selectedSessionId}
               AND "eventType" <> 'launch_started'
+              AND (
+                ${scopeFilter} = 'total'
+                OR (
+                  "clientLocalDate" =
+                    ${selectedDate}
+                )
+                OR (
+                  "clientLocalDate" IS NULL
+                  AND "createdAt" >=
+                    ${legacyStart}
+                  AND "createdAt" <
+                    ${legacyEnd}
+                )
+              )
           ) AS "eventCount",
 
           COALESCE(
@@ -2414,6 +3936,18 @@ export default async function IndieAnalyticsPage({
                 WHERE
                   "sessionId" = ${selectedSessionId}
                   AND "eventType" <> 'launch_started'
+                  AND (
+                    ${scopeFilter} = 'total'
+                    OR "clientLocalDate" =
+                      ${selectedDate}
+                    OR (
+                      "clientLocalDate" IS NULL
+                      AND "createdAt" >=
+                        ${legacyStart}
+                      AND "createdAt" <
+                        ${legacyEnd}
+                    )
+                  )
                 GROUP BY "eventType"
               ) q
             ),
@@ -2437,6 +3971,18 @@ export default async function IndieAnalyticsPage({
               WHERE
                 e."sessionId" = ${selectedSessionId}
                 AND e."eventType" = 'view_place_detail'
+                AND (
+                  ${scopeFilter} = 'total'
+                  OR e."clientLocalDate" =
+                    ${selectedDate}
+                  OR (
+                    e."clientLocalDate" IS NULL
+                    AND e."createdAt" >=
+                      ${legacyStart}
+                    AND e."createdAt" <
+                      ${legacyEnd}
+                  )
+                )
             ),
             '[]'::jsonb
           ) AS "views",
@@ -2458,6 +4004,18 @@ export default async function IndieAnalyticsPage({
               WHERE
                 e."sessionId" = ${selectedSessionId}
                 AND e."eventType" = 'search_ai_used'
+                AND (
+                  ${scopeFilter} = 'total'
+                  OR e."clientLocalDate" =
+                    ${selectedDate}
+                  OR (
+                    e."clientLocalDate" IS NULL
+                    AND e."createdAt" >=
+                      ${legacyStart}
+                    AND e."createdAt" <
+                      ${legacyEnd}
+                  )
+                )
             ),
             '[]'::jsonb
           ) AS "searches",
@@ -2492,7 +4050,20 @@ export default async function IndieAnalyticsPage({
                   "clientTimeZone",
                   "createdAt"
                 FROM "Event"
-                WHERE "sessionId" = ${selectedSessionId}
+                WHERE
+                  "sessionId" = ${selectedSessionId}
+                  AND (
+                    ${scopeFilter} = 'total'
+                    OR "clientLocalDate" =
+                      ${selectedDate}
+                    OR (
+                      "clientLocalDate" IS NULL
+                      AND "createdAt" >=
+                        ${legacyStart}
+                      AND "createdAt" <
+                        ${legacyEnd}
+                    )
+                  )
                 ORDER BY "createdAt" DESC
                 LIMIT 300
               ) q
@@ -3233,6 +4804,10 @@ export default async function IndieAnalyticsPage({
                         tab: tab.key,
                         date: selectedDate,
                         traffic: trafficFilter,
+                        scope:
+                          tab.key === "daily"
+                            ? "day"
+                            : scopeFilter,
                       },
                       providedToken,
                     )}
@@ -3258,6 +4833,362 @@ export default async function IndieAnalyticsPage({
             )}
           </div>
         </header>
+
+        {showingDetail ? (
+          <section className="mt-4 rounded-[28px] border border-black/10 bg-white p-4 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-black/35">
+                  Période d’activité
+                </div>
+
+                <div className="mt-1 text-sm font-semibold">
+                  {scopeFilter === "day"
+                    ? selectedDateLabel
+                    : "Historique total"}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-1 rounded-full bg-[#f3eee5] p-1">
+                {[
+                  {
+                    key: "day",
+                    label: "Journée",
+                  },
+                  {
+                    key: "total",
+                    label: "Total",
+                  },
+                ].map((option) => (
+                  <a
+                    key={option.key}
+                    href={dashboardHref(
+                      {
+                        tab:
+                          selectedUserId
+                            ? "users"
+                            : "daily",
+                        userId:
+                          selectedUserId ||
+                          undefined,
+                        sessionId:
+                          selectedSessionId ||
+                          undefined,
+                        date:
+                          selectedDate,
+                        traffic:
+                          trafficFilter,
+                        scope:
+                          option.key,
+                      },
+                      providedToken,
+                    )}
+                    className={
+                      scopeFilter ===
+                      option.key
+                        ? "rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+                        : "rounded-full px-4 py-2 text-xs font-semibold text-black/45"
+                    }
+                  >
+                    {option.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {scopeFilter === "day" ? (
+              <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-black/7 pt-4">
+                <a
+                  href={dashboardHref(
+                    {
+                      tab:
+                        selectedUserId
+                          ? "users"
+                          : "daily",
+                      userId:
+                        selectedUserId ||
+                        undefined,
+                      sessionId:
+                        selectedSessionId ||
+                        undefined,
+                      date:
+                        previousDate,
+                      traffic:
+                        trafficFilter,
+                      scope: "day",
+                    },
+                    providedToken,
+                  )}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f3eee5] text-sm font-semibold"
+                  aria-label="Jour précédent"
+                >
+                  ←
+                </a>
+
+                <form
+                  method="get"
+                  action="/indie-analytics"
+                  className="flex flex-wrap items-center gap-2"
+                >
+                  <input
+                    type="hidden"
+                    name="tab"
+                    value={
+                      selectedUserId
+                        ? "users"
+                        : "daily"
+                    }
+                  />
+
+                  {selectedUserId ? (
+                    <input
+                      type="hidden"
+                      name="userId"
+                      value={selectedUserId}
+                    />
+                  ) : null}
+
+                  {selectedSessionId ? (
+                    <input
+                      type="hidden"
+                      name="sessionId"
+                      value={selectedSessionId}
+                    />
+                  ) : null}
+
+                  <input
+                    type="hidden"
+                    name="traffic"
+                    value={trafficFilter}
+                  />
+
+                  <input
+                    type="hidden"
+                    name="scope"
+                    value="day"
+                  />
+
+                  <input
+                    type="hidden"
+                    name="token"
+                    value={providedToken}
+                  />
+
+                  <input
+                    type="date"
+                    name="date"
+                    defaultValue={selectedDate}
+                    className="rounded-xl border border-black/10 bg-[#faf7f0] px-3 py-2 text-sm font-semibold"
+                  />
+
+                  <button
+                    type="submit"
+                    className="rounded-xl bg-[#2563EB] px-4 py-2 text-sm font-semibold text-white"
+                  >
+                    Afficher
+                  </button>
+                </form>
+
+                <a
+                  href={dashboardHref(
+                    {
+                      tab:
+                        selectedUserId
+                          ? "users"
+                          : "daily",
+                      userId:
+                        selectedUserId ||
+                        undefined,
+                      sessionId:
+                        selectedSessionId ||
+                        undefined,
+                      date:
+                        nextDate,
+                      traffic:
+                        trafficFilter,
+                      scope: "day",
+                    },
+                    providedToken,
+                  )}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f3eee5] text-sm font-semibold"
+                  aria-label="Jour suivant"
+                >
+                  →
+                </a>
+              </div>
+            ) : null}
+          </section>
+        ) : null}
+
+        {!showingDetail ? (
+          <section className="mt-4 rounded-[28px] border border-black/10 bg-white p-4 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="mr-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/35">
+                  Trafic
+                </div>
+
+                {[
+                  {
+                    key: "external",
+                    label: "Réel",
+                  },
+                  {
+                    key: "test",
+                    label: "Tests",
+                  },
+                  {
+                    key: "all",
+                    label: "Tout",
+                  },
+                ].map((option) => (
+                  <a
+                    key={option.key}
+                    href={dashboardHref(
+                      {
+                        tab: activeTab,
+                        date: selectedDate,
+                        traffic: option.key,
+                        scope:
+                          activeTab === "daily"
+                            ? "day"
+                            : scopeFilter,
+                        section: activeSection,
+                      },
+                      providedToken,
+                    )}
+                    className={
+                      trafficFilter ===
+                      option.key
+                        ? "rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+                        : "rounded-full bg-[#f3eee5] px-4 py-2 text-xs font-semibold text-black/45 transition hover:text-black"
+                    }
+                  >
+                    {option.label}
+                  </a>
+                ))}
+              </div>
+
+              {activeTab !== "daily" ? (
+                <div className="flex items-center gap-1 rounded-full bg-[#f3eee5] p-1">
+                  {[
+                    {
+                      key: "day",
+                      label: "Journée",
+                    },
+                    {
+                      key: "total",
+                      label: "Total",
+                    },
+                  ].map((option) => (
+                    <a
+                      key={option.key}
+                      href={dashboardHref(
+                        {
+                          tab: activeTab,
+                          date: selectedDate,
+                          traffic:
+                            trafficFilter,
+                          scope: option.key,
+                          section:
+                            activeSection,
+                        },
+                        providedToken,
+                      )}
+                      className={
+                        scopeFilter ===
+                        option.key
+                          ? "rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+                          : "rounded-full px-4 py-2 text-xs font-semibold text-black/45"
+                      }
+                    >
+                      {option.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            {activeTab !== "daily" &&
+            scopeFilter === "day" ? (
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <a
+                  href={dashboardHref(
+                    {
+                      tab: activeTab,
+                      date:
+                        previousDate,
+                      traffic:
+                        trafficFilter,
+                      scope: "day",
+                      section:
+                        activeSection,
+                    },
+                    providedToken,
+                  )}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f3eee5] text-sm font-semibold"
+                >
+                  ←
+                </a>
+
+                <div className="rounded-xl bg-[#faf7f0] px-4 py-2 text-sm font-semibold">
+                  {selectedDateLabel}
+                </div>
+
+                <a
+                  href={dashboardHref(
+                    {
+                      tab: activeTab,
+                      date: nextDate,
+                      traffic:
+                        trafficFilter,
+                      scope: "day",
+                      section:
+                        activeSection,
+                    },
+                    providedToken,
+                  )}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f3eee5] text-sm font-semibold"
+                >
+                  →
+                </a>
+              </div>
+            ) : null}
+
+            <nav className="mt-4 flex gap-2 overflow-x-auto border-t border-black/7 pt-4">
+              {sectionOptions.map(
+                (section) => (
+                  <a
+                    key={section.key}
+                    href={dashboardHref(
+                      {
+                        tab: activeTab,
+                        date: selectedDate,
+                        traffic:
+                          trafficFilter,
+                        scope:
+                          activeTab === "daily"
+                            ? "day"
+                            : scopeFilter,
+                        section:
+                          section.key,
+                      },
+                      providedToken,
+                    )}
+                    className={
+                      activeSection ===
+                      section.key
+                        ? "shrink-0 rounded-full bg-[#2563EB] px-4 py-2 text-xs font-semibold text-white"
+                        : "shrink-0 rounded-full bg-[#f3eee5] px-4 py-2 text-xs font-semibold text-black/50 transition hover:text-black"
+                    }
+                  >
+                    {section.label}
+                  </a>
+                ),
+              )}
+            </nav>
+          </section>
+        ) : null}
 
         {selectedSessionId ? (
           <div className="mt-6 space-y-6">
@@ -3421,11 +5352,23 @@ export default async function IndieAnalyticsPage({
                       {row.label}
                     </div>
 
-                    <div className="text-right font-semibold">
+                    <div
+                      className={
+                        scopeFilter === "day"
+                          ? "rounded-lg bg-[#DBEAFE] px-2 py-1 text-right font-semibold text-[#1D4ED8]"
+                          : "px-2 py-1 text-right font-semibold text-black/35"
+                      }
+                    >
                       {row.day}
                     </div>
 
-                    <div className="text-right font-semibold text-black/45">
+                    <div
+                      className={
+                        scopeFilter === "total"
+                          ? "rounded-lg bg-[#DBEAFE] px-2 py-1 text-right font-semibold text-[#1D4ED8]"
+                          : "px-2 py-1 text-right font-semibold text-black/35"
+                      }
+                    >
                       {row.total}
                     </div>
                   </div>
@@ -3510,7 +5453,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Tout ce que cette installation a consulté",
+              scopeFilter === "day"
+                ? "Fiches consultées cette journée"
+                : "Tout ce que cette installation a consulté",
               selectedSessionPlaces.length === 0
                 ? empty(
                     "Aucune fiche de lieu consultée.",
@@ -3576,7 +5521,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Actions de cette installation",
+              scopeFilter === "day"
+                ? "Actions de cette installation · journée"
+                : "Actions de cette installation · total",
               selectedSessionEventTypes.length === 0
                 ? empty(
                     "Aucune action enregistrée.",
@@ -3601,7 +5548,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Recherches",
+              scopeFilter === "day"
+                ? "Recherches de la journée"
+                : "Recherches · total",
               selectedSessionSearchEvents.length === 0
                 ? empty(
                     "Aucune recherche enregistrée.",
@@ -3644,7 +5593,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Historique récent",
+              scopeFilter === "day"
+                ? "Historique de la journée"
+                : "Historique récent",
               selectedSessionRecentEvents.length === 0
                 ? empty(
                     "Aucun événement.",
@@ -3706,7 +5657,13 @@ export default async function IndieAnalyticsPage({
                 {metric("Favoris", selectedUser.places.filter((item) => item.saved).length, "lieux sauvegardés")}
                 {metric("Visités", selectedUser.places.filter((item) => item.visited).length, "lieux marqués")}
                 {metric("Appareils", selectedUser.pushDevices.length, selectedUser.pushDevices.map((device) => device.platform).join(", ") || "aucun appareil")}
-                {metric("Événements", selectedUser.events.length, "dernières actions")}
+                {metric(
+                  "Événements",
+                  selectedUserScopedEventCount,
+                  scopeFilter === "day"
+                    ? selectedDateLabel
+                    : "historique total",
+                )}
               </div>
             </section>
 
@@ -3725,7 +5682,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Actions de cet utilisateur",
+              scopeFilter === "day"
+                ? "Actions de cet utilisateur · journée"
+                : "Actions de cet utilisateur · total",
               selectedUserEventTypes.length === 0 ? empty("Aucun événement enregistré.") : (
                 <div className="grid gap-3 md:grid-cols-2">
                   {selectedUserEventTypes.map((row) => (
@@ -3738,7 +5697,9 @@ export default async function IndieAnalyticsPage({
             )}
 
             {panel(
-              "Sources des vues fiche",
+              scopeFilter === "day"
+                ? "Sources des vues fiche · journée"
+                : "Sources des vues fiche · total",
               selectedUserViewSources.length === 0 ? empty("Aucune vue fiche enregistrée pour cet utilisateur.") : (
                 <div className="grid gap-3 md:grid-cols-2">
                   {selectedUserViewSources.map((row) => (
@@ -3783,10 +5744,12 @@ export default async function IndieAnalyticsPage({
             </div>
 
             {panel(
-              "Derniers événements",
-              selectedUser.events.length === 0 ? empty("Aucun événement.") : (
+              scopeFilter === "day"
+                ? "Événements de la journée"
+                : "Derniers événements",
+              selectedUserScopedEvents.length === 0 ? empty("Aucun événement sur cette période.") : (
                 <div className="grid gap-2">
-                  {selectedUser.events.slice(0, 40).map((event) => (
+                  {selectedUserScopedEvents.slice(0, 40).map((event) => (
                     <div key={event.id} className="grid gap-2 rounded-2xl border border-black/10 bg-[#faf7f0] p-4 text-sm md:grid-cols-[170px_1fr_1fr_90px]">
                       <div className="text-black/45">{event.createdAt.toISOString().replace("T", " ").slice(0, 16)}</div>
                       <div className="font-semibold">{eventLabel(event.eventType)}</div>
@@ -3807,68 +5770,14 @@ export default async function IndieAnalyticsPage({
           <div className="mt-6 space-y-6">
             {activeTab === "daily" ? (
               <>
-                {(legacyDailyEvents > 0 || legacyDailyLaunches > 0) ? (
-                  <div className="rounded-[24px] border border-amber-300/60 bg-amber-50 p-4 text-sm leading-relaxed text-amber-950">
-                    <strong>Données historiques :</strong>{" "}
-                    {legacyDailyEvents} événement(s) et{" "}
-                    {legacyDailyLaunches} ouverture(s) de cette journée sont antérieurs au suivi du fuseau local.
-                    Leur heure est affichée en UTC avec le symbole <strong>UTC*</strong>.
-                  </div>
-                ) : null}
+                <div className={
+                  activeSection === "summary"
+                    ? "space-y-6"
+                    : "hidden"
+                }>
 
-                <section className="rounded-[28px] border border-black/10 bg-white p-5 shadow-sm">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/35">
-                        Trafic analysé
-                      </div>
 
-                      <div className="mt-1 text-lg font-semibold">
-                        {trafficFilter === "external"
-                          ? "Trafic réel"
-                          : trafficFilter === "test"
-                            ? "Tests / interne"
-                            : "Tout le trafic"}
-                      </div>
-                    </div>
 
-                    <div className="flex rounded-full bg-[#f3eee5] p-1">
-                      {[
-                        {
-                          key: "external",
-                          label: "Réel",
-                        },
-                        {
-                          key: "test",
-                          label: "Tests",
-                        },
-                        {
-                          key: "all",
-                          label: "Tout",
-                        },
-                      ].map((option) => (
-                        <a
-                          key={option.key}
-                          href={dashboardHref(
-                            {
-                              tab: "daily",
-                              date: selectedDate,
-                              traffic: option.key,
-                            },
-                            providedToken,
-                          )}
-                          className={
-                            trafficFilter === option.key
-                              ? "rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
-                              : "rounded-full px-4 py-2 text-xs font-semibold text-black/45 transition hover:text-black"
-                          }
-                        >
-                          {option.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </section>
 
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   {metric(
@@ -3945,7 +5854,77 @@ export default async function IndieAnalyticsPage({
                   )}
                 </div>
 
-                {panel(
+                <div className="grid gap-6 xl:grid-cols-3">
+                  <AnalyticsLineChart
+                    title="Ouvertures par heure"
+                    subtitle="Rythme d’ouverture d’Indie Map"
+                    points={dailyOpeningsByHour}
+                    colorIndex={0}
+                    eventLabel="Ouvertures Indie Map"
+                  />
+
+                  <AnalyticsLineChart
+                    title="Fiches vues par heure"
+                    subtitle="Consultations réelles de lieux"
+                    points={dailyViewsByHour}
+                    colorIndex={1}
+                    eventLabel="Fiches consultées"
+                  />
+
+                  <AnalyticsLineChart
+                    title="Recherches par heure"
+                    subtitle="Requêtes effectuées"
+                    points={dailySearchesByHour}
+                    colorIndex={2}
+                    eventLabel="Recherches"
+                  />
+                </div>
+
+                <div className="grid gap-6 xl:grid-cols-2">
+                  {panel(
+                    "Nouveaux / de retour",
+                    <AnalyticsDonut
+                      title="Installations"
+                      subtitle="Première utilisation ou installation déjà connue"
+                      segments={[
+                        {
+                          label: "Nouvelles",
+                          value:
+                            dailyNewInstallations,
+                        },
+                        {
+                          label: "De retour",
+                          value:
+                            dailyReturningInstallations,
+                        },
+                      ]}
+                    />,
+                  )}
+
+                  {panel(
+                    "Compte / anonyme",
+                    <AnalyticsDonut
+                      title="Type d’utilisation"
+                      subtitle="Installations associées ou non à un compte"
+                      segments={[
+                        {
+                          label: "Avec compte",
+                          value:
+                            dailyWithAccount,
+                        },
+                        {
+                          label: "Sans compte",
+                          value:
+                            dailyWithoutAccount,
+                        },
+                      ]}
+                    />,
+                  )}
+                </div>
+
+
+                </div>
+                {activeSection === "activity" ? panel(
                   "Lieux consultés par heure",
                   viewedPlacesByHour.length === 0
                     ? empty(
@@ -4037,9 +6016,76 @@ export default async function IndieAnalyticsPage({
                       </div>
                     ),
                   "Toutes les fiches réellement ouvertes : carte, recherche, ajouts récents, listes, favoris, amis, etc.",
-                )}
+                ) : null}
 
-                {panel(
+                {activeSection === "geography"
+                  ? panel(
+                      "Connexions de la journée",
+                      dailyConnectionRows.length === 0
+                        ? empty(
+                            "Aucune localisation de connexion enregistrée.",
+                          )
+                        : (
+                            <div className="grid gap-6 xl:grid-cols-2">
+                              <AnalyticsBars
+                                title="Utilisateurs par ville"
+                                subtitle="Installations uniques ayant ouvert Indie Map"
+                                rows={dailyConnectionRows.map(
+                                  (row) => ({
+                                    label:
+                                      [
+                                        row.city,
+                                        row.country,
+                                      ]
+                                        .filter(Boolean)
+                                        .join(" · "),
+                                    value:
+                                      row.users,
+                                    hint:
+                                      `${row.openings} ouverture${
+                                        row.openings > 1
+                                          ? "s"
+                                          : ""
+                                      }`,
+                                  }),
+                                )}
+                              />
+
+                              <div className="grid gap-2">
+                                {dailyConnectionRows.map(
+                                  (row) => (
+                                    <div
+                                      key={`${row.city}-${row.country || ""}`}
+                                      className="grid grid-cols-[1fr_auto_auto] gap-4 rounded-2xl bg-[#faf7f0] px-4 py-3 text-sm"
+                                    >
+                                      <div className="font-semibold">
+                                        {row.city}
+                                        {row.country
+                                          ? ` · ${row.country}`
+                                          : ""}
+                                      </div>
+
+                                      <div className="text-right">
+                                        <strong>
+                                          {row.users}
+                                        </strong>{" "}
+                                        util.
+                                      </div>
+
+                                      <div className="text-right text-black/45">
+                                        {row.openings} ouv.
+                                      </div>
+                                    </div>
+                                  ),
+                                )}
+                              </div>
+                            </div>
+                          ),
+                      "La ville vient des ouvertures Indie Map enregistrées par DailySession, jamais de la ville du lieu consulté.",
+                    )
+                  : null}
+
+                {activeSection === "users" ? panel(
                   "Utilisateurs / installations de la journée",
                   dailyActors.length === 0
                     ? empty(
@@ -4112,6 +6158,16 @@ export default async function IndieAnalyticsPage({
                                     actor.sessionId,
                                   )}
                                 </div>
+
+                                <div className="mt-1 truncate text-xs font-medium text-[#2563EB]">
+                                  {[
+                                    actor.city,
+                                    actor.country,
+                                  ]
+                                    .filter(Boolean)
+                                    .join(" · ") ||
+                                    "Localisation de connexion inconnue"}
+                                </div>
                               </div>
 
                               <div
@@ -4131,8 +6187,10 @@ export default async function IndieAnalyticsPage({
                       </div>
                     ),
                   "Clique sur un utilisateur pour afficher toute son activité, ses ouvertures et son historique détaillé.",
-                )}
+                ) : null}
 
+                {activeSection === "details" ? (
+                  <>
                 <div className="grid gap-6 xl:grid-cols-2">
                   {panel(
                     "Lieux les plus consultés",
@@ -4269,24 +6327,73 @@ export default async function IndieAnalyticsPage({
                     ),
                   "Les identifiants d’installation sont volontairement masqués. Les lignes « Ouverture » utilisent la géolocalisation approximative du heartbeat ; la ville d’une fiche n’est jamais présentée comme la localisation de l’utilisateur.",
                 )}
+
+                  </>
+                ) : null}
               </>
             ) : null}
 
             {activeTab === "overview" ? (
               <>
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                <div className={
+                  activeSection === "summary"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
+                  {panel(
+                    "Répartition des sources",
+                    <AnalyticsDonut
+                      title="Origine des vues fiche"
+                      subtitle="Ce qui conduit à l’ouverture d’un lieu"
+                      segments={overviewSourceSegments}
+                    />,
+                  )}
+
+                  {panel(
+                    "Géographie active",
+                    <AnalyticsBars
+                      title="Principales villes"
+                      subtitle="Présence enregistrée aujourd’hui"
+                      rows={overviewCityBars}
+                    />,
+                  )}
+                </div>
+
+                {activeSection === "summary" ? (
+                  <>
+<div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   {metric("Actifs maintenant", active5, "présence 5 min", "dark")}
                   {metric("Actifs 15 min", active15, "fenêtre élargie")}
-                  {metric("Utilisateurs du jour", dau, "connectés ou non")}
-                  {metric("Sessions du jour", sessions, "ouvertures")}
+                  {metric(
+                    scopeFilter === "day"
+                      ? "Installations de la journée"
+                      : "Installations suivies",
+                    dau,
+                    scopeFilter === "day"
+                      ? selectedDateLabel
+                      : "historique total",
+                  )}
+
+                  {metric(
+                    scopeFilter === "day"
+                      ? "Ouvertures de la journée"
+                      : "Ouvertures totales",
+                    sessions,
+                    scopeFilter === "day"
+                      ? selectedDateLabel
+                      : "depuis le nouveau suivi",
+                  )}
                   {metric("Comptes", usersCount, `${usersWithEmailCount} avec email`)}
                   {metric("Anonymes suivis", anonymousEventSessions.length, "via im_session_id")}
                   {metric("Événements", eventsCount, "clics et vues")}
                   {metric("Listes partagées", sharedListsCount, `${sharedListPlacesCount} lieux ajoutés`)}
                 </div>
 
+                                  </>
+                ) : null}
+
                 <div className="grid gap-6 xl:grid-cols-2">
-                  {panel(
+                  {activeSection === "activity" ? panel(
                     "Actions principales",
                     eventTypes.length === 0 ? empty("Aucun événement enregistré pour le moment.") : (
                       <div className="grid gap-3">
@@ -4297,9 +6404,9 @@ export default async function IndieAnalyticsPage({
                         ))}
                       </div>
                     )
-                  )}
+                  ) : null}
 
-                  {panel(
+                  {activeSection === "geography" ? panel(
                     "Actifs par ville",
                     locations.length === 0 ? empty("Aucune présence récente.") : (
                       <div className="grid gap-3">
@@ -4310,9 +6417,9 @@ export default async function IndieAnalyticsPage({
                         ))}
                       </div>
                     )
-                  )}
+                  ) : null}
 
-                  {panel(
+                  {activeSection === "sources" ? panel(
                     "Sources des vues fiche",
                     viewSources.length === 0 ? empty("Aucune source de vue fiche enregistrée.") : (
                       <div className="grid gap-3">
@@ -4323,14 +6430,38 @@ export default async function IndieAnalyticsPage({
                         ))}
                       </div>
                     )
-                  )}
+                  ) : null}
                 </div>
               </>
             ) : null}
 
             {activeTab === "actions" ? (
               <>
-                {panel(
+                <div className={
+                  activeSection === "summary"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
+                  {panel(
+                    "Lecture des comportements",
+                    <AnalyticsDonut
+                      title="Grandes familles d’actions"
+                      subtitle="Vue synthétique ; le détail complet reste affiché dessous"
+                      segments={groupedActionSegments}
+                    />,
+                  )}
+
+                  {panel(
+                    "Actions dominantes",
+                    <AnalyticsBars
+                      title="Top des événements"
+                      subtitle="Interactions les plus fréquentes"
+                      rows={actionTypeBars}
+                    />,
+                  )}
+                </div>
+
+                {activeSection === "events" ? panel(
                   "Actions suivies",
                   eventTypes.length === 0 ? empty("Aucun événement enregistré pour le moment.") : (
                     <div className="grid gap-3 md:grid-cols-2">
@@ -4342,9 +6473,9 @@ export default async function IndieAnalyticsPage({
                     </div>
                   ),
                   "Chaque ligne correspond à une interaction réellement envoyée à /api/v1/event."
-                )}
+                ) : null}
 
-                {panel(
+                {activeSection === "origins" ? panel(
                   "Sources des vues fiche",
                   viewSources.length === 0 ? empty("Aucune source de vue fiche enregistrée.") : (
                     <div className="grid gap-3 md:grid-cols-2">
@@ -4356,9 +6487,9 @@ export default async function IndieAnalyticsPage({
                     </div>
                   ),
                   "Permet de comprendre pourquoi une fiche est ouverte : recherche, carte, mini-fenêtre, liste partagée ou ami."
-                )}
+                ) : null}
 
-                {panel(
+                {activeSection === "search" ? panel(
                   "Recherches",
                   searchTotal === 0 ? empty("Aucune recherche enregistrée pour le moment.") : (
                     <div className="space-y-5">
@@ -4417,36 +6548,355 @@ export default async function IndieAnalyticsPage({
                     </div>
                   ),
                   "Permet de voir ce que les gens cherchent, les villes demandées et les recherches sans résultat."
-                )}
+                ) : null}
               </>
             ) : null}
 
             {activeTab === "places" ? (
-              <div className="grid gap-6 xl:grid-cols-2">
-                {panel(
-                  "Lieux les plus actifs",
-                  eventsByPlace.length === 0 ? empty("Aucun lieu suivi pour le moment.") : (
-                    <div className="grid gap-3">
-                      {eventsByPlace.map((row) => (
-                        <div key={row.placeId || "unknown"}>
-                          {progressRow(placeName(placeMap, row.placeId), row._count._all, maxPlaceCount, placeCity(placeMap, row.placeId) || "—")}
-                        </div>
-                      ))}
-                    </div>
-                  )
-                )}
+              <>
+                <div className={
+                  activeSection === "summary"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
+                  {panel(
+                    "Consultations",
+                    <AnalyticsBars
+                      title="Lieux les plus consultés"
+                      subtitle="Ouvertures réelles de fiche"
+                      rows={placeViewBars}
+                    />,
+                  )}
 
-                <div className="grid gap-4">
-                  {metric("Lieux favoris", savedPlacesCount, "tous comptes")}
-                  {metric("Lieux visités", visitedPlacesCount, "tous comptes")}
-                  {metric("Lieux en listes", sharedListPlacesCount, "ajouts cumulés")}
+                  {panel(
+                    "Visibilité en recherche",
+                    <AnalyticsBars
+                      title="Lieux les plus affichés"
+                      subtitle="Résultats réellement visibles dans les recherches"
+                      rows={placeSearchBars}
+                    />,
+                  )}
                 </div>
-              </div>
+
+                <div className={
+                  activeSection === "ranking"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
+                  {panel(
+                    "Lieux les plus actifs",
+                    eventsByPlace.length === 0
+                      ? empty("Aucun lieu suivi pour le moment.")
+                      : (
+                          <div className="grid gap-3">
+                            {eventsByPlace.map((row) => (
+                              <div key={row.placeId || "unknown"}>
+                                {progressRow(
+                                  placeName(
+                                    placeMap,
+                                    row.placeId,
+                                  ),
+                                  row._count._all,
+                                  maxPlaceCount,
+                                  placeCity(
+                                    placeMap,
+                                    row.placeId,
+                                  ) || "—",
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        ),
+                  )}
+
+                  <div className="grid gap-4">
+                    {metric(
+                      "Lieux favoris",
+                      savedPlacesCount,
+                      "tous comptes",
+                    )}
+
+                    {metric(
+                      "Lieux visités",
+                      visitedPlacesCount,
+                      "tous comptes",
+                    )}
+
+                    {metric(
+                      "Lieux en listes",
+                      sharedListPlacesCount,
+                      "ajouts cumulés",
+                    )}
+                  </div>
+                </div>
+
+                {activeSection === "commercial" ? panel(
+                  "Analyse commerciale interne",
+                  placeCommercialRows.length === 0
+                    ? empty(
+                        "Aucune donnée de visibilité disponible.",
+                      )
+                    : (
+                        <div className="grid gap-4">
+                          {placeCommercialRows.map((row) => {
+                            const consultationGeo =
+                              row.geo
+                                .filter(
+                                  (item) =>
+                                    item.eventType ===
+                                    "view_place_detail",
+                                )
+                                .slice(0, 8);
+
+                            const searchGeo =
+                              row.geo
+                                .filter(
+                                  (item) =>
+                                    item.eventType ===
+                                    "search_result_impression",
+                                )
+                                .slice(0, 8);
+
+                            return (
+                              <div
+                                key={row.placeId}
+                                className="rounded-[24px] border border-black/10 bg-[#faf7f0] p-5"
+                              >
+                                <div className="flex flex-wrap items-start justify-between gap-4">
+                                  <div>
+                                    <div className="text-lg font-semibold">
+                                      {placeName(
+                                        placeMap,
+                                        row.placeId,
+                                      )}
+                                    </div>
+
+                                    <div className="mt-1 text-xs text-black/45">
+                                      {[
+                                        placeMap.get(
+                                          row.placeId,
+                                        )?.category,
+                                        placeCity(
+                                          placeMap,
+                                          row.placeId,
+                                        ),
+                                      ]
+                                        .filter(Boolean)
+                                        .join(" · ") ||
+                                        "—"}
+                                    </div>
+                                  </div>
+
+                                  <div className="flex flex-wrap gap-2">
+                                    <div className="rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white">
+                                      {row.views} consultation
+                                      {row.views > 1
+                                        ? "s"
+                                        : ""}
+                                    </div>
+
+                                    <div className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-black/60">
+                                      {row.searchImpressions} affichage
+                                      {row.searchImpressions > 1
+                                        ? "s"
+                                        : ""}{" "}
+                                      recherche
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="mt-5 grid gap-5 xl:grid-cols-2">
+                                  <div>
+                                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-black/35">
+                                      Consultations · ville × origine
+                                    </div>
+
+                                    {consultationGeo.length === 0 ? (
+                                      <div className="text-sm text-black/35">
+                                        Aucune localisation disponible.
+                                      </div>
+                                    ) : (
+                                      <div className="grid gap-2">
+                                        {consultationGeo.map(
+                                          (
+                                            item,
+                                            index,
+                                          ) => (
+                                            <div
+                                              key={`${row.placeId}-view-${item.viewerCity}-${item.source}-${index}`}
+                                              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl bg-white px-3 py-2 text-sm"
+                                            >
+                                              <div className="min-w-0">
+                                                <div className="truncate font-medium">
+                                                  {item.viewerCity}
+                                                  {item.viewerCountry
+                                                    ? ` · ${item.viewerCountry}`
+                                                    : ""}
+                                                </div>
+
+                                                <div className="mt-0.5 truncate text-[11px] text-black/40">
+                                                  {sourceLabel(
+                                                    item.source,
+                                                  )}
+                                                </div>
+                                              </div>
+
+                                              <div className="font-semibold">
+                                                {item.count}
+                                              </div>
+                                            </div>
+                                          ),
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  <div>
+                                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-black/35">
+                                      Vu dans les résultats de recherche
+                                    </div>
+
+                                    {searchGeo.length === 0 ? (
+                                      <div className="text-sm text-black/35">
+                                        Aucun affichage de recherche géolocalisé.
+                                      </div>
+                                    ) : (
+                                      <div className="grid gap-2">
+                                        {searchGeo.map(
+                                          (
+                                            item,
+                                            index,
+                                          ) => (
+                                            <div
+                                              key={`${row.placeId}-search-${item.viewerCity}-${index}`}
+                                              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl bg-white px-3 py-2 text-sm"
+                                            >
+                                              <div className="truncate font-medium">
+                                                {item.viewerCity}
+                                                {item.viewerCountry
+                                                  ? ` · ${item.viewerCountry}`
+                                                  : ""}
+                                              </div>
+
+                                              <div className="font-semibold">
+                                                {item.count}
+                                              </div>
+                                            </div>
+                                          ),
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ),
+                  "Données strictement internes Indie Map. Les consultations croisent la ville estimée de l’utilisateur avec la surface qui a conduit à l’ouverture de la fiche. Les affichages recherche correspondent aux résultats réellement visibles. Les anciens événements peuvent avoir une localisation inconnue.",
+                ) : null}
+              </>
             ) : null}
 
             {activeTab === "users" ? (
               <>
-                <div className="grid gap-6 xl:grid-cols-2">
+                {activeSection === "connections"
+                  ? panel(
+                      scopeFilter === "day"
+                        ? "Connexions de la journée"
+                        : "Connexions · historique total",
+                      connectionLocations.length === 0
+                        ? empty(
+                            "Aucune localisation de connexion disponible.",
+                          )
+                        : (
+                            <div className="grid gap-6 xl:grid-cols-2">
+                              <AnalyticsBars
+                                title="Utilisateurs par ville"
+                                subtitle={
+                                  scopeFilter === "day"
+                                    ? selectedDateLabel
+                                    : "Historique complet"
+                                }
+                                rows={connectionLocations.map(
+                                  (row) => ({
+                                    label:
+                                      [
+                                        row.city,
+                                        row.country,
+                                      ]
+                                        .filter(Boolean)
+                                        .join(" · "),
+                                    value:
+                                      row.users,
+                                    hint:
+                                      `${row.openings} ouverture${
+                                        row.openings > 1
+                                          ? "s"
+                                          : ""
+                                      }`,
+                                  }),
+                                )}
+                              />
+
+                              <AnalyticsBars
+                                title="Ouvertures par ville"
+                                subtitle="Nombre total d’ouvertures Indie Map"
+                                rows={connectionLocations.map(
+                                  (row) => ({
+                                    label:
+                                      [
+                                        row.city,
+                                        row.country,
+                                      ]
+                                        .filter(Boolean)
+                                        .join(" · "),
+                                    value:
+                                      row.openings,
+                                    hint:
+                                      `${row.users} installation${
+                                        row.users > 1
+                                          ? "s"
+                                          : ""
+                                      }`,
+                                  }),
+                                )}
+                              />
+                            </div>
+                          ),
+                      "Localisation approximative enregistrée lors de l’ouverture de l’application.",
+                    )
+                  : null}
+
+                <div className={
+                  activeSection === "summary"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
+                  {panel(
+                    "Profil des comptes",
+                    <AnalyticsDonut
+                      title="Tranches d’âge"
+                      subtitle="Informations déclarées dans les profils"
+                      segments={userAgeSegments}
+                    />,
+                  )}
+
+                  {panel(
+                    "Répartition géographique",
+                    <AnalyticsBars
+                      title="Villes associées aux comptes"
+                      subtitle="Informations déclarées dans les profils"
+                      rows={userCityBars}
+                    />,
+                  )}
+                </div>
+
+                <div className={
+                  activeSection === "profiles"
+                    ? "grid gap-6 xl:grid-cols-2"
+                    : "hidden"
+                }>
                   {panel(
                     "Tranches d’âge",
                     usersByAge.length === 0 ? empty("Aucune tranche d’âge renseignée.") : (
@@ -4474,7 +6924,7 @@ export default async function IndieAnalyticsPage({
                   )}
                 </div>
 
-                {panel(
+                {activeSection === "accounts" ? panel(
                   "Utilisateurs",
                   users.length === 0 ? empty("Aucun utilisateur.") : (
                     <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -4524,7 +6974,7 @@ export default async function IndieAnalyticsPage({
                       ))}
                     </div>
                   )
-                )}
+                ) : null}
               </>
             ) : null}
           </div>

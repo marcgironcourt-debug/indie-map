@@ -11,7 +11,7 @@ import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { isContextSuggestionCandidateOpen, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
-import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberInstallationPushToken } from "@/lib/installationSession";
+import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberAnalyticsLocation, rememberInstallationPushToken } from "@/lib/installationSession";
 
 type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends" | "sharedLists";
 
@@ -53,6 +53,24 @@ type DiscoverPlace = {
 
 type NewPlace = DiscoverPlace;
 type SavedPlace = DiscoverPlace;
+
+function makeSearchTrackingId() {
+  try {
+    if (
+      typeof globalThis.crypto !== "undefined" &&
+      typeof globalThis.crypto.randomUUID === "function"
+    ) {
+      return globalThis.crypto.randomUUID();
+    }
+  } catch {}
+
+  return (
+    "search_" +
+    Date.now().toString(36) +
+    "_" +
+    Math.random().toString(36).slice(2, 12)
+  );
+}
 
 type SharedListChoice = {
   id: string;
@@ -855,6 +873,112 @@ React.useEffect(() => {
   const [searchLoading, setSearchLoading] = React.useState(false);
   const [searchResults, setSearchResults] = React.useState<DiscoverPlace[] | null>(null);
   const searchAbortRef = React.useRef<AbortController | null>(null);
+  const [activeSearchId, setActiveSearchId] = React.useState<string | null>(null);
+  const [activeSearchQuery, setActiveSearchQuery] = React.useState("");
+  const searchResultsScrollRef = React.useRef<HTMLDivElement | null>(null);
+  const searchImpressionKeysRef = React.useRef<Set<string>>(new Set());
+  React.useEffect(() => {
+    const root = searchResultsScrollRef.current;
+
+    if (
+      !root ||
+      !activeSearchId ||
+      !searchResults ||
+      searchResults.length === 0 ||
+      typeof IntersectionObserver === "undefined"
+    ) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (
+            !entry.isIntersecting ||
+            entry.intersectionRatio < 0.6
+          ) {
+            continue;
+          }
+
+          const element = entry.target as HTMLElement;
+
+          const placeId = String(
+            element.dataset.searchResultId || ""
+          ).trim();
+
+          const rank = Number(
+            element.dataset.searchResultRank
+          );
+
+          if (
+            !placeId ||
+            !Number.isInteger(rank) ||
+            rank < 1
+          ) {
+            continue;
+          }
+
+          const key =
+            `${activeSearchId}:${placeId}`;
+
+          if (
+            searchImpressionKeysRef.current.has(key)
+          ) {
+            observer.unobserve(element);
+            continue;
+          }
+
+          const item = searchResults.find(
+            (candidate) =>
+              String(candidate.id) === placeId
+          );
+
+          if (!item) continue;
+
+          searchImpressionKeysRef.current.add(key);
+
+          trackEvent({
+            eventType: "search_result_impression",
+            placeId: item.id,
+            city: item.city,
+            category: item.category,
+            searchId: activeSearchId,
+            searchRank: rank,
+            locale,
+            metadata: {
+              name: item.name,
+              query: activeSearchQuery,
+              source: "search_results",
+            },
+          });
+
+          observer.unobserve(element);
+        }
+      },
+      {
+        root,
+        threshold: [0.6],
+      },
+    );
+
+    root
+      .querySelectorAll<HTMLElement>(
+        "[data-search-result-id]"
+      )
+      .forEach((element) => {
+        observer.observe(element);
+      });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [
+    activeSearchId,
+    activeSearchQuery,
+    locale,
+    searchResults,
+  ]);
+
   const [addressCopied, setAddressCopied] = React.useState(false);
   const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
   const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
@@ -1654,6 +1778,11 @@ React.useEffect(() => {
         });
 
         if (pos && Number.isFinite(pos.lat) && Number.isFinite(pos.lng)) {
+          rememberAnalyticsLocation(
+            pos.lat,
+            pos.lng,
+          );
+
           fetch("/api/v1/me/location", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -1865,6 +1994,15 @@ React.useEffect(() => {
                 event.preventDefault();
                 const query = searchQuery.trim();
                 if (!query) return;
+
+                const searchId =
+                  makeSearchTrackingId();
+
+                setActiveSearchId(searchId);
+                setActiveSearchQuery(query);
+
+                searchImpressionKeysRef.current =
+                  new Set();
 
                 searchAbortRef.current?.abort();
 
@@ -2112,6 +2250,8 @@ React.useEffect(() => {
                       eventType:
                         "search_ai_used",
 
+                      searchId,
+
                       locale,
 
                       metadata: {
@@ -2181,6 +2321,8 @@ React.useEffect(() => {
                     trackEvent({
                       eventType:
                         "search_ai_used",
+
+                      searchId,
 
                       locale,
 
@@ -2271,6 +2413,8 @@ React.useEffect(() => {
                   trackEvent({
                     eventType:
                       "search_ai_used",
+
+                    searchId,
 
                     locale,
 
@@ -3082,7 +3226,9 @@ React.useEffect(() => {
                           locale,
                           metadata: { name: selectedHomePlace.name }
                         });
-                        router.push(`/${locale}/carte?discover=${selectedHomePlace.id}`);
+                        router.push(
+                          `/${locale}/carte?discover=${selectedHomePlace.id}`
+                        );
                       }}
                       className="relative mt-6 block h-[108px] w-full overflow-hidden rounded-2xl bg-[#101510] text-white"
                     >
@@ -3203,7 +3349,10 @@ React.useEffect(() => {
               </div>
             ) : (
               <>
-                <div className="min-h-0 flex-1 overflow-y-auto pb-24">
+                <div
+                  ref={searchResultsScrollRef}
+                  className="min-h-0 flex-1 overflow-y-auto pb-24"
+                >
                   <div className="pr-12">
                     <div className="font-serif text-[24px] leading-tight">
                       {isFr ? "Résultats" : "Results"}
@@ -3226,9 +3375,11 @@ React.useEffect(() => {
 
                 <div className="mt-7 space-y-3">
                   {(searchResults ?? []).length > 0 ? (
-                    (searchResults ?? []).map((item) => (
+                    (searchResults ?? []).map((item, index) => (
                       <div
                         key={item.id}
+                        data-search-result-id={item.id}
+                        data-search-result-rank={index + 1}
                         className="overflow-hidden rounded-2xl border border-white/10 bg-white/8"
                       >
                         <div className="flex w-full gap-3 p-3 text-left">
@@ -3261,18 +3412,31 @@ React.useEffect(() => {
                                 placeId: item.id,
                                 city: item.city,
                                 category: item.category,
+                                searchId: activeSearchId,
+                                searchRank: index + 1,
                                 locale,
-                                metadata: { name: item.name }
+                                metadata: {
+                                  name: item.name,
+                                  query: activeSearchQuery || searchQuery.trim()
+                                }
                               });
+
                               trackEvent({
                                 eventType: "view_place_detail",
                                 placeId: item.id,
                                 city: item.city,
                                 category: item.category,
+                                searchId: activeSearchId,
+                                searchRank: index + 1,
                                 locale,
-                                metadata: { source: "search_result", name: item.name }
+                                metadata: {
+                                  source: "search_result",
+                                  name: item.name
+                                }
                               });
+
                               setSelectedHomePlaceSource("search_result");
+
                               setSelectedHomePlace(item);
                             }}
                             className="flex w-full items-center justify-center px-4 py-3 text-center text-[14px] font-semibold text-white/85"
@@ -3309,14 +3473,27 @@ React.useEffect(() => {
                         const ids = (searchResults ?? []).map((item) => item.id).filter(Boolean).join(",");
                         trackEvent({
                           eventType: "click_search_results_map",
+                          searchId: activeSearchId,
                           locale,
                           metadata: {
-                            query: searchQuery.trim(),
+                            query: activeSearchQuery || searchQuery.trim(),
                             resultCount: (searchResults ?? []).length,
                             ids
                           }
                         });
-                        router.push(`/${locale}/carte?searchIds=${encodeURIComponent(ids)}`);
+
+                        const params =
+                          new URLSearchParams();
+
+                        params.set(
+                          "searchIds",
+                          ids,
+                        );
+
+
+                        router.push(
+                          `/${locale}/carte?${params.toString()}`
+                        );
                       }}
                       className="pointer-events-auto rounded-full border border-white/15 bg-black/55 px-7 py-2.5 text-center text-[14px] font-semibold text-white shadow-[0_10px_35px_rgba(0,0,0,0.45)] backdrop-blur-md active:bg-black/70"
                     >

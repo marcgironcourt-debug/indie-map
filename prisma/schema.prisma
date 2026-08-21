@@ -34,23 +34,29 @@ model Business {
 }
 
 model Event {
-  id               String   @id @default(uuid())
-  eventType        String
-  placeId          String?
-  city             String?
-  country          String?
-  category         String?
-  sessionId        String?
-  launchId         String?
-  userId           String?
-  locale           String?
-  platform         String?
-  clientTimeZone   String?
-  utcOffsetMinutes Int?
-  clientLocalDate  String?
-  clientLocalHour  Int?
-  metadata         Json?
-  createdAt        DateTime @default(now())
+  id                   String   @id @default(uuid())
+  eventType            String
+  placeId              String?
+  city                 String?
+  country              String?
+  category             String?
+  viewerCity           String?
+  viewerCountry        String?
+  viewerDistanceKm     Float?
+  viewerDistanceBucket String?
+  searchId             String?
+  searchRank           Int?
+  sessionId            String?
+  launchId             String?
+  userId               String?
+  locale               String?
+  platform             String?
+  clientTimeZone       String?
+  utcOffsetMinutes     Int?
+  clientLocalDate      String?
+  clientLocalHour      Int?
+  metadata             Json?
+  createdAt            DateTime @default(now())
 
   user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
@@ -61,6 +67,9 @@ model Event {
   @@index([sessionId, createdAt])
   @@index([launchId])
   @@index([placeId])
+  @@index([placeId, eventType, createdAt])
+  @@index([searchId])
+  @@index([placeId, searchId])
   @@index([clientLocalDate])
   @@index([clientLocalDate, createdAt])
   @@index([clientLocalDate, eventType])
@@ -175,24 +184,25 @@ model User {
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @default(now()) @updatedAt
 
-  submissions                Submission[]
-  sentFriendships            Friendship[]                @relation("FriendshipRequester")
-  receivedFriendships        Friendship[]                @relation("FriendshipReceiver")
-  sentInvites                Invite[]
-  places                     UserPlace[]
-  comments                   PlaceComment[]
-  ownedLists                 SharedList[]                @relation("SharedListOwner")
-  listMemberships            SharedListMember[]
-  recommendationsSent        PlaceRecommendation[]       @relation("RecommendationSender")
-  recommendationsInbox       PlaceRecommendation[]       @relation("RecommendationReceiver")
-  sessions                   UserSession[]
-  passwordResetTokens        PasswordResetToken[]
-  pushDevices                PushDevice[]
-  pushInstallations          PushInstallation[]
-  contextualNotificationLogs ContextualNotificationLog[]
-  appUpdateNotificationLogs  AppUpdateNotificationLog[]
-  events                     Event[]
-  analyticsInstallations     AnalyticsInstallation[]
+  submissions                  Submission[]
+  sentFriendships              Friendship[]                @relation("FriendshipRequester")
+  receivedFriendships          Friendship[]                @relation("FriendshipReceiver")
+  sentInvites                  Invite[]
+  places                       UserPlace[]
+  comments                     PlaceComment[]
+  ownedLists                   SharedList[]                @relation("SharedListOwner")
+  listMemberships              SharedListMember[]
+  recommendationsSent          PlaceRecommendation[]       @relation("RecommendationSender")
+  recommendationsInbox         PlaceRecommendation[]       @relation("RecommendationReceiver")
+  sessions                     UserSession[]
+  passwordResetTokens          PasswordResetToken[]
+  pushDevices                  PushDevice[]
+  pushInstallations            PushInstallation[]
+  contextualNotificationLogs   ContextualNotificationLog[]
+  appUpdateNotificationLogs    AppUpdateNotificationLog[]
+  events                       Event[]
+  analyticsInstallations       AnalyticsInstallation[]
+  professionalPlaceMemberships ProfessionalPlaceMember[]
 }
 
 model Friendship {
@@ -550,4 +560,38 @@ model AiSearchSignal {
   @@index([signal])
   @@index([source])
   @@index([observedAt])
+}
+
+model ProfessionalPlace {
+  id             String    @id @default(uuid())
+  placeId        String    @unique
+  status         String    @default("pending")
+  plan           String?
+  accessStatus   String    @default("inactive")
+  accessStartsAt DateTime?
+  accessEndsAt   DateTime?
+  verifiedAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  members ProfessionalPlaceMember[]
+
+  @@index([status])
+  @@index([accessStatus])
+}
+
+model ProfessionalPlaceMember {
+  id                  String   @id @default(uuid())
+  professionalPlaceId String
+  userId              String
+  role                String   @default("owner")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  professionalPlace ProfessionalPlace @relation(fields: [professionalPlaceId], references: [id], onDelete: Cascade)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([professionalPlaceId, userId])
+  @@index([userId])
+  @@index([professionalPlaceId, role])
 }

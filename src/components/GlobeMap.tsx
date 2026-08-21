@@ -5,6 +5,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { isOpenNowFR, parseOpeningHoursFR } from "@/lib/openingHours";
 import { trackEvent } from "@/lib/analytics";
+import { rememberAnalyticsLocation } from "@/lib/installationSession";
 import { getSavedPlacesUserId, readSavedPlacesStorage, syncSavedPlaceToServer as syncSavedPlaceToAccount, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
 
 const isEnUI = typeof window !== "undefined" ? /^\/en(\/|$)/.test(window.location.pathname) : false;
@@ -919,7 +920,17 @@ export default function GlobeMap({
           suppressInitialNativeLocationRef.current = false;
           try { pendingNativeLocationRef.current = null; } catch {}
           try { (window as any).__IM_NATIVE_LOCATION__ = null; } catch {}
-          try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
+          try {
+            lastUserPosRef.current = {
+              lng: Number(lng),
+              lat: Number(lat),
+              ts: Date.now()
+            };
+            rememberAnalyticsLocation(
+              Number(lat),
+              Number(lng),
+            );
+          } catch {}
           return;
         }
         const m = mapRef.current;
@@ -995,7 +1006,17 @@ export default function GlobeMap({
             }
           } catch {}
 
-          try { lastUserPosRef.current = { lng: Number(lng), lat: Number(lat), ts: Date.now() }; } catch {}
+          try {
+            lastUserPosRef.current = {
+              lng: Number(lng),
+              lat: Number(lat),
+              ts: Date.now()
+            };
+            rememberAnalyticsLocation(
+              Number(lat),
+              Number(lng),
+            );
+          } catch {}
         };
 
         try {
@@ -2249,7 +2270,18 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
     const fromLng = Number(pos.coords.longitude);
     const fromLat = Number(pos.coords.latitude);
 
-    try { lastUserPosRef.current = { lng: fromLng, lat: fromLat, ts: Date.now() }; } catch {}
+    try {
+      lastUserPosRef.current = {
+        lng: fromLng,
+        lat: fromLat,
+        ts: Date.now()
+      };
+      rememberAnalyticsLocation(
+        fromLat,
+        fromLng,
+        pos.timestamp,
+      );
+    } catch {}
 
     const url =
       "https://router.project-osrm.org/route/v1/driving/" +
@@ -3515,7 +3547,17 @@ class GeolocateControl_ML {
             const lat = Number(latRaw);
             if (!Number.isFinite(lng) || !Number.isFinite(lat)) return;
             try { this._lastLng = lng; this._lastLat = lat; } catch {}
-            try { lastUserPosRef.current = { lng, lat, ts: Date.now() }; } catch {}
+            try {
+              lastUserPosRef.current = {
+                lng,
+                lat,
+                ts: Date.now()
+              };
+              rememberAnalyticsLocation(
+                lat,
+                lng,
+              );
+            } catch {}
 
             try {
               const m = this._map;

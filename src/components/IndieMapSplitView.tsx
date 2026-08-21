@@ -461,9 +461,20 @@ function FilterBar({
 
 
 
-export default function IndieMapSplitView({ locale, discoverId, entry, searchIds }: { locale: UILocale; discoverId?: string | null; entry?: string | null; searchIds?: string | null }) {
+export default function IndieMapSplitView({
+  locale,
+  discoverId,
+  entry,
+  searchIds,
+}: {
+  locale: UILocale;
+  discoverId?: string | null;
+  entry?: string | null;
+  searchIds?: string | null;
+}) {
   const router = useRouter();
   const isFr = locale === "fr";
+
   const [panel, setPanel] = React.useState<Panel>(() => {
     if (typeof window === "undefined") return null;
     return window.sessionStorage.getItem("im:pending-panel-after-locale") === "personalSpace" ? "personalSpace" : null;
@@ -983,7 +994,10 @@ React.useEffect(() => {
 
     window.addEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
     return () => window.removeEventListener("im:open-place-detail", onOpenPlaceDetail as EventListener);
-  }, [businesses, locale]);
+  }, [
+    businesses,
+    locale,
+  ]);
 
   React.useEffect(() => {
     const syncSavedPlaces = () => {

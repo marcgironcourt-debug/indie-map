@@ -5,6 +5,7 @@ import {
   getOrCreateInstallationSessionId,
   getOrCreateLaunchId,
   getUtcOffsetMinutes,
+  readRecentAnalyticsLocation,
 } from "@/lib/installationSession";
 
 export type IndieEventType =
@@ -12,6 +13,7 @@ export type IndieEventType =
   | "click_recent_additions"
   | "click_discovery_of_day"
   | "search_ai_used"
+  | "search_result_impression"
   | "click_search_result_detail"
   | "click_search_results_map"
   | "click_mini_immersion"
@@ -37,6 +39,8 @@ type TrackEventPayload = {
   city?: string | null;
   country?: string | null;
   category?: string | null;
+  searchId?: string | null;
+  searchRank?: number | null;
   locale?: string | null;
   platform?: string | null;
   metadata?: Record<string, unknown>;
@@ -110,11 +114,23 @@ export function trackEvent(
     const platform =
       payload.platform || context.platform;
 
+    const viewerLocation =
+      readRecentAnalyticsLocation();
+
     const body = {
       ...payload,
       ...context,
       locale,
       platform,
+      viewerLocation:
+        viewerLocation
+          ? {
+              lat:
+                viewerLocation.lat,
+              lng:
+                viewerLocation.lng,
+            }
+          : undefined,
     };
 
     fetch("/api/v1/event", {

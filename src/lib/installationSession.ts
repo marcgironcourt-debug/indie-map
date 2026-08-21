@@ -207,3 +207,114 @@ export function readInstallationPushToken() {
     return null;
   }
 }
+
+
+type AnalyticsLocation = {
+  lat: number;
+  lng: number;
+  observedAt: number;
+};
+
+const ANALYTICS_LOCATION_MAX_AGE_MS =
+  30 * 60 * 1000;
+
+export function rememberAnalyticsLocation(
+  latRaw: unknown,
+  lngRaw: unknown,
+  observedAtRaw?: unknown,
+) {
+  if (typeof window === "undefined") return;
+
+  const lat = Number(latRaw);
+  const lng = Number(lngRaw);
+
+  if (
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lng) ||
+    lat < -90 ||
+    lat > 90 ||
+    lng < -180 ||
+    lng > 180
+  ) {
+    return;
+  }
+
+  const observedAtCandidate =
+    Number(observedAtRaw);
+
+  const observedAt =
+    Number.isFinite(
+      observedAtCandidate,
+    ) &&
+    observedAtCandidate > 0
+      ? observedAtCandidate
+      : Date.now();
+
+  try {
+    (
+      window as typeof window & {
+        __IM_ANALYTICS_LOCATION__?:
+          AnalyticsLocation;
+      }
+    ).__IM_ANALYTICS_LOCATION__ = {
+      lat,
+      lng,
+      observedAt,
+    };
+  } catch {}
+}
+
+export function readRecentAnalyticsLocation() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const location =
+      (
+        window as typeof window & {
+          __IM_ANALYTICS_LOCATION__?:
+            AnalyticsLocation;
+        }
+      ).__IM_ANALYTICS_LOCATION__;
+
+    if (!location) {
+      return null;
+    }
+
+    const age =
+      Date.now() -
+      Number(
+        location.observedAt,
+      );
+
+    if (
+      !Number.isFinite(age) ||
+      age < 0 ||
+      age >
+        ANALYTICS_LOCATION_MAX_AGE_MS
+    ) {
+      return null;
+    }
+
+    const lat =
+      Number(location.lat);
+
+    const lng =
+      Number(location.lng);
+
+    if (
+      !Number.isFinite(lat) ||
+      !Number.isFinite(lng)
+    ) {
+      return null;
+    }
+
+    return {
+      lat,
+      lng,
+    };
+  } catch {
+    return null;
+  }
+}
