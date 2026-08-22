@@ -218,6 +218,9 @@ type AnalyticsLocation = {
 const ANALYTICS_LOCATION_MAX_AGE_MS =
   30 * 60 * 1000;
 
+const ANALYTICS_LOCATION_SESSION_KEY =
+  "im:analytics-location";
+
 export function rememberAnalyticsLocation(
   latRaw: unknown,
   lngRaw: unknown,
@@ -243,12 +246,16 @@ export function rememberAnalyticsLocation(
     Number(observedAtRaw);
 
   const observedAt =
-    Number.isFinite(
-      observedAtCandidate,
-    ) &&
+    Number.isFinite(observedAtCandidate) &&
     observedAtCandidate > 0
       ? observedAtCandidate
       : Date.now();
+
+  const location: AnalyticsLocation = {
+    lat,
+    lng,
+    observedAt,
+  };
 
   try {
     (
@@ -256,11 +263,15 @@ export function rememberAnalyticsLocation(
         __IM_ANALYTICS_LOCATION__?:
           AnalyticsLocation;
       }
-    ).__IM_ANALYTICS_LOCATION__ = {
-      lat,
-      lng,
-      observedAt,
-    };
+    ).__IM_ANALYTICS_LOCATION__ =
+      location;
+  } catch {}
+
+  try {
+    window.sessionStorage.setItem(
+      ANALYTICS_LOCATION_SESSION_KEY,
+      JSON.stringify(location),
+    );
   } catch {}
 }
 
@@ -270,7 +281,7 @@ export function readRecentAnalyticsLocation() {
   }
 
   try {
-    const location =
+    let location =
       (
         window as typeof window & {
           __IM_ANALYTICS_LOCATION__?:
@@ -279,14 +290,35 @@ export function readRecentAnalyticsLocation() {
       ).__IM_ANALYTICS_LOCATION__;
 
     if (!location) {
+      try {
+        const raw =
+          window.sessionStorage.getItem(
+            ANALYTICS_LOCATION_SESSION_KEY,
+          );
+
+        if (raw) {
+          const parsed =
+            JSON.parse(raw) as
+              Partial<AnalyticsLocation>;
+
+          location = {
+            lat: Number(parsed.lat),
+            lng: Number(parsed.lng),
+            observedAt: Number(
+              parsed.observedAt,
+            ),
+          };
+        }
+      } catch {}
+    }
+
+    if (!location) {
       return null;
     }
 
     const age =
       Date.now() -
-      Number(
-        location.observedAt,
-      );
+      Number(location.observedAt);
 
     if (
       !Number.isFinite(age) ||
@@ -294,6 +326,12 @@ export function readRecentAnalyticsLocation() {
       age >
         ANALYTICS_LOCATION_MAX_AGE_MS
     ) {
+      try {
+        window.sessionStorage.removeItem(
+          ANALYTICS_LOCATION_SESSION_KEY,
+        );
+      } catch {}
+
       return null;
     }
 
@@ -305,7 +343,11 @@ export function readRecentAnalyticsLocation() {
 
     if (
       !Number.isFinite(lat) ||
-      !Number.isFinite(lng)
+      !Number.isFinite(lng) ||
+      lat < -90 ||
+      lat > 90 ||
+      lng < -180 ||
+      lng > 180
     ) {
       return null;
     }

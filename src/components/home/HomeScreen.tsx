@@ -15,7 +15,7 @@ import { isOpenNowFR } from "@/lib/openingHours";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
-import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberAnalyticsLocation, rememberInstallationPushToken } from "@/lib/installationSession";
+import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, readRecentAnalyticsLocation, rememberAnalyticsLocation, rememberInstallationPushToken } from "@/lib/installationSession";
 
 type Panel = null | "pros" | "contrib" | "personalSpace" | "myPlacesList" | "profileInfo" | "friends" | "sharedLists";
 
@@ -790,6 +790,7 @@ React.useEffect(() => {
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [nearbyPlaces, setNearbyPlaces] = React.useState<DiscoverPlace[]>([]);
+  const [openNowHasLocation, setOpenNowHasLocation] = React.useState(false);
   const [openNowTick, setOpenNowTick] = React.useState(0);
   React.useEffect(() => {
     const timer = window.setInterval(() => {
@@ -951,6 +952,61 @@ React.useEffect(() => {
   const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
   const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
+
+  React.useEffect(() => {
+    const recentPosition =
+      readRecentAnalyticsLocation();
+
+    if (!recentPosition) return;
+
+    setOpenNowHasLocation(true);
+
+    const source =
+      allPlaces.length > 0
+        ? allPlaces
+        : initialAllPlaces;
+
+    if (source.length === 0) return;
+
+    const nearby = source
+      .filter((item) => {
+        const lat = Number(item.lat);
+        const lng = Number(item.lng);
+
+        return (
+          Number.isFinite(lat) &&
+          Number.isFinite(lng) &&
+          haversineKm(
+            recentPosition.lat,
+            recentPosition.lng,
+            lat,
+            lng,
+          ) <= 30
+        );
+      })
+      .sort((a, b) => {
+        const distanceA =
+          haversineKm(
+            recentPosition.lat,
+            recentPosition.lng,
+            Number(a.lat),
+            Number(a.lng),
+          );
+
+        const distanceB =
+          haversineKm(
+            recentPosition.lat,
+            recentPosition.lng,
+            Number(b.lat),
+            Number(b.lng),
+          );
+
+        return distanceA - distanceB;
+      });
+
+    setNearbyPlaces(nearby);
+  }, [allPlaces, initialAllPlaces]);
+
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
@@ -1597,6 +1653,7 @@ React.useEffect(() => {
           if (cancelled) return;
 
           setNearbyPlaces(hasLocation ? pool : []);
+          setOpenNowHasLocation(hasLocation);
 
           const now = new Date();
           const dayKey = getLocalDayKey(now);
@@ -1986,6 +2043,16 @@ React.useEffect(() => {
                     </div>
                   </button>
                 ))}
+              </div>
+            </div>
+          ) : openNowHasLocation ? (
+            <div className="mb-3 w-full shrink-0 px-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
+                <p className="text-[11px] leading-snug text-white/50">
+                  {isFr
+                    ? "Aucun lieu ouvert près de toi pour le moment."
+                    : "No places open near you right now."}
+                </p>
               </div>
             </div>
           ) : null}
@@ -2655,7 +2722,125 @@ React.useEffect(() => {
   </button>
 </div>
 
+          <section className="mt-7 w-full shrink-0 px-3 pb-6">
+            <div className="grid grid-cols-2 gap-2.5">
 
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(121,69,54,0.78), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Manger" : "Eat"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Restaurant · Boulangerie · Brasserie · Brunch"
+                    : "Restaurant · Bakery · Brewery · Brunch"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(92,68,50,0.78), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Se détendre" : "Relax"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Café · Bar · Pub"
+                    : "Cafe · Bar · Pub"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(111,101,40,0.82), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Faire ses courses" : "Shop for food"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Épicerie · Marché · Ferme"
+                    : "Grocery · Market · Farm"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(48,74,78,0.82), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Flâner" : "Browse"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Boutique · Mode"
+                    : "Shop · Fashion"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(72,62,96,0.82), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "S’inspirer" : "Get inspired"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Librairie · Atelier"
+                    : "Bookstore · Workshop"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(65,91,61,0.82), rgba(28,28,25,0.96))",
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Sortir autrement" : "Go somewhere different"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Lieu alternatif"
+                    : "Alternative place"}
+                </p>
+              </button>
+
+            </div>
+          </section>
 
         </div>
       </div>
