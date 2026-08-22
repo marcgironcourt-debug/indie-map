@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 import { prisma } from "@/lib/prisma";
+import { CONTRIBUTION_REWARD_POINTS } from "@/lib/rewardPoints";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -785,17 +786,61 @@ export async function POST(
      * userId → Submission → placeId.
      */
     const result =
-      await prisma.submission.updateMany({
-        where: {
-          id: submission.id,
-          status: "pending",
+      await prisma.$transaction(
+        async (tx) => {
+          const updateResult =
+            await tx.submission.updateMany({
+              where: {
+                id: submission.id,
+                status: "pending",
+              },
+              data: {
+                status: "approved",
+                reviewedAt: new Date(),
+                placeId,
+              },
+            });
+
+          if (updateResult.count !== 1) {
+            return updateResult;
+          }
+
+          if (submission.userId) {
+            /*
+             * Une seule récompense par
+             * utilisateur + lieu validé.
+             *
+             * Même si une deuxième Submission
+             * historique devait pointer vers
+             * le même placeId, aucun double
+             * crédit ne peut être créé.
+             */
+            const sourceKey =
+              `contribution:${submission.userId}:${placeId}`;
+
+            await tx.rewardPointLedger.upsert({
+              where: {
+                sourceKey,
+              },
+              update: {},
+              create: {
+                userId:
+                  submission.userId,
+                points:
+                  CONTRIBUTION_REWARD_POINTS,
+                reason:
+                  "contribution_approved",
+                sourceKey,
+                submissionId:
+                  submission.id,
+                placeId,
+              },
+            });
+          }
+
+          return updateResult;
         },
-        data: {
-          status: "approved",
-          reviewedAt: new Date(),
-          placeId,
-        },
-      });
+      );
 
     if (result.count !== 1) {
       return page(

@@ -189,7 +189,9 @@ model User {
   submissions                     Submission[]
   sentFriendships                 Friendship[]                     @relation("FriendshipRequester")
   receivedFriendships             Friendship[]                     @relation("FriendshipReceiver")
-  sentInvites                     Invite[]
+  sentInvites                     Invite[]                         @relation("InviteSender")
+  acceptedInvite                  Invite?                          @relation("InviteAcceptedUser")
+  rewardPoints                    RewardPointLedger[]
   places                          UserPlace[]
   comments                        PlaceComment[]
   ownedLists                      SharedList[]                     @relation("SharedListOwner")
@@ -226,18 +228,39 @@ model Friendship {
 }
 
 model Invite {
-  id         String    @id @default(uuid())
-  senderId   String
-  email      String?
-  token      String    @unique
-  status     String    @default("pending")
-  createdAt  DateTime  @default(now())
-  acceptedAt DateTime?
-
-  sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  id             String    @id @default(uuid())
+  senderId       String
+  email          String?
+  token          String    @unique
+  status         String    @default("pending")
+  createdAt      DateTime  @default(now())
+  acceptedAt     DateTime?
+  acceptedUserId String?   @unique
+  sender         User      @relation("InviteSender", fields: [senderId], references: [id], onDelete: Cascade)
+  acceptedUser   User?     @relation("InviteAcceptedUser", fields: [acceptedUserId], references: [id], onDelete: SetNull)
 
   @@index([senderId])
   @@index([email])
+}
+
+model RewardPointLedger {
+  id              String   @id @default(uuid())
+  userId          String
+  points          Int
+  reason          String
+  sourceKey       String   @unique
+  submissionId    String?
+  placeId         String?
+  inviteId        String?
+  installationKey String?  @unique
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([reason])
+  @@index([placeId])
+  @@index([inviteId])
 }
 
 model UserPlace {

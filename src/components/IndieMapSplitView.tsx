@@ -11,6 +11,11 @@ import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
 import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberInstallationPushToken } from "@/lib/installationSession";
+import {
+  clearReferralToken,
+  readReferralToken,
+  rememberReferralToken,
+} from "@/lib/referralStorage";
 
 declare global {
   interface Window {
@@ -590,6 +595,19 @@ React.useEffect(() => {
   React.useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
+
+    const referralToken =
+      params.get("invite");
+
+    if (referralToken) {
+      rememberReferralToken(
+        referralToken,
+      );
+
+      setPanel("personalSpace");
+      setAuthMode("signup");
+      setAuthForceForm(true);
+    }
     if (params.get("auth") === "ok") {
       setPanel("personalSpace");
       refreshAuthProfile();
@@ -629,6 +647,39 @@ React.useEffect(() => {
       setAuthForceForm(true);
     }
   }, [refreshAuthProfile]);
+
+
+  React.useEffect(() => {
+    if (
+      !authProfile ||
+      typeof window === "undefined"
+    ) {
+      return;
+    }
+
+    clearReferralToken();
+
+    const url =
+      new URL(
+        window.location.href,
+      );
+
+    if (
+      url.searchParams.has(
+        "invite",
+      )
+    ) {
+      url.searchParams.delete(
+        "invite",
+      );
+
+      window.history.replaceState(
+        {},
+        "",
+        url.toString(),
+      );
+    }
+  }, [authProfile?.id]);
 
   async function requestPasswordReset() {
     const email = authEmail.trim();
@@ -742,7 +793,14 @@ React.useEffect(() => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(
           authMode === "signup"
-            ? { email, username, password }
+            ? {
+                email,
+                username,
+                password,
+                referralToken:
+                  readReferralToken() ||
+                  undefined,
+              }
             : { identifier: username, password }
         ),
       });
