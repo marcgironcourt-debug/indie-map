@@ -11,8 +11,8 @@ import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ProfessionalSpacePanel from "@/components/ProfessionalSpacePanel";
 import { getLocalizedCategory } from "@/lib/localizedCategory";
+import { isOpenNowFR } from "@/lib/openingHours";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
-import { isContextSuggestionCandidateOpen, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
 import { getInstallationLocale, getOrCreateInstallationSessionId, readInstallationPushToken, rememberAnalyticsLocation, rememberInstallationPushToken } from "@/lib/installationSession";
@@ -187,7 +187,7 @@ declare global {
   }
 }
 
-const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; contextPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
+const homeMemoryCache: Record<string, { discoverPlace: DiscoverPlace | null; newPlaces: NewPlace[] } | undefined> = {};
 
 function normalizePushToken(value: unknown) {
   if (typeof value !== "string") return null;
@@ -239,10 +239,8 @@ function readHomeCache(locale: "fr" | "en") {
     const parsed = JSON.parse(raw);
     const discover = parsed?.discover && typeof parsed.discover === "object" ? parsed.discover : null;
     const newest = Array.isArray(parsed?.newPlaces) ? parsed.newPlaces : [];
-    const context = parsed?.context && typeof parsed.context === "object" ? parsed.context : null;
     return {
       discoverPlace: discover as DiscoverPlace | null,
-      contextPlace: context as DiscoverPlace | null,
       newPlaces: newest as NewPlace[]
     };
   } catch {
@@ -250,14 +248,13 @@ function readHomeCache(locale: "fr" | "en") {
   }
 }
 
-function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null, contextPlace: DiscoverPlace | null, newPlaces: NewPlace[]) {
+function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null, newPlaces: NewPlace[]) {
   try {
     if (typeof window === "undefined") return;
     window.sessionStorage.setItem(
       "im-home-cache:" + locale,
       JSON.stringify({
         discover: discoverPlace ?? null,
-        context: contextPlace ?? null,
         newPlaces: Array.isArray(newPlaces) ? newPlaces : []
       })
     );
@@ -300,32 +297,9 @@ function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
   return sorted[hash % sorted.length] ?? null;
 }
 
-function getSuggestionCopy(place: DiscoverPlace | null, locale: "fr" | "en", isNearby: boolean) {
-  if (!place) return "";
-  if (locale === "fr") {
-    return (isNearby ? place.homeTextNear : place.homeTextFar) || "";
-  }
-  return (isNearby ? place.homeTextNearEn : place.homeTextFarEn) || "";
-}
-
-function getInitialSuggestionPlaces(
-  all: DiscoverPlace[],
-  now: Date,
-  discoverPlace: DiscoverPlace | null | undefined,
-  contextPlace: DiscoverPlace | null | undefined
-) {
-  const pool = all.filter((item) => item.id !== discoverPlace?.id);
-  const picks = pickContextPlaces(pool.filter(isContextSuggestionCandidateOpen), now);
-  const fallback = pickContextPlaces(pool, now);
-  const list = (picks.length > 0 ? picks : fallback).slice(0, 3);
-  if (list.length > 0) return list;
-  return contextPlace ? [contextPlace] : [];
-}
-
 export default function HomeScreen({
   locale,
   initialDiscoverPlace = null,
-  initialContextPlace = null,
   initialNewPlaces = [],
   initialAllPlaces = [],
   initialSelectedHomePlace = null,
@@ -333,7 +307,6 @@ export default function HomeScreen({
 }: {
   locale: "fr" | "en";
   initialDiscoverPlace?: DiscoverPlace | null;
-  initialContextPlace?: DiscoverPlace | null;
   initialNewPlaces?: NewPlace[];
   initialAllPlaces?: DiscoverPlace[];
   initialSelectedHomePlace?: DiscoverPlace | null;
@@ -372,11 +345,6 @@ export default function HomeScreen({
   const [incomingFriendRequestCount, setIncomingFriendRequestCount] = React.useState(0);
   const [unseenSharedListCount, setUnseenSharedListCount] = React.useState(0);
   const [discoverPlace, setDiscoverPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null));
-  const [contextPlace, setContextPlace] = React.useState<DiscoverPlace | null>(() => mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null));
-  const [contextPlaceNearby, setContextPlaceNearby] = React.useState(false);
-  const [suggestionPlaces, setSuggestionPlaces] = React.useState<DiscoverPlace[]>([]);
-  const [suggestionIndex, setSuggestionIndex] = React.useState(0);
-  const suggestionScrollRef = React.useRef<HTMLDivElement | null>(null);
 
   const refreshAuthProfile = React.useCallback(async () => {
     setAuthLoading(true);
@@ -818,9 +786,36 @@ React.useEffect(() => {
   }, [router, locale]);
   const [discoverReady, setDiscoverReady] = React.useState(() => {
     const cached = homeMemoryCache[locale];
-    return Boolean(cached?.discoverPlace || cached?.contextPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialContextPlace || initialNewPlaces.length > 0);
+    return Boolean(cached?.discoverPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialNewPlaces.length > 0);
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
+  const [nearbyPlaces, setNearbyPlaces] = React.useState<DiscoverPlace[]>([]);
+  const [openNowTick, setOpenNowTick] = React.useState(0);
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setOpenNowTick((value) => value + 1);
+    }, 60_000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  const openNowPlaces = React.useMemo(() => {
+    void openNowTick;
+
+    return nearbyPlaces
+      .filter((place) => {
+        const openingHours = String(place.openingHours ?? "").trim();
+        const timeZone = String(place.timeZone ?? "").trim();
+
+        if (!openingHours || !timeZone) return false;
+
+        return isOpenNowFR(openingHours, timeZone) === true;
+      })
+      .slice(0, 7);
+  }, [nearbyPlaces, openNowTick]);
+
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(
     initialSelectedHomePlace
   );
@@ -965,10 +960,9 @@ React.useEffect(() => {
   React.useEffect(() => {
     homeMemoryCache[locale] = {
       discoverPlace: mergePlace(homeMemoryCache[locale]?.discoverPlace ?? null, initialDiscoverPlace ?? null),
-      contextPlace: mergePlace(homeMemoryCache[locale]?.contextPlace ?? null, initialContextPlace ?? null),
       newPlaces: (homeMemoryCache[locale]?.newPlaces?.length ?? 0) > 0 ? homeMemoryCache[locale]!.newPlaces : (initialNewPlaces ?? [])
     };
-  }, [locale, initialDiscoverPlace, initialContextPlace, initialNewPlaces]);
+  }, [locale, initialDiscoverPlace, initialNewPlaces]);
 
   React.useEffect(() => {
     setSelectedPlaceCommentsOpen(false);
@@ -1060,15 +1054,10 @@ React.useEffect(() => {
     const cached = readHomeCache(locale);
     if (!cached) return;
     if (cached.discoverPlace) setDiscoverPlace(mergePlace(cached.discoverPlace, initialDiscoverPlace ?? null));
-    if (cached.contextPlace) {
-      const mergedContext = mergePlace(cached.contextPlace, initialContextPlace ?? null);
-      const mergedDiscover = mergePlace(cached.discoverPlace ?? null, initialDiscoverPlace ?? null);
-      setContextPlace(mergedContext);
-    }
     if (Array.isArray(cached.newPlaces) && cached.newPlaces.length > 0) {
       setNewPlaces(cached.newPlaces);
     }
-    if (cached.discoverPlace || cached.contextPlace || (cached.newPlaces?.length ?? 0) > 0) {
+    if (cached.discoverPlace || (cached.newPlaces?.length ?? 0) > 0) {
       setDiscoverReady(true);
     }
   }, [locale, nativeLocationTick]);
@@ -1607,28 +1596,11 @@ React.useEffect(() => {
         const finish = (pool: DiscoverPlace[], hasLocation: boolean) => {
           if (cancelled) return;
 
+          setNearbyPlaces(hasLocation ? pool : []);
+
           const now = new Date();
           const dayKey = getLocalDayKey(now);
           const nextDiscover = all.length > 0 ? pickDailyPlace(all, dayKey) : null;
-
-          const contextBasePool = (pool.length > 0 ? pool : all).filter((item) => item.id !== nextDiscover?.id);
-          const contextFallbackPool = all.filter((item) => item.id !== nextDiscover?.id);
-          const openContextBasePool = contextBasePool.filter(isContextSuggestionCandidateOpen);
-          const openContextFallbackPool = contextFallbackPool.filter(isContextSuggestionCandidateOpen);
-
-          const nearbySuggestionsOpen = hasLocation && pool.length > 0 ? pickContextPlaces(openContextBasePool, now) : [];
-          const nearbySuggestionsAll = hasLocation && pool.length > 0 ? pickContextPlaces(contextBasePool, now) : [];
-          const farSuggestionsOpen = pickContextPlaces(openContextFallbackPool, now).slice(0, 3);
-          const farSuggestionsAll = pickContextPlaces(contextFallbackPool, now).slice(0, 3);
-
-          const nextSuggestionPlaces =
-            nearbySuggestionsOpen.length > 0 ? nearbySuggestionsOpen :
-            nearbySuggestionsAll.length > 0 ? nearbySuggestionsAll :
-            farSuggestionsOpen.length > 0 ? farSuggestionsOpen :
-            farSuggestionsAll;
-
-          const nextContextPlace = nextSuggestionPlaces[0] ?? null;
-          const nextIsNearby = hasLocation && (nearbySuggestionsOpen.length > 0 || nearbySuggestionsAll.length > 0);
 
           const latest = [...all]
         .sort((a, b) => {
@@ -1638,15 +1610,14 @@ React.useEffect(() => {
         })
         .slice(0, 5);
 
-          homeMemoryCache[locale] = { discoverPlace: nextDiscover, contextPlace: nextContextPlace, newPlaces: latest };
+          homeMemoryCache[locale] = {
+            discoverPlace: nextDiscover,
+            newPlaces: latest,
+          };
           setNewPlaces(latest);
           setDiscoverPlace(nextDiscover);
-          setContextPlace(nextContextPlace);
-          setSuggestionPlaces(nextSuggestionPlaces);
-          setSuggestionIndex(0);
-          setContextPlaceNearby(nextIsNearby);
           setDiscoverReady(true);
-          writeHomeCache(locale, nextDiscover, nextContextPlace, latest);
+          writeHomeCache(locale, nextDiscover, latest);
         };
 
         if (all.length === 0) {
@@ -1770,11 +1741,35 @@ React.useEffect(() => {
             keepalive: true,
           }).catch(() => null);
 
-          const nearby = all.filter((item) => {
-            const lat = Number(item.lat);
-            const lng = Number(item.lng);
-            return Number.isFinite(lat) && Number.isFinite(lng) && haversineKm(pos.lat, pos.lng, lat, lng) <= 30;
-          });
+          const nearby = all
+            .filter((item) => {
+              const lat = Number(item.lat);
+              const lng = Number(item.lng);
+
+              return (
+                Number.isFinite(lat) &&
+                Number.isFinite(lng) &&
+                haversineKm(pos.lat, pos.lng, lat, lng) <= 30
+              );
+            })
+            .sort((a, b) => {
+              const distanceA = haversineKm(
+                pos.lat,
+                pos.lng,
+                Number(a.lat),
+                Number(a.lng),
+              );
+
+              const distanceB = haversineKm(
+                pos.lat,
+                pos.lng,
+                Number(b.lat),
+                Number(b.lng),
+              );
+
+              return distanceA - distanceB;
+            });
+
           finish(nearby, true);
           return;
         }
@@ -1820,8 +1815,6 @@ React.useEffect(() => {
       }));
   }, [savedPlaces, allPlaces, isFr]);
 
-  const suggestionTimerRef = React.useRef<number | null>(null);
-
   const savedPlacesTimerRefs = React.useRef<Record<string, number>>({});
 
   function restartSavedPlacesTimer(city: string, length: number) {
@@ -1857,37 +1850,6 @@ React.useEffect(() => {
     }, 7000);
   }
 
-
-  function restartSuggestionTimer() {
-    if (suggestionTimerRef.current) {
-      window.clearTimeout(suggestionTimerRef.current);
-    }
-    if (suggestionPlaces.length <= 1 || contextPlaceNearby) return;
-
-    suggestionTimerRef.current = window.setTimeout(() => {
-      const nextIndex = (suggestionIndex + 1) % suggestionPlaces.length;
-
-      setSuggestionIndex(nextIndex);
-
-      const el = suggestionScrollRef.current;
-      if (el) {
-        const width = el.clientWidth;
-        el.scrollTo({
-          left: width * nextIndex,
-          behavior: "smooth"
-        });
-      }
-    }, 7000);
-  }
-
-  React.useEffect(() => {
-    restartSuggestionTimer();
-    return () => {
-      if (suggestionTimerRef.current) {
-        window.clearTimeout(suggestionTimerRef.current);
-      }
-    };
-  }, [suggestionIndex, suggestionPlaces, contextPlaceNearby]);
 
   function switchLocale(nextLocale: "fr" | "en") {
     if (nextLocale === locale) return;
@@ -1958,6 +1920,77 @@ React.useEffect(() => {
                 </div>
               </div>
             </button>
+
+          {openNowPlaces.length > 0 ? (
+            <div className="mb-3 w-full shrink-0">
+              <div className="mb-2 flex items-center gap-2 px-3">
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 shrink-0 rounded-full bg-green-400"
+                />
+
+                <p className="font-serif text-[15px] font-medium tracking-[0.01em] text-white">
+                  {isFr ? "Ouvert maintenant" : "Open now"}
+                </p>
+              </div>
+
+              <div className="im-home-scroll flex w-full gap-2 overflow-x-auto px-3 pb-1">
+                {openNowPlaces.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      trackEvent({
+                        eventType: "view_place_detail",
+                        placeId: item.id,
+                        city: item.city,
+                        category: item.category,
+                        locale,
+                        metadata: {
+                          source: "open_now",
+                          name: item.name,
+                        },
+                      });
+
+                      setSelectedHomePlaceSource("open_now");
+                      setSelectedHomePlace(item);
+                    }}
+                    className="w-[calc(33.333333%-5.333px)] min-w-[calc(33.333333%-5.333px)] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
+                  >
+                    <div className="relative h-[72px] w-full overflow-hidden bg-white/10">
+                      <img
+                        src={item.panoramaImage || "/explorer-bg.png?v=3"}
+                        alt=""
+                        className="h-full w-full object-cover"
+                      />
+
+                      <span
+                        aria-hidden="true"
+                        className="absolute right-2 top-2 h-2 w-2 rounded-full bg-green-400"
+                      />
+                    </div>
+
+                    <div className="px-2.5 pb-2.5 pt-2">
+                      <p className="line-clamp-2 font-serif text-[12px] font-medium leading-[1.15] text-white">
+                        {item.name}
+                      </p>
+
+                      <p className="mt-1 truncate text-[9px] font-medium text-white/60">
+                        {[
+                          getLocalizedCategory(item.category, isFr),
+                          item.city,
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+
 
           <div className="mt-4 mb-5 w-full shrink-0 px-3">
             <div className="mb-2 px-1">
@@ -2476,88 +2509,6 @@ React.useEffect(() => {
               </button>
             </form>
           </div>
-
-<div className="-mt-2 mb-3 w-full px-3">
-            {suggestionPlaces.length > 0 ? (
-              <>
-                <div
-                  ref={suggestionScrollRef}
-                  onScroll={(e) => {
-                    const el = e.currentTarget;
-                    const width = el.clientWidth;
-                    if (!width) return;
-
-                    const index = Math.round(el.scrollLeft / width);
-
-                    if (index !== suggestionIndex) {
-                      setSuggestionIndex(index);
-                    }
-                  }}
-                  className="im-home-scroll flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-                >
-                  {suggestionPlaces.map((item) => (
-                    <div
-                      key={item.id}
-                      className="min-w-full snap-center"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedHomePlace(item);
-                        }}
-                        className="flex w-full items-center gap-2 px-3 py-1.5 text-left"
-                        style={{
-                          boxShadow: "0 10px 24px rgba(0,0,0,0.18)"
-                        }}
-                      >
-                        <img
-                          src={item.panoramaImage || "/explorer-bg.png?v=3"}
-                          alt=""
-                          className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                        />
-                        <p className="text-[14px] leading-[1.35] text-white/80">
-                          {getSuggestionCopy(item, locale, contextPlaceNearby)}
-                        </p>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-
-                {suggestionPlaces.length > 1 ? (
-                  <div className="mt-2 flex items-center justify-center gap-1.5">
-                    {suggestionPlaces.map((item, index) => (
-                      <button
-                        key={item.id + "-dot"}
-                        type="button"
-                        aria-label={`Suggestion ${index + 1}`}
-                        onClick={() => {
-                          setSuggestionIndex(index);
-
-                          const el = suggestionScrollRef.current;
-                          if (el) {
-                            const width = el.clientWidth;
-                            el.scrollTo({
-                              left: width * index,
-                              behavior: "smooth"
-                            });
-                          }
-
-                          restartSuggestionTimer();
-                        }}
-                        className={index === suggestionIndex ? "h-1.5 w-4 rounded-full bg-white/90" : "h-1.5 w-1.5 rounded-full bg-white/35"}
-                      />
-                    ))}
-                  </div>
-                ) : null}
-              </>
-            ) : (
-              <div className="flex w-full items-center gap-3 px-1 py-2">
-                <div className="h-20 w-20 shrink-0 rounded-xl bg-white/10"></div>
-                <div className="h-16 flex-1 rounded-xl bg-white/10"></div>
-              </div>
-            )}
-          </div>
-
 
           <div className="mb-0 w-full shrink-0 pb-6">
               <div className="w-full relative z-10">

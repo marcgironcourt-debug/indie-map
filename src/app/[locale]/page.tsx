@@ -1,5 +1,4 @@
 import HomeScreen from "../../components/home/HomeScreen";
-import { pickContextPlace } from "@/lib/contextSuggestions";
 import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Props = {
@@ -150,11 +149,6 @@ const initialSelectedHomePlace =
   const dayKey = getLocalDayKey(now);
 
   const initialDiscoverPlace = allPlaces.length > 0 ? pickDailyPlace(allPlaces, dayKey) : null;
-  const contextPool = allPlaces.filter((item) => item.id !== initialDiscoverPlace?.id);
-  const initialContextPlace =
-    pickContextPlace(contextPool, now) ??
-    pickContextPlace(allPlaces, now);
-
   const initialNewPlaces = [...allPlaces]
 .sort((a, b) => {
 const aTime = Date.parse(a.createdAt || "") || 0;
@@ -167,7 +161,6 @@ return bTime - aTime;
     <HomeScreen
       locale={l}
       initialDiscoverPlace={initialDiscoverPlace}
-      initialContextPlace={initialContextPlace}
       initialNewPlaces={initialNewPlaces}
       initialAllPlaces={allPlaces}
       initialSelectedHomePlace={initialSelectedHomePlace}
