@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import fs from "node:fs";
-import path from "node:path";
 import { applyPrivateHomeSuggestionPatches } from "@/lib/privateHomeSuggestions";
 import { normalizePlace } from "../../places/_normalize";
 import { locales, defaultLocale } from "../../../../../../i18n";
 import { type SearchPlace } from "@/lib/placeSearch";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Obj = Record<string, unknown>;
 
@@ -18,9 +17,8 @@ function isObj(value: unknown): value is Obj {
 }
 
 async function readPlaces(locale: string): Promise<SearchPlace[]> {
-  const filePath = path.join(process.cwd(), "data", "places.json");
-  const raw = await fs.promises.readFile(filePath, "utf8");
-  const parsed: unknown = JSON.parse(raw);
+  const parsed: unknown =
+    await readPlaceCatalogueWithProfessionalOverrides();
 
   if (!Array.isArray(parsed)) return [];
 

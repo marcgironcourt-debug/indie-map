@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { normalizePlace } from "./_normalize";
 import { applyPrivateHomeSuggestionPatches } from "@/lib/privateHomeSuggestions";
-import fs from "node:fs";
-import path from "node:path";
 import { locales, defaultLocale } from "../../../../../i18n";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Obj = Record<string, unknown>;
 
@@ -34,9 +33,8 @@ export async function GET(req: Request) {
 
     const lang = requested || defaultLocale;
 
-    const filePath = path.join(process.cwd(), "data", "places.json");
-    const raw = await fs.promises.readFile(filePath, "utf8");
-    const parsed: unknown = JSON.parse(raw);
+    const parsed: unknown =
+      await readPlaceCatalogueWithProfessionalOverrides();
 
     if (!Array.isArray(parsed)) {
       console.error("[/api/v1/places] places.json n'est pas un tableau");

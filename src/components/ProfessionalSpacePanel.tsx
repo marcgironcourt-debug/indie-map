@@ -37,12 +37,17 @@ type ProfessionalSpacePanelProps = {
 
 type Mode = "dashboard" | "place";
 
-type EditableProfessionalField =
-  | "name"
-  | "address"
-  | "openingHours"
-  | "phone"
-  | "website";
+type ProfessionalListingDraft = {
+  name: string;
+  address: string;
+  openingHours: string;
+  phone: string;
+  website: string;
+  miniText: string;
+};
+
+type ProfessionalEditableField =
+  keyof ProfessionalListingDraft;
 
 export default function ProfessionalSpacePanel({
   isFr,
@@ -51,8 +56,6 @@ export default function ProfessionalSpacePanel({
   canOpenPersonalSpace,
   onLogout,
 }: ProfessionalSpacePanelProps) {
-  const locale = isFr ? "fr" : "en";
-
   const [mode, setMode] =
     React.useState<Mode>("dashboard");
 
@@ -92,10 +95,23 @@ export default function ProfessionalSpacePanel({
   const [proResetDone, setProResetDone] =
     React.useState(false);
 
-  const [editingField, setEditingField] =
-    React.useState<EditableProfessionalField | null>(null);
+  const [listingDraft, setListingDraft] =
+    React.useState<ProfessionalListingDraft>({
+      name: "",
+      address: "",
+      openingHours: "",
+      phone: "",
+      website: "",
+      miniText: "",
+    });
 
-  const [editingValue, setEditingValue] =
+  const [changeImage, setChangeImage] =
+    React.useState<File | null>(null);
+
+  const [changeImagePreview, setChangeImagePreview] =
+    React.useState("");
+
+  const [changeImageError, setChangeImageError] =
     React.useState("");
 
   const [changeSending, setChangeSending] =
@@ -676,6 +692,11 @@ export default function ProfessionalSpacePanel({
       label: isFr ? "Site web" : "Website",
       value: selected.website,
     },
+    {
+      key: "image",
+      label: "Image",
+      value: selected.panoramaImage,
+    },
   ];
 
   const completedListingInformation =
@@ -684,64 +705,159 @@ export default function ProfessionalSpacePanel({
         String(item.value || "").trim().length > 0,
     ).length;
 
-  function getFieldValue(
-    field: EditableProfessionalField,
-  ) {
-    if (field === "name") {
-      return selected.name || "";
-    }
-
-    if (field === "address") {
-      return selected.address || "";
-    }
-
-    if (field === "openingHours") {
-      return selected.openingHours || "";
-    }
-
-    if (field === "phone") {
-      return selected.phone || "";
-    }
-
-    return selected.website || "";
-  }
-
-  function getFieldLabel(
-    field: EditableProfessionalField,
-  ) {
-    const labels = {
-      name: isFr ? "Nom" : "Name",
-      address: isFr ? "Adresse" : "Address",
-      openingHours: isFr ? "Horaires" : "Opening hours",
-      phone: isFr ? "Téléphone" : "Phone",
-      website: isFr ? "Site web" : "Website",
+  function currentListingDraft(): ProfessionalListingDraft {
+    return {
+      name: selected.name || "",
+      address: selected.address || "",
+      openingHours: selected.openingHours || "",
+      phone: selected.phone || "",
+      website: selected.website || "",
+      miniText: selected.miniText || "",
     };
-
-    return labels[field];
   }
 
-  function startEditingField(
-    field: EditableProfessionalField,
-  ) {
-    setEditingField(field);
-    setEditingValue(
-      getFieldValue(field),
+  function openPlaceEditor() {
+    setListingDraft(
+      currentListingDraft(),
     );
+    setChangeImage(null);
+    setChangeImagePreview("");
+    setChangeImageError("");
+    setChangeError("");
+    setChangeSuccess("");
+    setMode("place");
+  }
+
+  function openPublicListing() {
+    const locale =
+      isFr ? "fr" : "en";
+
+    const placeId =
+      String(
+        selected.placeId || "",
+      ).trim();
+
+    if (!placeId) {
+      return;
+    }
+
+    window.location.assign(
+      `/${locale}?openPlace=${encodeURIComponent(
+        placeId,
+      )}&source=professional_space`,
+    );
+  }
+
+  function updateListingDraft(
+    field: ProfessionalEditableField,
+    value: string,
+  ) {
+    setListingDraft((current) => ({
+      ...current,
+      [field]: value,
+    }));
+
     setChangeError("");
     setChangeSuccess("");
   }
 
-  async function submitProfessionalChange() {
-    if (!editingField) {
+  function hasListingChanges() {
+    const current =
+      currentListingDraft();
+
+    return (
+      (
+        Object.keys(
+          current,
+        ) as ProfessionalEditableField[]
+      ).some(
+        (field) =>
+          current[field].trim() !==
+          listingDraft[field].trim(),
+      ) ||
+      Boolean(changeImage)
+    );
+  }
+
+  function handleChangeImage(
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) {
+    const file =
+      event.target.files?.[0] ||
+      null;
+
+    setChangeImageError("");
+    setChangeSuccess("");
+
+    if (!file) {
+      setChangeImage(null);
+      setChangeImagePreview("");
       return;
     }
 
-    const value =
-      editingValue.trim();
+    const allowedTypes =
+      new Set([
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+      ]);
+
+    if (!allowedTypes.has(file.type)) {
+      setChangeImage(null);
+      setChangeImagePreview("");
+      setChangeImageError(
+        isFr
+          ? "Format non accepté. Utilisez une image JPEG, PNG ou WebP."
+          : "Unsupported format. Use a JPEG, PNG or WebP image.",
+      );
+      event.target.value = "";
+      return;
+    }
+
+    const maxImageBytes =
+      3 * 1024 * 1024;
+
+    if (file.size > maxImageBytes) {
+      setChangeImage(null);
+      setChangeImagePreview("");
+      setChangeImageError(
+        isFr
+          ? "L’image ne doit pas dépasser 3 Mo."
+          : "The image must not exceed 3 MB.",
+      );
+      event.target.value = "";
+      return;
+    }
+
+    setChangeImage(file);
+
+    const reader =
+      new FileReader();
+
+    reader.onload = () => {
+      setChangeImagePreview(
+        typeof reader.result === "string"
+          ? reader.result
+          : "",
+      );
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  async function submitProfessionalChanges() {
+    if (!hasListingChanges()) {
+      setChangeError(
+        isFr
+          ? "Aucune modification à envoyer."
+          : "There are no changes to send.",
+      );
+      return;
+    }
 
     if (
-      editingField === "name" &&
-      value.length < 2
+      listingDraft.name.trim().length <
+      2
     ) {
       setChangeError(
         isFr
@@ -756,22 +872,58 @@ export default function ProfessionalSpacePanel({
     setChangeSuccess("");
 
     try {
+      const fd =
+        new FormData();
+
+      fd.set(
+        "placeId",
+        selected.placeId,
+      );
+
+      fd.set(
+        "name",
+        listingDraft.name,
+      );
+
+      fd.set(
+        "address",
+        listingDraft.address,
+      );
+
+      fd.set(
+        "openingHours",
+        listingDraft.openingHours,
+      );
+
+      fd.set(
+        "phone",
+        listingDraft.phone,
+      );
+
+      fd.set(
+        "website",
+        listingDraft.website,
+      );
+
+      fd.set(
+        "miniText",
+        listingDraft.miniText,
+      );
+
+      if (changeImage) {
+        fd.set(
+          "image",
+          changeImage,
+          changeImage.name,
+        );
+      }
+
       const res =
         await fetch(
           "/api/v1/me/professional-change-requests",
           {
             method: "POST",
-            headers: {
-              "content-type":
-                "application/json",
-            },
-            body: JSON.stringify({
-              placeId:
-                selected.placeId,
-              kind:
-                editingField,
-              value,
-            }),
+            body: fd,
           },
         );
 
@@ -796,157 +948,67 @@ export default function ProfessionalSpacePanel({
           return;
         }
 
+        if (
+          payload?.error ===
+          "image_too_large"
+        ) {
+          setChangeError(
+            isFr
+              ? "L’image ne doit pas dépasser 3 Mo."
+              : "The image must not exceed 3 MB.",
+          );
+          return;
+        }
+
+        if (
+          payload?.error ===
+          "invalid_image"
+        ) {
+          setChangeError(
+            isFr
+              ? "L’image doit être au format JPEG, PNG ou WebP."
+              : "The image must be JPEG, PNG or WebP.",
+          );
+          return;
+        }
+
+        if (
+          payload?.error ===
+          "no_changes"
+        ) {
+          setChangeError(
+            isFr
+              ? "Aucune modification détectée."
+              : "No changes were detected.",
+          );
+          return;
+        }
+
         setChangeError(
           isFr
-            ? "Impossible d’envoyer la demande pour le moment."
-            : "Unable to send the request right now.",
+            ? "Impossible d’envoyer les modifications pour le moment."
+            : "Unable to send the changes right now.",
         );
         return;
       }
 
-      setEditingField(null);
-      setEditingValue("");
+      setChangeImage(null);
+      setChangeImagePreview("");
 
       setChangeSuccess(
         isFr
-          ? "Demande envoyée. Indie Map vérifiera la modification avant sa publication."
-          : "Request sent. Indie Map will review the change before it is published.",
+          ? `${payload.count || 1} modification${payload.count > 1 ? "s" : ""} envoyée${payload.count > 1 ? "s" : ""}. Indie Map les vérifiera individuellement avant publication.`
+          : `${payload.count || 1} change${payload.count > 1 ? "s" : ""} sent. Indie Map will review each one individually before publication.`,
       );
     } catch {
       setChangeError(
         isFr
-          ? "Impossible d’envoyer la demande pour le moment."
-          : "Unable to send the request right now.",
+          ? "Impossible d’envoyer les modifications pour le moment."
+          : "Unable to send the changes right now.",
       );
     } finally {
       setChangeSending(false);
     }
-  }
-
-  function editableFieldCard(
-    field: EditableProfessionalField,
-  ) {
-    const currentValue =
-      getFieldValue(field);
-
-    const isEditing =
-      editingField === field;
-
-    const isHours =
-      field === "openingHours";
-
-    return (
-      <div className="border-b border-white/[0.07] last:border-b-0">
-        <div className="px-4 py-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0 flex-1">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-white/28">
-                {getFieldLabel(field)}
-              </p>
-
-              {!isEditing ? (
-                <p
-                  className={
-                    isHours
-                      ? "mt-2 whitespace-pre-line text-[12px] leading-relaxed text-white/65"
-                      : "mt-1.5 break-words text-[13px] leading-relaxed text-white/68"
-                  }
-                >
-                  {currentValue ||
-                    (isFr
-                      ? "Non renseigné"
-                      : "Not provided")}
-                </p>
-              ) : null}
-            </div>
-
-            {!isEditing ? (
-              <button
-                type="button"
-                onClick={() =>
-                  startEditingField(
-                    field,
-                  )
-                }
-                className="shrink-0 rounded-full border border-[#5C6E3B]/30 bg-[#5C6E3B]/10 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#AFC092]"
-              >
-                {isFr
-                  ? "Modifier"
-                  : "Edit"}
-              </button>
-            ) : null}
-          </div>
-
-          {isEditing ? (
-            <div className="mt-3">
-              {isHours ? (
-                <textarea
-                  value={editingValue}
-                  onChange={(event) =>
-                    setEditingValue(
-                      event.target.value,
-                    )
-                  }
-                  rows={8}
-                  className="w-full resize-none rounded-2xl border border-white/[0.09] bg-black/20 px-4 py-3 text-[13px] leading-relaxed text-white outline-none placeholder:text-white/20 focus:border-[#5C6E3B]/60"
-                />
-              ) : (
-                <input
-                  type={
-                    field === "website"
-                      ? "url"
-                      : field === "phone"
-                        ? "tel"
-                        : "text"
-                  }
-                  value={editingValue}
-                  onChange={(event) =>
-                    setEditingValue(
-                      event.target.value,
-                    )
-                  }
-                  className="w-full rounded-2xl border border-white/[0.09] bg-black/20 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/20 focus:border-[#5C6E3B]/60"
-                />
-              )}
-
-              <div className="mt-3 flex gap-2">
-                <button
-                  type="button"
-                  disabled={changeSending}
-                  onClick={() => {
-                    setEditingField(null);
-                    setEditingValue("");
-                    setChangeError("");
-                  }}
-                  className="flex-1 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 disabled:opacity-50"
-                >
-                  {isFr
-                    ? "Annuler"
-                    : "Cancel"}
-                </button>
-
-                <button
-                  type="button"
-                  disabled={changeSending}
-                  onClick={() =>
-                    void submitProfessionalChange()
-                  }
-                  className="flex-[1.4] rounded-2xl bg-[#F3EBD8] px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#1D1E18] disabled:opacity-50"
-                >
-                  {changeSending
-                    ? isFr
-                      ? "Envoi…"
-                      : "Sending…"
-                    : isFr
-                      ? "Envoyer la demande"
-                      : "Send request"}
-                </button>
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </div>
-    );
   }
 
   async function logoutProfessional() {
@@ -1052,7 +1114,7 @@ export default function ProfessionalSpacePanel({
 
           <button
             type="button"
-            onClick={() => setMode("place")}
+            onClick={openPlaceEditor}
             className={
               mode === "place"
                 ? "rounded-[17px] bg-[#F3EBD8] px-2 py-3.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#1D1E18] shadow-[0_8px_22px_rgba(0,0,0,0.18)]"
@@ -1080,9 +1142,69 @@ export default function ProfessionalSpacePanel({
   }
 
   if (mode === "place") {
+    const formFields: Array<{
+      key: ProfessionalEditableField;
+      label: string;
+      multiline?: boolean;
+      rows?: number;
+      type?: string;
+    }> = [
+      {
+        key: "name",
+        label: isFr ? "Nom" : "Name",
+      },
+      {
+        key: "address",
+        label: isFr ? "Adresse" : "Address",
+      },
+      {
+        key: "openingHours",
+        label: isFr ? "Horaires" : "Opening hours",
+        multiline: true,
+        rows: 7,
+      },
+      {
+        key: "phone",
+        label: isFr ? "Téléphone" : "Phone",
+        type: "tel",
+      },
+      {
+        key: "website",
+        label: isFr ? "Site web" : "Website",
+        type: "url",
+      },
+      {
+        key: "miniText",
+        label: "miniText",
+        multiline: true,
+        rows: 5,
+      },
+    ];
+
     return (
       <>
         {professionalNavigation()}
+
+        <div className="mb-4 flex justify-end">
+          <button
+            type="button"
+            onClick={openPublicListing}
+            className="inline-flex items-center gap-2 rounded-full border border-[#8D854D]/30 bg-[#8D854D]/10 px-3.5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#D8D0A3] transition-colors hover:bg-[#8D854D]/15 hover:text-[#F3EBD8]"
+          >
+            <span>
+              {isFr
+                ? "Voir ma fiche"
+                : "View my listing"}
+            </span>
+
+            <span
+              aria-hidden="true"
+              className="text-[13px] leading-none"
+            >
+              ↗
+            </span>
+          </button>
+        </div>
 
         <div className="mb-5 px-1">
           <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#8D854D]">
@@ -1097,8 +1219,8 @@ export default function ProfessionalSpacePanel({
 
           <p className="mt-2 text-[11px] leading-relaxed text-white/35">
             {isFr
-              ? "Vous pouvez proposer une correction des informations pratiques ci-dessous. Chaque demande est vérifiée par Indie Map avant publication."
-              : "You can suggest corrections to the practical information below. Every request is reviewed by Indie Map before publication."}
+              ? "Modifiez uniquement les informations qui doivent changer. Vous pouvez envoyer plusieurs modifications en une seule fois : chacune sera ensuite vérifiée et validée séparément par Indie Map."
+              : "Only edit the information that needs to change. You can send several changes at once: each one will then be reviewed and approved separately by Indie Map."}
           </p>
         </div>
 
@@ -1126,21 +1248,160 @@ export default function ProfessionalSpacePanel({
           </p>
 
           <div className="overflow-hidden rounded-3xl border border-white/[0.09] bg-white/[0.045]">
-            {editableFieldCard("name")}
-            {editableFieldCard("address")}
-            {editableFieldCard("openingHours")}
-            {editableFieldCard("phone")}
-            {editableFieldCard("website")}
+            {formFields.map(
+              ({
+                key,
+                label,
+                multiline,
+                rows,
+                type,
+              }) => (
+                <div
+                  key={key}
+                  className="border-b border-white/[0.07] px-4 py-4 last:border-b-0"
+                >
+                  <label className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.17em] text-white/30">
+                    {label}
+                  </label>
+
+                  {multiline ? (
+                    <textarea
+                      rows={rows || 5}
+                      value={listingDraft[key]}
+                      onChange={(event) =>
+                        updateListingDraft(
+                          key,
+                          event.target.value,
+                        )
+                      }
+                      className="w-full resize-none rounded-2xl border border-white/[0.09] bg-black/20 px-4 py-3 text-[13px] leading-relaxed text-white outline-none placeholder:text-white/20 focus:border-[#5C6E3B]/60"
+                    />
+                  ) : (
+                    <input
+                      type={type || "text"}
+                      value={listingDraft[key]}
+                      onChange={(event) =>
+                        updateListingDraft(
+                          key,
+                          event.target.value,
+                        )
+                      }
+                      className="w-full rounded-2xl border border-white/[0.09] bg-black/20 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/20 focus:border-[#5C6E3B]/60"
+                    />
+                  )}
+                </div>
+              ),
+            )}
           </div>
         </section>
 
-        <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.025] px-4 py-3">
-          <p className="text-[10px] leading-relaxed text-white/30">
+        <section className="mt-5">
+          <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#C9C08A]">
             {isFr
-              ? "Les éléments éditoriaux de la fiche restent gérés par Indie Map pour le moment."
-              : "Editorial elements of the listing remain managed by Indie Map for now."}
+              ? "Image de la fiche"
+              : "Listing image"}
+          </p>
+
+          <div className="rounded-3xl border border-white/[0.09] bg-white/[0.045] p-4">
+            <div className="flex items-center gap-4">
+              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-black/20">
+                {changeImagePreview ||
+                selected.panoramaImage ? (
+                  <img
+                    src={
+                      changeImagePreview ||
+                      selected.panoramaImage ||
+                      ""
+                    }
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-[20px] text-white/20">
+                    +
+                  </div>
+                )}
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] leading-relaxed text-white/45">
+                  {isFr
+                    ? "JPEG, PNG ou WebP. 3 Mo maximum."
+                    : "JPEG, PNG or WebP. Maximum 3 MB."}
+                </p>
+
+                {changeImage ? (
+                  <p className="mt-1 truncate text-[10px] text-[#B8C69F]">
+                    {changeImage.name}
+                  </p>
+                ) : null}
+
+                <label className="mt-3 inline-flex cursor-pointer rounded-full border border-[#5C6E3B]/30 bg-[#5C6E3B]/10 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#AFC092]">
+                  {isFr
+                    ? "Choisir une image"
+                    : "Choose image"}
+
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={handleChangeImage}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+            </div>
+
+            {changeImageError ? (
+              <p className="mt-3 text-[10px] leading-relaxed text-red-100/75">
+                {changeImageError}
+              </p>
+            ) : null}
+
+            {changeImage ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setChangeImage(null);
+                  setChangeImagePreview("");
+                  setChangeImageError("");
+                }}
+                className="mt-3 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/32 underline decoration-white/15 underline-offset-4"
+              >
+                {isFr
+                  ? "Retirer la nouvelle image"
+                  : "Remove new image"}
+              </button>
+            ) : null}
+          </div>
+        </section>
+
+        <div className="mt-5 rounded-2xl border border-[#C9C08A]/15 bg-[#C9C08A]/[0.055] px-4 py-3">
+          <p className="text-[10px] leading-relaxed text-white/38">
+            {isFr
+              ? "Aucune modification n’est publiée automatiquement. Indie Map vérifie séparément chaque information et peut en accepter certaines tout en refusant les autres."
+              : "No change is published automatically. Indie Map reviews each item separately and may approve some while rejecting others."}
           </p>
         </div>
+
+        <button
+          type="button"
+          disabled={
+            changeSending ||
+            !hasListingChanges()
+          }
+          onClick={() =>
+            void submitProfessionalChanges()
+          }
+          className="mt-4 w-full rounded-2xl bg-[#F3EBD8] px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#1D1E18] shadow-[0_10px_30px_rgba(0,0,0,0.16)] disabled:cursor-not-allowed disabled:opacity-35"
+        >
+          {changeSending
+            ? isFr
+              ? "Envoi des modifications…"
+              : "Sending changes…"
+            : isFr
+              ? "Envoyer les modifications"
+              : "Send changes"}
+        </button>
       </>
     );
   }
@@ -1269,7 +1530,7 @@ export default function ProfessionalSpacePanel({
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="font-serif text-[23px] font-semibold text-[#F3EBD8]">
-                {completedListingInformation} / 5
+                {completedListingInformation} / 6
               </p>
 
               <p className="mt-1 text-[10px] leading-relaxed text-white/32">
@@ -1281,7 +1542,7 @@ export default function ProfessionalSpacePanel({
 
             <button
               type="button"
-              onClick={() => setMode("place")}
+              onClick={openPlaceEditor}
               className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#AFC092]"
             >
               {isFr
@@ -1369,17 +1630,17 @@ export default function ProfessionalSpacePanel({
         <div className="overflow-hidden rounded-3xl border border-[#C9C08A]/15 bg-[linear-gradient(135deg,rgba(201,192,138,0.09),rgba(243,235,216,0.025))]">
           {[
             isFr
-              ? "Changement de miniText"
-              : "miniText changes",
-            isFr
-              ? "Modification de photo"
-              : "Photo changes",
-            isFr
               ? "Analyse de votre visibilité"
               : "Visibility analytics",
             isFr
               ? "Promotions d’événements"
               : "Event promotions",
+            isFr
+              ? "Galerie de photos"
+              : "Photo gallery",
+            isFr
+              ? "Vidéo d’immersion"
+              : "Immersion video",
           ].map((label) => (
             <div
               key={label}

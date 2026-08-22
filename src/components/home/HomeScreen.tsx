@@ -1023,22 +1023,35 @@ React.useEffect(() => {
 
 
   React.useEffect(() => {
-    if (
-      !initialSelectedHomePlace ||
-      initialSelectedHomePlaceSource !== "recent_additions_all"
-    ) return;
+    if (!initialSelectedHomePlace) {
+      return;
+    }
 
-    trackEvent({
-      eventType: "click_recent_additions",
-      placeId: initialSelectedHomePlace.id,
-      city: initialSelectedHomePlace.city,
-      category: initialSelectedHomePlace.category,
-      locale,
-      metadata: {
-        name: initialSelectedHomePlace.name,
-        source: "recent_additions_all"
-      }
-    });
+    if (
+      initialSelectedHomePlaceSource !==
+        "recent_additions_all" &&
+      initialSelectedHomePlaceSource !==
+        "professional_space"
+    ) {
+      return;
+    }
+
+    if (
+      initialSelectedHomePlaceSource ===
+      "recent_additions_all"
+    ) {
+      trackEvent({
+        eventType: "click_recent_additions",
+        placeId: initialSelectedHomePlace.id,
+        city: initialSelectedHomePlace.city,
+        category: initialSelectedHomePlace.category,
+        locale,
+        metadata: {
+          name: initialSelectedHomePlace.name,
+          source: "recent_additions_all",
+        },
+      });
+    }
 
     trackEvent({
       eventType: "view_place_detail",
@@ -1048,13 +1061,14 @@ React.useEffect(() => {
       locale,
       metadata: {
         name: initialSelectedHomePlace.name,
-        source: "recent_additions_all"
-      }
+        source:
+          initialSelectedHomePlaceSource,
+      },
     });
   }, [
     initialSelectedHomePlace,
     initialSelectedHomePlaceSource,
-    locale
+    locale,
   ]);
 
   React.useEffect(() => {
@@ -2910,21 +2924,26 @@ React.useEffect(() => {
             <img
               src={selectedHomePlace.panoramaImage}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-x-0 top-0 h-[60vh] w-full bg-black object-contain"
             />
           ) : (
-            <div className="absolute inset-0 bg-white/10" />
+            <div className="absolute inset-x-0 top-0 h-[60vh] bg-white/10" />
           )}
 
-          <div className="absolute inset-0 z-10 overflow-y-auto">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 top-[60vh] bg-black"
+          />
+
+          <div className="absolute inset-0 z-10 overflow-y-auto overscroll-y-none">
           {selectedHomePlace?.miniText ? (
-            <div className="relative mt-[55vh] min-h-[45vh] rounded-t-3xl bg-black/80 px-6 pt-6 pb-8">
+            <div className="relative mt-[60vh] min-h-[40vh] bg-black px-6 pt-6 pb-8">
               <div>
                 <div className="absolute inset-x-0 bottom-full z-40 -mb-px flex justify-center">
                   <button
                     type="button"
                     onClick={() => setSelectedPlaceCommentsOpen((value) => !value)}
-                    className="inline-flex rounded-t-xl rounded-b-none bg-black/55 px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black/60 active:bg-black/65"
+                    className="inline-flex rounded-t-xl rounded-b-none bg-black px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black active:bg-black"
                   >
                     {isFr ? "Commentaires" : "Comments"}
                   </button>
@@ -3273,12 +3292,15 @@ React.useEffect(() => {
           <button
             type="button"
             onClick={() => {
-              const returnToRecentAdditions =
-                selectedHomePlaceSource === "recent_additions_all";
+              const returnToPreviousScreen =
+                selectedHomePlaceSource ===
+                  "recent_additions_all" ||
+                selectedHomePlaceSource ===
+                  "professional_space";
 
               setSelectedHomePlace(null);
 
-              if (returnToRecentAdditions) {
+              if (returnToPreviousScreen) {
                 router.back();
               }
             }}

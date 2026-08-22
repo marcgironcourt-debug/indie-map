@@ -3,9 +3,8 @@ import { NextResponse } from "next/server";
 const V1_HEADERS = {
   "X-API-Version": "1",
 } as const;
-import fs from "node:fs";
-import path from "node:path";
 import { normalizePlace } from "../_normalize";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Obj = Record<string, unknown>;
 
@@ -16,9 +15,8 @@ function isObj(v: unknown): v is Obj {
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const id = (await params).id;
-    const filePath = path.join(process.cwd(), "data", "places.json");
-    const raw = await fs.promises.readFile(filePath, "utf8");
-    const parsed: unknown = JSON.parse(raw);
+    const parsed: unknown =
+      await readPlaceCatalogueWithProfessionalOverrides();
 
     if (!Array.isArray(parsed)) {
       return NextResponse.json({ error: "Invalid data" }, { status: 500, headers: V1_HEADERS });

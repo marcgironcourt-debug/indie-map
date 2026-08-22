@@ -1,10 +1,17 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import Link from "next/link";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Props = {
   params: Promise<{ locale: string }>;
+};
+
+type RawRecentPlace = {
+  id?: unknown;
+  name?: unknown;
+  panoramaImage?: unknown;
+  city?: unknown;
+  category?: unknown;
+  createdAt?: unknown;
 };
 
 type RecentPlace = {
@@ -16,14 +23,16 @@ type RecentPlace = {
   createdAt?: string;
 };
 
-function readRecentPlaces(): RecentPlace[] {
-  const filePath = path.join(process.cwd(), "data", "places.json");
-  const raw = fs.readFileSync(filePath, "utf8");
-  const parsed = JSON.parse(raw);
-  const places = Array.isArray(parsed) ? parsed : [];
+async function readRecentPlaces(): Promise<RecentPlace[]> {
+  const places =
+    await readPlaceCatalogueWithProfessionalOverrides();
 
   return places
-    .map((item: any) => ({
+    .map((rawItem) => {
+      const item =
+        rawItem as RawRecentPlace;
+
+      return ({
       id: String(item?.id ?? "").trim(),
       name: String(item?.name ?? "").trim(),
       panoramaImage:
@@ -34,7 +43,8 @@ function readRecentPlaces(): RecentPlace[] {
         String(item?.category ?? "").trim() || undefined,
       createdAt:
         String(item?.createdAt ?? "").trim() || undefined,
-    }))
+      });
+    })
     .filter((item: RecentPlace) => item.id && item.name)
     .sort((a: RecentPlace, b: RecentPlace) => {
       const aTime = Date.parse(a.createdAt || "") || 0;
@@ -48,7 +58,7 @@ export default async function RecentAdditionsPage({ params }: Props) {
   const { locale: rawLocale } = await params;
   const locale = rawLocale === "en" ? "en" : "fr";
   const isFr = locale === "fr";
-  const places = readRecentPlaces();
+  const places = await readRecentPlaces();
 
   return (
     <main className="h-dvh overflow-y-auto overscroll-y-contain bg-black text-white">

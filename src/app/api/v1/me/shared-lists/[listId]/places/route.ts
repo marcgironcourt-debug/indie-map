@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
-import fs from "node:fs";
-import path from "node:path";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { notifySharedListPlaceAdded } from "@/lib/pushNotifications";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -38,9 +37,8 @@ async function getUsableList(listId: string, userId: string) {
 
 async function getPlaceName(placeId: string) {
   try {
-    const filePath = path.join(process.cwd(), "data", "places.json");
-    const raw = await fs.promises.readFile(filePath, "utf8");
-    const parsed: unknown = JSON.parse(raw);
+    const parsed: unknown =
+      await readPlaceCatalogueWithProfessionalOverrides();
 
     if (!Array.isArray(parsed)) return "";
 

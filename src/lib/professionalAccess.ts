@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { prisma } from "@/lib/prisma";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 export type ProfessionalAccessCapability =
   | "space"
@@ -57,21 +56,9 @@ function cleanText(
   return clean || null;
 }
 
-function readCataloguePlaces() {
-  const filePath =
-    path.join(
-      process.cwd(),
-      "data",
-      "places.json",
-    );
-
+async function readCataloguePlaces() {
   const parsed: unknown =
-    JSON.parse(
-      fs.readFileSync(
-        filePath,
-        "utf8",
-      ),
-    );
+    await readPlaceCatalogueWithProfessionalOverrides();
 
   if (!Array.isArray(parsed)) {
     return [] as CataloguePlace[];
@@ -345,7 +332,7 @@ export async function getProfessionalAccessForUser(
   }
 
   const catalogue =
-    readCataloguePlaces();
+    await readCataloguePlaces();
 
   const catalogueById =
     new Map(

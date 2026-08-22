@@ -1,8 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import HomeScreen from "../../components/home/HomeScreen";
 import { pickContextPlace } from "@/lib/contextSuggestions";
+import { readPlaceCatalogueWithProfessionalOverrides } from "@/lib/placeCatalogue";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -10,6 +8,33 @@ type Props = {
     openPlace?: string | string[];
     source?: string | string[];
   }>;
+};
+
+type RawHomePlace = {
+  id?: unknown;
+  name?: unknown;
+  lat?: unknown;
+  lng?: unknown;
+  panoramaImage?: unknown;
+  city?: unknown;
+  address?: unknown;
+  category?: unknown;
+  website?: unknown;
+  phone?: unknown;
+  openingHours?: unknown;
+  timeZone?: unknown;
+  miniText?: unknown;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+  homeTextNear?: unknown;
+  homeTextFar?: unknown;
+  translations?: {
+    en?: {
+      miniText?: unknown;
+      homeTextNear?: unknown;
+      homeTextFar?: unknown;
+    };
+  };
 };
 
 type Place = {
@@ -51,13 +76,18 @@ function pickDailyPlace(list: Place[], dayKey: string) {
   return sorted[hash % sorted.length] ?? null;
 }
 
-function readPlaces(locale: string): Place[] {
-  const filePath = path.join(process.cwd(), "data", "places.json");
-  const raw = fs.readFileSync(filePath, "utf8");
-  const parsed = JSON.parse(raw);
-  const arr = Array.isArray(parsed) ? parsed : [];
+async function readPlaces(
+  locale: string,
+): Promise<Place[]> {
+  const arr =
+    await readPlaceCatalogueWithProfessionalOverrides();
+
   return arr
-    .map((item: any) => ({
+    .map((rawItem) => {
+      const item =
+        rawItem as RawHomePlace;
+
+      return ({
       id: String(item?.id ?? ""),
       name: String(item?.name ?? "").trim(),
       lat: typeof item?.lat === "number" ? item.lat : undefined,
@@ -77,7 +107,8 @@ timeZone: String(item?.timeZone ?? "").trim() || undefined,
       homeTextFar: String(item?.homeTextFar ?? "").trim() || undefined,
       homeTextNearEn: String(item?.translations?.en?.homeTextNear ?? "").trim() || undefined,
       homeTextFarEn: String(item?.translations?.en?.homeTextFar ?? "").trim() || undefined
-    }))
+      });
+    })
     .filter((item: Place) =>
       !!item.id &&
       !!item.name &&
@@ -98,12 +129,20 @@ const requestedSource =
 
   const l = locale === "en" ? "en" : "fr";
 
-  const allPlaces = readPlaces(l);
+  const allPlaces = await readPlaces(l);
+
+const supportedOpenPlaceSource =
+  requestedSource === "recent_additions_all" ||
+  requestedSource === "professional_space"
+    ? requestedSource
+    : null;
 
 const initialSelectedHomePlace =
-  requestedOpenPlace && requestedSource === "recent_additions_all"
+  requestedOpenPlace && supportedOpenPlaceSource
     ? allPlaces.find(
-        (item) => String(item.id) === String(requestedOpenPlace)
+        (item) =>
+          String(item.id) ===
+          String(requestedOpenPlace),
       ) ?? null
     : null;
 
@@ -133,7 +172,10 @@ return bTime - aTime;
       initialAllPlaces={allPlaces}
       initialSelectedHomePlace={initialSelectedHomePlace}
       initialSelectedHomePlaceSource={
-        initialSelectedHomePlace ? "recent_additions_all" : "home_detail"
+        initialSelectedHomePlace &&
+        supportedOpenPlaceSource
+          ? supportedOpenPlaceSource
+          : "home_detail"
       }
     />
   );

@@ -2101,7 +2101,7 @@ const filtered = source.filter((b) => {
                                       <img
                                         src={currentPlace.panoramaImage}
                                         alt=""
-                                        className="absolute inset-0 h-full w-full object-cover"
+                                        className="absolute inset-x-0 top-0 h-[60vh] w-full bg-black object-contain"
                                       />
                                     ) : null}
                                     <div
@@ -2378,20 +2378,25 @@ const filtered = source.filter((b) => {
             <img
               src={selectedDetailPlace.panoramaImage}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-x-0 top-0 h-[60vh] w-full bg-black object-contain"
             />
           ) : (
-            <div className="absolute inset-0 bg-white/10" />
+            <div className="absolute inset-x-0 top-0 h-[60vh] bg-black" />
           )}
 
-          <div className="absolute inset-0 z-10 overflow-y-auto">
-            <div className="relative mt-[55vh] min-h-[45vh] rounded-t-3xl bg-black/80 px-6 pt-6 pb-8">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 top-[60vh] bg-black"
+          />
+
+          <div className="absolute inset-0 z-10 overflow-y-auto overscroll-y-none">
+            <div className="relative mt-[60vh] min-h-[40vh] bg-black px-6 pt-6 pb-8">
               <div>
                 <div className="absolute inset-x-0 bottom-full z-40 -mb-px flex justify-center">
                   <button
                     type="button"
                     onClick={() => setSelectedPlaceCommentsOpen((value) => !value)}
-                    className="inline-flex rounded-t-xl rounded-b-none bg-black/55 px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black/60 active:bg-black/65"
+                    className="inline-flex rounded-t-xl rounded-b-none bg-black px-4 py-2 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-white/75 hover:bg-black active:bg-black"
                   >
                     {isFr ? "Commentaires" : "Comments"}
                   </button>
