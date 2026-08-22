@@ -3,11 +3,14 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 
+import PlaceResultCard from "@/components/place/PlaceResultCard";
+
 import BottomNavBar from "@/components/BottomNavBar";
 import ContributeForm from "@/components/ContributeForm";
 import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ProfessionalSpacePanel from "@/components/ProfessionalSpacePanel";
+import { getLocalizedCategory } from "@/lib/localizedCategory";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { isContextSuggestionCandidateOpen, pickContextPlaces } from "@/lib/contextSuggestions";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
@@ -169,48 +172,6 @@ function renderOpeningHours(openingHours: string | undefined, timeZone: string |
     );
   });
 }
-
-function getLocalizedCategory(category: string | undefined, isFr: boolean) {
-  const key = String(category ?? "").trim().toLowerCase();
-
-  const categories: Record<string, { fr: string; en: string }> = {
-    "grocery": { fr: "Épicerie", en: "Grocery" },
-    "épicerie": { fr: "Épicerie", en: "Grocery" },
-    "epicerie": { fr: "Épicerie", en: "Grocery" },
-    "café": { fr: "Café", en: "Cafe" },
-    "cafe": { fr: "Café", en: "Cafe" },
-    "restaurant": { fr: "Restaurant", en: "Restaurant" },
-    "marché": { fr: "Marché", en: "Market" },
-    "market": { fr: "Marché", en: "Market" },
-    "boutique": { fr: "Boutique", en: "Shop" },
-    "shop": { fr: "Boutique", en: "Shop" },
-    "librairie": { fr: "Librairie", en: "Bookstore" },
-    "bookstore": { fr: "Librairie", en: "Bookstore" },
-    "boulangerie": { fr: "Boulangerie", en: "Bakery" },
-    "bakery": { fr: "Boulangerie", en: "Bakery" },
-    "ferme": { fr: "Ferme", en: "Farm" },
-    "farm": { fr: "Ferme", en: "Farm" },
-    "atelier": { fr: "Atelier", en: "Workshop" },
-    "workshop": { fr: "Atelier", en: "Workshop" },
-    "lieu alternatif": { fr: "Lieu alternatif", en: "Alternative place" },
-    "lieu de vie": { fr: "Lieu de vie", en: "Alternative place" },
-    "alternative place": { fr: "Lieu alternatif", en: "Alternative place" },
-    "mode": { fr: "Mode", en: "Fashion" },
-    "fashion": { fr: "Mode", en: "Fashion" },
-    "brasserie": { fr: "Brasserie", en: "Brewery" },
-    "brasserie / bar": { fr: "Brasserie / bar", en: "Brewery / bar" },
-    "brasserie / bar / pub": { fr: "Brasserie / bar / pub", en: "Brewery / bar / pub" },
-    "brasserie bar": { fr: "Brasserie / bar", en: "Brewery / bar" },
-    "bar": { fr: "Bar", en: "Bar" },
-    "pub": { fr: "Pub", en: "Pub" },
-    "brunch": { fr: "Brunch", en: "Brunch" },
-    "café / brunch": { fr: "Café / brunch", en: "Cafe / brunch" },
-    "cafe / brunch": { fr: "Café / brunch", en: "Cafe / brunch" },
-  };
-
-  return categories[key]?.[isFr ? "fr" : "en"] ?? String(category ?? "").trim();
-}
-
 
 declare global {
   interface Window {
@@ -3403,75 +3364,50 @@ React.useEffect(() => {
                 <div className="mt-7 space-y-3">
                   {(searchResults ?? []).length > 0 ? (
                     (searchResults ?? []).map((item, index) => (
-                      <div
+                      <PlaceResultCard
                         key={item.id}
-                        data-search-result-id={item.id}
-                        data-search-result-rank={index + 1}
-                        className="overflow-hidden rounded-2xl border border-white/10 bg-white/8"
-                      >
-                        <div className="flex w-full gap-3 p-3 text-left">
-                          <img
-                            src={item.panoramaImage || "/explorer-bg.png?v=3"}
-                            alt=""
-                            className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                          />
-                          <div className="min-w-0 flex-1">
-                            <div className="truncate font-serif text-[17px] leading-tight text-white">
-                              {item.name}
-                            </div>
-                            <div className="mt-1 text-[12px] text-white/55">
-                              {[getLocalizedCategory(item.category, isFr), item.city].filter(Boolean).join(" · ")}
-                            </div>
-                            {item.miniText ? (
-                              <div className="mt-2 line-clamp-2 text-[13px] leading-snug text-white/70">
-                                {item.miniText}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
+                        searchResultId={item.id}
+                        searchResultRank={index + 1}
+                        name={item.name}
+                        panoramaImage={item.panoramaImage}
+                        categoryKey={item.category}
+                        categoryLabel={getLocalizedCategory(item.category, isFr)}
+                        city={item.city}
+                        miniText={item.miniText}
+                        buttonLabel={isFr ? "Voir la fiche" : "View details"}
+                        onViewDetails={() => {
+                          trackEvent({
+                            eventType: "click_search_result_detail",
+                            placeId: item.id,
+                            city: item.city,
+                            category: item.category,
+                            searchId: activeSearchId,
+                            searchRank: index + 1,
+                            locale,
+                            metadata: {
+                              name: item.name,
+                              query: activeSearchQuery || searchQuery.trim()
+                            }
+                          });
 
-                        <div className="border-t border-white/10">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              trackEvent({
-                                eventType: "click_search_result_detail",
-                                placeId: item.id,
-                                city: item.city,
-                                category: item.category,
-                                searchId: activeSearchId,
-                                searchRank: index + 1,
-                                locale,
-                                metadata: {
-                                  name: item.name,
-                                  query: activeSearchQuery || searchQuery.trim()
-                                }
-                              });
+                          trackEvent({
+                            eventType: "view_place_detail",
+                            placeId: item.id,
+                            city: item.city,
+                            category: item.category,
+                            searchId: activeSearchId,
+                            searchRank: index + 1,
+                            locale,
+                            metadata: {
+                              source: "search_result",
+                              name: item.name
+                            }
+                          });
 
-                              trackEvent({
-                                eventType: "view_place_detail",
-                                placeId: item.id,
-                                city: item.city,
-                                category: item.category,
-                                searchId: activeSearchId,
-                                searchRank: index + 1,
-                                locale,
-                                metadata: {
-                                  source: "search_result",
-                                  name: item.name
-                                }
-                              });
-
-                              setSelectedHomePlaceSource("search_result");
-
-                              setSelectedHomePlace(item);
-                            }}
-                            className="flex w-full items-center justify-center px-4 py-3 text-center text-[14px] font-semibold text-white/85"
-                          >
-                            {isFr ? "Voir la fiche" : "View details"}
-                          </button>
-                        </div>
-                      </div>
+                          setSelectedHomePlaceSource("search_result");
+                          setSelectedHomePlace(item);
+                        }}
+                      />
                     ))
                   ) : searchLoading ? (
                     <div className="rounded-2xl border border-white/10 bg-white/8 p-5 text-[14px] leading-relaxed text-white/60">
