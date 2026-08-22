@@ -3383,6 +3383,36 @@ React.useEffect(() => {
                 </p>
               </button>
             </div>
+
+            <div className="mt-2.5">
+              <div className="relative flex h-[132px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white">
+                <img
+                  src="/home/events-concert.webp"
+                  alt=""
+                  className="absolute inset-0 h-full w-full scale-110 object-cover blur-[3px]"
+                />
+
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(145deg, rgba(0,0,0,0.20), rgba(20,20,18,0.72))",
+                  }}
+                />
+
+                <p className="relative z-10 font-serif text-[20px] font-medium leading-tight">
+                  {isFr
+                    ? "Événements"
+                    : "Events"}
+                </p>
+
+                <p className="relative z-10 text-[15px] font-semibold tracking-[0.02em] text-white/90">
+                  {isFr
+                    ? "À venir"
+                    : "Coming soon"}
+                </p>
+              </div>
+            </div>
           </section>
 
 
