@@ -1,4 +1,6 @@
 
+import { rememberRecentViewedPlace } from "@/lib/recentViewedPlaces";
+
 import {
   getAnalyticsDeviceContext,
   getClientTimeZone,
@@ -101,6 +103,15 @@ export function trackEvent(
   payload: TrackEventPayload,
 ) {
   if (typeof window === "undefined") return;
+
+  if (
+    payload.eventType === "view_place_detail" &&
+    payload.placeId
+  ) {
+    rememberRecentViewedPlace(
+      payload.placeId,
+    );
+  }
 
   try {
     const context = getAnalyticsContext();

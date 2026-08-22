@@ -12,6 +12,10 @@ import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ProfessionalSpacePanel from "@/components/ProfessionalSpacePanel";
 import { getLocalizedCategory } from "@/lib/localizedCategory";
 import { isOpenNowFR } from "@/lib/openingHours";
+import {
+  readRecentViewedPlaceIds,
+  rememberRecentViewedPlace,
+} from "@/lib/recentViewedPlaces";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
 import { migrateLegacySavedPlacesToUser, readSavedPlacesStorage, setSavedPlacesUserId, syncSavedPlaceToServer, writeSavedPlacesStorage } from "@/lib/savedPlacesStorage";
@@ -1077,6 +1081,16 @@ React.useEffect(() => {
   const [selectedHomeMood, setSelectedHomeMood] =
     React.useState<HomeMoodId | null>(null);
 
+  const [
+    recentViewedPlaceIds,
+    setRecentViewedPlaceIds,
+  ] = React.useState<string[]>([]);
+
+  const [
+    recentViewedOpen,
+    setRecentViewedOpen,
+  ] = React.useState(false);
+
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(
     initialSelectedHomePlace
   );
@@ -1374,6 +1388,33 @@ React.useEffect(() => {
       homeMoodDayKey,
     ]);
 
+  const recentViewedPlaces =
+    React.useMemo(() => {
+      if (recentViewedPlaceIds.length === 0) {
+        return [];
+      }
+
+      const placesById = new Map(
+        allPlaces.map((place) => [
+          String(place.id),
+          place,
+        ]),
+      );
+
+      return recentViewedPlaceIds
+        .map((id) => placesById.get(id))
+        .filter(
+          (
+            place,
+          ): place is DiscoverPlace =>
+            Boolean(place),
+        )
+        .slice(0, 20);
+    }, [
+      recentViewedPlaceIds,
+      allPlaces,
+    ]);
+
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
@@ -1385,6 +1426,28 @@ React.useEffect(() => {
       newPlaces: (homeMemoryCache[locale]?.newPlaces?.length ?? 0) > 0 ? homeMemoryCache[locale]!.newPlaces : (initialNewPlaces ?? [])
     };
   }, [locale, initialDiscoverPlace, initialNewPlaces]);
+
+  React.useEffect(() => {
+    const syncRecentViewedPlaces = () => {
+      setRecentViewedPlaceIds(
+        readRecentViewedPlaceIds(),
+      );
+    };
+
+    syncRecentViewedPlaces();
+
+    window.addEventListener(
+      "im:recent-viewed-places-updated",
+      syncRecentViewedPlaces,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "im:recent-viewed-places-updated",
+        syncRecentViewedPlaces,
+      );
+    };
+  }, []);
 
   React.useEffect(() => {
     setSelectedPlaceCommentsOpen(false);
@@ -2943,6 +3006,116 @@ React.useEffect(() => {
             </form>
           </div>
 
+          <div className="mb-0 w-full shrink-0 pb-7">
+            <div className="relative z-10 w-full">
+              <div className="flex items-baseline gap-1.5 px-3 pt-2">
+                <p className="whitespace-nowrap font-serif text-[15px] font-medium tracking-[0.01em]">
+                  {isFr
+                    ? "Consultés récemment"
+                    : "Recently viewed"}
+                </p>
+
+                {recentViewedPlaces.length > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setRecentViewedOpen(true)
+                    }
+                    className="inline-flex items-baseline gap-0.5 text-[10px] leading-none text-white/55 transition-opacity active:opacity-60"
+                  >
+                    <span>
+                      {isFr
+                        ? "Tout afficher"
+                        : "View all"}
+                    </span>
+                    <span aria-hidden="true">
+                      →
+                    </span>
+                  </button>
+                ) : null}
+              </div>
+
+              {recentViewedPlaces.length > 0 ? (
+                <div className="im-home-scroll mt-3 flex gap-5 overflow-x-auto px-3 pb-2">
+                  {recentViewedPlaces
+                    .slice(0, 5)
+                    .map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          trackEvent({
+                            eventType:
+                              "view_place_detail",
+                            placeId:
+                              item.id,
+                            city:
+                              item.city,
+                            category:
+                              item.category,
+                            locale,
+                            metadata: {
+                              source:
+                                "recently_viewed",
+                              name:
+                                item.name,
+                            },
+                          });
+
+                          setSelectedHomePlaceSource(
+                            "recently_viewed",
+                          );
+
+                          setSelectedHomePlace(
+                            item,
+                          );
+                        }}
+                        className="relative h-[92px] w-[142px] shrink-0 overflow-hidden rounded-xl bg-white/10 text-left"
+                      >
+                        {item.panoramaImage ? (
+                          <img
+                            src={
+                              item.panoramaImage
+                            }
+                            alt=""
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
+                        ) : null}
+
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)",
+                          }}
+                        />
+
+                        <div className="absolute inset-x-0 bottom-0 z-10 p-2.5">
+                          <p className="line-clamp-2 font-serif text-[12px] font-medium leading-tight tracking-[0.01em]">
+                            {item.name}
+                          </p>
+
+                          <p className="mt-1 truncate text-[9px] opacity-80">
+                            {item.city ||
+                              item.address ||
+                              "Indie Map"}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                </div>
+              ) : (
+                <div className="px-3 pt-3">
+                  <p className="text-[12px] text-white/45">
+                    {isFr
+                      ? "Aucun historique connu"
+                      : "No viewing history yet"}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="mb-0 w-full shrink-0 pb-6">
               <div className="w-full relative z-10">
                 <div className="flex items-baseline gap-1.5 px-3 pt-2">
@@ -3212,8 +3385,118 @@ React.useEffect(() => {
             </div>
           </section>
 
+
         </div>
       </div>
+
+      {recentViewedOpen ? (
+        <div className="fixed inset-0 z-[2100] overflow-y-auto bg-[#171813] text-white">
+          <div className="sticky top-0 z-20 border-b border-white/10 bg-[#171813]/95 px-4 pb-4 pt-[calc(env(safe-area-inset-top)+14px)] backdrop-blur-xl">
+            <div className="relative flex min-h-[58px] items-center justify-center">
+              <button
+                type="button"
+                onClick={() =>
+                  setRecentViewedOpen(false)
+                }
+                aria-label={
+                  isFr
+                    ? "Retour"
+                    : "Back"
+                }
+                className="absolute left-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-[21px] text-white active:bg-white/[0.12]"
+              >
+                ←
+              </button>
+
+              <h2 className="px-12 text-center font-serif text-[24px] font-medium">
+                {isFr
+                  ? "Consultés récemment"
+                  : "Recently viewed"}
+              </h2>
+            </div>
+          </div>
+
+          <div className="px-3 pb-[calc(env(safe-area-inset-bottom)+36px)] pt-5">
+            {recentViewedPlaces.length > 0 ? (
+              <div className="grid grid-cols-2 gap-2.5">
+                {recentViewedPlaces.map(
+                  (item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        trackEvent({
+                          eventType:
+                            "view_place_detail",
+                          placeId:
+                            item.id,
+                          city:
+                            item.city,
+                          category:
+                            item.category,
+                          locale,
+                          metadata: {
+                            source:
+                              "recently_viewed",
+                            name:
+                              item.name,
+                          },
+                        });
+
+                        setSelectedHomePlaceSource(
+                          "recently_viewed",
+                        );
+
+                        setSelectedHomePlace(
+                          item,
+                        );
+                      }}
+                      className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
+                    >
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                        <img
+                          src={
+                            item.panoramaImage ||
+                            "/explorer-bg.png?v=3"
+                          }
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+
+                      <div className="p-3">
+                        <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
+                          {item.name}
+                        </p>
+
+                        <p className="mt-1.5 truncate text-[10px] text-white/50">
+                          {[
+                            getLocalizedCategory(
+                              item.category,
+                              isFr,
+                            ),
+                            item.city,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </p>
+                      </div>
+                    </button>
+                  ),
+                )}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-5">
+                <p className="text-center text-[12px] text-white/50">
+                  {isFr
+                    ? "Aucun historique connu."
+                    : "No viewing history yet."}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
 
       {selectedHomeMood ? (
         <div
