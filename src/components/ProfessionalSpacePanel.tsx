@@ -27,6 +27,26 @@ type ProfessionalPayload = {
   selected?: ProfessionalPlaceSummary | null;
 };
 
+type ProfessionalClaimPlace = {
+  id: string;
+  name: string;
+  city?: string;
+  category?: string;
+  address?: string;
+  panoramaImage?: string;
+};
+
+type ProfessionalAccessClaim = {
+  id: string;
+  status: string;
+  note?: string | null;
+  placeId: string;
+  placeName: string;
+  city?: string;
+  role?: string;
+  professionalEmail?: string;
+};
+
 type ProfessionalSpacePanelProps = {
   isFr: boolean;
   onOpenPersonalSpace: () => void;
@@ -73,6 +93,42 @@ export default function ProfessionalSpacePanel({
 
   const [noProfessionalPlace, setNoProfessionalPlace] =
     React.useState(false);
+
+  const [accessClaim, setAccessClaim] =
+    React.useState<ProfessionalAccessClaim | null>(null);
+
+  const [claimQuery, setClaimQuery] =
+    React.useState("");
+
+  const [claimResults, setClaimResults] =
+    React.useState<ProfessionalClaimPlace[]>([]);
+
+  const [claimSearching, setClaimSearching] =
+    React.useState(false);
+
+  const [claimSelectedPlace, setClaimSelectedPlace] =
+    React.useState<ProfessionalClaimPlace | null>(null);
+
+  const [claimRole, setClaimRole] =
+    React.useState("owner");
+
+  const [claimProfessionalEmail, setClaimProfessionalEmail] =
+    React.useState("");
+
+  const [claimMessage, setClaimMessage] =
+    React.useState("");
+
+  const [claimAuthorized, setClaimAuthorized] =
+    React.useState(false);
+
+  const [claimSending, setClaimSending] =
+    React.useState(false);
+
+  const [claimError, setClaimError] =
+    React.useState("");
+
+  const claimFormRef =
+    React.useRef<HTMLDivElement | null>(null);
 
   const [data, setData] =
     React.useState<ProfessionalPayload | null>(null);
@@ -182,6 +238,30 @@ export default function ProfessionalSpacePanel({
         ) {
           setData(null);
           setNoProfessionalPlace(true);
+
+          const claimRes =
+            await fetch(
+              "/api/v1/me/professional-access-claims",
+              {
+                cache: "no-store",
+              },
+            );
+
+          const claimPayload =
+            await claimRes
+              .json()
+              .catch(() => null);
+
+          if (
+            claimRes.ok &&
+            claimPayload?.ok
+          ) {
+            setAccessClaim(
+              claimPayload.claim ||
+                null,
+            );
+          }
+
           return;
         }
 
@@ -193,6 +273,8 @@ export default function ProfessionalSpacePanel({
             "professional_space_load_failed",
           );
         }
+
+        setAccessClaim(null);
 
         setData(
           payload as ProfessionalPayload,
@@ -381,6 +463,192 @@ export default function ProfessionalSpacePanel({
     }
   }
 
+  async function searchProfessionalPlaces() {
+    const query =
+      claimQuery.trim();
+
+    if (query.length < 2) {
+      setClaimError(
+        isFr
+          ? "Entre au moins deux caractères."
+          : "Enter at least two characters.",
+      );
+      return;
+    }
+
+    setClaimSearching(true);
+    setClaimError("");
+    setClaimSelectedPlace(null);
+
+    try {
+      const res =
+        await fetch(
+          `/api/v1/me/professional-access-claims?q=${encodeURIComponent(
+            query,
+          )}`,
+          {
+            cache: "no-store",
+          },
+        );
+
+      const payload =
+        await res
+          .json()
+          .catch(() => null);
+
+      if (
+        !res.ok ||
+        !payload?.ok
+      ) {
+        throw new Error(
+          "claim_search_failed",
+        );
+      }
+
+      setClaimResults(
+        Array.isArray(
+          payload.places,
+        )
+          ? payload.places
+          : [],
+      );
+    } catch {
+      setClaimResults([]);
+      setClaimError(
+        isFr
+          ? "Impossible d’effectuer la recherche pour le moment."
+          : "Unable to search right now.",
+      );
+    } finally {
+      setClaimSearching(false);
+    }
+  }
+
+  function openClaimPublicListing(
+    placeId: string,
+  ) {
+    const locale =
+      isFr ? "fr" : "en";
+
+    window.location.assign(
+      `/${locale}?openPlace=${encodeURIComponent(
+        placeId,
+      )}&source=professional_space`,
+    );
+  }
+
+  async function submitProfessionalAccessClaim() {
+    if (!claimSelectedPlace) {
+      return;
+    }
+
+    if (
+      !claimProfessionalEmail
+        .trim()
+    ) {
+      setClaimError(
+        isFr
+          ? "Indique un email professionnel."
+          : "Enter a professional email.",
+      );
+      return;
+    }
+
+    if (!claimAuthorized) {
+      setClaimError(
+        isFr
+          ? "Confirme que tu es propriétaire de l’établissement ou autorisé par son propriétaire à gérer cette fiche."
+          : "Confirm that you own this business or are authorized by its owner to manage this listing.",
+      );
+      return;
+    }
+
+    setClaimSending(true);
+    setClaimError("");
+
+    try {
+      const res =
+        await fetch(
+          "/api/v1/me/professional-access-claims",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            body:
+              JSON.stringify({
+                placeId:
+                  claimSelectedPlace.id,
+
+                role:
+                  claimRole,
+
+                professionalEmail:
+                  claimProfessionalEmail
+                    .trim(),
+
+                authorized:
+                  claimAuthorized,
+
+                message:
+                  claimMessage
+                    .trim(),
+              }),
+          },
+        );
+
+      const payload =
+        await res
+          .json()
+          .catch(() => null);
+
+      if (
+        !res.ok ||
+        !payload?.ok
+      ) {
+        if (
+          payload?.error ===
+          "claim_pending"
+        ) {
+          throw new Error(
+            "claim_pending",
+          );
+        }
+
+        throw new Error(
+          "claim_send_failed",
+        );
+      }
+
+      setAccessClaim(
+        payload.claim,
+      );
+
+      setClaimResults([]);
+      setClaimSelectedPlace(null);
+      setClaimQuery("");
+      setClaimMessage("");
+      setClaimAuthorized(false);
+    } catch (claimSendError) {
+      setClaimError(
+        claimSendError instanceof Error &&
+        claimSendError.message ===
+          "claim_pending"
+          ? isFr
+            ? "Une demande est déjà en cours pour cet établissement."
+            : "A request is already pending for this place."
+          : isFr
+            ? "Impossible d’envoyer la demande pour le moment."
+            : "Unable to send the request right now.",
+      );
+    } finally {
+      setClaimSending(false);
+    }
+  }
+
   if (loading) {
     return (
       <div className="py-8 text-center">
@@ -437,8 +705,8 @@ export default function ProfessionalSpacePanel({
             <p className="mt-4 max-w-md text-[13px] leading-relaxed text-white/48">
               {proAuthMode === "login"
                 ? isFr
-                  ? "Accède à l’espace dédié à ton établissement et à sa présence sur Indie Map."
-                  : "Access the space dedicated to your business and its presence on Indie Map."
+                  ? "Connecte-toi avec ton compte Indie Map. Le même compte donne accès à ton espace personnel et, une fois ton établissement associé, à ton espace professionnel."
+                  : "Sign in with your Indie Map account. The same account gives you access to your personal space and, once your business is linked, your professional space."
                 : isFr
                   ? "Entre l’email associé à ton compte Indie Map pour recevoir un lien de réinitialisation."
                   : "Enter the email linked to your Indie Map account to receive a reset link."}
@@ -553,8 +821,8 @@ export default function ProfessionalSpacePanel({
                       ? "Recevoir le lien"
                       : "Send reset link"
                     : isFr
-                      ? "Accéder à mon espace"
-                      : "Access my space"}
+                      ? "Se connecter avec mon compte Indie Map"
+                      : "Sign in with my Indie Map account"}
               </button>
 
               <button
@@ -589,47 +857,410 @@ export default function ProfessionalSpacePanel({
   }
 
   if (noProfessionalPlace) {
+    const pendingClaim =
+      accessClaim?.status ===
+      "pending";
+
     return (
-      <>
-        <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#5C6E3B]">
-            {isFr
-              ? "Espace pro"
-              : "Professional"}
-          </p>
+      <div className="space-y-4">
+        {pendingClaim ? (
+          <div className="rounded-3xl border border-[#8D854D]/25 bg-[linear-gradient(135deg,rgba(141,133,77,0.16),rgba(141,133,77,0.05))] p-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#BDB582]">
+              {isFr
+                ? "Demande envoyée"
+                : "Request sent"}
+            </p>
 
-          <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-white">
-            {isFr
-              ? "Votre lieu sur Indie Map"
-              : "Your place on Indie Map"}
-          </h2>
+            <h2 className="mt-2 font-serif text-[25px] font-semibold leading-tight text-[#F3EBD8]">
+              {accessClaim.placeName ||
+                (isFr
+                  ? "Votre établissement"
+                  : "Your business")}
+            </h2>
 
-          <p className="mt-3 text-[14px] leading-relaxed text-white/65">
-            {isFr
-              ? "Aucun établissement professionnel n’est encore associé à votre compte."
-              : "No professional place is currently linked to your account."}
-          </p>
+            {accessClaim.city ? (
+              <p className="mt-1 text-[12px] text-white/38">
+                {accessClaim.city}
+              </p>
+            ) : null}
 
-          <p className="mt-3 text-[13px] leading-relaxed text-white/45">
-            {isFr
-              ? "Si votre lieu est présent sur Indie Map et que vous souhaitez accéder à son espace professionnel, contactez-nous."
-              : "If your place is listed on Indie Map and you want access to its professional space, contact us."}
-          </p>
+            <p className="mt-4 text-[13px] leading-relaxed text-white/58">
+              {isFr
+                ? "Indie Map doit maintenant vérifier votre demande. Vous recevrez un email dès qu’elle aura été validée ou refusée."
+                : "Indie Map now needs to review your request. You will receive an email once it has been approved or declined."}
+            </p>
 
-          <a
-            href={
-              isFr
-                ? "mailto:pro@indie-map.com?subject=Acc%C3%A8s%20Espace%20Pro%20%E2%80%94%20Indie%20Map"
-                : "mailto:pro@indie-map.com?subject=Professional%20Space%20Access%20%E2%80%94%20Indie%20Map"
-            }
-            className="mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-white px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-black no-underline"
-          >
-            {isFr
-              ? "Nous contacter"
-              : "Contact us"}
-          </a>
-        </div>
-      </>
+            <button
+              type="button"
+              onClick={() =>
+                openClaimPublicListing(
+                  accessClaim.placeId,
+                )
+              }
+              className="mt-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#C5BC83]"
+            >
+              {isFr
+                ? "Voir la fiche →"
+                : "View listing →"}
+            </button>
+          </div>
+        ) : (
+          <>
+            {accessClaim?.status ===
+            "rejected" ? (
+              <div className="rounded-2xl border border-red-300/15 bg-red-500/[0.07] px-4 py-3">
+                <p className="text-[12px] font-semibold text-red-100/85">
+                  {isFr
+                    ? "Votre précédente demande n’a pas été validée."
+                    : "Your previous request was not approved."}
+                </p>
+
+                {accessClaim.note ? (
+                  <p className="mt-1 text-[11px] leading-relaxed text-red-100/55">
+                    {isFr
+                      ? `Motif : ${accessClaim.note}`
+                      : `Reason: ${accessClaim.note}`}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+
+            <div className="rounded-3xl border border-[#5C6E3B]/20 bg-[linear-gradient(135deg,rgba(92,110,59,0.14),rgba(0,0,0,0.20))] p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#9AAA7D]">
+                {isFr
+                  ? "Espace pro"
+                  : "Professional"}
+              </p>
+
+              <h2 className="mt-2 font-serif text-[26px] font-semibold leading-tight text-[#F3EBD8]">
+                {isFr
+                  ? "Associer mon établissement"
+                  : "Link my business"}
+              </h2>
+
+              <p className="mt-3 text-[13px] leading-relaxed text-white/52">
+                {isFr
+                  ? "Votre établissement est déjà présent sur Indie Map ? Recherchez-le pour demander l’accès à sa fiche."
+                  : "Is your business already on Indie Map? Search for it to request access to its listing."}
+              </p>
+
+              <div className="mt-5 flex gap-2">
+                <input
+                  value={claimQuery}
+                  onChange={(event) =>
+                    setClaimQuery(
+                      event.target.value,
+                    )
+                  }
+                  onKeyDown={(event) => {
+                    if (
+                      event.key ===
+                      "Enter"
+                    ) {
+                      event.preventDefault();
+                      void searchProfessionalPlaces();
+                    }
+                  }}
+                  placeholder={
+                    isFr
+                      ? "Nom de mon établissement"
+                      : "Business name"
+                  }
+                  className="min-w-0 flex-1 rounded-2xl border border-white/[0.09] bg-black/25 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/25 focus:border-[#8D854D]/50"
+                />
+
+                <button
+                  type="button"
+                  disabled={claimSearching}
+                  onClick={() =>
+                    void searchProfessionalPlaces()
+                  }
+                  className="shrink-0 rounded-2xl bg-[#F3EBD8] px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#1D1E18] disabled:opacity-50"
+                >
+                  {claimSearching
+                    ? "…"
+                    : isFr
+                      ? "Rechercher"
+                      : "Search"}
+                </button>
+              </div>
+
+              {claimError ? (
+                <p className="mt-3 text-[11px] leading-relaxed text-red-200/80">
+                  {claimError}
+                </p>
+              ) : null}
+            </div>
+
+            {claimResults.length > 0 ? (
+              <div className="space-y-2">
+                {claimResults.map(
+                  (place) => (
+                    <div
+                      key={place.id}
+                      className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035]"
+                    >
+                      <div className="flex gap-3 p-3">
+                        <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white/[0.06]">
+                          {place.panoramaImage ? (
+                            <img
+                              src={place.panoramaImage}
+                              alt=""
+                              className="h-full w-full object-cover"
+                            />
+                          ) : null}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <p className="font-serif text-[17px] font-semibold text-white/90">
+                            {place.name}
+                          </p>
+
+                          <p className="mt-1 text-[10px] text-white/38">
+                            {[
+                              place.category,
+                              place.city,
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 border-t border-white/[0.07]">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            openClaimPublicListing(
+                              place.id,
+                            )
+                          }
+                          className="border-r border-white/[0.07] px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.11em] text-white/45"
+                        >
+                          {isFr
+                            ? "Voir la fiche"
+                            : "View listing"}
+                        </button>
+
+                        <button
+                          type="button"
+                          onPointerDown={(event) => {
+                            event.stopPropagation();
+                          }}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+
+                            setClaimSelectedPlace(
+                              place,
+                            );
+
+                            setClaimAuthorized(false);
+                            setClaimError("");
+
+                            window.setTimeout(
+                              () => {
+                                claimFormRef.current
+                                  ?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "nearest",
+                                  });
+                              },
+                              50,
+                            );
+                          }}
+                          className={
+                            claimSelectedPlace?.id === place.id
+                              ? "px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.11em] text-[#F3EBD8]"
+                              : "px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.11em] text-[#B6C79A]"
+                          }
+                        >
+                          {claimSelectedPlace?.id === place.id
+                            ? isFr
+                              ? "Établissement sélectionné"
+                              : "Business selected"
+                            : isFr
+                              ? "C’est mon établissement"
+                              : "This is my business"}
+                        </button>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+            ) : null}
+
+            {claimSelectedPlace ? (
+              <div
+                ref={claimFormRef}
+                className="scroll-mt-4 rounded-3xl border border-[#8D854D]/20 bg-black/25 p-5"
+              >
+                <p className="text-[9px] font-semibold uppercase tracking-[0.20em] text-[#A69E67]">
+                  {isFr
+                    ? "Demander l’accès"
+                    : "Request access"}
+                </p>
+
+                <h3 className="mt-2 font-serif text-[22px] font-semibold text-[#F3EBD8]">
+                  {claimSelectedPlace.name}
+                </h3>
+
+                <div className="mt-5 space-y-4">
+                  <div>
+                    <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                      {isFr
+                        ? "Votre rôle"
+                        : "Your role"}
+                    </label>
+
+                    <select
+                      value={claimRole}
+                      onChange={(event) =>
+                        setClaimRole(
+                          event.target.value,
+                        )
+                      }
+                      className="w-full rounded-2xl border border-white/[0.09] bg-[#191919] px-4 py-3 text-[13px] text-white outline-none"
+                    >
+                      <option value="owner">
+                        {isFr
+                          ? "Propriétaire"
+                          : "Owner"}
+                      </option>
+
+                      <option value="manager">
+                        {isFr
+                          ? "Gérant / responsable"
+                          : "Manager"}
+                      </option>
+
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                      {isFr
+                        ? "Email professionnel"
+                        : "Professional email"}
+                    </label>
+
+                    <input
+                      type="email"
+                      value={
+                        claimProfessionalEmail
+                      }
+                      onChange={(event) =>
+                        setClaimProfessionalEmail(
+                          event.target.value,
+                        )
+                      }
+                      placeholder="contact@etablissement.com"
+                      className="w-full rounded-2xl border border-white/[0.09] bg-black/25 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/22"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                      {isFr
+                        ? "Message facultatif"
+                        : "Optional message"}
+                    </label>
+
+                    <textarea
+                      value={claimMessage}
+                      onChange={(event) =>
+                        setClaimMessage(
+                          event.target.value,
+                        )
+                      }
+                      maxLength={1000}
+                      rows={4}
+                      placeholder={
+                        isFr
+                          ? "Une précision pour nous aider à vérifier votre demande…"
+                          : "Anything that can help us verify your request…"
+                      }
+                      className="w-full resize-none rounded-2xl border border-white/[0.09] bg-black/25 px-4 py-3 text-[13px] leading-relaxed text-white outline-none placeholder:text-white/22"
+                    />
+                  </div>
+
+                  <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-[#8D854D]/20 bg-[#8D854D]/[0.06] p-3.5">
+                    <input
+                      type="checkbox"
+                      checked={claimAuthorized}
+                      onChange={(event) =>
+                        setClaimAuthorized(
+                          event.target.checked,
+                        )
+                      }
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-[#8D854D]"
+                    />
+
+                    <span className="text-[11px] leading-relaxed text-white/55">
+                      {isFr
+                        ? "Je confirme être propriétaire de cet établissement ou être autorisé par son propriétaire à gérer sa fiche Indie Map."
+                        : "I confirm that I own this business or am authorized by its owner to manage its Indie Map listing."}
+                    </span>
+                  </label>
+
+                  <button
+                    type="button"
+                    disabled={claimSending}
+                    onClick={() =>
+                      void submitProfessionalAccessClaim()
+                    }
+                    className="w-full rounded-2xl bg-[#F3EBD8] px-4 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#1D1E18] disabled:opacity-50"
+                  >
+                    {claimSending
+                      ? isFr
+                        ? "Envoi…"
+                        : "Sending…"
+                      : isFr
+                        ? "Envoyer ma demande"
+                        : "Send my request"}
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={claimSending}
+                    onClick={() => {
+                      setClaimSelectedPlace(
+                        null,
+                      );
+                      setClaimAuthorized(false);
+                      setClaimError("");
+                    }}
+                    className="w-full py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/35"
+                  >
+                    {isFr
+                      ? "Annuler"
+                      : "Cancel"}
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
+            <p className="px-2 text-center text-[10px] leading-relaxed text-white/28">
+              {isFr
+                ? "Vous ne trouvez pas votre établissement ou vous rencontrez un problème ? "
+                : "Can’t find your business or having an issue? "}
+
+              <a
+                href={
+                  isFr
+                    ? "mailto:pro@indie-map.com?subject=Acc%C3%A8s%20Espace%20Pro%20%E2%80%94%20Indie%20Map"
+                    : "mailto:pro@indie-map.com?subject=Professional%20Space%20Access%20%E2%80%94%20Indie%20Map"
+                }
+                className="underline underline-offset-2"
+              >
+                {isFr
+                  ? "Nous contacter"
+                  : "Contact us"}
+              </a>
+            </p>
+          </>
+        )}
+      </div>
     );
   }
 
