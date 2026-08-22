@@ -2758,7 +2758,7 @@ export default function PersonalSpacePanel({
         </div>
       </div>
 
-      <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-white/6 px-4 py-2.5">
+      <div className="mb-2 grid grid-cols-[minmax(0,1fr)_108px] items-center gap-3 rounded-xl border border-white/8 bg-white/6 px-4 py-2.5">
         <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
             {isFr
@@ -2768,13 +2768,13 @@ export default function PersonalSpacePanel({
 
           <p className="mt-0.5 text-[10.5px] leading-snug text-white/35">
             {isFr
-              ? "Gagne des points grâce à tes contributions. Ils pourront être utilisés dans un avenir proche."
-              : "Earn points through your contributions. They will be usable in the near future."}
+              ? "Gagne 100 points par contribution. Ils pourront être utilisés dans un avenir proche."
+              : "Earn 100 points per contribution. They will be usable in the near future."}
           </p>
         </div>
 
-        <div className="flex shrink-0 items-baseline gap-1.5">
-          <span className="font-serif text-[22px] font-semibold leading-none text-[#EAB308]">
+        <div className="flex min-w-[108px] items-baseline justify-end gap-1.5 whitespace-nowrap">
+          <span className="font-serif text-[20px] font-semibold leading-none tabular-nums text-[#EAB308]">
             {rewardPointsLoading
               ? "…"
               : rewardPointsBalance}
@@ -2804,7 +2804,7 @@ export default function PersonalSpacePanel({
 
               <p className="mt-1 text-[11px] leading-snug text-white/40">
                 {isFr
-                  ? "Fais découvrir Indie Map et gagne jusqu’à 100 points."
+                  ? "Fais découvrir Indie Map et gagne jusqu’à 100 points par parrainage."
                   : "Share Indie Map and earn up to 100 points."}
               </p>
             </div>
