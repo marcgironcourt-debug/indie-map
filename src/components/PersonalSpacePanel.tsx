@@ -201,9 +201,6 @@ function ContributorRankBadge({
   );
 }
 
-const APP_DOWNLOAD_URL_FR = "https://apps.apple.com/fr/app/indie-map-back-to-local/id6761104779?l=fr";
-const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-local/id6761104779?l=en";
-
 let sharedListsInflight: Promise<SharedList[]> | null = null;
 let sharedListsCache: { at: number; lists: SharedList[] } | null = null;
 
@@ -335,6 +332,13 @@ export default function PersonalSpacePanel({
   const [contributionsLoading, setContributionsLoading] = React.useState(false);
   const [contributionsError, setContributionsError] = React.useState("");
   const [contributions, setContributions] = React.useState<ContributionEntry[]>([]);
+  const [rewardPointsBalance, setRewardPointsBalance] = React.useState(0);
+  const [rewardPointsLoading, setRewardPointsLoading] = React.useState(false);
+  const [referralInstallPoints, setReferralInstallPoints] = React.useState(50);
+  const [referralSignupPoints, setReferralSignupPoints] = React.useState(50);
+  const [referralShareUrl, setReferralShareUrl] = React.useState("");
+  const [referralLinkLoading, setReferralLinkLoading] = React.useState(false);
+  const [referralMessage, setReferralMessage] = React.useState("");
   const friendsLoadingRef = React.useRef(false);
   const sharedListsLoadingRef = React.useRef(false);
   const onSharedListsSeenRef = React.useRef(onSharedListsSeen);
@@ -783,36 +787,151 @@ export default function PersonalSpacePanel({
     }
   }
 
-  async function inviteFriend() {
-    const nav = navigator as Navigator & {
-      share?: (data: { title?: string; text?: string; url?: string }) => Promise<void>;
-      clipboard?: {
-        writeText?: (text: string) => Promise<void>;
-      };
-    };
+  async function prepareReferralLink() {
+    if (!authProfile) {
+      setReferralShareUrl("");
+      return;
+    }
 
-    const appDownloadUrl = isFr ? APP_DOWNLOAD_URL_FR : APP_DOWNLOAD_URL_EN;
+    setReferralLinkLoading(true);
+
+    try {
+      const res = await fetch(
+        "/api/v1/me/referrals",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            locale,
+          }),
+        },
+      );
+
+      const data =
+        await res.json().catch(
+          () => null,
+        );
+
+      if (
+        !res.ok ||
+        !data?.ok ||
+        typeof data.shareUrl !== "string"
+      ) {
+        throw new Error(
+          "referral_link_failed",
+        );
+      }
+
+      setReferralShareUrl(
+        data.shareUrl,
+      );
+    } catch {
+      setReferralShareUrl("");
+    } finally {
+      setReferralLinkLoading(false);
+    }
+  }
+
+  async function inviteFriend() {
+    if (!referralShareUrl) {
+      setReferralMessage(
+        isFr
+          ? "Le lien est en cours de préparation."
+          : "Your link is being prepared.",
+      );
+
+      return;
+    }
+
+    setReferralMessage("");
+
+    const nav =
+      navigator as Navigator & {
+        share?: (data: {
+          title?: string;
+          text?: string;
+          url?: string;
+        }) => Promise<void>;
+        clipboard?: {
+          writeText?: (
+            text: string,
+          ) => Promise<void>;
+        };
+      };
 
     const shareData = {
       title: "Indie Map",
-      text: isFr ? "Découvre Indie Map, la carte des lieux locaux et indépendants." : "Discover Indie Map, the map of local and independent places.",
-      url: appDownloadUrl,
+      text: isFr
+        ? "Je te recommande Indie Map, la carte des lieux locaux et indépendants."
+        : "I recommend Indie Map, the map of local and independent places.",
+      url: referralShareUrl,
     };
 
+    /*
+     * Le lien existe déjà AVANT le clic :
+     * navigator.share() reste donc directement
+     * lié au geste utilisateur et ouvre la
+     * feuille native iOS / Android.
+     */
     if (typeof nav.share === "function") {
       try {
-        await nav.share(shareData);
+        await nav.share(
+          shareData,
+        );
+
+        setReferralMessage(
+          isFr
+            ? "Lien partagé."
+            : "Link shared.",
+        );
+
+        /*
+         * Le prochain partage recevra
+         * son propre token.
+         */
+        void prepareReferralLink();
+
         return;
-      } catch {
-        return;
+      } catch (error) {
+        if (
+          (error as {
+            name?: string;
+          })?.name === "AbortError"
+        ) {
+          return;
+        }
       }
     }
 
     try {
-      await nav.clipboard?.writeText?.(appDownloadUrl);
-      setFriendRequestMessage(isFr ? "Lien copié. Tu peux l’envoyer à ton ami." : "Link copied. You can send it to your friend.");
+      if (
+        typeof nav.clipboard?.writeText !==
+        "function"
+      ) {
+        throw new Error(
+          "clipboard_unavailable",
+        );
+      }
+
+      await nav.clipboard.writeText(
+        referralShareUrl,
+      );
+
+      setReferralMessage(
+        isFr
+          ? "Lien copié."
+          : "Link copied.",
+      );
+
+      void prepareReferralLink();
     } catch {
-      window.open(appDownloadUrl, "_blank", "noopener,noreferrer");
+      setReferralMessage(
+        isFr
+          ? "Impossible de partager le lien pour le moment."
+          : "Unable to share the link right now.",
+      );
     }
   }
 
@@ -886,6 +1005,102 @@ export default function PersonalSpacePanel({
     if (mode !== "sharedLists" || !authProfile) return;
     reloadSharedLists();
   }, [mode, authProfile?.id, reloadSharedLists]);
+
+  React.useEffect(() => {
+    if (!authProfile) {
+      setRewardPointsBalance(0);
+      return;
+    }
+
+    let cancelled = false;
+
+    setRewardPointsLoading(true);
+
+    fetch("/api/v1/me/rewards", {
+      cache: "no-store",
+    })
+      .then(async (res) => {
+        const data =
+          await res.json().catch(
+            () => null,
+          );
+
+        if (
+          !res.ok ||
+          !data?.ok
+        ) {
+          throw new Error(
+            "reward_points_load_failed",
+          );
+        }
+
+        if (cancelled) {
+          return;
+        }
+
+        const balance =
+          Number(data.balance);
+
+        const installPoints =
+          Number(
+            data.referral?.installPoints,
+          );
+
+        const signupPoints =
+          Number(
+            data.referral?.signupPoints,
+          );
+
+        setRewardPointsBalance(
+          Number.isFinite(balance)
+            ? balance
+            : 0,
+        );
+
+        if (
+          Number.isFinite(
+            installPoints,
+          )
+        ) {
+          setReferralInstallPoints(
+            installPoints,
+          );
+        }
+
+        if (
+          Number.isFinite(
+            signupPoints,
+          )
+        ) {
+          setReferralSignupPoints(
+            signupPoints,
+          );
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setRewardPointsBalance(0);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setRewardPointsLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authProfile?.id]);
+
+  React.useEffect(() => {
+    if (!authProfile) {
+      setReferralShareUrl("");
+      return;
+    }
+
+    void prepareReferralLink();
+  }, [authProfile?.id, locale]);
 
   React.useEffect(() => {
     if (!showContributions || !authProfile) return;
@@ -2488,37 +2703,190 @@ export default function PersonalSpacePanel({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => onModeChange("profile")}
-        className="mb-5 flex w-full items-center gap-4 rounded-3xl border border-white/10 bg-white/10 px-4 py-4 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_16px_35px_rgba(0,0,0,0.18)] hover:bg-white/13 active:bg-white/16"
-      >
-        <span className="relative h-14 w-14 shrink-0">
+      <div className="mb-5 flex w-full items-center gap-4 px-1">
+        <button
+          type="button"
+          onClick={() => onModeChange("profile")}
+          className="relative h-14 w-14 shrink-0 rounded-full"
+          aria-label={
+            isFr
+              ? "Voir mon profil"
+              : "View my profile"
+          }
+        >
           {authProfile.avatarUrl ? (
-            <img src={authProfile.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover" />
+            <img
+              src={authProfile.avatarUrl}
+              alt=""
+              className="h-14 w-14 rounded-full object-cover"
+            />
           ) : (
             <span
               className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white"
-              style={{ backgroundColor: authProfile.avatarColor || "#F97316" }}
+              style={{
+                backgroundColor:
+                  authProfile.avatarColor ||
+                  "#F97316",
+              }}
             >
-              {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
+              {(authProfile.displayName ||
+                authProfile.username ||
+                "?").slice(0, 1)}
             </span>
           )}
 
           <ContributorRankBadge
             rank={authProfile.contributionRank}
           />
-        </span>
+        </button>
 
-        <span className="min-w-0 flex-1">
-          <span className="block font-serif text-[25px] font-semibold leading-tight text-white">
-            {authProfile.displayName || authProfile.username}
+        <div className="min-w-0 flex-1">
+          <p className="font-serif text-[25px] font-semibold leading-tight text-white">
+            {authProfile.displayName ||
+              authProfile.username}
+          </p>
+
+          <button
+            type="button"
+            onClick={() => onModeChange("profile")}
+            className="mt-1 block text-left text-[12px] font-medium text-white/45 hover:text-white/70 active:text-white"
+          >
+            {isFr
+              ? "Voir et modifier mon profil"
+              : "View and edit my profile"}
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-white/6 px-4 py-2.5">
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+            {isFr
+              ? "Mes points"
+              : "My points"}
+          </p>
+
+          <p className="mt-0.5 text-[10.5px] leading-snug text-white/35">
+            {isFr
+              ? "Gagne des points grâce à tes contributions. Ils pourront être utilisés dans un avenir proche."
+              : "Earn points through your contributions. They will be usable in the near future."}
+          </p>
+        </div>
+
+        <div className="flex shrink-0 items-baseline gap-1.5">
+          <span className="font-serif text-[22px] font-semibold leading-none text-[#EAB308]">
+            {rewardPointsLoading
+              ? "…"
+              : rewardPointsBalance}
           </span>
-          <span className="mt-1 block text-[12px] font-medium text-white/45">
-            {isFr ? "Voir et modifier mon profil" : "View and edit my profile"}
+
+          <span className="text-[8px] font-semibold uppercase tracking-[0.12em] text-white/30">
+            pts
           </span>
-        </span>
-      </button>
+        </div>
+      </div>
+
+      <div
+        className="mb-6 overflow-hidden rounded-2xl border border-[#EAB308]/20"
+        style={{
+          background:
+            "linear-gradient(145deg, rgba(234,179,8,0.13), rgba(255,255,255,0.055) 52%, rgba(92,110,59,0.10))",
+        }}
+      >
+        <div className="px-4 pb-4 pt-3.5">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EAB308]">
+                {isFr
+                  ? "Parrainage d’amis"
+                  : "Friend referrals"}
+              </p>
+
+              <p className="mt-1 text-[11px] leading-snug text-white/40">
+                {isFr
+                  ? "Fais découvrir Indie Map et gagne jusqu’à 100 points."
+                  : "Share Indie Map and earn up to 100 points."}
+              </p>
+            </div>
+
+            <span className="shrink-0 rounded-full border border-[#EAB308]/20 bg-[#EAB308]/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[#EAB308]">
+              +100 pts
+            </span>
+          </div>
+
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="rounded-xl border border-white/8 bg-black/20 px-3 py-3">
+              <p className="font-serif text-[20px] font-semibold leading-none text-white">
+                +{referralInstallPoints}
+              </p>
+
+              <p className="mt-1.5 text-[9.5px] font-medium leading-snug text-white/40">
+                {isFr
+                  ? "Téléchargement réel de l’app"
+                  : "Real app download"}
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/8 bg-black/20 px-3 py-3">
+              <p className="font-serif text-[20px] font-semibold leading-none text-white">
+                +{referralSignupPoints}
+              </p>
+
+              <p className="mt-1.5 text-[9.5px] font-medium leading-snug text-white/40">
+                {isFr
+                  ? "Création du compte"
+                  : "Account creation"}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={inviteFriend}
+          disabled={
+            referralLinkLoading ||
+            !referralShareUrl
+          }
+          className="mx-4 mb-4 flex w-[calc(100%-2rem)] items-center justify-between gap-2 rounded-full bg-white/[0.82] px-4 py-2 text-left text-[12px] font-semibold text-black/80 backdrop-blur-sm active:bg-white/[0.72] disabled:opacity-55"
+        >
+          <span>
+            <span className="block">
+              {referralLinkLoading
+                ? isFr
+                  ? "Préparation du lien..."
+                  : "Preparing link..."
+                : isFr
+                  ? "Partager mon lien"
+                  : "Share my link"}
+            </span>
+
+          </span>
+
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-black/80 text-white/90">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 15V3" />
+              <path d="m8 7 4-4 4 4" />
+              <path d="M5 11v7.2A2.8 2.8 0 0 0 7.8 21h8.4a2.8 2.8 0 0 0 2.8-2.8V11" />
+            </svg>
+          </span>
+        </button>
+
+        {referralMessage ? (
+          <p className="border-t border-black/10 bg-white px-4 py-2 text-[10px] text-black/50">
+            {referralMessage}
+          </p>
+        ) : null}
+      </div>
 
       <div className="mb-6 grid grid-cols-4 gap-2">
         <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
@@ -2547,123 +2915,101 @@ export default function PersonalSpacePanel({
         </div>
       </div>
 
-      <section>
-        <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#5C6E3B]">
-          {isFr ? "Mon espace" : "My space"}
-        </p>
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={onOpenSavedPlaces}
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+        >
+          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+            {isFr ? "Mes lieux" : "My places"}
+          </span>
 
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={onOpenSavedPlaces}
-            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 20.2s-6.8-4.1-8.4-8.2C2.5 9.1 4.1 6.5 6.8 6.2c1.6-.2 3.1.6 4.2 2c1.1-1.4 2.6-2.2 4.2-2c2.7.3 4.3 2.9 3.2 5.8C18.8 16.1 12 20.2 12 20.2z" />
-              </svg>
-            </span>
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr ? "Mes lieux" : "My places"}
-              </span>
-              <span className="mt-1 block text-[11px] leading-snug text-white/35">
-                {isFr ? "Lieux gardés de côté." : "Saved places."}
-              </span>
-            </span>
-          </button>
+          <span className="block text-[11px] leading-snug text-white/35">
+            {isFr
+              ? "Lieux gardés de côté."
+              : "Saved places."}
+          </span>
+        </button>
 
-          <button
-            type="button"
-            onClick={() => onModeChange("friends")}
-            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-          >
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M8.5 11.2a3 3 0 1 0 0-6a3 3 0 0 0 0 6z" />
-                <path d="M15.8 10.6a2.6 2.6 0 1 0 0-5.2" />
-                <path d="M3.8 19c.8-3.1 2.6-4.8 4.7-4.8s3.9 1.7 4.7 4.8" />
-                <path d="M14.2 14.4c2 .3 3.5 1.8 4.1 4.6" />
-              </svg>
-              {incomingFriendRequestCount > 0 ? (
-                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
-              ) : null}
-            </span>
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr ? "Mes amis" : "Friends"}
-              </span>
-              <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr ? "Social privé." : "Private social."}
-              </span>
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onModeChange("sharedLists")}
-            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-          >
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 7.5h10" />
-                <path d="M7 12h10" />
-                <path d="M7 16.5h6" />
-                <path d="M5.5 3.8h13A1.7 1.7 0 0 1 20.2 5.5v13a1.7 1.7 0 0 1-1.7 1.7h-13a1.7 1.7 0 0 1-1.7-1.7v-13A1.7 1.7 0 0 1 5.5 3.8z" />
-              </svg>
-              {unseenSharedListCount > 0 ? (
-                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
-              ) : null}
-            </span>
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr ? "Listes partagées" : "Shared lists"}
-              </span>
-              <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr ? "Avec tes amis." : "With friends."}
-              </span>
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setShowContributions(true)}
-            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4.5 w-4.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 3.8v16.4" />
-                <path d="M3.8 12h16.4" />
-                <path d="M5.6 5.6l12.8 12.8" />
-                <path d="M18.4 5.6L5.6 18.4" />
-              </svg>
+        <button
+          type="button"
+          onClick={() => onModeChange("friends")}
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+        >
+          <span className="flex items-center gap-2">
+            <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+              {isFr ? "Mes amis" : "Friends"}
             </span>
 
-            <span>
-              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-                {isFr
-                  ? "Mes contributions"
-                  : "My contributions"}
-              </span>
+            {incomingFriendRequestCount > 0 ? (
+              <span
+                className="h-2 w-2 shrink-0 rounded-full bg-[#F97316]"
+                aria-label={
+                  isFr
+                    ? "Nouvelle demande d’ami"
+                    : "New friend request"
+                }
+              />
+            ) : null}
+          </span>
 
-              <span className="mt-1 block text-[11px] leading-snug text-white/30">
-                {isFr
-                  ? "Lieux ajoutés à Indie Map."
-                  : "Places added to Indie Map."}
-              </span>
+          <span className="block text-[11px] leading-snug text-white/30">
+            {isFr
+              ? "Social privé."
+              : "Private social."}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onModeChange("sharedLists")}
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+        >
+          <span className="flex items-center gap-2">
+            <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+              {isFr
+                ? "Listes partagées"
+                : "Shared lists"}
             </span>
-          </button>
-        </div>
-      </section>
+
+            {unseenSharedListCount > 0 ? (
+              <span
+                className="h-2 w-2 shrink-0 rounded-full bg-[#F97316]"
+                aria-label={
+                  isFr
+                    ? "Nouvelle liste partagée"
+                    : "New shared list"
+                }
+              />
+            ) : null}
+          </span>
+
+          <span className="block text-[11px] leading-snug text-white/30">
+            {isFr
+              ? "Avec tes amis."
+              : "With friends."}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setShowContributions(true)}
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+        >
+          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+            {isFr
+              ? "Mes contributions"
+              : "My contributions"}
+          </span>
+
+          <span className="block text-[11px] leading-snug text-white/30">
+            {isFr
+              ? "Lieux ajoutés à Indie Map."
+              : "Places added to Indie Map."}
+          </span>
+        </button>
+      </div>
 
       <div className="mt-5 border-t border-white/[0.07] pt-5">
         {hasProfessionalAccess && onOpenProfessionalSpace ? (
