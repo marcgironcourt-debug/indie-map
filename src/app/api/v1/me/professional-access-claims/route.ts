@@ -207,6 +207,16 @@ function claimPublicValue(
         value.role,
       ),
 
+    firstName:
+      cleanText(
+        value.firstName,
+      ),
+
+    lastName:
+      cleanText(
+        value.lastName,
+      ),
+
     professionalEmail:
       cleanText(
         value.professionalEmail,
@@ -263,11 +273,55 @@ export async function GET(
           query,
         );
 
-      const catalogue =
-        await readPlaceCatalogueWithProfessionalOverrides();
+      const [
+        catalogue,
+        memberships,
+      ] =
+        await Promise.all([
+          readPlaceCatalogueWithProfessionalOverrides(),
 
-      const places =
+          prisma
+            .professionalPlaceMember
+            .findMany({
+              where: {
+                userId:
+                  currentUser.id,
+              },
+
+              select: {
+                professionalPlace: {
+                  select: {
+                    placeId: true,
+                  },
+                },
+              },
+            }),
+        ]);
+
+      const linkedPlaceIds =
+        new Set(
+          memberships
+            .map(
+              (membership) =>
+                cleanText(
+                  membership
+                    .professionalPlace
+                    .placeId,
+                ),
+            )
+            .filter(Boolean),
+        );
+
+      const matchingPlaces =
         catalogue
+          .filter(
+            (item) =>
+              !linkedPlaceIds.has(
+                cleanText(
+                  item.id,
+                ),
+              ),
+          )
           .filter(
             (item) => {
               const haystack =
@@ -287,10 +341,16 @@ export async function GET(
                   needle,
                 );
             },
-          )
+          );
+
+      const total =
+        matchingPlaces.length;
+
+      const places =
+        matchingPlaces
           .slice(
             0,
-            12,
+            40,
           )
           .map(
             (item) => ({
@@ -335,6 +395,8 @@ export async function GET(
         {
           ok: true,
           places,
+          total,
+          limit: 40,
         },
         {
           headers: V1_HEADERS,
@@ -441,6 +503,22 @@ export async function POST(
         body?.role,
       );
 
+    const firstName =
+      cleanText(
+        body?.firstName,
+      ).slice(
+        0,
+        80,
+      );
+
+    const lastName =
+      cleanText(
+        body?.lastName,
+      ).slice(
+        0,
+        80,
+      );
+
     const professionalEmail =
       cleanText(
         body?.professionalEmail,
@@ -467,6 +545,8 @@ export async function POST(
       !placeId ||
       !allowedRoles.has(role) ||
       !authorized ||
+      firstName.length < 2 ||
+      lastName.length < 2 ||
       !professionalEmail ||
       professionalEmail.length >
         254 ||
@@ -679,6 +759,8 @@ export async function POST(
                   cataloguePlace.address,
                 ),
               role,
+              firstName,
+              lastName,
               professionalEmail,
               authorized: true,
               message,
@@ -762,6 +844,7 @@ export async function POST(
       `<p><strong>Établissement :</strong> ${esc(cleanText(cataloguePlace.name))}</p>` +
       `<p><strong>Ville :</strong> ${esc(cleanText(cataloguePlace.city) || "—")}</p>` +
       `<p><strong>Compte Indie Map :</strong> ${esc(account)}</p>` +
+      `<p><strong>Demandeur :</strong> ${esc(`${firstName} ${lastName}`)}</p>` +
       `<p><strong>Rôle déclaré :</strong> ${esc(roleLabel)}</p>` +
       `<p><strong>Email professionnel fourni :</strong> ${esc(professionalEmail)}</p>` +
       `<p><strong>Domaine email :</strong> ${esc(emailDomain || "—")}</p>` +

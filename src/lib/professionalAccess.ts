@@ -187,14 +187,18 @@ function hasProfessionalCapability(
   now: Date,
 ) {
   /*
-   * Pour le lancement, seul un owner
-   * vérifié manuellement par Indie Map
-   * peut administrer un lieu.
+   * Pour le lancement, un propriétaire
+   * ou un gérant / responsable validé
+   * manuellement par Indie Map peut
+   * administrer le lieu.
    *
-   * D'autres rôles pourront être ajoutés
-   * plus tard explicitement.
+   * Les membres d'équipe n'obtiennent
+   * pas cet accès principal.
    */
-  if (membership.role !== "owner") {
+  if (
+    membership.role !== "owner" &&
+    membership.role !== "manager"
+  ) {
     return false;
   }
 

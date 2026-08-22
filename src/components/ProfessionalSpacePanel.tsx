@@ -44,6 +44,8 @@ type ProfessionalAccessClaim = {
   placeName: string;
   city?: string;
   role?: string;
+  firstName?: string;
+  lastName?: string;
   professionalEmail?: string;
 };
 
@@ -94,6 +96,9 @@ export default function ProfessionalSpacePanel({
   const [noProfessionalPlace, setNoProfessionalPlace] =
     React.useState(false);
 
+  const [addingProfessionalPlace, setAddingProfessionalPlace] =
+    React.useState(false);
+
   const [accessClaim, setAccessClaim] =
     React.useState<ProfessionalAccessClaim | null>(null);
 
@@ -103,6 +108,9 @@ export default function ProfessionalSpacePanel({
   const [claimResults, setClaimResults] =
     React.useState<ProfessionalClaimPlace[]>([]);
 
+  const [claimResultTotal, setClaimResultTotal] =
+    React.useState(0);
+
   const [claimSearching, setClaimSearching] =
     React.useState(false);
 
@@ -111,6 +119,12 @@ export default function ProfessionalSpacePanel({
 
   const [claimRole, setClaimRole] =
     React.useState("owner");
+
+  const [claimFirstName, setClaimFirstName] =
+    React.useState("");
+
+  const [claimLastName, setClaimLastName] =
+    React.useState("");
 
   const [claimProfessionalEmail, setClaimProfessionalEmail] =
     React.useState("");
@@ -512,8 +526,16 @@ export default function ProfessionalSpacePanel({
           ? payload.places
           : [],
       );
+
+      setClaimResultTotal(
+        typeof payload.total ===
+          "number"
+          ? payload.total
+          : 0,
+      );
     } catch {
       setClaimResults([]);
+      setClaimResultTotal(0);
       setClaimError(
         isFr
           ? "Impossible d’effectuer la recherche pour le moment."
@@ -539,6 +561,22 @@ export default function ProfessionalSpacePanel({
 
   async function submitProfessionalAccessClaim() {
     if (!claimSelectedPlace) {
+      return;
+    }
+
+    if (
+      claimFirstName
+        .trim()
+        .length < 2 ||
+      claimLastName
+        .trim()
+        .length < 2
+    ) {
+      setClaimError(
+        isFr
+          ? "Indique ton prénom et ton nom."
+          : "Enter your first and last name.",
+      );
       return;
     }
 
@@ -586,6 +624,14 @@ export default function ProfessionalSpacePanel({
                 role:
                   claimRole,
 
+                firstName:
+                  claimFirstName
+                    .trim(),
+
+                lastName:
+                  claimLastName
+                    .trim(),
+
                 professionalEmail:
                   claimProfessionalEmail
                     .trim(),
@@ -630,6 +676,9 @@ export default function ProfessionalSpacePanel({
       setClaimResults([]);
       setClaimSelectedPlace(null);
       setClaimQuery("");
+      setClaimFirstName("");
+      setClaimLastName("");
+      setClaimProfessionalEmail("");
       setClaimMessage("");
       setClaimAuthorized(false);
     } catch (claimSendError) {
@@ -863,6 +912,46 @@ export default function ProfessionalSpacePanel({
 
     return (
       <div className="space-y-4">
+        {addingProfessionalPlace &&
+        data?.selected ? (
+          <button
+            type="button"
+            onClick={() => {
+              setAddingProfessionalPlace(
+                false,
+              );
+
+              setNoProfessionalPlace(
+                false,
+              );
+
+              setAccessClaim(null);
+              setClaimQuery("");
+              setClaimResults([]);
+              setClaimResultTotal(0);
+              setClaimSelectedPlace(
+                null,
+              );
+              setClaimFirstName("");
+              setClaimLastName("");
+              setClaimProfessionalEmail(
+                "",
+              );
+              setClaimMessage("");
+              setClaimAuthorized(false);
+              setClaimError("");
+            }}
+            className="inline-flex items-center gap-2 px-1 py-1 text-[10px] font-semibold uppercase tracking-[0.13em] text-white/42"
+          >
+            <span>←</span>
+
+            <span>
+              {isFr
+                ? "Retour à mon espace pro"
+                : "Back to my professional space"}
+            </span>
+          </button>
+        ) : null}
         {pendingClaim ? (
           <div className="rounded-3xl border border-[#8D854D]/25 bg-[linear-gradient(135deg,rgba(141,133,77,0.16),rgba(141,133,77,0.05))] p-5">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#BDB582]">
@@ -994,6 +1083,15 @@ export default function ProfessionalSpacePanel({
 
             {claimResults.length > 0 ? (
               <div className="space-y-2">
+                <p className="px-1 pb-1 text-[10px] text-white/32">
+                  {isFr
+                    ? claimResultTotal > 40
+                      ? `${claimResultTotal} établissements trouvés · les 40 premiers sont affichés, affine ta recherche si nécessaire.`
+                      : `${claimResultTotal} établissement${claimResultTotal > 1 ? "s" : ""} trouvé${claimResultTotal > 1 ? "s" : ""}.`
+                    : claimResultTotal > 40
+                      ? `${claimResultTotal} businesses found · showing the first 40, refine your search if needed.`
+                      : `${claimResultTotal} business${claimResultTotal === 1 ? "" : "es"} found.`}
+                </p>
                 {claimResults.map(
                   (place) => (
                     <div
@@ -1135,6 +1233,50 @@ export default function ProfessionalSpacePanel({
                       </option>
 
                     </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                        {isFr
+                          ? "Prénom"
+                          : "First name"}
+                      </label>
+
+                      <input
+                        type="text"
+                        autoComplete="given-name"
+                        maxLength={80}
+                        value={claimFirstName}
+                        onChange={(event) =>
+                          setClaimFirstName(
+                            event.target.value,
+                          )
+                        }
+                        className="w-full rounded-2xl border border-white/[0.09] bg-black/25 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/22"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                        {isFr
+                          ? "Nom"
+                          : "Last name"}
+                      </label>
+
+                      <input
+                        type="text"
+                        autoComplete="family-name"
+                        maxLength={80}
+                        value={claimLastName}
+                        onChange={(event) =>
+                          setClaimLastName(
+                            event.target.value,
+                          )
+                        }
+                        className="w-full rounded-2xl border border-white/[0.09] bg-black/25 px-4 py-3 text-[13px] text-white outline-none placeholder:text-white/22"
+                      />
+                    </div>
                   </div>
 
                   <div>
@@ -1665,6 +1807,7 @@ export default function ProfessionalSpacePanel({
 
       setData(null);
       setMode("dashboard");
+      setAddingProfessionalPlace(false);
       setNoProfessionalPlace(false);
       setAuthRequired(true);
     } catch {
@@ -2148,6 +2291,58 @@ export default function ProfessionalSpacePanel({
             )}
           </div>
         </section>
+      ) : null}
+
+
+      {mode === "dashboard" ? (
+        <button
+          type="button"
+          onClick={() => {
+            setAccessClaim(null);
+            setClaimQuery("");
+            setClaimResults([]);
+            setClaimResultTotal(0);
+            setClaimSelectedPlace(
+              null,
+            );
+            setClaimRole("owner");
+            setClaimFirstName("");
+            setClaimLastName("");
+            setClaimProfessionalEmail(
+              "",
+            );
+            setClaimMessage("");
+            setClaimAuthorized(false);
+            setClaimError("");
+
+            setAddingProfessionalPlace(
+              true,
+            );
+
+            setNoProfessionalPlace(
+              true,
+            );
+          }}
+          className="mb-6 flex w-full items-center justify-between rounded-2xl border border-[#8D854D]/20 bg-[#8D854D]/[0.06] px-4 py-3.5 text-left transition-colors hover:bg-[#8D854D]/[0.10]"
+        >
+          <span>
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#C4BA7A]">
+              {isFr
+                ? "Ajouter un établissement"
+                : "Add a business"}
+            </span>
+
+            <span className="mt-1 block text-[10px] leading-relaxed text-white/32">
+              {isFr
+                ? "Associer un autre établissement à ce même compte Indie Map."
+                : "Link another business to this same Indie Map account."}
+            </span>
+          </span>
+
+          <span className="ml-4 text-[22px] font-light text-[#B5AA6A]">
+            +
+          </span>
+        </button>
       ) : null}
 
       <section>
