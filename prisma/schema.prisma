@@ -648,3 +648,86 @@ model ProfessionalEventPromotion {
   @@index([userId, createdAt])
   @@index([eventStartsAt])
 }
+
+//
+// CONTACTS PRIVÉS DES LIEUX
+//
+// Données internes Indie Map : jamais exposées dans l'API publique.
+//
+// verificationStatus :
+// - manual_verified       = recherché/vérifié manuellement par Indie Map
+// - official_site         = corroboré sur une source officielle
+// - professional_confirmed
+// - invalid
+//
+model PlacePrivateContact {
+  id String @id @default(uuid())
+
+  // ID stable du lieu dans data/places.json.
+  placeId String
+
+  email           String
+  normalizedEmail String
+  emailDomain     String?
+
+  // general | reservation | press | personal | unknown
+  contactRole String @default("unknown")
+
+  verificationStatus String @default("manual_verified")
+
+  // Le contact reste mémorisé même lorsqu'une preuve web vieillit.
+  active Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  evidence PlacePrivateContactEvidence[]
+
+  @@unique([placeId, normalizedEmail])
+  @@index([placeId])
+  @@index([normalizedEmail])
+  @@index([emailDomain])
+  @@index([verificationStatus])
+}
+
+//
+// HISTORIQUE / PREUVES D'UN CONTACT
+//
+// Plusieurs sources peuvent corroborer le même email sans
+// perdre son origine manuelle.
+//
+// sourceKind :
+// - manual_sheet
+// - scout
+// - bulle
+// - official_site
+// - professional_claim
+//
+model PlacePrivateContactEvidence {
+  id String @id @default(uuid())
+
+  contactId  String
+  sourceKind String
+
+  // Facultatif pour une recherche manuelle historique
+  // dont l'URL exacte n'a pas été conservée.
+  sourceUrl         String?
+  sourceContentHash String?
+
+  // Date d'enregistrement de cette preuve dans Indie Map.
+  recordedAt DateTime @default(now())
+
+  // Renseigné lorsqu'une source a été effectivement
+  // contrôlée à une date précise.
+  verifiedAt DateTime?
+
+  // Facultatif. Lorsqu'une preuve automatisée est soumise
+  // à une politique de fraîcheur, minimum 180 jours.
+  expiresAt DateTime?
+
+  contact PlacePrivateContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@index([contactId])
+  @@index([sourceKind])
+  @@index([expiresAt])
+}

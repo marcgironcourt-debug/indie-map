@@ -10,6 +10,9 @@ import {
   type OfficialVerifierUsage,
   type ScoutOfficialPage,
 } from "../../src/lib/ai/officialSiteVerifier";
+import {
+  saveOfficialPlaceContact,
+} from "../../src/lib/privatePlaceContacts";
 
 dotenv.config({
   path: ".env.local",
@@ -141,6 +144,7 @@ type PageSummary = {
   title: string;
   contentHash: string;
   textLength: number;
+  emails?: string[];
 };
 
 type WebFusionProfile = {
@@ -1170,6 +1174,9 @@ ancrage territorial.
             page.contentHash,
           textLength:
             page.text.length,
+
+          emails:
+            page.emails,
         })
       ),
     officialFindings:
@@ -1687,6 +1694,189 @@ async function analyzeWebsiteGroup(
             .multiTenantProfile,
       }
     );
+
+  /*
+   * Attribution sûre des coordonnées :
+   *
+   * un site lié à un seul établissement peut
+   * alimenter directement le contact privé.
+   *
+   * Un site partagé entre plusieurs lieux n'est
+   * jamais propagé automatiquement.
+   */
+  if (
+    group.places.length === 1 &&
+    !group.multiTenantProfile
+  ) {
+    const place =
+      group.places[0];
+
+    /*
+     * Un même email peut apparaître sur beaucoup de pages
+     * du site (footer, collections, équipe, etc.).
+     *
+     * Pour Neon on ne conserve qu'une preuve Scout
+     * principale par email et par établissement.
+     */
+    const bestPageByEmail =
+      new Map<
+        string,
+        {
+          url: string;
+          contentHash: string;
+          priority: number;
+        }
+      >();
+
+    function evidencePriority(
+      urlValue: string
+    ) {
+      let pathname = "";
+
+      try {
+        pathname =
+          new URL(urlValue)
+            .pathname
+            .toLowerCase();
+      } catch {}
+
+      if (
+        /contact|nous-joindre|nous-contacter|get-in-touch/.test(
+          pathname
+        )
+      ) {
+        return 100;
+      }
+
+      if (
+        /mention|legal|privacy|confidential|imprint/.test(
+          pathname
+        )
+      ) {
+        return 90;
+      }
+
+      if (
+        /about|a-propos|equipe|team/.test(
+          pathname
+        )
+      ) {
+        return 70;
+      }
+
+      if (
+        pathname === "/" ||
+        pathname === ""
+      ) {
+        return 60;
+      }
+
+      return 10;
+    }
+
+    for (
+      const page of
+      siteAudit.officialPages
+    ) {
+      for (
+        const rawEmail of
+        page.emails || []
+      ) {
+        const email =
+          rawEmail
+            .trim()
+            .toLowerCase();
+
+        if (!email) {
+          continue;
+        }
+
+        const priority =
+          evidencePriority(
+            page.url
+          );
+
+        const existing =
+          bestPageByEmail.get(
+            email
+          );
+
+        if (
+          !existing ||
+          priority >
+            existing.priority
+        ) {
+          bestPageByEmail.set(
+            email,
+            {
+              url:
+                page.url,
+              contentHash:
+                page.contentHash,
+              priority,
+            }
+          );
+        }
+      }
+    }
+
+    let contactsCreated =
+      0;
+
+    let evidenceCreated =
+      0;
+
+    for (
+      const [
+        email,
+        page,
+      ] of bestPageByEmail
+    ) {
+      const result =
+        await saveOfficialPlaceContact({
+          placeId:
+            place.id,
+
+          email,
+
+          sourceUrl:
+            page.url,
+
+          sourceContentHash:
+            page.contentHash,
+
+          sourceKind:
+            "scout",
+
+          verifiedAt:
+            new Date(),
+        });
+
+      if (!result.saved) {
+        continue;
+      }
+
+      if (
+        result.contactCreated
+      ) {
+        contactsCreated += 1;
+      }
+
+      if (
+        result.evidenceCreated
+      ) {
+        evidenceCreated += 1;
+      }
+    }
+
+    if (
+      bestPageByEmail.size > 0
+    ) {
+      console.log(
+        `  emails officiels uniques=${bestPageByEmail.size} nouveaux contacts=${contactsCreated} nouvelles preuves=${evidenceCreated}`
+      );
+    }
+  }
 
   return materializeProfiles(
     group,

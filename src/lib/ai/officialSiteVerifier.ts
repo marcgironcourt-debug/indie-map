@@ -98,10 +98,13 @@ const SCOUT_DISABLE_PERSISTENT_OFFICIAL_PAGE_CACHE =
  * Une preuve vérifiée est conservée durablement en base.
  *
  * expiresAt représente uniquement sa période de fraîcheur :
- * après 30 jours, elle doit être revérifiée avant réutilisation.
+ * après 180 jours, elle doit être revérifiée avant réutilisation.
+ *
+ * Les données validées directement via l’Espace Pro restent
+ * prioritaires et peuvent être mises à jour immédiatement.
  */
 const VERIFIED_FACT_TTL_MS =
-  30 * 24 * 60 * 60 * 1000;
+  180 * 24 * 60 * 60 * 1000;
 
 export type OfficialVerifierUsage = {
   httpRequests: number;
@@ -161,6 +164,12 @@ type Page = {
   url: string;
   title: string;
   text: string;
+
+  /*
+   * Emails explicitement publiés sur cette
+   * ressource officielle.
+   */
+  emails?: string[];
 
   /*
    * Hash du corps HTTP brut dont cette page a été extraite.
@@ -513,6 +522,37 @@ async function fetchRaw(
   }
 }
 
+function normalizeExtractedOfficialEmail(
+  value: unknown
+) {
+  return String(value ?? "")
+    .trim()
+    .replace(
+      /^[<("'`]+|[>)"'`,.;:]+$/g,
+      ""
+    )
+    .toLowerCase();
+}
+
+function emailsFromOfficialText(
+  value: string
+) {
+  const matches =
+    String(value || "").match(
+      /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi
+    ) || [];
+
+  return [
+    ...new Set(
+      matches
+        .map(
+          normalizeExtractedOfficialEmail
+        )
+        .filter(Boolean)
+    ),
+  ];
+}
+
 function pageFromHtml(
   url: string,
   html: string
@@ -532,11 +572,134 @@ function pageFromHtml(
     .replace(/\s+/g, " ")
     .trim();
 
-  const text = $("body")
-    .text()
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, MAX_PAGE_TEXT);
+  /*
+   * Ne pas utiliser $("body").text() pour extraire
+   * les emails :
+   *
+   * Cheerio peut concaténer deux nœuds HTML voisins
+   * sans espace et transformer par exemple :
+   *
+   *   contact@site.fr + Formulaire
+   *
+   * en :
+   *
+   *   contact@site.frFormulaire
+   *
+   * On parcourt donc chaque nœud texte séparément.
+   */
+  const textParts: string[] = [];
+
+  function collectText(
+    node: any
+  ) {
+    if (!node) {
+      return;
+    }
+
+    if (
+      node.type === "text"
+    ) {
+      const value =
+        String(
+          node.data || ""
+        )
+          .replace(/\s+/g, " ")
+          .trim();
+
+      if (value) {
+        textParts.push(
+          value
+        );
+      }
+
+      return;
+    }
+
+    const children =
+      Array.isArray(
+        node.children
+      )
+        ? node.children
+        : [];
+
+    for (
+      const child of children
+    ) {
+      collectText(child);
+    }
+  }
+
+  collectText(
+    $("body").get(0)
+  );
+
+  const bodyText =
+    textParts
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const text =
+    bodyText.slice(
+      0,
+      MAX_PAGE_TEXT
+    );
+
+  /*
+   * Extraction nœud par nœud :
+   * un email ne peut ainsi jamais absorber
+   * le début du texte HTML suivant.
+   */
+  const emails =
+    new Set(
+      textParts.flatMap(
+        part =>
+          emailsFromOfficialText(
+            part
+          )
+      )
+    );
+
+  $("a[href]").each(
+    (_index, element) => {
+      const href =
+        String(
+          $(element).attr(
+            "href"
+          ) || ""
+        ).trim();
+
+      if (
+        !/^mailto:/i.test(
+          href
+        )
+      ) {
+        return;
+      }
+
+      const raw =
+        href
+          .replace(
+            /^mailto:/i,
+            ""
+          )
+          .split("?")[0];
+
+      for (
+        const candidate of
+        raw.split(/[;,]/)
+      ) {
+        const email =
+          normalizeExtractedOfficialEmail(
+            candidate
+          );
+
+        if (email) {
+          emails.add(email);
+        }
+      }
+    }
+  );
 
   const base = new URL(url);
 
@@ -604,6 +767,7 @@ function pageFromHtml(
       url,
       title,
       text,
+      emails: [...emails],
       contentHash:
         sha256(html),
     },
@@ -1089,6 +1253,11 @@ async function loadPdfPage(
 
           text:
             extractedText,
+
+          emails:
+            emailsFromOfficialText(
+              extractedText
+            ),
 
           /*
            * On mémorise le hash du vrai binaire PDF,
@@ -2039,6 +2208,7 @@ export type ScoutOfficialPage = {
   url: string;
   title: string;
   text: string;
+  emails: string[];
   contentHash: string;
 };
 
@@ -2112,6 +2282,11 @@ export async function collectOfficialPagesForScout(
     "les pratiques environnementales, le réemploi,",
     "l'impact social, la gouvernance, la communauté,",
     "les ateliers et les actions culturelles ou pédagogiques.",
+    "Inclure aussi les pages Contact, équipe,",
+    "mentions légales, informations légales,",
+    "et leurs équivalents dans toutes les langues,",
+    "afin de retrouver les coordonnées professionnelles",
+    "publiées officiellement par la structure.",
     "Inclure les équivalents dans toutes les langues.",
   ]
     .filter(Boolean)
@@ -2150,8 +2325,165 @@ export async function collectOfficialPagesForScout(
         url: page.url,
         title: page.title,
         text: page.text,
+        emails:
+          page.emails || [],
         contentHash:
           page.contentHash,
       })),
   };
 }
+
+/*
+ * ===========================================================
+ * SCOUT CONTACTS — COLLECTE OFFICIELLE SANS IA
+ * ===========================================================
+ *
+ * Contrairement à collectOfficialPagesForScout(), cette
+ * fonction n'utilise ni embeddings ni LLM.
+ *
+ * Elle charge :
+ * - la page d'accueil ;
+ * - les pages Contact ;
+ * - les mentions / informations légales ;
+ * - les pages À propos / équipe susceptibles de publier
+ *   des coordonnées professionnelles.
+ *
+ * Le cache officiel PostgreSQL existant reste utilisé par
+ * fetchRaw(), donc les pages fraîches ne sont pas retéléchargées.
+ */
+export async function collectOfficialContactPagesForScout(
+  options: {
+    place: OfficialSitePlace;
+    usage: OfficialVerifierUsage;
+    maxPages?: number;
+  }
+): Promise<{
+  discoveredCount: number;
+  selectedUrls: string[];
+  pages: ScoutOfficialPage[];
+}> {
+  const website =
+    String(
+      options.place.website || ""
+    ).trim();
+
+  if (!website) {
+    throw new Error(
+      `Site officiel absent pour ${options.place.name}`
+    );
+  }
+
+  const maxPages =
+    Math.max(
+      1,
+      Math.min(
+        10,
+        Math.trunc(
+          options.maxPages ?? 6
+        )
+      )
+    );
+
+  const discovery =
+    await discover(
+      website,
+      options.usage,
+      {
+        includeSitemaps: true,
+      }
+    );
+
+  function contactPriority(
+    candidate: CandidateUrl
+  ) {
+    const value =
+      `${candidate.label} ${candidate.url}`
+        .normalize("NFKC")
+        .toLowerCase();
+
+    if (
+      /contact|nous-contacter|nous-joindre|contact-us|get-in-touch|kontakt|contacto|contatti/.test(
+        value
+      )
+    ) {
+      return 100;
+    }
+
+    if (
+      /mentions?-legales?|legal|legal-notice|imprint|impressum|privacy|confidential|politique-de-confidentialite/.test(
+        value
+      )
+    ) {
+      return 90;
+    }
+
+    if (
+      /a-propos|about|qui-sommes-nous|equipe|team|notre-histoire|our-story/.test(
+        value
+      )
+    ) {
+      return 70;
+    }
+
+    return 0;
+  }
+
+  const selected =
+    discovery.candidates
+      .map(candidate => ({
+        candidate,
+        score:
+          contactPriority(
+            candidate
+          ),
+      }))
+      .filter(
+        item =>
+          item.score > 0
+      )
+      .sort(
+        (a, b) =>
+          b.score - a.score
+      )
+      .slice(
+        0,
+        maxPages
+      );
+
+  const pages =
+    await loadPages(
+      selected,
+      discovery.homePage,
+      options.usage
+    );
+
+  return {
+    discoveredCount:
+      discovery.candidates.length,
+
+    selectedUrls:
+      selected.map(
+        item =>
+          item.candidate.url
+      ),
+
+    pages:
+      pages.map(page => ({
+        url:
+          page.url,
+
+        title:
+          page.title,
+
+        text:
+          page.text,
+
+        emails:
+          page.emails || [],
+
+        contentHash:
+          page.contentHash,
+      })),
+  };
+}
+
