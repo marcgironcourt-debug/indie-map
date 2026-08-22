@@ -297,6 +297,263 @@ function pickDailyPlace(list: DiscoverPlace[], dayKey: string) {
   return sorted[hash % sorted.length] ?? null;
 }
 
+type HomeMoodId =
+  | "eat"
+  | "relax"
+  | "groceries"
+  | "browse"
+  | "inspire"
+  | "alternative";
+
+function matchesHomeMood(
+  place: DiscoverPlace,
+  mood: HomeMoodId,
+) {
+  const key = String(
+    place.category ?? "",
+  )
+    .trim()
+    .toLowerCase();
+
+  if (!key) return false;
+
+  if (mood === "eat") {
+    return (
+      key.includes("restaurant") ||
+      key.includes("boulangerie") ||
+      key.includes("bakery") ||
+      key.includes("brasserie") ||
+      key.includes("brewery") ||
+      key.includes("brunch")
+    );
+  }
+
+  if (mood === "relax") {
+    return (
+      key.includes("café") ||
+      key.includes("cafe") ||
+      key.includes("bar") ||
+      key.includes("pub")
+    );
+  }
+
+  if (mood === "groceries") {
+    return (
+      key.includes("épicerie") ||
+      key.includes("epicerie") ||
+      key.includes("grocery") ||
+      key.includes("marché") ||
+      key.includes("marche") ||
+      key.includes("market") ||
+      key.includes("ferme") ||
+      key.includes("farm")
+    );
+  }
+
+  if (mood === "browse") {
+    return (
+      key.includes("boutique") ||
+      key.includes("shop") ||
+      key.includes("mode") ||
+      key.includes("fashion") ||
+      key.includes("friperie") ||
+      key.includes("vêtement") ||
+      key.includes("vetement")
+    );
+  }
+
+  if (mood === "inspire") {
+    return (
+      key.includes("librairie") ||
+      key.includes("bookstore") ||
+      key.includes("bouquinerie") ||
+      key.includes("atelier") ||
+      key.includes("workshop")
+    );
+  }
+
+  return (
+    key.includes("lieu alternatif") ||
+    key.includes("lieu de vie") ||
+    key.includes("alternative place")
+  );
+}
+
+function getHomeMoodLabel(
+  mood: HomeMoodId,
+  isFr: boolean,
+) {
+  const labels: Record<
+    HomeMoodId,
+    { fr: string; en: string }
+  > = {
+    eat: {
+      fr: "Manger",
+      en: "Eat",
+    },
+    relax: {
+      fr: "Se détendre",
+      en: "Relax",
+    },
+    groceries: {
+      fr: "Faire ses courses",
+      en: "Shop for food",
+    },
+    browse: {
+      fr: "Flâner",
+      en: "Browse",
+    },
+    inspire: {
+      fr: "S’inspirer",
+      en: "Get inspired",
+    },
+    alternative: {
+      fr: "Sortir autrement",
+      en: "Go somewhere different",
+    },
+  };
+
+  return labels[mood][isFr ? "fr" : "en"];
+}
+
+function getHomeMoodCategoriesLabel(
+  mood: HomeMoodId,
+  isFr: boolean,
+) {
+  const labels: Record<
+    HomeMoodId,
+    { fr: string; en: string }
+  > = {
+    eat: {
+      fr: "Restaurant · Boulangerie · Brasserie · Brunch",
+      en: "Restaurant · Bakery · Brewery · Brunch",
+    },
+    relax: {
+      fr: "Café · Bar · Pub",
+      en: "Cafe · Bar · Pub",
+    },
+    groceries: {
+      fr: "Épicerie · Marché · Ferme",
+      en: "Grocery · Market · Farm",
+    },
+    browse: {
+      fr: "Boutique · Mode",
+      en: "Shop · Fashion",
+    },
+    inspire: {
+      fr: "Librairie · Atelier",
+      en: "Bookstore · Workshop",
+    },
+    alternative: {
+      fr: "Lieu alternatif",
+      en: "Alternative place",
+    },
+  };
+
+  return labels[mood][isFr ? "fr" : "en"];
+}
+
+function getDailyHomeMoodScore(
+  placeId: string,
+  dayKey: string,
+  mood: HomeMoodId,
+  proximity: "near" | "far",
+) {
+  const seed =
+    `${dayKey}|${mood}|${proximity}|${placeId}`;
+
+  let hash = 2166136261;
+
+  for (let i = 0; i < seed.length; i += 1) {
+    hash ^= seed.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function pickDailyHomeMoodPlaces(
+  places: DiscoverPlace[],
+  dayKey: string,
+  mood: HomeMoodId,
+  proximity: "near" | "far",
+  limit = 6,
+) {
+  if (places.length <= limit) {
+    return places;
+  }
+
+  return [...places]
+    .sort((a, b) => {
+      const scoreA =
+        getDailyHomeMoodScore(
+          String(a.id),
+          dayKey,
+          mood,
+          proximity,
+        );
+
+      const scoreB =
+        getDailyHomeMoodScore(
+          String(b.id),
+          dayKey,
+          mood,
+          proximity,
+        );
+
+      if (scoreA !== scoreB) {
+        return scoreA - scoreB;
+      }
+
+      return String(a.id).localeCompare(
+        String(b.id),
+      );
+    })
+    .slice(0, limit);
+}
+
+function getHomeMoodBackground(
+  mood: HomeMoodId,
+) {
+  const backgrounds: Record<HomeMoodId, string> = {
+    eat:
+      "linear-gradient(145deg, rgba(121,69,54,0.78), rgba(28,28,25,0.96))",
+    relax:
+      "linear-gradient(145deg, rgba(92,68,50,0.78), rgba(28,28,25,0.96))",
+    groceries:
+      "linear-gradient(145deg, rgba(111,101,40,0.82), rgba(28,28,25,0.96))",
+    browse:
+      "linear-gradient(145deg, rgba(48,74,78,0.82), rgba(28,28,25,0.96))",
+    inspire:
+      "linear-gradient(145deg, rgba(72,62,96,0.82), rgba(28,28,25,0.96))",
+    alternative:
+      "linear-gradient(145deg, rgba(65,91,61,0.82), rgba(28,28,25,0.96))",
+  };
+
+  return backgrounds[mood];
+}
+
+function getHomeMoodOpaqueBackground(
+  mood: HomeMoodId,
+) {
+  const backgrounds: Record<HomeMoodId, string> = {
+    eat:
+      "linear-gradient(145deg, rgb(121,69,54), rgb(28,28,25))",
+    relax:
+      "linear-gradient(145deg, rgb(92,68,50), rgb(28,28,25))",
+    groceries:
+      "linear-gradient(145deg, rgb(111,101,40), rgb(28,28,25))",
+    browse:
+      "linear-gradient(145deg, rgb(48,74,78), rgb(28,28,25))",
+    inspire:
+      "linear-gradient(145deg, rgb(72,62,96), rgb(28,28,25))",
+    alternative:
+      "linear-gradient(145deg, rgb(65,91,61), rgb(28,28,25))",
+  };
+
+  return backgrounds[mood];
+}
+
 export default function HomeScreen({
   locale,
   initialDiscoverPlace = null,
@@ -817,6 +1074,9 @@ React.useEffect(() => {
       .slice(0, 7);
   }, [nearbyPlaces, openNowTick]);
 
+  const [selectedHomeMood, setSelectedHomeMood] =
+    React.useState<HomeMoodId | null>(null);
+
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(
     initialSelectedHomePlace
   );
@@ -1008,6 +1268,112 @@ React.useEffect(() => {
   }, [allPlaces, initialAllPlaces]);
 
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
+  const homeMoodDayKey =
+    getLocalDayKey(new Date());
+
+  const selectedMoodNearbyCandidates =
+    React.useMemo(() => {
+      if (
+        !selectedHomeMood ||
+        !openNowHasLocation
+      ) {
+        return [];
+      }
+
+      return nearbyPlaces.filter(
+        (place) =>
+          matchesHomeMood(
+            place,
+            selectedHomeMood,
+          ),
+      );
+    }, [
+      selectedHomeMood,
+      nearbyPlaces,
+      openNowHasLocation,
+    ]);
+
+  const selectedMoodNearbyPlaces =
+    React.useMemo(() => {
+      if (!selectedHomeMood) {
+        return [];
+      }
+
+      const dailySelection =
+        pickDailyHomeMoodPlaces(
+          selectedMoodNearbyCandidates,
+          homeMoodDayKey,
+          selectedHomeMood,
+          "near",
+          6,
+        );
+
+      // On sélectionne quotidiennement les lieux,
+      // puis on conserve l'ordre de proximité existant.
+      const selectedIds = new Set(
+        dailySelection.map(
+          (place) => String(place.id),
+        ),
+      );
+
+      return selectedMoodNearbyCandidates.filter(
+        (place) =>
+          selectedIds.has(
+            String(place.id),
+          ),
+      );
+    }, [
+      selectedHomeMood,
+      selectedMoodNearbyCandidates,
+      homeMoodDayKey,
+    ]);
+
+  const selectedMoodFarPlaces =
+    React.useMemo(() => {
+      if (
+        !selectedHomeMood ||
+        !openNowHasLocation
+      ) {
+        return [];
+      }
+
+      // Exclure TOUS les lieux réellement proches,
+      // même ceux qui ne font pas partie des 6 du jour.
+      const nearbyIds = new Set(
+        selectedMoodNearbyCandidates.map(
+          (place) => String(place.id),
+        ),
+      );
+
+      const candidates = allPlaces
+        .filter((place) =>
+          matchesHomeMood(
+            place,
+            selectedHomeMood,
+          ),
+        )
+        .filter(
+          (place) =>
+            !nearbyIds.has(
+              String(place.id),
+            ),
+        );
+
+      return pickDailyHomeMoodPlaces(
+        candidates,
+        homeMoodDayKey,
+        selectedHomeMood,
+        "far",
+        6,
+      );
+    }, [
+      selectedHomeMood,
+      selectedMoodNearbyCandidates,
+      allPlaces,
+      openNowHasLocation,
+      homeMoodDayKey,
+    ]);
+
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
@@ -2724,13 +3090,13 @@ React.useEffect(() => {
 
           <section className="mt-7 w-full shrink-0 px-3 pb-6">
             <div className="grid grid-cols-2 gap-2.5">
-
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("eat")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(121,69,54,0.78), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("eat"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2746,10 +3112,11 @@ React.useEffect(() => {
 
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("relax")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(92,68,50,0.78), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("relax"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2765,10 +3132,11 @@ React.useEffect(() => {
 
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("groceries")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(111,101,40,0.82), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("groceries"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2784,10 +3152,11 @@ React.useEffect(() => {
 
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("browse")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(48,74,78,0.82), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("browse"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2803,10 +3172,11 @@ React.useEffect(() => {
 
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("inspire")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(72,62,96,0.82), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("inspire"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2822,10 +3192,11 @@ React.useEffect(() => {
 
               <button
                 type="button"
+                onClick={() => setSelectedHomeMood("alternative")}
                 className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
                 style={{
                   background:
-                    "linear-gradient(145deg, rgba(65,91,61,0.82), rgba(28,28,25,0.96))",
+                    getHomeMoodBackground("alternative"),
                 }}
               >
                 <p className="font-serif text-[18px] font-medium leading-tight">
@@ -2838,12 +3209,274 @@ React.useEffect(() => {
                     : "Alternative place"}
                 </p>
               </button>
-
             </div>
           </section>
 
         </div>
       </div>
+
+      {selectedHomeMood ? (
+        <div
+          className="fixed inset-0 z-[2100] overflow-y-auto text-white"
+          style={{
+            background:
+              getHomeMoodOpaqueBackground(selectedHomeMood),
+          }}
+        >
+          <div
+            className="sticky top-0 z-20 border-b border-white/10 px-4 pb-4 pt-[calc(env(safe-area-inset-top)+14px)] backdrop-blur-xl"
+            style={{
+              background:
+                getHomeMoodOpaqueBackground(selectedHomeMood),
+            }}
+          >
+            <div className="relative flex min-h-[58px] items-center justify-center">
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedHomeMood(null)
+                }
+                aria-label={
+                  isFr
+                    ? "Retour"
+                    : "Back"
+                }
+                className="absolute left-0 grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-[21px] text-white active:bg-white/[0.12]"
+              >
+                ←
+              </button>
+
+              <div className="min-w-0 px-12 text-center">
+                <h2 className="font-serif text-[24px] font-medium leading-tight">
+                  {getHomeMoodLabel(
+                    selectedHomeMood,
+                    isFr,
+                  )}
+                </h2>
+
+                <p className="mt-1.5 text-[10px] leading-snug text-white/55">
+                  {getHomeMoodCategoriesLabel(
+                    selectedHomeMood,
+                    isFr,
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="px-3 pb-[calc(env(safe-area-inset-bottom)+36px)] pt-5">
+            {!openNowHasLocation ? (
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-4">
+                <p className="text-[12px] leading-relaxed text-white/55">
+                  {isFr
+                    ? "Ta localisation est nécessaire pour séparer les lieux proches des lieux plus éloignés."
+                    : "Your location is needed to separate nearby places from places farther away."}
+                </p>
+              </div>
+            ) : (
+              <>
+                <section>
+                  <div className="mb-3 flex items-baseline justify-between gap-3 px-1">
+                    <h3 className="font-serif text-[17px] font-medium">
+                      {isFr
+                        ? "Lieux proches de toi"
+                        : "Places near you"}
+                    </h3>
+
+                    <span className="text-[10px] text-white/35">
+                      {selectedMoodNearbyPlaces.length}
+                    </span>
+                  </div>
+
+                  {selectedMoodNearbyPlaces.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {selectedMoodNearbyPlaces.map(
+                        (item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => {
+                              trackEvent({
+                                eventType:
+                                  "view_place_detail",
+                                placeId:
+                                  item.id,
+                                city:
+                                  item.city,
+                                category:
+                                  item.category,
+                                locale,
+                                metadata: {
+                                  source:
+                                    "home_mood",
+                                  mood:
+                                    selectedHomeMood,
+                                  proximity:
+                                    "near",
+                                  name:
+                                    item.name,
+                                },
+                              });
+
+                              setSelectedHomePlaceSource(
+                                "home_mood",
+                              );
+                              setSelectedHomePlace(
+                                item,
+                              );
+                            }}
+                            className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
+                          >
+                            <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                              <img
+                                src={
+                                  item.panoramaImage ||
+                                  "/explorer-bg.png?v=3"
+                                }
+                                alt=""
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+
+                            <div className="p-3">
+                              <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
+                                {item.name}
+                              </p>
+
+                              <p className="mt-1.5 truncate text-[10px] text-white/50">
+                                {[
+                                  getLocalizedCategory(
+                                    item.category,
+                                    isFr,
+                                  ),
+                                  item.city,
+                                ]
+                                  .filter(
+                                    Boolean,
+                                  )
+                                  .join(
+                                    " · ",
+                                  )}
+                              </p>
+                            </div>
+                          </button>
+                        ),
+                      )}
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
+                      <p className="text-[11px] leading-snug text-white/45">
+                        {isFr
+                          ? "Aucun lieu correspondant à cette envie près de toi."
+                          : "No places matching this mood near you."}
+                      </p>
+                    </div>
+                  )}
+                </section>
+
+                <section className="mt-8">
+                  <div className="mb-3 flex items-baseline justify-between gap-3 px-1">
+                    <h3 className="font-serif text-[17px] font-medium">
+                      {isFr
+                        ? "Lieux loin de toi"
+                        : "Places farther away"}
+                    </h3>
+
+                    <span className="text-[10px] text-white/35">
+                      {selectedMoodFarPlaces.length}
+                    </span>
+                  </div>
+
+                  {selectedMoodFarPlaces.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {selectedMoodFarPlaces.map(
+                        (item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => {
+                              trackEvent({
+                                eventType:
+                                  "view_place_detail",
+                                placeId:
+                                  item.id,
+                                city:
+                                  item.city,
+                                category:
+                                  item.category,
+                                locale,
+                                metadata: {
+                                  source:
+                                    "home_mood",
+                                  mood:
+                                    selectedHomeMood,
+                                  proximity:
+                                    "far",
+                                  name:
+                                    item.name,
+                                },
+                              });
+
+                              setSelectedHomePlaceSource(
+                                "home_mood",
+                              );
+                              setSelectedHomePlace(
+                                item,
+                              );
+                            }}
+                            className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
+                          >
+                            <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                              <img
+                                src={
+                                  item.panoramaImage ||
+                                  "/explorer-bg.png?v=3"
+                                }
+                                alt=""
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+
+                            <div className="p-3">
+                              <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
+                                {item.name}
+                              </p>
+
+                              <p className="mt-1.5 truncate text-[10px] text-white/50">
+                                {[
+                                  getLocalizedCategory(
+                                    item.category,
+                                    isFr,
+                                  ),
+                                  item.city,
+                                ]
+                                  .filter(
+                                    Boolean,
+                                  )
+                                  .join(
+                                    " · ",
+                                  )}
+                              </p>
+                            </div>
+                          </button>
+                        ),
+                      )}
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
+                      <p className="text-[11px] leading-snug text-white/45">
+                        {isFr
+                          ? "Aucun autre lieu correspondant à cette envie."
+                          : "No other places matching this mood."}
+                      </p>
+                    </div>
+                  )}
+                </section>
+              </>
+            )}
+          </div>
+        </div>
+      ) : null}
 
       {selectedHomePlace ? (
         <div className="fixed inset-0 z-[2200] overflow-hidden bg-[#2f2f2f] text-white">
