@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getContributionRankForUser } from "@/lib/contributionRanking";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -19,7 +20,7 @@ function serializePublicUser(user: {
   avatarColor: string | null;
   visitedPlacesVisibleToFriends: boolean;
   commentsVisibleToFriends: boolean;
-}) {
+}, contributionRank: number | null) {
   return {
     id: user.id,
     username: user.username,
@@ -28,6 +29,7 @@ function serializePublicUser(user: {
     avatarColor: user.avatarColor,
     visitedPlacesVisibleToFriends: user.visitedPlacesVisibleToFriends,
     commentsVisibleToFriends: user.commentsVisibleToFriends,
+    contributionRank,
   };
 }
 
@@ -91,6 +93,9 @@ export async function GET(
       return NextResponse.json({ ok: false }, { status: 404, headers: V1_HEADERS });
     }
 
+    const { contributionRank } =
+      await getContributionRankForUser(friend.id);
+
     const visitedPlaces = friend.visitedPlacesVisibleToFriends
       ? await prisma.userPlace.findMany({
           where: {
@@ -112,7 +117,10 @@ export async function GET(
     return NextResponse.json(
       {
         ok: true,
-        friend: serializePublicUser(friend),
+        friend: serializePublicUser(
+          friend,
+          contributionRank,
+        ),
         visitedPlaces: visitedPlaces.map((item) => ({
           placeId: item.placeId,
           visitedAt: item.visitedAt ? item.visitedAt.toISOString() : null,

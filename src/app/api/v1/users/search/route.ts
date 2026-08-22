@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getContributionRankingMap } from "@/lib/contributionRanking";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -18,13 +19,14 @@ function serializePublicUser(user: {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
-}) {
+}, contributionRank: number | null) {
   return {
     id: user.id,
     username: user.username,
     displayName: user.displayName,
     avatarUrl: user.avatarUrl,
     avatarColor: user.avatarColor,
+    contributionRank,
   };
 }
 
@@ -74,10 +76,18 @@ export async function GET(req: Request) {
       take: 8,
     });
 
+    const contributionRanking =
+      await getContributionRankingMap();
+
     return NextResponse.json(
       {
         ok: true,
-        users: users.map(serializePublicUser),
+        users: users.map((user) =>
+          serializePublicUser(
+            user,
+            contributionRanking.get(user.id)?.contributionRank ?? null,
+          ),
+        ),
       },
       { headers: V1_HEADERS }
     );

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getContributionRankingMap } from "@/lib/contributionRanking";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -12,13 +13,14 @@ function serializePublicUser(user: {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
-}) {
+}, contributionRank: number | null) {
   return {
     id: user.id,
     username: user.username,
     displayName: user.displayName,
     avatarUrl: user.avatarUrl,
     avatarColor: user.avatarColor,
+    contributionRank,
   };
 }
 
@@ -73,6 +75,9 @@ export async function GET() {
       }),
     ]);
 
+    const contributionRanking =
+      await getContributionRankingMap();
+
     const friends = accepted.map((friendship) => {
       const friend = friendship.requesterId === currentUser.id ? friendship.receiver : friendship.requester;
 
@@ -81,7 +86,10 @@ export async function GET() {
         status: friendship.status,
         createdAt: friendship.createdAt.toISOString(),
         updatedAt: friendship.updatedAt.toISOString(),
-        user: serializePublicUser(friend),
+        user: serializePublicUser(
+          friend,
+          contributionRanking.get(friend.id)?.contributionRank ?? null,
+        ),
       };
     });
 
@@ -89,14 +97,20 @@ export async function GET() {
       id: friendship.id,
       status: friendship.status,
       createdAt: friendship.createdAt.toISOString(),
-      user: serializePublicUser(friendship.requester),
+      user: serializePublicUser(
+        friendship.requester,
+        contributionRanking.get(friendship.requester.id)?.contributionRank ?? null,
+      ),
     }));
 
     const outgoingRequests = outgoing.map((friendship) => ({
       id: friendship.id,
       status: friendship.status,
       createdAt: friendship.createdAt.toISOString(),
-      user: serializePublicUser(friendship.receiver),
+      user: serializePublicUser(
+        friendship.receiver,
+        contributionRanking.get(friendship.receiver.id)?.contributionRank ?? null,
+      ),
     }));
 
     return NextResponse.json(

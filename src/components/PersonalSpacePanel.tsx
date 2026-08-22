@@ -14,6 +14,7 @@ export type PersonalSpaceAuthProfile = {
   avatarUrl: string | null;
   avatarColor: string | null;
   profileCompleted: boolean;
+  contributionRank?: number | null;
 };
 
 type FriendPublicUser = {
@@ -22,6 +23,7 @@ type FriendPublicUser = {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
+  contributionRank?: number | null;
 };
 
 type FriendEntry = {
@@ -63,6 +65,11 @@ type SharedList = {
   updatedAt: string;
   members: SharedListMember[];
   places: SharedListPlace[];
+};
+
+type ContributionEntry = {
+  placeId: string;
+  approvedAt: string | null;
 };
 
 type PlaceSummary = {
@@ -155,6 +162,44 @@ type PersonalSpacePanelProps = {
 };
 
 const AVATAR_COLORS = ["#F97316", "#84A98C", "#2563EB", "#A855F7", "#EAB308", "#EC4899"];
+
+function ContributorRankBadge({
+  rank,
+  compact = false,
+}: {
+  rank?: number | null;
+  compact?: boolean;
+}) {
+  if (!rank || rank < 1) return null;
+
+  return (
+    <span
+      className={`absolute -right-1 -top-1 z-20 flex items-center justify-center rounded-full border border-white/20 bg-[#202020] font-bold shadow-[0_4px_12px_rgba(0,0,0,0.4)] ${
+        compact
+          ? "h-5 min-w-5 px-1 text-[8px]"
+          : "h-6 min-w-6 px-1 text-[9px]"
+      }`}
+      aria-label={`Contribution rank ${rank}`}
+      title={`#${rank}`}
+    >
+      {rank === 1 ? (
+        <svg
+          viewBox="0 0 24 24"
+          className={compact ? "h-3 w-3" : "h-3.5 w-3.5"}
+          fill="currentColor"
+          aria-hidden="true"
+          style={{ color: "#EAB308" }}
+        >
+          <path d="M3.2 7.2 7.4 11l4.6-7 4.6 7 4.2-3.8-2 10.8H5.2L3.2 7.2Zm2.6 12.1h12.4v1.8H5.8v-1.8Z" />
+        </svg>
+      ) : (
+        <span className="text-white">
+          #{rank}
+        </span>
+      )}
+    </span>
+  );
+}
 
 const APP_DOWNLOAD_URL_FR = "https://apps.apple.com/fr/app/indie-map-back-to-local/id6761104779?l=fr";
 const APP_DOWNLOAD_URL_EN = "https://apps.apple.com/us/app/indie-map-back-to-local/id6761104779?l=en";
@@ -286,6 +331,10 @@ export default function PersonalSpacePanel({
   const [pendingDeleteSharedListId, setPendingDeleteSharedListId] = React.useState("");
   const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
   const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
+  const [showContributions, setShowContributions] = React.useState(false);
+  const [contributionsLoading, setContributionsLoading] = React.useState(false);
+  const [contributionsError, setContributionsError] = React.useState("");
+  const [contributions, setContributions] = React.useState<ContributionEntry[]>([]);
   const friendsLoadingRef = React.useRef(false);
   const sharedListsLoadingRef = React.useRef(false);
   const onSharedListsSeenRef = React.useRef(onSharedListsSeen);
@@ -839,6 +888,95 @@ export default function PersonalSpacePanel({
   }, [mode, authProfile?.id, reloadSharedLists]);
 
   React.useEffect(() => {
+    if (!showContributions || !authProfile) return;
+
+    let cancelled = false;
+
+    setContributionsLoading(true);
+    setContributionsError("");
+
+    fetch("/api/v1/me/contributions", {
+      cache: "no-store",
+    })
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok || !data?.ok) {
+          throw new Error("contributions_load_failed");
+        }
+
+        if (cancelled) return;
+
+        setContributions(
+          Array.isArray(data.contributions)
+            ? data.contributions
+                .map((entry: unknown) => {
+                  if (
+                    !entry ||
+                    typeof entry !== "object" ||
+                    Array.isArray(entry)
+                  ) {
+                    return null;
+                  }
+
+                  const value = entry as {
+                    placeId?: unknown;
+                    approvedAt?: unknown;
+                  };
+
+                  const placeId =
+                    typeof value.placeId === "string"
+                      ? value.placeId.trim()
+                      : "";
+
+                  if (!placeId) {
+                    return null;
+                  }
+
+                  return {
+                    placeId,
+                    approvedAt:
+                      typeof value.approvedAt === "string"
+                        ? value.approvedAt
+                        : null,
+                  };
+                })
+                .filter(
+                  (
+                    entry: ContributionEntry | null,
+                  ): entry is ContributionEntry =>
+                    Boolean(entry),
+                )
+            : [],
+        );
+      })
+      .catch(() => {
+        if (cancelled) return;
+
+        setContributions([]);
+
+        setContributionsError(
+          isFr
+            ? "Impossible de charger tes contributions pour le moment."
+            : "Unable to load your contributions right now.",
+        );
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setContributionsLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    showContributions,
+    authProfile?.id,
+    isFr,
+  ]);
+
+  React.useEffect(() => {
     if (mode !== "friends" || !authProfile) return;
 
     const q = friendSearchQuery.trim();
@@ -1227,6 +1365,121 @@ export default function PersonalSpacePanel({
           ) : null}
         </div>
       </div>
+    );
+  }
+
+  if (showContributions) {
+    return (
+      <>
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => setShowContributions(false)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+            aria-label={isFr ? "Retour" : "Back"}
+          >
+            ←
+          </button>
+
+          <div className="min-w-0 flex-1 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+              {isFr ? "Mon espace" : "My space"}
+            </p>
+
+            <h2 className="mt-0.5 font-serif text-[23px] font-semibold leading-tight text-white">
+              {isFr
+                ? "Mes contributions"
+                : "My contributions"}
+            </h2>
+          </div>
+
+          <div className="h-10 w-10" />
+        </div>
+
+        {contributionsLoading ? (
+          <p className="px-1 text-[13px] leading-relaxed text-white/45">
+            {isFr ? "Chargement..." : "Loading..."}
+          </p>
+        ) : contributionsError ? (
+          <p className="px-1 text-[13px] leading-relaxed text-red-200">
+            {contributionsError}
+          </p>
+        ) : contributions.length > 0 ? (
+          <div className="grid grid-cols-2 gap-5">
+            {contributions.map((entry) => {
+              const place = findPlace(entry.placeId);
+
+              if (!place) return null;
+
+              return (
+                <button
+                  key={entry.placeId}
+                  type="button"
+                  onClick={() =>
+                    onOpenPlace?.(
+                      place,
+                      "personal_space_contribution",
+                    )
+                  }
+                  className="relative w-full overflow-hidden rounded-xl bg-white/10 text-left"
+                  style={{
+                    minHeight: "130px",
+                    boxShadow:
+                      "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)",
+                  }}
+                >
+                  {place.panoramaImage ? (
+                    <img
+                      src={place.panoramaImage}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  ) : null}
+
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.68) 100%)",
+                    }}
+                  />
+
+                  <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
+                    <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                      {place.name}
+                    </p>
+
+                    <p className="mt-1 truncate text-[11px] text-white/90 opacity-90">
+                      {[
+                        place.category,
+                        place.city,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ") ||
+                        place.address ||
+                        "Indie Map"}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
+            <p className="text-[14px] font-semibold text-white/90">
+              {isFr
+                ? "Aucune contribution validée"
+                : "No approved contributions"}
+            </p>
+
+            <p className="mt-0.5 text-[12px] leading-snug text-white/45">
+              {isFr
+                ? "Les lieux que tu proposes apparaissent ici une fois ajoutés à Indie Map."
+                : "Places you suggest appear here once they are added to Indie Map."}
+            </p>
+          </div>
+        )}
+      </>
     );
   }
 
@@ -1859,16 +2112,22 @@ export default function PersonalSpacePanel({
             </button>
 
             <div className="min-w-0 flex-1 text-center">
-              {selectedFriend.avatarUrl ? (
-                <img src={selectedFriend.avatarUrl} alt="" className="mx-auto h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
-              ) : (
-                <span
-                  className="mx-auto flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
-                  style={{ backgroundColor: selectedFriend.avatarColor || "#F97316" }}
-                >
-                  {(selectedFriend.displayName || selectedFriend.username || "?").slice(0, 1)}
-                </span>
-              )}
+              <span className="relative mx-auto block h-14 w-14">
+                {selectedFriend.avatarUrl ? (
+                  <img src={selectedFriend.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
+                ) : (
+                  <span
+                    className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
+                    style={{ backgroundColor: selectedFriend.avatarColor || "#F97316" }}
+                  >
+                    {(selectedFriend.displayName || selectedFriend.username || "?").slice(0, 1)}
+                  </span>
+                )}
+
+                <ContributorRankBadge
+                  rank={selectedFriend.contributionRank}
+                />
+              </span>
 
               <h2 className="mt-2 truncate font-serif text-[23px] font-semibold leading-tight text-white">
                 {selectedFriend.displayName || selectedFriend.username}
@@ -2033,16 +2292,23 @@ export default function PersonalSpacePanel({
                 <div className="border-t border-white/10">
                   {friendSearchUsers.map((user) => (
                     <div key={user.id} className="flex items-center gap-3 border-t border-white/10 px-4 py-3 first:border-t-0">
-                      {user.avatarUrl ? (
-                        <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
-                      ) : (
-                        <span
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
-                          style={{ backgroundColor: user.avatarColor || "#F97316" }}
-                        >
-                          {(user.displayName || user.username || "?").slice(0, 1)}
-                        </span>
-                      )}
+                      <span className="relative h-10 w-10 shrink-0">
+                        {user.avatarUrl ? (
+                          <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                        ) : (
+                          <span
+                            className="flex h-10 w-10 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                            style={{ backgroundColor: user.avatarColor || "#F97316" }}
+                          >
+                            {(user.displayName || user.username || "?").slice(0, 1)}
+                          </span>
+                        )}
+
+                        <ContributorRankBadge
+                          rank={user.contributionRank}
+                          compact
+                        />
+                      </span>
 
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-[14px] font-semibold text-white/90">
@@ -2110,16 +2376,22 @@ export default function PersonalSpacePanel({
                     onClick={() => openFriendProfile(entry.user)}
                     className="flex w-[72px] flex-col items-center text-center"
                   >
-                    {entry.user.avatarUrl ? (
-                      <img src={entry.user.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
-                    ) : (
-                      <span
-                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
-                        style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
-                      >
-                        {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
-                      </span>
-                    )}
+                    <span className="relative h-14 w-14 shrink-0">
+                      {entry.user.avatarUrl ? (
+                        <img src={entry.user.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover shadow-[0_10px_24px_rgba(0,0,0,0.22)]" />
+                      ) : (
+                        <span
+                          className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)]"
+                          style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
+                        >
+                          {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
+                        </span>
+                      )}
+
+                      <ContributorRankBadge
+                        rank={entry.user.contributionRank}
+                      />
+                    </span>
 
                     <span className="mt-2 block w-full truncate text-[12px] font-semibold leading-tight text-white/85">
                       {entry.user.displayName || entry.user.username}
@@ -2149,16 +2421,23 @@ export default function PersonalSpacePanel({
                 {friendsPayload.incomingRequests.map((entry) => (
                   <div key={entry.id} className="rounded-3xl border border-white/10 bg-white/8 px-4 py-4">
                     <div className="flex items-center gap-3">
-                      {entry.user.avatarUrl ? (
-                        <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
-                      ) : (
-                        <span
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
-                          style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
-                        >
-                          {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
-                        </span>
-                      )}
+                      <span className="relative h-10 w-10 shrink-0">
+                        {entry.user.avatarUrl ? (
+                          <img src={entry.user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+                        ) : (
+                          <span
+                            className="flex h-10 w-10 items-center justify-center rounded-full text-[14px] font-semibold uppercase text-white"
+                            style={{ backgroundColor: entry.user.avatarColor || "#F97316" }}
+                          >
+                            {(entry.user.displayName || entry.user.username || "?").slice(0, 1)}
+                          </span>
+                        )}
+
+                        <ContributorRankBadge
+                          rank={entry.user.contributionRank}
+                          compact
+                        />
+                      </span>
 
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-[14px] font-semibold text-white/90">
@@ -2214,16 +2493,22 @@ export default function PersonalSpacePanel({
         onClick={() => onModeChange("profile")}
         className="mb-5 flex w-full items-center gap-4 rounded-3xl border border-white/10 bg-white/10 px-4 py-4 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_16px_35px_rgba(0,0,0,0.18)] hover:bg-white/13 active:bg-white/16"
       >
-        {authProfile.avatarUrl ? (
-          <img src={authProfile.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover" />
-        ) : (
-          <span
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white"
-            style={{ backgroundColor: authProfile.avatarColor || "#F97316" }}
-          >
-            {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
-          </span>
-        )}
+        <span className="relative h-14 w-14 shrink-0">
+          {authProfile.avatarUrl ? (
+            <img src={authProfile.avatarUrl} alt="" className="h-14 w-14 rounded-full object-cover" />
+          ) : (
+            <span
+              className="flex h-14 w-14 items-center justify-center rounded-full text-[18px] font-semibold uppercase text-white"
+              style={{ backgroundColor: authProfile.avatarColor || "#F97316" }}
+            >
+              {(authProfile.displayName || authProfile.username || "?").slice(0, 1)}
+            </span>
+          )}
+
+          <ContributorRankBadge
+            rank={authProfile.contributionRank}
+          />
+        </span>
 
         <span className="min-w-0 flex-1">
           <span className="block font-serif text-[25px] font-semibold leading-tight text-white">
@@ -2336,6 +2621,44 @@ export default function PersonalSpacePanel({
               </span>
               <span className="mt-1 block text-[11px] leading-snug text-white/30">
                 {isFr ? "Avec tes amis." : "With friends."}
+              </span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowContributions(true)}
+            className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#5C6E3B]/25 bg-[#5C6E3B]/15 text-[#5C6E3B]">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4.5 w-4.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 3.8v16.4" />
+                <path d="M3.8 12h16.4" />
+                <path d="M5.6 5.6l12.8 12.8" />
+                <path d="M18.4 5.6L5.6 18.4" />
+              </svg>
+            </span>
+
+            <span>
+              <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+                {isFr
+                  ? "Mes contributions"
+                  : "My contributions"}
+              </span>
+
+              <span className="mt-1 block text-[11px] leading-snug text-white/30">
+                {isFr
+                  ? "Lieux ajoutés à Indie Map."
+                  : "Places added to Indie Map."}
               </span>
             </span>
           </button>

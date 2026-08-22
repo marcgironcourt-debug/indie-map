@@ -90,9 +90,11 @@ model Submission {
   reviewedAt   DateTime?
   reviewToken  String?   @unique
   userId       String?
+  placeId      String?
   user         User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([userId])
+  @@index([placeId])
 }
 
 model AnalyticsInstallation {

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getContributionRankForUser } from "@/lib/contributionRanking";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -89,6 +90,7 @@ function serializeUser(user: {
   visitedPlacesVisibleToFriends: boolean;
   profileCompletedAt: Date | null;
   contributionsCount?: number;
+  contributionRank?: number | null;
   hasProfessionalAccess?: boolean;
   professionalPlaceId?: string | null;
 }) {
@@ -106,6 +108,7 @@ function serializeUser(user: {
     visitedPlacesVisibleToFriends: user.visitedPlacesVisibleToFriends,
     profileCompleted: Boolean(user.profileCompletedAt),
     contributionsCount: user.contributionsCount ?? 0,
+    contributionRank: user.contributionRank ?? null,
     hasProfessionalAccess: user.hasProfessionalAccess === true,
     professionalPlaceId: user.professionalPlaceId ?? null,
   };
@@ -129,10 +132,11 @@ export async function GET() {
     >`
       SELECT
         (
-          SELECT COUNT(*)::int
+          SELECT COUNT(DISTINCT "placeId")::int
           FROM "Submission"
           WHERE "userId" = ${user.id}
             AND "status" = 'approved'
+            AND "placeId" IS NOT NULL
         ) AS "contributionsCount",
         (
           SELECT COUNT(*)::int
@@ -159,7 +163,15 @@ export async function GET() {
         ) AS "savedPlaceIds"
     `;
 
-    const contributionsCount = counts?.contributionsCount ?? 0;
+    const contributorRanking =
+      await getContributionRankForUser(user.id);
+
+    const contributionsCount =
+      contributorRanking.contributionsCount;
+
+    const contributionRank =
+      contributorRanking.contributionRank;
+
     const incomingFriendRequestCount =
       counts?.incomingFriendRequestCount ?? 0;
     const unseenSharedListCount =
@@ -177,7 +189,13 @@ export async function GET() {
     return NextResponse.json(
       {
         ok: true,
-        user: serializeUser({ ...user, contributionsCount, hasProfessionalAccess, professionalPlaceId }),
+        user: serializeUser({
+          ...user,
+          contributionsCount,
+          contributionRank,
+          hasProfessionalAccess,
+          professionalPlaceId,
+        }),
         notifications: {
           incomingFriendRequestCount,
           unseenSharedListCount,
@@ -241,12 +259,10 @@ export async function POST(req: Request) {
       },
     });
 
-    const contributionsCount = await prisma.submission.count({
-      where: {
-        userId: user.id,
-        status: "approved",
-      },
-    });
+    const {
+      contributionsCount,
+      contributionRank,
+    } = await getContributionRankForUser(user.id);
 
     const professionalPlaceId =
       await hasProfessionalAccessForUser(user.id);

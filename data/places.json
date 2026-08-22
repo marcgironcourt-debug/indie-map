@@ -19547,5 +19547,40 @@
     "homeTextNear": "Ce restaurant permet de découvrir un menu dégustation construit autour des saisons du Québec, des ingrédients locaux, de la fermentation et du travail mené avec les producteurs.",
     "homeTextFar": "À Montréal, ce restaurant propose une autre manière de manger, avec une expérience gastronomique inspirée des saisons québécoises, du mouvement Slow Food, de la fermentation et des producteurs locaux.",
     "panoramaImage": "/downloads/cabaretlenfer.webp"
+  },
+  {
+    "id": "e02ff360-fc69-4719-8e63-445a89b75de6",
+    "name": "Papy aux Fourneaux",
+    "city": "Paris",
+    "address": "70 Rue de l'Ouest, 75014 Paris, France",
+    "website": "https://artichef.fr/papyauxfourneaux/",
+    "openingHours": "Lundi 12h00-15h00 / 19h30-00h00\nMardi 12h00-15h00 / 19h30-00h00\nMercredi 12h00-15h00 / 19h30-00h00\nJeudi 12h00-15h00 / 19h30-00h00\nVendredi 12h00-15h00 / 19h30-00h00\nSamedi 12h00-15h00 / 19h30-00h00\nDimanche 12h00-15h00 / 19h30-00h00",
+    "lat": 48.83554,
+    "lng": 2.31802,
+    "category": "Restaurant",
+    "createdAt": "2026-08-22T07:05:14.740Z",
+    "updatedAt": "2026-08-22T07:05:14.740Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 9 74 73 58 41",
+    "panoramaImage": "/panorama/papyparisforu.webp",
+    "miniText": "Table d’hôtes parisienne où les plats faits maison sont servis au centre de la table pour être partagés. La cuisine s’appuie sur des produits de producteurs, dans un lieu convivial pensé autour de grandes tablées.",
+    "tags": [
+      "Table d’hôtes",
+      "Cuisine maison",
+      "Produits de producteurs",
+      "Plats à partager"
+    ],
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "Parisian table d’hôtes where homemade dishes are served in the middle of the table to share. The kitchen works with products from producers, in a convivial setting built around large communal tables.",
+        "homeTextNear": "A restaurant built around homemade dishes to share at large communal tables.",
+        "homeTextFar": "In Paris, Papy aux Fourneaux is a table d’hôtes restaurant centered on homemade dishes to share."
+      }
+    },
+    "country": "FR",
+    "homeTextDone": true,
+    "homeTextNear": "Un restaurant en table d’hôtes pour partager des plats faits maison autour de grandes tablées.",
+    "homeTextFar": "À Paris, Papy aux Fourneaux est un restaurant en table d’hôtes autour de plats faits maison à partager."
   }
 ]

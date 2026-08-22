@@ -33,6 +33,7 @@ type AuthProfile = {
   ageRange: string | null;
   profileCompleted: boolean;
   contributionsCount?: number;
+  contributionRank?: number | null;
   hasProfessionalAccess?: boolean;
   professionalPlaceId?: string | null;
 };

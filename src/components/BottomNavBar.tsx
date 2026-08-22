@@ -5,6 +5,7 @@ type BottomNavBarProfile = {
   displayName: string;
   avatarUrl: string | null;
   avatarColor: string | null;
+  contributionRank?: number | null;
 };
 
 type BottomNavBarProfessionalPlace = {
@@ -60,8 +61,44 @@ export default function BottomNavBar({
                 <path d="M5.5 19c1.2-3.4 3.6-5.2 6.5-5.2s5.3 1.8 6.5 5.2" />
               </svg>
             )}
+            {authProfile ? (() => {
+              const contributionRank =
+                authProfile.contributionRank;
+
+              if (!contributionRank || contributionRank < 1) {
+                return null;
+              }
+
+              return (
+                <span
+                  className={`absolute -right-1 -top-1 z-20 grid h-3.5 place-items-center rounded-full border border-white/20 bg-[#202020] shadow-[0_3px_8px_rgba(0,0,0,0.45)] ${
+                    contributionRank === 1
+                      ? "w-3.5 p-0"
+                      : "min-w-3.5 px-0.5"
+                  }`}
+                  aria-label={`Contribution rank ${contributionRank}`}
+                  title={`#${contributionRank}`}
+                >
+                  {contributionRank === 1 ? (
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="block h-2.5 w-2.5 -translate-y-[0.5px] text-[#EAB308]"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M3.2 7.2 7.4 11l4.6-7 4.6 7 4.2-3.8-2 10.8H5.2L3.2 7.2Zm2.6 12.1h12.4v1.8H5.8v-1.8Z" />
+                    </svg>
+                  ) : (
+                    <span className="text-[7px] font-bold leading-none text-white">
+                      #{contributionRank}
+                    </span>
+                  )}
+                </span>
+              );
+            })() : null}
+
             {hasPersonalNotification ? (
-              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
+              <span className="absolute -left-0.5 -top-0.5 z-20 h-2.5 w-2.5 rounded-full border border-[#262626] bg-[#F97316]" />
             ) : null}
           </span>
           <span className="whitespace-nowrap text-[9px] font-medium leading-tight">{isFr ? "Espace perso" : "Personal"}</span>
