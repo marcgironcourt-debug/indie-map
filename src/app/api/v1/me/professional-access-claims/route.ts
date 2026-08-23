@@ -820,6 +820,43 @@ export async function POST(
         professionalEmail,
       );
 
+    /*
+     * Indication interne uniquement :
+     * on regarde si l'adresse fournie est
+     * déjà connue pour CE lieu dans les
+     * contacts privés Indie Map.
+     *
+     * Cela n'accorde aucun accès
+     * automatiquement.
+     */
+    const knownProfessionalContact =
+      await prisma
+        .placePrivateContact
+        .findFirst({
+          where: {
+            placeId,
+            normalizedEmail:
+              professionalEmail
+                .trim()
+                .toLowerCase(),
+            active: true,
+            verificationStatus: {
+              not:
+                "invalid",
+            },
+          },
+
+          select: {
+            verificationStatus:
+              true,
+          },
+        });
+
+    const emailKnownStatus =
+      knownProfessionalContact
+        ? "✅ Email déjà connu pour ce lieu dans Indie Map"
+        : "⚠️ Email non retrouvé parmi les contacts connus de ce lieu";
+
     const websiteDomain =
       getWebsiteDomain(
         officialWebsite,
@@ -847,6 +884,7 @@ export async function POST(
       `<p><strong>Demandeur :</strong> ${esc(`${firstName} ${lastName}`)}</p>` +
       `<p><strong>Rôle déclaré :</strong> ${esc(roleLabel)}</p>` +
       `<p><strong>Email professionnel fourni :</strong> ${esc(professionalEmail)}</p>` +
+      `<p><strong>Concordance avec les contacts Indie Map :</strong> ${esc(emailKnownStatus)}</p>` +
       `<p><strong>Domaine email :</strong> ${esc(emailDomain || "—")}</p>` +
       `<p><strong>Domaine du site :</strong> ${esc(websiteDomain || "—")}</p>` +
       `<p><strong>Contrôle automatique :</strong> ${esc(domainStatus)}</p>` +
