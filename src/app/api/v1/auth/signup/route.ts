@@ -219,25 +219,51 @@ export async function POST(
                 });
 
               if (claimed.count === 1) {
-                await tx.rewardPointLedger.upsert({
-                  where: {
-                    sourceKey:
-                      `referral_signup:${invite.id}`,
-                  },
-                  update: {},
-                  create: {
-                    userId:
-                      invite.senderId,
-                    points:
-                      REFERRAL_SIGNUP_REWARD_POINTS,
-                    reason:
-                      "referral_signup",
-                    sourceKey:
-                      `referral_signup:${invite.id}`,
-                    inviteId:
-                      invite.id,
-                  },
-                });
+                /*
+                 * Les +50 de création de compte
+                 * sont supplémentaires aux +50
+                 * d'installation réelle.
+                 *
+                 * Si le Push API AppsFlyer est
+                 * déjà arrivé, on peut les
+                 * créditer immédiatement.
+                 *
+                 * Sinon, le webhook AppsFlyer
+                 * les créditera lorsqu'il
+                 * confirmera l'installation.
+                 */
+                const installReward =
+                  await tx.rewardPointLedger.findUnique({
+                    where: {
+                      sourceKey:
+                        `referral_install:${invite.id}`,
+                    },
+                    select: {
+                      id: true,
+                    },
+                  });
+
+                if (installReward) {
+                  await tx.rewardPointLedger.upsert({
+                    where: {
+                      sourceKey:
+                        `referral_signup:${invite.id}`,
+                    },
+                    update: {},
+                    create: {
+                      userId:
+                        invite.senderId,
+                      points:
+                        REFERRAL_SIGNUP_REWARD_POINTS,
+                      reason:
+                        "referral_signup",
+                      sourceKey:
+                        `referral_signup:${invite.id}`,
+                      inviteId:
+                        invite.id,
+                    },
+                  });
+                }
               }
             }
           }

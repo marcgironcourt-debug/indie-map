@@ -51,7 +51,10 @@ export async function GET() {
            * sera activée séparément.
            */
           installAttributionEnabled:
-            false,
+            Boolean(
+              process.env
+                .APPSFLYER_PUSH_API_TOKEN,
+            ),
         },
       },
       {
