@@ -19,7 +19,8 @@
     "scout:web:learn": "tsx scripts/scout/scout-web-learn.ts",
     "scout:learning:build": "node scripts/scout/scout-build-learning-corpus.mjs",
     "bulle:prospect": "node scripts/scout/scout-prospect.mjs",
-    "scout:contacts": "tsx scripts/scout/scout-contacts.ts"
+    "scout:contacts": "tsx scripts/scout/scout-contacts.ts",
+    "scout:enrich": "tsx scripts/scout/scout-enrich.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",

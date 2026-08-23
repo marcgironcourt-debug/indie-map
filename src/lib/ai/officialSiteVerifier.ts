@@ -2220,6 +2220,7 @@ export async function collectOfficialPagesForScout(
     embeddingModel?: string;
     maxSelectedPages?: number;
     restrictToStartPage?: boolean;
+    selectionQuestion?: string;
   }
 ): Promise<{
   discoveredCount: number;
@@ -2269,7 +2270,11 @@ export async function collectOfficialPagesForScout(
       }
     );
 
-  const selectionQuestion = [
+  const selectionQuestion =
+    String(
+      options.selectionQuestion || ""
+    ).trim() ||
+    [
     `Établissement : ${place.name}.`,
     place.city
       ? `Ville : ${place.city}.`
