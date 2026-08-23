@@ -2557,50 +2557,6 @@ const filtered = source.filter((b) => {
                           {isFr ? "Itinéraire" : "Directions"}
                         </button>
 
-                        <button
-                          type="button"
-                          onClick={async () => {
-                            const text = selectedDetailPlace.address ?? "";
-                            let ok = false;
-                            try {
-                              await navigator.clipboard.writeText(text);
-                              ok = true;
-                            } catch {
-                              try {
-                                const area = document.createElement("textarea");
-                                area.value = text;
-                                area.setAttribute("readonly", "");
-                                area.style.position = "fixed";
-                                area.style.top = "0";
-                                area.style.left = "0";
-                                area.style.opacity = "0";
-                                document.body.appendChild(area);
-                                area.focus();
-                                area.select();
-                                area.setSelectionRange(0, area.value.length);
-                                ok = document.execCommand("copy");
-                                document.body.removeChild(area);
-                              } catch {
-                                ok = false;
-                              }
-                            }
-                            if (ok) {
-                              trackEvent({
-                                eventType: "click_detail_copy_address",
-                                placeId: selectedDetailPlace.id,
-                                city: selectedDetailPlace.city,
-                                category: selectedDetailPlace.type,
-                                locale,
-                                metadata: { name: selectedDetailPlace.name, source: selectedDetailPlaceSource }
-                              });
-                              setAddressCopied(true);
-                              window.setTimeout(() => setAddressCopied(false), 1500);
-                            }
-                          }}
-                          className="rounded-[9px] border border-white/10 bg-white/8 px-2.5 py-1 text-[11px] font-semibold text-white/75"
-                        >
-                          {addressCopied ? (isFr ? "Copié" : "Copied") : (isFr ? "Copier l'adresse" : "Copy address")}
-                        </button>
 
                         <button
                           type="button"
