@@ -3225,7 +3225,7 @@ React.useEffect(() => {
               </div>
             </button>
 
-          <div className="mb-3 w-full shrink-0">
+          <div className="mb-0 w-full shrink-0">
             <div className="mb-2 flex items-center gap-2 px-3">
               <span
                 aria-hidden="true"
@@ -3370,7 +3370,7 @@ React.useEffect(() => {
           </div>
 
 
-          <div className="mt-4 mb-5 w-full shrink-0 px-3">
+          <div className="mt-5 mb-0 w-full shrink-0 px-3">
             <div className="mb-2 px-1">
               <p className="font-serif text-[15px] font-medium tracking-[0.01em] text-white">
                 {isFr ? "Que cherches-tu ?" : "What are you looking for?"}
@@ -3888,7 +3888,7 @@ React.useEffect(() => {
             </form>
           </div>
 
-          <div className="mb-0 w-full shrink-0 pb-7">
+          <div className="mt-5 w-full shrink-0">
             <div className="relative z-10 w-full">
               <div className="flex items-baseline gap-1.5 px-3 pt-2">
                 <p className="whitespace-nowrap font-serif text-[15px] font-medium tracking-[0.01em]">
@@ -3998,7 +3998,7 @@ React.useEffect(() => {
             </div>
           </div>
 
-          <div className="mb-0 w-full shrink-0 pb-6">
+          <div className="mt-5 w-full shrink-0">
               <div className="w-full relative z-10">
                 <div className="flex items-baseline gap-1.5 px-3 pt-2">
                   <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
@@ -4076,7 +4076,137 @@ React.useEffect(() => {
 
           </div>
 
-          <div className="mt-2 w-full shrink-0 relative z-0 px-3">
+
+          <section className="mt-5 w-full shrink-0 px-3 pb-6">
+            <div className="mb-3 px-1">
+              <p className="font-serif text-[15px] font-medium tracking-[0.01em] text-white">
+                {isFr ? "Une envie ?" : "In the mood for something?"}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("eat")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("eat"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Manger" : "Eat"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Restaurant · Boulangerie · Brasserie · Brunch"
+                    : "Restaurant · Bakery · Brewery · Brunch"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("relax")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("relax"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Se détendre" : "Relax"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Café · Bar · Pub"
+                    : "Cafe · Bar · Pub"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("groceries")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("groceries"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Faire ses courses" : "Shop for food"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Épicerie · Marché · Ferme"
+                    : "Grocery · Market · Farm"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("browse")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("browse"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Flâner" : "Browse"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Boutique · Mode"
+                    : "Shop · Fashion"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("inspire")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("inspire"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "S’inspirer" : "Get inspired"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Librairie · Atelier"
+                    : "Bookstore · Workshop"}
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedHomeMood("alternative")}
+                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white shadow-[0_10px_24px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.08)] transition-[transform,box-shadow] active:scale-[0.985] active:shadow-[0_5px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                style={{
+                  background:
+                    getHomeMoodBackground("alternative"),
+                }}
+              >
+                <p className="font-serif text-[18px] font-medium leading-tight">
+                  {isFr ? "Sortir autrement" : "Go somewhere different"}
+                </p>
+
+                <p className="text-[10px] leading-snug text-white/65">
+                  {isFr
+                    ? "Lieu alternatif"
+                    : "Alternative place"}
+                </p>
+              </button>
+            </div>
+
+          <div className="mt-5 w-full shrink-0 relative z-0">
             <button
               type="button"
               onClick={() => {
@@ -4100,10 +4230,7 @@ React.useEffect(() => {
                 setSelectedHomePlaceSource("discovery_of_day");
                 setSelectedHomePlace(place);
               }}
-              className="relative min-h-[290px] w-full overflow-hidden rounded-xl bg-red-600/40 text-left hover:bg-white/14 active:bg-white/18"
-              style={{
-                boxShadow: "inset 0 0 0 2px rgba(255,0,0,0.9), inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -6px 14px rgba(0,0,0,0.16), 0 14px 30px rgba(0,0,0,0.20), 0 40px 90px rgba(0,0,0,0.14)"
-              }}
+              className="relative min-h-[240px] w-full overflow-hidden rounded-2xl border border-white/10 text-left shadow-[0_12px_30px_rgba(0,0,0,0.30),inset_0_1px_0_rgba(255,255,255,0.10)] transition-[transform,box-shadow] active:scale-[0.992] active:shadow-[0_6px_18px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.07)]"
             >
     {discoverPlace?.panoramaImage ? (
       <img
@@ -4143,130 +4270,8 @@ React.useEffect(() => {
   </button>
 </div>
 
-          <section className="mt-7 w-full shrink-0 px-3 pb-6">
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("eat")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("eat"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "Manger" : "Eat"}
-                </p>
 
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Restaurant · Boulangerie · Brasserie · Brunch"
-                    : "Restaurant · Bakery · Brewery · Brunch"}
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("relax")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("relax"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "Se détendre" : "Relax"}
-                </p>
-
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Café · Bar · Pub"
-                    : "Cafe · Bar · Pub"}
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("groceries")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("groceries"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "Faire ses courses" : "Shop for food"}
-                </p>
-
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Épicerie · Marché · Ferme"
-                    : "Grocery · Market · Farm"}
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("browse")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("browse"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "Flâner" : "Browse"}
-                </p>
-
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Boutique · Mode"
-                    : "Shop · Fashion"}
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("inspire")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("inspire"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "S’inspirer" : "Get inspired"}
-                </p>
-
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Librairie · Atelier"
-                    : "Bookstore · Workshop"}
-                </p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedHomeMood("alternative")}
-                className="relative flex h-[96px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white active:scale-[0.985]"
-                style={{
-                  background:
-                    getHomeMoodBackground("alternative"),
-                }}
-              >
-                <p className="font-serif text-[18px] font-medium leading-tight">
-                  {isFr ? "Sortir autrement" : "Go somewhere different"}
-                </p>
-
-                <p className="text-[10px] leading-snug text-white/65">
-                  {isFr
-                    ? "Lieu alternatif"
-                    : "Alternative place"}
-                </p>
-              </button>
-            </div>
-
-            <div className="mt-2.5">
+            <div className="mt-5">
               <div className="relative flex h-[132px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white">
                 <img
                   src="/home/events-concert.webp"
