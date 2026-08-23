@@ -273,6 +273,187 @@ function writeHomeCache(locale: "fr" | "en", discoverPlace: DiscoverPlace | null
   } catch {}
 }
 
+const HOME_RECENT_PLACES_CACHE_KEY =
+  "im:home-recent-places:v1";
+
+const HOME_OPEN_NOW_CACHE_KEY =
+  "im:home-open-now:v1";
+
+const HOME_OPEN_NOW_CACHE_MAX_AGE_MS =
+  24 * 60 * 60 * 1000;
+
+const HOME_OPEN_NOW_CACHE_MAX_PLACES =
+  80;
+
+function normalizeHomeCachedPlaces(
+  value: unknown,
+): DiscoverPlace[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return (value as DiscoverPlace[])
+    .filter(
+      (item) =>
+        !!item &&
+        typeof item === "object" &&
+        String(item.id ?? "").trim().length > 0 &&
+        String(item.name ?? "").trim().length > 0,
+    );
+}
+
+function readRecentHomePlacesCache(
+  locale: "fr" | "en",
+): DiscoverPlace[] {
+  try {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    const raw =
+      window.localStorage.getItem(
+        `${HOME_RECENT_PLACES_CACHE_KEY}:${locale}`,
+      );
+
+    if (!raw) return [];
+
+    return normalizeHomeCachedPlaces(
+      JSON.parse(raw),
+    ).slice(0, 20);
+  } catch {
+    return [];
+  }
+}
+
+function writeRecentHomePlacesCache(
+  locale: "fr" | "en",
+  places: DiscoverPlace[],
+) {
+  try {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(
+      `${HOME_RECENT_PLACES_CACHE_KEY}:${locale}`,
+      JSON.stringify(
+        normalizeHomeCachedPlaces(
+          places,
+        ).slice(0, 20),
+      ),
+    );
+  } catch {}
+}
+
+function readOpenNowHomeCache(
+  locale: "fr" | "en",
+): {
+  hadLocation: boolean;
+  nearbyPlaces: DiscoverPlace[];
+} | null {
+  try {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    const raw =
+      window.localStorage.getItem(
+        `${HOME_OPEN_NOW_CACHE_KEY}:${locale}`,
+      );
+
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw);
+
+    const updatedAt =
+      Number(parsed?.updatedAt);
+
+    const age =
+      Date.now() - updatedAt;
+
+    const cacheFresh =
+      Number.isFinite(age) &&
+      age >= 0 &&
+      age <=
+        HOME_OPEN_NOW_CACHE_MAX_AGE_MS;
+
+    return {
+      hadLocation:
+        parsed?.hadLocation === true,
+
+      nearbyPlaces:
+        cacheFresh
+          ? normalizeHomeCachedPlaces(
+              parsed?.nearbyPlaces,
+            ).slice(
+              0,
+              HOME_OPEN_NOW_CACHE_MAX_PLACES,
+            )
+          : [],
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeOpenNowHomeCache(
+  locale: "fr" | "en",
+  nearbyPlaces: DiscoverPlace[],
+) {
+  try {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(
+      `${HOME_OPEN_NOW_CACHE_KEY}:${locale}`,
+      JSON.stringify({
+        hadLocation: true,
+        updatedAt: Date.now(),
+        nearbyPlaces:
+          normalizeHomeCachedPlaces(
+            nearbyPlaces,
+          ).slice(
+            0,
+            HOME_OPEN_NOW_CACHE_MAX_PLACES,
+          ),
+      }),
+    );
+  } catch {}
+}
+
+function getOpenNowHomePlaces(
+  places: DiscoverPlace[],
+) {
+  return places
+    .filter((place) => {
+      const openingHours =
+        String(
+          place.openingHours ?? "",
+        ).trim();
+
+      const timeZone =
+        String(
+          place.timeZone ?? "",
+        ).trim();
+
+      if (
+        !openingHours ||
+        !timeZone
+      ) {
+        return false;
+      }
+
+      return (
+        isOpenNowFR(
+          openingHours,
+          timeZone,
+        ) === true
+      );
+    })
+    .slice(0, 7);
+}
+
 function mergePlace(base: DiscoverPlace | null | undefined, fresh: DiscoverPlace | null | undefined): DiscoverPlace | null {
   if (fresh && (!base || base.id === fresh.id)) {
     return { ...(base ?? {}), ...fresh };
@@ -1118,9 +1299,23 @@ React.useEffect(() => {
   });
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [nearbyPlaces, setNearbyPlaces] = React.useState<DiscoverPlace[]>([]);
-  const [openNowHasLocation, setOpenNowHasLocation] = React.useState(false);
-  const [homeLocationError, setHomeLocationError] = React.useState("");
-  const [openNowTick, setOpenNowTick] = React.useState(0);
+
+  const [
+    cachedOpenNowNearbyPlaces,
+    setCachedOpenNowNearbyPlaces,
+  ] = React.useState<DiscoverPlace[]>([]);
+
+  const [openNowHasLocation, setOpenNowHasLocation] =
+    React.useState(false);
+
+  const [openNowRefreshing, setOpenNowRefreshing] =
+    React.useState(false);
+
+  const [homeLocationError, setHomeLocationError] =
+    React.useState("");
+
+  const [openNowTick, setOpenNowTick] =
+    React.useState(0);
   React.useEffect(() => {
     const timer = window.setInterval(() => {
       setOpenNowTick((value) => value + 1);
@@ -1131,20 +1326,43 @@ React.useEffect(() => {
     };
   }, []);
 
-  const openNowPlaces = React.useMemo(() => {
-    void openNowTick;
+  React.useEffect(() => {
+    const cached =
+      readOpenNowHomeCache(locale);
 
-    return nearbyPlaces
-      .filter((place) => {
-        const openingHours = String(place.openingHours ?? "").trim();
-        const timeZone = String(place.timeZone ?? "").trim();
+    if (!cached) return;
 
-        if (!openingHours || !timeZone) return false;
+    if (cached.hadLocation) {
+      setOpenNowHasLocation(true);
+      setOpenNowRefreshing(true);
+    }
 
-        return isOpenNowFR(openingHours, timeZone) === true;
-      })
-      .slice(0, 7);
-  }, [nearbyPlaces, openNowTick]);
+    if (
+      cached.nearbyPlaces.length > 0
+    ) {
+      setCachedOpenNowNearbyPlaces(
+        cached.nearbyPlaces,
+      );
+    }
+  }, [locale]);
+
+  const openNowPlaces =
+    React.useMemo(() => {
+      void openNowTick;
+
+      const source =
+        nearbyPlaces.length > 0
+          ? nearbyPlaces
+          : cachedOpenNowNearbyPlaces;
+
+      return getOpenNowHomePlaces(
+        source,
+      );
+    }, [
+      nearbyPlaces,
+      cachedOpenNowNearbyPlaces,
+      openNowTick,
+    ]);
 
   const [selectedHomeMood, setSelectedHomeMood] =
     React.useState<HomeMoodId | null>(null);
@@ -1155,9 +1373,22 @@ React.useEffect(() => {
   ] = React.useState<string[]>([]);
 
   const [
+    cachedRecentViewedPlaces,
+    setCachedRecentViewedPlaces,
+  ] = React.useState<DiscoverPlace[]>([]);
+
+  const [
     recentViewedOpen,
     setRecentViewedOpen,
   ] = React.useState(false);
+
+  React.useEffect(() => {
+    setCachedRecentViewedPlaces(
+      readRecentHomePlacesCache(
+        locale,
+      ),
+    );
+  }, [locale]);
 
   const [selectedHomePlace, setSelectedHomePlace] = React.useState<DiscoverPlace | null>(
     initialSelectedHomePlace
@@ -1376,9 +1607,31 @@ React.useEffect(() => {
               );
             });
 
-        setNearbyPlaces(
-          nearby,
-        );
+        if (source.length > 0) {
+          setNearbyPlaces(
+            nearby,
+          );
+
+          setCachedOpenNowNearbyPlaces(
+            nearby.slice(
+              0,
+              HOME_OPEN_NOW_CACHE_MAX_PLACES,
+            ),
+          );
+
+          writeOpenNowHomeCache(
+            locale,
+            nearby,
+          );
+
+          setOpenNowRefreshing(
+            false,
+          );
+        } else {
+          setOpenNowRefreshing(
+            true,
+          );
+        }
 
         fetch(
           "/api/v1/me/location",
@@ -1402,6 +1655,7 @@ React.useEffect(() => {
       [
         allPlaces,
         initialAllPlaces,
+        locale,
       ],
     );
 
@@ -1715,7 +1969,10 @@ React.useEffect(() => {
         ? allPlaces
         : initialAllPlaces;
 
-    if (source.length === 0) return;
+    if (source.length === 0) {
+      setOpenNowRefreshing(true);
+      return;
+    }
 
     const nearby = source
       .filter((item) => {
@@ -1754,7 +2011,25 @@ React.useEffect(() => {
       });
 
     setNearbyPlaces(nearby);
-  }, [allPlaces, initialAllPlaces]);
+
+    setCachedOpenNowNearbyPlaces(
+      nearby.slice(
+        0,
+        HOME_OPEN_NOW_CACHE_MAX_PLACES,
+      ),
+    );
+
+    writeOpenNowHomeCache(
+      locale,
+      nearby,
+    );
+
+    setOpenNowRefreshing(false);
+  }, [
+    allPlaces,
+    initialAllPlaces,
+    locale,
+  ]);
 
   const [nativeLocationTick, setNativeLocationTick] = React.useState(0);
   const homeMoodDayKey =
@@ -1870,7 +2145,10 @@ React.useEffect(() => {
       }
 
       const placesById = new Map(
-        allPlaces.map((place) => [
+        [
+          ...cachedRecentViewedPlaces,
+          ...allPlaces,
+        ].map((place) => [
           String(place.id),
           place,
         ]),
@@ -1888,7 +2166,26 @@ React.useEffect(() => {
     }, [
       recentViewedPlaceIds,
       allPlaces,
+      cachedRecentViewedPlaces,
     ]);
+
+  React.useEffect(() => {
+    if (
+      allPlaces.length === 0 ||
+      recentViewedPlaces.length === 0
+    ) {
+      return;
+    }
+
+    writeRecentHomePlacesCache(
+      locale,
+      recentViewedPlaces,
+    );
+  }, [
+    locale,
+    allPlaces.length,
+    recentViewedPlaces,
+  ]);
 
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
@@ -2489,6 +2786,8 @@ React.useEffect(() => {
   React.useEffect(() => {
     let cancelled = false;
 
+    setOpenNowRefreshing(true);
+
     (async () => {
       try {
         let all: DiscoverPlace[];
@@ -2556,8 +2855,51 @@ React.useEffect(() => {
         const finish = (pool: DiscoverPlace[], hasLocation: boolean) => {
           if (cancelled) return;
 
-          setNearbyPlaces(hasLocation ? pool : []);
-          setOpenNowHasLocation(hasLocation);
+          if (hasLocation) {
+            setNearbyPlaces(pool);
+            setOpenNowHasLocation(true);
+
+            setCachedOpenNowNearbyPlaces(
+              pool.slice(
+                0,
+                HOME_OPEN_NOW_CACHE_MAX_PLACES,
+              ),
+            );
+
+            writeOpenNowHomeCache(
+              locale,
+              pool,
+            );
+          } else {
+            const previousCache =
+              readOpenNowHomeCache(
+                locale,
+              );
+
+            if (
+              previousCache?.hadLocation
+            ) {
+              setOpenNowHasLocation(
+                true,
+              );
+
+              if (
+                previousCache
+                  .nearbyPlaces
+                  .length > 0
+              ) {
+                setCachedOpenNowNearbyPlaces(
+                  previousCache
+                    .nearbyPlaces,
+                );
+              }
+            } else {
+              setNearbyPlaces([]);
+              setOpenNowHasLocation(false);
+            }
+          }
+
+          setOpenNowRefreshing(false);
 
           const now = new Date();
           const dayKey = getLocalDayKey(now);
@@ -2739,6 +3081,7 @@ React.useEffect(() => {
       } catch {
         if (cancelled) return;
         setDiscoverReady(true);
+        setOpenNowRefreshing(false);
       }
     })();
 
@@ -2894,6 +3237,18 @@ React.useEffect(() => {
                   ? "Ouvert maintenant"
                   : "Open now"}
               </p>
+
+              {openNowRefreshing &&
+              openNowHasLocation ? (
+                <span
+                  aria-label={
+                    isFr
+                      ? "Actualisation"
+                      : "Refreshing"
+                  }
+                  className="h-3 w-3 shrink-0 animate-spin rounded-full border border-white/25 border-t-white/80"
+                />
+              ) : null}
             </div>
 
             {openNowPlaces.length > 0 ? (
@@ -2960,6 +3315,18 @@ React.useEffect(() => {
                     </div>
                   </button>
                 ))}
+              </div>
+            ) : openNowHasLocation &&
+              openNowRefreshing ? (
+              <div className="flex min-h-[54px] items-center justify-center px-3">
+                <span
+                  aria-label={
+                    isFr
+                      ? "Chargement des lieux ouverts"
+                      : "Loading open places"
+                  }
+                  className="h-5 w-5 animate-spin rounded-full border border-white/20 border-t-white/75"
+                />
               </div>
             ) : openNowHasLocation ? (
               <div className="px-3">
@@ -4534,6 +4901,11 @@ React.useEffect(() => {
 
                         return (
                           <div className="space-y-4">
+                            <p className="text-[11px] leading-relaxed text-white/45">
+                              {isFr
+                                ? "Tes commentaires sont privés. Ils ne sont visibles que par toi, ou par tes amis si tu as activé cette option dans ton profil."
+                                : "Your comments are private. They are only visible to you, or to your friends if you have enabled this option in your profile."}
+                            </p>
                             {existingComment ? (
                               <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
                                 <p className="text-[15px] leading-relaxed text-white/88">

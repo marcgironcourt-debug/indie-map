@@ -2387,6 +2387,11 @@ const filtered = source.filter((b) => {
 
                         return (
                           <div className="space-y-4">
+                            <p className="text-[11px] leading-relaxed text-white/45">
+                              {isFr
+                                ? "Tes commentaires sont privés. Ils ne sont visibles que par toi, ou par tes amis si tu as activé cette option dans ton profil."
+                                : "Your comments are private. They are only visible to you, or to your friends if you have enabled this option in your profile."}
+                            </p>
                             {existingComment ? (
                               <div className="rounded-2xl border border-white/10 bg-black/55 p-4">
                                 <p className="text-[15px] leading-relaxed text-white/88">
