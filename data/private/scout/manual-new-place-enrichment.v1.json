@@ -1,0 +1,58 @@
+{
+  "version": "manual-new-place-enrichment-v1",
+  "updatedAt": "2026-08-23T12:11:41.336Z",
+  "entries": {
+    "9a7aecb3-357a-41ae-8ab9-023b370c75b2": {
+      "placeId": "9a7aecb3-357a-41ae-8ab9-023b370c75b2",
+      "name": "Brasserie Rabourdin",
+      "city": "Courpalay",
+      "country": "FR",
+      "category": "Brasserie / bar / pub",
+      "website": "https://www.brasserierabourdin.com",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "Fabriquées et élaborées de façon artisanale",
+          "sourceUrl": "https://www.brasserierabourdin.com/nos-bieres/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "on_site_production",
+          "evidenceQuote": "utiliser l’orge de la ferme pour produire à la ferme, les bières de Seine et Marne",
+          "sourceUrl": "https://www.brasserierabourdin.com/notre-histoire/",
+          "scope": "target_place"
+        },
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "Ce dernier provenant exclusivement de l’orge que nous cultivons sur notre ferme",
+          "sourceUrl": "https://www.brasserierabourdin.com/nos-bieres/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "une bière locale en vente directe et circuits courts",
+          "sourceUrl": "https://www.brasserierabourdin.com/notre-histoire/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "short_supply_chain",
+          "evidenceQuote": "une bière locale en vente directe et circuits courts",
+          "sourceUrl": "https://www.brasserierabourdin.com/notre-histoire/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "organic",
+          "evidenceQuote": "La Brasserie Rabourdin a également reçu sa certification biologique",
+          "sourceUrl": "https://www.brasserierabourdin.com/notre-histoire/",
+          "scope": "brand_general"
+        }
+      ],
+      "cautions": [
+        "Le tag organic indique l’existence de références certifiées biologiques et non que l’ensemble de la gamme est biologique."
+      ],
+      "verifiedAt": "2026-08-23T12:11:41.336Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    }
+  }
+}

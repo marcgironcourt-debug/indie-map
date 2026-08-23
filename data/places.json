@@ -19582,5 +19582,33 @@
     "homeTextDone": true,
     "homeTextNear": "Un restaurant en table d’hôtes pour partager des plats faits maison autour de grandes tablées.",
     "homeTextFar": "À Paris, Papy aux Fourneaux est un restaurant en table d’hôtes autour de plats faits maison à partager."
+  },
+  {
+    "id": "9a7aecb3-357a-41ae-8ab9-023b370c75b2",
+    "name": "Brasserie Rabourdin",
+    "city": "Courpalay",
+    "address": "22 Rue Lafayette, 77540 Courpalay, France",
+    "website": "https://www.brasserierabourdin.com",
+    "openingHours": "Lundi Fermé\nMardi 10h00-19h00\nMercredi 10h00-19h00\nJeudi 10h00-19h00\nVendredi 10h00-19h00\nSamedi 10h00-19h00\nDimanche Fermé",
+    "lat": 48.650882191300596,
+    "lng": 2.95694712876946,
+    "category": "Brasserie / bar / pub",
+    "createdAt": "2026-08-23T12:11:41.336Z",
+    "updatedAt": "2026-08-23T12:13:33.076Z",
+    "timeZone": "Europe/Paris",
+    "phone": "+33 7 77 99 54 49",
+    "miniText": "Brasserie familiale installée dans l’ancien silo à grains de Courpalay, où la famille Rabourdin transforme l’orge cultivée sur sa ferme en bières artisanales de Seine-et-Marne. Les bières sont 100 % pur malt, non filtrées et non pasteurisées, avec plusieurs gammes dont la Bière de Brie, la Briarde et Terrano. Le site accueille aussi le public au magasin et pour des visites de la brasserie.",
+    "translations": {
+      "miniText": {},
+      "en": {
+        "miniText": "A family-run brewery based in Courpalay’s former grain silo, where the Rabourdin family turns barley grown on its own farm into craft beers from Seine-et-Marne. The beers are made with 100% malt and are unfiltered and unpasteurised, with ranges including Bière de Brie, Briarde and Terrano. The brewery also welcomes visitors to its shop and for brewery tours.",
+        "homeTextNear": "Nearby, Brasserie Rabourdin turns barley grown on the family farm into craft beers brewed in Courpalay’s former grain silo.",
+        "homeTextFar": "In Courpalay, Brasserie Rabourdin carries on a family farmer-brewer tradition, crafting beers from barley grown on the farm."
+      }
+    },
+    "country": "FR",
+    "homeTextNear": "Tout près, Brasserie Rabourdin transforme l’orge cultivée sur la ferme familiale en bières artisanales brassées dans l’ancien silo à grains de Courpalay.",
+    "homeTextFar": "À Courpalay, Brasserie Rabourdin fait vivre une tradition familiale d’agriculteurs-brasseurs en produisant des bières artisanales à partir de l’orge de la ferme.",
+    "panoramaImage": "/panoramas/brasserierabourdin.webp"
   }
 ]
