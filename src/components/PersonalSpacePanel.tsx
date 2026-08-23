@@ -329,6 +329,11 @@ export default function PersonalSpacePanel({
   const [selectedSharedFriendId, setSelectedSharedFriendId] = React.useState("");
   const [sharedPlaceQuery, setSharedPlaceQuery] = React.useState("");
   const [showContributions, setShowContributions] = React.useState(false);
+  const [showSuggestions, setShowSuggestions] = React.useState(false);
+  const [suggestionText, setSuggestionText] = React.useState("");
+  const [suggestionSending, setSuggestionSending] = React.useState(false);
+  const [suggestionMessage, setSuggestionMessage] = React.useState("");
+  const [suggestionError, setSuggestionError] = React.useState("");
   const [contributionsLoading, setContributionsLoading] = React.useState(false);
   const [contributionsError, setContributionsError] = React.useState("");
   const [contributions, setContributions] = React.useState<ContributionEntry[]>([]);
@@ -346,6 +351,73 @@ export default function PersonalSpacePanel({
   React.useEffect(() => {
     onSharedListsSeenRef.current = onSharedListsSeen;
   }, [onSharedListsSeen]);
+
+  async function submitSuggestion() {
+    const message =
+      suggestionText.trim();
+
+    if (
+      message.length < 3 ||
+      message.length > 1000 ||
+      suggestionSending
+    ) {
+      return;
+    }
+
+    setSuggestionSending(true);
+    setSuggestionMessage("");
+    setSuggestionError("");
+
+    try {
+      const response =
+        await fetch(
+          "/api/v1/me/suggestions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body:
+              JSON.stringify({
+                message,
+                locale,
+              }),
+          },
+        );
+
+      const data =
+        await response
+          .json()
+          .catch(() => null);
+
+      if (
+        !response.ok ||
+        !data?.ok
+      ) {
+        throw new Error(
+          data?.error ||
+            "suggestion_send_failed",
+        );
+      }
+
+      setSuggestionText("");
+
+      setSuggestionMessage(
+        isFr
+          ? "Merci ! Ta suggestion a bien été envoyée."
+          : "Thank you! Your suggestion has been sent.",
+      );
+    } catch {
+      setSuggestionError(
+        isFr
+          ? "Impossible d’envoyer ta suggestion pour le moment."
+          : "Unable to send your suggestion right now.",
+      );
+    } finally {
+      setSuggestionSending(false);
+    }
+  }
 
   function findPlace(placeId: string) {
     return places.find((place) => String(place.id) === String(placeId)) ?? null;
@@ -1580,6 +1652,106 @@ export default function PersonalSpacePanel({
           ) : null}
         </div>
       </div>
+    );
+  }
+
+  if (showSuggestions) {
+    return (
+      <>
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              setShowSuggestions(false);
+              setSuggestionMessage("");
+              setSuggestionError("");
+            }}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-[18px] text-white/75 hover:bg-white/12 active:bg-white/16"
+            aria-label={isFr ? "Retour" : "Back"}
+          >
+            ←
+          </button>
+
+          <div className="min-w-0 flex-1 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/40">
+              {isFr ? "Mon espace" : "My space"}
+            </p>
+
+            <h2 className="mt-0.5 font-serif text-[23px] font-semibold leading-tight text-white">
+              Suggestions
+            </h2>
+          </div>
+
+          <div className="h-10 w-10" />
+        </div>
+
+        <div className="rounded-3xl border border-white/10 bg-white/8 px-4 py-5">
+          <p className="text-[14px] font-semibold text-white/90">
+            {isFr
+              ? "Une idée pour améliorer Indie Map ?"
+              : "Have an idea to improve Indie Map?"}
+          </p>
+
+          <p className="mt-1.5 text-[12px] leading-relaxed text-white/45">
+            {isFr
+              ? "Partage une amélioration, une idée de fonctionnalité ou simplement ton avis."
+              : "Share an improvement, a feature idea, or simply your feedback."}
+          </p>
+
+          <textarea
+            value={suggestionText}
+            maxLength={1000}
+            rows={8}
+            onChange={(event) => {
+              setSuggestionText(
+                event.target.value,
+              );
+              setSuggestionMessage("");
+              setSuggestionError("");
+            }}
+            placeholder={
+              isFr
+                ? "Écris ta suggestion ici…"
+                : "Write your suggestion here…"
+            }
+            className="mt-5 box-border w-full resize-none rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-[14px] leading-relaxed text-white outline-none placeholder:text-white/30 focus:border-white/25"
+          />
+
+          <div className="mt-2 text-right text-[11px] tabular-nums text-white/35">
+            {suggestionText.length} / 1000
+          </div>
+
+          <button
+            type="button"
+            onClick={submitSuggestion}
+            disabled={
+              suggestionSending ||
+              suggestionText.trim().length < 3
+            }
+            className="mt-4 w-full rounded-2xl bg-white px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.15em] text-black disabled:opacity-40"
+          >
+            {suggestionSending
+              ? isFr
+                ? "Envoi..."
+                : "Sending..."
+              : isFr
+                ? "Envoyer"
+                : "Send"}
+          </button>
+
+          {suggestionMessage ? (
+            <p className="mt-3 text-[13px] leading-relaxed text-[#C7D6AD]">
+              {suggestionMessage}
+            </p>
+          ) : null}
+
+          {suggestionError ? (
+            <p className="mt-3 text-[13px] leading-relaxed text-red-200">
+              {suggestionError}
+            </p>
+          ) : null}
+        </div>
+      </>
     );
   }
 
@@ -3010,6 +3182,32 @@ export default function PersonalSpacePanel({
           </span>
         </button>
       </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          setShowSuggestions(true);
+          setSuggestionMessage("");
+          setSuggestionError("");
+        }}
+        className="mt-3 flex w-full items-center justify-between rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+      >
+        <span>
+          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+            Suggestions
+          </span>
+
+          <span className="mt-0.5 block text-[10px] text-white/30">
+            {isFr
+              ? "Partage tes idées pour améliorer Indie Map."
+              : "Share your ideas to improve Indie Map."}
+          </span>
+        </span>
+
+        <span className="text-[17px] text-white/35">
+          →
+        </span>
+      </button>
 
       <div className="mt-5 border-t border-white/[0.07] pt-5">
         {hasProfessionalAccess && onOpenProfessionalSpace ? (
