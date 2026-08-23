@@ -3290,7 +3290,7 @@ React.useEffect(() => {
                           "/explorer-bg.png?v=3"
                         }
                         alt=""
-                        className="h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover"
                       />
 
                       <span
@@ -4049,7 +4049,7 @@ React.useEffect(() => {
                         <img
                           src={item.panoramaImage}
                           alt=""
-                          className="absolute inset-0 h-full w-full object-cover"
+                          className="h-full w-full object-cover"
                         />
                       ) : null}
                       <div
@@ -4398,18 +4398,18 @@ React.useEffect(() => {
                       }}
                       className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
                     >
-                      <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                         <img
                           src={
                             item.panoramaImage ||
                             "/explorer-bg.png?v=3"
                           }
                           alt=""
-                          className="h-full w-full object-cover"
+                          className="absolute inset-0 h-full w-full object-cover"
                         />
                       </div>
 
-                      <div className="p-3">
+                      <div className="h-[84px] p-3">
                         <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
                           {item.name}
                         </p>
@@ -4567,18 +4567,18 @@ React.useEffect(() => {
                             }}
                             className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
                           >
-                            <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                               <img
                                 src={
                                   item.panoramaImage ||
                                   "/explorer-bg.png?v=3"
                                 }
                                 alt=""
-                                className="h-full w-full object-cover"
+                                className="absolute inset-0 h-full w-full object-cover"
                               />
                             </div>
 
-                            <div className="p-3">
+                            <div className="h-[84px] p-3">
                               <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
                                 {item.name}
                               </p>
@@ -4666,18 +4666,18 @@ React.useEffect(() => {
                             }}
                             className="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
                           >
-                            <div className="aspect-[4/3] w-full overflow-hidden bg-white/10">
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                               <img
                                 src={
                                   item.panoramaImage ||
                                   "/explorer-bg.png?v=3"
                                 }
                                 alt=""
-                                className="h-full w-full object-cover"
+                                className="absolute inset-0 h-full w-full object-cover"
                               />
                             </div>
 
-                            <div className="p-3">
+                            <div className="h-[84px] p-3">
                               <p className="line-clamp-2 font-serif text-[14px] font-medium leading-tight">
                                 {item.name}
                               </p>
