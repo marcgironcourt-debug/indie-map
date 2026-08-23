@@ -1111,6 +1111,7 @@ React.useEffect(() => {
   const [newPlaces, setNewPlaces] = React.useState<NewPlace[]>(() => homeMemoryCache[locale]?.newPlaces ?? initialNewPlaces ?? []);
   const [nearbyPlaces, setNearbyPlaces] = React.useState<DiscoverPlace[]>([]);
   const [openNowHasLocation, setOpenNowHasLocation] = React.useState(false);
+  const [homeLocationError, setHomeLocationError] = React.useState("");
   const [openNowTick, setOpenNowTick] = React.useState(0);
   React.useEffect(() => {
     const timer = window.setInterval(() => {
@@ -1285,6 +1286,413 @@ React.useEffect(() => {
   const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
   const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
+
+  const applyHomeLocation =
+    React.useCallback(
+      (
+        latRaw: number,
+        lngRaw: number,
+      ) => {
+        const lat =
+          Number(latRaw);
+
+        const lng =
+          Number(lngRaw);
+
+        if (
+          !Number.isFinite(lat) ||
+          !Number.isFinite(lng)
+        ) {
+          return;
+        }
+
+        rememberAnalyticsLocation(
+          lat,
+          lng,
+        );
+
+        setHomeLocationError("");
+        setOpenNowHasLocation(
+          true,
+        );
+
+        const source =
+          allPlaces.length > 0
+            ? allPlaces
+            : initialAllPlaces;
+
+        const nearby =
+          source
+            .filter((item) => {
+              const itemLat =
+                Number(item.lat);
+
+              const itemLng =
+                Number(item.lng);
+
+              return (
+                Number.isFinite(
+                  itemLat,
+                ) &&
+                Number.isFinite(
+                  itemLng,
+                ) &&
+                haversineKm(
+                  lat,
+                  lng,
+                  itemLat,
+                  itemLng,
+                ) <= 30
+              );
+            })
+            .sort((a, b) => {
+              const distanceA =
+                haversineKm(
+                  lat,
+                  lng,
+                  Number(a.lat),
+                  Number(a.lng),
+                );
+
+              const distanceB =
+                haversineKm(
+                  lat,
+                  lng,
+                  Number(b.lat),
+                  Number(b.lng),
+                );
+
+              return (
+                distanceA -
+                distanceB
+              );
+            });
+
+        setNearbyPlaces(
+          nearby,
+        );
+
+        fetch(
+          "/api/v1/me/location",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body:
+              JSON.stringify({
+                lat,
+                lng,
+              }),
+            keepalive: true,
+          },
+        ).catch(
+          () => null,
+        );
+      },
+      [
+        allPlaces,
+        initialAllPlaces,
+      ],
+    );
+
+  const requestHomeLocation =
+    React.useCallback(
+      () => {
+        if (
+          typeof window ===
+          "undefined"
+        ) {
+          return;
+        }
+
+        const nativePlatform =
+          window
+            .__IM_NATIVE_APP__
+            ?.platform;
+
+        /*
+         * iOS :
+         * on laisse CLLocationManager
+         * décider entre demande initiale
+         * et ouverture des réglages.
+         */
+        if (
+          nativePlatform ===
+          "ios"
+        ) {
+          const handler =
+            (
+              window as any
+            ).webkit
+              ?.messageHandlers
+              ?.imLocationPermission;
+
+          if (handler) {
+            handler.postMessage(
+              "open",
+            );
+
+            return;
+          }
+        }
+
+        if (
+          !navigator.geolocation
+        ) {
+          return;
+        }
+
+        navigator.geolocation
+          .getCurrentPosition(
+            (position) => {
+              applyHomeLocation(
+                Number(
+                  position
+                    .coords
+                    .latitude,
+                ),
+                Number(
+                  position
+                    .coords
+                    .longitude,
+                ),
+              );
+            },
+
+            (error) => {
+              console.error(
+                "[home-location]",
+                error.code,
+                error.message,
+              );
+
+              if (
+                /Android/i.test(
+                  navigator.userAgent,
+                )
+              ) {
+                window.location.href =
+                  "indiemap://location-settings";
+                return;
+              }
+
+              if (
+                error.code === 1
+              ) {
+                setHomeLocationError(
+                  isFr
+                    ? "Safari refuse l’accès à ta position pour ce site. Vérifie l’autorisation de localisation d’Indie Map dans Safari puis réessaie."
+                    : "Safari is denying location access for this site. Check Indie Map's location permission in Safari and try again.",
+                );
+              } else if (
+                error.code === 2
+              ) {
+                /*
+                 * Safari/macOS peut répondre POSITION_UNAVAILABLE
+                 * temporairement même lorsque l'autorisation est accordée.
+                 * On retente avec une précision plus élevée et davantage
+                 * de temps avant d'afficher une erreur.
+                 */
+                navigator.geolocation.getCurrentPosition(
+                  (position) => {
+                    applyHomeLocation(
+                      Number(
+                        position.coords.latitude,
+                      ),
+                      Number(
+                        position.coords.longitude,
+                      ),
+                    );
+                  },
+                  (retryError) => {
+                    console.error(
+                      "[home-location-retry]",
+                      retryError.code,
+                      retryError.message,
+                    );
+
+                    setHomeLocationError(
+                      isFr
+                        ? "Ta localisation est autorisée, mais ton appareil n’arrive pas à déterminer ta position actuellement. Vérifie que le service de localisation et le Wi-Fi sont actifs, puis réessaie."
+                        : "Location is allowed, but your device cannot determine your position right now. Check that Location Services and Wi-Fi are enabled, then try again.",
+                    );
+                  },
+                  {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0,
+                  },
+                );
+              } else if (
+                error.code === 3
+              ) {
+                setHomeLocationError(
+                  isFr
+                    ? "La récupération de ta position a pris trop de temps. Réessaie."
+                    : "Getting your location took too long. Try again.",
+                );
+              } else {
+                setHomeLocationError(
+                  isFr
+                    ? "Impossible de récupérer ta position."
+                    : "Unable to get your location.",
+                );
+              }
+            },
+
+            {
+              enableHighAccuracy:
+                false,
+              timeout: 7000,
+              maximumAge:
+                300000,
+            },
+          );
+      },
+      [
+        applyHomeLocation,
+      ],
+    );
+
+  React.useEffect(() => {
+    const onNativeLocation =
+      (
+        event:
+          Event,
+      ) => {
+        const detail =
+          (
+            event as
+              CustomEvent<{
+                lat: number;
+                lng: number;
+              }>
+          ).detail;
+
+        applyHomeLocation(
+          Number(
+            detail?.lat,
+          ),
+          Number(
+            detail?.lng,
+          ),
+        );
+      };
+
+    window.addEventListener(
+      "im:native-location",
+      onNativeLocation,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "im:native-location",
+        onNativeLocation,
+      );
+    };
+  }, [
+    applyHomeLocation,
+  ]);
+
+  React.useEffect(() => {
+    /*
+     * Quand l'utilisateur revient
+     * des réglages iOS / Android,
+     * on vérifie à nouveau la position.
+     */
+    const refresh =
+      () => {
+        if (
+          document
+            .visibilityState ===
+          "hidden"
+        ) {
+          return;
+        }
+
+        const nativePlatform =
+          window
+            .__IM_NATIVE_APP__
+            ?.platform;
+
+        if (
+          nativePlatform ===
+          "ios"
+        ) {
+          const handler =
+            (
+              window as any
+            ).webkit
+              ?.messageHandlers
+              ?.imLocationPermission;
+
+          handler
+            ?.postMessage(
+              "refresh",
+            );
+
+          return;
+        }
+
+        if (
+          !navigator.geolocation
+        ) {
+          return;
+        }
+
+        navigator.geolocation
+          .getCurrentPosition(
+            (position) => {
+              applyHomeLocation(
+                Number(
+                  position
+                    .coords
+                    .latitude,
+                ),
+                Number(
+                  position
+                    .coords
+                    .longitude,
+                ),
+              );
+            },
+            () => undefined,
+            {
+              enableHighAccuracy:
+                false,
+              timeout: 3500,
+              maximumAge:
+                300000,
+            },
+          );
+      };
+
+    window.addEventListener(
+      "focus",
+      refresh,
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      refresh,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "focus",
+        refresh,
+      );
+
+      document.removeEventListener(
+        "visibilitychange",
+        refresh,
+      );
+    };
+  }, [
+    applyHomeLocation,
+  ]);
 
   React.useEffect(() => {
     const recentPosition =
@@ -2466,19 +2874,21 @@ React.useEffect(() => {
               </div>
             </button>
 
-          {openNowPlaces.length > 0 ? (
-            <div className="mb-3 w-full shrink-0">
-              <div className="mb-2 flex items-center gap-2 px-3">
-                <span
-                  aria-hidden="true"
-                  className="h-2 w-2 shrink-0 rounded-full bg-green-400"
-                />
+          <div className="mb-3 w-full shrink-0">
+            <div className="mb-2 flex items-center gap-2 px-3">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 shrink-0 rounded-full bg-green-400"
+              />
 
-                <p className="font-serif text-[15px] font-medium tracking-[0.01em] text-white">
-                  {isFr ? "Ouvert maintenant" : "Open now"}
-                </p>
-              </div>
+              <p className="font-serif text-[15px] font-medium tracking-[0.01em] text-white">
+                {isFr
+                  ? "Ouvert maintenant"
+                  : "Open now"}
+              </p>
+            </div>
 
+            {openNowPlaces.length > 0 ? (
               <div className="im-home-scroll flex w-full gap-2 overflow-x-auto px-3 pb-1">
                 {openNowPlaces.map((item) => (
                   <button
@@ -2497,14 +2907,22 @@ React.useEffect(() => {
                         },
                       });
 
-                      setSelectedHomePlaceSource("open_now");
-                      setSelectedHomePlace(item);
+                      setSelectedHomePlaceSource(
+                        "open_now",
+                      );
+
+                      setSelectedHomePlace(
+                        item,
+                      );
                     }}
                     className="w-[calc(33.333333%-5.333px)] min-w-[calc(33.333333%-5.333px)] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
                   >
                     <div className="relative h-[72px] w-full overflow-hidden bg-white/10">
                       <img
-                        src={item.panoramaImage || "/explorer-bg.png?v=3"}
+                        src={
+                          item.panoramaImage ||
+                          "/explorer-bg.png?v=3"
+                        }
                         alt=""
                         className="h-full w-full object-cover"
                       />
@@ -2522,7 +2940,10 @@ React.useEffect(() => {
 
                       <p className="mt-1 truncate text-[9px] font-medium text-white/60">
                         {[
-                          getLocalizedCategory(item.category, isFr),
+                          getLocalizedCategory(
+                            item.category,
+                            isFr,
+                          ),
                           item.city,
                         ]
                           .filter(Boolean)
@@ -2532,19 +2953,46 @@ React.useEffect(() => {
                   </button>
                 ))}
               </div>
-            </div>
-          ) : openNowHasLocation ? (
-            <div className="mb-3 w-full shrink-0 px-3">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
-                <p className="text-[11px] leading-snug text-white/50">
-                  {isFr
-                    ? "Aucun lieu ouvert près de toi pour le moment."
-                    : "No places open near you right now."}
-                </p>
+            ) : openNowHasLocation ? (
+              <div className="px-3">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
+                  <p className="text-[11px] leading-snug text-white/50">
+                    {isFr
+                      ? "Aucun lieu ouvert près de toi pour le moment."
+                      : "No places open near you right now."}
+                  </p>
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : (
+              <div className="px-3">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-4">
+                  <p className="text-[12px] leading-relaxed text-white/55">
+                    {isFr
+                      ? "Ta localisation doit être activée pour découvrir les lieux autour de toi."
+                      : "Your location must be enabled to discover places around you."}
+                  </p>
 
+                  <button
+                    type="button"
+                    onClick={
+                      requestHomeLocation
+                    }
+                    className="mt-3 rounded-xl bg-white px-4 py-2.5 text-[11px] font-semibold text-black active:opacity-80"
+                  >
+                    {isFr
+                      ? "Activer ma localisation"
+                      : "Enable my location"}
+                  </button>
+
+                  {homeLocationError ? (
+                    <p className="mt-3 text-[11px] leading-relaxed text-red-200/85">
+                      {homeLocationError}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            )}
+          </div>
 
 
           <div className="mt-4 mb-5 w-full shrink-0 px-3">
@@ -3638,12 +4086,24 @@ React.useEffect(() => {
 
           <div className="px-3 pb-[calc(env(safe-area-inset-bottom)+36px)] pt-5">
             {!openNowHasLocation ? (
-              <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-4">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-5">
                 <p className="text-[12px] leading-relaxed text-white/55">
                   {isFr
-                    ? "Ta localisation est nécessaire pour séparer les lieux proches des lieux plus éloignés."
-                    : "Your location is needed to separate nearby places from places farther away."}
+                    ? "Ta localisation doit être activée pour découvrir les lieux autour de toi."
+                    : "Your location must be enabled to discover places around you."}
                 </p>
+
+                <button
+                  type="button"
+                  onClick={
+                    requestHomeLocation
+                  }
+                  className="mt-4 rounded-xl bg-white px-4 py-2.5 text-[11px] font-semibold text-black active:opacity-80"
+                >
+                  {isFr
+                    ? "Activer ma localisation"
+                    : "Enable my location"}
+                </button>
               </div>
             ) : (
               <>
@@ -3949,6 +4409,12 @@ React.useEffect(() => {
                   >
                     ×
                   </button>
+
+                  {homeLocationError ? (
+                    <p className="mt-3 text-[11px] leading-relaxed text-red-200/85">
+                      {homeLocationError}
+                    </p>
+                  ) : null}
                 </div>
 
                 {selectedPlaceSharedListsLoading ? (
