@@ -60,6 +60,20 @@ export async function POST(req: Request) {
     }
 
     const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "authentication_required",
+        },
+        {
+          status: 401,
+          headers: V1_HEADERS,
+        },
+      );
+    }
+
     const reviewToken = randomBytes(32).toString("hex");
 
     const apiKey = process.env.RESEND_API_KEY || "";
@@ -95,7 +109,7 @@ export async function POST(req: Request) {
         phone,
         website,
         reviewToken,
-        user: currentUser ? { connect: { id: currentUser.id } } : undefined,
+        user: { connect: { id: currentUser.id } },
       },
       select: { id: true },
     });

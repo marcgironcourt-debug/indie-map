@@ -615,6 +615,12 @@ React.useEffect(() => {
       refreshAuthProfile();
     }
 
+    if (params.get("signup") === "1") {
+      setPanel("personalSpace");
+      setAuthMode("signup");
+      setAuthForceForm(true);
+    }
+
     const requestedPanel = params.get("panel");
     if (requestedPanel === "friends") {
       window.sessionStorage.removeItem("im:pending-panel-after-locale");
@@ -1853,6 +1859,11 @@ const filtered = source.filter((b) => {
           hasPersonalNotification={incomingFriendRequestCount > 0 || unseenSharedListCount > 0}
           onOpenPersonal={() => setPanel("personalSpace")}
           onOpenContrib={() => setPanel("contrib")}
+          onCreateAccount={() => {
+            setPanel("personalSpace");
+            setAuthMode("signup");
+            setAuthForceForm(true);
+          }}
             onOpenPros={() => setPanel("pros")}
         />
       ) : null}

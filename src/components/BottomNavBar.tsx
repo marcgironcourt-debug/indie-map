@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 type BottomNavBarProfile = {
   username: string;
   displayName: string;
@@ -20,6 +22,7 @@ type BottomNavBarProps = {
   hasPersonalNotification?: boolean;
   onOpenPersonal: () => void;
   onOpenContrib: () => void;
+  onCreateAccount: () => void;
   onOpenPros: () => void;
   minHeightClassName?: string;
 };
@@ -31,11 +34,16 @@ export default function BottomNavBar({
   hasPersonalNotification = false,
   onOpenPersonal,
   onOpenContrib,
+  onCreateAccount,
   onOpenPros,
   minHeightClassName = "min-h-[50px]",
 }: BottomNavBarProps) {
+  const [showContributionAuthRequired, setShowContributionAuthRequired] =
+    React.useState(false);
+
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[1200]">
+    <>
+      <div className="fixed inset-x-0 bottom-0 z-[1200]">
       <div
         className="grid w-full grid-cols-3 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -106,7 +114,14 @@ export default function BottomNavBar({
 
         <button
           type="button"
-          onClick={onOpenContrib}
+          onClick={() => {
+            if (authProfile) {
+              onOpenContrib();
+              return;
+            }
+
+            setShowContributionAuthRequired(true);
+          }}
           className={`flex ${minHeightClassName} flex-col items-center justify-center gap-0.5 px-2 text-center hover:bg-white/6 active:bg-white/10`}
         >
           <span className="flex h-6 w-6 items-center justify-center">
@@ -147,5 +162,57 @@ export default function BottomNavBar({
         </button>
       </div>
     </div>
+
+      {showContributionAuthRequired ? (
+        <div
+          className="fixed inset-0 z-[3000] flex items-end justify-center bg-black/60 px-4 pb-[calc(76px+env(safe-area-inset-bottom))] sm:items-center sm:pb-4"
+          onClick={() => setShowContributionAuthRequired(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contribution-auth-title"
+            className="w-full max-w-md rounded-3xl border border-white/10 bg-[#262626] p-5 text-white shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2
+              id="contribution-auth-title"
+              className="text-lg font-semibold"
+            >
+              {isFr
+                ? "Un compte Indie Map est nécessaire"
+                : "An Indie Map account is required"}
+            </h2>
+
+            <p className="mt-2 text-sm leading-relaxed text-white/75">
+              {isFr
+                ? "Crée un compte pour contribuer et proposer des lieux à Indie Map."
+                : "Create an account to contribute and suggest places to Indie Map."}
+            </p>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setShowContributionAuthRequired(false)}
+                className="rounded-2xl border border-white/15 px-4 py-3 text-sm font-semibold text-white/80 active:bg-white/10"
+              >
+                {isFr ? "Plus tard" : "Not now"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowContributionAuthRequired(false);
+                  onCreateAccount();
+                }}
+                className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-black active:opacity-80"
+              >
+                {isFr ? "Créer un compte" : "Create account"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }
