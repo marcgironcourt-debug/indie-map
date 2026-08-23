@@ -12,6 +12,7 @@ import MapPanel from "@/components/MapPanel";
 import PersonalSpacePanel from "@/components/PersonalSpacePanel";
 import ProfessionalSpacePanel from "@/components/ProfessionalSpacePanel";
 import { getLocalizedCategory } from "@/lib/localizedCategory";
+import { getCategoryStyle } from "@/lib/categoryStyle";
 import { isOpenNowFR } from "@/lib/openingHours";
 import {
   readRecentViewedPlaceIds,
@@ -451,7 +452,7 @@ function getOpenNowHomePlaces(
         ) === true
       );
     })
-    .slice(0, 7);
+    .slice(0, 10);
 }
 
 function mergePlace(base: DiscoverPlace | null | undefined, fresh: DiscoverPlace | null | undefined): DiscoverPlace | null {
@@ -673,7 +674,7 @@ function pickDailyHomeMoodPlaces(
   dayKey: string,
   mood: HomeMoodId,
   proximity: "near" | "far",
-  limit = 6,
+  limit = 10,
 ) {
   if (places.length <= limit) {
     return places;
@@ -2072,7 +2073,7 @@ React.useEffect(() => {
           homeMoodDayKey,
           selectedHomeMood,
           "near",
-          6,
+          10,
         );
 
       // On sélectionne quotidiennement les lieux,
@@ -2131,7 +2132,7 @@ React.useEffect(() => {
         homeMoodDayKey,
         selectedHomeMood,
         "far",
-        6,
+        10,
       );
     }, [
       selectedHomeMood,
@@ -4058,6 +4059,18 @@ React.useEffect(() => {
                           background: "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.64) 100%)"
                         }}
                       ></div>
+
+                      {item.category ? (
+                        <div
+                          className={`absolute right-2 top-2 z-20 rounded-full px-2 py-1 text-[9px] font-semibold leading-none shadow-[0_2px_8px_rgba(0,0,0,0.28)] ${getCategoryStyle(
+                            String(item.category),
+                            true,
+                          )}`}
+                        >
+                          {getLocalizedCategory(item.category, isFr)}
+                        </div>
+                      ) : null}
+
                       <div className="absolute inset-x-0 bottom-0 z-10 p-3">
                         <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
                           {item.name}
@@ -4210,6 +4223,12 @@ React.useEffect(() => {
             </div>
 
           <div className="mt-5 w-full shrink-0 relative z-0">
+            <div className="mb-3 flex items-baseline gap-1.5 px-1 pt-2">
+              <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
+                {isFr ? "Découverte du jour" : "Discovery of the day"}
+              </p>
+            </div>
+
             <button
               type="button"
               onClick={() => {
@@ -4250,15 +4269,7 @@ React.useEffect(() => {
       }}
     ></div>
 
-    <div className="absolute inset-0 z-10 flex flex-col justify-between">
-      <div>
-        <div className="w-full px-3 py-1">
-          <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em]">
-            {isFr ? "Découverte du jour" : "Discovery of the day"}
-          </p>
-        </div>
-      </div>
-
+    <div className="absolute inset-0 z-10 flex flex-col justify-end">
       <div className="pr-7">
         <div className="w-full px-3 py-1">
           <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em]">
