@@ -1,4 +1,5 @@
 "use client";
+import { formatPlacePriceRange, type PlacePriceRange } from "@/lib/placePrice";
 import { getCategoryStyle } from "@/lib/categoryStyle";
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -222,6 +223,7 @@ type Business = {
   lat?: number;
   lng?: number;
   city?: string;
+  priceRange?: PlacePriceRange;
 };
 
 const DEMO: Business[] = [
@@ -1541,6 +1543,7 @@ React.useEffect(() => {
           blurb?: string;
           description?: string;
           timeZone?: string;
+          priceRange?: PlacePriceRange;
         }) => ({
           id: p.id,
           name: p.name,
@@ -1551,6 +1554,7 @@ React.useEffect(() => {
           panoramaImage: p.panoramaImage ?? "",
           miniText: p.miniText ?? p.blurb ?? p.description ?? "",
           timeZone: p.timeZone ?? "",
+          priceRange: p.priceRange,
           openingHours:
             typeof p.openingHours === "string"
               ? p.openingHours
@@ -2451,7 +2455,7 @@ const filtered = source.filter((b) => {
                   {(selectedDetailPlace.type || selectedDetailPlace.website) ? (
                     <div className="mt-2 flex flex-wrap items-center gap-2">
                       {selectedDetailPlace.type ? (
-                        <div className="text-[14px] text-white/70">
+                        <div className="text-[14px] font-semibold text-white/70">
                           {displayCategory(locale, selectedDetailPlace.type)}
                         </div>
                       ) : null}
@@ -2497,6 +2501,12 @@ const filtered = source.filter((b) => {
                           {isFr ? "Voir le site ↗" : "Visit website ↗"}
                         </button>
                       ) : null}
+                    </div>
+                  ) : null}
+
+                  {selectedDetailPlace.priceRange ? (
+                    <div className="mt-2 text-[13px] font-normal text-white/80">
+                      {formatPlacePriceRange(selectedDetailPlace.priceRange, locale)}
                     </div>
                   ) : null}
 

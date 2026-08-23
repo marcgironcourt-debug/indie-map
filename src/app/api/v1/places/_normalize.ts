@@ -22,6 +22,33 @@ function arrStr(v: unknown): string[] {
   return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
 }
 
+function normalizePriceRange(v: unknown) {
+  if (!isObj(v)) return undefined;
+
+  const min = num(v.min);
+  const max = num(v.max);
+  const currency = str(v.currency).trim().toUpperCase();
+  const basis = str(v.basis).trim();
+
+  if (
+    min === null ||
+    max === null ||
+    min < 0 ||
+    max < min ||
+    !/^[A-Z]{3}$/.test(currency) ||
+    basis !== "per_person"
+  ) {
+    return undefined;
+  }
+
+  return {
+    min,
+    max,
+    currency,
+    basis: "per_person" as const,
+  };
+}
+
 export function normalizePlace(x: unknown): unknown {
   if (!isObj(x)) return x;
 
@@ -50,6 +77,8 @@ const timeZone = str(x.timeZone);
   const tagsRaw = arrStr(x.tags);
   const tags = tagsRaw.length ? tagsRaw : (category ? [category] : []);
 
+  const priceRange = normalizePriceRange(x.priceRange);
+
   return {
     id,
     name,
@@ -64,6 +93,7 @@ const timeZone = str(x.timeZone);
     createdAt,
     updatedAt,
     tags,
+    ...(priceRange ? { priceRange } : {}),
     phone,
     openingHours,
     ...(miniText ? { miniText } : {}),

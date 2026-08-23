@@ -1,4 +1,5 @@
 "use client";
+import { formatPlacePriceRange, type PlacePriceRange } from "@/lib/placePrice";
 
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -54,6 +55,7 @@ type DiscoverPlace = {
   city?: string;
   address?: string;
   category?: string;
+  priceRange?: PlacePriceRange;
   website?: string;
   phone?: string;
     miniText?: string;
@@ -4604,7 +4606,7 @@ React.useEffect(() => {
                   {(selectedHomePlace.category || selectedHomePlace.website) ? (
                     <div className="mt-2 flex flex-wrap items-center gap-2">
                       {selectedHomePlace.category ? (
-                        <div className="text-[14px] text-white/70">
+                        <div className="text-[14px] font-semibold text-white/70">
                           {getLocalizedCategory(selectedHomePlace.category, isFr)}
                         </div>
                       ) : null}
@@ -4652,6 +4654,13 @@ React.useEffect(() => {
                       ) : null}
                     </div>
                   ) : null}
+
+                  {selectedHomePlace.priceRange ? (
+                    <div className="mt-2 text-[13px] font-normal text-white/80">
+                      {formatPlacePriceRange(selectedHomePlace.priceRange, locale)}
+                    </div>
+                  ) : null}
+
                   {selectedHomePlace.address ? (
                     <div className="mt-4 flex flex-wrap items-center gap-3">
                       <div className="text-[16px] font-serif leading-relaxed text-[#F97316]">

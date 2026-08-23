@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "places": {
+    "4a2c9194-13bc-414a-977a-9f44c388f5c6": {
+      "placeName": "Frame Brasserie",
+      "observedRange": {
+        "min": 26,
+        "max": 42,
+        "currency": "EUR"
+      },
+      "displayRange": {
+        "min": 25,
+        "max": 45,
+        "currency": "EUR",
+        "basis": "per_person"
+      },
+      "sourceKind": "official_menu",
+      "sourceUrl": "https://www.framebrasserie.fr/wp-content/uploads/2026/04/MENU-DEJDINER-2026.pdf",
+      "verifiedAt": "2026-08-23",
+      "method": "regular_individual_main_course_range",
+      "roundingRule": "lower_bound_down_to_5_upper_bound_up_to_5",
+      "notes": "Pilote. Plats principaux individuels courants. Plats exceptionnels et plats à partager exclus."
+    },
+    "88aa5e1b-9cd0-4aa4-b7ba-c63326979a01": {
+      "placeName": "Restaurant Toqué!",
+      "observedRange": {
+        "min": 68,
+        "max": 198,
+        "currency": "CAD"
+      },
+      "displayRange": {
+        "min": 65,
+        "max": 200,
+        "currency": "CAD",
+        "basis": "per_person"
+      },
+      "sourceKind": "official_menu",
+      "sourceUrl": "https://www.restaurant-toque.com/fr/menu",
+      "verifiedAt": "2026-08-23",
+      "method": "regular_main_to_tasting_menu",
+      "roundingRule": "lower_bound_down_to_5_upper_bound_up_to_5",
+      "notes": "Plats principaux à la carte autour de 68–70 CAD et menu dégustation à 198 CAD."
+    },
+    "57ce11b8-71c2-4724-8f66-22012a9729d7": {
+      "placeName": "Hélicoptère",
+      "observedRange": {
+        "min": 32,
+        "max": 90,
+        "currency": "CAD"
+      },
+      "displayRange": {
+        "min": 30,
+        "max": 90,
+        "currency": "CAD",
+        "basis": "per_person"
+      },
+      "sourceKind": "official_menu",
+      "sourceUrl": "https://helicopteremtl.com/menu",
+      "verifiedAt": "2026-08-23",
+      "method": "regular_substantial_dish_to_tasting_menu",
+      "roundingRule": "lower_bound_down_to_5_upper_bound_up_to_5",
+      "notes": "Plats substantiels à la carte autour de 32–38 CAD et menu dégustation à 90 CAD."
+    },
+    "355ff714-7a6a-470e-b223-98e22da67d07": {
+      "placeName": "Vices & Versa",
+      "observedRange": {
+        "min": 12,
+        "max": 25,
+        "currency": "CAD"
+      },
+      "displayRange": {
+        "min": 10,
+        "max": 25,
+        "currency": "CAD",
+        "basis": "per_person"
+      },
+      "sourceKind": "official_menu",
+      "sourceUrl": "https://vicesetversa.com/",
+      "verifiedAt": "2026-08-23",
+      "method": "regular_individual_food_range",
+      "roundingRule": "lower_bound_down_to_5_upper_bound_up_to_5",
+      "notes": "Plats individuels courants de la carte, hors bouteilles et produits exceptionnels."
+    },
+    "6fd1d7ad-3d80-4882-b998-f17116280adb": {
+      "placeName": "Datil",
+      "observedRange": {
+        "min": 95,
+        "max": 160,
+        "currency": "EUR"
+      },
+      "displayRange": {
+        "min": 95,
+        "max": 160,
+        "currency": "EUR",
+        "basis": "per_person"
+      },
+      "sourceKind": "official_menu",
+      "sourceUrl": "https://www.datil-restaurant.fr/",
+      "verifiedAt": "2026-08-23",
+      "method": "published_tasting_menus",
+      "roundingRule": "lower_bound_down_to_5_upper_bound_up_to_5",
+      "notes": "Menu dégustation déjeuner 95 EUR et menu dégustation dîner 160 EUR."
+    }
+  }
+}
