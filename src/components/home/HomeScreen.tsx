@@ -539,7 +539,10 @@ function matchesHomeMood(
       key.includes("marche") ||
       key.includes("market") ||
       key.includes("ferme") ||
-      key.includes("farm")
+      key.includes("farm") ||
+      key.includes("fromagerie") ||
+      key.includes("cheese shop") ||
+      key.includes("cheesemonger")
     );
   }
 
@@ -626,8 +629,8 @@ function getHomeMoodCategoriesLabel(
       en: "Cafe · Bar · Pub",
     },
     groceries: {
-      fr: "Épicerie · Marché · Ferme",
-      en: "Grocery · Market · Farm",
+      fr: "Épicerie · Marché · Ferme · Fromagerie",
+      en: "Grocery · Market · Farm · Cheese shop",
     },
     browse: {
       fr: "Boutique · Mode",
@@ -4140,8 +4143,8 @@ React.useEffect(() => {
 
                 <p className="text-[10px] leading-snug text-white/65">
                   {isFr
-                    ? "Épicerie · Marché · Ferme"
-                    : "Grocery · Market · Farm"}
+                    ? "Épicerie · Marché · Ferme · Fromagerie"
+                    : "Grocery · Market · Farm · Cheese shop"}
                 </p>
               </button>
 

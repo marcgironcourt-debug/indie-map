@@ -1,6 +1,6 @@
 {
   "version": "manual-new-place-enrichment-v1",
-  "updatedAt": "2026-08-23T12:11:41.336Z",
+  "updatedAt": "2026-08-23T13:29:32.922Z",
   "entries": {
     "9a7aecb3-357a-41ae-8ab9-023b370c75b2": {
       "placeId": "9a7aecb3-357a-41ae-8ab9-023b370c75b2",
@@ -51,6 +51,408 @@
         "Le tag organic indique l’existence de références certifiées biologiques et non que l’ensemble de la gamme est biologique."
       ],
       "verifiedAt": "2026-08-23T12:11:41.336Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "7384e3e4-6e91-4e02-a9d7-39bcfd1cfb45": {
+      "placeId": "7384e3e4-6e91-4e02-a9d7-39bcfd1cfb45",
+      "name": "Km0 - Cheese",
+      "city": "Canggu",
+      "country": "ID",
+      "category": "Fromagerie",
+      "website": "https://www.instagram.com/km0_bali/",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "our home made cheese",
+          "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g10086747-d20950444-Reviews-Km0_Cheese-Tibubeneng_North_Kuta_Bali.html",
+          "scope": "target_place"
+        },
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "we sell what we mostly produce here in Bali",
+          "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g10086747-d20950444-Reviews-Km0_Cheese-Tibubeneng_North_Kuta_Bali.html",
+          "scope": "target_place"
+        },
+        {
+          "key": "short_supply_chain",
+          "evidenceQuote": "bring the products at your table from the shortest distance",
+          "sourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g10086747-d20950444-Reviews-Km0_Cheese-Tibubeneng_North_Kuta_Bali.html",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [
+        "Les sources confirment des fromages fabriqués à Bali et des productions maison, mais pas que tous les fromages vendus sont fabriqués physiquement dans la boutique de Berawa."
+      ],
+      "verifiedAt": "2026-08-23T12:31:55.574Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "3bd68c96-12fd-4aec-8d69-919ce1742a4f": {
+      "placeId": "3bd68c96-12fd-4aec-8d69-919ce1742a4f",
+      "name": "Saltwater @ Bundilla",
+      "city": "Darwin",
+      "country": "AU",
+      "category": "Café / brunch",
+      "website": "https://saltwaterb.com.au/",
+      "attributes": [
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "using local fresh produce to give a taste of the top end",
+          "sourceUrl": "https://saltwaterb.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "vegetarian_options",
+          "evidenceQuote": "Smashed Avo on Toast (V)",
+          "sourceUrl": "https://saltwaterb.com.au/wp-content/uploads/2025/03/SaltwaterA3MenuMarch2025.pdf",
+          "scope": "target_place"
+        },
+        {
+          "key": "gluten_free_options",
+          "evidenceQuote": "Wild-Caught Local Barramundi (GFO)",
+          "sourceUrl": "https://saltwaterb.com.au/wp-content/uploads/2025/03/SaltwaterA3MenuMarch2025.pdf",
+          "scope": "target_place"
+        },
+        {
+          "key": "family_friendly",
+          "evidenceQuote": "Kids",
+          "sourceUrl": "https://saltwaterb.com.au/wp-content/uploads/2025/03/SaltwaterA3MenuMarch2025.pdf",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [],
+      "verifiedAt": "2026-08-23T12:36:41.718Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "12714ead-9059-42cc-a48e-87156eaa4a27": {
+      "placeId": "12714ead-9059-42cc-a48e-87156eaa4a27",
+      "name": "Hoochery Distillery",
+      "city": "Kununurra",
+      "country": "AU",
+      "category": "Brasserie / bar / pub",
+      "website": "https://www.hoochery.com.au/",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "still made and bottled by hand",
+          "sourceUrl": "https://www.hoochery.com.au/product/premium-ord-river-rum",
+          "scope": "brand_general"
+        },
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "uses locally-grown ingredients wherever possible",
+          "sourceUrl": "https://www.hoochery.com.au/australian-made-rum-shop",
+          "scope": "brand_general"
+        },
+        {
+          "key": "on_site_production",
+          "evidenceQuote": "Built on the Dessert family farm just outside of Kununurra",
+          "sourceUrl": "https://www.hoochery.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "OUR CELLAR DOOR IS OPEN",
+          "sourceUrl": "https://www.hoochery.com.au/australian-made-rum-shop",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [
+        "Le tag local_sourcing signifie que la distillerie privilégie des ingrédients locaux lorsque possible, pas que tous ses ingrédients sont locaux."
+      ],
+      "verifiedAt": "2026-08-23T12:41:45.818Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "0e24dabd-4ba1-476c-9a04-2b72245258df": {
+      "placeId": "0e24dabd-4ba1-476c-9a04-2b72245258df",
+      "name": "Broome Courthouse Markets",
+      "city": "Broome",
+      "country": "AU",
+      "category": "Marché",
+      "website": "https://broomemarkets.com.au/",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "locally handmade arts and crafts",
+          "sourceUrl": "https://broomemarkets.com.au/our-stallholders/stallholder-information/",
+          "scope": "target_place"
+        },
+        {
+          "key": "local_creators",
+          "evidenceQuote": "Preference is given to self-made, local made crafts and services.",
+          "sourceUrl": "https://broomemarkets.com.au/our-stallholders/stallholder-information/",
+          "scope": "target_place"
+        },
+        {
+          "key": "community_alternative",
+          "evidenceQuote": "support our local community by providing space, support, and a platform",
+          "sourceUrl": "https://broomemarkets.com.au/about-us/",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [
+        "Les horaires du Courthouse Market sont saisonniers : actuellement, pendant la saison sèche, samedi et dimanche 08h00-13h00. En saison humide, le samedi termine à 12h00 et les dimanches ne suivent pas le même calendrier."
+      ],
+      "verifiedAt": "2026-08-23T12:46:33.568Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "98422901-aa6e-48ef-a4cb-98058b461c9a": {
+      "placeId": "98422901-aa6e-48ef-a4cb-98058b461c9a",
+      "name": "Whalebone Brewing Company",
+      "city": "Exmouth",
+      "country": "AU",
+      "category": "Brasserie / bar / pub",
+      "website": "https://www.whalebonebrewing.com.au/",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "a love of craft beer",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/about-us",
+          "scope": "brand_general"
+        },
+        {
+          "key": "on_site_production",
+          "evidenceQuote": "all beers brewed on-site",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/about-us",
+          "scope": "target_place"
+        },
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "pizza showcasing local ingredients",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/about-us",
+          "scope": "target_place"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "WHALEBONE BREWS on tap",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "takeaway",
+          "evidenceQuote": "DINE IN & TAKEAWAY",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "vegetarian_options",
+          "evidenceQuote": "The CHEESY BONE (V)",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "vegan_options",
+          "evidenceQuote": "VEGAN OPTION: Vegan cheese",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "gluten_free_options",
+          "evidenceQuote": "Gluten Free base",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        },
+        {
+          "key": "family_friendly",
+          "evidenceQuote": "a kids play area",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/about-us",
+          "scope": "target_place"
+        },
+        {
+          "key": "dogs_allowed",
+          "evidenceQuote": "Friendly dogs are welcome from 12-5pm",
+          "sourceUrl": "https://www.whalebonebrewing.com.au/",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [
+        "Les chiens sont acceptés uniquement de 12h à 17h et doivent rester en laisse.",
+        "Le tag local_sourcing est fondé sur les ingrédients locaux explicitement mis en avant par l'établissement ; il ne signifie pas que tous les ingrédients sont locaux."
+      ],
+      "verifiedAt": "2026-08-23T12:59:03.663Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "38d11d2e-7cd4-4c47-8a22-ed9f36ae05d4": {
+      "placeId": "38d11d2e-7cd4-4c47-8a22-ed9f36ae05d4",
+      "name": "Bumbak's",
+      "city": "Carnarvon",
+      "country": "AU",
+      "category": "Ferme",
+      "website": "https://www.facebook.com/bumbaks/",
+      "attributes": [
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "made from local produce",
+          "sourceUrl": "https://www.abc.net.au/news/2025-07-03/carnarvon-wa-tourism-small-business-attractions-closing/105426404",
+          "scope": "target_place"
+        },
+        {
+          "key": "short_supply_chain",
+          "evidenceQuote": "using produce from the local area",
+          "sourceUrl": "https://www.abc.net.au/news/2025-07-03/carnarvon-wa-tourism-small-business-attractions-closing/105426404",
+          "scope": "target_place"
+        },
+        {
+          "key": "on_site_production",
+          "evidenceQuote": "processing plant",
+          "sourceUrl": "https://www.wa.gov.au/government/media-statements/McGowan%20Labor%20Government/%241.25-million-for-job-creating-projects-in-the-Gascoyne-20191114",
+          "scope": "target_place"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "small farm shop",
+          "sourceUrl": "https://www.abc.net.au/news/2021-09-04/farm-shop-fights-back-customer-milk-demands/100420582",
+          "scope": "target_place"
+        },
+        {
+          "key": "zero_waste",
+          "evidenceQuote": "totally against our waste policy",
+          "sourceUrl": "https://www.abc.net.au/news/2021-09-04/farm-shop-fights-back-customer-milk-demands/100420582",
+          "scope": "target_place"
+        }
+      ],
+      "cautions": [
+        "Le tag short_supply_chain repose sur l'utilisation documentée de produits de la région et la vente depuis le farm shop.",
+        "La logique zero_waste est explicitement décrite par l'établissement et concerne notamment la valorisation de produits locaux qui auraient autrement été écartés."
+      ],
+      "verifiedAt": "2026-08-23T13:09:01.349Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "40a4041e-3bb0-4ebc-b674-6b1d1f2d7e18": {
+      "placeId": "40a4041e-3bb0-4ebc-b674-6b1d1f2d7e18",
+      "name": "Talasi Estate at Batukaru Bali",
+      "city": "Tabanan",
+      "country": "ID",
+      "category": "Lieu alternatif",
+      "website": "https://talasi.com/",
+      "attributes": [
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "Talasi Batukaru is located in the center of Robusta coffee plantation in Bali.",
+          "sourceUrl": "https://old.talasi.com/visit-talasi-batukaru-bali/",
+          "scope": "target_place"
+        },
+        {
+          "key": "on_site_production",
+          "evidenceQuote": "End-to-end products and experiences, developed where they begin.",
+          "sourceUrl": "https://www.talasi.com/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "short_supply_chain",
+          "evidenceQuote": "End-to-end products and experiences, developed where they begin.",
+          "sourceUrl": "https://www.talasi.com/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "Try Products from this Origin",
+          "sourceUrl": "https://old.talasi.com/visit-talasi-batukaru-bali/",
+          "scope": "target_place"
+        },
+        {
+          "key": "social_solidarity",
+          "evidenceQuote": "working with the community, providing them with knowledge, skills and tools",
+          "sourceUrl": "https://old.talasi.com/about-talasi/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "community_alternative",
+          "evidenceQuote": "working with the community, providing them with knowledge, skills and tools",
+          "sourceUrl": "https://old.talasi.com/about-talasi/",
+          "scope": "brand_general"
+        }
+      ],
+      "cautions": [
+        "Le tag local_sourcing concerne les productions et partenariats locaux documentés autour de Batukaru.",
+        "Le tag direct_sale repose sur la vente directe de produits issus de l'origine Talasi.",
+        "La distillerie Karusotju présente sur le domaine est documentée par NOW! Bali."
+      ],
+      "verifiedAt": "2026-08-23T13:19:00.791Z",
+      "status": "manual_verified",
+      "pendingMergeIntoScout": true
+    },
+    "d38dbe31-11bb-462a-90e7-256fb612f29c": {
+      "placeId": "d38dbe31-11bb-462a-90e7-256fb612f29c",
+      "name": "Kawisari Coffee Farm Shop & Eatery Bali",
+      "city": "Canggu",
+      "country": "ID",
+      "category": "Café / brunch",
+      "website": "https://kawisaricoffee.com/",
+      "attributes": [
+        {
+          "key": "artisan",
+          "evidenceQuote": "ARTISAN COFFEES",
+          "sourceUrl": "https://kawisaricoffee.com/product/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "organic",
+          "evidenceQuote": "100% organic",
+          "sourceUrl": "https://kawisaricoffee.com/product/",
+          "scope": "brand_general"
+        },
+        {
+          "key": "local_sourcing",
+          "evidenceQuote": "locally sourced ingredients directly from farmers in Bali",
+          "sourceUrl": "https://blog.tuguhotels.com/introducing-our-newest-kawisari-coffee-farm-shop-eatery-canggu-bali/",
+          "scope": "target_place"
+        },
+        {
+          "key": "short_supply_chain",
+          "evidenceQuote": "farm-to-table",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "direct_sale",
+          "evidenceQuote": "take home a pouch",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "brunch",
+          "evidenceQuote": "classic brunch menu",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "vegan_options",
+          "evidenceQuote": "vegan-friendly options",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "takeaway",
+          "evidenceQuote": "quick takeaways",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "terrace",
+          "evidenceQuote": "lovely outdoor area",
+          "sourceUrl": "https://blog.tuguhotels.com/kawisari-coffee-farm-shop-eatery-bali-straight-from-javas-oldest-coffee-plantation-to-the-heart-of-canggu/",
+          "scope": "target_place"
+        },
+        {
+          "key": "social_solidarity",
+          "evidenceQuote": "fair trade",
+          "sourceUrl": "https://kawisaricoffee.com/",
+          "scope": "brand_general"
+        }
+      ],
+      "cautions": [
+        "Le tag organic concerne notamment le café et les produits biologiques documentés de la plantation ; il ne signifie pas que l’intégralité du menu est certifiée biologique.",
+        "Une partie importante des produits vient de la plantation Kawisari à Java oriental, tandis que le restaurant indique également acheter certains ingrédients directement auprès d’agriculteurs de Bali.",
+        "Le tag social_solidarity repose sur l’engagement de la marque envers le fair trade et son travail avec les communautés de la plantation."
+      ],
+      "verifiedAt": "2026-08-23T13:29:32.922Z",
       "status": "manual_verified",
       "pendingMergeIntoScout": true
     }

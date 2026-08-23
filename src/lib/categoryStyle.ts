@@ -13,6 +13,16 @@ export function getCategoryStyle(cat: string, active: boolean): string {
       : "bg-[#5C6E3B]/85 text-[hsl(var(--cafe))] border border-[hsl(var(--cafe))]/60";
   }
 
+  if (
+    key.includes("fromagerie") ||
+    key.includes("cheese shop") ||
+    key.includes("cheesemonger")
+  ) {
+    return active
+      ? "bg-[#F4C95D] text-black"
+      : "bg-[#5C6E3B]/85 text-[#F4C95D] border border-[#F4C95D]/60";
+  }
+
   if (key.includes("épicerie") || key.includes("epicerie")) {
     return active
       ? "bg-[#FF8FC7] text-black"

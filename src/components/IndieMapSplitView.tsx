@@ -251,6 +251,14 @@ function normalizeCategoryLabel(raw: string): string {
 
 
 
+  if (
+    key.includes("fromagerie") ||
+    key.includes("cheese shop") ||
+    key.includes("cheesemonger")
+  ) {
+    return "Fromagerie";
+  }
+
   if (key.includes("épicerie") || key.includes("epicerie") || key.includes("zéro déchet") || key.includes("zero dechet")) {
     return "Épicerie";
   }
@@ -1625,6 +1633,15 @@ React.useEffect(() => {
     );
   };
 
+  const isCheeseShop = (t: string) => {
+    const k = t.toLowerCase();
+    return (
+      k.includes("fromagerie") ||
+      k.includes("cheese shop") ||
+      k.includes("cheesemonger")
+    );
+  };
+
   const isRestaurant = (t: string) => {
     const k = t.toLowerCase();
     return (
@@ -1666,6 +1683,7 @@ React.useEffect(() => {
 
   const hasBook = rawCategories.some(isBook);
   const hasGrocery = rawCategories.some(isGrocery);
+  const hasCheeseShop = rawCategories.some(isCheeseShop);
   const hasRestaurant = rawCategories.some(isRestaurant);
   const hasBakery = rawCategories.some(isBakery);
   const hasAtelier = rawCategories.some(isAtelier);
@@ -1677,6 +1695,7 @@ React.useEffect(() => {
     "Ferme",
     "Marché",
     "Épicerie",
+    "Fromagerie",
     "Café / brunch",
     "Boulangerie",
     "Librairie",
@@ -1692,6 +1711,7 @@ React.useEffect(() => {
         !isClothing(t) &&
         !isBook(t) &&
         !isGrocery(t) &&
+        !isCheeseShop(t) &&
         !isRestaurant(t) &&
         !isBakery(t) &&
         !isAtelier(t) &&
@@ -1699,6 +1719,7 @@ React.useEffect(() => {
     ),
     ...(hasBook ? ["Librairie"] : []),
     ...(hasGrocery ? ["Épicerie"] : []),
+    ...(hasCheeseShop ? ["Fromagerie"] : []),
     ...(hasRestaurant ? ["Restaurant"] : []),
     ...(hasBakery ? ["Boulangerie"] : []),
     ...(hasAtelier ? ["Atelier"] : []),
@@ -1710,7 +1731,7 @@ React.useEffect(() => {
   if (!categories.includes("Lieu alternatif")) categories.push("Lieu alternatif");
   categories = Array.from(new Set(categories));
 
-  const priority = ["Restaurant", "Lieu alternatif", "Ferme", "Marché", "Épicerie"]; 
+  const priority = ["Restaurant", "Lieu alternatif", "Ferme", "Marché", "Épicerie", "Fromagerie"];
   categories = [
     ...priority.filter((x) => categories.includes(x)),
     ...categories.filter((x) => !priority.includes(x)),
@@ -1741,6 +1762,14 @@ const filtered = source.filter((b) => {
         k.includes("bouquinerie") ||
         k.includes("spécialisée") ||
         k.includes("specialisee")
+      );
+    }
+
+    if (category === "Fromagerie") {
+      return (
+        k.includes("fromagerie") ||
+        k.includes("cheese shop") ||
+        k.includes("cheesemonger")
       );
     }
 

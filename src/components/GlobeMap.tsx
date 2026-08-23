@@ -44,6 +44,7 @@ type Biz = {
 type Kind =
   | "cafe"
   | "epicerie"
+  | "fromagerie"
   | "friperie"
   | "librairie"
   | "restaurant"
@@ -60,6 +61,12 @@ function normalizeType(t?: string | null): Kind {
   const v = (t || "").toLowerCase();
   if (v.includes("café") || v.includes("cafe") || v.includes("coffee") || v.includes("brunch")) return "cafe";
   if (v.includes("microbrasserie") || v.includes("brasserie") || v.includes("bar") || v.includes("pub")) return "microbrasserie";
+  if (
+    v.includes("fromagerie") ||
+    v.includes("cheese shop") ||
+    v.includes("cheesemonger")
+  ) return "fromagerie";
+
   if (v.includes("épicerie") || v.includes("epicerie") || v.includes("grocery")) return "epicerie";
   if (
     v.includes("friperie") ||
@@ -508,6 +515,7 @@ function buildMiniPinPopupHtml(props: any, dark: boolean, walkMins?: number | nu
   const pal: any = {
     cafe: cssVar("--cafe", "#c26b3a"),
     epicerie: "#FF8FC7",
+    fromagerie: "#F4C95D",
     friperie: cssVar("--violet", "#7c3aed"),
     librairie: "#3B82F6",
     restaurant: cssVar("--restaurant", "#ef4444"),
@@ -2151,6 +2159,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
     return {
       cafe: cssHslVar("--cafe", "#c26b3a"),
       epicerie: "#FF8FC7",
+      fromagerie: "#F4C95D",
       marche: "#39FF14",
       friperie: cssHslVar("--violet", "#7c3aed"),
       librairie: "#3B82F6",
@@ -2167,7 +2176,7 @@ const GLOW_LAYER_ID = "indie-places-pin-glow";
   async function ensureImages(map: maplibregl.Map) {
     const stroke = "#FDF7F2";
     const pal = palette();
-    const kinds: Kind[] = ["cafe","epicerie","marche","friperie","librairie","restaurant","boutique","atelier","ferme","microbrasserie","alternatif","other"];
+    const kinds: Kind[] = ["cafe","epicerie","fromagerie","marche","friperie","librairie","restaurant","boutique","atelier","ferme","microbrasserie","alternatif","other"];
 
     const loadOne = (uri: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {
