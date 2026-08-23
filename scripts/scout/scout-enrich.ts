@@ -682,6 +682,7 @@ async function analyzePlace(
   usage: OfficialVerifierUsage
 ) {
   const priceEligible =
+    !hasFlag("--attributes-only") &&
     isPriceCategory(
       place.category
     );
