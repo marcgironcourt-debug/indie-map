@@ -130,6 +130,18 @@ export async function GET(
   );
 
   /*
+   * Même token dans af_sub1 pour qu'il soit disponible
+   * dans les données brutes d'installation AppsFlyer.
+   *
+   * deep_link_sub1 = routage dans l'app
+   * af_sub1        = rapprochement serveur / attribution
+   */
+  oneLink.searchParams.set(
+    "af_sub1",
+    token,
+  );
+
+  /*
    * Sur desktop, conserver l'expérience web Indie Map
    * et le token de parrainage.
    */
