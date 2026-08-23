@@ -4271,33 +4271,58 @@ React.useEffect(() => {
 </div>
 
 
-            <div className="mt-5">
-              <div className="relative flex h-[132px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-4 text-left text-white">
-                <img
-                  src="/home/events-concert.webp"
-                  alt=""
-                  className="absolute inset-0 h-full w-full scale-110 object-cover blur-[3px]"
-                />
+            <div className="mt-6">
+              <div className="mx-auto grid w-full max-w-[390px] grid-cols-2 gap-5 px-2">
 
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, rgba(0,0,0,0.20), rgba(20,20,18,0.72))",
-                  }}
-                />
+                <div className="relative aspect-square">
+                  <div className="absolute inset-0 overflow-hidden rounded-[28px] border border-white/10 text-white shadow-[0_12px_30px_rgba(0,0,0,0.30),inset_0_1px_0_rgba(255,255,255,0.10)]">
+                    <img
+                      src="/home/events-concert.webp"
+                      alt=""
+                      className="absolute inset-0 h-full w-full scale-110 object-cover blur-[2px]"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(145deg, rgba(0,0,0,0.18), rgba(20,20,18,0.72))",
+                      }}
+                    />
+                    <div className="absolute inset-0 z-10 flex items-center justify-center px-5 text-center">
+                      <p className="font-serif text-[19px] font-medium leading-tight">
+                        {isFr ? "Événements" : "Events"}
+                      </p>
+                    </div>
+                  </div>
 
-                <p className="relative z-10 font-serif text-[20px] font-medium leading-tight">
-                  {isFr
-                    ? "Événements"
-                    : "Events"}
-                </p>
+                  <div className="absolute -right-1 -top-1 z-20 rounded-full border border-white/15 bg-[#F97316]/85 px-2 py-[2px] text-[9px] font-semibold tracking-[0.02em] text-[#f3efe3] shadow-[0_2px_6px_rgba(0,0,0,0.18)]">
+                    {isFr ? "À venir" : "Coming soon"}
+                  </div>
+                </div>
 
-                <p className="relative z-10 text-[15px] font-semibold tracking-[0.02em] text-white/90">
-                  {isFr
-                    ? "À venir"
-                    : "Coming soon"}
-                </p>
+                <div className="relative aspect-square">
+                  <div
+                    className="absolute inset-0 overflow-hidden rounded-[28px] border border-white/10 text-white shadow-[0_12px_30px_rgba(0,0,0,0.30),inset_0_1px_0_rgba(255,255,255,0.10)]"
+                    style={{
+                      background:
+                        "linear-gradient(145deg, #817946 0%, #34352b 52%, #1b1c17 100%)",
+                    }}
+                  >
+                    <img src="/home/itinerary-road.avif" alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-[2px] brightness-[0.65]" />
+                    <div className="absolute inset-0 z-10 flex items-center justify-center px-5 text-center">
+                      <p className="font-serif text-[17px] font-medium leading-[1.12]">
+                        {isFr
+                          ? "Parcours sur mesure"
+                          : "Tailored route"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="absolute -right-1 -top-1 z-20 rounded-full border border-white/15 bg-[#F97316]/85 px-2 py-[2px] text-[9px] font-semibold tracking-[0.02em] text-[#f3efe3] shadow-[0_2px_6px_rgba(0,0,0,0.18)]">
+                    {isFr ? "À venir" : "Coming soon"}
+                  </div>
+                </div>
+
               </div>
             </div>
           </section>
