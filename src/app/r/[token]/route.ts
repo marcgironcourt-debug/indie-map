@@ -2,6 +2,15 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 
+const APPS_FLYER_ONE_LINK_BASE =
+  "https://indie-map.onelink.me/HxW0";
+
+const APPS_FLYER_REFERRAL_MEDIA_SOURCE =
+  "User_invite";
+
+const APPS_FLYER_REFERRAL_CAMPAIGN =
+  "referral";
+
 function normalizeToken(
   value: unknown,
 ) {
@@ -73,15 +82,17 @@ export async function GET(
   }
 
   /*
-   * TEMPORAIRE :
+   * La route /r/[token] reste le lien public stable :
    *
-   * tant que OneLink n'est pas branché,
-   * le lien personnel ouvre Indie Map
-   * avec le token de parrainage.
+   * 1. Indie Map valide d'abord que le token existe.
+   * 2. Le clic est ensuite transmis à AppsFlyer OneLink.
+   * 3. OneLink gère :
+   *    - ouverture de l'app si elle est installée ;
+   *    - App Store / Google Play sinon ;
+   *    - deferred deep linking après installation.
    *
-   * OneLink remplacera cette redirection
-   * pour gérer App Store / Google Play
-   * et l'attribution d'installation.
+   * Le token reste dans deep_link_sub1 afin que les
+   * wrappers iOS / Android puissent le restituer à Indie Map.
    */
   destination.searchParams.set(
     "panel",
@@ -93,7 +104,50 @@ export async function GET(
     token,
   );
 
+  const oneLink =
+    new URL(
+      APPS_FLYER_ONE_LINK_BASE,
+    );
+
+  oneLink.searchParams.set(
+    "pid",
+    APPS_FLYER_REFERRAL_MEDIA_SOURCE,
+  );
+
+  oneLink.searchParams.set(
+    "c",
+    APPS_FLYER_REFERRAL_CAMPAIGN,
+  );
+
+  oneLink.searchParams.set(
+    "deep_link_value",
+    "referral",
+  );
+
+  oneLink.searchParams.set(
+    "deep_link_sub1",
+    token,
+  );
+
+  /*
+   * Sur desktop, conserver l'expérience web Indie Map
+   * et le token de parrainage.
+   */
+  oneLink.searchParams.set(
+    "af_web_dp",
+    destination.toString(),
+  );
+
+  /*
+   * Empêche AppsFlyer de recopier pid/c/deep_link_*
+   * dans l'URL web finale.
+   */
+  oneLink.searchParams.set(
+    "af_param_forwarding",
+    "false",
+  );
+
   return NextResponse.redirect(
-    destination,
+    oneLink,
   );
 }
