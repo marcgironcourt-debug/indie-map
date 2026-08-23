@@ -688,13 +688,7 @@
     },
     "country": "CA",
     "homeTextNear": "Pour un dîner autour du terroir québécois, c’est ici que tu peux t’installer dans ce restaurant en plein Montréal.",
-    "homeTextFar": "À Montréal, Toqué! est un restaurant gastronomique tourné vers le terroir québécois.",
-    "priceRange": {
-      "min": 65,
-      "max": 200,
-      "currency": "CAD",
-      "basis": "per_person"
-    }
+    "homeTextFar": "À Montréal, Toqué! est un restaurant gastronomique tourné vers le terroir québécois."
   },
   {
     "id": "57ce11b8-71c2-4724-8f66-22012a9729d7",
@@ -725,13 +719,7 @@
     },
     "country": "CA",
     "homeTextNear": "Envie de manger une cuisine de saison travaillée avec soin ? Il suffit de passer la porte de ce restaurant, tout près.",
-    "homeTextFar": "À Montréal, Hélicoptère est un restaurant de saison à l’approche responsable.",
-    "priceRange": {
-      "min": 30,
-      "max": 90,
-      "currency": "CAD",
-      "basis": "per_person"
-    }
+    "homeTextFar": "À Montréal, Hélicoptère est un restaurant de saison à l’approche responsable."
   },
   {
     "id": "ecd4b169-3af0-4a59-b26c-ace13dc30904",
@@ -979,13 +967,7 @@
     },
     "country": "CA",
     "homeTextNear": "Envie de découvrir des bières artisanales québécoises et des produits du terroir dans une ambiance conviviale ? Tu peux aller chez Vices & Versa dans le coin.",
-    "homeTextFar": "À Montréal, Vices & Versa est un bistro du terroir reconnu pour ses bières artisanales, ses vins locaux et ses plats faits majoritairement avec des produits d’ici.",
-    "priceRange": {
-      "min": 10,
-      "max": 25,
-      "currency": "CAD",
-      "basis": "per_person"
-    }
+    "homeTextFar": "À Montréal, Vices & Versa est un bistro du terroir reconnu pour ses bières artisanales, ses vins locaux et ses plats faits majoritairement avec des produits d’ici."
   },
   {
     "id": "4e6acd55-18ad-4eee-8c8e-0105e653edd7",
@@ -1389,13 +1371,7 @@
       "Restaurant"
     ],
     "homeTextNear": "Envie d’un restaurant de cuisine française contemporaine avec une vraie place pour les produits de la mer et les végétaux ? Tu peux t’attabler ici.",
-    "homeTextFar": "À Paris, Frame Brasserie est un restaurant de cuisine française contemporaine autour des produits de la mer et des végétaux.",
-    "priceRange": {
-      "min": 25,
-      "max": 45,
-      "currency": "EUR",
-      "basis": "per_person"
-    }
+    "homeTextFar": "À Paris, Frame Brasserie est un restaurant de cuisine française contemporaine autour des produits de la mer et des végétaux."
   },
   {
     "id": "05c0dd83-1520-4924-9abc-b53f44298fc0",
@@ -16777,13 +16753,7 @@
     "homeTextDone": true,
     "homeTextNear": "Tout près, Datil prolonge le travail de producteurs franciliens à travers une cuisine principalement végétale, attentive aux saisons et au vivant.",
     "homeTextFar": "À découvrir à Paris, Datil imagine une cuisine ancrée dans les récoltes naturelles des saisons, la diversité du vivant et le travail de ses producteurs.",
-    "panoramaImage": "/downloads/datilparis.webp",
-    "priceRange": {
-      "min": 95,
-      "max": 160,
-      "currency": "EUR",
-      "basis": "per_person"
-    }
+    "panoramaImage": "/downloads/datilparis.webp"
   },
   {
     "id": "8ae99410-455b-41fc-84b5-21d69a183a46",
