@@ -2076,26 +2076,6 @@ const filtered = source.filter((b) => {
                         hasProfessionalAccess={Boolean((authProfile as { hasProfessionalAccess?: boolean } | null)?.hasProfessionalAccess)}
                         onOpenProfessionalSpace={() => setPanel("pros")}
                         onLogout={logoutAuth}
-                        onOpenPlace={(place, source) => {
-                          const detailPlace = businesses.find((item) => String(item.id) === String(place.id));
-                          if (!detailPlace) return;
-                          const viewSource = String(source || "personal_space").trim() || "personal_space";
-                          trackEvent({
-                            eventType: "view_place_detail",
-                            placeId: detailPlace.id,
-                            city: detailPlace.city,
-                            category: detailPlace.type,
-                            locale,
-                            metadata: { name: detailPlace.name, source: viewSource }
-                          });
-                          setSelectedDetailPlaceSource(viewSource);
-                          setSelectedDetailPlace(detailPlace);
-                          setPanel(null);
-                          setSelectedPlaceCommentsOpen(false);
-                          setSelectedPlaceCommentInput("");
-                          setSelectedPlaceCommentError("");
-                          setAddressCopied(false);
-                        }}
                       />
                     ) : panel === "myPlacesList" ? (
                       <>
