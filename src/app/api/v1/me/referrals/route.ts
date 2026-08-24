@@ -63,10 +63,16 @@ export async function POST(
     const requestUrl =
       new URL(req.url);
 
+    const forwardedHost =
+      req.headers.get("x-forwarded-host");
+
+    const forwardedProto =
+      req.headers.get("x-forwarded-proto") ||
+      requestUrl.protocol.replace(":", "");
+
     const origin =
-      process.env.NODE_ENV ===
-      "production"
-        ? "https://www.indie-map.com"
+      forwardedHost
+        ? forwardedProto + "://" + forwardedHost
         : requestUrl.origin;
 
     /*

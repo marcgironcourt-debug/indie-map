@@ -344,6 +344,9 @@ export default function PersonalSpacePanel({
   const [referralShareUrl, setReferralShareUrl] = React.useState("");
   const [referralLinkLoading, setReferralLinkLoading] = React.useState(false);
   const [referralMessage, setReferralMessage] = React.useState("");
+  const [referralQrOpen, setReferralQrOpen] = React.useState(false);
+  const [referralQrDataUrl, setReferralQrDataUrl] = React.useState("");
+  const [referralQrLoading, setReferralQrLoading] = React.useState(false);
   const friendsLoadingRef = React.useRef(false);
   const sharedListsLoadingRef = React.useRef(false);
   const onSharedListsSeenRef = React.useRef(onSharedListsSeen);
@@ -1004,6 +1007,39 @@ export default function PersonalSpacePanel({
           ? "Impossible de partager le lien pour le moment."
           : "Unable to share the link right now.",
       );
+    }
+  }
+
+  async function openReferralQrCode() {
+    if (!referralShareUrl || referralQrLoading) {
+      return;
+    }
+
+    setReferralQrLoading(true);
+    setReferralMessage("");
+
+    try {
+      const QRCode = await import("qrcode");
+
+      const dataUrl = await QRCode.toDataURL(
+        referralShareUrl,
+        {
+          width: 320,
+          margin: 2,
+          errorCorrectionLevel: "M",
+        },
+      );
+
+      setReferralQrDataUrl(dataUrl);
+      setReferralQrOpen(true);
+    } catch {
+      setReferralMessage(
+        isFr
+          ? "Impossible d’afficher le QR code pour le moment."
+          : "Unable to display the QR code right now.",
+      );
+    } finally {
+      setReferralQrLoading(false);
     }
   }
 
@@ -3053,12 +3089,89 @@ export default function PersonalSpacePanel({
           </span>
         </button>
 
+        <button
+          type="button"
+          onClick={openReferralQrCode}
+          disabled={
+            referralLinkLoading ||
+            referralQrLoading ||
+            !referralShareUrl
+          }
+          className="mx-4 -mt-1 mb-4 flex w-[calc(100%-2rem)] items-center justify-between gap-2 px-2 py-1 text-left text-[11px] font-medium text-white/55 active:text-white disabled:opacity-40"
+        >
+          <span>
+            {referralQrLoading
+              ? isFr
+                ? "Préparation du QR code..."
+                : "Preparing QR code..."
+              : isFr
+                ? "Partager avec mon QR code"
+                : "Share with my QR code"}
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4 shrink-0"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h3v3h-3v-3Zm4 0h3v3h-3v-3Zm-4 4h3v3h-3v-3Zm4 1h3v2h-3v-2Z" />
+          </svg>
+        </button>
+
         {referralMessage ? (
           <p className="border-t border-black/10 bg-white px-4 py-2 text-[10px] text-black/50">
             {referralMessage}
           </p>
         ) : null}
       </div>
+
+      {referralQrOpen ? (
+        <div className="fixed inset-0 z-[2600] flex items-center justify-center bg-black/80 px-5 backdrop-blur-md">
+          <div className="relative w-full max-w-[340px] rounded-[28px] border border-white/10 bg-[#F3EFE5] px-6 pb-6 pt-7 text-center text-[#171813] shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
+            <button
+              type="button"
+              onClick={() => setReferralQrOpen(false)}
+              aria-label={isFr ? "Fermer" : "Close"}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-[22px] leading-none text-black/70 active:bg-black/20"
+            >
+              ×
+            </button>
+
+            <p className="pr-8 text-left font-serif text-[21px] font-semibold">
+              {isFr
+                ? "Mon QR code de parrainage"
+                : "My referral QR code"}
+            </p>
+
+            <p className="mt-1.5 text-left text-[11px] leading-snug text-black/50">
+              {isFr
+                ? "Fais scanner ce QR code pour partager ton lien Indie Map."
+                : "Have someone scan this QR code to share your Indie Map link."}
+            </p>
+
+            <div className="mx-auto mt-5 flex aspect-square w-full max-w-[280px] items-center justify-center rounded-2xl bg-white p-3 shadow-sm">
+              {referralQrDataUrl ? (
+                <img
+                  src={referralQrDataUrl}
+                  alt={
+                    isFr
+                      ? "QR code de parrainage Indie Map"
+                      : "Indie Map referral QR code"
+                  }
+                  className="h-full w-full object-contain"
+                />
+              ) : null}
+            </div>
+
+            <p className="mt-4 text-[10px] leading-relaxed text-black/45">
+              {isFr
+                ? "Le scan utilise le même lien personnel que le bouton de partage. Aucun point n’est attribué au simple scan."
+                : "The scan uses the same personal link as the share button. Scanning alone does not award points."}
+            </p>
+          </div>
+        </div>
+      ) : null}
 
       <div className="mb-6 grid grid-cols-4 gap-2">
         <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
