@@ -3230,7 +3230,7 @@ React.useEffect(() => {
             </button>
 
           <div className="mb-0 w-full shrink-0">
-            <div className="mb-2 flex items-center gap-2 px-3">
+            <div className="flex items-center gap-2 px-3 pt-2">
               <span
                 aria-hidden="true"
                 className="h-2 w-2 shrink-0 rounded-full bg-green-400"
@@ -3256,7 +3256,7 @@ React.useEffect(() => {
             </div>
 
             {openNowPlaces.length > 0 ? (
-              <div className="im-home-scroll flex w-full gap-2 overflow-x-auto px-3 pb-1">
+              <div className="im-home-scroll mt-3 flex w-full gap-5 overflow-x-auto px-3 pb-2">
                 {openNowPlaces.map((item) => (
                   <button
                     key={item.id}
@@ -3282,9 +3282,9 @@ React.useEffect(() => {
                         item,
                       );
                     }}
-                    className="w-[calc(33.333333%-5.333px)] min-w-[calc(33.333333%-5.333px)] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
+                    className="flex w-[142px] min-w-[142px] shrink-0 flex-col self-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] text-left active:bg-white/[0.10]"
                   >
-                    <div className="relative h-[72px] w-full overflow-hidden bg-white/10">
+                    <div className="relative h-[72px] w-full shrink-0 overflow-hidden bg-white/10">
                       <img
                         src={
                           item.panoramaImage ||
@@ -3300,7 +3300,7 @@ React.useEffect(() => {
                       />
                     </div>
 
-                    <div className="px-2.5 pb-2.5 pt-2">
+                    <div className="h-[58px] w-full px-2.5 pb-2.5 pt-2">
                       <p className="line-clamp-2 font-serif text-[12px] font-medium leading-[1.15] text-white">
                         {item.name}
                       </p>
