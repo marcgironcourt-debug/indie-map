@@ -3051,6 +3051,36 @@ export default function PersonalSpacePanel({
 
         <button
           type="button"
+          onClick={openReferralQrCode}
+          disabled={
+            referralLinkLoading ||
+            referralQrLoading ||
+            !referralShareUrl
+          }
+          className="mx-4 mb-2 flex w-[calc(100%-2rem)] items-center justify-between gap-2 rounded-full bg-white/[0.82] px-4 py-2 text-left text-[12px] font-semibold text-black/80 backdrop-blur-sm active:bg-white/[0.72] disabled:opacity-55"
+        >
+          <span>
+            {referralQrLoading
+              ? isFr
+                ? "Préparation du QR code..."
+                : "Preparing QR code..."
+              : isFr
+                ? "Partager avec mon QR code"
+                : "Share with my QR code"}
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            className="h-7 w-7 shrink-0 rounded-full bg-black/80 p-1.5 text-white/90"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h3v3h-3v-3Zm4 0h3v3h-3v-3Zm-4 4h3v3h-3v-3Zm4 1h3v2h-3v-2Z" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
           onClick={inviteFriend}
           disabled={
             referralLinkLoading ||
@@ -3087,36 +3117,6 @@ export default function PersonalSpacePanel({
               <path d="M5 11v7.2A2.8 2.8 0 0 0 7.8 21h8.4a2.8 2.8 0 0 0 2.8-2.8V11" />
             </svg>
           </span>
-        </button>
-
-        <button
-          type="button"
-          onClick={openReferralQrCode}
-          disabled={
-            referralLinkLoading ||
-            referralQrLoading ||
-            !referralShareUrl
-          }
-          className="mx-4 -mt-1 mb-4 flex w-[calc(100%-2rem)] items-center justify-between gap-2 px-2 py-1 text-left text-[11px] font-medium text-white/55 active:text-white disabled:opacity-40"
-        >
-          <span>
-            {referralQrLoading
-              ? isFr
-                ? "Préparation du QR code..."
-                : "Preparing QR code..."
-              : isFr
-                ? "Partager avec mon QR code"
-                : "Share with my QR code"}
-          </span>
-
-          <svg
-            viewBox="0 0 24 24"
-            className="h-4 w-4 shrink-0"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h3v3h-3v-3Zm4 0h3v3h-3v-3Zm-4 4h3v3h-3v-3Zm4 1h3v2h-3v-2Z" />
-          </svg>
         </button>
 
         {referralMessage ? (
