@@ -5563,7 +5563,36 @@ React.useEffect(() => {
                   profileSuccess={profileSuccess}
                   profileError={profileError}
                   contributionsCount={authProfile?.contributionsCount ?? 0}
-                  visitedPlacesCount={Object.values(placeNotes).filter((note) => note?.visited).length}
+                  savedPlacesCount={savedPlaces.length}
+                  savedPlaceIds={savedPlaces.map((item) => String(item.id))}
+                  visitedSavedPlaceIds={Object.entries(placeNotes)
+                    .filter(([, note]) => note?.visited)
+                    .map(([id]) => String(id))}
+                  onToggleSavedPlaceVisited={(placeId) => {
+                    const id = String(placeId);
+                    const isVisited = Boolean(placeNotes[id]?.visited);
+                    const now = new Date().toISOString();
+
+                    const nextNotes: Record<string, PlaceNote> = {
+                      ...placeNotes,
+                      [id]: {
+                        ...(placeNotes[id] ?? {}),
+                        visited: !isVisited,
+                        visitedAt: isVisited ? undefined : now,
+                        updatedAt: now,
+                      },
+                    };
+
+                    setPlaceNotes(nextNotes);
+                    writePlaceNotes(
+                      nextNotes,
+                      authProfile?.id ?? null,
+                    );
+                    void syncPlaceNoteToServer(
+                      id,
+                      nextNotes[id],
+                    );
+                  }}
                   visitedCitiesCount={new Set(Object.entries(placeNotes).filter(([, note]) => note?.visited).map(([id]) => (allPlaces.find((item) => item.id === id)?.city || savedPlaces.find((item) => item.id === id)?.city || "").trim()).filter(Boolean)).size}
                   visitedThisMonthCount={Object.values(placeNotes).filter((note) => {
                     if (!note?.visited || !note.visitedAt) return false;

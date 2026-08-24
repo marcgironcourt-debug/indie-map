@@ -128,12 +128,15 @@ type PersonalSpacePanelProps = {
   profileSaving: boolean;
   profileSuccess: string;
   profileError: string;
-  visitedPlacesCount: number;
+  savedPlacesCount: number;
+  savedPlaceIds: string[];
+  visitedSavedPlaceIds: string[];
   visitedCitiesCount: number;
   visitedThisMonthCount: number;
   contributionsCount: number;
   onModeChange: (mode: PersonalSpacePanelMode) => void;
   onOpenSavedPlaces: () => void;
+  onToggleSavedPlaceVisited: (placeId: string) => void;
   onOpenPlace?: (place: PlaceSummary, source?: string) => void;
   onSwitchLocale: (nextLocale: "fr" | "en") => void;
   onSetAuthMode: (mode: PersonalSpaceAuthMode) => void;
@@ -264,12 +267,15 @@ export default function PersonalSpacePanel({
   profileSaving,
   profileSuccess,
   profileError,
-  visitedPlacesCount,
+  savedPlacesCount,
+  savedPlaceIds,
+  visitedSavedPlaceIds,
   visitedCitiesCount,
   visitedThisMonthCount,
   contributionsCount,
   onModeChange,
   onOpenSavedPlaces,
+  onToggleSavedPlaceVisited,
   onOpenPlace,
   onSwitchLocale,
   onSetAuthMode,
@@ -433,6 +439,17 @@ export default function PersonalSpacePanel({
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   }
+
+  const savedPlacesPreview = React.useMemo(() => {
+    const placeById = new Map(
+      places.map((place) => [String(place.id), place]),
+    );
+
+    return savedPlaceIds
+      .map((id) => placeById.get(String(id)))
+      .filter((place): place is PlaceSummary => Boolean(place))
+      .slice(0, 6);
+  }, [places, savedPlaceIds]);
 
   const selectedSharedList = sharedLists.find((list) => list.id === selectedSharedListId) ?? null;
 
@@ -1100,7 +1117,7 @@ export default function PersonalSpacePanel({
 
   React.useEffect(() => {
     if (!authProfile) return;
-    if (mode === "friends") {
+    if (mode === "friends" || mode === "dashboard") {
       reloadFriends();
       return;
     }
@@ -1110,7 +1127,7 @@ export default function PersonalSpacePanel({
   }, [mode, authProfile?.id, selectedSharedListId, reloadFriends]);
 
   React.useEffect(() => {
-    if (mode !== "sharedLists" || !authProfile) return;
+    if ((mode !== "sharedLists" && mode !== "dashboard") || !authProfile) return;
     reloadSharedLists();
   }, [mode, authProfile?.id, reloadSharedLists]);
 
@@ -1868,7 +1885,7 @@ export default function PersonalSpacePanel({
                   />
 
                   <div className="absolute inset-0 z-10 flex flex-col justify-end p-3">
-                    <p className="font-serif text-[15px] font-medium leading-tight tracking-[0.01em] text-white">
+                    <p className="font-serif text-[8px] font-medium leading-tight tracking-[0.01em] text-white">
                       {place.name}
                     </p>
 
@@ -2186,7 +2203,7 @@ export default function PersonalSpacePanel({
                       setSharedListRenameOpen(true);
                       setSharedListMessage("");
                     }}
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/45 transition hover:bg-white/8 hover:text-white/80 active:bg-white/12"
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white/45 transition hover:bg-white/8 hover:text-white/80 active:bg-white/12"
                     aria-label={isFr ? "Renommer la liste" : "Rename list"}
                   >
                     <svg
@@ -2966,9 +2983,11 @@ export default function PersonalSpacePanel({
         </div>
       </div>
 
-      <div className="mb-2 grid grid-cols-[minmax(0,1fr)_108px] items-center gap-3 rounded-xl border border-white/8 bg-white/6 px-4 py-2.5">
+      <div className="mb-2 grid relative grid-cols-[36px_minmax(0,1fr)_92px] items-center gap-2.5 overflow-hidden rounded-2xl border border-[#EAB308]/20 bg-[linear-gradient(135deg,rgba(234,179,8,0.14),rgba(255,255,255,0.05)_55%,rgba(92,110,59,0.10))] px-4 py-2">
+        <span className="pointer-events-none absolute -right-5 top-1/2 -translate-y-1/2 text-[#EAB308]/[0.07]"><svg viewBox="0 0 24 24" className="h-16 w-16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/><path d="M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z"/></svg></span>
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#EAB308]/25 bg-[#EAB308]/10 text-[#EAB308]"><svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>
         <div className="min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+          <p className="text-[14px] font-semibold leading-tight text-white">
             {isFr
               ? "Mes points"
               : "My points"}
@@ -2995,55 +3014,51 @@ export default function PersonalSpacePanel({
       </div>
 
       <div
-        className="mb-6 overflow-hidden rounded-2xl border border-[#EAB308]/20"
+        className="relative mb-4 overflow-hidden rounded-[22px] border border-[#789044]/40 shadow-[0_14px_34px_rgba(0,0,0,0.22)]"
         style={{
           background:
-            "linear-gradient(145deg, rgba(234,179,8,0.13), rgba(255,255,255,0.055) 52%, rgba(92,110,59,0.10))",
+            "linear-gradient(145deg, rgba(73,89,46,0.62), rgba(49,63,38,0.58) 50%, rgba(34,44,29,0.72))",
         }}
       >
-        <div className="px-4 pb-4 pt-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#EAB308]">
-                {isFr
-                  ? "Parrainage d’amis"
-                  : "Friend referrals"}
-              </p>
+        <div className="px-4 pb-3 pt-3">
+          <div className="relative z-10 flex items-start gap-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#B8D16A]/35 bg-[#B8D16A]/15 text-[#B8D16A]">
+              <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6" />
+                <circle cx="17" cy="9" r="2.5" />
+                <path d="M15.5 14c2.8.2 4.4 1.8 5 5" />
+              </svg>
+            </span>
 
-              <p className="mt-1 text-[11px] leading-snug text-white/40">
+            <div className="min-w-0 pt-0.5">
+              <p className="text-[14px] font-semibold leading-tight text-white">
+                {isFr ? "Parrainage d’amis" : "Friend referrals"}
+              </p>
+              <p className="mt-0.5 text-[10px] leading-snug text-white/65">
                 {isFr
                   ? "Fais découvrir Indie Map et gagne jusqu’à 100 points par parrainage."
                   : "Share Indie Map and earn up to 100 points."}
               </p>
             </div>
-
-            <span className="shrink-0 rounded-full border border-[#EAB308]/20 bg-[#EAB308]/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[#EAB308]">
-              +100 pts
-            </span>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <div className="rounded-xl border border-white/8 bg-black/20 px-3 py-3">
-              <p className="font-serif text-[20px] font-semibold leading-none text-white">
-                +{referralInstallPoints}
+          <div className="relative z-10 mt-2.5 grid grid-cols-2 divide-x divide-white/10 overflow-hidden rounded-xl border border-white/10 bg-black/[0.24]">
+            <div className="px-2.5 py-2">
+              <p className="font-serif text-[18px] font-semibold leading-none text-[#B8D16A]">
+                +{referralInstallPoints} <span className="text-[9px] font-semibold">PTS</span>
               </p>
-
-              <p className="mt-1.5 text-[9.5px] font-medium leading-snug text-white/40">
-                {isFr
-                  ? "Téléchargement réel de l’app"
-                  : "Real app download"}
+              <p className="mt-1 text-[9px] font-medium leading-snug text-white/75">
+                {isFr ? "Téléchargement réel de l’app" : "Real app download"}
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/8 bg-black/20 px-3 py-3">
-              <p className="font-serif text-[20px] font-semibold leading-none text-white">
-                +{referralSignupPoints}
+            <div className="px-2.5 py-2">
+              <p className="font-serif text-[18px] font-semibold leading-none text-[#B8D16A]">
+                +{referralSignupPoints} <span className="text-[9px] font-semibold">PTS</span>
               </p>
-
-              <p className="mt-1.5 text-[9.5px] font-medium leading-snug text-white/40">
-                {isFr
-                  ? "Création du compte"
-                  : "Account creation"}
+              <p className="mt-1 text-[9px] font-medium leading-snug text-white/75">
+                {isFr ? "Création du compte" : "Account creation"}
               </p>
             </div>
           </div>
@@ -3052,12 +3067,8 @@ export default function PersonalSpacePanel({
         <button
           type="button"
           onClick={openReferralQrCode}
-          disabled={
-            referralLinkLoading ||
-            referralQrLoading ||
-            !referralShareUrl
-          }
-          className="mx-4 mb-2 flex w-[calc(100%-2rem)] items-center justify-between gap-2 rounded-full bg-white/[0.82] px-4 py-2 text-left text-[12px] font-semibold text-black/80 backdrop-blur-sm active:bg-white/[0.72] disabled:opacity-55"
+          disabled={referralLinkLoading || referralQrLoading || !referralShareUrl}
+          className="relative z-10 mx-3 mb-1.5 flex w-[calc(100%-1.5rem)] items-center justify-between gap-2 rounded-lg border border-[#D8E4B8]/30 bg-[#C9D9A0] px-3 py-1 text-left text-[10.5px] font-semibold text-[#1E2519] shadow-[0_4px_12px_rgba(0,0,0,0.12)] active:bg-[#B9CD86] disabled:opacity-55"
         >
           <span>
             {referralQrLoading
@@ -3068,13 +3079,7 @@ export default function PersonalSpacePanel({
                 ? "Partager avec mon QR code"
                 : "Share with my QR code"}
           </span>
-
-          <svg
-            viewBox="0 0 24 24"
-            className="h-7 w-7 shrink-0 rounded-full bg-black/80 p-1.5 text-white/90"
-            fill="currentColor"
-            aria-hidden="true"
-          >
+          <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0 rounded-full bg-[#344526] p-1 text-white" fill="currentColor" aria-hidden="true">
             <path d="M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h3v3h-3v-3Zm4 0h3v3h-3v-3Zm-4 4h3v3h-3v-3Zm4 1h3v2h-3v-2Z" />
           </svg>
         </button>
@@ -3082,36 +3087,20 @@ export default function PersonalSpacePanel({
         <button
           type="button"
           onClick={inviteFriend}
-          disabled={
-            referralLinkLoading ||
-            !referralShareUrl
-          }
-          className="mx-4 mb-4 flex w-[calc(100%-2rem)] items-center justify-between gap-2 rounded-full bg-white/[0.82] px-4 py-2 text-left text-[12px] font-semibold text-black/80 backdrop-blur-sm active:bg-white/[0.72] disabled:opacity-55"
+          disabled={referralLinkLoading || !referralShareUrl}
+          className="relative z-10 mx-3 mb-3 flex w-[calc(100%-1.5rem)] items-center justify-between gap-2 rounded-lg border border-[#D8E4B8]/30 bg-[#C9D9A0] px-3 py-1 text-left text-[10.5px] font-semibold text-[#1E2519] shadow-[0_4px_12px_rgba(0,0,0,0.12)] active:bg-[#B9CD86] disabled:opacity-55"
         >
           <span>
-            <span className="block">
-              {referralLinkLoading
-                ? isFr
-                  ? "Préparation du lien..."
-                  : "Preparing link..."
-                : isFr
-                  ? "Partager mon lien"
-                  : "Share my link"}
-            </span>
-
+            {referralLinkLoading
+              ? isFr
+                ? "Préparation du lien..."
+                : "Preparing link..."
+              : isFr
+                ? "Partager mon lien"
+                : "Share my link"}
           </span>
-
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-black/80 text-white/90">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
+          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#344526] text-white">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 15V3" />
               <path d="m8 7 4-4 4 4" />
               <path d="M5 11v7.2A2.8 2.8 0 0 0 7.8 21h8.4a2.8 2.8 0 0 0 2.8-2.8V11" />
@@ -3120,7 +3109,7 @@ export default function PersonalSpacePanel({
         </button>
 
         {referralMessage ? (
-          <p className="border-t border-black/10 bg-white px-4 py-2 text-[10px] text-black/50">
+          <p className="border-t border-white/10 bg-black/15 px-4 py-2 text-[10px] text-white/60">
             {referralMessage}
           </p>
         ) : null}
@@ -3173,50 +3162,133 @@ export default function PersonalSpacePanel({
         </div>
       ) : null}
 
-      <div className="mb-6 grid grid-cols-4 gap-2">
-        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
-          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedPlacesCount}</p>
-          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
-            {isFr ? "Lieux visités" : "Visited"}
+      <div className="mb-5 grid grid-cols-4 justify-items-center gap-1.5 px-2">
+        <div className="grid aspect-square w-full max-w-[68px] grid-rows-[20px_22px_20px] content-center items-center justify-items-center rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.09] via-white/[0.05] to-white/[0.025] px-1 py-2 text-center shadow-[0_10px_28px_rgba(0,0,0,0.18)]">
+          <span className="flex h-[20px] items-center justify-center text-[18px] leading-none text-[#9CBF52]">♡</span>
+          <p className="flex h-[22px] items-center justify-center text-[16px] font-semibold leading-none text-white">{savedPlacesCount}</p>
+          <p className="flex h-[20px] max-w-full items-start justify-center text-center text-[6.2px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Favoris" : "Favorites"}
           </p>
         </div>
-        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
-          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedCitiesCount}</p>
-          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
-            {isFr ? "Villes explorées" : "Cities"}
+        <div className="grid aspect-square w-full max-w-[68px] grid-rows-[20px_22px_20px] content-center items-center justify-items-center rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.09] via-white/[0.05] to-white/[0.025] px-1 py-2 text-center shadow-[0_10px_28px_rgba(0,0,0,0.18)]">
+          <span className="flex h-[20px] items-center justify-center text-[#9CBF52]"><svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14c2.8.2 4.4 1.8 5 5"/></svg></span>
+          <p className="flex h-[22px] items-center justify-center text-[16px] font-semibold leading-none text-white">{friendsPayload.friends.length}</p>
+          <p className="flex h-[20px] max-w-full items-start justify-center text-center text-[6.2px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Amis" : "Friends"}
           </p>
         </div>
-        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
-          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{visitedThisMonthCount}</p>
-          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
-            {isFr ? "Total visité par mois" : "Total visited per month"}
+        <div className="grid aspect-square w-full max-w-[68px] grid-rows-[20px_22px_20px] content-center items-center justify-items-center rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.09] via-white/[0.05] to-white/[0.025] px-1 py-2 text-center shadow-[0_10px_28px_rgba(0,0,0,0.18)]">
+          <span className="flex h-[20px] items-center justify-center text-[#9CBF52]"><svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></span>
+          <p className="flex h-[22px] items-center justify-center text-[16px] font-semibold leading-none text-white">{sharedLists.length}</p>
+          <p className="flex h-[20px] max-w-full items-start justify-center text-center text-[6.2px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+            {isFr ? "Listes partagées" : "Shared lists"}
           </p>
         </div>
-        <div className="grid h-[88px] grid-rows-[34px_34px] items-center justify-items-center rounded-2xl border border-white/10 bg-black/35 px-1 py-3 text-center">
-          <p className="flex h-[34px] items-center justify-center text-[21px] font-semibold leading-none text-[#F97316]">{contributionsCount}</p>
-          <p className="flex h-[34px] max-w-full items-start justify-center text-center text-[7.4px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
+        <div className="grid aspect-square w-full max-w-[68px] grid-rows-[20px_22px_20px] content-center items-center justify-items-center rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.09] via-white/[0.05] to-white/[0.025] px-1 py-2 text-center shadow-[0_10px_28px_rgba(0,0,0,0.18)]">
+          <span className="flex h-[20px] items-center justify-center text-[#9CBF52]"><svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M20 4c-7 0-12 3.5-12 9a5 5 0 0 0 5 5c5.5 0 7-6 7-14Z"/><path d="M4 20c2-5 6-8 12-10"/></svg></span>
+          <p className="flex h-[22px] items-center justify-center text-[16px] font-semibold leading-none text-white">{contributionsCount}</p>
+          <p className="flex h-[20px] max-w-full items-start justify-center text-center text-[6.2px] font-semibold uppercase leading-[1.15] tracking-[0.035em] text-white/35">
             {isFr ? "Contributions" : "Contributions"}
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <button
-          type="button"
-          onClick={onOpenSavedPlaces}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-        >
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+      <div className="mb-6">
+        <div className="mb-3 flex items-baseline gap-1.5">
+          <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em] text-white">
             {isFr ? "Mes lieux" : "My places"}
-          </span>
+          </p>
 
-          <span className="block text-[11px] leading-snug text-white/35">
-            {isFr
-              ? "Lieux gardés de côté."
-              : "Saved places."}
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={onOpenSavedPlaces}
+            className="inline-flex items-baseline gap-0.5 text-[10px] leading-none text-white/55 transition-opacity active:opacity-60"
+          >
+            <span>{isFr ? "Tout afficher" : "View all"}</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
 
+        {savedPlacesPreview.length > 0 ? (
+          <div className="im-home-scroll flex gap-2.5 overflow-x-auto pb-2">
+            {savedPlacesPreview.map((place) => {
+              const placeId = String(place.id);
+              const isVisited = visitedSavedPlaceIds.includes(placeId);
+
+              return (
+                <button
+                  key={placeId}
+                  type="button"
+                  onClick={() =>
+                    onOpenPlace?.(
+                      place,
+                      "personal_space_saved_place",
+                    )
+                  }
+                  className="flex w-[124px] min-w-[124px] shrink-0 flex-col self-start overflow-hidden rounded-xl border border-white/10 bg-white/10 text-left active:opacity-80"
+                >
+                  <div className="relative h-[58px] w-full shrink-0 overflow-hidden bg-white/10">
+                    <img
+                      src={place.panoramaImage || "/explorer-bg.png?v=3"}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onPointerUp={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onToggleSavedPlaceVisited(placeId);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key !== "Enter" && e.key !== " ") return;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onToggleSavedPlaceVisited(placeId);
+                      }}
+                      className={
+                        isVisited
+                          ? "absolute left-1.5 top-1.5 z-20 rounded-full bg-yellow-400 px-1.5 py-0.5 text-[7px] font-semibold uppercase tracking-[0.06em] text-black shadow"
+                          : "absolute left-1.5 top-1.5 z-20 rounded-full border border-white/35 bg-black/45 px-1.5 py-0.5 text-[7px] font-semibold uppercase tracking-[0.06em] text-white/90 backdrop-blur-sm"
+                      }
+                    >
+                      {isVisited
+                        ? isFr
+                          ? "Visité"
+                          : "Visited"
+                        : isFr
+                          ? "À visiter"
+                          : "To visit"}
+                    </div>
+                  </div>
+
+                  <div className="flex h-[26px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
+                    <p className="line-clamp-2 font-serif text-[8.5px] font-medium leading-[1.1] text-white/95">
+                      {place.name}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-white/8 bg-white/[0.04] px-4 py-4">
+            <p className="text-[11px] text-white/45">
+              {isFr
+                ? "Tes lieux enregistrés apparaîtront ici."
+                : "Your saved places will appear here."}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
           onClick={() => onModeChange("friends")}
@@ -3327,7 +3399,7 @@ export default function PersonalSpacePanel({
           <button
             type="button"
             onClick={onOpenProfessionalSpace}
-            className="mb-2 flex w-full items-center justify-between rounded-2xl border border-[#5C6E3B]/25 bg-[#5C6E3B]/10 px-4 py-3.5 text-left hover:bg-[#5C6E3B]/15"
+            className="mb-2 flex w-full items-center justify-between rounded-2xl border border-[#5C6E3B]/25 bg-[#5C6E3B]/10 px-4 py-2 text-left hover:bg-[#5C6E3B]/15"
           >
             <span>
               <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#B8C69F]">

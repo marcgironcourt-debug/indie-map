@@ -1975,7 +1975,40 @@ const filtered = source.filter((b) => {
                         profileSuccess={profileSuccess}
                         profileError={profileError}
                         contributionsCount={authProfile?.contributionsCount ?? 0}
-                        visitedPlacesCount={Object.values(placeNotes).filter((note) => note?.visited).length}
+                        savedPlacesCount={savedPlaces.length}
+                        savedPlaceIds={savedPlaces.map((item) => String(item.id))}
+                        visitedSavedPlaceIds={Object.entries(placeNotes)
+                          .filter(([, note]) => note?.visited)
+                          .map(([id]) => String(id))}
+                        onToggleSavedPlaceVisited={(placeId) => {
+                          const id = String(placeId);
+
+                          setPlaceNotes((prev) => {
+                            const isVisited = Boolean(prev[id]?.visited);
+                            const now = new Date().toISOString();
+
+                            const nextNotes: Record<string, PlaceNote> = {
+                              ...prev,
+                              [id]: {
+                                ...(prev[id] ?? {}),
+                                visited: !isVisited,
+                                visitedAt: isVisited ? undefined : now,
+                                updatedAt: now,
+                              },
+                            };
+
+                            writePlaceNotes(
+                              nextNotes,
+                              authProfile?.id ?? null,
+                            );
+                            void syncPlaceNoteToServer(
+                              id,
+                              nextNotes[id],
+                            );
+
+                            return nextNotes;
+                          });
+                        }}
                         visitedCitiesCount={new Set(Object.entries(placeNotes).filter(([, note]) => note?.visited).map(([id]) => (businesses.find((item) => item.id === id)?.city || savedPlaces.find((item) => item.id === id)?.city || "").trim()).filter(Boolean)).size}
                         visitedThisMonthCount={Object.values(placeNotes).filter((note) => {
                           if (!note?.visited || !note.visitedAt) return false;
@@ -1985,6 +2018,41 @@ const filtered = source.filter((b) => {
                         }).length}
                         onModeChange={(mode) => setPanel(mode === "profile" ? "profileInfo" : mode === "friends" ? "friends" : mode === "sharedLists" ? "sharedLists" : "personalSpace")}
                         onOpenSavedPlaces={() => setPanel("myPlacesList")}
+                        onOpenPlace={(place, source) => {
+                          const detailPlace = businesses.find(
+                            (item) =>
+                              String(item.id) === String(place.id),
+                          );
+
+                          if (!detailPlace) return;
+
+                          const viewSource =
+                            String(
+                              source ||
+                                "personal_space_saved_place",
+                            ).trim() ||
+                            "personal_space_saved_place";
+
+                          trackEvent({
+                            eventType: "view_place_detail",
+                            placeId: detailPlace.id,
+                            city: detailPlace.city,
+                            category: detailPlace.type,
+                            locale,
+                            metadata: {
+                              name: detailPlace.name,
+                              source: viewSource,
+                            },
+                          });
+
+                          setSelectedDetailPlaceSource(viewSource);
+                          setSelectedDetailPlace(detailPlace);
+                          setPanel(null);
+                          setSelectedPlaceCommentsOpen(false);
+                          setSelectedPlaceCommentInput("");
+                          setSelectedPlaceCommentError("");
+                          setAddressCopied(false);
+                        }}
                         onSwitchLocale={switchLocale}
                         onSetAuthMode={setAuthMode}
                         onSetAuthEmail={setAuthEmail}
