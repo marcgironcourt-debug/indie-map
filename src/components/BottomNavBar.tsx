@@ -45,7 +45,7 @@ export default function BottomNavBar({
     <>
       <div className="fixed inset-x-0 bottom-0 z-[1200]">
       <div
-        className="grid w-full grid-cols-3 border-t border-white/10 bg-[#262626]/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+        className="grid w-full grid-cols-3 border-t border-white/10 bg-black/95 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.28)] backdrop-blur-sm"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <button
@@ -172,7 +172,7 @@ export default function BottomNavBar({
             role="dialog"
             aria-modal="true"
             aria-labelledby="contribution-auth-title"
-            className="w-full max-w-md rounded-3xl border border-white/10 bg-[#262626] p-5 text-white shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-white/10 bg-black p-5 text-white shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <h2

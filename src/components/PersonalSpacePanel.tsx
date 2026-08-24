@@ -3023,12 +3023,7 @@ export default function PersonalSpacePanel({
         <div className="px-4 pb-3 pt-3">
           <div className="relative z-10 flex items-start gap-2.5">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#B8D16A]/35 bg-[#B8D16A]/15 text-[#B8D16A]">
-              <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="9" cy="8" r="3" />
-                <path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6" />
-                <circle cx="17" cy="9" r="2.5" />
-                <path d="M15.5 14c2.8.2 4.4 1.8 5 5" />
-              </svg>
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6"/><path d="M18 8v6"/><path d="M15 11h6"/></svg>
             </span>
 
             <div className="min-w-0 pt-0.5">
@@ -3227,7 +3222,7 @@ export default function PersonalSpacePanel({
                   }
                   className="flex w-[124px] min-w-[124px] shrink-0 flex-col self-start overflow-hidden rounded-xl border border-white/10 bg-white/10 text-left active:opacity-80"
                 >
-                  <div className="relative h-[58px] w-full shrink-0 overflow-hidden bg-white/10">
+                  <div className="relative h-[90px] w-full shrink-0 overflow-hidden bg-white/10">
                     <img
                       src={place.panoramaImage || "/explorer-bg.png?v=3"}
                       alt=""
@@ -3268,7 +3263,7 @@ export default function PersonalSpacePanel({
                     </div>
                   </div>
 
-                  <div className="flex h-[26px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
+                  <div className="flex h-[34px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
                     <p className="line-clamp-2 font-serif text-[8.5px] font-medium leading-[1.1] text-white/95">
                       {place.name}
                     </p>
@@ -3288,14 +3283,117 @@ export default function PersonalSpacePanel({
         )}
       </div>
 
+      <div className="mb-6">
+        <div className="mb-3 flex items-center gap-1.5">
+          <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em] text-white">
+            {isFr ? "Listes partagées" : "Shared lists"}
+          </p>
+
+          {unseenSharedListCount > 0 ? (
+            <span
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#F97316]"
+              aria-label={isFr ? "Nouvelle liste partagée" : "New shared list"}
+            />
+          ) : null}
+
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSharedListId(null);
+              onModeChange("sharedLists");
+            }}
+            className="inline-flex items-baseline gap-0.5 text-[10px] leading-none text-white/55 transition-opacity active:opacity-60"
+          >
+            <span>{isFr ? "Tout afficher" : "View all"}</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        {sharedLists.length > 0 ? (
+          <div className="im-home-scroll flex gap-2.5 overflow-x-auto pb-2">
+            {sharedLists.slice(0, 6).map((list) => {
+              const coverPlace = list.places
+                .map((item) => findPlace(item.placeId))
+                .find((place): place is PlaceSummary => Boolean(place));
+
+              return (
+                <button
+                  key={list.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedSharedListId(list.id);
+                    onModeChange("sharedLists");
+                  }}
+                  className="flex w-[124px] min-w-[124px] shrink-0 flex-col self-start overflow-hidden rounded-xl border border-white/10 bg-white/10 text-left active:opacity-80"
+                >
+                  <div className="relative h-[90px] w-full shrink-0 overflow-hidden bg-white/10">
+                    <img
+                      src={coverPlace?.panoramaImage || "/explorer-bg.png?v=3"}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="flex h-[34px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
+                    <div className="min-w-0">
+                      <p className="truncate font-serif text-[8.5px] font-medium leading-[1.1] text-white/95">
+                        {list.title}
+                      </p>
+
+                      <p className="mt-0.5 flex items-center gap-1 text-[7px] leading-none text-white/60">
+                        <span>
+                          {list.places.length}{" "}
+                          {isFr
+                            ? list.places.length > 1
+                              ? "lieux"
+                              : "lieu"
+                            : list.places.length > 1
+                              ? "places"
+                              : "place"}
+                        </span>
+
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-2.5 w-2.5 shrink-0"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="9" cy="8" r="3" />
+                          <path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6" />
+                          <circle cx="17" cy="9" r="2.5" />
+                          <path d="M15.5 14c2.8.2 4.4 1.8 5 5" />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-white/8 bg-white/[0.04] px-4 py-4">
+            <p className="text-[11px] text-white/45">
+              {isFr
+                ? "Tes listes partagées apparaîtront ici."
+                : "Your shared lists will appear here."}
+            </p>
+          </div>
+        )}
+      </div>
+
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
           onClick={() => onModeChange("friends")}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-[#9CBF52]/20 bg-[linear-gradient(145deg,rgba(92,110,59,0.24),rgba(156,191,82,0.07),rgba(255,255,255,0.03))] p-4 text-left hover:brightness-110 active:brightness-105"
         >
           <span className="flex items-center gap-2">
-            <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#9CBF52]/30 bg-[#9CBF52]/10 text-[#9CBF52]"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14c2.8.2 4.4 1.8 5 5"/></svg></span>
+            <span className="min-w-0 text-[10px] font-semibold uppercase leading-[1.25] tracking-[0.11em] text-white/55">
               {isFr ? "Mes amis" : "Friends"}
             </span>
 
@@ -3318,46 +3416,18 @@ export default function PersonalSpacePanel({
           </span>
         </button>
 
-        <button
-          type="button"
-          onClick={() => onModeChange("sharedLists")}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
-        >
-          <span className="flex items-center gap-2">
-            <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-              {isFr
-                ? "Listes partagées"
-                : "Shared lists"}
-            </span>
 
-            {unseenSharedListCount > 0 ? (
-              <span
-                className="h-2 w-2 shrink-0 rounded-full bg-[#F97316]"
-                aria-label={
-                  isFr
-                    ? "Nouvelle liste partagée"
-                    : "New shared list"
-                }
-              />
-            ) : null}
-          </span>
-
-          <span className="block text-[11px] leading-snug text-white/30">
-            {isFr
-              ? "Avec tes amis."
-              : "With friends."}
-          </span>
-        </button>
 
         <button
           type="button"
           onClick={() => setShowContributions(true)}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-white/8 bg-white/5 p-4 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-[#EAB308]/15 bg-[linear-gradient(145deg,rgba(234,179,8,0.16),rgba(92,110,59,0.10),rgba(255,255,255,0.025))] p-4 text-left hover:brightness-110 active:brightness-105"
         >
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
-            {isFr
-              ? "Mes contributions"
-              : "My contributions"}
+          <span className="flex items-center gap-2">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#EAB308]/30 bg-[#EAB308]/10 text-[#EAB308]"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 4c-7 0-12 3.5-12 9a5 5 0 0 0 5 5c5.5 0 7-6 7-14Z"/><path d="M4 20c2-5 6-8 12-10"/></svg></span>
+            <span className="min-w-0 text-[10px] font-semibold uppercase leading-[1.25] tracking-[0.11em] text-white/55">
+              {isFr ? "Mes contributions" : "My contributions"}
+            </span>
           </span>
 
           <span className="block text-[11px] leading-snug text-white/30">
@@ -3375,10 +3445,10 @@ export default function PersonalSpacePanel({
           setSuggestionMessage("");
           setSuggestionError("");
         }}
-        className="mt-3 flex w-full items-center justify-between rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-left hover:bg-[#5C6E3B]/12 active:bg-[#5C6E3B]/16"
+        className="mt-3 flex w-full items-center justify-between rounded-2xl border border-[#71864A]/20 bg-[linear-gradient(135deg,rgba(60,75,43,0.22),rgba(92,110,59,0.10),rgba(255,255,255,0.025))] px-4 py-3 text-left hover:brightness-110 active:brightness-105"
       >
         <span>
-          <span className="block text-[12px] font-semibold uppercase tracking-[0.16em] text-white/55">
+          <span className="min-w-0 text-[10px] font-semibold uppercase leading-[1.25] tracking-[0.11em] text-white/55">
             Suggestions
           </span>
 
