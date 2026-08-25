@@ -2053,6 +2053,43 @@ React.useEffect(() => {
   const homeMoodDayKey =
     getLocalDayKey(new Date());
 
+  React.useEffect(() => {
+    if (!openNowHasLocation || allPlaces.length === 0) return;
+
+    const moodIds: HomeMoodId[] = ["eat", "relax", "groceries", "browse", "inspire", "alternative"];
+    const urls = new Set<string>();
+
+    for (const mood of moodIds) {
+      const nearCandidates = nearbyPlaces.filter((place) => matchesHomeMood(place, mood));
+      const dailyNear = pickDailyHomeMoodPlaces(nearCandidates, homeMoodDayKey, mood, "near", 10);
+      const dailyNearIds = new Set(dailyNear.map((place) => String(place.id)));
+
+      nearCandidates
+        .filter((place) => dailyNearIds.has(String(place.id)))
+        .forEach((place) => {
+          const url = String(place.panoramaImage ?? "").trim();
+          if (url) urls.add(url);
+        });
+
+      const nearbyIds = new Set(nearCandidates.map((place) => String(place.id)));
+      const farCandidates = allPlaces
+        .filter((place) => matchesHomeMood(place, mood))
+        .filter((place) => !nearbyIds.has(String(place.id)));
+
+      pickDailyHomeMoodPlaces(farCandidates, homeMoodDayKey, mood, "far", 10)
+        .forEach((place) => {
+          const url = String(place.panoramaImage ?? "").trim();
+          if (url) urls.add(url);
+        });
+    }
+
+    urls.forEach((url) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.src = url;
+    });
+  }, [allPlaces, nearbyPlaces, openNowHasLocation, homeMoodDayKey]);
+
   const selectedMoodNearbyCandidates =
     React.useMemo(() => {
       if (
