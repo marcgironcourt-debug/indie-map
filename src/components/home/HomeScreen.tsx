@@ -751,6 +751,13 @@ function getHomeMoodOpaqueBackground(
   return backgrounds[mood];
 }
 
+function getHomeMoodCardImageUrl(src?: string) {
+  const url = String(src ?? "").trim();
+  if (!url) return "/explorer-bg.png?v=3";
+  if (!url.startsWith("/")) return url;
+  return "/_next/image?url=" + encodeURIComponent(url) + "&w=640&q=75";
+}
+
 export default function HomeScreen({
   locale,
   initialDiscoverPlace = null,
@@ -2086,7 +2093,7 @@ React.useEffect(() => {
     urls.forEach((url) => {
       const image = new Image();
       image.decoding = "async";
-      image.src = url;
+      image.src = getHomeMoodCardImageUrl(url);
     });
   }, [allPlaces, nearbyPlaces, openNowHasLocation, homeMoodDayKey]);
 
@@ -3338,8 +3345,7 @@ React.useEffect(() => {
                     <div className="relative h-[72px] w-full shrink-0 overflow-hidden bg-white/10">
                       <img
                         src={
-                          item.panoramaImage ||
-                          "/explorer-bg.png?v=3"
+                          getHomeMoodCardImageUrl(item.panoramaImage)
                         }
                         alt=""
                         className="absolute inset-0 h-full w-full object-cover"
@@ -4463,8 +4469,7 @@ React.useEffect(() => {
                       <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                         <img
                           src={
-                            item.panoramaImage ||
-                            "/explorer-bg.png?v=3"
+                            getHomeMoodCardImageUrl(item.panoramaImage)
                           }
                           alt=""
                           className="absolute inset-0 h-full w-full object-cover"
@@ -4632,8 +4637,7 @@ React.useEffect(() => {
                             <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                               <img
                                 src={
-                                  item.panoramaImage ||
-                                  "/explorer-bg.png?v=3"
+                                  getHomeMoodCardImageUrl(item.panoramaImage)
                                 }
                                 alt=""
                                 className="absolute inset-0 h-full w-full object-cover"
@@ -4731,8 +4735,7 @@ React.useEffect(() => {
                             <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/10">
                               <img
                                 src={
-                                  item.panoramaImage ||
-                                  "/explorer-bg.png?v=3"
+                                  getHomeMoodCardImageUrl(item.panoramaImage)
                                 }
                                 alt=""
                                 className="absolute inset-0 h-full w-full object-cover"
