@@ -260,6 +260,35 @@ async function fetchSharedListsOnce(force = false, markSeen = false) {
   return sharedListsInflight;
 }
 
+function readRewardPointsLocalCache(userId?: string | null) {
+  const id = String(userId ?? "").trim();
+  const fallback = { balance: 0, installPoints: 50, signupPoints: 50, hasCache: false };
+  if (!id || typeof window === "undefined") return fallback;
+  try {
+    const cached = JSON.parse(window.localStorage.getItem("im:rewards:" + id) || "null");
+    const balance = Number(cached?.balance);
+    const installPoints = Number(cached?.installPoints);
+    const signupPoints = Number(cached?.signupPoints);
+    if (!Number.isFinite(balance)) return fallback;
+    return {
+      balance,
+      installPoints: Number.isFinite(installPoints) ? installPoints : 50,
+      signupPoints: Number.isFinite(signupPoints) ? signupPoints : 50,
+      hasCache: true,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+function writeRewardPointsLocalCache(userId: string, balance: number, installPoints: number, signupPoints: number) {
+  const id = String(userId ?? "").trim();
+  if (!id || typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem("im:rewards:" + id, JSON.stringify({ balance, installPoints, signupPoints }));
+  } catch {}
+}
+
 export default function PersonalSpacePanel({
   isFr,
   places,
@@ -367,10 +396,11 @@ export default function PersonalSpacePanel({
   const [contributionsLoading, setContributionsLoading] = React.useState(false);
   const [contributionsError, setContributionsError] = React.useState("");
   const [contributions, setContributions] = React.useState<ContributionEntry[]>([]);
-  const [rewardPointsBalance, setRewardPointsBalance] = React.useState(0);
-  const [rewardPointsLoading, setRewardPointsLoading] = React.useState(false);
-  const [referralInstallPoints, setReferralInstallPoints] = React.useState(50);
-  const [referralSignupPoints, setReferralSignupPoints] = React.useState(50);
+  const initialRewardPointsCache = readRewardPointsLocalCache(authProfile?.id);
+  const [rewardPointsBalance, setRewardPointsBalance] = React.useState(initialRewardPointsCache.balance);
+  const [rewardPointsLoading, setRewardPointsLoading] = React.useState(!initialRewardPointsCache.hasCache && Boolean(authProfile));
+  const [referralInstallPoints, setReferralInstallPoints] = React.useState(initialRewardPointsCache.installPoints);
+  const [referralSignupPoints, setReferralSignupPoints] = React.useState(initialRewardPointsCache.signupPoints);
   const [referralShareUrl, setReferralShareUrl] = React.useState("");
   const [referralLinkLoading, setReferralLinkLoading] = React.useState(false);
   const [referralMessage, setReferralMessage] = React.useState("");
@@ -1178,83 +1208,42 @@ export default function PersonalSpacePanel({
   React.useEffect(() => {
     if (!authProfile) {
       setRewardPointsBalance(0);
+      setReferralInstallPoints(50);
+      setReferralSignupPoints(50);
+      setRewardPointsLoading(false);
       return;
     }
 
+    const cachedRewards = readRewardPointsLocalCache(authProfile.id);
+    setRewardPointsBalance(cachedRewards.balance);
+    setReferralInstallPoints(cachedRewards.installPoints);
+    setReferralSignupPoints(cachedRewards.signupPoints);
+    setRewardPointsLoading(!cachedRewards.hasCache);
+
     let cancelled = false;
 
-    setRewardPointsLoading(true);
-
-    fetch("/api/v1/me/rewards", {
-      cache: "no-store",
-    })
+    fetch("/api/v1/me/rewards", { cache: "no-store" })
       .then(async (res) => {
-        const data =
-          await res.json().catch(
-            () => null,
-          );
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.ok) throw new Error("reward_points_load_failed");
+        if (cancelled) return;
 
-        if (
-          !res.ok ||
-          !data?.ok
-        ) {
-          throw new Error(
-            "reward_points_load_failed",
-          );
-        }
+        const balance = Number(data.balance);
+        const installPoints = Number(data.referral?.installPoints);
+        const signupPoints = Number(data.referral?.signupPoints);
 
-        if (cancelled) {
-          return;
-        }
+        const nextBalance = Number.isFinite(balance) ? balance : cachedRewards.balance;
+        const nextInstallPoints = Number.isFinite(installPoints) ? installPoints : cachedRewards.installPoints;
+        const nextSignupPoints = Number.isFinite(signupPoints) ? signupPoints : cachedRewards.signupPoints;
 
-        const balance =
-          Number(data.balance);
-
-        const installPoints =
-          Number(
-            data.referral?.installPoints,
-          );
-
-        const signupPoints =
-          Number(
-            data.referral?.signupPoints,
-          );
-
-        setRewardPointsBalance(
-          Number.isFinite(balance)
-            ? balance
-            : 0,
-        );
-
-        if (
-          Number.isFinite(
-            installPoints,
-          )
-        ) {
-          setReferralInstallPoints(
-            installPoints,
-          );
-        }
-
-        if (
-          Number.isFinite(
-            signupPoints,
-          )
-        ) {
-          setReferralSignupPoints(
-            signupPoints,
-          );
-        }
+        setRewardPointsBalance(nextBalance);
+        setReferralInstallPoints(nextInstallPoints);
+        setReferralSignupPoints(nextSignupPoints);
+        writeRewardPointsLocalCache(authProfile.id, nextBalance, nextInstallPoints, nextSignupPoints);
       })
-      .catch(() => {
-        if (!cancelled) {
-          setRewardPointsBalance(0);
-        }
-      })
+      .catch(() => {})
       .finally(() => {
-        if (!cancelled) {
-          setRewardPointsLoading(false);
-        }
+        if (!cancelled) setRewardPointsLoading(false);
       });
 
     return () => {

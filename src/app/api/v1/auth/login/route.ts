@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { AUTH_COOKIE, hashToken, makeToken, normalizeEmail, normalizePassword, normalizeUsername, verifyPassword, makeSessionExpiresAt } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getRewardPointsBalance, REFERRAL_INSTALL_REWARD_POINTS, REFERRAL_SIGNUP_REWARD_POINTS } from "@/lib/rewardPoints";
 
 const V1_HEADERS = {
   "X-API-Version": "1",
@@ -65,7 +66,28 @@ export async function POST(req: Request) {
       },
     });
 
-    const res = NextResponse.json({ ok: true, user: serializeUser(user) }, { headers: V1_HEADERS });
+    const [savedPlaces, rewardPointsBalance] = await Promise.all([
+      prisma.userPlace.findMany({
+        where: { userId: user.id, saved: true },
+        orderBy: { updatedAt: "desc" },
+        select: { placeId: true },
+      }),
+      getRewardPointsBalance(user.id),
+    ]);
+    const savedPlaceIds = savedPlaces.map((item) => String(item.placeId));
+
+    const res = NextResponse.json({
+      ok: true,
+      user: serializeUser(user),
+      savedPlaceIds,
+      rewards: {
+        balance: rewardPointsBalance,
+        referral: {
+          installPoints: REFERRAL_INSTALL_REWARD_POINTS,
+          signupPoints: REFERRAL_SIGNUP_REWARD_POINTS,
+        },
+      },
+    }, { headers: V1_HEADERS });
     res.cookies.set(AUTH_COOKIE, rawSession, {
       httpOnly: true,
       sameSite: "lax",

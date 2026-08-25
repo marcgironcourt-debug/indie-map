@@ -1202,7 +1202,33 @@ React.useEffect(() => {
       const authenticatedUserId = String(data.user.id ?? "").trim();
       if (authenticatedUserId) {
         setSavedPlacesUserId(authenticatedUserId);
-        setSavedPlaces(readSavedPlacesStorage<SavedPlace>(authenticatedUserId));
+        const loginSavedPlaceIds = Array.isArray(data.savedPlaceIds)
+          ? data.savedPlaceIds.map((value: unknown) => String(value ?? "").trim()).filter(Boolean)
+          : null;
+        if (loginSavedPlaceIds && (initialAllPlaces.length > 0 || loginSavedPlaceIds.length === 0)) {
+          const ids = new Set<string>(loginSavedPlaceIds);
+          const nextSavedPlaces = initialAllPlaces.filter((place) => ids.has(String(place.id)));
+          setSavedPlaces(nextSavedPlaces);
+          writeSavedPlacesStorage(nextSavedPlaces, authenticatedUserId);
+        } else {
+          setSavedPlaces(readSavedPlacesStorage<SavedPlace>(authenticatedUserId));
+        }
+
+        const loginRewardBalance = Number(data.rewards?.balance);
+        const loginInstallPoints = Number(data.rewards?.referral?.installPoints);
+        const loginSignupPoints = Number(data.rewards?.referral?.signupPoints);
+        if (Number.isFinite(loginRewardBalance)) {
+          try {
+            window.localStorage.setItem(
+              "im:rewards:" + authenticatedUserId,
+              JSON.stringify({
+                balance: loginRewardBalance,
+                installPoints: Number.isFinite(loginInstallPoints) ? loginInstallPoints : 50,
+                signupPoints: Number.isFinite(loginSignupPoints) ? loginSignupPoints : 50,
+              }),
+            );
+          } catch {}
+        }
       }
       setAuthProfile(data.user);
       setAuthForceForm(false);
