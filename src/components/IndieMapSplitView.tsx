@@ -226,6 +226,32 @@ type Business = {
   priceRange?: PlacePriceRange;
 };
 
+function readExplorerPlacesCache(locale: UILocale): Business[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const parsed = JSON.parse(window.sessionStorage.getItem("im:explorer-places:v1:" + locale) || "null");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((p: any) => ({
+      id: String(p?.id ?? ""),
+      name: String(p?.name ?? ""),
+      type: String(p?.type ?? p?.category ?? ""),
+      address: p?.address,
+      website: p?.website,
+      openingHours: p?.openingHours,
+      phone: p?.phone,
+      panoramaImage: p?.panoramaImage,
+      miniText: p?.miniText,
+      timeZone: p?.timeZone,
+      lat: typeof p?.lat === "number" ? p.lat : undefined,
+      lng: typeof p?.lng === "number" ? p.lng : undefined,
+      city: p?.city,
+      priceRange: p?.priceRange,
+    })).filter((p: Business) => p.id && p.name);
+  } catch {
+    return [];
+  }
+}
+
 const DEMO: Business[] = [
   {
     id: "2",
@@ -450,7 +476,7 @@ export default function IndieMapSplitView({
   const savedPlacesActionTouchRef = React.useRef(false);
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [selectionVersion, setSelectionVersion] = React.useState(0);
-  const [businesses, setBusinesses] = React.useState<Business[]>([]);
+  const [businesses, setBusinesses] = React.useState<Business[]>(() => readExplorerPlacesCache(locale));
   const [category, setCategory] = React.useState<string | "ALL">("ALL");
   const [heroOpen, setHeroOpen] = React.useState(false);
   const needsAtomicReveal = Boolean(discoverId) || entry === "explore";
@@ -1622,7 +1648,12 @@ React.useEffect(() => {
           lng: typeof p.lng === "number" ? p.lng : undefined,
           city: p.city ?? "",
         }));
-        if (!cancelled) setBusinesses(list);
+        if (!cancelled) {
+          setBusinesses(list);
+          try {
+            window.sessionStorage.setItem("im:explorer-places:v1:" + locale, JSON.stringify(list));
+          } catch {}
+        }
       } catch {
         if (!cancelled) setBusinesses(DEMO);
       }
@@ -1885,7 +1916,7 @@ const filtered = source.filter((b) => {
             >
               <div className="flex flex-col items-center">
                 <a
-                  href={`/${locale}`}
+                  href={`/${locale}`} onClick={(event) => { event.preventDefault(); router.push(`/${locale}`); }}
                   aria-label={locale === "en" ? "Back to home" : "Retour à l'accueil"}
                   className="flex items-center justify-center w-11 h-11 rounded-xl bg-[#262626] text-white shadow-lg border border-[#404040]"
                 >

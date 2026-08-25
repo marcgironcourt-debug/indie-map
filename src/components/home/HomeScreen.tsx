@@ -3291,6 +3291,9 @@ React.useEffect(() => {
           <button
             onClick={() => {
               trackEvent({ eventType: "click_explore_world", locale });
+              try {
+                window.sessionStorage.setItem("im:explorer-places:v1:" + locale, JSON.stringify(allPlaces));
+              } catch {}
               router.push(`/${locale}/carte?entry=explore`);
             }}
             className="relative mb-2 h-[290px] w-full shrink-0 overflow-hidden rounded-b-xl"
