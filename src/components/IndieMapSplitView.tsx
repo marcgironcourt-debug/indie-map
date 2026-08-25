@@ -1914,7 +1914,7 @@ const filtered = source.filter((b) => {
             {panel ? (
               <div className="fixed inset-0 z-[2001] bg-black/45 px-0 pt-0 pb-0">
                 <div className="mx-auto flex h-[100dvh] w-full max-w-none flex-col overflow-hidden rounded-none border-0 bg-black shadow-2xl">
-                  <div className="flex items-center justify-between px-5 py-4">
+                  <div className="flex items-center justify-between px-5 pb-4" style={{ paddingTop: "calc(env(safe-area-inset-top) + 12px)" }}>
                     <div className="flex flex-col leading-none">
                       <span className="text-lg font-semibold text-white">Indie Map</span>
                       <span className="text-xs tracking-widest text-[#5C6E3B] italic -rotate-2 inline-block -mt-1">Back To Local</span>
