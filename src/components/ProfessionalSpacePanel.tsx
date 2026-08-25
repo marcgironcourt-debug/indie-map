@@ -751,7 +751,7 @@ export default function ProfessionalSpacePanel({
               </span>
             </div>
 
-            <p className="mt-4 max-w-md text-[13px] leading-relaxed text-white/48">
+            <p className="mt-6 max-w-md text-[13px] leading-relaxed text-white/48">
               {proAuthMode === "login"
                 ? isFr
                   ? "Connecte-toi avec ton compte Indie Map. Le même compte donne accès à ton espace personnel et, une fois ton établissement associé, à ton espace professionnel."
@@ -761,7 +761,7 @@ export default function ProfessionalSpacePanel({
                   : "Enter the email linked to your Indie Map account to receive a reset link."}
             </p>
 
-            <div className="mt-6 space-y-3">
+            <div className="mt-8 space-y-5">
               <div>
                 <label className="mb-1.5 block px-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30">
                   {proAuthMode === "login"
@@ -911,7 +911,7 @@ export default function ProfessionalSpacePanel({
       "pending";
 
     return (
-      <div className="space-y-4">
+      <div className="space-y-7">
         {addingProfessionalPlace &&
         data?.selected ? (
           <button
@@ -1014,7 +1014,7 @@ export default function ProfessionalSpacePanel({
               </div>
             ) : null}
 
-            <div className="rounded-3xl border border-[#5C6E3B]/20 bg-[linear-gradient(135deg,rgba(92,110,59,0.14),rgba(0,0,0,0.20))] p-5">
+            <div className="rounded-3xl border border-[#5C6E3B]/20 bg-[linear-gradient(135deg,rgba(92,110,59,0.14),rgba(0,0,0,0.20))] p-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#9AAA7D]">
                 {isFr
                   ? "Espace pro"
@@ -1823,7 +1823,7 @@ export default function ProfessionalSpacePanel({
 
   function professionalAccountActions() {
     return (
-      <section className="mt-6 border-t border-white/[0.07] pt-5">
+      <section className="mt-9 border-t border-white/[0.07] pt-7">
         {canOpenPersonalSpace ? (
           <button
             type="button"

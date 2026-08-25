@@ -212,6 +212,25 @@ function clearSharedListsCache() {
   sharedListsInflight = null;
 }
 
+function readSharedListsLocalCache(userId: string): SharedList[] {
+  const id = String(userId || "").trim();
+  if (!id || typeof window === "undefined") return [];
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem("im:shared-lists:" + id) || "null");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeSharedListsLocalCache(userId: string, lists: SharedList[]) {
+  const id = String(userId || "").trim();
+  if (!id || typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem("im:shared-lists:" + id, JSON.stringify(lists));
+  } catch {}
+}
+
 async function fetchSharedListsOnce(force = false, markSeen = false) {
   const now = Date.now();
 
@@ -305,10 +324,15 @@ export default function PersonalSpacePanel({
   const locale = isFr ? "fr" : "en";
   const [friendsLoading, setFriendsLoading] = React.useState(false);
   const [friendsError, setFriendsError] = React.useState("");
-  const [friendsPayload, setFriendsPayload] = React.useState<FriendsPayload>({
-    friends: [],
-    incomingRequests: [],
-    outgoingRequests: [],
+  const [friendsPayload, setFriendsPayload] = React.useState<FriendsPayload>(() => {
+    const userId = String(authProfile?.id ?? "").trim();
+    if (!userId || typeof window === "undefined") return { friends: [], incomingRequests: [], outgoingRequests: [] };
+    try {
+      const cached = JSON.parse(window.localStorage.getItem(`im:friends:${userId}`) || "null");
+      return { friends: Array.isArray(cached?.friends) ? cached.friends : [], incomingRequests: Array.isArray(cached?.incomingRequests) ? cached.incomingRequests : [], outgoingRequests: Array.isArray(cached?.outgoingRequests) ? cached.outgoingRequests : [] };
+    } catch {
+      return { friends: [], incomingRequests: [], outgoingRequests: [] };
+    }
   });
   const [friendSearchQuery, setFriendSearchQuery] = React.useState("");
   const [friendSearchLoading, setFriendSearchLoading] = React.useState(false);
@@ -324,7 +348,7 @@ export default function PersonalSpacePanel({
   const [pendingDeleteFriendId, setPendingDeleteFriendId] = React.useState("");
   const [sharedListsLoading, setSharedListsLoading] = React.useState(false);
   const [sharedListsError, setSharedListsError] = React.useState("");
-  const [sharedLists, setSharedLists] = React.useState<SharedList[]>([]);
+  const [sharedLists, setSharedLists] = React.useState<SharedList[]>(() => readSharedListsLocalCache(String(authProfile?.id ?? "")));
   const [selectedSharedListId, setSelectedSharedListId] = React.useState<string | null>(initialSharedListId || null);
   const [newSharedListTitle, setNewSharedListTitle] = React.useState("");
   const [sharedListSaving, setSharedListSaving] = React.useState(false);
@@ -356,6 +380,23 @@ export default function PersonalSpacePanel({
   const friendsLoadingRef = React.useRef(false);
   const sharedListsLoadingRef = React.useRef(false);
   const onSharedListsSeenRef = React.useRef(onSharedListsSeen);
+
+  React.useLayoutEffect(() => {
+    const userId = String(authProfile?.id ?? "").trim();
+    if (!userId) {
+      setSharedLists([]);
+      setSharedListsLoading(false);
+      return;
+    }
+
+    const cachedLists = readSharedListsLocalCache(userId);
+    setSharedLists(cachedLists);
+    if (cachedLists.length > 0) setSharedListsLoading(false);
+  }, [authProfile?.id]);
+
+  React.useEffect(() => {
+    clearSharedListsCache();
+  }, [authProfile?.id]);
 
   React.useEffect(() => {
     onSharedListsSeenRef.current = onSharedListsSeen;
@@ -497,7 +538,7 @@ export default function PersonalSpacePanel({
     if (sharedListsLoadingRef.current) return;
 
     sharedListsLoadingRef.current = true;
-    setSharedListsLoading(sharedListsCache === null);
+    setSharedListsLoading(readSharedListsLocalCache(currentUserId).length === 0);
     setSharedListsError("");
 
     try {
@@ -515,6 +556,7 @@ export default function PersonalSpacePanel({
         : nextLists;
 
       setSharedLists(normalizedLists);
+      writeSharedListsLocalCache(currentUserId, normalizedLists);
 
       if (markSeen) {
         onSharedListsSeenRef.current?.();
@@ -1102,11 +1144,13 @@ export default function PersonalSpacePanel({
         throw new Error("friends_load_failed");
       }
 
-      setFriendsPayload({
+      const nextFriendsPayload = {
         friends: Array.isArray(data.friends) ? data.friends : [],
         incomingRequests: Array.isArray(data.incomingRequests) ? data.incomingRequests : [],
         outgoingRequests: Array.isArray(data.outgoingRequests) ? data.outgoingRequests : [],
-      });
+      };
+      setFriendsPayload(nextFriendsPayload);
+      try { window.localStorage.setItem(`im:friends:${authProfile.id}`, JSON.stringify(nextFriendsPayload)); } catch {}
     } catch {
       setFriendsError(isFr ? "Impossible de charger tes amis pour le moment." : "Unable to load your friends right now.");
     } finally {
@@ -2799,11 +2843,11 @@ export default function PersonalSpacePanel({
               {isFr ? "Mes amis" : "My friends"}
             </p>
 
-            {friendsLoading ? (
+            {friendsLoading && friendsPayload.friends.length === 0 ? (
               <p className="px-1 text-[13px] leading-relaxed text-white/45">
                 {isFr ? "Chargement..." : "Loading..."}
               </p>
-            ) : friendsError ? (
+             ) : friendsError && friendsPayload.friends.length === 0 ? (
               <p className="px-1 text-[13px] leading-relaxed text-red-200">
                 {friendsError}
               </p>
@@ -2983,7 +3027,7 @@ export default function PersonalSpacePanel({
         </div>
       </div>
 
-      <div className="mb-2 grid relative grid-cols-[36px_minmax(0,1fr)_92px] items-center gap-2.5 overflow-hidden rounded-2xl border border-[#EAB308]/20 bg-[linear-gradient(135deg,rgba(234,179,8,0.14),rgba(255,255,255,0.05)_55%,rgba(92,110,59,0.10))] px-4 py-2">
+      <div className="mb-5 grid relative grid-cols-[36px_minmax(0,1fr)_92px] items-center gap-2.5 overflow-hidden rounded-2xl border border-[#EAB308]/20 bg-[linear-gradient(135deg,rgba(234,179,8,0.14),rgba(255,255,255,0.05)_55%,rgba(92,110,59,0.10))] px-4 py-4">
         <span className="pointer-events-none absolute -right-5 top-1/2 -translate-y-1/2 text-[#EAB308]/[0.07]"><svg viewBox="0 0 24 24" className="h-16 w-16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/><path d="M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z"/></svg></span>
         <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#EAB308]/25 bg-[#EAB308]/10 text-[#EAB308]"><svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>
         <div className="min-w-0">
@@ -3188,8 +3232,8 @@ export default function PersonalSpacePanel({
         </div>
       </div>
 
-      <div className="mb-6">
-        <div className="mb-3 flex items-baseline gap-1.5">
+      <div className="mb-9">
+        <div className="mb-4 flex items-baseline gap-1.5">
           <p className="font-serif text-[15px] font-medium whitespace-nowrap tracking-[0.01em] text-white">
             {isFr ? "Mes lieux" : "My places"}
           </p>
@@ -3263,8 +3307,8 @@ export default function PersonalSpacePanel({
                     </div>
                   </div>
 
-                  <div className="flex h-[34px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
-                    <p className="line-clamp-2 font-serif text-[8.5px] font-medium leading-[1.1] text-white/95">
+                  <div className="flex h-[46px] w-full items-center bg-black/45 px-3 backdrop-blur-[2px]">
+                    <p className="line-clamp-2 font-serif text-[10.5px] font-medium leading-[1.15] text-white/95">
                       {place.name}
                     </p>
                   </div>
@@ -3334,13 +3378,13 @@ export default function PersonalSpacePanel({
                     />
                   </div>
 
-                  <div className="flex h-[34px] w-full items-center bg-black/45 px-2 backdrop-blur-[2px]">
+                  <div className="flex h-[46px] w-full items-center bg-black/45 px-3 backdrop-blur-[2px]">
                     <div className="min-w-0">
-                      <p className="truncate font-serif text-[8.5px] font-medium leading-[1.1] text-white/95">
+                      <p className="truncate font-serif text-[10.5px] font-medium leading-[1.15] text-white/95">
                         {list.title}
                       </p>
 
-                      <p className="mt-0.5 flex items-center gap-1 text-[7px] leading-none text-white/60">
+                      <p className="mt-1 flex items-center gap-1 text-[8.5px] leading-none text-white/60">
                         <span>
                           {list.places.length}{" "}
                           {isFr
@@ -3354,7 +3398,7 @@ export default function PersonalSpacePanel({
 
                         <svg
                           viewBox="0 0 24 24"
-                          className="h-2.5 w-2.5 shrink-0"
+                          className="h-3 w-3 shrink-0"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="1.7"
@@ -3389,7 +3433,7 @@ export default function PersonalSpacePanel({
         <button
           type="button"
           onClick={() => onModeChange("friends")}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-[#9CBF52]/20 bg-[linear-gradient(145deg,rgba(92,110,59,0.24),rgba(156,191,82,0.07),rgba(255,255,255,0.03))] p-4 text-left hover:brightness-110 active:brightness-105"
+          className="flex min-h-[128px] flex-col justify-between rounded-2xl border border-[#9CBF52]/20 bg-[linear-gradient(145deg,rgba(92,110,59,0.24),rgba(156,191,82,0.07),rgba(255,255,255,0.03))] p-5 text-left hover:brightness-110 active:brightness-105"
         >
           <span className="flex items-center gap-2">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#9CBF52]/30 bg-[#9CBF52]/10 text-[#9CBF52]"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14c2.8.2 4.4 1.8 5 5"/></svg></span>
@@ -3421,7 +3465,7 @@ export default function PersonalSpacePanel({
         <button
           type="button"
           onClick={() => setShowContributions(true)}
-          className="flex min-h-[112px] flex-col justify-between rounded-2xl border border-[#EAB308]/15 bg-[linear-gradient(145deg,rgba(234,179,8,0.16),rgba(92,110,59,0.10),rgba(255,255,255,0.025))] p-4 text-left hover:brightness-110 active:brightness-105"
+          className="flex min-h-[128px] flex-col justify-between rounded-2xl border border-[#EAB308]/15 bg-[linear-gradient(145deg,rgba(234,179,8,0.16),rgba(92,110,59,0.10),rgba(255,255,255,0.025))] p-5 text-left hover:brightness-110 active:brightness-105"
         >
           <span className="flex items-center gap-2">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#EAB308]/30 bg-[#EAB308]/10 text-[#EAB308]"><svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 4c-7 0-12 3.5-12 9a5 5 0 0 0 5 5c5.5 0 7-6 7-14Z"/><path d="M4 20c2-5 6-8 12-10"/></svg></span>
@@ -3464,12 +3508,12 @@ export default function PersonalSpacePanel({
         </span>
       </button>
 
-      <div className="mt-5 border-t border-white/[0.07] pt-5">
+      <div className="mt-8 border-t border-white/[0.07] pt-7">
         {hasProfessionalAccess && onOpenProfessionalSpace ? (
           <button
             type="button"
             onClick={onOpenProfessionalSpace}
-            className="mb-2 flex w-full items-center justify-between rounded-2xl border border-[#5C6E3B]/25 bg-[#5C6E3B]/10 px-4 py-2 text-left hover:bg-[#5C6E3B]/15"
+            className="mb-2 flex w-full items-center justify-between rounded-2xl border border-[#5C6E3B]/25 bg-[#5C6E3B]/10 px-4 py-4 text-left hover:bg-[#5C6E3B]/15"
           >
             <span>
               <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#B8C69F]">

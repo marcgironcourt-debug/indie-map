@@ -820,6 +820,10 @@ export default function HomeScreen({
           Number(data?.notifications?.unseenSharedListCount) || 0,
         );
 
+        setAuthProfile(user);
+        setSavedPlacesUserId(user.id);
+        setSavedPlaces(readSavedPlacesStorage<SavedPlace>(user.id));
+
         const migratedSavedPlaces =
           await migrateLegacySavedPlacesToUser<SavedPlace>(
             user.id,
@@ -1188,6 +1192,11 @@ React.useEffect(() => {
         return;
       }
 
+      const authenticatedUserId = String(data.user.id ?? "").trim();
+      if (authenticatedUserId) {
+        setSavedPlacesUserId(authenticatedUserId);
+        setSavedPlaces(readSavedPlacesStorage<SavedPlace>(authenticatedUserId));
+      }
       setAuthProfile(data.user);
       setAuthForceForm(false);
       setProfileUsername(data.user.username || "");
@@ -1276,6 +1285,11 @@ React.useEffect(() => {
       if (!res.ok || !data?.ok || !data?.user) {
         setProfileError(data?.error === "username_taken" ? (isFr ? "Ce pseudo est déjà pris." : "This username is already taken.") : (isFr ? "Impossible d’enregistrer le profil." : "Unable to save profile."));
         return;
+      }
+      const authenticatedUserId = String(data.user.id ?? "").trim();
+      if (authenticatedUserId) {
+        setSavedPlacesUserId(authenticatedUserId);
+        setSavedPlaces(readSavedPlacesStorage<SavedPlace>(authenticatedUserId));
       }
       setAuthProfile(data.user);
       setProfileAvatarColor(data.user.avatarColor || profileAvatarColor);
@@ -5486,8 +5500,8 @@ React.useEffect(() => {
       />
 
       {panel ? (
-        <div className="fixed inset-0 z-[2001] bg-black/45 px-0 pt-[30vh] pb-0">
-          <div className="mx-auto flex h-[70vh] w-full max-w-none flex-col overflow-hidden rounded-t-3xl rounded-b-none border border-neutral-700 bg-black shadow-2xl">
+        <div className="fixed inset-0 z-[2001] bg-black/45 px-0 pt-0 pb-0">
+          <div className="mx-auto flex h-[100dvh] w-full max-w-none flex-col overflow-hidden rounded-none border-0 bg-black shadow-2xl">
             <div className="flex items-center justify-between px-5 py-4">
               <div className="flex flex-col leading-none">
                 <span className="text-lg font-semibold text-white">Indie Map</span>
@@ -5503,7 +5517,7 @@ React.useEffect(() => {
               </button>
             </div>
 
-            <div ref={panelScrollRef} className="px-5 pb-6 flex-1 min-h-0 overflow-auto">
+            <div ref={panelScrollRef} className="px-6 pt-3 pb-12 flex-1 min-h-0 overflow-auto">
               {panel === "pros" ? (
                 <ProfessionalSpacePanel
                   isFr={isFr}
@@ -5534,6 +5548,7 @@ React.useEffect(() => {
                 )
               ) : panel === "personalSpace" || panel === "profileInfo" || panel === "friends" || panel === "sharedLists" ? (
                 <PersonalSpacePanel
+                  key={authProfile?.id || "guest"}
                   isFr={isFr}
                   places={allPlaces}
                   mode={panel === "profileInfo" ? "profile" : panel === "friends" ? "friends" : panel === "sharedLists" ? "sharedLists" : "dashboard"}

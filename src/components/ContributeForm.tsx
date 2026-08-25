@@ -51,28 +51,28 @@ export default function ContributeForm({ locale }: Props) {
   } as const;
 
   return (
-    <div className="mx-auto max-w-xl px-4 py-6">
+    <div className="mx-auto max-w-xl px-2 py-8">
       <h1 className="text-2xl font-semibold text-white">{t.title}</h1>
-      <p className="mt-2 text-white/80">{t.intro}</p>
+      <p className="mt-4 leading-relaxed text-white/80">{t.intro}</p>
 
-      <form onSubmit={onSubmit} className="mt-6 space-y-4">
-        <div className="grid gap-2">
+      <form onSubmit={onSubmit} className="mt-8 space-y-6">
+        <div className="grid gap-3">
           <label className="text-sm font-medium text-white/80">{t.name}</label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
+            className="w-full rounded-2xl bg-white/10 px-4 py-4 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
           />
         </div>
 
 
 
-        <div className="grid gap-2">
+        <div className="grid gap-3">
           <label className="text-sm font-medium text-white/80">{t.website}</label>
           <input
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
-            className="w-full rounded-2xl bg-white/10 px-3 py-3 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
+            className="w-full rounded-2xl bg-white/10 px-4 py-4 text-white placeholder:text-white/40 outline-none ring-1 ring-white/10"
           />
         </div>
 
@@ -80,7 +80,7 @@ export default function ContributeForm({ locale }: Props) {
         <button
           type="submit"
           disabled={!canSend}
-          className="w-full rounded-2xl bg-[hsl(var(--brand))] px-5 py-3 font-medium text-white hover:bg-[hsl(var(--brand-600))] disabled:opacity-60"
+          className="w-full rounded-2xl bg-[hsl(var(--brand))] px-5 py-4 font-medium text-white hover:bg-[hsl(var(--brand-600))] disabled:opacity-60"
         >
           {status === "sending" ? t.sending : t.send}
         </button>
