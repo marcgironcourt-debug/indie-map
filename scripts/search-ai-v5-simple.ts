@@ -3766,7 +3766,7 @@ function parseOpeningRanges(
       continue;
     }
 
-    let start =
+    const start =
       startHour * 60 +
       startMinute;
 

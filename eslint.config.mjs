@@ -15,6 +15,23 @@ const eslintConfig = defineConfig([
       "react-hooks/exhaustive-deps": "off",
     },
   },
+  // Les scripts de prospection et les prototypes ne sont pas livrés avec
+  // l'application ; ils manipulent volontairement des réponses externes
+  // non typées. Le code de production conserve la règle stricte.
+  {
+    files: ["scripts/**/*", "src/lib/ai/officialSiteVerifier.prototype.ts"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+  // Cheerio et pdfjs exposent ici des nœuds non typés. Ces frontières restent
+  // isolées dans le vérificateur, sans assouplir les autres modules de l'app.
+  {
+    files: ["src/lib/ai/officialSiteVerifier.ts"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",

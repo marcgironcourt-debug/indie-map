@@ -18,7 +18,9 @@ const outputPath = path.join(
   "search-embeddings-v1.json"
 );
 
-type Place = Record<string, any>;
+type Place = Record<string, unknown> & {
+  tags?: unknown[];
+};
 
 type CacheEntry = {
   id: string;

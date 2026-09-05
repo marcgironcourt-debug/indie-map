@@ -261,7 +261,6 @@ export async function POST(req: Request) {
 
     const {
       contributionsCount,
-      contributionRank,
     } = await getContributionRankForUser(user.id);
 
     const professionalPlaceId =

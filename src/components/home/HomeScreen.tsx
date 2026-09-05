@@ -16,7 +16,6 @@ import { getCategoryStyle } from "@/lib/categoryStyle";
 import { isOpenNowFR } from "@/lib/openingHours";
 import {
   readRecentViewedPlaceIds,
-  rememberRecentViewedPlace,
 } from "@/lib/recentViewedPlaces";
 import { getAnalyticsHeaders, trackEvent } from "@/lib/analytics";
 import { readPlaceNotes, writePlaceNotes, type PlaceNote } from "@/lib/placeNotes";
@@ -789,11 +788,11 @@ export default function HomeScreen({
   const [authPassword, setAuthPassword] = React.useState("");
   const [authResetToken, setAuthResetToken] = React.useState("");
   const [authResetDone, setAuthResetDone] = React.useState(false);
-  const [authForceForm, setAuthForceForm] = React.useState(false);
+  const [, setAuthForceForm] = React.useState(false);
   const [authSending, setAuthSending] = React.useState(false);
   const [authError, setAuthError] = React.useState("");
   const [profileUsername, setProfileUsername] = React.useState("");
-  const [profileAvatarUrl, setProfileAvatarUrl] = React.useState("");
+  const [, setProfileAvatarUrl] = React.useState("");
   const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
   const [profileAgeRange, setProfileAgeRange] = React.useState("");
@@ -1344,7 +1343,7 @@ React.useEffect(() => {
   React.useEffect(() => {
     try { router.prefetch(`/${locale}/carte`); } catch {}
   }, [router, locale]);
-  const [discoverReady, setDiscoverReady] = React.useState(() => {
+  const [, setDiscoverReady] = React.useState(() => {
     const cached = homeMemoryCache[locale];
     return Boolean(cached?.discoverPlace || (cached?.newPlaces?.length ?? 0) > 0 || initialDiscoverPlace || initialNewPlaces.length > 0);
   });
@@ -1565,7 +1564,7 @@ React.useEffect(() => {
     searchResults,
   ]);
 
-  const [addressCopied, setAddressCopied] = React.useState(false);
+  const [, setAddressCopied] = React.useState(false);
   const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
   const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
   const [selectedPlaceCommentSaving, setSelectedPlaceCommentSaving] = React.useState(false);
@@ -1573,8 +1572,6 @@ React.useEffect(() => {
   const [savedPlaces, setSavedPlaces] = React.useState<SavedPlace[]>(() => readSavedPlaces());
   const savedPlaceMutationIdsRef = React.useRef<Set<string>>(new Set());
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
-  const [editingPlaceNote, setEditingPlaceNote] = React.useState<SavedPlace | null>(null);
-  const [editingPlaceComment, setEditingPlaceComment] = React.useState("");
   const [allPlaces, setAllPlaces] = React.useState<DiscoverPlace[]>(initialAllPlaces ?? []);
 
   const applyHomeLocation =
@@ -1736,13 +1733,13 @@ React.useEffect(() => {
           "ios"
         ) {
           const handler =
-            (
-              window as any
-            ).webkit
+            window.webkit
               ?.messageHandlers
-              ?.imLocationPermission;
+              ?.imLocationPermission as
+                | { postMessage?: (message: string) => void }
+                | undefined;
 
-          if (handler) {
+          if (handler?.postMessage) {
             handler.postMessage(
               "open",
             );
@@ -1935,14 +1932,14 @@ React.useEffect(() => {
           "ios"
         ) {
           const handler =
-            (
-              window as any
-            ).webkit
+            window.webkit
               ?.messageHandlers
-              ?.imLocationPermission;
+              ?.imLocationPermission as
+                | { postMessage?: (message: string) => void }
+                | undefined;
 
           handler
-            ?.postMessage(
+            ?.postMessage?.(
               "refresh",
             );
 
@@ -2277,8 +2274,6 @@ React.useEffect(() => {
 
   const [savedPlaceIndexes, setSavedPlaceIndexes] = React.useState<Record<string, number>>({});
   const savedPlacesScrollRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
-  const savedPlacesTouchStartXRef = React.useRef<number | null>(null);
-  const savedPlacesTouchDeltaXRef = React.useRef(0);
 
   React.useEffect(() => {
     homeMemoryCache[locale] = {
@@ -2435,7 +2430,10 @@ React.useEffect(() => {
 
         if (!res.ok || !data?.ok || !Array.isArray(data.places)) return;
 
-        const ids = new Set(data.places.map((item: any) => String(item?.placeId ?? "").trim()).filter(Boolean));
+        const ids = new Set(data.places.map((item: unknown) => {
+          const place = item && typeof item === "object" ? item as Record<string, unknown> : {};
+          return String(place.placeId ?? "").trim();
+        }).filter(Boolean));
         const next = allPlaces.filter((place) => ids.has(String(place.id)));
 
         if (cancelled || savedPlaceMutationIdsRef.current.size > 0) return;
@@ -2506,17 +2504,6 @@ React.useEffect(() => {
     return () => window.removeEventListener("keydown", onKey);
   }, [panel]);
 
-  function goToSavedPlace(city: string, delta: number, length: number) {
-    setSavedPlaceIndexes((prev) => {
-      const current = prev[city] ?? 0;
-      if (length <= 0) return prev;
-      return {
-        ...prev,
-        [city]: (current + delta + length) % length
-      };
-    });
-  }
-
   async function syncPlaceNoteToServer(placeId: string, note: PlaceNote | undefined) {
     if (!authProfile) return;
 
@@ -2535,31 +2522,6 @@ React.useEffect(() => {
         })
       });
     } catch {}
-  }
-
-  function openPlaceNoteEditor(place: SavedPlace) {
-    const note = placeNotes[place.id];
-    setEditingPlaceNote(place);
-    setEditingPlaceComment(note?.comment ?? "");
-  }
-
-  function savePlaceNote() {
-    if (!editingPlaceNote) return;
-
-    const nextNotes: Record<string, PlaceNote> = {
-      ...placeNotes,
-      [editingPlaceNote.id]: {
-        visited: true,
-        comment: editingPlaceComment.trim(),
-        updatedAt: new Date().toISOString()
-      }
-    };
-
-    setPlaceNotes(nextNotes);
-    writePlaceNotes(nextNotes, authProfile?.id ?? null);
-    void syncPlaceNoteToServer(editingPlaceNote.id, nextNotes[editingPlaceNote.id]);
-    setEditingPlaceNote(null);
-    setEditingPlaceComment("");
   }
 
   function toggleSelectedHomePlaceSaved() {
@@ -2847,30 +2809,6 @@ React.useEffect(() => {
     }
   }
 
-  function onSavedPlacesTouchStart(e: React.TouchEvent<HTMLButtonElement>) {
-    savedPlacesTouchStartXRef.current = e.touches[0]?.clientX ?? null;
-    savedPlacesTouchDeltaXRef.current = 0;
-  }
-
-  function onSavedPlacesTouchMove(e: React.TouchEvent<HTMLButtonElement>) {
-    const startX = savedPlacesTouchStartXRef.current;
-    if (startX == null) return;
-    const currentX = e.touches[0]?.clientX ?? startX;
-    savedPlacesTouchDeltaXRef.current = currentX - startX;
-  }
-
-  function onSavedPlacesTouchEnd(city: string, length: number) {
-    const dx = savedPlacesTouchDeltaXRef.current;
-    savedPlacesTouchStartXRef.current = null;
-    savedPlacesTouchDeltaXRef.current = 0;
-    if (Math.abs(dx) < 35) return;
-    if (dx < 0) {
-      goToSavedPlace(city, 1, length);
-      return;
-    }
-    goToSavedPlace(city, -1, length);
-  }
-
   React.useEffect(() => {
     let cancelled = false;
 
@@ -2894,41 +2832,42 @@ React.useEffect(() => {
           const arr = Array.isArray(j) ? j : j?.data || [];
 
           all = arr
-            .map((item: any) => ({
-              id: String(item?.id ?? ""),
-              name: String(item?.name ?? "").trim(),
-              lat: typeof item?.lat === "number" ? item.lat : undefined,
-              lng: typeof item?.lng === "number" ? item.lng : undefined,
+            .map((item: unknown) => {
+              const place = item && typeof item === "object" ? item as Record<string, unknown> : {};
+              return ({
+              id: String(place.id ?? ""),
+              name: String(place.name ?? "").trim(),
+              lat: typeof place.lat === "number" ? place.lat : undefined,
+              lng: typeof place.lng === "number" ? place.lng : undefined,
               panoramaImage:
-                String(item?.panoramaImage ?? "").trim() || undefined,
-              city: String(item?.city ?? "").trim() || undefined,
-              address: String(item?.address ?? "").trim() || undefined,
-              category: String(item?.category ?? "").trim() || undefined,
-              website: String(item?.website ?? "").trim() || undefined,
-              phone: String(item?.phone ?? "").trim() || undefined,
-              miniText: String(item?.miniText ?? "").trim() || undefined,
+                String(place.panoramaImage ?? "").trim() || undefined,
+              city: String(place.city ?? "").trim() || undefined,
+              address: String(place.address ?? "").trim() || undefined,
+              category: String(place.category ?? "").trim() || undefined,
+              website: String(place.website ?? "").trim() || undefined,
+              phone: String(place.phone ?? "").trim() || undefined,
+              miniText: String(place.miniText ?? "").trim() || undefined,
               openingHours:
-                String(item?.openingHours ?? "").trim() || undefined,
-              timeZone: String(item?.timeZone ?? "").trim() || undefined,
-              createdAt: String(item?.createdAt ?? "").trim() || undefined,
-              updatedAt: String(item?.updatedAt ?? "").trim() || undefined,
-              homeTextNear:
-                String(item?.homeTextNear ?? "").trim() || undefined,
-              homeTextFar:
-                String(item?.homeTextFar ?? "").trim() || undefined,
+                String(place.openingHours ?? "").trim() || undefined,
+              timeZone: String(place.timeZone ?? "").trim() || undefined,
+              createdAt: String(place.createdAt ?? "").trim() || undefined,
+              updatedAt: String(place.updatedAt ?? "").trim() || undefined,
+              homeTextNear: String(place.homeTextNear ?? "").trim() || undefined,
+              homeTextFar: String(place.homeTextFar ?? "").trim() || undefined,
               homeTextNearEn:
                 String(
-                  item?.translations?.en?.homeTextNear ??
-                    item?.homeTextNear ??
+                  (place.translations as { en?: { homeTextNear?: unknown } } | undefined)?.en?.homeTextNear ??
+                    place.homeTextNear ??
                     ""
                 ).trim() || undefined,
               homeTextFarEn:
                 String(
-                  item?.translations?.en?.homeTextFar ??
-                    item?.homeTextFar ??
+                  (place.translations as { en?: { homeTextFar?: unknown } } | undefined)?.en?.homeTextFar ??
+                    place.homeTextFar ??
                     ""
                 ).trim() || undefined,
-            }))
+              });
+            })
             .filter(
               (item: DiscoverPlace) =>
                 !!item.id &&
@@ -3206,42 +3145,6 @@ React.useEffect(() => {
         places: [...places].sort((a, b) => a.name.localeCompare(b.name))
       }));
   }, [savedPlaces, allPlaces, isFr]);
-
-  const savedPlacesTimerRefs = React.useRef<Record<string, number>>({});
-
-  function restartSavedPlacesTimer(city: string, length: number) {
-    const existing = savedPlacesTimerRefs.current[city];
-
-    if (existing) {
-      window.clearTimeout(existing);
-    }
-
-    if (length <= 1) return;
-
-    savedPlacesTimerRefs.current[city] = window.setTimeout(() => {
-      const currentIndex = savedPlaceIndexes[city] ?? 0;
-      const nextIndex = (currentIndex + 1) % length;
-
-      setSavedPlaceIndexes((prev) => ({
-        ...prev,
-        [city]: nextIndex
-      }));
-
-      const el = savedPlacesScrollRefs.current[city];
-
-      if (el) {
-        const width = el.clientWidth;
-
-        el.scrollTo({
-          left: width * nextIndex,
-          behavior: "smooth"
-        });
-      }
-
-      restartSavedPlacesTimer(city, length);
-    }, 7000);
-  }
-
 
   function switchLocale(nextLocale: "fr" | "en") {
     if (nextLocale === locale) return;
@@ -5137,7 +5040,9 @@ React.useEffect(() => {
                             });
 
                             const nativeWebsiteBridge =
-                              (window as any)?.webkit?.messageHandlers?.imWebsite;
+                              window.webkit?.messageHandlers?.imWebsite as
+                                | { postMessage?: (message: string) => void }
+                                | undefined;
 
                             if (nativeWebsiteBridge?.postMessage) {
                               nativeWebsiteBridge.postMessage(url);

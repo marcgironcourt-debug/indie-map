@@ -231,22 +231,28 @@ function readExplorerPlacesCache(locale: UILocale): Business[] {
   try {
     const parsed = JSON.parse(window.sessionStorage.getItem("im:explorer-places:v1:" + locale) || "null");
     if (!Array.isArray(parsed)) return [];
-    return parsed.map((p: any) => ({
+    return parsed.map((value): Business | null => {
+      const p = value && typeof value === "object" && !Array.isArray(value)
+        ? value as Record<string, unknown>
+        : null;
+      if (!p) return null;
+      return {
       id: String(p?.id ?? ""),
       name: String(p?.name ?? ""),
       type: String(p?.type ?? p?.category ?? ""),
-      address: p?.address,
-      website: p?.website,
-      openingHours: p?.openingHours,
-      phone: p?.phone,
-      panoramaImage: p?.panoramaImage,
-      miniText: p?.miniText,
-      timeZone: p?.timeZone,
+      address: typeof p.address === "string" ? p.address : undefined,
+      website: typeof p.website === "string" ? p.website : undefined,
+      openingHours: typeof p.openingHours === "string" ? p.openingHours : undefined,
+      phone: typeof p.phone === "string" ? p.phone : undefined,
+      panoramaImage: typeof p.panoramaImage === "string" ? p.panoramaImage : undefined,
+      miniText: typeof p.miniText === "string" ? p.miniText : undefined,
+      timeZone: typeof p.timeZone === "string" ? p.timeZone : undefined,
       lat: typeof p?.lat === "number" ? p.lat : undefined,
       lng: typeof p?.lng === "number" ? p.lng : undefined,
-      city: p?.city,
-      priceRange: p?.priceRange,
-    })).filter((p: Business) => p.id && p.name);
+      city: typeof p.city === "string" ? p.city : undefined,
+      priceRange: p.priceRange as PlacePriceRange | undefined,
+      };
+    }).filter((p): p is Business => Boolean(p?.id && p.name));
   } catch {
     return [];
   }
@@ -436,11 +442,11 @@ export default function IndieMapSplitView({
   const [authPassword, setAuthPassword] = React.useState("");
   const [authResetToken, setAuthResetToken] = React.useState("");
   const [authResetDone, setAuthResetDone] = React.useState(false);
-  const [authForceForm, setAuthForceForm] = React.useState(false);
+  const [, setAuthForceForm] = React.useState(false);
   const [authSending, setAuthSending] = React.useState(false);
   const [authError, setAuthError] = React.useState("");
   const [profileUsername, setProfileUsername] = React.useState("");
-  const [profileAvatarUrl, setProfileAvatarUrl] = React.useState("");
+  const [, setProfileAvatarUrl] = React.useState("");
   const [profileAvatarColor, setProfileAvatarColor] = React.useState("#F97316");
   const [profileHomeCity, setProfileHomeCity] = React.useState("");
   const [profileAgeRange, setProfileAgeRange] = React.useState("");
@@ -458,7 +464,7 @@ export default function IndieMapSplitView({
   const [placeNotes, setPlaceNotes] = React.useState<Record<string, PlaceNote>>({});
   const [selectedDetailPlace, setSelectedDetailPlace] = React.useState<Business | null>(null);
   const [selectedDetailPlaceSource, setSelectedDetailPlaceSource] = React.useState("map");
-  const [addressCopied, setAddressCopied] = React.useState(false);
+  const [, setAddressCopied] = React.useState(false);
   const [selectedPlaceCommentsOpen, setSelectedPlaceCommentsOpen] = React.useState(false);
   const [selectedPlaceCommentInput, setSelectedPlaceCommentInput] = React.useState("");
   const [selectedPlaceCommentSaving, setSelectedPlaceCommentSaving] = React.useState(false);
@@ -1570,7 +1576,7 @@ React.useEffect(() => {
 
   React.useEffect(() => {
     if (!needsAtomicReveal) return;
-    let revealTimer: number | null = null;
+    const revealTimer: number | null = null;
     const reveal = () => {
       try {
         if (revealTimer) window.clearTimeout(revealTimer);
@@ -2647,7 +2653,9 @@ const filtered = source.filter((b) => {
                             });
 
                             const nativeWebsiteBridge =
-                              (window as any)?.webkit?.messageHandlers?.imWebsite;
+                              window.webkit?.messageHandlers?.imWebsite as
+                                | { postMessage?: (message: string) => void }
+                                | undefined;
 
                             if (nativeWebsiteBridge?.postMessage) {
                               nativeWebsiteBridge.postMessage(url);

@@ -155,7 +155,15 @@ export async function readPlaceCatalogueWithProfessionalOverrides(): Promise<
           },
         },
       ),
-    ]);
+    ]).catch((error) => {
+      // Le catalogue éditorial doit rester disponible même si les surcharges
+      // professionnelles ne peuvent pas être lues temporairement.
+      console.error(
+        "[placeCatalogue] Impossible de charger les surcharges professionnelles",
+        error,
+      );
+      return [[], []] as const;
+    });
 
   const patches =
     new Map<
