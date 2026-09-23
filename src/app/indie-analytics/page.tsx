@@ -4564,6 +4564,13 @@ export default async function IndieAnalyticsPage({
                 </p>
               </div>
 
+              <a
+                href={`/indie-analytics-modern?${new URLSearchParams({ token: providedToken })}`}
+                className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+              >
+                Ouvrir le nouveau dashboard
+              </a>
+
               {!showingDetail && activeTab === "daily" ? (
                 <details className="group relative w-full sm:w-auto">
                   <summary className="flex min-w-[250px] cursor-pointer list-none items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-left transition hover:bg-white/12 [&::-webkit-details-marker]:hidden">
