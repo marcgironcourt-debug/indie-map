@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FILTER_COOKIE, type Filters } from "@/lib/analytics/filters";
 
-const tabs = [["summary", "Synthèse"], ["audience", "Utilisateurs & acquisition"], ["usage", "Usage"], ["places", "Lieux & professionnels"], ["quality", "Qualité des données"]];
+const tabs = [["summary", "Synthèse"], ["audience", "Audience & acquisition"], ["accounts", "Comptes utilisateurs"], ["usage", "Usage"], ["places", "Lieux & professionnels"], ["quality", "Qualité des données"]];
 const periods = [["today", "Aujourd’hui"], ["yesterday", "Hier"], ["7d", "7 jours"], ["30d", "30 jours"], ["all", "Depuis le début"], ["custom", "Dates personnalisées"]];
 
 export default function DashboardControls({filters, label, basePath = "/indie-analytics-modern"}: {filters: Filters; label: string; basePath?: string}) {

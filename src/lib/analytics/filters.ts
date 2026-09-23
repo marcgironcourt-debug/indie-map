@@ -1,5 +1,5 @@
 export const FILTER_COOKIE = "indie-analytics-filters-v1";
-export const VIEWS = ["summary", "audience", "usage", "places", "quality"] as const;
+export const VIEWS = ["summary", "audience", "accounts", "usage", "places", "quality"] as const;
 export type Filters = { view: string; period: string; from: string; to: string; traffic: string; platform: string; place: string };
 export type Query = Record<string, string | string[] | undefined>;
 const scalar = (v: unknown) => typeof v === "string" ? v : "";
